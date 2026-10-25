@@ -1,10 +1,11 @@
 # ChatGPT sprite sheet request
 
-Sprite sheet art is generated in ChatGPT. When a creature's sheet is lacking (a part is missing, too small, drawn in the wrong pose, cropped, fused to another part, or off-style), fill in the prompt below and give it to the user as one copy-paste block. Save the filled copy to `docs/sprite-requests/<creature>-<yyyy-mm-dd>.md`.
+Use this specification for new or revised player-character and creature sheets. Follow **Platform and image delivery** in [the skill](../SKILL.md): on ChatGPT/OpenAI Codex, send the filled specification directly to the image-generation tool and display the image; on Claude, give it to the user as one copy-paste block. Save the filled copy to `docs/sprite-requests/<character-or-creature>-<yyyy-mm-dd>.md`.
 
 ## How to fill it in
 
 - **Pick the mode.**
+  - **New player sheet:** use the canon character description and existing portrait/sprite references. Specify the assembled pose and all separate parts, or the exact full-frame layout if requested. No existing creature ATLAS is assumed.
   - **Revised parts only** (default): ChatGPT draws just the new or fixed parts, and `sheet.py pack --base <creature>` merges them into the existing sheet. Unchanged parts stay pixel-identical, so their rig fits survive.
   - **Full sheet**: use it only when the whole creature needs redrawing (a style change or a redesign). Every bone then needs re-fitting.
 - **Write each revision concretely.** Give the part's atlas name, what is wrong with it now, exactly what to draw instead, and *why the rig needs it* (ChatGPT follows constraints better when it knows the purpose). For example: "upperArmL: the shoulder end is cut flat, so a gap opens when the arm rotates. Redraw it with a full rounded shoulder cap extending ~20 px past the joint."
@@ -14,7 +15,7 @@ Sprite sheet art is generated in ChatGPT. When a creature's sheet is lacking (a 
 
 ## Prompt template
 
-Tell the user: *"Paste this into ChatGPT and attach `tools/bestiary-rig-viewer/<creature>.webp` (the current sheet). Ask for the result as a PNG download, not just an inline image, then bring the file back here."*
+**Claude only:** tell the user to paste the completed prompt into ChatGPT, attach the named reference images and return the generated PNG. For a creature revision, the current sheet is `tools/bestiary-rig-viewer/<creature>.webp`. **ChatGPT:** load the references and generate directly; omit handoff instructions.
 
 ````text
 I'm attaching the current sprite sheet for "<Creature name>", a creature in a dark gothic-horror JRPG. It's a cut-out animation sheet: every body part is a separate sprite that a 2D bone rig rotates and moves, plus an "assembled" image of the whole creature in its rest pose and a few separate effect sprites.
@@ -45,6 +46,6 @@ Hard requirements. The sheet is cut up by a script, so these matter:
 - Return it as a downloadable PNG.
 ````
 
-## After the sheet comes back
+## After generation or a returned sheet
 
-Follow "Sheet art is lacking: ChatGPT handoff", step 3, in `../SKILL.md`. Use `detect`, rename the parts, then `pack` (with `--base <creature>` in revised-parts mode, `--key` if it came on a flat backdrop, and `--scale` to match the old pixel size). Then run `diff` and `install`, re-fit the bones it flags, and snap every clip. Log the round in `corrections-log.md`, including any requirement ChatGPT ignored and how the wording was strengthened.
+Inspect the image and verify its alpha channel; requesting transparency does not prove it was delivered. Save project images in the workspace. For requested creature integration, follow "New or revised sheet art", step 3, in [the skill](../SKILL.md): `detect`, name the parts, `pack`, `diff`, `install`, re-fit and snapshot every clip. New player source sheets are not automatically rigged or installed. Log corrections in `corrections-log.md`, including any ignored image requirement and the wording used to correct it.

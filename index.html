@@ -289,6 +289,27 @@ body.voidflash .page{filter:contrast(1.4) grayscale(1)}
 .foe.dead .rigbox canvas{filter:grayscale(1) contrast(.6)}
 @media (max-width:860px){ .foe .rigbox{height:110px;aspect-ratio:auto} }
 .einfo .left .rigbox{aspect-ratio:4/3}
+
+/* One arena; status panels remain outside the art so intentions stay readable. */
+.arena{border:3px solid var(--ink);background:var(--art-bg);min-width:0}
+.arena-head{margin:0;padding:6px 10px;background:var(--paper-2);border-bottom:2px solid var(--ink);font-family:var(--f-mono);font-size:11px}
+.arena-stage{position:relative;isolation:isolate;height:clamp(280px,43vw,420px);overflow:hidden;background-size:cover;background-position:center}
+.arena-unit{position:absolute;left:var(--x);bottom:var(--y);width:var(--w);height:var(--h);translate:-50% 0;border:0;padding:0;background:none;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-width:44px;min-height:44px}
+button.arena-unit{cursor:pointer}
+.arena-unit .rigbox,.arena-unit>img{width:100%;height:calc(100% - 22px);aspect-ratio:auto;background:transparent;border:0;object-fit:contain}
+.arena-unit .rigbox{overflow:visible}
+.arena-unit.enemy .rigbox,.arena-unit.enemy>img{transform:scaleX(var(--face,1))}
+.arena-unit .sprite{width:100%;height:calc(100% - 22px);object-fit:contain;image-rendering:pixelated;transform:scaleX(var(--face,1))}
+.arena-unit .unit-name{max-width:100%;padding:1px 4px;background:var(--paper);border:1px solid var(--ink);font-family:var(--f-mono);font-size:10px;line-height:16px;text-align:center;overflow-wrap:anywhere}
+.arena-unit.ally .unit-name{width:max-content;max-width:68px;overflow-wrap:normal}
+.arena-unit.acting .unit-name{background:var(--hum);color:var(--paper)}
+.arena-unit.targetable .unit-name{outline:2px dashed var(--hum);outline-offset:2px}
+.arena-unit.targetable:hover .unit-name,.arena-unit:focus-visible .unit-name{background:var(--hum-soft);color:var(--ink)}
+.arena-unit.dead{opacity:.4}
+.arena-unit.dead .sprite{transform:scaleX(var(--face,1)) rotate(80deg);filter:grayscale(1)}
+.arena-unit.airborne .sprite{translate:0 -24px;opacity:.65}
+.arena-unit .fx{background:var(--paper);padding:0 4px;white-space:nowrap;font-size:clamp(13px,2vw,22px)}
+@media (max-width:480px){.arena-stage{height:300px}.arena-unit .unit-name{font-size:9px}.arena-head{font-size:10px}}
 </style>
 
 <div class="page">
@@ -309,6 +330,8 @@ body.voidflash .page{filter:contrast(1.4) grayscale(1)}
     <section class="encpick" aria-label="Encounter">
       <label for="cfgEnc">Encounter</label>
       <select id="cfgEnc"></select>
+      <label for="cfgFormation">Formation</label>
+      <select id="cfgFormation"><option value="standard">Standard</option><option value="pincer">Pincer</option><option value="ambush">Ambush</option></select>
       <button class="btn ghost" id="bestiary" type="button">Bestiary</button>
       <label class="helpertog" for="cfgHelper"><input id="cfgHelper" type="checkbox"> Helper: highlight and explain the best move</label>
       <span class="encnote">Tap an enemy to see its stats, skills and decision tree. Picking an encounter loads its recommended party.</span>
@@ -320,6 +343,10 @@ body.voidflash .page{filter:contrast(1.4) grayscale(1)}
     </section>
 
     <div class="field">
+      <section class="arena" aria-label="Battle arena">
+        <p class="arena-head" id="arenaCaption"></p>
+        <div class="arena-stage" id="arenaStage"></div>
+      </section>
       <section aria-label="Enemies"><div class="foes" id="foes"></div></section>
       <section class="cmd" id="cmd" aria-live="polite"></section>
       <section aria-label="Party">
@@ -416,7 +443,8 @@ ainsel: {
       const off = [[-70, -10, -12], [40, 6, 10], [-20, -18, -6], [0, 0, 0]];
       let k = -1; beats.forEach((b, i) => { if (t >= b) k = i; });
       const o = k < 0 ? [0, 0, 0] : off[k];
-      P.root.x += o[0]; P.root.y += o[1]; P.torso.r += o[2];
+      const previous = k > 0 ? off[k - 1] : [0, 0, 0], snap = k < 0 ? 1 : smooth5((t - beats[k]) / 0.06);
+      P.root.x += previous[0] + (o[0] - previous[0]) * snap; P.root.y += previous[1] + (o[1] - previous[1]) * snap; P.torso.r += previous[2] + (o[2] - previous[2]) * snap;
       P.head.r += k >= 0 ? (k % 2 ? 18 : -14) * (1 - ramp(t, beats[k], beats[k] + 0.35)) : 0;
       P.ghosts = [{ dt: 0.1, a: 0.32 }, { dt: 0.2, a: 0.18 }, { dt: 0.3, a: 0.08 }];
       beats.forEach((b, i) => {
@@ -543,10 +571,12 @@ orlen: {
     } },
     crozier: { label: 'Crozier strike', fx: ['crozierFx'], dur: 2.6, fn(t, P, F) {
       RIGS.orlen.anims.idle.fn(t, P, F);
-      const k = [[0.1, 0], [0.75, 1], [0.95, -1], [1.6, -1], [2.4, 0]];
+      const k = [[0.1, 0], [0.75, 1], [0.95, -1], [1.15, -1], [2.4, 0]];
       const a = keys(t, k.map(([x, v]) => [x, v > 0 ? 40 : v < 0 ? -40 : 0]));
       const c = keys(t, k.map(([x, v]) => [x, v > 0 ? -70 : v < 0 ? 150 : 0]));
       P.upperArmL.r += a; P.crozier.r += c;
+      P.crozier.r += settle(t, 0.95, 9, 0.28, 5);
+      ['anc1', 'anc2', 'anc3', 'anc4'].forEach((id, i) => P[id].r += settle(t, 1.02 + i * 0.07, 2 + i * 0.4, 0.42, 4));
       P.torso.r += keys(t, [[0.1, 0], [0.75, -6], [0.95, 8], [1.6, 8], [2.4, 0]]); P.head.r += keys(t, [[0.1, 0], [0.75, -5], [0.95, 6], [1.6, 6], [2.4, 0]]);
       P.root.x = osc(t, 0.06, 4) * env(t, 1.0, 1.05, 1.2, 1.5);
       const u = pulse(t, 0.98, 1.2);
@@ -604,11 +634,13 @@ widow: {
         F.push({ img: 'lullaby', b: 'head', at: [215, 105], s: 0.3 + 0.85 * u, a: e * (1 - u) * 0.9, z: 6, blend: 'lighter' });
       }
     } },
-    undertow: { label: 'Undertow', fx: ['undertow'], dur: 3, fn(t, P, F) {
+    undertow: { label: 'Undertow', fx: ['undertow'], dur: 3, markers: { anticipation: 0.2, impact: 0.9, recovery: 1.2 }, fn(t, P, F) {
       RIGS.widow.anims.idle.fn(t, P, F);
-      const back = env(t, 0.1, 0.6, 0.6, 0.8), lunge = env(t, 0.7, 0.9, 1.6, 2.4);
+      const back = env(t, 0.1, 0.6, 0.6, 0.8), lunge = keys(t, [[0, 0], [0.7, 0], [0.9, 1.12], [1.14, 1], [1.45, 1], [2.65, 0]]);
       P.root.x = -30 * back + 60 * lunge; P.root.r += -4 * back + 5 * lunge;
-      P.tail.r += -25 * back + 30 * lunge; P.finL.r += 20 * lunge; P.finR.r += -15 * lunge;
+      const trail = keys(t - 0.09, [[0, 0], [0.7, 0], [0.9, 1.12], [1.14, 1], [1.45, 1], [2.65, 0]]);
+      P.tail.r += -25 * back + 30 * trail + settle(t, 1.05, 3, 0.45, 4); P.finL.r += 20 * trail; P.finR.r += -15 * trail;
+      for (let i = 1; i <= 4; i++) P['lock' + i].r += settle(t, 0.94 + i * 0.06, 2 + i * 0.5, 0.5, 3.5);
       P.head.r += 8 * lunge;
       // water inside lags behind the lunge, so the figures slosh toward the tail
       const slosh = env(t, 0.75, 1.1, 1.6, 2.6);
@@ -747,21 +779,276 @@ function applyFits(r) {
     }
   }
 }
-for (const k in RIGS) { const r = RIGS[k]; r.key = k; { const seen = new Set(), out = []; let rest = r.bones.slice(); while (rest.length) { const nx = rest.filter(b => !b.p || seen.has(b.p)); nx.forEach(b => { seen.add(b.id); out.push(b); }); rest = rest.filter(b => !seen.has(b.id)); if (!nx.length) break; } r.bones = out; } r.byId = {}; r.bones.forEach(b => r.byId[b.id] = b);
+for (const k in RIGS) { const r = RIGS[k]; r.key = k; r.bones = validateRig(r, k); r.byId = {}; r.bones.forEach(b => r.byId[b.id] = b);
   r.kids = {}; r.bones.forEach(b => { if (b.p) (r.kids[b.p] = r.kids[b.p] || []).push(b); }); applyFits(r); }
 
 const blankPose = () => ({ x: 0, y: 0, r: 0, sx: 1, sy: 1, a: 1, warp: 1 });
-function makePose(rig) { const P = {}; for (const b of rig.bones) P[b.id] = { x: 0, y: 0, r: 0, sx: 1, sy: 1, a: b.a ?? 1, warp: 1 }; return new Proxy(P, { get: (o, k) => (k in o || typeof k !== 'string' || k === 'ghosts') ? o[k] : (o[k] = blankPose()) }); }
-function evalAnim(rig, name, t) { const P = makePose(rig), F = []; rig.anims[name].fn(t, P, F); return { P, F }; }
-function solve(rig, P) {
-  const M = {};
-  for (const b of rig.bones) {
-    const q = P[b.id], par = b.p ? rig.byId[b.p] : null, pp = par && par.pv ? par.pv : [0, 0], at = b.at || [0, 0], s = b.s ?? 1;
-    const L = mul(T(at[0] + q.x - pp[0], at[1] + q.y - pp[1]), mul(R((b.r || 0) + q.r), S((b.flip ? -1 : 1) * s * q.sx, s * q.sy)));
-    M[b.id] = par ? mul(M[par.id], L) : L;
+function makePose(rig, clip = 'setup') {
+  const P = Object.create(null); for (const b of rig.bones) P[b.id] = { x: 0, y: 0, r: 0, sx: 1, sy: 1, a: b.a ?? 1, warp: 1 };
+  const known = k => typeof k !== 'string' || Object.hasOwn(P, k) || ['ghosts', 'ik', 'swaps', 'toJSON'].includes(k);
+  return new Proxy(P, {
+    get(o, k) { if (!known(k)) throw new Error(rig.key + '.' + clip + ': unknown pose bone ' + k); return o[k]; },
+    set(o, k, v) { if (!known(k)) throw new Error(rig.key + '.' + clip + ': unknown pose bone ' + k); o[k] = v; return true; }
+  });
+}
+// Animation sampling is identical in the viewer and the embedded battle renderer.
+function validateRig(rig, key) {
+  const fail = message => { throw new Error('Rig ' + key + ': ' + message); };
+  const bones = rig.bones, ids = new Set(), table = ATLAS[key];
+  if (!Array.isArray(bones) || !bones.length) fail('no bones');
+  if (!table) fail('missing atlas');
+  const pair = v => Array.isArray(v) && v.length === 2 && v.every(Number.isFinite);
+  for (const b of bones) {
+    if (!b.id || ['ghosts', 'ik', 'swaps', '__proto__', 'constructor'].includes(b.id) || ids.has(b.id)) fail('duplicate or reserved bone ' + b.id);
+    ids.add(b.id);
+    if (b.img && !table[b.img]) fail(b.id + ': missing sprite ' + b.img);
+    if ((b.img || b.box) && !pair(b.pv)) fail(b.id + ': invalid pivot');
+    for (const f of ['at', 'tip']) if (b[f] !== undefined && !pair(b[f])) fail(b.id + ': invalid ' + f);
+    for (const f of ['r', 's', 'sx', 'sy', 'a', 'z']) if (b[f] !== undefined && (!Number.isFinite(b[f]) || (['s', 'sx', 'sy'].includes(f) && b[f] <= 0))) fail(b.id + ': invalid ' + f);
+  }
+  for (const b of bones) {
+    if (b.p && !ids.has(b.p)) fail(b.id + ': missing parent ' + b.p);
+    if (b.clip && !bones.some(c => c.id === b.clip && c.img)) fail(b.id + ': invalid mask ' + b.clip);
+  }
+  const sorted = [], seen = new Set();
+  while (sorted.length < bones.length) {
+    const next = bones.filter(b => !seen.has(b.id) && (!b.p || seen.has(b.p)));
+    if (!next.length) fail('parent cycle: ' + bones.filter(b => !seen.has(b.id)).map(b => b.id).join(', '));
+    for (const b of next) { sorted.push(b); seen.add(b.id); }
+  }
+  if (!rig.anims || !rig.anims.idle) fail('missing idle clip');
+  const keyframes = (ks, dur, discrete = false) => {
+    if (!Array.isArray(ks) || !ks.length || ks.some((k, i) => !Array.isArray(k) || !Number.isFinite(k[0]) || k[0] < 0 || k[0] > dur || (i && k[0] <= ks[i - 1][0]) || (!discrete && !Number.isFinite(k[1])))) fail('invalid or unsorted keyframes');
+  };
+  for (const [name, clip] of Object.entries(rig.anims)) {
+    if (!(Number.isFinite(clip.dur) && clip.dur > 0) || typeof clip.fn !== 'function') fail(name + ': invalid duration or function');
+    for (const img of clip.fx || []) if (!table[img]) fail(name + ': missing FX sprite ' + img);
+    for (const [f, v] of Object.entries(clip.timing || {})) {
+      if (f === 'holdEnd') { if (typeof v !== 'boolean') fail(name + ': holdEnd must be boolean'); }
+      else if (!['in', 'out', 'mix', 'fxOut'].includes(f) || !Number.isFinite(v) || v < 0) fail(name + ': invalid timing ' + f);
+    }
+    for (const [label, t] of Object.entries(clip.markers || {})) if (!Number.isFinite(t) || t < 0 || t > clip.dur) fail(name + ': invalid marker ' + label);
+    const markers = clip.markers || {};
+    if (['anticipation', 'impact', 'recovery'].every(k => markers[k] !== undefined) && !(markers.anticipation <= markers.impact && markers.impact <= markers.recovery)) fail(name + ': markers out of order');
+    for (const track of clip.tracks || []) {
+      if (!ids.has(track.bone) || !['x', 'y', 'r', 'sx', 'sy', 'a', 'warp'].includes(track.field) || !['smooth', 'linear', 'hold'].includes(track.mode || 'smooth')) fail(name + ': invalid pose track');
+      keyframes(track.keys, clip.dur);
+      if (['sx', 'sy'].includes(track.field) && track.keys.some(k => k[1] <= 0)) fail(name + ': nonpositive track scale');
+    }
+    for (const swap of clip.swaps || []) {
+      if (!Array.isArray(swap.bones) || !swap.bones.length || swap.bones.some(id => !ids.has(id))) fail(name + ': invalid swap bones');
+      keyframes(swap.keys, clip.dur, true);
+      if (swap.keys.some(k => !swap.bones.includes(k[1]))) fail(name + ': invalid swap selection');
+    }
+  }
+  const constraintIds = new Set();
+  for (const c of rig.constraints || []) {
+    const upper = bones.find(b => b.id === c.upper), lower = bones.find(b => b.id === c.lower);
+    if (!c.id || constraintIds.has(c.id) || !upper || !lower || lower.p !== upper.id || !pair(c.tip) || !pair(c.target) || !Number.isFinite(c.mix ?? 1) || (c.mix ?? 1) < 0 || (c.mix ?? 1) > 1 || ![1, -1].includes(c.bend ?? 1)) fail('invalid two-bone constraint ' + c.id);
+    constraintIds.add(c.id);
+  }
+  for (const [id, reason] of Object.entries(rig.review?.attachments || {})) if (!ids.has(id) || typeof reason !== 'string' || !reason.trim()) fail('invalid attachment exception ' + id);
+  for (const [name, reason] of Object.entries(rig.review?.overflow || {})) if (!rig.anims[name] || typeof reason !== 'string' || !reason.trim()) fail('invalid overflow exception ' + name);
+  return sorted;
+}
+function trackValue(t, ks, mode = 'smooth') {
+  if (t <= ks[0][0]) return ks[0][1];
+  for (let i = 1; i < ks.length; i++) if (t < ks[i][0]) {
+    const [a, v] = ks[i - 1], [b, w] = ks[i];
+    if (mode === 'hold') return v;
+    const u = (t - a) / (b - a);
+    return v + (w - v) * (mode === 'linear' ? u : smooth5(u));
+  }
+  return ks[ks.length - 1][1];
+}
+function applySwaps(P) {
+  for (const [id, a] of Object.entries(P.swaps || {})) P[id].a = a;
+}
+function captureBlend(rig, sampled, clock) {
+  return { P: sampled.P, F: sampled.F.map(f => ({ ...f })), idle: idlePose(rig, clock).P };
+}
+const POSE_FIELDS = ['x', 'y', 'r', 'sx', 'sy', 'a', 'warp'];
+const loopTime = (t, dur) => ((t % dur) + dur) % dur;
+const smooth5 = x => { x = Math.max(0, Math.min(1, x)); return x * x * x * (x * (x * 6 - 15) + 10); };
+function rawAnim(rig, name, t) {
+  const clip = rig.anims[name], P = makePose(rig, name), F = [];
+  clip.fn(t, P, F);
+  for (const track of clip.tracks || []) P[track.bone][track.field] = trackValue(t, track.keys, track.mode);
+  for (const swap of clip.swaps || []) {
+    const active = trackValue(t, swap.keys, 'hold');
+    P.swaps ||= {}; for (const id of swap.bones) P.swaps[id] = id === active ? 1 : 0;
+  }
+  applySwaps(P);
+  for (const f of F) {
+    if (!ATLAS[rig.key][f.img] || (f.b && !rig.byId[f.b]) || (f.clip && !rig.byId[f.clip]?.img)) throw new Error(rig.key + '.' + name + ': invalid FX reference ' + f.img);
+    if (!Number.isFinite(f.a)) throw new Error(rig.key + '.' + name + ': invalid FX alpha');
+  }
+  return { P, F, clip: name };
+}
+function idlePose(rig, clock) {
+  const dur = rig.anims.idle.dur, t = loopTime(clock, dur), s = t / dur;
+  // Close both position and velocity without erasing authored holds or snaps inside the loop.
+  if (!rig._seam) {
+    const h = 0.0001, a = rawAnim(rig, 'idle', 0).P, b = rawAnim(rig, 'idle', dur).P;
+    const an = rawAnim(rig, 'idle', h).P, bn = rawAnim(rig, 'idle', dur - h).P;
+    rig._seam = {};
+    for (const bone of rig.bones) {
+      const id = bone.id; rig._seam[id] = {};
+      for (const f of POSE_FIELDS) {
+        const delta = b[id][f] - a[id][f], velocity = (b[id][f] - bn[id][f] - an[id][f] + a[id][f]) / h;
+        rig._seam[id][f] = [delta, Math.abs(velocity) < 0.01 ? 0 : velocity];
+      }
+    }
+  }
+  const e = rawAnim(rig, 'idle', t);
+  for (const bone of rig.bones) for (const f of POSE_FIELDS) {
+    const [delta, velocity] = rig._seam[bone.id][f];
+    e.P[bone.id][f] -= (3 * s * s - 2 * s * s * s) * delta + (s * s * s - s * s) * dur * velocity;
+    if (f === 'a') e.P[bone.id][f] = Math.max(0, Math.min(1, e.P[bone.id][f]));
+  }
+  applySwaps(e.P); return e;
+}
+function evalAnim(rig, name, t, idleClock = t) {
+  const idle = idlePose(rig, idleClock);
+  if (name === 'idle') return idle;
+  const clip = rig.anims[name], dur = clip.dur, timing = clip.timing || {};
+  t = Math.max(0, Math.min(dur, t));
+  const e = rawAnim(rig, name, t), base = rawAnim(rig, 'idle', t).P;
+  const entry = timing.in ?? 0.12, exit = timing.out ?? 0.22;
+  const weight = (entry ? smooth5(t / entry) : 1) * (timing.holdEnd || !exit ? 1 : smooth5((dur - t) / exit));
+  for (const b of rig.bones) for (const f of POSE_FIELDS) {
+    e.P[b.id][f] = idle.P[b.id][f] + (e.P[b.id][f] - base[b.id][f]) * weight;
+    if (f === 'a') e.P[b.id][f] = Math.max(0, Math.min(1, e.P[b.id][f]));
+  }
+  e.F.forEach(f => f.a *= weight);
+  if (e.P.ghosts) e.P.ghosts = e.P.ghosts.map(g => ({ ...g, a: g.a * weight }));
+  applySwaps(e.P); return e;
+}
+function blendPose(rig, target, source, age, clock) {
+  const timing = rig.anims[target.clip || 'idle'].timing || {}, duration = timing.mix ?? 0.16, fxDuration = timing.fxOut ?? duration;
+  if (!source || age >= Math.max(duration, fxDuration)) return target;
+  const idle = idlePose(rig, clock).P, w = duration ? smooth5(age / duration) : 1;
+  for (const b of rig.bones) for (const f of POSE_FIELDS) {
+    const start = idle[b.id][f] + source.P[b.id][f] - source.idle[b.id][f];
+    target.P[b.id][f] = start + (target.P[b.id][f] - start) * w;
+  }
+  target.F.forEach(f => f.a *= w);
+  const fxWeight = fxDuration ? 1 - smooth5(age / fxDuration) : 0;
+  target.F.push(...(source.F || []).map(f => ({ ...f, a: f.a * fxWeight })));
+  // Visibility choices switch atomically; transforms remain blendable.
+  applySwaps(target.P);
+  return target;
+}
+function animationDelta(previous, ms, hidden) {
+  if (hidden || previous === null) return 0;
+  const dt = (ms - previous) / 1000;
+  // A suspended tab resumes in place; ordinary slow frames retain their elapsed time.
+  return dt >= 0 && dt <= 0.25 ? dt : 0;
+}
+function warpPhase(rig, speed, clock) {
+  const dur = rig.anims.idle.dur, cycles = Math.max(1, Math.round(speed * dur / TAU));
+  return TAU * cycles * loopTime(clock, dur) / dur;
+}
+function hitPose(P, age) {
+  if (age < 0 || age >= 0.8) return;
+  const attack = smooth5(age / 0.035);
+  P.root.x += attack * (settle(age, 0, 9, 0.16, 6) - 10 * Math.exp(-age * 9));
+  P.root.y += attack * 4 * Math.exp(-age * 7);
+  P.root.r += attack * settle(age, 0, 2.5, 0.2, 6);
+}
+function partImage(cache, key, name, sheet) {
+  const id = key + ':' + name;
+  if (!cache.has(id)) {
+    const [x, y, w, h] = ATLAS[key][name], c = document.createElement('canvas');
+    c.width = w + 4; c.height = h + 4;
+    const g = c.getContext('2d'); g.drawImage(sheet, x, y, w, h, 2, 2, w, h);
+    cache.set(id, c);
+  }
+  return cache.get(id);
+}
+function solve(rig, P, manual = {}, constraints = true) {
+  const M = {}, offsets = { ...manual }, angle = x => ((x + 540) % 360) - 180;
+  const update = () => {
+    for (const b of rig.bones) {
+      const q = P[b.id], par = b.p ? rig.byId[b.p] : null, pp = par?.pv || [0, 0], at = b.at || [0, 0], s = b.s ?? 1;
+      const L = mul(T(at[0] + q.x - pp[0], at[1] + q.y - pp[1]), mul(R((b.r || 0) + q.r + (offsets[b.id] || 0)), S((b.flip ? -1 : 1) * s * q.sx, s * q.sy)));
+      M[b.id] = par ? mul(M[par.id], L) : L;
+    }
+  };
+  update();
+  if (!constraints) return M;
+  const rotateTo = (id, end, target) => {
+    const b = rig.byId[id], origin = ap(M[id], 0, 0), parent = b.p ? M[b.p] : [1, 0, 0, 1, 0, 0], local = inv(parent);
+    const o = ap(local, ...origin), e = ap(local, ...end), t = ap(local, ...target);
+    const delta = angle((Math.atan2(t[1] - o[1], t[0] - o[0]) - Math.atan2(e[1] - o[1], e[0] - o[0])) * 180 / Math.PI);
+    offsets[id] = (offsets[id] || 0) + delta; update();
+  };
+  for (const c of rig.constraints || []) {
+    const override = P.ik?.[c.id] || {}, target = override.target || c.target, mix = Math.max(0, Math.min(1, override.mix ?? c.mix ?? 1));
+    if (!mix) continue;
+    if (!target.every(Number.isFinite)) throw new Error(rig.key + ': invalid IK target ' + c.id);
+    const lower = rig.byId[c.lower], tip = [c.tip[0] - (lower.pv?.[0] || 0), c.tip[1] - (lower.pv?.[1] || 0)];
+    const startUpper = offsets[c.upper] || 0, startLower = offsets[c.lower] || 0;
+    const root = ap(M[c.upper], 0, 0), elbow = ap(M[c.lower], 0, 0), end = ap(M[c.lower], ...tip);
+    const a = Math.hypot(elbow[0] - root[0], elbow[1] - root[1]), b = Math.hypot(end[0] - elbow[0], end[1] - elbow[1]);
+    if (a < 1e-7 || b < 1e-7) throw new Error(rig.key + ': zero-length IK chain ' + c.id);
+    const dx = target[0] - root[0], dy = target[1] - root[1], distance = Math.hypot(dx, dy);
+    const d = Math.max(Math.abs(a - b) + 1e-7, Math.min(a + b - 1e-7, distance));
+    const heading = distance > 1e-7 ? Math.atan2(dy, dx) : Math.atan2(elbow[1] - root[1], elbow[0] - root[0]);
+    const bend = override.bend ?? c.bend ?? 1;
+    const theta = heading + bend * Math.acos(Math.max(-1, Math.min(1, (a * a + d * d - b * b) / (2 * a * d))));
+    rotateTo(c.upper, elbow, [root[0] + a * Math.cos(theta), root[1] + a * Math.sin(theta)]);
+    rotateTo(c.lower, ap(M[c.lower], ...tip), target);
+    // Refine non-uniformly scaled chains with a fixed, deterministic iteration budget.
+    for (let i = 0; i < 16; i++) {
+      const end = ap(M[c.lower], ...tip);
+      if (Math.hypot(end[0] - target[0], end[1] - target[1]) < 0.001) break;
+      rotateTo(c.upper, end, target); rotateTo(c.lower, ap(M[c.lower], ...tip), target);
+    }
+    offsets[c.upper] = startUpper + angle((offsets[c.upper] || 0) - startUpper) * mix;
+    offsets[c.lower] = startLower + angle((offsets[c.lower] || 0) - startLower) * mix;
+    update();
   }
   return M;
 }
+function movePivot(rig, id, pivot) {
+  const b = rig.byId[id], old = b.pv || [0, 0], M = solve(rig, makePose(rig), {}, false);
+  const next = ap(M[id], (pivot[0] - old[0]) * (b.sx ?? 1), (pivot[1] - old[1]) * (b.sy ?? 1));
+  const par = b.p ? rig.byId[b.p] : null, local = par ? ap(inv(M[b.p]), ...next) : next;
+  b.at = [local[0] + (par?.pv?.[0] || 0), local[1] + (par?.pv?.[1] || 0)]; b.pv = [...pivot]; delete b.fit;
+  const after = solve(rig, makePose(rig), {}, false);
+  for (const child of rig.bones.filter(c => c.p === id)) {
+    const at = ap(inv(after[id]), M[child.id][4], M[child.id][5]);
+    child.at = [at[0] + pivot[0], at[1] + pivot[1]]; delete child.fit;
+  }
+}
+function itemBounds(rig, it) {
+  const rc = it.box ? [0, 0, ...it.box] : ATLAS[rig.key][it.img];
+  const amp = it.warp ? Math.abs(it.warp.amp * (it.wm ?? 1)) : 0;
+  const px = it.warp?.ax === 'y' ? amp + 1 : 1, py = it.warp?.ax === 'x' ? amp + 1 : 1;
+  const points = [[-px, -py], [rc[2] + px, -py], [-px, rc[3] + py], [rc[2] + px, rc[3] + py]].map(p => ap(it.m, ...p));
+  return [Math.min(...points.map(p => p[0])), Math.min(...points.map(p => p[1])), Math.max(...points.map(p => p[0])), Math.max(...points.map(p => p[1]))];
+}
+function animationBounds(rig, includeFX = false) {
+  const bounds = [Infinity, Infinity, -Infinity, -Infinity];
+  for (const [name, clip] of Object.entries(rig.anims)) {
+    const times = new Set(Array.from({ length: 65 }, (_, i) => clip.dur * i / 64));
+    for (const t of Object.values(clip.markers || {})) times.add(t);
+    for (const track of [...(clip.tracks || []), ...(clip.swaps || [])]) for (const [t] of track.keys) { times.add(t); times.add(Math.max(0, t - 0.001)); }
+    for (const phase of [0, 1.37]) for (const t of times) {
+      const { P, F } = evalAnim(rig, name, t, t + phase), M = solve(rig, P);
+      for (const it of frame(rig, P, includeFX ? F : [], M)) {
+        if (it.clip) continue;
+        const b = itemBounds(rig, it);
+        bounds[0] = Math.min(bounds[0], b[0]); bounds[1] = Math.min(bounds[1], b[1]);
+        bounds[2] = Math.max(bounds[2], b[2]); bounds[3] = Math.max(bounds[3], b[3]);
+      }
+    }
+  }
+  const ex = rig.extend || [0, 0, 0, 0];
+  return [bounds[0] - ex[0], bounds[1] - ex[1], bounds[2] + ex[2], bounds[3] + ex[3]];
+}
+// End shared animation sampling.
 function clipTo(it, rig, id, M) { const cb = rig.byId[id]; it.clip = id; it.clipImg = cb.img; it.clipM = mul(M[id], T(-cb.pv[0], -cb.pv[1])); }
 function frame(rig, P, F, M) {
   const items = [];
@@ -789,40 +1076,38 @@ function frame(rig, P, F, M) {
   return items;
 }
 function computeBounds(rig) {
-  let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
-  const add = it => { const rc = it.box ? [0, 0, it.box[0], it.box[1]] : ATLAS[rig.key][it.img]; for (const [u, v] of [[0, 0], [rc[2], 0], [0, rc[3]], [rc[2], rc[3]]]) { const [x, y] = ap(it.m, u, v); x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); } };
-  const dur = rig.anims.idle.dur;
-  for (let i = 0; i < 16; i++) { const { P } = evalAnim(rig, 'idle', dur * i / 16), M = solve(rig, P); for (const it of frame(rig, P, [], M)) add(it); }
-  const ex = rig.extend || [0, 0, 0, 0];
-  return [x0 - ex[0], y0 - ex[1], x1 + ex[2], y1 + ex[3]];
+  return animationBounds(rig, false);
 }
 
 // ===== drawing (one canvas per enemy card) =====
 const oc = document.createElement('canvas'), octx = oc.getContext('2d');
+const partCache = new Map();
+const detail = { level: 'full', cost: 0, slow: 0, fast: 0 };
 function drawItem(D, it, V, alphaMul, g, op) {
-  const { img, rig, t, dpr } = D;
+  const { rig, t, dpr } = D;
   if (it.box) { const m = mul(V, it.m); g.setTransform(m[0] * dpr, m[1] * dpr, m[2] * dpr, m[3] * dpr, m[4] * dpr, m[5] * dpr);
     g.globalAlpha = it.a * alphaMul; g.globalCompositeOperation = op || 'source-over'; g.fillStyle = it.fill || '#000'; g.fillRect(0, 0, it.box[0], it.box[1]); return; }
-  const rc = ATLAS[rig.key][it.img]; if (!img || !rc) return;
+  const rc = ATLAS[rig.key][it.img]; if (!D.img || !rc) return;
+  const img = partImage(partCache, rig.key, it.img, D.img);
   const m = mul(V, it.m);
   g.setTransform(m[0] * dpr, m[1] * dpr, m[2] * dpr, m[3] * dpr, m[4] * dpr, m[5] * dpr);
   g.globalAlpha = it.a * alphaMul;
   g.globalCompositeOperation = op || it.blend || 'source-over';
-  const [sx, sy, w, h] = rc;
+  const [, , w, h] = rc, sx = 2, sy = 2;
   if (it.reveal !== undefined) {
     const rw = Math.max(1, Math.round(w * it.reveal));
     if (it.revealDir === -1) g.drawImage(img, sx, sy, rw, h, 0, 0, rw, h);
     else g.drawImage(img, sx + w - rw, sy, rw, h, w - rw, 0, rw, h);
   } else if (it.warp && it.wm > 0) {
-    const W = it.warp, amp = W.amp * it.wm, step = 2;
+    const W = it.warp, amp = W.amp * it.wm, step = detail.level === 'low' ? 10 : 2, phase = warpPhase(rig, W.spd, t);
     const b = it.id ? rig.byId[it.id] : null, pv = b ? b.pv : [w / 2, h / 2];
     if (W.ax === 'y') {
       const md = Math.max(pv[1], h - pv[1]) || 1;
-      for (let y = 0; y < h; y += step) { const v = Math.abs(y + step / 2 - pv[1]) / md, o = amp * v * Math.sin(TAU * W.len * v - W.spd * t);
+      for (let y = 0; y < h; y += step) { const v = Math.abs(y + step / 2 - pv[1]) / md, o = amp * v * Math.sin(TAU * W.len * v - phase);
         g.drawImage(img, sx, sy + y, w, Math.min(step, h - y), o, y, w, Math.min(step, h - y) + 0.6); }
     } else {
       const md = Math.max(pv[0], w - pv[0]) || 1;
-      for (let x = 0; x < w; x += step) { const v = Math.abs(x + step / 2 - pv[0]) / md, o = amp * v * Math.sin(TAU * W.len * v - W.spd * t);
+      for (let x = 0; x < w; x += step) { const v = Math.abs(x + step / 2 - pv[0]) / md, o = amp * v * Math.sin(TAU * W.len * v - phase);
         g.drawImage(img, sx + x, sy, Math.min(step, w - x), h, x, o, Math.min(step, w - x) + 0.6, h); }
     }
   } else g.drawImage(img, sx, sy, w, h, 0, 0, w, h);
@@ -831,7 +1116,7 @@ function drawTankLight(g, m, rc, t, cfg, dpr) {
   const [, , w, h] = rc;
   g.setTransform(m[0] * dpr, m[1] * dpr, m[2] * dpr, m[3] * dpr, m[4] * dpr, m[5] * dpr);
   g.globalCompositeOperation = 'lighter';
-  for (let k = 0; k < 3; k++) {
+  for (let k = 0; k < (detail.level === 'low' ? 1 : 3); k++) {
     const x = ((t / 4 + k / 3) % 1) * (w + 160) - 80, sk = 60;
     const gr = g.createLinearGradient(x - 30, 0, x + 30, 0);
     gr.addColorStop(0, 'rgba(120,230,215,0)'); gr.addColorStop(0.5, `rgba(120,230,215,${cfg.shaft ?? 0.1})`); gr.addColorStop(1, 'rgba(120,230,215,0)');
@@ -839,7 +1124,7 @@ function drawTankLight(g, m, rc, t, cfg, dpr) {
     g.beginPath(); g.moveTo(x - 30 + sk, 0); g.lineTo(x + 30 + sk, 0); g.lineTo(x + 30 - sk, h); g.lineTo(x - 30 - sk, h); g.closePath(); g.fill();
   }
   g.globalCompositeOperation = 'source-over';
-  for (let k = 0; k < (cfg.bubbles ?? 14); k++) {
+  for (let k = 0; k < (detail.level === 'low' ? 4 : (cfg.bubbles ?? 14)); k++) {
     const hx = hash('bx' + k), hy = hash('by' + k), per = 2 + 2 * Math.round(hash('bp' + k));
     const u = ((t / per) + hy) % 1, x = 40 + hx * (w - 80) + Math.sin(TAU * (u * 2 + hx)) * 4, y = h * 0.92 - u * h * 0.85, r = 1.2 + 2 * hash('br' + k);
     g.globalAlpha = 0.55 * Math.sin(Math.PI * u);
@@ -880,7 +1165,13 @@ const IMG = {}, loads = {};
 function load(k) {
   if (!loads[k]) loads[k] = new Promise(res => {
     const im = new Image();
-    im.onload = () => { IMG[k] = im; document.querySelectorAll(`.rigbox[data-rig="${k}"]`).forEach(el => el.classList.add('ready')); units.forEach(u => { if (u.rig.key === k) u.dirty = true; }); res(true); };
+    im.onload = async () => {
+      try { if (im.decode) await im.decode(); } catch (e) { res(false); return; }
+      IMG[k] = im;
+      for (const b of RIGS[k].bones) if (b.img) partImage(partCache, k, b.img, im);
+      for (const a of Object.values(RIGS[k].anims)) for (const name of a.fx || []) partImage(partCache, k, name, im);
+      units.forEach(u => { if (u.rig.key === k) u.dirty = true; }); res(true);
+    };
     im.onerror = () => res(false); // the static portrait stays visible
     im.src = 'tools/bestiary-rig-viewer/' + k + '.webp';
   });
@@ -892,7 +1183,7 @@ function unitFor(id, key) {
   if (!u || u.rig.key !== key) {
     const cv = document.createElement('canvas'); cv.setAttribute('aria-hidden', 'true');
     const rig = RIGS[key];
-    u = { id, cv, ctx: cv.getContext('2d'), rig, clip: 'idle', t: 0, once: false, hitAt: -1, dead: false, dirty: true, bounds: rig._bounds || (rig._bounds = computeBounds(rig)) };
+    u = { id, cv, ctx: cv.getContext('2d'), rig, clip: 'idle', t: 0, clock: 0, blend: null, blendAt: 0, once: false, hitAt: -1, dead: false, dirty: true, bounds: rig._bounds || (rig._bounds = computeBounds(rig)) };
     units.set(id, u);
   }
   return u;
@@ -904,71 +1195,89 @@ function clipFor(key, skill) {
   const list = Object.keys(A).filter(n => n !== 'idle');
   return list.length ? list[Math.floor(hash(skill) * list.length)] : null;
 }
-let now = performance.now() / 1000;
+function sampleUnit(u) {
+  return blendPose(u.rig, evalAnim(u.rig, u.clip, u.t, u.clock), u.blend, u.clock - u.blendAt, u.clock);
+}
 function draw(u) {
   const cv = u.cv, w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) return;
-  const dpr = Math.min(2, window.devicePixelRatio || 1), W = Math.round(w * dpr), H = Math.round(h * dpr);
+  const dpr = Math.min(detail.level === 'low' ? 1 : 2, window.devicePixelRatio || 1), W = Math.round(w * dpr), H = Math.round(h * dpr);
   if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
   const ctx = u.ctx, rig = u.rig, img = IMG[rig.key];
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.clearRect(0, 0, W, H);
   if (!img) return;
   const [x0, y0, x1, y1] = u.bounds, pad = 0.08, k = Math.min(w * (1 - 2 * pad) / (x1 - x0), h * (1 - 2 * pad) / (y1 - y0));
   const V = [k, 0, 0, k, w / 2 - k * (x0 + x1) / 2, h / 2 - k * (y0 + y1) / 2];
-  ctx.imageSmoothingEnabled = k * dpr < 1.5; ctx.imageSmoothingQuality = 'high';
-  const { P, F } = evalAnim(rig, u.clip, u.t);
+  ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+  const { P, F } = sampleUnit(u);
   // flinch when struck: a quick decaying shove away from the party, plus a short sag
-  if (u.hitAt >= 0) { const d = now - u.hitAt; if (d < 0.8) { P.root.x += settle(d, 0, 9, 0.16, 6) - 10 * Math.exp(-d * 9); P.root.y += 4 * Math.exp(-d * 7); P.root.r += settle(d, 0, 2.5, 0.2, 6); } }
-  const D = { ctx, cv, rig, img, t: u.t, dpr };
+  if (u.hitAt >= 0 && !RMQ.matches) hitPose(P, u.clock - u.hitAt);
+  const D = { ctx, cv, rig, img, t: u.clock, dpr };
   const M = solve(rig, P);
-  if (P.ghosts && !u.dead) for (const g of P.ghosts) {
-    const dur = rig.anims[u.clip].dur, tg = ((u.t - g.dt) % dur + dur) % dur, e = evalAnim(rig, u.clip, tg);
-    drawList({ ...D, t: tg }, frame(rig, e.P, [], solve(rig, e.P)), V, g.a);
+  if (P.ghosts && !u.dead && !RMQ.matches && detail.level !== 'low') for (const g of P.ghosts.slice(0, 3)) {
+    if (u.t < g.dt || u.clock - u.blendAt < g.dt) continue;
+    const tg = u.t - g.dt, e = evalAnim(rig, u.clip, tg, u.clock - g.dt);
+    drawList({ ...D, t: u.clock - g.dt }, frame(rig, e.P, [], solve(rig, e.P)), V, g.a);
   }
   drawList(D, frame(rig, P, F, M), V, 1);
-  if (u.hitAt >= 0 && now - u.hitAt < 0.18) { ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalCompositeOperation = 'source-atop'; ctx.globalAlpha = 0.55 * (1 - (now - u.hitAt) / 0.18); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H); }
+  if (!RMQ.matches && u.hitAt >= 0 && u.clock - u.hitAt < 0.18) { ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalCompositeOperation = 'source-atop'; ctx.globalAlpha = 0.55 * (1 - (u.clock - u.hitAt) / 0.18); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H); }
   ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+  if (cv.parentNode) cv.parentNode.classList.add('ready');
 }
-let last = performance.now();
+let last = null;
+document.addEventListener('visibilitychange', () => { last = null; });
+RMQ.addEventListener('change', () => { units.forEach(u => { u.dirty = true; if (RMQ.matches) { u.clip = 'idle'; u.once = false; u.blend = null; u.hitAt = -1; } }); });
 function tick(ms) {
-  const dt = Math.min(0.05, (ms - last) / 1000); last = ms; now = ms / 1000;
+  const dt = animationDelta(last, ms, document.hidden === true); last = ms;
+  if (document.hidden === true) { requestAnimationFrame(tick); return; }
+  const started = performance.now();
   const still = RMQ.matches;
   units.forEach((u, id) => {
     if (!u.cv.isConnected) return;
     if (!still && !u.dead) {
-      u.t += dt;
+      u.t += dt; u.clock += dt;
       const dur = u.rig.anims[u.clip].dur;
-      if (u.t >= dur) { if (u.once) { u.clip = 'idle'; u.once = false; u.t = 0; } else u.t %= dur; }
+      if (u.t >= dur) { if (u.once && u.rig.anims[u.clip].timing?.holdEnd) u.t = dur; else if (u.once) { u.clip = 'idle'; u.once = false; u.blend = null; u.t = loopTime(u.clock, u.rig.anims.idle.dur); } else u.t %= dur; }
     }
     const sz = u.cv.clientWidth + 'x' + u.cv.clientHeight;
-    if (!still || u.dirty || u.sz !== sz || (u.hitAt >= 0 && now - u.hitAt < 0.8)) { draw(u); u.dirty = false; u.sz = sz; }
+    if ((!still && !u.dead) || u.dirty || u.sz !== sz) { draw(u); u.dirty = false; u.sz = sz; }
   });
+  detail.cost = detail.cost * 0.9 + (performance.now() - started) * 0.1;
+  detail.slow = detail.cost > 10 || dt > 0.034 ? detail.slow + dt : 0;
+  detail.fast = detail.cost < 5 && dt < 0.022 ? detail.fast + dt : 0;
+  if (detail.slow > 0.5) detail.level = 'low';
+  if (detail.fast > 5) detail.level = 'full';
   requestAnimationFrame(tick);
 }
 requestAnimationFrame(tick);
 
 window.RigAnim = {
+  preload(arts) { return Promise.all([...new Set(arts.map(a => ART_RIG[a]).filter(Boolean))].map(load)); },
   rigFor: art => ART_RIG[art] || null,
+  arenaFor: art => { const r = RIGS[ART_RIG[art]]; return r && r.arena || 'hillside'; },
   // markup for a portrait slot; the static art stays underneath until the sheet loads
-  box: (id, art, fallback) => { const k = ART_RIG[art]; if (!k) return null; load(k); return `<div class="rigbox${IMG[k] ? ' ready' : ''}" data-rig="${k}" data-rig-id="${id}"><img src="${fallback}" alt=""></div>`; },
+  box: (id, art, fallback) => { const k = ART_RIG[art]; if (!k) return null; load(k); return `<div class="rigbox" data-rig="${k}" data-rig-id="${id}"><img src="${fallback}" alt=""></div>`; },
   // after innerHTML: move each unit's persistent canvas into its slot
   mount(root, deadIds) {
     (root || document).querySelectorAll('.rigbox[data-rig-id]').forEach(el => {
       const u = unitFor(el.dataset.rigId, el.dataset.rig);
       if (deadIds) { const d = deadIds.has(u.id); if (d !== u.dead) { u.dead = d; u.dirty = true; } }
-      if (u.cv.parentNode !== el) el.append(u.cv);
+      if (u.cv.parentNode !== el) { el.append(u.cv); u.dirty = true; }
     });
   },
   play(id, skill) {
     const u = units.get(id); if (!u || u.dead) return 0;
     const c = clipFor(u.rig.key, skill); if (!c) return 0;
+    if (RMQ.matches) { u.dirty = true; return 0; }
+    u.blend = captureBlend(u.rig, sampleUnit(u), u.clock); u.blendAt = u.clock;
     u.clip = c; u.t = 0; u.once = true; u.dirty = true;
     return RMQ.matches ? 0 : u.rig.anims[c].dur;
   },
-  hit(id) { const u = units.get(id); if (u && !u.dead) { u.hitAt = performance.now() / 1000; u.dirty = true; } },
+  hit(id) { const u = units.get(id); if (u && !u.dead) { u.hitAt = u.clock; u.dirty = true; } },
   // seconds left in the attack clip an enemy is playing (0 if idle)
   busy(id) { const u = units.get(id); return u && u.once && !RMQ.matches ? Math.max(0, u.rig.anims[u.clip].dur - u.t) : 0; },
   forget(keep) { units.forEach((u, id) => { if (!keep.has(id) && !String(id).startsWith('info:')) units.delete(id); }); },
 };
+if (new URLSearchParams(location.search).has('animationTest')) window.__rigTest = { rigs: RIGS, units, sampleUnit, idlePose, evalAnim, tick, detail, draw, loaded: IMG };
 
 })();
 </script>
@@ -1418,7 +1727,7 @@ function art(kind){
 
 /* ---------- state ---------- */
 let G = null;
-const cfg = { enc:'widow', hum:null, dread:0, harm:75, over:34, voidOn:true, helper:false, party:['kiri','natsu','kugai'] };
+const cfg = { enc:'widow', formation:'standard', hum:null, dread:0, harm:75, over:34, voidOn:true, helper:false, party:['kiri','natsu','kugai'] };
 try { const s = JSON.parse(localStorage.getItem('battle-cfg3')||'null'); if (s) Object.assign(cfg, s); } catch(e) {}
 const saveCfg = () => { try { localStorage.setItem('battle-cfg3', JSON.stringify(cfg)); } catch(e) {} };
 
@@ -1438,9 +1747,11 @@ function makeFoe(key){
 }
 function newGame(){
   const enc = ENCOUNTERS[cfg.enc];
+  const artKeys = enc.foes.flatMap(k => [k, ...((SCRIPTS[k] && SCRIPTS[k].parts) || []).map(p => p.key)]);
+  const artReady = window.RigAnim ? RigAnim.preload(artKeys.map(k => FOES[k].art)) : null;
   let act = [...new Set(cfg.party)].filter(id=>ROSTER[id] && id!==enc.guest);
   for (const id of ORDER){ if (act.length>=3) break; if (!act.includes(id) && id!==enc.guest) act.push(id); }
-  G = { run: Symbol(), enc, party: ORDER.map(makePC), active: act.slice(0,3),
+  G = { run: Symbol(), enc, formation:cfg.formation, turned:[], party: ORDER.map(makePC), active: act.slice(0,3),
     enemies: enc.foes.map(makeFoe), hum: cfg.hum ?? enc.hum, inv:Object.assign({ potion:5, phoenix:3, earplugs:3 }, enc.inv||{}), melody:false,
     void:{ id:'void', side:'void', name:'Lost Turn', ct:null }, log:[], current:null, state:'busy', menu:'root', pending:[], fx:{}, resolve:null, act:null, preview:null };
   // A guest fights beside the party under its own AI (ENCOUNTERS[k].guest): never Swapped, never a target, no Stress Checks.
@@ -1454,7 +1765,9 @@ function newGame(){
   log(`${enc.title}. Battle start.`, 'sys');
   actives().forEach(p=>{ if (p.stress>=100) G.pending.push({id:p.id,type:'check'}); });
   render();
-  run(G.run);
+  const battleRun = G.run;
+  if (artReady) artReady.then(() => { if (G.run === battleRun) run(battleRun); });
+  else run(battleRun);
 }
 
 /* ---------- helpers ---------- */
@@ -1618,6 +1931,7 @@ function payMP(u, cost){
   log(`${u.name} is out of MP and pays ${hp} HP.`, 'dread');
 }
 function doAction(u, act, target, forced=false){
+  if (u.side==='party' && !G.turned.includes(u.id)) G.turned.push(u.id);
   const delay = delayOf(u, act);
   const foe = () => reachable(target) ? target : pick(foesHittable());
   switch (act.kind){
@@ -2658,6 +2972,78 @@ function slotHtml(f){
   return `<li class="slot s-${side}${f.now?' now':''}${f.land?' land':''}">${img}<b>${nm}</b><span class="k">${side==='void'?'':k}</span></li>`;
 }
 function renderBar(){ const seen = new Set(); $('#bar').innerHTML = forecast(16, G.preview).map(f=>{ if (f.u.side==='enemy' && !seen.has(f.u.id)){ seen.add(f.u.id); if (SCRIPTS[f.u.key] && (f.u.plan || f.u.sleep > 0)) f.planned = planName(f.u); } return slotHtml(f); }).join(''); }
+const FORMATIONS = {
+  standard:'Standard: enemies left, party right.',
+  pincer:'Pincer: party on both sides, enemies in the middle.',
+  ambush:'Ambush: party left, backs turned until they act.'
+};
+const arenaSprites = new Map();
+function arenaSprite(id, src){
+  if (arenaSprites.has(id)) return arenaSprites.get(id);
+  arenaSprites.set(id, src);
+  const img = new Image();
+  img.onload = () => {
+    // The embedded sprites have dark backdrops. Clear only edge-connected backdrop pixels.
+    const cv = document.createElement('canvas'); cv.width = img.width; cv.height = img.height;
+    const ctx = cv.getContext('2d'); ctx.drawImage(img, 0, 0);
+    const pixels = ctx.getImageData(0, 0, cv.width, cv.height), d = pixels.data;
+    const seen = new Uint8Array(cv.width * cv.height), todo = [];
+    const visit = (x,y) => {
+      if (x<0 || y<0 || x>=cv.width || y>=cv.height) return;
+      const p = y*cv.width+x, n = p*4;
+      if (seen[p]) return; seen[p] = 1;
+      if (Math.max(d[n],d[n+1],d[n+2]) > 32) return;
+      d[n+3] = 0; todo.push([x,y]);
+    };
+    for (let x=0;x<cv.width;x++){ visit(x,0); visit(x,cv.height-1); }
+    for (let y=0;y<cv.height;y++){ visit(0,y); visit(cv.width-1,y); }
+    while (todo.length){ const [x,y] = todo.pop(); visit(x-1,y); visit(x+1,y); visit(x,y-1); visit(x,y+1); }
+    ctx.putImageData(pixels,0,0);
+    const clean = cv.toDataURL(); arenaSprites.set(id,clean);
+    document.querySelectorAll(`[data-sprite="${id}"]`).forEach(el=>el.src=clean);
+  };
+  img.src = src;
+  return src;
+}
+function arenaPositions(){
+  const ambush = G.formation==='ambush', pincer = G.formation==='pincer';
+  const n = G.enemies.length, cols = n>3 ? 2 : 1, rows = Math.ceil(n/cols);
+  const span = pincer ? 42 : 54, center = pincer ? 50 : ambush ? 70 : 30;
+  const enemies = G.enemies.map((u,i)=>({u, x:center+(i%cols-(cols-1)/2)*span/cols,
+    y:8+(rows-1-Math.floor(i/cols))*80/rows, w:span/cols, h:80/rows, face:ambush?-1:1}));
+  const party = actives().map((u,i)=>({u, x:pincer ? (i%2 ? 88 : 12) : ambush ? 16+i*5 : 76+i*5,
+    y:pincer ? (i%2 ? 35 : 56-Math.floor(i/2)*42) : 58-i*25, w:12, h:pincer?26:24,
+    face:pincer ? (i%2 ? -1 : 1) : ambush && G.turned.includes(u.id) ? 1 : -1}));
+  return [...enemies,...party.filter(p=>!p.u.fled)];
+}
+function renderArena(){
+  const stage = $('#arenaStage');
+  const bg = window.RigAnim ? RigAnim.arenaFor(G.enemies[0].art) : 'hillside';
+  stage.style.backgroundImage = `url("tools/bestiary-rig-viewer/bg_${bg}.webp")`;
+  $('#arenaCaption').textContent = FORMATIONS[G.formation];
+  stage.innerHTML = arenaPositions().map(p=>{
+    const u = p.u, enemy = u.side==='enemy';
+    const tgt = G.menu==='target' && G.act && (enemy ? G.act.target==='enemy' && reachable(u) :
+      (G.act.target==='ally' && u.alive && !u.airborne) || (G.act.target==='ko' && !u.alive && !u.fled));
+    const tag = enemy || tgt ? 'button' : 'div';
+    const action = tgt ? `data-${enemy?'ft':'pt'}="${u.id}"` : enemy ? `data-info="${u.id}"` : '';
+    const state = !u.alive ? (enemy?'Defeated':'KO') : u.airborne ? 'Airborne' : '';
+    const label = `${tgt?'Target ':''}${u.name}${state ? ': '+state : ''}${enemy && !tgt ? ': stats and decision tree' : ''}`;
+    const spriteId = enemy ? 'enemy:'+u.art : u.id;
+    const sprite = arenaSprite(spriteId,enemy ? art(u.art) : ASSETS[u.id].s);
+    const visual = enemy ? (window.RigAnim && RigAnim.box(u.id,u.art,sprite)) || `<img data-sprite="${spriteId}" src="${sprite}" alt="">` :
+      `<img class="sprite" data-sprite="${spriteId}" src="${sprite}" alt="">`;
+    return `<${tag} class="arena-unit${enemy?' enemy':' ally'}${tgt?' targetable':''}${u===G.current?' acting':''}${!u.alive?' dead':''}${u.airborne?' airborne':''}" ${tag==='button'?'type="button"':''} ${action} aria-label="${esc(label)}" data-unit="${u.id}" data-facing="${p.face===1?'right':'left'}" style="--x:${p.x}%;--y:${p.y}%;--w:${p.w}%;--h:${p.h}%;--face:${p.face};z-index:${100-Math.round(p.y)}">
+      ${visual}<span class="unit-name">${esc(u.name)}${state?' · '+state:''}</span>${fxHtml(u.id)}</${tag}>`;
+  }).join('');
+  if (window.RigAnim){ RigAnim.forget(new Set(G.enemies.map(x=>x.id))); RigAnim.mount(stage,new Set(G.enemies.filter(x=>!x.alive).map(x=>x.id))); }
+}
+window.render_game_to_text = () => JSON.stringify(G && {
+  state:G.state, menu:G.menu, formation:G.formation, current:G.current && G.current.id,
+  coordinates:'Percent of arena; x from left, y from bottom; x is center, y is feet.',
+  units:arenaPositions().map(p=>({id:p.u.id, side:p.u.side, x:p.x, y:p.y, facing:p.face===1?'right':'left', hp:p.u.hp, alive:p.u.alive, airborne:!!p.u.airborne})),
+  turnOrder:forecast(16,G.preview).map(f=>f.u.id)
+});
 function render(){
   if (!G) return;
   $('#encName').textContent = `${G.enc.title} · Party Lv ${G.enc.lv || 10}`;
@@ -2678,11 +3064,11 @@ function render(){
     if (e.acid && e.alive) tags.push('DEF −30%');
     if (!e.alive) tags.push('Defeated');
     return `<${tag} class="foe${e.alive?'':' dead'}${tgt?' targetable':''}${G.current===e?' acting':''}${shaking(e.id)}${recOn() ? recCls(e) : ''}" ${tgt?`type="button" data-ft="${e.id}" aria-label="Target ${esc(e.name)}"`:`type="button" data-info="${e.id}" aria-label="${esc(e.name)}: stats and decision tree"`}>
-      ${fxHtml(e.id)}${(window.RigAnim && RigAnim.box(e.id, e.art, art(e.art))) || `<img src="${art(e.art)}" alt="">`}
+      ${fxHtml(e.id)}
       <div class="body"><div class="nm">${esc(e.name)}</div>
       <div class="meta"><span>${esc(hp.text)}</span></div><div class="intent">${tags.map(x=>`<span>${esc(x)}</span>`).join('')}</div>${bar(hp.hp,hp.max)}${tgt?'':'<span class="ihint">Tap for info</span>'}</div></${tag}>`;
   }).join('');
-  if (window.RigAnim){ RigAnim.forget(new Set(G.enemies.map(x=>x.id))); RigAnim.mount($('#foes'), new Set(G.enemies.filter(x=>!x.alive).map(x=>x.id))); }
+  renderArena();
   $('#party').innerHTML = actives().map(pcCard).join('');
   const rs = G.party.filter(p=>!G.active.includes(p.id));
   $('#reserves').innerHTML = rs.map(rvCard).join('');
@@ -3022,6 +3408,9 @@ function bindRange(id, key, fmt){
   $('#cfgEnc').innerHTML = Object.entries(groups).map(([g,list])=>`<optgroup label="${g}">${list.map(([k,v])=>`<option value="${k}">${v.role ? ROSTER[v.role].name+' ('+ROSTER[v.role].role+') · '+v.title.replace('Test · ','') : v.title}</option>`).join('')}</optgroup>`).join('');
 })();
 if (!ENCOUNTERS[cfg.enc]) cfg.enc = 'widow';
+if (!FORMATIONS[cfg.formation]) cfg.formation = 'standard';
+$('#cfgFormation').value = cfg.formation;
+$('#cfgFormation').addEventListener('change', e=>{ cfg.formation=e.target.value; saveCfg(); $('#ov').hidden=true; newGame(); });
 $('#cfgEnc').value = cfg.enc;
 $('#cfgEnc').addEventListener('change', e=>{
   cfg.enc = e.target.value; const enc = ENCOUNTERS[cfg.enc];

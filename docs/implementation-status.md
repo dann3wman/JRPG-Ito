@@ -8,6 +8,7 @@ Status key: **Built** matches the doc · **Partial** built with gaps or extras �
 
 | System | Status | Notes |
 | --- | --- | --- |
+| Shared battle arena and formations | Built | Standard: party right, enemies left. Pincer: party on both sides. Ambush: party left, facing away until each acts. Formation selector restarts the fight; staging only, no combat modifiers |
 | CTB turn order (16 turns, command preview) | Partial | Built. The preview assumes Delay 3 for everyone but the acting character, so enemies with Rank 4–6 skills show early. See [battle math](systems/battle-math.md#time-conditional-turn-based) |
 | Delay values | Drift | Quick skills 2, -ga and Jump 5, summons 6 match. "Most skills 4" doesn't: 11 of 18 other skills are 3 (support and utility) or 2 (Counter). Open question 2 |
 | Delay attacks (push back, +4 Stress per slot) | Drift | A slot is a fixed 12 ticks, not a turn-order position. Open question 1 |
@@ -78,6 +79,8 @@ The bosses in the design doc lean on a handful of mechanics the engine doesn't h
 | **Forced and whispered commands written into the turn order** | The Whisperer, the One That Walks | The forecast strip needs per-slot text |
 
 ## Known issues
+
+- **Sprite playback:** continuous idle layering, action blends, loop pose/velocity closure, a shared visible-time clock, decoded/prewarmed sheets, padded part caches and adaptive effect detail are implemented. The animation checker samples all 22 rigs / 88 clips and compares the six battle rigs with the viewer. Browser checks cover playback, interruption, suspension, reduced motion, missing sheets and a throttled six-rig scene. See [sprite playback](guides/sprite-playback.md). Attachment-box warnings are review prompts, not proof of broken joints; fitted and intentionally separated parts can extend outside their parent's atlas rectangle. Frame rate still depends on the device and scene.
 
 - **The turn-order preview is approximate** past each unit's next turn (it assumes Delay 3). Enemies already have a planned skill, so the forecast can use its rank.
 - **The info panel says crits deal 1.6×.** That is true for enemy crits; party crits deal 1.8×.
