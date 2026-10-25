@@ -29,7 +29,8 @@
       "normal": "keep the small faces in the halo; they are calm and their eyes are closed",
       "lowhp": "the faces in the halo have opened their eyes and are all looking at her",
       "zombie": "one face in the halo is mouthing words at her ear",
-      "ko": "the faces in the halo are still awake, looking out of the frame"
+      "ko": "the faces in the halo are still awake, looking out of the frame",
+      "strained": "she is still smiling her gentle smile, but every face in the halo has turned to look straight out of the panel at the viewer"
     },
     "bodyFrac": 0.82
   },

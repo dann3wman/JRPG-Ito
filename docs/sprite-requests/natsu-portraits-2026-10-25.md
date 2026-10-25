@@ -18,7 +18,7 @@ Row 1:
   1. Standard: their usual expression, composed. This is the portrait used most of the time. For Natsu: keep the small faces in the halo; they are calm and their eyes are closed.
   2. Taking a hit: flinching from a blow, eyes squeezed or wide, head jerked aside, a fresh cut.
   3. Low HP (25% or less): bloodied, sweat-soaked, exhausted, breathing through the mouth, still conscious and still fighting. For Natsu: the faces in the halo have opened their eyes and are all looking at her.
-  4. High Stress (75+): not yet broken but close: eyes slightly too wide, a fixed stare at something out of frame, a clenched jaw. One small detail is wrong.
+  4. High Stress (75+): not yet broken but close: eyes slightly too wide, a fixed stare at something out of frame, a clenched jaw. One small detail is wrong. For Natsu: she is still smiling her gentle smile, but every face in the halo has turned to look straight out of the panel at the viewer.
 Row 2:
   1. KO: unconscious: eyes closed or half open and unfocused, head fallen back or aside, drained of colour, lit from below. For Natsu: the faces in the halo are still awake, looking out of the frame.
   2. Afflicted: Berserk: rage that has forgotten its reason: teeth bared, pupils pinpricks, veins standing out, red in the shadows, the expression locked on like a mask.
