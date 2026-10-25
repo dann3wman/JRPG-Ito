@@ -32,6 +32,7 @@ import json
 import re
 import shutil
 import sys
+from collections import deque
 from pathlib import Path
 
 import numpy as np
@@ -303,6 +304,37 @@ def grid_cells(im, cols, rows):
             for r in range(rows) for c in range(cols)], cw, ch
 
 
+def bands(profile, n, noise=3):
+    """Cut points for n cells along one axis: each even-grid line moves to the middle of the
+    nearest empty gap (ChatGPT's grid drifts a few px), or stays put when no gap is near."""
+    empty = np.asarray(profile) <= noise
+    size = len(empty)
+    cuts = [0]
+    for k in range(1, n):
+        b, reach = round(k * size / n), size // n // 3
+        hit = next((p for d in range(reach) for p in (b - d, b + d) if 0 < p < size and empty[p]), None)
+        if hit is None:
+            cuts.append(b)
+            continue
+        lo, hi = hit, hit
+        while lo > 0 and empty[lo - 1]: lo -= 1
+        while hi < size - 1 and empty[hi + 1]: hi += 1
+        cuts.append((lo + hi + 1) // 2)
+    return cuts + [size]
+
+
+def detect_cells(arr, cols, rows):
+    """Cells cut at the gaps ChatGPT actually left: rows first, then columns within each row."""
+    m = arr[..., 3] > 0
+    ys = bands(m.sum(axis=1), rows)
+    print('rows cut at ' + ' '.join(map(str, ys[1:-1])))
+    cells = []
+    for r in range(rows):
+        xs = bands(m[ys[r]:ys[r + 1]].sum(axis=0), cols)
+        cells += [(xs[c], ys[r], xs[c + 1], ys[r + 1]) for c in range(cols)]
+    return cells
+
+
 def opaque_bbox(a, min_px=12):
     """bbox of a cell's opaque pixels, ignoring rows/columns with only a few stray pixels."""
     m = a[..., 3] > 128
@@ -310,6 +342,63 @@ def opaque_bbox(a, min_px=12):
     if m.sum() < min_px or not len(rows) or not len(cols):
         return None
     return int(cols[0]), int(rows[0]), int(cols[-1] + 1), int(rows[-1] + 1)
+
+
+def despill(arr, edge_only, passes=2):
+    """Green spill left by the key: drop strongly green edge pixels and pull green down to the other
+    channels. Everywhere for most of the cast (spill also hides in gaps in hair); edge-only for
+    characters who wear green (keepGreen in cast.json), so their clothes survive."""
+    if not edge_only:
+        rgb = arr[..., :3].astype(int)
+        other = np.maximum(rgb[..., 0], rgb[..., 2])
+        arr[..., 1] = np.minimum(rgb[..., 1], other)
+    for _ in range(passes):
+        clear = arr[..., 3] == 0
+        edge = np.zeros_like(clear)
+        edge[1:] |= clear[:-1]; edge[:-1] |= clear[1:]
+        edge[:, 1:] |= clear[:, :-1]; edge[:, :-1] |= clear[:, 1:]
+        edge &= ~clear
+        rgb = arr[..., :3].astype(int)
+        other = np.maximum(rgb[..., 0], rgb[..., 2])
+        spill = edge & (rgb[..., 1] > other)
+        arr[spill & (rgb[..., 1] - other > 60), 3] = 0
+        soft = spill & (rgb[..., 1] - other <= 60)
+        arr[soft, 1] = other[soft]
+    return arr
+
+
+def keep_own(sub, min_px=4):
+    """Clear what in a cell isn't this frame: blobs touching the cell edge (a neighbour's art, after
+    the grid drifts) unless it is the main figure, and specks. Effects floating inside the cell stay."""
+    m = sub[..., 3] > 0
+    h, w = m.shape
+    seen = np.zeros_like(m)
+    blobs = []
+    for y0, x0 in zip(*np.nonzero(m)):
+        if seen[y0, x0]:
+            continue
+        q, px, edge = deque([(y0, x0)]), [], False
+        seen[y0, x0] = True
+        while q:
+            y, x = q.popleft()
+            px.append((y, x))
+            edge |= y in (0, h - 1) or x in (0, w - 1)
+            for ny in (y - 1, y, y + 1):
+                for nx in (x - 1, x, x + 1):
+                    if 0 <= ny < h and 0 <= nx < w and m[ny, nx] and not seen[ny, nx]:
+                        seen[ny, nx] = True
+                        q.append((ny, nx))
+        blobs.append((px, edge))
+    if not blobs:
+        return 0
+    main = max(range(len(blobs)), key=lambda i: len(blobs[i][0]))
+    dropped = 0
+    for i, (px, edge) in enumerate(blobs):
+        if i != main and (edge or len(px) < min_px):
+            ys, xs = zip(*px)
+            sub[list(ys), list(xs), 3] = 0
+            dropped += len(px) if edge else 0
+    return dropped
 
 
 def label(img, cells, names, scale, color):
@@ -323,17 +412,22 @@ def cmd_sheet(args):
     char(args.id)
     im = to_rgba(args.src, args.key, args.tol, args.fringe)
     checker_warning(im)
-    cells, cw, ch = grid_cells(im, SHEET_COLS, SHEET_ROWS)
-    arr = np.asarray(im)
+    arr = np.asarray(im).copy()
+    if args.key:
+        despill(arr, CAST[args.id].get('keepGreen', False))
+    cells = detect_cells(arr, SHEET_COLS, SHEET_ROWS)
     boxes, warn = [], []
     for (x0, y0, x1, y1), (name, _) in zip(cells, FRAMES):
         sub = arr[y0:y1, x0:x1]
+        if keep_own(sub) > 40:
+            print(f'note: {name}: cleared stray art at the cell edge (a neighbour\'s, or the grid drifted)')
         b = opaque_bbox(sub)
         if b is None:
             warn.append(f'{name}: cell is empty')
         elif b[0] <= 1 or b[1] <= 1 or b[2] >= sub.shape[1] - 1 or b[3] >= sub.shape[0] - 1:
             warn.append(f'{name}: art touches the cell edge (cut off, or the grid drifted)')
         boxes.append(b)
+    im = Image.fromarray(arr)
     idle = boxes[0]
     if idle is None:
         sys.exit('idle1 is empty: cannot set the scale. Check the sheet and the grid.')

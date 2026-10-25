@@ -74,7 +74,7 @@ Every portrait states the generic look for its state, plus the character's own h
    Then `Read` `$W/<id>.sheet.check.png` and `$W/<id>.portraits.check.png`. On the sheet check, every frame should stand on the grey ground line. Lunges should move horizontally and nothing should be cut off. Only the jump frames should float. On the portrait check, the head should sit in the same place in all twelve panels. Act on every `warning:` line. An empty cell, art touching a cell edge or a frame spilling out of the 96 px box usually means ChatGPT drifted off the grid. In that case, re-request the sheet rather than hand-patching it.
 3. **Install and preview.** Run `python3 $P install <id> $W`. Then open `tools/party-sprite-viewer/index.html?who=<id>` and play every animation, including the derived looks.
 4. **Embed.** Run `python3 $P embed <id>`. It writes `ps` (all 12 states), replaces `p` with the new `normal` portrait, and replaces `s` (the turn-order sprite) with idle1. Afterwards, check `FACE.<id>` in `index.html`, because the face focal point moves if the framing changed. Open the game and test a few states.
-5. **Record.** Commit the request files, the installed `.webp` files, `manifest.js` and the `index.html` change together.
+5. **Record.** Save ChatGPT's original image as `docs/sprite-requests/<id>-<kind>-<date>.source.png`, so the sheet can be re-cut when the slicer improves. Commit it with the request file, the installed `.webp` files, `manifest.js` and the `index.html` change.
 
 ## Rules
 
@@ -84,3 +84,11 @@ Every portrait states the generic look for its state, plus the character's own h
 - Write each twist so it reads both as a portrait expression and as a pose. It also lands on sprite frames, and it overrides the generic frame description when the two differ.
 - Keep each character's look in `cast.json` in step with the design doc and the current portrait. Prompts are only as consistent as that data.
 - When a returned sheet needed a fix, or a prompt wording failed, note it in this file under a "Lessons" heading. Fix the wording in `sheet_prompt` / `portrait_prompt` so the next request is better.
+
+## Lessons
+
+- **2026-10-25 · Kiri · first sprite sheet.** The art followed the prompt well. The 6 × 9 grid held, the scarf spiral showed in every frame, and the Sleep and Confuse twists and the grey-green Zombie came through. Three problems were in the slicer, and all are fixed in `party_art.py`:
+  - ChatGPT's rows drifted up to 10 px from an even split, so heads crossed into the cell above. The slicer now moves each grid line to the nearest empty gap (`bands` / `detect_cells`) instead of cutting evenly.
+  - The thrown vial in item2 sat on an even column line and was being thrown away as a neighbour's art. Snapping the cut to the gap keeps it in its frame. `keep_own` then clears only blobs that touch the cell edge and aren't the main figure.
+  - Background green blended into dark hair at about 50%, which is too far from pure green to key and too deep for an edge-only fix. The slicer now removes green spill everywhere (`despill`), except for characters marked `keepGreen` in `cast.json` (Goku, Fuyori), who get the edge-only pass.
+  - Field side-walk frames (walkS1–3) came back three-quarter view rather than a true profile. They're usable, but if they look wrong in the field, strengthen the wording to "strict side profile, like FF6 field sprites walking left".

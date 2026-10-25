@@ -80,7 +80,8 @@
       "lowhp": "fur is spreading up her neck and her pupils have narrowed into an animal's",
       "berserk": "her jaw has lengthened slightly and her teeth are a hound's",
       "sleep": "she is curled the way a dog sleeps"
-    }
+    },
+    "keepGreen": true
   },
   "hisui": {
     "name": "Hisui",
@@ -179,7 +180,8 @@
       "lowhp": "the crystal has spread across half her face",
       "paralyze": "she has gone glassy, crystal across both hands, still holding the pen",
       "sleep": "she sleeps sitting up, inside a faint outline of a crystal coffin"
-    }
+    },
+    "keepGreen": true
   },
   "shio": {
     "name": "Shio",
