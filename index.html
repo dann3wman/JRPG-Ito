@@ -1103,37 +1103,37 @@ const FOES = {
 };
 const ENCOUNTERS = {
   widow: { lv:8, group:'Story bosses', title:'Port of Vesk · Tide-Widow', foes:['widow'], hum:20, party:['kiri','natsu','tetsugi'],
-    brief:'At half HP she enters phase 2 and releases 2 Drowned Sailors, which re-form 3 of her turns after you defeat them. Undertow pushes party members back 3 slots. (The Thing That Drifted Ashore)' },
+    brief:'At half HP she enters phase 2 and releases 2 Drowned Sailors, which re-form 3 of her turns after you defeat them. Undertow pushes whoever is about to act back 3 slots. (The Thing That Drifted Ashore)' },
   ruri2: { lv:14, group:'Story bosses', title:'Moogle Market · Ruri ×2', foes:['ruri','ruri'], hum:15, party:['miren','hisui','kuro'],
-    brief:'Two Ruris, each claiming to be the one you killed. They attack each other as well as you, and Charm adds 12 Stress. (Tomie)' },
+    brief:'Two Ruris, each claiming to be the one you killed. They attack each other more as one weakens, and Charm adds 12 Stress to whoever is closest to breaking. (Tomie)' },
   orlen: { lv:22, group:'Story bosses', title:'Lumen · Orlen and the Great Organ', foes:['orlen','organ'], hum:45, party:['kuro','sayo','natsu'],
-    brief:'Orlen fills Overdrive as your party gains Stress; when full, he and the Organ attack together with Requiem. Destroy the Organ and it is rebuilt 4 of his turns later. (Honored Ancestors · The Human Chair)' },
+    brief:'Orlen fills Overdrive as your party gains Stress; when full, he and the Organ attack together with Requiem. Counter-Melody makes him hold his voice, but the Organ will play into it to clear the way. Destroy the Organ and it is rebuilt 4 of his turns later. (Honored Ancestors · The Human Chair)' },
   final: { lv:32, group:'Story bosses', title:'The Hellstar · Final battle', foes:['unwound','hellstar','tongue'], hum:90, party:['kiri','natsu','kugai'],
-    brief:'The Hellstar marks a target with Gaze, then Devours it, but only while its Tongue is attached. Sever the Tongue to buy time; it regrows. Its Overdrive fills as your party gains Stress. (Uzumaki · Hellstar Remina)' },
+    brief:'The Hellstar marks a target with Gaze, then Devours it, but only while its Tongue is attached. Blink on the marked ally makes it look elsewhere. Sever the Tongue to buy time; it regrows. Its Overdrive fills as your party gains Stress. (Uzumaki · Hellstar Remina)' },
   t_kiri: { lv:8, group:'Role tests', role:'kiri', title:'Test · Spiral Ringer', foes:['bell'], hum:40, party:['kiri','tetsugi','hisui'],
     brief:'It adds 6 Danger every turn, and each Toll adds 14 Stress. High Danger makes Spiral Cut hit harder, and Lullaby clears the Stress. (Uzumaki)' },
   t_natsu: { lv:8, group:'Role tests', role:'natsu', title:'Test · Blood Drinker', foes:['leech'], hum:10, party:['natsu','miren','kuro'],
-    brief:'Heavy hits on one target at a time, each adding 10 Stress. Drain hits the lowest-HP ally and heals the enemy. Cure and Soothe keep the target alive. (Blood-Slurping Darkness)' },
+    brief:'Heavy hits on one target at a time, each adding 10 Stress. Once it is below 75% HP, Drain hits the ally with the lowest HP% and heals it. Cure and Soothe keep the target alive. (Blood-Slurping Darkness)' },
   t_tetsugi: { lv:10, group:'Role tests', role:'tetsugi', title:'Test · Funeral Dolls', foes:['hand','hand','hand','hand'], hum:10, party:['tetsugi','kiri','natsu'],
-    brief:'Four fast, weak dolls that target the ally with the highest max HP. Counter strikes back at every one of them. (A Doll\'s Hellish Burial)' },
+    brief:'Four fast, weak dolls that target the ally with the highest max HP. Counter strikes back, but the first doll it catches goes for someone else while Counter is ready. (A Doll\'s Hellish Burial)' },
   t_miren: { lv:12, group:'Role tests', role:'miren', title:'Test · Hanging Balloon', foes:['maw'], hum:15, party:['miren','natsu','tetsugi'],
     brief:'Every 4th turn, Noose Drop hits the whole party hard. Characters who are airborne from Jump avoid it. (The Hanging Balloons)' },
   t_goku: { lv:12, group:'Role tests', role:'goku', title:'Test · Earthbound Woman', foes:['shell'], hum:10, party:['goku','kiri','natsu'],
     brief:'Her DEF makes light hits do almost nothing, and she hits 10% harder every turn she takes. Summon Hound breaks through and Howl softens Topple. (The Earthbound)' },
   t_hisui: { lv:14, group:'Role tests', role:'hisui', title:'Test · Red Turtleneck', foes:['fencer'], hum:10, party:['hisui','natsu','kiri'],
-    brief:'A fast duelist with a 45% crit rate who targets the fastest party member. Every crit on Hisui gives her +10% damage. (Tomio • Red Turtleneck)' },
+    brief:'A fast duelist with a 45% crit rate who targets the fastest party member. Every crit on Hisui gives her +10% damage; at +30% it stops attacking her. (Tomio • Red Turtleneck)' },
   t_kuro: { lv:14, group:'Role tests', role:'kuro', title:'Test · Record Singers', foes:['singer','singer','singer','singer','singer'], hum:20, party:['kuro','natsu','tetsugi'],
     brief:'Five weak singers, each adding 4 Stress to the party every turn. Darkga hits all of them at once. (Used Record)' },
   t_ren: { lv:18, group:'Role tests', role:'ren', title:'Test · Long Dreamer', foes:['glass'], hum:15, party:['ren','kiri','natsu'],
-    brief:'Its damage rises 25% with every turn it takes. Delay Shot keeps it from acting, so it stays weaker. (The Long Dream)' },
+    brief:'Its damage rises 25% with every turn it takes. Delay Shot keeps it from acting, so it stays weaker, but Breaking it wakes it angry. (The Long Dream)' },
   t_sayo: { lv:20, group:'Role tests', role:'sayo', title:'Test · Amigara Wall', foes:['tide'], hum:20, party:['sayo','kiri','hisui'],
-    brief:'After 9 of its turns the party walks into the wall and you lose. Its Calling pushes everyone who hears it back 2 slots. Quick Song gets you more turns first, and Counter-Melody blocks the Calling. (The Enigma of Amigara Fault)' },
+    brief:'After 9 of its turns the party walks into the wall and you lose. Its Calling pushes everyone who hears it back 2 slots. Quick Song gets you more turns first. Counter-Melody turns a Calling into a Beckon that pushes back only whoever acts next. (The Enigma of Amigara Fault)' },
   t_kugai: { lv:22, group:'Role tests', role:'kugai', title:'Test · Headless Sculpture', foes:['exec'], hum:10, party:['kugai','kuro','natsu'],
-    brief:'Always targets the lowest-HP ally, and every 3rd turn Behead hits for massive damage. Provoke and Cover protect the weak. (Headless Sculptures)' },
+    brief:'Always targets the ally with the lowest HP%, and after two Chisels Behead hits for massive damage. Provoke delays Behead one turn; then it ignores Provoke, so Cover the weak. (Headless Sculptures)' },
   t_fuyori: { lv:24, group:'Role tests', role:'fuyori', title:'Test · Grease Father', foes:['pilgrim'], hum:20, party:['fuyori','kiri','tetsugi'], inv:{potion:0, phoenix:0, earplugs:0},
-    brief:'You start with no items, it has 80 DEF, and every other turn Grease Rain adds 16 Stress. Mix restocks the bag and Acid lowers its DEF. (Glyceride)' },
+    brief:'You start with no items, it has 80 DEF, and Grease Rain adds 16 Stress to everyone without Earplugs. Mix restocks the bag and Acid lowers its DEF. (Glyceride)' },
   t_shio: { lv:28, group:'Role tests', role:'shio', title:'Test · Star Fragment', foes:['hour'], hum:95, party:['shio','kiri','natsu'],
-    brief:'At 95 Danger, Lost Turns come often. Its Gaze names a target one turn before Devour. Foresee removes Lost Turns and Blink dodges Devour. (Hellstar Remina)' },
+    brief:'At 95 Danger, Lost Turns come often. Its Gaze names a target one turn before Devour. Foresee removes Lost Turns, and Blink on the marked ally makes it Gaze at someone else. (Hellstar Remina)' },
 };
 
 /* ---------- enemy art, drawn once ---------- */
@@ -1383,7 +1383,7 @@ function pushEnemy(e, slots){
   if (e.breakImm > 0){ log(`${e.name} resists the push (recovering from Break).`); return false; }
   e.ct += slots * SLOT; e.brk = Math.min(100, e.brk + slots*25);
   log(`${e.name} pushed back ${slots}. Break ${e.brk}%.`);
-  if (e.brk >= 100){ e.brk = 0; e.broken = 2; e.ct += 3*SLOT; log(`${e.name} is BROKEN: pushed back 3 more and takes +50% damage for 2 of its turns.`, 'foe'); }
+  if (e.brk >= 100){ e.brk = 0; e.broken = 2; e.jolted = true; e.ct += 3*SLOT; log(`${e.name} is BROKEN: pushed back 3 more and takes +50% damage for 2 of its turns.`, 'foe'); }
   return true;
 }
 function delayUnit(u, slots){
@@ -1419,7 +1419,7 @@ function hitParty(t, raw, {crit=false, src=null}={}){
     reservesWatch();
   }
   if (t.hp <= 0){ ko(t); return d; }
-  if (t.counter && src && src.alive){ log(`${t.name} counters ${src.name}.`); hitEnemy(src, t.atk*1.6, {attacker:t}); }
+  if (t.counter && src && src.alive){ log(`${t.name} counters ${src.name}.`); src.stung = true; hitEnemy(src, t.atk*1.6, {attacker:t}); }
   return d;
 }
 function ko(t){
@@ -1607,7 +1607,8 @@ function soundAttack(e, name, apply){
    2. Phase gate: if its phase changed, run the phase's entry (uses the turn unless marked free), then re-plan.
    3. Interrupts: re-checked now; the first true one replaces the plan.
    4. Planned action: chosen at the end of its previous turn and shown in the turn order. Rolls happen at plan time.
-      An invalid planned target is re-picked with the same targeting rule.
+      An invalid planned target is re-picked with the same targeting rule. The plan is re-made if its own rule no
+      longer holds, or if a higher rule marked react now holds (how enemies answer a counter played after they planned).
    5. Counterplay overrides at execution: Provoke redirects single-target skills (unless noProvoke), Blink dodges,
       airborne allies are missed, Counter-Melody cancels sound skills.
    6. Recovery = Tick Speed x Rank, Tick Speed = max(8, 30 - Speed). Then it plans its next action. */
@@ -1615,11 +1616,21 @@ const hearers = () => targetsForFoes().filter(t=>!soundImmune(t));
 const foeOf = key => G.enemies.find(x=>x.key===key && x.alive);
 const parentOf = e => G.enemies.find(x=>x.id===e.parentId);
 const otherRuri = e => G.enemies.some(x=>x!==e && x.key==='ruri' && x.alive);
+const weakestRuri = e => G.enemies.filter(x=>x!==e && x.key==='ruri' && x.alive).sort((a,b)=>a.hp/a.maxhp-b.hp/b.maxhp)[0];
 const markValid = e => e.mark && e.mark.alive && G.active.includes(e.mark.id);
 const p2 = e => e.phase === 'p2';
-const SINGLE = ['random','lowest','fastest','biggest','stress','last','mark'];
-const TARGET_TEXT = { random:'Random ally', lowest:'Lowest-HP ally', fastest:'Fastest ally', biggest:'Highest max HP ally', stress:'Highest-Stress ally (can hear sound)',
-  last:'Ally who acted last', mark:'Marked ally', all:'All allies', none:'—', foe:'Another enemy' };
+const provokeUp = () => targetsForFoes().some(t=>t.provoke > 0);
+const unplugged = () => targetsForFoes().filter(t=>!(t.earplugs > 0));
+// Stress still needed to reach the next Stress Check (100) or flee (200).
+const toBrink = t => (t.stress < 100 ? 100 : 200) - t.stress;
+const nearBrink = (ts, n) => ts.some(t=>toBrink(t) <= n);
+const SINGLE = ['random','lowest','fastest','biggest','stress','brink','last','mark','next','unblinked','uncountered','fastestCold'];
+const LATE_TEXT = { last:'whoever acted last', next:'whoever acts next' };
+const TARGET_TEXT = { random:'Random ally', lowest:'Lowest-HP% ally', fastest:'Fastest ally', biggest:'Highest max HP ally',
+  stress:'Ally closest to a Stress Check or fleeing (can hear sound)', brink:'Ally closest to a Stress Check or fleeing',
+  last:'Ally who acted last', mark:'Marked ally', next:'Ally whose turn comes next', unblinked:'Random ally without Blink',
+  uncountered:'Highest max HP ally without Counter ready', fastestCold:'Fastest ally below +30% crit damage',
+  all:'All allies', none:'—', foe:'Another enemy' };
 const SCRIPTS = {
   widow:{
     phases:[ {id:'p1', label:'Above 50% HP'},
@@ -1629,26 +1640,29 @@ const SCRIPTS = {
             {phase:'p2', label:'Phase 2', roll:[[20,'lullaby'],[45,'undertow'],[35,'attack']]} ],
     skills:{
       attack:{name:'Attack', rank:3, tags:['Physical'], target:'random', power:'1.4× ATK', desc:'15% crit chance.', run:(e,t)=>hitParty(t, e.atk*1.4, {crit:Math.random()<.15, src:e})},
-      undertow:{name:'Undertow', rank:4, tags:['Physical','Delay'], target:'random', power:'0.6× ATK', desc:'Pushes the target back 3 slots (+12 Stress).',
+      undertow:{name:'Undertow', rank:4, tags:['Physical','Delay'], target:'next', late:true, power:'0.6× ATK', desc:'Pushes the ally about to act back 3 slots (+12 Stress).',
         run:(e,t)=>{ const b = t.blink; hitParty(t, e.atk*.6, {src:e}); if (t.alive && !b) delayUnit(t, 3); }},
       lullaby:{name:'Lullaby', rank:5, tags:['Sound','Stress'], sound:true, target:'all', power:'—', desc:'+14 Stress to each ally. +6 Danger.',
         run:()=>{ targetsForFoes().forEach(t=>addStress(t, 14, 'Lullaby', {sound:true})); addHum(6); }},
       release:{name:'Release', rank:4, tags:['Summon','Phase'], target:'none', power:'—', desc:'Phase 2 entry. 2 Drowned Sailors crawl out of her body. Each re-forms 3 of her turns after it is defeated.',
         run:e=>{ for (let i=0;i<2;i++) spawnPart(e, 'sailor', SLOT*(2+i*2)); }} } },
   sailor:{
-    rules:[ {label:'Every turn', roll:[[50,'attack'],[50,'stench']]} ],
+    rules:[ {label:'Every turn', roll:[[50,'attack'],[e=>nearBrink(targetsForFoes(), 25) ? 150 : 50,'stench']],
+             rollText:{attack:'50% (25% if an ally is within 25 Stress of a Stress Check or fleeing)', stench:'50% (75% then)'}} ],
     skills:{
       attack:{name:'Attack', rank:3, tags:['Physical'], target:'random', power:'1.2× ATK', desc:'8% crit chance.', run:(e,t)=>hitParty(t, e.atk*1.2, {crit:Math.random()<.08, src:e})},
-      stench:{name:'Stench', rank:3, tags:['Physical','Stress'], target:'random', power:'0.4× ATK', desc:'+8 Stress to the target.', run:(e,t)=>{ hitParty(t, e.atk*.4, {src:e}); if (t.alive) addStress(t, 8, 'Stench'); }} } },
+      stench:{name:'Stench', rank:3, tags:['Physical','Stress'], target:'brink', power:'0.4× ATK', desc:'+8 Stress to the ally closest to a Stress Check or fleeing.', run:(e,t)=>{ hitParty(t, e.atk*.4, {src:e}); if (t.alive) addStress(t, 8, 'Stench'); }} } },
   orlen:{
     overdrive:true,
     phases:[ {id:'p1', label:'Above 50% HP'},
              {id:'p2', label:'50% HP or below: the ancestors wake (Sermon +30 Stress)', when:e=>e.hp<=e.maxhp/2, free:true} ],
     parts:[ {key:'organ', respawn:4, hpPct:.5, label:'Great Organ (rebuilt at 50% HP)'} ],
-    rules:[ {label:'Overdrive is full and the Great Organ is standing', when:e=>e.od>=100 && foeOf('organ'), skill:'requiem'},
+    rules:[ {label:'Counter-Melody is up (he holds his voice)', react:true, when:()=>G.melody, skill:'crozier'},
+            {label:'Overdrive is full and the Great Organ is standing', when:e=>e.od>=100 && foeOf('organ'), skill:'requiem'},
             {label:'Overdrive is full but the Great Organ is destroyed', when:e=>e.od>=100, skill:'lament'},
             {label:'The Great Organ is below 50% HP', when:()=>{ const o = foeOf('organ'); return o && o.hp < o.maxhp/2; }, chance:40, skill:'benediction'},
-            {label:'At least one ally can hear sound attacks', when:()=>hearers().length>0, chance:45, skill:'sermon'},
+            {label:'At least one ally can hear sound attacks', when:()=>hearers().length>0, chance:()=>nearBrink(hearers(), 25) ? 75 : 45,
+              chanceText:'45% (75% if a listener is within 25 Stress of a Stress Check or fleeing)', skill:'sermon'},
             {label:'Otherwise', skill:'crozier'} ],
     skills:{
       requiem:{name:'Requiem', rank:6, tags:['Combined','Sound','Stress','Delay'], sound:true, odReset:true, target:'all', power:'1.0× ATK',
@@ -1663,7 +1677,8 @@ const SCRIPTS = {
         run:(e,t)=>{ if (t) addStress(t, p2(e) ? 30 : 20, 'Sermon', {sound:true}); addHum(4); }},
       crozier:{name:'Crozier', rank:3, tags:['Physical'], target:'random', power:'1.5× ATK', desc:'10% crit chance.', run:(e,t)=>hitParty(t, e.atk*1.5, {crit:Math.random()<.1, src:e})} } },
   organ:{
-    rules:[ {label:'This is its 5th, 10th, 15th… turn', when:(e,n)=>n%5===0, skill:'chord'}, {label:'Otherwise', skill:'drone'} ],
+    rules:[ {label:'Counter-Melody is up (it draws the song out for Orlen)', react:true, when:()=>G.melody, skill:'chord'},
+            {label:'This is its 5th, 10th, 15th… turn', when:(e,n)=>n%5===0, skill:'chord'}, {label:'Otherwise', skill:'drone'} ],
     skills:{
       chord:{name:'Chord', rank:3, tags:['Sound','Stress','Delay'], sound:true, target:'all', power:'—', desc:'+15 Stress and pushed back 2 for each ally. +5 Danger.',
         run:()=>{ targetsForFoes().forEach(t=>{ if (soundImmune(t)){ log(`${t.name} is immune to sound attacks.`); return; } addStress(t, 15, 'Chord', {sound:true}); delayUnit(t, 2); }); addHum(5); }},
@@ -1671,12 +1686,14 @@ const SCRIPTS = {
   ruri:{
     phases:[ {id:'p1', label:'Another Ruri is alive (or she came alone)'},
              {id:'p2', label:'Last Ruri standing: Spite, ATK +30%', when:e=>e.hadPair && !otherRuri(e), free:true, enterFn:e=>{ e.atk = Math.round(e.atk*1.3); }} ],
-    rules:[ {label:'Another Ruri is alive', when:e=>otherRuri(e), chance:30, skill:'jealousy'},
-            {label:'Otherwise', roll:[[45,'charm'],[55,'slap']]} ],
+    rules:[ {label:'Another Ruri is alive', when:e=>otherRuri(e), chance:e=>15 + Math.round(60*(1 - weakestRuri(e).hp/weakestRuri(e).maxhp)),
+              chanceText:'15%, rising to 75% as the weakest copy loses HP', skill:'jealousy'},
+            {label:'Otherwise', roll:[[()=>nearBrink(targetsForFoes(), 20) ? 65 : 45,'charm'],[55,'slap']],
+              rollText:{charm:'45% (54% if an ally is within 20 Stress of a Stress Check or fleeing)', slap:'55% (46% then)'}} ],
     skills:{
-      jealousy:{name:'Jealousy', rank:3, tags:['Physical'], target:'foe', power:'1.4× ATK', desc:'Attacks a copy of herself.',
-        run:e=>{ const o = pick(G.enemies.filter(x=>x!==e && x.key==='ruri' && x.alive)); if (o) hitEnemy(o, e.atk*1.4); }},
-      charm:{name:'Charm', rank:3, tags:['Stress'], target:'random', power:'—', desc:'+12 Stress to the target.', run:(e,t)=>addStress(t, 12, 'Charm')},
+      jealousy:{name:'Jealousy', rank:3, tags:['Physical'], target:'foe', power:'1.4× ATK', desc:'Attacks the most wounded copy of herself.',
+        run:e=>{ const o = weakestRuri(e); if (o) hitEnemy(o, e.atk*1.4); }},
+      charm:{name:'Charm', rank:3, tags:['Stress'], target:'brink', power:'—', desc:'+12 Stress to the ally closest to a Stress Check or fleeing.', run:(e,t)=>addStress(t, 12, 'Charm')},
       slap:{name:'Slap', rank:3, tags:['Physical'], target:'random', power:'1.3× ATK', desc:'15% crit chance.', run:(e,t)=>hitParty(t, e.atk*1.3, {crit:Math.random()<e.crit, src:e})} } },
   unwound:{
     phases:[ {id:'p1', label:'The Hellstar is above 50% HP'},
@@ -1695,11 +1712,13 @@ const SCRIPTS = {
     parts:[ {key:'tongue', respawn:3, respawnP2:2, label:'Hellstar Tongue'} ],
     rules:[ {label:'Overdrive is full and the Tongue is attached', when:e=>e.od>=100 && foeOf('tongue'), skill:'swallow'},
             {label:'Overdrive is full but the Tongue is severed', when:e=>e.od>=100, skill:'hunger'},
+            {label:'The marked ally has Blink and someone else does not (it looks away)', react:true,
+              when:e=>markValid(e) && e.mark.blink && targetsForFoes().some(t=>!t.blink), skill:'gaze'},
             {label:'An ally is marked and the Tongue is attached', when:e=>markValid(e) && foeOf('tongue'), skill:'devour'},
             {label:'An ally is marked but the Tongue is severed', when:e=>markValid(e), skill:'stare'},
             {label:'Otherwise', skill:'gaze'} ],
     skills:{
-      gaze:{name:'Gaze', rank:3, tags:['Mark'], target:'random', noProvoke:true, power:'—', desc:'Marks a target. Next turn it Devours them (if the Tongue is attached) or Stares.',
+      gaze:{name:'Gaze', rank:3, tags:['Mark'], target:'unblinked', noProvoke:true, power:'—', desc:'Marks a target. Next turn it Devours them (if the Tongue is attached) or Stares.',
         run:(e,t)=>{ e.mark = t; log(`${t.name} is marked.`); }},
       devour:{name:'Devour', rank:3, tags:['Physical'], target:'mark', power:'2.8× ATK (3.2× in phase 2)', desc:'Massive damage to the marked ally. Misses if they are airborne; Blink dodges it.',
         run:(e,t)=>{ e.mark = null; if (t.airborne){ log(`Devour misses: ${t.name} is airborne.`); return; } hitParty(t, e.atk*(p2(e)?3.2:2.8), {src:e}); }},
@@ -1725,15 +1744,17 @@ const SCRIPTS = {
       toll:{name:'Toll', rank:3, tags:['Sound','Stress','Physical'], sound:true, target:'all', power:'0.6× ATK', desc:'Light damage and +14 Stress to each ally.',
         run:e=>targetsForFoes().forEach(t=>{ hitParty(t, e.atk*.6, {src:e}); if (t.alive) addStress(t, 14, 'Toll', {sound:true}); })} } },
   leech:{
-    rules:[ {label:'This is an even-numbered turn', when:(e,n)=>n%2===0, skill:'drain'}, {label:'Otherwise', skill:'bite'} ],
+    rules:[ {label:'It is below 75% HP and did not Drain last turn', when:e=>e.hp < e.maxhp*.75 && e.last!=='drain', skill:'drain'}, {label:'Otherwise', skill:'bite'} ],
     skills:{
-      drain:{name:'Drain', rank:3, tags:['Physical','Heal'], target:'lowest', power:'1.1× ATK', desc:'Heals itself by the damage dealt.',
+      drain:{name:'Drain', rank:3, tags:['Physical','Heal'], target:'lowest', power:'1.1× ATK', desc:'Hits the ally with the lowest HP% and heals itself by the damage dealt.',
         run:(e,t)=>{ const d = hitParty(t, e.atk*1.1, {src:e}); if (d){ e.hp = Math.min(e.maxhp, e.hp + d); fx(e.id, `+${d}`, 'heal'); log(`${e.name} recovers ${d} HP.`); } }},
       bite:{name:'Bite', rank:3, tags:['Physical','Stress'], target:'random', power:'1.5× ATK', desc:'+10 Stress to the target.',
         run:(e,t)=>{ hitParty(t, e.atk*1.5, {crit:Math.random()<e.crit, src:e}); if (t.alive) addStress(t, 10, 'Bite'); }} } },
   hand:{
-    notes:['Comes in groups of 4. Each one acts often (Rank 2).'],
-    rules:[ {label:'Every turn', skill:'clutch'} ],
+    notes:['Comes in groups of 4. Each one acts often (Rank 2).','The first doll to be countered remembers it: while an ally has Counter ready, that one doll goes for someone else. If it falls, the next countered doll learns.'],
+    rules:[ {label:'It is the first standing doll to have been countered, and an ally has Counter ready', react:true,
+              when:e=>e.stung && G.enemies.find(x=>x.key===e.key && x.alive && x.stung)===e && targetsForFoes().some(t=>t.counter), skill:'clutch', target:'uncountered'},
+            {label:'Otherwise', skill:'clutch'} ],
     skills:{ clutch:{name:'Clutch', rank:2, tags:['Physical'], target:'biggest', power:'1.1× ATK', desc:'Fast and light.', run:(e,t)=>hitParty(t, e.atk*1.1, {crit:Math.random()<e.crit, src:e})} } },
   maw:{
     rules:[ {label:'This is its 4th, 8th, 12th… turn', when:(e,n)=>n%4===0, skill:'drop'}, {label:'Otherwise', skill:'noose'} ],
@@ -1748,9 +1769,10 @@ const SCRIPTS = {
     rules:[ {label:'Every turn', skill:'topple'} ],
     skills:{ topple:{name:'Topple', rank:3, tags:['Physical'], target:'random', power:'1.5× ATK', desc:'A slow, heavy hit.', run:(e,t)=>hitParty(t, e.atk*1.5, {crit:Math.random()<e.crit, src:e})} } },
   fencer:{
-    notes:['Always targets the ally with the highest Speed.'],
+    notes:['Targets the ally with the highest Speed, until crits have given Hisui +30% damage; then it leaves her alone.'],
     status:()=>'Crit 45%',
-    rules:[ {label:'Every turn', skill:'lunge'} ],
+    rules:[ {label:'An ally has +30% damage or more from crits (Hisui)', when:()=>targetsForFoes().some(t=>t.bloom >= 3), skill:'lunge', target:'fastestCold'},
+            {label:'Otherwise', skill:'lunge'} ],
     skills:{ lunge:{name:'Lunge', rank:2, tags:['Physical'], target:'fastest', power:'1.0× ATK', desc:'45% crit chance.', run:(e,t)=>hitParty(t, e.atk*1.0, {crit:Math.random()<e.crit, src:e})} } },
   singer:{
     notes:['Comes in groups of 5.','Counter-Melody cancels the whole Last Song, hit included.'],
@@ -1758,40 +1780,57 @@ const SCRIPTS = {
     skills:{ song:{name:'Last Song', rank:3, tags:['Sound','Stress','Physical'], sound:true, target:'all', power:'0.7× ATK', desc:'+4 Stress to each ally, then a light hit on one random ally.',
       run:e=>{ targetsForFoes().forEach(t=>addStress(t, 4, 'Last Song', {sound:true})); const t = aiTarget('random', e); if (t) hitParty(t, e.atk*.7, {src:e}); }} } },
   glass:{
-    notes:['Its damage only grows on turns it takes, so pushing it back keeps it weak.'],
+    notes:['Its damage only grows on turns it takes, so pushing it back keeps it weak.','Breaking it wakes it angry: its next turn is Rude Awakening, so Break it only when you can use the opening.'],
     onTurn:e=>{ e.power = Math.round((e.power + .25)*100)/100; log(`${e.name} dreams longer: damage +${Math.round(e.power*100)}%.`, 'foe'); },
-    status:e=>`Damage +${Math.round(e.power*100)}%`,
-    rules:[ {label:'Every turn', skill:'lash'} ],
-    skills:{ lash:{name:'Dream Lash', rank:3, tags:['Physical'], target:'random', power:'1.3× ATK, +25% per turn taken', desc:'Its passive adds +25% damage at the start of each of its turns, with no limit.',
+    status:e=>`Damage +${Math.round(e.power*100)}%${e.jolted ? ' · woken by Break' : ''}`,
+    rules:[ {label:'It was Broken since its last turn', react:true, when:e=>e.jolted, skill:'wake'},
+            {label:'Otherwise', skill:'lash'} ],
+    skills:{
+      wake:{name:'Rude Awakening', rank:3, tags:['Physical','Stress'], target:'all', power:'1.0× ATK', desc:'Woken by Break: damage and +10 Stress to each ally, and its damage rises another +25%.',
+        run:e=>{ e.jolted = false; targetsForFoes().forEach(t=>{ hitParty(t, e.atk*1.0, {src:e}); if (t.alive) addStress(t, 10, 'Rude Awakening'); });
+          e.power = Math.round((e.power + .25)*100)/100; log(`${e.name} wakes angry: damage +${Math.round(e.power*100)}%.`, 'foe'); }}, lash:{name:'Dream Lash', rank:3, tags:['Physical'], target:'random', power:'1.3× ATK, +25% per turn taken', desc:'Its passive adds +25% damage at the start of each of its turns, with no limit.',
       run:(e,t)=>hitParty(t, e.atk*1.3, {crit:Math.random()<e.crit, src:e})} } },
   tide:{
-    notes:['Counter-Melody cancels Calling but not the countdown.'],
+    notes:['Nothing stops the countdown.','If Counter-Melody is up when it acts, it Beckons instead of Calling, and the song fades unused.'],
     status:e=>`The Pull on its turn 9 (${Math.max(0, 9 - e.count)} to go)`,
-    rules:[ {label:'This is its 9th turn', when:(e,n)=>n>=9, skill:'pull'}, {label:'Otherwise', skill:'calling'} ],
+    rules:[ {label:'This is its 9th turn', when:(e,n)=>n>=9, skill:'pull'},
+            {label:'Counter-Melody is up', react:true, when:()=>G.melody, skill:'beckon'},
+            {label:'Otherwise', skill:'calling'} ],
     skills:{
       pull:{name:'The Pull', rank:3, tags:['Defeat'], target:'all', power:'—', desc:'The party walks into the holes made for them. You lose.',
         run:()=>actives().forEach(t=>{ if (t.alive){ t.airborne = false; t.hp = 0; t.alive = false; } })},
+      beckon:{name:'Beckon', rank:4, tags:['Delay'], target:'next', late:true, power:'—', desc:'It waits out the song while a silent hole fits the ally about to act: pushed back 1 slot. Slow (Delay 4). The Counter-Melody fades unused.',
+        run:(e,t)=>{ G.melody = false; log('The Counter-Melody fades unused.'); delayUnit(t, 1); }},
       calling:{name:'Calling', rank:3, tags:['Sound','Stress','Delay','Physical'], sound:true, target:'all', power:'0.6× ATK', desc:'Each ally who hears it steps toward the holes: +6 Stress and pushed back 2 slots. Then light damage to all.',
         run:e=>{ targetsForFoes().forEach(t=>{ if (soundImmune(t)){ log(`${t.name} is immune to sound attacks.`); return; } addStress(t, 6, 'Calling', {sound:true}); delayUnit(t, 2); }); targetsForFoes().forEach(t=>hitParty(t, e.atk*.6, {src:e})); }} } },
   exec:{
-    notes:['Provoke redirects both skills to Kugai.'],
-    rules:[ {label:'This is its 3rd, 6th, 9th… turn', when:(e,n)=>n%3===0, skill:'behead'}, {label:'Otherwise', skill:'chisel'} ],
+    notes:['Behead comes after two Chisels. If Provoke is up then, it Chisels Kugai instead and holds Behead for one turn; a held Behead ignores Provoke, so cover the weakest.'],
+    status:e=>`Chisels since Behead: ${e.charge||0}`,
+    rules:[ {label:'Behead was held last turn', when:e=>(e.charge||0) >= 3, skill:'execute'},
+            {label:'Provoke is up (Behead waits a turn)', react:true, when:()=>provokeUp(), skill:'chisel'},
+            {label:'It has Chiseled twice since its last Behead', when:e=>(e.charge||0) >= 2, skill:'behead'},
+            {label:'Otherwise', skill:'chisel'} ],
     skills:{
-      behead:{name:'Behead', rank:3, tags:['Physical'], target:'lowest', power:'4.6× ATK', desc:'Massive damage to the weakest.', run:(e,t)=>hitParty(t, e.atk*4.6, {src:e})},
-      chisel:{name:'Chisel', rank:3, tags:['Physical'], target:'lowest', power:'1.4× ATK', desc:'Always finds the weakest.', run:(e,t)=>hitParty(t, e.atk*1.4, {crit:Math.random()<e.crit, src:e})} } },
+      behead:{name:'Behead', rank:3, tags:['Physical'], target:'lowest', power:'4.6× ATK', desc:'Massive damage to the ally with the lowest HP%.', run:(e,t)=>{ e.charge = 0; hitParty(t, e.atk*4.6, {src:e}); }},
+      execute:{name:'Held Behead', rank:3, tags:['Physical'], target:'lowest', noProvoke:true, power:'4.6× ATK', desc:'A Behead it waited a turn for. Provoke cannot pull it away; Cover and Blink still work.',
+        run:(e,t)=>{ e.charge = 0; hitParty(t, e.atk*4.6, {src:e}); }},
+      chisel:{name:'Chisel', rank:3, tags:['Physical'], target:'lowest', power:'1.4× ATK', desc:'Always finds the ally with the lowest HP%.',
+        run:(e,t)=>{ e.charge = (e.charge||0) + 1; hitParty(t, e.atk*1.4, {crit:Math.random()<e.crit, src:e}); }} } },
   pilgrim:{
-    notes:['Your bag starts empty in this fight.','80 DEF; Acid lowers it to 56.'],
+    notes:['Your bag starts empty in this fight.','80 DEF; Acid lowers it to 56.','Grease Rain only falls on allies without Earplugs, and it holds the rain while fewer than 2 of them are exposed.'],
     status:e=>`DEF ${e.def}`,
-    rules:[ {label:'This is an even-numbered turn', when:(e,n)=>n%2===0, skill:'rain'}, {label:'Otherwise', skill:'fist'} ],
+    rules:[ {label:'At least 2 allies have no Earplugs and it did not rain last turn', when:e=>unplugged().length >= 2 && e.last!=='rain', skill:'rain'}, {label:'Otherwise', skill:'fist'} ],
     skills:{
-      rain:{name:'Grease Rain', rank:3, tags:['Stress'], target:'all', power:'—', desc:'+16 Stress to each ally. +4 Danger. Not a sound attack.',
-        run:()=>{ targetsForFoes().forEach(t=>addStress(t, 16, 'Grease Rain')); addHum(4); }},
+      rain:{name:'Grease Rain', rank:3, tags:['Stress'], target:'all', power:'—', desc:'+16 Stress to each ally without Earplugs. +4 Danger. Not a sound attack.',
+        run:()=>{ targetsForFoes().forEach(t=>{ if (t.earplugs > 0) log(`${t.name}'s Earplugs keep the grease out.`); else addStress(t, 16, 'Grease Rain'); }); addHum(4); }},
       fist:{name:'Slick Fist', rank:3, tags:['Physical'], target:'random', power:'1.4× ATK', desc:'A greasy punch.', run:(e,t)=>hitParty(t, e.atk*1.4, {crit:Math.random()<e.crit, src:e})} } },
   hour:{
-    notes:['Provoke redirects Devour to Kugai.'],
-    rules:[ {label:'An ally is marked', when:e=>markValid(e), skill:'devour'}, {label:'Otherwise', skill:'gaze'} ],
+    notes:['Provoke redirects Devour to Kugai.','Blink on the marked ally makes it look away and Gaze at someone without Blink. Once everyone has Blink it Devours anyway.'],
+    rules:[ {label:'The marked ally has Blink and someone else does not (it looks away)', react:true,
+              when:e=>markValid(e) && e.mark.blink && targetsForFoes().some(t=>!t.blink), skill:'gaze'},
+            {label:'An ally is marked', when:e=>markValid(e), skill:'devour'}, {label:'Otherwise', skill:'gaze'} ],
     skills:{
-      gaze:{name:'Gaze', rank:3, tags:['Mark'], target:'random', noProvoke:true, power:'—', desc:'Marks a target. Next turn it Devours them.', run:(e,t)=>{ e.mark = t; log(`${t.name} is marked.`); }},
+      gaze:{name:'Gaze', rank:3, tags:['Mark'], target:'unblinked', noProvoke:true, power:'—', desc:'Marks a target. Next turn it Devours them.', run:(e,t)=>{ e.mark = t; log(`${t.name} is marked.`); }},
       devour:{name:'Devour', rank:3, tags:['Physical'], target:'mark', power:'6.0× ATK', desc:'Massive damage to the marked ally. Misses if they are airborne; Blink dodges it.',
         run:(e,t)=>{ e.mark = null; if (t.airborne){ log(`Devour misses: ${t.name} is airborne.`); return; } hitParty(t, e.atk*6.0, {src:e}); }} } },
 };
@@ -1800,12 +1839,17 @@ function aiTarget(type, e){
   const ts = targetsForFoes(); if (!ts.length) return null;
   switch (type){
     case 'random': return pick(ts);
-    case 'lowest': return ts.slice().sort((a,b)=>a.hp-b.hp)[0];
+    case 'lowest': return ts.slice().sort((a,b)=>a.hp/a.maxhp-b.hp/b.maxhp)[0];
     case 'fastest': return ts.slice().sort((a,b)=>b.agi-a.agi)[0];
     case 'biggest': return ts.slice().sort((a,b)=>b.maxhp-a.maxhp)[0];
-    case 'stress': return hearers().sort((a,b)=>b.stress-a.stress)[0] || null;
+    case 'stress': return hearers().sort((a,b)=>toBrink(a)-toBrink(b) || b.stress-a.stress)[0] || null;
+    case 'brink': return ts.slice().sort((a,b)=>toBrink(a)-toBrink(b) || b.stress-a.stress)[0];
     case 'last': return (G.lastActor && ts.includes(G.lastActor)) ? G.lastActor : pick(ts);
     case 'mark': return markValid(e) ? e.mark : pick(ts);
+    case 'next': return ts.slice().sort((a,b)=>a.ct-b.ct)[0];
+    case 'unblinked': return pick(ts.filter(t=>!t.blink).length ? ts.filter(t=>!t.blink) : ts);
+    case 'uncountered': { const c = ts.filter(t=>!t.counter); return (c.length ? c : ts).sort((a,b)=>b.maxhp-a.maxhp)[0]; }
+    case 'fastestCold': { const c = ts.filter(t=>!(t.bloom >= 3)); return (c.length ? c : ts).sort((a,b)=>b.agi-a.agi)[0]; }
     default: return null;
   }
 }
@@ -1815,17 +1859,19 @@ function planNext(e){
     if (r.phase && r.phase !== e.phase) continue;
     if (r.when && !r.when(e, n)) continue;
     let skill = r.skill;
-    if (r.roll){ let x = Math.random()*100; for (const [p,k] of r.roll){ if ((x -= p) < 0){ skill = k; break; } } skill = skill || r.roll.at(-1)[1]; }
-    else if (r.chance && Math.random()*100 >= r.chance) continue;
-    const sk = S.skills[skill];
-    return { skill, rule:r.label, target: sk.late ? null : aiTarget(sk.target, e) };
+    const val = v => typeof v === 'function' ? v(e) : v;
+    if (r.roll){ const ws = r.roll.map(([p])=>val(p)); let x = Math.random()*ws.reduce((s,w)=>s+w, 0);
+      r.roll.some(([,k],i)=>{ if ((x -= ws[i]) < 0){ skill = k; return true; } }); skill = skill || r.roll.at(-1)[1]; }
+    else if (r.chance && Math.random()*100 >= val(r.chance)) continue;
+    const sk = S.skills[skill], ttype = r.target || sk.target;
+    return { skill, rule:r.label, ttype, target: sk.late ? null : aiTarget(ttype, e) };
   }
   return null;
 }
 function planText(e){
   if (!e.plan) return '';
   const sk = SCRIPTS[e.key].skills[e.plan.skill];
-  const who = sk.late ? ' → whoever acted last' : (e.plan.target ? ` → ${e.plan.target.name}` : (sk.target==='all' ? ' → all' : ''));
+  const who = sk.late ? ` → ${LATE_TEXT[sk.target]}` : (e.plan.target ? ` → ${e.plan.target.name}` : (sk.target==='all' ? ' → all' : ''));
   return `Next: ${sk.name}${who}`;
 }
 function spawnPart(parent, key, ct){
@@ -1842,10 +1888,10 @@ function onFoeDown(e){
     e.respawn = {};
   }
 }
-function runSkill(e, key, t){
-  const S = SCRIPTS[e.key], sk = S.skills[key];
-  if (SINGLE.includes(sk.target)){
-    if (sk.late || !t || !t.alive || !G.active.includes(t.id) || (t.airborne && sk.target!=='mark')) t = aiTarget(sk.target, e);
+function runSkill(e, key, t, ttype){
+  const S = SCRIPTS[e.key], sk = S.skills[key]; ttype = ttype || sk.target;
+  if (SINGLE.includes(ttype)){
+    if (sk.late || !t || !t.alive || !G.active.includes(t.id) || (t.airborne && ttype!=='mark')) t = aiTarget(ttype, e);
     if (!t){ log(`${e.name}: ${sk.name} has no target.`, 'foe'); setDelay(e, sk.rank); return; }
     if (!sk.noProvoke){ const k = targetsForFoes().find(x=>x.provoke>0); if (k){ k.provoke--; if (k!==t){ log(`Provoke: ${sk.name} is redirected to ${k.name}.`); t = k; } } }
   } else t = null;
@@ -1854,7 +1900,13 @@ function runSkill(e, key, t){
   if (window.RigAnim) RigAnim.play(e.id, key);
   if (sk.sound){ soundAttack(e, sk.name, ()=>{ log(line, 'foe'); sk.run(e, t); }); }
   else { log(line, 'foe'); sk.run(e, t); }
+  e.last = key;
   setDelay(e, sk.rank);
+}
+// A react rule above the planned one now holds: the plan is stale.
+function reacting(e, n){
+  const S = SCRIPTS[e.key], ri = e.plan ? S.rules.findIndex(r=>r.label===e.plan.rule) : -1;
+  return S.rules.slice(0, Math.max(0, ri)).some(r=>r.react && (!r.phase || r.phase===e.phase) && (!r.when || r.when(e, n)));
 }
 function execScripted(e){
   const S = SCRIPTS[e.key];
@@ -1880,9 +1932,9 @@ function execScripted(e){
   // 4. planned action (re-plan if none or if its rule no longer holds)
   let plan = e.plan;
   const rule = plan && S.rules.find(r=>r.label===plan.rule);
-  if (!plan || (rule && rule.when && !rule.when(e, e.count))) plan = planNext(e) || plan;
+  if (!plan || reacting(e, e.count) || (rule && rule.when && !rule.when(e, e.count))) plan = planNext(e) || plan;
   if (!plan){ setDelay(e, 2); return; }
-  runSkill(e, plan.skill, plan.target);
+  runSkill(e, plan.skill, plan.target, plan.ttype);
   // 6. plan the next action
   if (e.alive) e.plan = planNext(e);
 }
@@ -1899,13 +1951,15 @@ function scriptInfo(key){
   const phaseName = id => id==='p1' ? 'Phase 1' : 'Phase 2';
   const tree = S.rules.map(r=>{
     const tag = r.phase ? phaseName(r.phase) + ' only: ' : '';
-    if (r.roll) return { roll:r.roll, label: tag ? tag.replace(' only: ','') : (r.label==='Every turn' ? 'Every turn' : 'Otherwise') };
-    if (!r.when) return { always:[r.skill], label:r.label };
-    return { if: tag + r.label, chance:r.chance, then:[r.skill] };
+    const target = r.target && TARGET_TEXT[r.target];
+    if (r.roll) return { roll:r.roll.map(([p,k])=>[(r.rollText && r.rollText[k]) || p + '%', k]), label: tag ? tag.replace(' only: ','') : (r.label==='Every turn' ? 'Every turn' : 'Otherwise') };
+    if (!r.when) return { always:[r.skill], label:r.label, target };
+    return { if: tag + r.label, chance: r.chanceText || (r.chance && r.chance + '%'), react:r.react, then:[r.skill], target };
   });
   const notes = (S.notes||[]).slice();
   if (S.overdrive) notes.push('Overdrive fills by 0.6 for every point of Stress your party gains. When it is full, the Overdrive checks at the top of the list fire.');
-  if (Object.values(S.skills).some(v=>v.late)) notes.push('Offbeat picks its target when it acts, not when it plans, so the turn order you choose decides who it hits.');
+  Object.values(S.skills).filter(v=>v.late).forEach(v=>notes.push(`${v.name} picks its target when it acts, not when it plans, so the turn order you choose decides who it hits.`));
+  if (S.rules.some(r=>r.react)) notes.push('Checks marked "reacts" are re-checked the moment you act and again when it acts, so it can answer a counter you play after it planned.');
   if (Object.values(S.skills).some(v=>v.tags.includes('Combined'))) notes.push('Combined attacks use both actors\' turns: the partner\'s next turn is synced to this one.');
   const pk = FOES[key].parentKey; if (pk) notes.push(`Part of ${FOES[pk].name}. ${SCRIPTS[pk].parts && SCRIPTS[pk].parts.some(p=>p.key===key) ? 'It re-forms after being defeated and collapses if its parent falls.' : 'It reads its parent\'s HP for its phase.'}`);
   return { skills, tree, notes, phases:S.phases, parts:S.parts, scripted:true };
@@ -1928,12 +1982,12 @@ function liveState(e){
 function openInfo(key, e){
   const f = FOES[key], info = SCRIPTS[key] && scriptInfo(key); if (!f || !info) return;
   const sk = info.skills;
-  const act = (k, pct) => { const s = sk[k]; return `<div class="act${pct!=null?' pct':''}"><b>${pct!=null?pct+'% · ':''}${esc(s.name)}</b><span>${esc(s.target)}</span></div>`; };
+  const act = (k, pct, target) => { const s = sk[k]; return `<div class="act${pct!=null?' pct':''}"><b>${pct!=null?esc(pct)+' · ':''}${esc(s.name)}</b><span>${esc(target || s.target)}</span></div>`; };
   const steps = info.tree.map((st, i) => {
     let html;
     if (st.roll) html = `<div class="step"><div class="cond always"><small>${esc(st.label || 'Otherwise')} · roll</small>Pick one at random</div><div class="yes"></div><div class="acts">${st.roll.map(([p,k])=>act(k,p)).join('')}</div></div>`;
-    else if (st.always) html = `<div class="step"><div class="cond always"><small>${i ? 'Otherwise' : 'Every turn'}</small>${i ? 'Default action' : 'Always'}</div><div class="yes"></div><div class="acts">${st.always.map(k=>act(k)).join('')}</div></div>`;
-    else html = `<div class="step"><div class="cond"><small>Check ${i+1}${st.chance?` · ${st.chance}% chance if true`:''}</small>${esc(st.if)}?</div><div class="yes"></div><div class="acts">${st.then.map(k=>act(k)).join('')}</div></div>`;
+    else if (st.always) html = `<div class="step"><div class="cond always"><small>${i ? 'Otherwise' : 'Every turn'}</small>${i ? 'Default action' : 'Always'}</div><div class="yes"></div><div class="acts">${st.always.map(k=>act(k, null, st.target)).join('')}</div></div>`;
+    else html = `<div class="step"><div class="cond"><small>Check ${i+1}${st.react?' · reacts':''}${st.chance?` · ${esc(st.chance)} chance if true`:''}</small>${esc(st.if)}?</div><div class="yes"></div><div class="acts">${st.then.map(k=>act(k, null, st.target)).join('')}</div></div>`;
     return html + (i < info.tree.length-1 ? `<div class="no">No${st.chance?' (or the roll fails)':''}</div>` : '');
   }).join('');
   const skills = Object.values(sk).map(s=>`<div class="skill"><div class="shead"><span class="nm">${esc(s.name)}</span>${s.tags.map(t=>`<span class="tg${t==='Sound'?' sound':''}">${t}</span>`).join('')}</div>
@@ -1999,6 +2053,8 @@ async function fleeScene(u){
     const r = reserves().find(x=>x.alive);
     if (r){ G.active[slot] = r.id; r.ct = 3*tickOf(r); line += ` ${r.name} takes the slot.`; log(`${r.name} joins the battle.`); }
     else G.active.splice(slot, 1);
+    // A flee shakes the party like a KO, and the replacement walks in having watched it.
+    actives().filter(a=>a.alive && a.id!=='tetsugi').forEach(a=>addStress(a, 15, `${u.name} fled`));
   }
   render();
   await overlay(`<div class="kick">200 Stress</div><div class="face on"><img src="${ASSETS[u.id].p}" alt="" style="${zoomStyle(u.id)}"></div>
@@ -2048,6 +2104,7 @@ async function run(run){
     G.state = 'busy'; G.resolve = null; G.act = null; G.preview = null; G.menu = 'root';
     doAction(choice.u, choice.act, choice.target);
     G.lastActor = choice.u;
+    foesAlive().forEach(e=>{ if (SCRIPTS[e.key] && e.plan && reacting(e, e.count + 1)){ e.plan = planNext(e); log(`${e.name} reacts: ${planText(e).replace(/^Next: /,'')}.`, 'foe'); } });
     render(); await sleep(350); if (G.run!==run) return;
     await processChecks(run);
   }
@@ -2290,6 +2347,8 @@ function advise(u){
       return atF(A, 'No sound attack to block and nobody gains much from Quick Song right now.');
     }
     case 'kugai': {
+      const held = order.slice(0,2).find(e=>{ const s = plannedSk(e); return s && s.noProvoke && powerOf(s) >= 2.5 && e.plan.target && e.plan.target !== u && !e.plan.target.cover; });
+      if (held) return R(Sk('cover'), held.plan.target, `${held.name} is lining up ${plannedSk(held).name} on ${held.plan.target.name}, and Provoke can't pull it away. Cover halves it.`);
       const heavy = order.slice(0,2).find(e=>{ const s = plannedSk(e); return s && !s.noProvoke && powerOf(s) >= 2.5 && SINGLE.includes(s.target); });
       if (heavy && u.provoke <= 0) return R(Sk('provoke'), null, `${heavy.name} is lining up ${plannedSk(heavy).name}${heavy.plan.target ? ` on ${heavy.plan.target.name}` : ''}. Provoke pulls it onto Kugai, who can take it.`);
       const aimed = order.slice(0,2).filter(e=>{ const s = plannedSk(e); return s && !s.noProvoke && e.plan.target && e.plan.target !== u; });
