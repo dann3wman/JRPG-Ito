@@ -8,6 +8,7 @@ Status key: **Built** matches the doc · **Partial** built with gaps or extras �
 
 | System | Status | Notes |
 | --- | --- | --- |
+| Shared battle arena and formations | Built | Standard: party right, enemies left. Pincer: party on both sides. Ambush: party left, facing away until each acts. Formation selector restarts the fight; staging only, no combat modifiers |
 | CTB turn order (16 turns, command preview) | Partial | Built. The preview assumes Delay 3 for everyone but the acting character, so enemies with Rank 4–6 skills show early. See [battle math](systems/battle-math.md#time-conditional-turn-based) |
 | Delay values | Drift | Quick skills 2, -ga and Jump 5, summons 6 match. "Most skills 4" doesn't: 11 of 18 other skills are 3 (support and utility) or 2 (Counter). Open question 2 |
 | Delay attacks (push back, +4 Stress per slot) | Drift | A slot is a fixed 12 ticks, not a turn-order position. Open question 1 |

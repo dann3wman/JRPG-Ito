@@ -139,6 +139,8 @@ Every familiar mechanic works as players expect but carries a cost the game neve
 
 Battles use a CTB system like FFX. Time stops while you choose a command. A Turn Order list shows the next 16 turns, and hovering a command previews where the character's next turn will land.
 
+**Battle arena.** Combatants share one arena, following the classic Final Fantasy side view: enemies on the left and the active party on the right. Pincer formations split the party across both sides of the enemies. Ambush formations place the party on the left with their backs to enemies on the right; each character turns toward the enemy when they act. The prototype's Formation selector restarts the encounter in the selected layout. These formations change staging only, with no turn-order or damage modifiers. HP, enemy intentions and party status stay readable in panels beneath the arena.
+
 **Delay.** Every action has a Delay value: the higher it is, the longer until that character acts again.
 
 | Action | Delay |

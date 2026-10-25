@@ -287,6 +287,27 @@ body.voidflash .page{filter:contrast(1.4) grayscale(1)}
 .foe.dead .rigbox canvas{filter:grayscale(1) contrast(.6)}
 @media (max-width:860px){ .foe .rigbox{height:110px;aspect-ratio:auto} }
 .einfo .left .rigbox{aspect-ratio:4/3}
+
+/* One arena; status panels remain outside the art so intentions stay readable. */
+.arena{border:3px solid var(--ink);background:var(--art-bg);min-width:0}
+.arena-head{margin:0;padding:6px 10px;background:var(--paper-2);border-bottom:2px solid var(--ink);font-family:var(--f-mono);font-size:11px}
+.arena-stage{position:relative;isolation:isolate;height:clamp(280px,43vw,420px);overflow:hidden;background-size:cover;background-position:center}
+.arena-unit{position:absolute;left:var(--x);bottom:var(--y);width:var(--w);height:var(--h);translate:-50% 0;border:0;padding:0;background:none;color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-width:44px;min-height:44px}
+button.arena-unit{cursor:pointer}
+.arena-unit .rigbox,.arena-unit>img{width:100%;height:calc(100% - 22px);aspect-ratio:auto;background:transparent;border:0;object-fit:contain}
+.arena-unit .rigbox{overflow:visible}
+.arena-unit.enemy .rigbox,.arena-unit.enemy>img{transform:scaleX(var(--face,1))}
+.arena-unit .sprite{width:100%;height:calc(100% - 22px);object-fit:contain;image-rendering:pixelated;transform:scaleX(var(--face,1))}
+.arena-unit .unit-name{max-width:100%;padding:1px 4px;background:var(--paper);border:1px solid var(--ink);font-family:var(--f-mono);font-size:10px;line-height:16px;text-align:center;overflow-wrap:anywhere}
+.arena-unit.ally .unit-name{width:max-content;max-width:68px;overflow-wrap:normal}
+.arena-unit.acting .unit-name{background:var(--hum);color:var(--paper)}
+.arena-unit.targetable .unit-name{outline:2px dashed var(--hum);outline-offset:2px}
+.arena-unit.targetable:hover .unit-name,.arena-unit:focus-visible .unit-name{background:var(--hum-soft);color:var(--ink)}
+.arena-unit.dead{opacity:.4}
+.arena-unit.dead .sprite{transform:scaleX(var(--face,1)) rotate(80deg);filter:grayscale(1)}
+.arena-unit.airborne .sprite{translate:0 -24px;opacity:.65}
+.arena-unit .fx{background:var(--paper);padding:0 4px;white-space:nowrap;font-size:clamp(13px,2vw,22px)}
+@media (max-width:480px){.arena-stage{height:300px}.arena-unit .unit-name{font-size:9px}.arena-head{font-size:10px}}
 </style>
 
 <div class="page">
@@ -307,6 +328,8 @@ body.voidflash .page{filter:contrast(1.4) grayscale(1)}
     <section class="encpick" aria-label="Encounter">
       <label for="cfgEnc">Encounter</label>
       <select id="cfgEnc"></select>
+      <label for="cfgFormation">Formation</label>
+      <select id="cfgFormation"><option value="standard">Standard</option><option value="pincer">Pincer</option><option value="ambush">Ambush</option></select>
       <button class="btn ghost" id="bestiary" type="button">Bestiary</button>
       <label class="helpertog" for="cfgHelper"><input id="cfgHelper" type="checkbox"> Helper: highlight and explain the best move</label>
       <span class="encnote">Tap an enemy to see its stats, skills and decision tree. Picking an encounter loads its recommended party.</span>
@@ -318,6 +341,10 @@ body.voidflash .page{filter:contrast(1.4) grayscale(1)}
     </section>
 
     <div class="field">
+      <section class="arena" aria-label="Battle arena">
+        <p class="arena-head" id="arenaCaption"></p>
+        <div class="arena-stage" id="arenaStage"></div>
+      </section>
       <section aria-label="Enemies"><div class="foes" id="foes"></div></section>
       <section class="cmd" id="cmd" aria-live="polite"></section>
       <section aria-label="Party">
@@ -946,6 +973,7 @@ requestAnimationFrame(tick);
 
 window.RigAnim = {
   rigFor: art => ART_RIG[art] || null,
+  arenaFor: art => { const r = RIGS[ART_RIG[art]]; return r && r.arena || 'hillside'; },
   // markup for a portrait slot; the static art stays underneath until the sheet loads
   box: (id, art, fallback) => { const k = ART_RIG[art]; if (!k) return null; load(k); return `<div class="rigbox${IMG[k] ? ' ready' : ''}" data-rig="${k}" data-rig-id="${id}"><img src="${fallback}" alt=""></div>`; },
   // after innerHTML: move each unit's persistent canvas into its slot
@@ -1283,7 +1311,7 @@ function art(kind){
 
 /* ---------- state ---------- */
 let G = null;
-const cfg = { enc:'widow', hum:null, dread:0, harm:75, over:34, voidOn:true, helper:false, party:['kiri','natsu','kugai'] };
+const cfg = { enc:'widow', formation:'standard', hum:null, dread:0, harm:75, over:34, voidOn:true, helper:false, party:['kiri','natsu','kugai'] };
 try { const s = JSON.parse(localStorage.getItem('battle-cfg3')||'null'); if (s) Object.assign(cfg, s); } catch(e) {}
 const saveCfg = () => { try { localStorage.setItem('battle-cfg3', JSON.stringify(cfg)); } catch(e) {} };
 
@@ -1303,7 +1331,7 @@ function newGame(){
   const enc = ENCOUNTERS[cfg.enc];
   let act = [...new Set(cfg.party)].filter(id=>ROSTER[id]);
   for (const id of ORDER){ if (act.length>=3) break; if (!act.includes(id)) act.push(id); }
-  G = { run: Symbol(), enc, party: ORDER.map(makePC), active: act.slice(0,3),
+  G = { run: Symbol(), enc, formation:cfg.formation, turned:[], party: ORDER.map(makePC), active: act.slice(0,3),
     enemies: enc.foes.map(makeFoe), hum: cfg.hum ?? enc.hum, inv:Object.assign({ potion:5, phoenix:3, earplugs:3 }, enc.inv||{}), melody:false,
     void:{ id:'void', side:'void', name:'Lost Turn', ct:null }, log:[], current:null, state:'busy', menu:'root', pending:[], fx:{}, resolve:null, act:null, preview:null };
   [...G.party, ...G.enemies].forEach(u => u.ct = tickOf(u) * rnd(1.2, 3));
@@ -1467,6 +1495,7 @@ function payMP(u, cost){
   log(`${u.name} is out of MP and pays ${hp} HP.`, 'dread');
 }
 function doAction(u, act, target, forced=false){
+  if (u.side==='party' && !G.turned.includes(u.id)) G.turned.push(u.id);
   const delay = delayOf(u, act);
   const foe = () => (target && target.alive) ? target : pick(foesAlive());
   switch (act.kind){
@@ -2210,6 +2239,78 @@ function slotHtml(f){
   return `<li class="slot s-${side}${f.now?' now':''}${f.land?' land':''}">${img}<b>${nm}</b><span class="k">${side==='void'?'':k}</span></li>`;
 }
 function renderBar(){ const seen = new Set(); $('#bar').innerHTML = forecast(16, G.preview).map(f=>{ if (f.u.side==='enemy' && !seen.has(f.u.id)){ seen.add(f.u.id); if (SCRIPTS[f.u.key] && f.u.plan) f.planned = SCRIPTS[f.u.key].skills[f.u.plan.skill].name; } return slotHtml(f); }).join(''); }
+const FORMATIONS = {
+  standard:'Standard: enemies left, party right.',
+  pincer:'Pincer: party on both sides, enemies in the middle.',
+  ambush:'Ambush: party left, backs turned until they act.'
+};
+const arenaSprites = new Map();
+function arenaSprite(id, src){
+  if (arenaSprites.has(id)) return arenaSprites.get(id);
+  arenaSprites.set(id, src);
+  const img = new Image();
+  img.onload = () => {
+    // The embedded sprites have dark backdrops. Clear only edge-connected backdrop pixels.
+    const cv = document.createElement('canvas'); cv.width = img.width; cv.height = img.height;
+    const ctx = cv.getContext('2d'); ctx.drawImage(img, 0, 0);
+    const pixels = ctx.getImageData(0, 0, cv.width, cv.height), d = pixels.data;
+    const seen = new Uint8Array(cv.width * cv.height), todo = [];
+    const visit = (x,y) => {
+      if (x<0 || y<0 || x>=cv.width || y>=cv.height) return;
+      const p = y*cv.width+x, n = p*4;
+      if (seen[p]) return; seen[p] = 1;
+      if (Math.max(d[n],d[n+1],d[n+2]) > 32) return;
+      d[n+3] = 0; todo.push([x,y]);
+    };
+    for (let x=0;x<cv.width;x++){ visit(x,0); visit(x,cv.height-1); }
+    for (let y=0;y<cv.height;y++){ visit(0,y); visit(cv.width-1,y); }
+    while (todo.length){ const [x,y] = todo.pop(); visit(x-1,y); visit(x+1,y); visit(x,y-1); visit(x,y+1); }
+    ctx.putImageData(pixels,0,0);
+    const clean = cv.toDataURL(); arenaSprites.set(id,clean);
+    document.querySelectorAll(`[data-sprite="${id}"]`).forEach(el=>el.src=clean);
+  };
+  img.src = src;
+  return src;
+}
+function arenaPositions(){
+  const ambush = G.formation==='ambush', pincer = G.formation==='pincer';
+  const n = G.enemies.length, cols = n>3 ? 2 : 1, rows = Math.ceil(n/cols);
+  const span = pincer ? 42 : 54, center = pincer ? 50 : ambush ? 70 : 30;
+  const enemies = G.enemies.map((u,i)=>({u, x:center+(i%cols-(cols-1)/2)*span/cols,
+    y:8+(rows-1-Math.floor(i/cols))*80/rows, w:span/cols, h:80/rows, face:ambush?-1:1}));
+  const party = actives().map((u,i)=>({u, x:pincer ? (i%2 ? 88 : 12) : ambush ? 16+i*5 : 76+i*5,
+    y:pincer ? (i%2 ? 35 : 56-Math.floor(i/2)*42) : 58-i*25, w:12, h:pincer?26:24,
+    face:pincer ? (i%2 ? -1 : 1) : ambush && G.turned.includes(u.id) ? 1 : -1}));
+  return [...enemies,...party.filter(p=>!p.u.fled)];
+}
+function renderArena(){
+  const stage = $('#arenaStage');
+  const bg = window.RigAnim ? RigAnim.arenaFor(G.enemies[0].art) : 'hillside';
+  stage.style.backgroundImage = `url("tools/bestiary-rig-viewer/bg_${bg}.webp")`;
+  $('#arenaCaption').textContent = FORMATIONS[G.formation];
+  stage.innerHTML = arenaPositions().map(p=>{
+    const u = p.u, enemy = u.side==='enemy';
+    const tgt = G.menu==='target' && G.act && (enemy ? G.act.target==='enemy' && u.alive :
+      (G.act.target==='ally' && u.alive && !u.airborne) || (G.act.target==='ko' && !u.alive && !u.fled));
+    const tag = enemy || tgt ? 'button' : 'div';
+    const action = tgt ? `data-${enemy?'ft':'pt'}="${u.id}"` : enemy ? `data-info="${u.id}"` : '';
+    const state = !u.alive ? (enemy?'Defeated':'KO') : u.airborne ? 'Airborne' : '';
+    const label = `${tgt?'Target ':''}${u.name}${state ? ': '+state : ''}${enemy && !tgt ? ': stats and decision tree' : ''}`;
+    const spriteId = enemy ? 'enemy:'+u.art : u.id;
+    const sprite = arenaSprite(spriteId,enemy ? art(u.art) : ASSETS[u.id].s);
+    const visual = enemy ? (window.RigAnim && RigAnim.box(u.id,u.art,sprite)) || `<img data-sprite="${spriteId}" src="${sprite}" alt="">` :
+      `<img class="sprite" data-sprite="${spriteId}" src="${sprite}" alt="">`;
+    return `<${tag} class="arena-unit${enemy?' enemy':' ally'}${tgt?' targetable':''}${u===G.current?' acting':''}${!u.alive?' dead':''}${u.airborne?' airborne':''}" ${tag==='button'?'type="button"':''} ${action} aria-label="${esc(label)}" data-unit="${u.id}" data-facing="${p.face===1?'right':'left'}" style="--x:${p.x}%;--y:${p.y}%;--w:${p.w}%;--h:${p.h}%;--face:${p.face};z-index:${100-Math.round(p.y)}">
+      ${visual}<span class="unit-name">${esc(u.name)}${state?' · '+state:''}</span>${fxHtml(u.id)}</${tag}>`;
+  }).join('');
+  if (window.RigAnim){ RigAnim.forget(new Set(G.enemies.map(x=>x.id))); RigAnim.mount(stage,new Set(G.enemies.filter(x=>!x.alive).map(x=>x.id))); }
+}
+window.render_game_to_text = () => JSON.stringify(G && {
+  state:G.state, menu:G.menu, formation:G.formation, current:G.current && G.current.id,
+  coordinates:'Percent of arena; x from left, y from bottom; x is center, y is feet.',
+  units:arenaPositions().map(p=>({id:p.u.id, side:p.u.side, x:p.x, y:p.y, facing:p.face===1?'right':'left', hp:p.u.hp, alive:p.u.alive, airborne:!!p.u.airborne})),
+  turnOrder:forecast(16,G.preview).map(f=>f.u.id)
+});
 function render(){
   if (!G) return;
   $('#encName').textContent = `${G.enc.title} · Party Lv ${G.enc.lv || 10}`;
@@ -2228,11 +2329,11 @@ function render(){
     if (e.acid && e.alive) tags.push('DEF −30%');
     if (!e.alive) tags.push('Defeated');
     return `<${tag} class="foe${e.alive?'':' dead'}${tgt?' targetable':''}${G.current===e?' acting':''}${shaking(e.id)}${recOn() ? recCls(e) : ''}" ${tgt?`type="button" data-ft="${e.id}" aria-label="Target ${esc(e.name)}"`:`type="button" data-info="${e.id}" aria-label="${esc(e.name)}: stats and decision tree"`}>
-      ${fxHtml(e.id)}${(window.RigAnim && RigAnim.box(e.id, e.art, art(e.art))) || `<img src="${art(e.art)}" alt="">`}
+      ${fxHtml(e.id)}
       <div class="body"><div class="nm">${esc(e.name)}</div>
       <div class="meta"><span>HP ${e.hp}/${e.maxhp}</span></div><div class="intent">${tags.map(x=>`<span>${esc(x)}</span>`).join('')}</div>${bar(e.hp,e.maxhp)}${tgt?'':'<span class="ihint">Tap for info</span>'}</div></${tag}>`;
   }).join('');
-  if (window.RigAnim){ RigAnim.forget(new Set(G.enemies.map(x=>x.id))); RigAnim.mount($('#foes'), new Set(G.enemies.filter(x=>!x.alive).map(x=>x.id))); }
+  renderArena();
   $('#party').innerHTML = actives().map(pcCard).join('');
   const rs = G.party.filter(p=>!G.active.includes(p.id));
   $('#reserves').innerHTML = rs.map(rvCard).join('');
@@ -2477,6 +2578,9 @@ function bindRange(id, key, fmt){
   $('#cfgEnc').innerHTML = Object.entries(groups).map(([g,list])=>`<optgroup label="${g}">${list.map(([k,v])=>`<option value="${k}">${v.role ? ROSTER[v.role].name+' ('+ROSTER[v.role].role+') · '+v.title.replace('Test · ','') : v.title}</option>`).join('')}</optgroup>`).join('');
 })();
 if (!ENCOUNTERS[cfg.enc]) cfg.enc = 'widow';
+if (!FORMATIONS[cfg.formation]) cfg.formation = 'standard';
+$('#cfgFormation').value = cfg.formation;
+$('#cfgFormation').addEventListener('change', e=>{ cfg.formation=e.target.value; saveCfg(); $('#ov').hidden=true; newGame(); });
 $('#cfgEnc').value = cfg.enc;
 $('#cfgEnc').addEventListener('change', e=>{
   cfg.enc = e.target.value; const enc = ENCOUNTERS[cfg.enc];
