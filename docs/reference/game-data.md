@@ -101,6 +101,17 @@ Sim columns come from `tools/battle-sim/baseline.json`: the in-game Helper playi
 
 | Key | Encounter | Level | Danger | Party | Foes | Sim win | Sim turns | Sim Afflicted |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| well | Ostrel · Village Well | 2 | 10 | Kiri, Natsu, Tetsugi | Village Well | 100% | 27 | 0.0 |
+| wolf | The Border · Rewound Wolf | 3 | 10 | Kiri, Natsu, Miren | Rewound Wolf, The Dead Wolf | 99% | 32 | 0.4 |
+| hen | The Chocobo Ranch · Lake Hen | 5 | 15 | Miren, Kiri, Natsu | Lake Hen | 100% | 46 | 0.1 |
+| pelt | The Cliffside Temple · Last Beastcaller's Pelt | 6 | 15 | Goku, Natsu, Kiri | Last Beastcaller's Pelt | 100% | 33 | 0.0 |
+| ruri1 | Port of Vesk · Ruri | 7 | 15 | Kiri, Natsu, Miren | Ruri | 100% | 49 | 0.0 |
+| lamp | Kuro's Street · Lamp Hollow | 10 | 20 | Kuro, Hisui, Kiri | Lamp Hollow, Wick, Wick, Wick | 99% | 51 | 0.7 |
+| rested | The Flooded Ruins · The Well-Rested | 12 | 20 | Kiri, Miren, Natsu | The Well-Rested, The Well-Rested, The Well-Rested, The Well-Rested | 100% | 36 | 0.0 |
+| tracks | The Calm · Your Own Tracks | 16 | 25 | Kiri, Natsu, Hisui | Your Own Tracks, Your Own Tracks, Your Own Tracks | 100% | 29 | 0.0 |
+| forty | The Gull of Patience · Forty Years | 18 | 25 | Ren, Kiri, Natsu | The Helmsman, The Hull | 100% | 53 | 0.6 |
+| choir | Lumen · Choir of Lumen | 19 | 30 | Sayo, Kuro, Natsu | Chorister, Chorister, Chorister, Chorister | 100% | 30 | 2.0 |
+| hound | The Earth Crystal · The Grey Hound | 20 | 20 | Natsu, Ren, Sayo | The Grey Hound | 100% | 12 | 0.0 |
 | widow | Port of Vesk · Tide-Widow | 8 | 20 | Kiri, Natsu, Tetsugi | Tide-Widow | 100% | 84 | 1.6 |
 | ruri2 | Moogle Market · Ruri ×2 | 14 | 15 | Miren, Hisui, Kuro | Ruri, Ruri | 100% | 45 | 0.6 |
 | orlen | Lumen · Orlen and the Great Organ | 22 | 45 | Kuro, Sayo, Natsu | Archbishop Orlen, Great Organ | 100% | 64 | 4.5 |
@@ -118,6 +129,17 @@ Sim columns come from `tools/battle-sim/baseline.json`: the in-game Helper playi
 | t_fuyori | Test · Grease Father | 24 | 20 | Fuyori, Kiri, Tetsugi | Grease Father | 100% | 58 | 0.7 |
 | t_shio | Test · Star Fragment | 28 | 95 | Shio, Kiri, Natsu | Star Fragment | 100% | 46 | 0.0 |
 
+- **Ostrel · Village Well** (`well`). Spiral Draw pulls one ally back 2 slots, and every 3rd turn the Well hums the note at everyone. Read who it is about to take, and let Natsu keep the party standing while the others hit. (Uzumaki)
+- **The Border · Rewound Wolf** (`wolf`). The wolf has two slots in the turn order, one alive and one dead. When the wolf falls, the dead slot acts within 1 slot and gets it up again, stronger. A hit on the dead slot pins it until its turn, so pin it first, then kill the wolf before that turn comes. (A Gentle Goodbye)
+- **The Chocobo Ranch · Lake Hen** (`hen`). She stays underwater and calls a Wet Chick every turn. Miren's landing splash brings her up until her next turn, but only the others can hit her then, and every chick still alive when she surfaces heals her 10%. Clear the chicks before he lands. (Gyo)
+- **The Cliffside Temple · Last Beastcaller's Pelt** (`pelt`). It is empty and takes no damage. Goku's Summon Hound bites in and holds it open for 2 of its turns, when everyone's hits land, but Goku can't act and the Pelt thrashes at her. Every 4th turn it puts someone on instead. (Frankenstein)
+- **Port of Vesk · Ruri** (`ruri1`). Miren laughed at her. She Charms whoever is closest to breaking (+12 Stress) and slaps the rest. Soothe the one she is working on before they reach a Stress Check. (Tomie)
+- **Kuro's Street · Lamp Hollow** (`lamp`). The Hollow takes no damage while any Wick is lit, and a Wick that goes out is relit on the next Wick's turn. Darkga can't put out a Wick at full HP, so weaken all three first, then put them out at once: the Hollow is dark for 2 of its turns. (Long Hair in the Attic)
+- **The Flooded Ruins · The Well-Rested** (`rested`). Four identical sleepers. Only the original takes damage; hitting a copy splits off another (up to 6). Kiri's Lullaby puts every copy to sleep for 2 of its turns, but the original never sleeps: hit the one still awake. (The Long Dream)
+- **The Calm · Your Own Tracks** (`tracks`). A copy of each of your three, made at the start. Each copy does whatever its original did on their last turn, aimed back at you: hit Natsu's copy and your copy hits Natsu. Choose commands you can stand to have done to you. (The Enigma of Amigara Fault)
+- **The Gull of Patience · Forty Years** (`forty`). The Helmsman can't be targeted while the ship is on course. A push on the Hull throws it off course until his next turn, but the deck tilts and everyone not Defending is pushed back 2. Defend, then Delay Shot the Hull, then strike. Every 4th turn Course Correction hits everyone. (The Long Dream)
+- **Lumen · Choir of Lumen** (`choir`). Four Choristers. Each Hymn adds more Stress for every other Chorister still singing, and every 4th turn they push the listeners back with Amen. Thin the choir with Darkga and block the big songs with Counter-Melody. (Village of the Sirens)
+- **The Earth Crystal · The Grey Hound** (`hound`). Goku fights beside you on her own. The hound can't be KO'd and every hit makes it stronger. When Goku acts with under 50 Stress she calls it back one step, and three steps end the fight, but each of its attacks adds 20 Stress to her (10 if its target Defends and holds it back). Soothe her, and move her turn ahead of its. (Uzumaki)
 - **Port of Vesk · Tide-Widow** (`widow`). At half HP she enters phase 2 and releases 2 Drowned Sailors, which re-form 3 of her turns after you defeat them. Undertow pushes whoever is about to act back 3 slots. (The Thing That Drifted Ashore)
 - **Moogle Market · Ruri ×2** (`ruri2`). Two Ruris, each claiming to be the one you killed. They attack each other more as one weakens, and Charm adds 12 Stress to whoever is closest to breaking. (Tomie)
 - **Lumen · Orlen and the Great Organ** (`orlen`). Orlen fills Overdrive as your party gains Stress; when full, he and the Organ attack together with Requiem. Counter-Melody makes him hold his voice, but the Organ will play into it to clear the way. Destroy the Organ and it is rebuilt 4 of his turns later. (Honored Ancestors · The Human Chair)
@@ -159,6 +181,20 @@ Sim columns come from `tools/battle-sim/baseline.json`: the in-game Helper playi
 | The Hellstar | hellstar | 3800 | 125 | 26 | 26 | 9 | 21 | 10% | — | Hellstar Remina |
 | Hellstar Tongue | tongue | 800 | 79 | 15 | 15 | 14 | 16 | 10% | The Hellstar | Hellstar Remina |
 | Star Fragment | hour | 3780 | 110 | 17 | 17 | 11 | 19 | 10% | — | Hellstar Remina |
+| Village Well | well | 1100 | 66 | 4 | 4 | 10 | 20 | 10% | — | Uzumaki |
+| Rewound Wolf | wolf | 950 | 56 | 5 | 5 | 14 | 16 | 12% | — | A Gentle Goodbye |
+| The Dead Wolf | wolfdead | 1 | 0 | 0 | 0 | 11 | 19 | 10% | — | A Gentle Goodbye |
+| Lake Hen | hen | 600 | 62 | 6 | 6 | 7 | 23 | 10% | — | Gyo |
+| Wet Chick | chick | 60 | 26 | 2 | 2 | 12 | 18 | 10% | Lake Hen | Gyo |
+| Last Beastcaller's Pelt | pelt | 1300 | 64 | 6 | 6 | 10 | 20 | 10% | — | Frankenstein |
+| Lamp Hollow | lamp | 1000 | 62 | 8 | 8 | 9 | 21 | 10% | — | Long Hair in the Attic |
+| Wick | wick | 220 | 32 | 4 | 4 | 12 | 18 | 10% | Lamp Hollow | Long Hair in the Attic |
+| The Well-Rested | rested | 1800 | 60 | 8 | 8 | 10 | 20 | 10% | — | The Long Dream |
+| Your Own Tracks | tracks | 600 | 50 | 12 | 12 | 12 | 18 | 10% | — | The Enigma of Amigara Fault |
+| The Helmsman | helmsman | 800 | 78 | 10 | 10 | 12 | 18 | 10% | — | The Long Dream |
+| The Hull | hull | 5000 | 62 | 22 | 10 | 8 | 22 | 10% | The Helmsman | The Long Dream |
+| Chorister | chorister | 1300 | 74 | 8 | 6 | 11 | 19 | 10% | — | Village of the Sirens |
+| The Grey Hound | greyhound | 1 | 62 | 10 | 10 | 13 | 17 | 10% | — | Uzumaki |
 
 ## Enemy scripts
 
@@ -446,3 +482,207 @@ Parts: Hellstar Tongue, re-forms 3 turns after defeat (2 in phase 2).
 - Provoke redirects Devour to Kugai.
 - Blink on the marked ally makes it look away and Gaze at someone without Blink. Once everyone has Blink it Devours anyway.
 - Checks marked "reacts" are re-checked the moment you act and again when it acts, so it can answer a counter you play after it planned.
+
+### Village Well (`well`)
+
+1. If this is its 3rd, 6th, 9th… turn: **The Note**
+2. Otherwise: roll Spiral Draw 40%, Bucket 60%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Spiral Draw | 3 | Physical, Delay | Random ally | 0.6× ATK | The water turns: damage, and the target is pulled back 2 slots (+8 Stress). |
+| Bucket | 3 | Physical | Random ally | 1.4× ATK | 10% crit chance. |
+| The Note | 4 | Sound, Stress | All allies | — | +10 Stress to each ally. +4 Danger. |
+
+- The tutorial fight. No tricks beyond the turn order and Stress.
+
+### Rewound Wolf (`wolf`)
+
+1. Every turn: roll Bite 65%, Hamstring 35%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Bite | 3 | Physical | Random ally | 1.5× ATK | 12% crit chance. |
+| Hamstring | 3 | Physical, Delay | Lowest-HP% ally | 0.9× ATK | Pushes the ally with the lowest HP% back 1 slot (+4 Stress). |
+
+- It shares the fight with The Dead Wolf, its second slot in the turn order.
+- When it falls, The Dead Wolf's turn comes forward to within 1 slot.
+- Each time it gets up again, its ATK rises 20%.
+
+### The Dead Wolf (`wolfdead`)
+
+1. If the wolf is down and this slot is pinned *(reacts)*: **Stays Dead**
+2. If the wolf is down *(reacts)*: **Rewind**
+3. Otherwise: **Count Back**
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Stays Dead | 3 | Defeat | — | — | Pinned while the wolf is down: the wolf stays dead, and its second slot closes. You win. |
+| Rewind | 3 | Heal, Stress | All allies | — | The wolf gets up at 75% HP with ATK +20% for each time it has. +8 Stress to each ally. |
+| Count Back | 3 | Stress | All allies | — | +6 Stress to each ally. A pin wears off. |
+
+- It takes no damage. Any hit pins it until its next turn.
+- On its turn: with the wolf down and the slot pinned, the wolf stays dead and the fight ends. With the wolf down and no pin, the wolf gets up. With the wolf up, it counts back and the pin wears off.
+- Checks marked "reacts" are re-checked the moment you act and again when it acts, so it can answer a counter you play after it planned.
+
+### Lake Hen (`hen`)
+
+Parts: Wet Chick, re-forms 0 turns after defeat.
+
+1. If this is its 4th, 8th, 12th… turn: **Come Up for Air**
+2. Otherwise: **Peck**
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Peck | 4 | Physical | Lowest-HP% ally | 1.5× ATK | From under the water, at the ally with the lowest HP%. |
+| Come Up for Air | 4 | Heal | — | — | She surfaces until her next turn and can be hit: +10 Stress to each ally. Each Wet Chick alive heals her 10% HP. |
+
+- Underwater she can't be targeted. Miren landing from Jump splashes her up until her next turn; his landing hit never reaches her.
+- Each time she surfaces, everyone who sees her gains 10 Stress.
+- Every 4th turn she comes up for air on her own.
+- At the start of each of her turns she calls a Wet Chick, up to 3.
+
+### Wet Chick (`chick`)
+
+1. Every turn: roll Peep 60%, Hum 40%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Peep | 3 | Physical | Random ally | 1.0× ATK | A light, wet peck. |
+| Hum | 3 | Sound, Stress | Ally closest to a Stress Check or fleeing (can hear sound) (ignores Provoke) | — | +8 Stress to the ally closest to a Stress Check who can hear it. |
+
+- Part of Lake Hen. It collapses if its parent falls.
+
+### Last Beastcaller's Pelt (`pelt`)
+
+1. If the hound holds it open (it thrashes at Goku) *(reacts)*: **Thrash**
+2. If this is its 4th, 8th, 12th… turn: **Put On**
+3. Otherwise: **Empty Sleeve**
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Empty Sleeve | 3 | Physical, Stress | Random ally | 1.3× ATK | The arm is a person's: damage and +8 Stress. 10% crit chance. |
+| Thrash | 3 | Physical | Goku (random ally if she is not standing) (ignores Provoke) | 1.3× ATK | Held open, it fights the hound through Goku. |
+| Put On | 3 | Physical, Stress | Lowest-HP% ally | 0.8× ATK | Damage and +15 Stress to the ally with the lowest HP%. Full, it takes damage until its next turn. |
+
+- Empty, it takes no damage.
+- Summon Hound bites in and holds it open for 2 of its turns: every hit lands, Goku can't act, and it thrashes at her. The hold ends early if Goku falls.
+- On its 4th, 8th… turn it puts on the ally with the lowest HP%, and can be hurt until its next turn.
+- Checks marked "reacts" are re-checked the moment you act and again when it acts, so it can answer a counter you play after it planned.
+
+### Lamp Hollow (`lamp`)
+
+Parts: Wick, re-forms 0 turns after defeat.
+
+1. If it is dark *(reacts)*: **Grope**
+2. If this is its 3rd, 6th, 9th… turn: **Lamp Smoke**
+3. Otherwise: **Flare**
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Flare | 3 | Physical | Random ally | 1.5× ATK | 10% crit chance. |
+| Lamp Smoke | 3 | Stress | All allies | — | Smoke from something that isn't oil: +14 Stress to each ally. +4 Danger. |
+| Grope | 3 | Physical | Random ally | 1.0× ATK | In the dark, it feels for someone. |
+
+- It takes no damage while any Wick is lit.
+- When the last Wick goes out it is dark for 2 of its turns and takes damage; after the second, it relights every Wick.
+- Checks marked "reacts" are re-checked the moment you act and again when it acts, so it can answer a counter you play after it planned.
+
+### Wick (`wick`)
+
+1. If another Wick is out *(reacts)*: **Relight**
+2. Otherwise: roll Gutter 55%, Spit Oil 45%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Relight | 3 | Heal | — | — | Relights one Wick that is out, at full HP, from its own flame: this Wick drops to half its HP. |
+| Gutter | 3 | Physical, Stress | Random ally | 0.7× ATK | Damage and +6 Stress. |
+| Spit Oil | 3 | Physical | Random ally | 1.2× ATK | It isn't oil. |
+
+- An all-enemy attack (Darkga, an all-enemy Limit Break) can't put out a Wick at full HP: it stays lit at 1 HP.
+- While another Wick is out, its turn relights one at full HP and halves its own HP.
+- Checks marked "reacts" are re-checked the moment you act and again when it acts, so it can answer a counter you play after it planned.
+- Part of Lamp Hollow. It collapses if its parent falls.
+
+### The Well-Rested (`rested`)
+
+1. Every turn: roll Yawn 65%, Snore 35%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Yawn | 3 | Physical | Random ally | 0.9× ATK | Damage, and a 10% chance of Sleep: the target loses their next turn unless a hit wakes them first. |
+| Snore | 3 | Sound, Stress | All allies | — | +10 Stress to each ally who can hear it. |
+
+- Four identical sleepers. One is the original, and only it takes damage. They all show its HP.
+- A hit on a copy wakes it and shows it is a copy, but splits off a new sleeper (up to 6 bodies).
+- At the start of each sleeper's turn, the original rests: +1.5% HP. Sleeping copies take no turns, so they don't rest it.
+- Kiri's Lullaby puts every copy to sleep for 2 of its turns. The original never sleeps.
+- When the original falls, the copies go with it.
+
+### Your Own Tracks (`tracks`)
+
+1. Every turn: **Follow**
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Follow | 3 | Mirror | Mirrors its original's last target | As its original's command | Repeats its original's last command at the same power, turned back on the party. Its Delay is that command's Delay. |
+
+- A copy of each of the three you brought, with their stats and 130% of their HP.
+- Each attack it copies also adds 10 Stress to whoever it hits.
+- On its turn a copy does what its original did on their last turn. If you attacked Natsu's copy, your copy attacks Natsu. A heal on an ally heals that ally's copy. Defend makes it brace.
+- Commands with nothing to copy (Soothe, Howl, Counter-Melody, Provoke, Mix, Foresee, Earplugs) do nothing when it repeats them.
+
+### The Helmsman (`helmsman`)
+
+Parts: The Hull, re-forms 0 turns after defeat.
+
+1. If this is its 4th, 8th, 12th… turn: **Course Correction**
+2. Otherwise: roll Belaying Pin 60%, Same Route 40%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Course Correction | 3 | Physical | All allies | 1.1× ATK | The ship heels over: damage to each ally. |
+| Belaying Pin | 3 | Physical | Random ally | 1.3× ATK | 10% crit chance. |
+| Same Route | 3 | Stress | Ally closest to a Stress Check or fleeing | — | +12 Stress to the ally closest to a Stress Check. It has always been this route. |
+
+- While the ship is on course he can't be targeted.
+- Any push on the Hull throws the ship off course until his next turn. If the Hull is destroyed, the ship stays off course.
+
+### The Hull (`hull`)
+
+1. Every turn: roll Creak 60%, The Old Crew 40%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Creak | 3 | Physical | Random ally | 1.2× ATK | A beam swings loose. |
+| The Old Crew | 3 | Stress | Ally closest to a Stress Check or fleeing | — | +10 Stress to the ally closest to a Stress Check: the crew who flew the route before climb out of the planks. |
+
+- A push on it (Delay Shot, a Limit Break push, Disrupt) throws the ship off course: everyone not Defending is pushed back 2 slots, and the Helmsman can be hit until his next turn.
+- Part of The Helmsman. It collapses if its parent falls.
+
+### Chorister (`chorister`)
+
+1. If this is its 4th, 8th, 12th… turn: **Amen**
+2. Otherwise: roll Hymn 60%, Collection 40%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Hymn | 3 | Sound, Stress | All allies | — | +4 Stress to each ally who can hear it, +2 more for each other Chorister still singing (up to +10). |
+| Amen | 4 | Sound, Stress, Delay | All allies | — | +6 Stress and pushed back 1 slot (+4 Stress) for each ally who can hear it. |
+| Collection | 3 | Physical | Random ally | 1.6× ATK | The collection plate, edge first. |
+
+- Comes in fours. Each Hymn adds 2 more Stress for every other Chorister still singing.
+
+### The Grey Hound (`greyhound`)
+
+1. If this is its 3rd, 6th, 9th… turn: **Pounce**
+2. Otherwise: **Bite**
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Bite | 3 | Physical, Stress | Random ally | 1.4× ATK | Damage, and +20 Stress to Goku (+10 if the target is Defending: they hold it back). |
+| Pounce | 3 | Physical, Stress | Lowest-HP% ally | 2.0× ATK | Damage to the ally with the lowest HP%, and +20 Stress to Goku (+10 if the target is Defending). |
+
+- It can't be KO'd. Every hit raises its ATK 10% instead.
+- Goku acts on her own. On her turn, if her Stress is under 50, she calls the hound back one step. Three steps end the fight.
+- Each of its attacks adds 20 Stress to Goku as well, or 10 if its target is Defending and holds it back.

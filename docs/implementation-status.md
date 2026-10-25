@@ -34,17 +34,27 @@ Status key: **Built** matches the doc · **Partial** built with gaps or extras �
 
 ## Encounters
 
-The prototype has 4 story fights and 12 role tests. The 12 role tests are prototype-only: each teaches one character's role through an Ito short story the design doc doesn't use. Simulator numbers are in the balance section below.
+The prototype has 15 story fights (every Disc 1 chapter boss, Orlen and the final battle) and 12 role tests. The 12 role tests are prototype-only: each teaches one character's role through an Ito short story the design doc doesn't use. Simulator numbers are in the balance section below.
 
 | Encounter | Doc chapter | Status | Notes |
 | --- | --- | --- | --- |
+| Village Well | Ch. 1 | Partial | Spiral Draw matches. Adds The Note every 3rd turn (+10 Stress). [Spec](bosses/well.md) |
+| Rewound Wolf | Ch. 2 | Partial | Two slots, pinning the dead slot: matches. Adds the dead slot's turn coming forward when the wolf falls, and revival at 75% HP with +20% ATK. [Spec](bosses/wolf.md) |
+| Lake Hen | Ch. 3 | Partial | Underwater, the splash, chicks healing 10%, Peck: match. Adds Come Up for Air every 4th turn (the way through without Miren) and +10 Stress per surfacing. [Spec](bosses/hen.md) |
+| Last Beastcaller's Pelt | Ch. 4 | Partial | Empty, the 2-turn hold, Goku unable to act: match. Adds Put On every 4th turn (the way through without Goku). The doc's four named roles fit three active slots only with a Swap (open question in the spec). [Spec](bosses/pelt.md) |
+| Ruri ×1 | Ch. 5 | Built | The shared Ruri script with encounter stats for level 7. [Spec](bosses/ruri1.md) |
 | Tide-Widow | Ch. 5 | Partial | Undertow (3 slots) and 2 Drowned Sailors at 50% match. Adds Lullaby (sound, +14 Stress, +6 Danger) and Sailors that re-form after 3 of her turns |
+| Lamp Hollow | Ch. 6 | Partial | Three Wicks, Darkga can't put out a full Wick, the dark window: match. Relight brings back one Wick and halves the relighter. [Spec](bosses/lamp.md) |
+| The Well-Rested | Ch. 7 | Partial | Original-only damage, splitting to 6, Lullaby sleeping the copies, Yawn: match. Adds the original resting 1.5% per sleeper turn. Party Sleep is a minimal status. [Spec](bosses/rested.md) |
 | Ruri ×2 | Ch. 8 | Partial | Copies attack each other, as in the doc. Adds Charm and a Spite phase for the last Ruri standing |
+| Your Own Tracks | Ch. 9 | Partial | Copies repeating the last command: built, with a mirror table for every command, and +10 Stress per copied hit. [Spec](bosses/tracks.md) |
+| Forty Years | Ch. 10 | Partial | Helmsman, Hull, the tilt, Course Correction: match. Adds the destroyed Hull leaving the ship off course (the way through without Ren). [Spec](bosses/forty.md) |
+| Choir of Lumen | Ch. 11 | Partial | Four sound singers. Adds Hymn growing with the choir and Amen every 4th turn. [Spec](bosses/choir.md) |
+| The Grey Hound | Ch. 12 | Partial | Goku as an AI guest, the unkillable hound, damage raising its ATK, three steps: match. Adds the Defending target halving Goku's Stress. [Spec](bosses/hound.md) |
 | Orlen and the Great Organ | Ch. 19 | Drift | Chord every 5th Organ turn, Earplugs halving it, Sayo and Kugai immune: all match. The doc's 50% rule (stripping Protect and Shell) is replaced by Sermon +30, since there's no Protect or Shell. Adds Overdrive and Requiem |
 | The Hellstar (final) | Ch. 27 | Drift | The doc has three forms in sequence: Ainsel the Unwound, the Eaten, the Listener's Eye. The prototype fights Ainsel, the Hellstar and its Tongue at once, with Gaze, Devour and Overdrive. Open question 7 |
-| Village Well, Rewound Wolf, Lake Hen, Last Beastcaller's Pelt | Ch. 1–4 | Not built | |
-| Ruri (×1, ×5, ×8), Lamp Hollow, The Well-Rested, Your Own Tracks, Forty Years | Ch. 5–10 | Not built | |
-| Choir of Lumen, The Grey Hound, The Whisperer, Resonance Engine Mk. IV, The Hundred Listeners | Ch. 11–15 | Not built | |
+| Ruri (×5, ×8) | Ch. 14, 17 | Not built | The script exists; needs the "half down, the rest stop fighting" rule |
+| The Whisperer, Resonance Engine Mk. IV, The Hundred Listeners | Ch. 13–15 | Not built | |
 | The Mirens, The Face Thief, The Tongue (alone), The Congregation, Taste of Ostrel | Ch. 16–22 | Not built | The Tongue exists as a part of the final battle |
 | The Groaning Pipes, The Puppeteers, The Neighbour, The Four Heard, The Eaten, The Listener's Eye, The Last Note | Ch. 23–28 | Not built | |
 | Optional bosses, the Ruri Garden, the four superbosses | — | Not built | |
@@ -56,15 +66,15 @@ The bosses in the design doc lean on a handful of mechanics the engine doesn't h
 
 | Feature | Needed by | Notes |
 | --- | --- | --- |
-| **Damage gating**: enemies that can't be targeted or take no damage until a condition holds | Lake Hen, Pelt, Lamp Hollow, Well-Rested, Forty Years, Whisperer, Hundred Listeners, Congregation, Puppeteers, Groaning Pipes, Neighbour (11) | A `targetable(e)` and `vulnerable(e, attacker)` hook per script, plus a clear UI state ("underwater", "behind Kiri") so the player can read it |
-| **Inflicted statuses with durations**: Sleep, Silence, Stop, Slow, Paralyze, Confuse, Protect, Shell | About 15 bosses ("30% chance of Stop for 2 turns") | Separate from Stress Check Afflictions. Shown on the character card and in the turn order |
+| **Damage gating**: enemies that can't be targeted or take no damage until a condition holds | Whisperer, Hundred Listeners, Congregation, Puppeteers, Groaning Pipes, Neighbour (6 left) | **Built** for Disc 1: `targetable` + `hidden` (the card says why) and `onDamage`, which can refuse or change damage. See the [authoring guide](guides/boss-authoring.md#scriptskey) |
+| **Inflicted statuses with durations**: Sleep, Silence, Stop, Slow, Paralyze, Confuse, Protect, Shell | About 15 bosses ("30% chance of Stop for 2 turns") | Separate from Stress Check Afflictions. Shown on the character card and in the turn order. Only Sleep exists (`u.sleep`, `e.sleep`), built for the Well-Rested |
 | **Second HP threshold** (20%), then four (superbosses) | Every Disc 3 boss and rematch | `phases` already supports several; `phaseOf` and the log assume two |
 | **"Same round" windows**: two different characters acting between two of the boss's turns | Hundred Listeners, Face Thief, Puppeteers, Taste of Ostrel, Last Note | Needs a definition first (open question 5) |
 | **Encounter commands**: a command only one fight offers | Groaning Pipes (Plug), Neighbour (Hold back), the One That Walks (Dream, Rouse) | A per-encounter command list next to Attack and Defend |
-| **Guest allies under AI control** | Grey Hound (Goku), Neighbour (Ruri), Our Lady (Grey Mother) | Reuse `SCRIPTS` targeting with the sides swapped |
-| **Command memory**: what each character used, and on whom | Your Own Tracks, Four Heard, the Head Beneath the Mountain | `u.last` exists; extend it to a history |
+| **Guest allies under AI control** | Neighbour (Ruri), Our Lady (Grey Mother) | **Built** for the Grey Hound: `ENCOUNTERS[k].guest`, driven by a foe script's `guestTurn`. A guest that attacks needs its own targeting |
+| **Command memory**: what each character used, and on whom | Four Heard, the Head Beneath the Mountain | `u.last` and `u.lastT` (its target) exist and drive Your Own Tracks; the rest need a history |
 | **Items on enemies** | Hundred Listeners (sealing a coffin) | Items target allies only |
-| **More than one turn-order slot per unit, or a shared slot** | Rewound Wolf, The Mirens | |
+| **More than one turn-order slot per unit, or a shared slot** | The Mirens | The Rewound Wolf uses a second foe as its dead slot; the Mirens need a truly shared slot |
 | **Forced and whispered commands written into the turn order** | The Whisperer, the One That Walks | The forecast strip needs per-slot text |
 
 ## Known issues
@@ -79,6 +89,17 @@ From `tools/battle-sim/sim.js`, 200 battles per encounter with each encounter's 
 
 | Encounter | advisor | no-role | attack | random | Party commands | Afflicted |
 | --- | --- | --- | --- | --- | --- | --- |
+| Village Well | 100% | — | 100% | 100% | 27 | 0.0 |
+| Rewound Wolf | 99% | — | 20% | 51% | 32 | 0.4 |
+| Lake Hen | 100% | — | 21% | 14% | 46 | 0.1 |
+| Last Beastcaller's Pelt | 100% | — | 0% | 83% | 34 | 0.0 |
+| Ruri ×1 | 100% | — | 49% | 87% | 49 | 0.0 |
+| Lamp Hollow | 99% | — | 0% | 5% | 51 | 0.7 |
+| The Well-Rested | 100% | — | 0% | 0% | 36 | 0.0 |
+| Your Own Tracks | 100% | — | 6% | 74% | 30 | 0.0 |
+| Forty Years | 100% | — | 0% | 73% | 53 | 0.6 |
+| Choir of Lumen | 100% | — | 43% | 80% | 30 | 2.0 |
+| The Grey Hound | 100% | — | 0% | 0% | 12 | 0.0 |
 | Tide-Widow | 100% | — | 8% | 48% | 84 | 1.6 |
 | Ruri ×2 | 100% | — | 49% | 80% | 45 | 0.6 |
 | Orlen and the Great Organ | 100% | — | 3% | 49% | 65 | 4.5 |
@@ -105,6 +126,7 @@ What the numbers say:
 5. **The story fights run long.** The Widow (84 commands, the first story boss) and the final battle (103) are past the Disc 1 band of 25–60. The Widow's 3200 HP against level-8 damage of about 65 per Attack is the main lever (see [battle math](systems/battle-math.md#worked-example-why-the-widow-takes-so-long)).
 6. **The Hellstar is the only fight that leans on Stress**: 7.1 Afflicted per fight. Good for a finale, but random play wins 2% of the time, so it relies on the Helper's knowledge more than any other fight.
 7. **Quick Song is never exercised.** In Sayo's test the Helper spends every turn on Counter-Melody against the Amigara Wall's Calling. Setting Quick Song to the doc's 2 slots or the code's 3 gives identical results, so open question 3 can't be settled by any existing fight.
+8. **The Disc 1 chapter bosses each need their answer, but most leave Stress as decoration.** All eleven are won 99–100% by the Helper. Pressing Attack wins 0–21% of nine of them; the exceptions are the Village Well (100%, the tutorial, by design), Ruri ×1 (49%, an opening act) and the Choir (43%, but only after about 5 characters flee). Every story boss stays winnable without its key character: the Lake Hen without Miren 100% (85 commands), the Pelt without Goku 100% (107), the Lamp Hollow without Kuro 45% (136), the Well-Rested without Kiri 63% (58), Forty Years without Ren 100% (70), the Grey Hound without Natsu 47%. But the Helper keeps Afflicted under 0.5 in eight of eleven, because Natsu or Kiri is in almost every default party. The Grey Hound is short (12 commands): three steps is the doc's number.
 
 ## Open design questions
 

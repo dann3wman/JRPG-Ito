@@ -1116,8 +1116,44 @@ const FOES = {
   hellstar:{ name:'The Hellstar',   hp:3800, atk:125, def:26, mdef:26, agi:9,  art:'hellstar', ai:'script' },
   tongue: { name:'Hellstar Tongue', hp:800,  atk:79, def:15,  mdef:15,  agi:14, art:'tongue', ai:'script', parentKey:'hellstar' },
   hour:   { name:'Star Fragment',   hp:3780, atk:110, def:17, mdef:17, agi:11, art:'planet',  ai:'script' },
+  well:   { name:'Village Well',    hp:1100, atk:66, def:4,  mdef:4,  agi:10, art:'well',   ai:'script' },
+  wolf:   { name:'Rewound Wolf',    hp:950,  atk:56, def:5,  mdef:5,  agi:14, art:'wolf',   ai:'script', crit:.12 },
+  wolfdead:{ name:'The Dead Wolf',  hp:1,    atk:0,  def:0,  mdef:0,  agi:11, art:'wolfdead', ai:'script' },
+  hen:    { name:'Lake Hen',        hp:600,  atk:62, def:6,  mdef:6,  agi:7,  art:'hen',    ai:'script' },
+  chick:  { name:'Wet Chick',       hp:60,   atk:26, def:2,  mdef:2,  agi:12, art:'chick',  ai:'script', parentKey:'hen' },
+  pelt:   { name:'Last Beastcaller\'s Pelt', hp:1300, atk:64, def:6, mdef:6, agi:10, art:'pelt', ai:'script' },
+  lamp:   { name:'Lamp Hollow',     hp:1000, atk:62, def:8,  mdef:8,  agi:9,  art:'lamp',   ai:'script' },
+  wick:   { name:'Wick',            hp:220,  atk:32, def:4,  mdef:4,  agi:12, art:'wick',   ai:'script', parentKey:'lamp' },
+  rested: { name:'The Well-Rested', hp:1800, atk:60, def:8,  mdef:8,  agi:10, art:'rested', ai:'script' },
+  tracks: { name:'Your Own Tracks', hp:600,  atk:50, def:12, mdef:12, agi:12, art:'tracks', ai:'script' },
+  helmsman:{ name:'The Helmsman',   hp:800,  atk:78, def:10, mdef:10, agi:12, art:'helmsman', ai:'script' },
+  hull:   { name:'The Hull',        hp:5000, atk:62, def:22, mdef:10, agi:8,  art:'hull',   ai:'script', parentKey:'helmsman' },
+  chorister:{ name:'Chorister',     hp:1300, atk:74, def:8,  mdef:6,  agi:11, art:'choir',  ai:'script' },
+  greyhound:{ name:'The Grey Hound', hp:1,   atk:62, def:10, mdef:10, agi:13, art:'greyhound', ai:'script' },
 };
 const ENCOUNTERS = {
+  well: { lv:2, group:'Story bosses', title:'Ostrel · Village Well', foes:['well'], hum:10, party:['kiri','natsu','tetsugi'],
+    brief:'Spiral Draw pulls one ally back 2 slots, and every 3rd turn the Well hums the note at everyone. Read who it is about to take, and let Natsu keep the party standing while the others hit. (Uzumaki)' },
+  wolf: { lv:3, group:'Story bosses', title:'The Border · Rewound Wolf', foes:['wolf','wolfdead'], hum:10, party:['kiri','natsu','miren'],
+    brief:'The wolf has two slots in the turn order, one alive and one dead. When the wolf falls, the dead slot acts within 1 slot and gets it up again, stronger. A hit on the dead slot pins it until its turn, so pin it first, then kill the wolf before that turn comes. (A Gentle Goodbye)' },
+  hen: { lv:5, group:'Story bosses', title:'The Chocobo Ranch · Lake Hen', foes:['hen'], hum:15, party:['miren','kiri','natsu'],
+    brief:'She stays underwater and calls a Wet Chick every turn. Miren\'s landing splash brings her up until her next turn, but only the others can hit her then, and every chick still alive when she surfaces heals her 10%. Clear the chicks before he lands. (Gyo)' },
+  pelt: { lv:6, group:'Story bosses', title:'The Cliffside Temple · Last Beastcaller\'s Pelt', foes:['pelt'], hum:15, party:['goku','natsu','kiri'],
+    brief:'It is empty and takes no damage. Goku\'s Summon Hound bites in and holds it open for 2 of its turns, when everyone\'s hits land, but Goku can\'t act and the Pelt thrashes at her. Every 4th turn it puts someone on instead. (Frankenstein)' },
+  ruri1: { lv:7, group:'Story bosses', title:'Port of Vesk · Ruri', foes:['ruri'], hum:15, party:['kiri','natsu','miren'], stats:{ ruri:{ hp:2600, atk:100, def:8, mdef:8 } },
+    brief:'Miren laughed at her. She Charms whoever is closest to breaking (+12 Stress) and slaps the rest. Soothe the one she is working on before they reach a Stress Check. (Tomie)' },
+  lamp: { lv:10, group:'Story bosses', title:'Kuro\'s Street · Lamp Hollow', foes:['lamp','wick','wick','wick'], hum:20, party:['kuro','hisui','kiri'],
+    brief:'The Hollow takes no damage while any Wick is lit, and a Wick that goes out is relit on the next Wick\'s turn. Darkga can\'t put out a Wick at full HP, so weaken all three first, then put them out at once: the Hollow is dark for 2 of its turns. (Long Hair in the Attic)' },
+  rested: { lv:12, group:'Story bosses', title:'The Flooded Ruins · The Well-Rested', foes:['rested','rested','rested','rested'], hum:20, party:['kiri','miren','natsu'],
+    brief:'Four identical sleepers. Only the original takes damage; hitting a copy splits off another (up to 6). Kiri\'s Lullaby puts every copy to sleep for 2 of its turns, but the original never sleeps: hit the one still awake. (The Long Dream)' },
+  tracks: { lv:16, group:'Story bosses', title:'The Calm · Your Own Tracks', foes:['tracks','tracks','tracks'], hum:25, party:['kiri','natsu','hisui'],
+    brief:'A copy of each of your three, made at the start. Each copy does whatever its original did on their last turn, aimed back at you: hit Natsu\'s copy and your copy hits Natsu. Choose commands you can stand to have done to you. (The Enigma of Amigara Fault)' },
+  forty: { lv:18, group:'Story bosses', title:'The Gull of Patience · Forty Years', foes:['helmsman','hull'], hum:25, party:['ren','kiri','natsu'],
+    brief:'The Helmsman can\'t be targeted while the ship is on course. A push on the Hull throws it off course until his next turn, but the deck tilts and everyone not Defending is pushed back 2. Defend, then Delay Shot the Hull, then strike. Every 4th turn Course Correction hits everyone. (The Long Dream)' },
+  choir: { lv:19, group:'Story bosses', title:'Lumen · Choir of Lumen', foes:['chorister','chorister','chorister','chorister'], hum:30, party:['sayo','kuro','natsu'],
+    brief:'Four Choristers. Each Hymn adds more Stress for every other Chorister still singing, and every 4th turn they push the listeners back with Amen. Thin the choir with Darkga and block the big songs with Counter-Melody. (Village of the Sirens)' },
+  hound: { lv:20, group:'Story bosses', title:'The Earth Crystal · The Grey Hound', foes:['greyhound'], hum:20, party:['natsu','ren','sayo'], guest:'goku', guestStress:60,
+    brief:'Goku fights beside you on her own. The hound can\'t be KO\'d and every hit makes it stronger. When Goku acts with under 50 Stress she calls it back one step, and three steps end the fight, but each of its attacks adds 20 Stress to her (10 if its target Defends and holds it back). Soothe her, and move her turn ahead of its. (Uzumaki)' },
   widow: { lv:8, group:'Story bosses', title:'Port of Vesk · Tide-Widow', foes:['widow'], hum:20, party:['kiri','natsu','tetsugi'],
     brief:'At half HP she enters phase 2 and releases 2 Drowned Sailors, which re-form 3 of her turns after you defeat them. Undertow pushes whoever is about to act back 3 slots. (The Thing That Drifted Ashore)' },
   ruri2: { lv:14, group:'Story bosses', title:'Moogle Market · Ruri ×2', foes:['ruri','ruri'], hum:15, party:['miren','hisui','kuro'],
@@ -1294,6 +1330,89 @@ function art(kind){
     g.fillStyle=ink;g.beginPath();g.ellipse(240,130,54,26,0,0,7);g.fill();g.fillStyle=paper;g.beginPath();g.arc(240,130,12,0,7);g.fill();
     g.fillStyle=ink;g.beginPath();g.moveTo(190,200);g.quadraticCurveTo(240,235,290,200);g.quadraticCurveTo(240,214,190,200);g.fill();
   }
+  // Disc 1 chapter bosses: ink drawings until each gets painted art and a rig.
+  else if(kind==='well'){
+    hatch(9,.25);
+    g.fillStyle=paper;g.fillRect(130,120,220,130);g.lineWidth=3;g.strokeRect(130,120,220,130);
+    g.save();g.beginPath();g.rect(130,120,220,130);g.clip();
+    for(let y=140;y<250;y+=22)for(let x=110+((y/22)%2)*20;x<350;x+=40){g.lineWidth=1;g.strokeRect(x,y,40,22);}
+    g.restore();
+    g.fillStyle=ink;g.beginPath();g.ellipse(240,120,110,26,0,0,7);g.fill();
+    g.strokeStyle=paper;g.save();g.scale(1,.24);spiral(240,500,5,8,1.4);g.restore();g.strokeStyle=ink;
+    g.beginPath();g.moveTo(140,20);g.lineTo(340,20);g.moveTo(150,20);g.lineTo(150,120);g.moveTo(330,20);g.lineTo(330,120);g.lineWidth=4;g.stroke();
+    g.beginPath();g.moveTo(240,20);g.lineTo(240,92);g.lineWidth=1.5;g.stroke();g.fillStyle=paper;g.fillRect(226,86,28,22);g.strokeRect(226,86,28,22);
+  } else if(kind==='wolf' || kind==='wolfdead'){
+    const dead = kind==='wolfdead';
+    if (dead) hatch(6,-.3);
+    g.save();if(dead){g.translate(240,170);g.rotate(Math.PI);g.translate(-240,-150);}
+    g.fillStyle=paper;g.beginPath();g.moveTo(110,160);g.quadraticCurveTo(200,100,320,120);g.lineTo(360,80);g.lineTo(372,118);g.lineTo(410,128);g.lineTo(372,150);g.quadraticCurveTo(300,190,200,190);
+    g.lineTo(170,250);g.lineTo(158,250);g.lineTo(160,190);g.lineTo(130,250);g.lineTo(118,250);g.closePath();g.fill();g.lineWidth=3;g.setLineDash(dead?[6,5]:[]);g.stroke();g.setLineDash([]);
+    for(let i=0;i<22;i++){const x=140+i*9;g.beginPath();g.moveTo(x,128+Math.sin(i)*4);g.lineTo(x+6,118);g.lineWidth=1;g.stroke();}
+    if(!dead){g.fillStyle=ink;g.beginPath();g.arc(372,112,4,0,7);g.fill();} else {g.beginPath();g.moveTo(366,106);g.lineTo(378,118);g.moveTo(378,106);g.lineTo(366,118);g.lineWidth=2;g.stroke();}
+    g.restore();
+    if(!dead){g.beginPath();g.arc(240,60,26,0,7);g.lineWidth=1.5;g.stroke();for(let i=0;i<12;i++){const a=i/12*Math.PI*2;g.beginPath();g.moveTo(240,60);g.lineTo(240+Math.cos(a)*(i%3?16:22),60+Math.sin(a)*(i%3?16:22));g.lineWidth=i%3?1:2.5;g.stroke();}}
+  } else if(kind==='hen'){
+    g.fillStyle=paper;g.beginPath();g.ellipse(240,190,170,120,0,Math.PI,0);g.fill();g.lineWidth=3;g.stroke();
+    for(let i=0;i<40;i++){const a=Math.PI+i/39*Math.PI;g.beginPath();g.moveTo(240+Math.cos(a)*150,190+Math.sin(a)*100);g.lineTo(240+Math.cos(a)*172,190+Math.sin(a)*122);g.lineWidth=1.2;g.stroke();}
+    g.fillStyle=ink;g.beginPath();g.arc(300,120,9,0,7);g.fill();g.beginPath();g.moveTo(370,140);g.lineTo(420,150);g.lineTo(372,160);g.fill();
+    g.fillStyle=ink;g.fillRect(0,190,W,H-190);
+    g.strokeStyle=paper;for(let y=200;y<H;y+=10){g.beginPath();for(let x=0;x<=W;x+=6)g.lineTo(x,y+Math.sin(x/20+y)*2.5);g.lineWidth=1;g.stroke();}g.strokeStyle=ink;
+  } else if(kind==='chick'){
+    hatch(8,.2);
+    g.fillStyle=paper;g.beginPath();g.ellipse(240,160,70,62,0,0,7);g.fill();g.lineWidth=3;g.stroke();g.beginPath();g.arc(240,92,36,0,7);g.fill();g.stroke();
+    g.fillStyle=ink;g.beginPath();g.arc(228,88,4,0,7);g.fill();g.beginPath();g.arc(252,88,4,0,7);g.fill();g.beginPath();g.moveTo(232,102);g.lineTo(248,102);g.lineTo(240,114);g.fill();
+    for(let i=0;i<12;i++){g.beginPath();g.ellipse(190+i*9,226+(i%3)*6,2,4,0,0,7);g.fill();}
+  } else if(kind==='pelt'){
+    hatch(7,-.2);
+    g.beginPath();g.moveTo(240,0);g.lineTo(240,30);g.lineWidth=3;g.stroke();g.beginPath();g.arc(240,38,8,Math.PI,0,true);g.stroke();
+    g.fillStyle=paper;g.beginPath();g.moveTo(200,46);g.quadraticCurveTo(240,30,280,46);g.lineTo(300,110);g.lineTo(350,130);g.lineTo(320,150);g.lineTo(300,250);g.lineTo(250,262);g.lineTo(240,232);g.lineTo(230,262);g.lineTo(180,250);g.lineTo(160,150);g.lineTo(130,130);g.lineTo(180,110);g.closePath();g.fill();g.lineWidth=3;g.stroke();
+    g.fillStyle=ink;g.beginPath();g.ellipse(224,72,9,6,0,0,7);g.fill();g.beginPath();g.ellipse(256,72,9,6,0,0,7);g.fill();
+    for(let i=0;i<60;i++){const x=180+rnd(0,120),y=100+rnd(0,140);g.beginPath();g.moveTo(x,y);g.lineTo(x+rnd(-3,3),y+8);g.lineWidth=.8;g.stroke();}
+  } else if(kind==='lamp'){
+    g.fillStyle=ink;g.fillRect(0,0,W,H);
+    g.fillStyle=paper;g.fillRect(232,130,16,140);
+    g.beginPath();g.moveTo(190,40);g.lineTo(290,40);g.lineTo(270,130);g.lineTo(210,130);g.closePath();g.fill();
+    g.fillStyle=ink;g.beginPath();g.ellipse(226,78,8,12,0,0,7);g.fill();g.beginPath();g.ellipse(254,78,8,12,0,0,7);g.fill();g.beginPath();g.ellipse(240,108,12,6,0,0,7);g.fill();
+    g.strokeStyle=paper;g.beginPath();g.moveTo(180,40);g.lineTo(300,40);g.lineWidth=4;g.stroke();g.strokeStyle=ink;
+  } else if(kind==='wick'){
+    hatch(9,.3);
+    g.fillStyle=paper;g.fillRect(205,150,70,110);g.lineWidth=3;g.strokeRect(205,150,70,110);
+    for(let i=0;i<9;i++){g.beginPath();g.moveTo(240,150);g.bezierCurveTo(240+rnd(-30,30),110,240+rnd(-40,40),80,240+rnd(-20,20),30+rnd(0,20));g.lineWidth=1.2;g.stroke();}
+    g.fillStyle=hum;g.beginPath();g.ellipse(240,52,10,22,0,0,7);g.fill();
+  } else if(kind==='rested'){
+    for(let y=0;y<H;y+=6){g.beginPath();g.moveTo(0,y);g.lineTo(W,y);g.lineWidth=.4;g.stroke();}
+    g.fillStyle=paper;g.fillRect(60,150,360,90);g.lineWidth=3;g.strokeRect(60,150,360,90);
+    g.beginPath();g.ellipse(110,140,48,26,0,0,7);g.fill();g.stroke();
+    g.beginPath();g.arc(140,124,30,0,7);g.fill();g.stroke();
+    g.beginPath();g.moveTo(124,122);g.quadraticCurveTo(130,128,136,122);g.moveTo(146,122);g.quadraticCurveTo(152,128,158,122);g.lineWidth=2;g.stroke();
+    g.beginPath();g.moveTo(170,152);g.bezierCurveTo(240,120,330,130,420,150);g.lineWidth=2;g.stroke();
+    for(let i=0;i<3;i++){g.font=`${18+i*6}px serif`;g.fillStyle=ink;g.fillText('z',200+i*30,90-i*22);}
+  } else if(kind==='tracks'){
+    for(let y=0;y<H;y+=4){g.beginPath();g.moveTo(0,y);for(let x=0;x<=W;x+=16)g.lineTo(x,y+rnd(-1,1));g.lineWidth=.4;g.stroke();}
+    g.fillStyle=ink;for(let i=0;i<26;i++){const t=i*.42,r=12+i*4.5,x=240+Math.cos(t)*r*1.4,y=135+Math.sin(t)*r*.8;
+      g.save();g.translate(x,y);g.rotate(t+Math.PI/2);g.beginPath();g.ellipse(i%2?5:-5,0,5,9,0,0,7);g.fill();g.beginPath();g.arc(i%2?5:-5,-12,3,0,7);g.fill();g.restore();}
+  } else if(kind==='helmsman'){
+    hatch(8,-.3);
+    g.fillStyle=paper;g.beginPath();g.ellipse(240,70,30,38,0,0,7);g.fill();g.lineWidth=3;g.stroke();
+    g.fillStyle=ink;g.beginPath();g.ellipse(228,66,6,10,0,0,7);g.fill();g.beginPath();g.ellipse(252,66,6,10,0,0,7);g.fill();
+    g.beginPath();g.arc(240,190,80,0,7);g.lineWidth=7;g.stroke();g.beginPath();g.arc(240,190,16,0,7);g.fill();
+    for(let i=0;i<8;i++){const a=i/8*Math.PI*2;g.beginPath();g.moveTo(240+Math.cos(a)*16,190+Math.sin(a)*16);g.lineTo(240+Math.cos(a)*104,190+Math.sin(a)*104);g.lineWidth=5;g.stroke();}
+  } else if(kind==='hull'){
+    for(let y=0;y<H;y+=27){g.fillStyle=paper;g.fillRect(0,y,W,25);g.beginPath();g.moveTo(0,y+25);g.lineTo(W,y+25);g.lineWidth=2.5;g.stroke();
+      for(let x=(y%54)?40:0;x<W;x+=80){g.fillStyle=ink;g.beginPath();g.arc(x+6,y+12,1.6,0,7);g.fill();}}
+    for(let k=0;k<4;k++){const x=70+k*110,y=60+(k%2)*90;g.fillStyle=ink;g.beginPath();g.ellipse(x,y,16,22,0,0,7);g.fill();
+      for(let f=0;f<4;f++){g.beginPath();g.moveTo(x-12+f*8,y-18);g.lineTo(x-14+f*9,y-40);g.lineWidth=3;g.stroke();}}
+  } else if(kind==='choir'){
+    hatch(6,0);
+    for(let k=0;k<4;k++){const x=75+k*110;g.fillStyle=paper;g.beginPath();g.moveTo(x-40,H);g.lineTo(x-28,120);g.lineTo(x+28,120);g.lineTo(x+40,H);g.fill();g.lineWidth=2.5;g.stroke();
+      g.beginPath();g.ellipse(x,88,26,32,0,0,7);g.fill();g.stroke();g.fillStyle=ink;g.beginPath();g.ellipse(x,100,8,14+k*2,0,0,7);g.fill();
+      g.beginPath();g.moveTo(x-12,80);g.lineTo(x-4,80);g.moveTo(x+4,80);g.lineTo(x+12,80);g.lineWidth=2;g.stroke();}
+  } else if(kind==='greyhound'){
+    g.fillStyle='#8a8a8a';g.fillRect(0,0,W,H);hatch(4,.5);
+    g.fillStyle=paper;g.beginPath();g.moveTo(120,250);g.quadraticCurveTo(150,90,250,70);g.lineTo(290,20);g.lineTo(300,72);g.lineTo(390,110);g.lineTo(400,140);g.lineTo(320,150);g.quadraticCurveTo(280,200,300,250);g.closePath();g.fill();g.lineWidth=3.5;g.stroke();
+    g.fillStyle=ink;g.beginPath();g.ellipse(330,100,10,6,.3,0,7);g.fill();g.beginPath();g.arc(396,124,6,0,7);g.fill();
+    for(let i=0;i<30;i++){g.beginPath();const x=150+rnd(0,140),y=110+rnd(0,130);g.moveTo(x,y);g.lineTo(x-6,y+10);g.lineWidth=1;g.stroke();}
+  }
   return (ART[kind]=c.toDataURL());
 }
 
@@ -1311,17 +1430,22 @@ function makePC(id){
     defending:false, cover:false, counter:false, blink:false, focus:0, reraiseUsed:false, revives:0, cures:0, bloom:0, provoke:0, last:null, ct:0 };
 }
 let foeSeq = 0;
+// An encounter can restate a foe's stats (ENCOUNTERS[k].stats), so one script serves several levels.
+const foeStats = key => Object.assign({}, FOES[key], ((ENCOUNTERS[cfg.enc] || {}).stats || {})[key]);
 function makeFoe(key){
-  const f = FOES[key];
+  const f = foeStats(key);
   return { id:'f'+(foeSeq++), key, side:'enemy', name:f.name, maxhp:f.hp, hp:f.hp, atk:f.atk, def:f.def, mdef:f.mdef, agi:f.agi, art:f.art, ai:f.ai, alive:true, ct:0, count:0, called:false, weak:0, acid:false, crit:f.crit||.1, power:0, timer:9, mark:null, plan:null, od:0, brk:0, broken:0, breakImm:0, parentId:null, respawn:{}, phase:null, hadPair:false };
 }
 function newGame(){
   const enc = ENCOUNTERS[cfg.enc];
-  let act = [...new Set(cfg.party)].filter(id=>ROSTER[id]);
-  for (const id of ORDER){ if (act.length>=3) break; if (!act.includes(id)) act.push(id); }
+  let act = [...new Set(cfg.party)].filter(id=>ROSTER[id] && id!==enc.guest);
+  for (const id of ORDER){ if (act.length>=3) break; if (!act.includes(id) && id!==enc.guest) act.push(id); }
   G = { run: Symbol(), enc, party: ORDER.map(makePC), active: act.slice(0,3),
     enemies: enc.foes.map(makeFoe), hum: cfg.hum ?? enc.hum, inv:Object.assign({ potion:5, phoenix:3, earplugs:3 }, enc.inv||{}), melody:false,
     void:{ id:'void', side:'void', name:'Lost Turn', ct:null }, log:[], current:null, state:'busy', menu:'root', pending:[], fx:{}, resolve:null, act:null, preview:null };
+  // A guest fights beside the party under its own AI (ENCOUNTERS[k].guest): never Swapped, never a target, no Stress Checks.
+  if (enc.guest){ const g = byId(enc.guest); g.guest = true; g.stress = enc.guestStress ?? g.stress; G.active.push(g.id); }
+  G.enemies.forEach((e, i) => { const S = SCRIPTS[e.key]; if (S && S.init) S.init(e, i); });
   [...G.party, ...G.enemies].forEach(u => u.ct = tickOf(u) * rnd(1.2, 3));
   G.enemies.forEach(e => { const pk = FOES[e.key].parentKey; if (pk){ const p = G.enemies.find(x=>x.key===pk); if (p) e.parentId = p.id; } });
   if (G.enemies.filter(e=>e.key==='ruri').length > 1) G.enemies.forEach(e=>{ if (e.key==='ruri') e.hadPair = true; });
@@ -1338,7 +1462,12 @@ const byId = id => G.party.find(p=>p.id===id);
 const actives = () => G.active.map(byId).filter(Boolean);
 const reserves = () => G.party.filter(p => !G.active.includes(p.id) && !p.fled);
 const foesAlive = () => G.enemies.filter(e=>e.alive);
-const targetsForFoes = () => actives().filter(u=>u.alive && !u.airborne);
+const targetsForFoes = () => actives().filter(u=>u.alive && !u.airborne && !u.guest);
+// Some foes can't be targeted for a while (underwater, at the helm, in the air): SCRIPTS[k].targetable(e).
+const reachable = e => !!e && e.alive && !(SCRIPTS[e.key] && SCRIPTS[e.key].targetable && !SCRIPTS[e.key].targetable(e));
+const foesHittable = () => G.enemies.filter(reachable);
+// Run a script hook on every living foe that has it: onPartyAct, onLand.
+const hookFoes = (name, ...a) => G.enemies.slice().forEach(e => { const f = e.alive && SCRIPTS[e.key] && SCRIPTS[e.key][name]; if (f) f(e, ...a); });
 const voidOn = () => cfg.voidOn && G.hum >= 30;
 const voidInterval = () => Math.round(Math.max(60, 230 - G.hum*1.7));
 const soundImmune = u => u.id==='sayo' || u.id==='kugai';
@@ -1384,7 +1513,7 @@ function addStress(u, n, why, opt={}){
     if (u.earplugs > 0) n = Math.ceil(n/2);
   }
   const before = u.stress;
-  u.stress = clamp(u.stress + n, 0, u.id==='ren' ? 199 : 200);
+  u.stress = clamp(u.stress + n, 0, u.guest ? 99 : u.id==='ren' ? 199 : 200);
   const d = u.stress - before; if (!d) return;
   if (d > 0 && u.side==='party' && G.enemies) G.enemies.forEach(e=>{ if (e.alive && SCRIPTS[e.key] && SCRIPTS[e.key].overdrive) e.od = Math.min(100, Math.round((e.od + d*0.6)*10)/10); });
   if (d > 0){ u.limit = Math.min(100, u.limit + d*0.5); if (why) log(`${u.name} +${d} Stress (${why}).`, 'dread'); fx(u.id, `+${d} Stress`, 'dread'); }
@@ -1396,6 +1525,7 @@ function queue(id, type){ if (!G.pending.some(p=>p.id===id && p.type===type)) G.
 function reservesWatch(){ reserves().forEach(r => { if (r.alive) addStress(r, 2); }); }
 function pushEnemy(e, slots){
   if (!e || !e.alive) return false;
+  if (SCRIPTS[e.key] && SCRIPTS[e.key].onPush) SCRIPTS[e.key].onPush(e, slots);
   if (e.breakImm > 0){ log(`${e.name} resists the push (recovering from Break).`); return false; }
   e.ct += slots * SLOT; e.brk = Math.min(100, e.brk + slots*25);
   log(`${e.name} pushed back ${slots}. Break ${e.brk}%.`);
@@ -1429,6 +1559,7 @@ function hitParty(t, raw, {crit=false, src=null}={}){
   t.hp -= d; t.limit = Math.min(100, t.limit + d / t.maxhp * 70);
   fx(t.id, `−${d}`); shake(t.id);
   log(`${t.name} takes ${d} damage${crit ? ' (critical)' : ''}.`, 'foe');
+  if (t.sleep > 0 && t.hp > 0){ t.sleep = 0; log(`${t.name} wakes up.`); }
   if (crit){
     if (t.id==='hisui'){ addStress(t, 15, 'critical hit'); if (t.bloom < 5){ t.bloom++; log(`Hisui: damage +${t.bloom*10}%.`); } }
     else addStress(t, 10, 'critical hit');
@@ -1447,6 +1578,7 @@ function ko(t){
 }
 function hitEnemy(e, raw, {attacker=null, magic=false}={}){
   if (!e || !e.alive) return 0;
+  if (attacker && !reachable(e)){ log(`${attacker.name} can't reach ${e.name} (${SCRIPTS[e.key].hidden(e)}).`); return 0; }
   if (attacker && !magic){
     const acc = attacker.earplugs > 0 ? .65 : .95;
     if (Math.random() > acc){ fx(e.id,'Miss'); log(`${attacker.name} misses${attacker.earplugs>0?' (Earplugs)':''}.`); return 0; }
@@ -1456,6 +1588,9 @@ function hitEnemy(e, raw, {attacker=null, magic=false}={}){
   const crit = !!attacker && (attacker.focus > 0 || Math.random() < .1);
   let d = Math.max(1, Math.round(raw * rnd(.9,1.1) - (magic ? e.mdef : e.def)));
   if (crit) d = Math.round(d*1.8);
+  // A script can change or refuse the damage (no damage while empty, pinned, a copy…). It logs why.
+  const S = SCRIPTS[e.key];
+  if (S && S.onDamage){ d = S.onDamage(e, d, {attacker, magic, key:G.hitKey, area:!!G.area}); if (!(d > 0)){ shake(e.id); return 0; } }
   e.hp -= d; fx(e.id, `−${d}`); shake(e.id);
   log(`${e.name} takes ${d} damage${crit?' (critical)':''}.`);
   if (crit && attacker) addStress(attacker, -5);
@@ -1484,7 +1619,7 @@ function payMP(u, cost){
 }
 function doAction(u, act, target, forced=false){
   const delay = delayOf(u, act);
-  const foe = () => (target && target.alive) ? target : pick(foesAlive());
+  const foe = () => reachable(target) ? target : pick(foesHittable());
   switch (act.kind){
     case 'attack': log(`${u.name}: Attack.`); hitEnemy(foe(), u.atk*1.8, {attacker:u}); break;
     case 'defend': u.defending = true; log(`${u.name}: Defend (half damage until next turn).`); break;
@@ -1493,8 +1628,9 @@ function doAction(u, act, target, forced=false){
     case 'limit': limit(u, target); break;
     case 'skip': break;
   }
-  if (!forced && act.kind!=='skip') u.last = act;
-  if (u.insp==='Disrupt'){ const e = pick(foesAlive()); if (e){ log('Disrupt.'); pushEnemy(e, 2); } }
+  if (!forced && act.kind!=='skip'){ u.last = act; u.lastT = target; }
+  hookFoes('onPartyAct', u, act, target);
+  if (u.insp==='Disrupt'){ const e = pick(foesHittable()); if (e){ log('Disrupt.'); pushEnemy(e, 2); } }
   if (u.insp==='Rally') actives().filter(a=>a!==u && a.alive).forEach(a=>addStress(a,-2));
   if (u.focus > 0) u.focus--;
   if (u.earplugs > 0) u.earplugs--;
@@ -1502,9 +1638,10 @@ function doAction(u, act, target, forced=false){
 }
 function skill(u, key, t){
   const s = SKILLS[key];
-  const foe = () => (t && t.alive) ? t : pick(foesAlive());
+  const foe = () => reachable(t) ? t : pick(foesHittable());
   const ally = () => (t && t.alive) ? t : u;
   payMP(u, s.mp);
+  G.hitKey = key;
   const pw = 1 + Math.min(.4, u.stress/250);
   const tt = ally();
   switch (key){
@@ -1521,10 +1658,10 @@ function skill(u, key, t){
     case 'hound': log(`${u.name}: Summon Hound.`); hitEnemy(foe(), u.atk*1.2 + u.mag*3.4, {attacker:u});
       addStress(u, 10, 'Summon'); actives().filter(a=>a!==u && a.alive).forEach(a=>addStress(a,-5)); break;
     case 'howl': foesAlive().forEach(e=>e.weak = 3); log(`${u.name}: Howl. Enemy damage −20% for 3 turns.`); break;
-    case 'double': { log(`${u.name}: Double Cut.`); const e = foe(); hitEnemy(e, u.atk*.75, {attacker:u}); hitEnemy(e.alive?e:pick(foesAlive()), u.atk*.75, {attacker:u}); break; }
+    case 'double': { log(`${u.name}: Double Cut.`); const e = foe(); hitEnemy(e, u.atk*.75, {attacker:u}); hitEnemy(reachable(e)?e:pick(foesHittable()), u.atk*.75, {attacker:u}); break; }
     case 'blood': { const c = Math.round(u.hp*.15); u.hp = Math.max(1, u.hp-c); fx(u.id, `−${c}`); log(`${u.name}: Blood Strike (−${c} HP).`); hitEnemy(foe(), u.atk*2.8, {attacker:u}); break; }
     case 'dark': log(`${u.name}: Dark${pw>1.05?` (+${Math.round((pw-1)*100)}% from Stress)`:''}.`); hitEnemy(foe(), u.mag*2.4*pw, {attacker:u, magic:true}); break;
-    case 'darkga': log(`${u.name}: Darkga${pw>1.05?` (+${Math.round((pw-1)*100)}% from Stress)`:''}.`); foesAlive().forEach(e=>hitEnemy(e, u.mag*2.0*pw, {attacker:u, magic:true})); break;
+    case 'darkga': log(`${u.name}: Darkga${pw>1.05?` (+${Math.round((pw-1)*100)}% from Stress)`:''}.`); G.area = true; foesHittable().forEach(e=>hitEnemy(e, u.mag*2.0*pw, {attacker:u, magic:true})); G.area = false; break;
     case 'delayshot': { const e = foe(); log(`${u.name}: Delay Shot.`); hitEnemy(e, u.atk*1.5, {attacker:u}); if (e && e.alive) pushEnemy(e, 2); break; }
     case 'quickshot': log(`${u.name}: Quick Shot.`); hitEnemy(foe(), u.atk*.95, {attacker:u}); break;
     case 'quicksong': tt.ct = Math.max(0, tt.ct - 3*SLOT); log(`${u.name}: Quick Song → ${tt.name} acts 3 slots sooner. +3 Danger.`); addHum(3); break;
@@ -1536,6 +1673,7 @@ function skill(u, key, t){
     case 'foresee': if (G.void.ct != null){ G.void.ct += voidInterval(); log(`${u.name}: Foresee. Next Lost Turn removed.`); } else log(`${u.name}: Foresee. No Lost Turn to remove.`); break;
     case 'blink': tt.blink = true; log(`${u.name}: Blink → ${tt.name} dodges the next hit.`); break;
   }
+  G.hitKey = null;
 }
 function item(u, key, t){
   G.inv[key]--;
@@ -1552,34 +1690,40 @@ function limit(u, t){
   const rand = !!u.aff;
   u.limit = 0;
   log(`${u.name}: Limit Break, ${u.lb}${rand ? ' (Afflicted: random target)' : ''}.`, 'dread');
-  const foe = () => rand ? pick(foesAlive()) : ((t && t.alive) ? t : pick(foesAlive()));
+  const foe = () => rand ? pick(foesHittable()) : (reachable(t) ? t : pick(foesHittable()));
   const others = () => actives().filter(a=>a!==u && a.alive);
-  const rndHits = (n, mult) => { for (let i=0;i<n;i++){ const e = pick(foesAlive()); if (e) hitEnemy(e, u.atk*mult, {attacker:u}); } };
+  const rndHits = (n, mult) => { for (let i=0;i<n;i++){ const e = pick(foesHittable()); if (e) hitEnemy(e, u.atk*mult, {attacker:u}); } };
+  const area = fn => { G.area = true; foesHittable().forEach(fn); G.area = false; };
+  G.hitKey = 'limit';
   switch (u.id){
     case 'kiri': actives().filter(a=>a.alive).forEach(a=>heal(a, a.maxhp*.3)); others().forEach(a=>addStress(a,-30)); addHum(15); break;
     case 'natsu': actives().forEach(a=>{ if (a.alive) heal(a, a.maxhp*.5); else if (!a.fled){ a.alive = true; a.hp = Math.round(a.maxhp*.25); a.ct = 3*tickOf(a); log(`${a.name} revived at ${a.hp} HP.`); } }); break;
-    case 'tetsugi': { const e = foe(); for (let i=0;i<4;i++) hitEnemy(e && e.alive ? e : pick(foesAlive()), u.atk*1.1, {attacker:u}); break; }
+    case 'tetsugi': { const e = foe(); for (let i=0;i<4;i++) hitEnemy(reachable(e) ? e : pick(foesHittable()), u.atk*1.1, {attacker:u}); break; }
     case 'miren': rndHits(3, 1.6); break;
-    case 'goku': foesAlive().forEach(e=>hitEnemy(e, u.mag*3.6, {attacker:u, magic:true})); break;
+    case 'goku': area(e=>hitEnemy(e, u.mag*3.6, {attacker:u, magic:true})); break;
     case 'hisui': rndHits(5, 1.1); break;
-    case 'kuro': foesAlive().forEach(e=>hitEnemy(e, u.mag*3.4, {attacker:u, magic:true})); { const c = Math.round(u.hp*.2); u.hp = Math.max(1, u.hp-c); log(`Kuro −${c} HP.`); } break;
+    case 'kuro': area(e=>hitEnemy(e, u.mag*3.4, {attacker:u, magic:true})); { const c = Math.round(u.hp*.2); u.hp = Math.max(1, u.hp-c); log(`Kuro −${c} HP.`); } break;
     case 'ren': rndHits(6, .9); break;
-    case 'sayo': foesAlive().forEach(e=>pushEnemy(e, 3)); others().forEach(a=>addStress(a,-15)); break;
+    case 'sayo': foesHittable().forEach(e=>pushEnemy(e, 3)); others().forEach(a=>addStress(a,-15)); break;
     case 'kugai': hitEnemy(foe(), u.atk*4.5, {attacker:u}); others().forEach(a=>addStress(a,-20)); break;
     case 'fuyori': actives().filter(a=>a.alive).forEach(a=>{ heal(a, a.maxhp*.25); addStress(a,-25); }); break;
-    case 'shio': foesAlive().forEach(e=>pushEnemy(e, 3)); actives().filter(a=>a.alive).forEach(a=>a.focus = Math.max(a.focus, 2)); log('Party crits for 2 turns.'); break;
+    case 'shio': foesHittable().forEach(e=>pushEnemy(e, 3)); actives().filter(a=>a.alive).forEach(a=>a.focus = Math.max(a.focus, 2)); log('Party crits for 2 turns.'); break;
   }
+  G.hitKey = null;
 }
+// A foe whose script sets landProof can't be hit by a landing (the Lake Hen is under the splash, not in it).
+const landable = e => reachable(e) && !SCRIPTS[e.key].landProof;
 function land(u){
-  const t = (u.jumpTarget && u.jumpTarget.alive) ? u.jumpTarget : pick(foesAlive());
+  const t = landable(u.jumpTarget) ? u.jumpTarget : pick(foesHittable().filter(landable));
   u.airborne = false; u.jumpTarget = null;
   log(`${u.name} lands.`);
-  hitEnemy(t, u.atk*3.2, {attacker:u});
+  if (t) hitEnemy(t, u.atk*3.2, {attacker:u}); else log(`${u.name} lands with nothing under him.`);
   addStress(u, 15, 'landing');
   u.ct = 3 * tickOf(u);
+  hookFoes('onLand', u);
 }
 function targetFor(type){
-  if (type==='enemy') return pick(foesAlive());
+  if (type==='enemy') return pick(foesHittable());
   if (type==='ally') return pick(actives().filter(a=>a.alive && !a.airborne));
   if (type==='ko') return actives().find(a=>!a.alive && !a.fled) || null;
   return null;
@@ -1593,7 +1737,7 @@ function afflictionTurn(u){
       if ((act.kind==='item' && !G.inv[act.key]) || act.kind==='limit') act = {kind:'attack'};
       const s = act.kind==='skill' ? SKILLS[act.key] : act.kind==='item' ? ITEMS[act.key] : {target: act.kind==='attack' ? 'enemy' : 'none'};
       let t = targetFor(s.target);
-      if (s.target==='ko' && !t){ act = {kind:'attack'}; t = pick(foesAlive()); }
+      if (s.target==='ko' && !t){ act = {kind:'attack'}; t = pick(foesHittable()); }
       log(`${u.name} is Berserk and repeats the last command.`, 'dread');
       doAction(u, act, t, true); return true;
     }
@@ -1640,13 +1784,75 @@ const unplugged = () => targetsForFoes().filter(t=>!(t.earplugs > 0));
 // Stress still needed to reach the next Stress Check (100) or flee (200).
 const toBrink = t => (t.stress < 100 ? 100 : 200) - t.stress;
 const nearBrink = (ts, n) => ts.some(t=>toBrink(t) <= n);
-const SINGLE = ['random','lowest','fastest','biggest','stress','brink','last','mark','next','unblinked','uncountered','fastestCold'];
+const SINGLE = ['random','lowest','fastest','biggest','stress','brink','last','mark','next','unblinked','uncountered','fastestCold','summoner'];
 const LATE_TEXT = { last:'whoever acted last', next:'whoever acts next' };
 const TARGET_TEXT = { random:'Random ally', lowest:'Lowest-HP% ally', fastest:'Fastest ally', biggest:'Highest max HP ally',
   stress:'Ally closest to a Stress Check or fleeing (can hear sound)', brink:'Ally closest to a Stress Check or fleeing',
   last:'Ally who acted last', mark:'Marked ally', next:'Ally whose turn comes next', unblinked:'Random ally without Blink',
   uncountered:'Highest max HP ally without Counter ready', fastestCold:'Fastest ally below +30% crit damage',
-  all:'All allies', none:'—', foe:'Another enemy' };
+  summoner:'Goku (random ally if she is not standing)', mirror:'Mirrors its original\'s last target', all:'All allies', none:'—', foe:'Another enemy' };
+// Bring a defeated foe back (a relit Wick, a rewound wolf, a chick called again).
+function reviveFoe(x, pct, ct = 2*SLOT){
+  x.alive = true; x.hp = Math.max(1, Math.round(x.maxhp*pct)); x.ct = ct; x.brk = 0; x.broken = 0; x.breakImm = 0; x.sleep = 0; x.plan = planNext(x);
+}
+function healFoe(x, n){
+  if (!x || !x.alive) return 0;
+  const h = Math.min(x.maxhp - x.hp, Math.round(n)); x.hp += h; fx(x.id, `+${h}`, 'heal'); log(`${x.name} +${h} HP.`, 'foe'); return h;
+}
+const wolfOf = () => G.enemies.find(x=>x.key==='wolf');
+const chicks = () => G.enemies.filter(x=>x.key==='chick' && x.alive);
+const wicksLit = () => G.enemies.filter(x=>x.key==='wick' && x.alive);
+const gokuUp = () => targetsForFoes().some(t=>t.id==='goku');
+const peltOpen = e => (e.hold > 0 && gokuUp()) || !!e.worn;
+const offCourse = () => { const h = G.enemies.find(x=>x.key==='hull'); return !h || !h.alive || h.off; };
+function surface(e, why){
+  e.up = true; const n = chicks().length;
+  log(`${why}. She can be hit until her next turn.`, 'foe');
+  targetsForFoes().forEach(t=>addStress(t, 10, 'saw the Lake Hen'));
+  if (n){ const h = Math.min(e.maxhp - e.hp, Math.round(e.maxhp*.1*n)); e.hp += h; fx(e.id, `+${h}`, 'heal'); log(`${n} Wet Chick${n>1?'s':''} climb${n>1?'':'s'} onto her back: +${h} HP.`, 'foe'); }
+}
+/* Your Own Tracks: each copy repeats its original's last command, turned back on the party.
+   An attack on a copy comes back at that copy's original; a heal or buff on an ally goes to that ally's copy. */
+const tracksOf = id => G.enemies.find(x=>x.key==='tracks' && x.of===id && x.alive);
+const originOf = e => byId(e.of);
+const actName = a => a.kind==='skill' ? SKILLS[a.key].name : a.kind==='item' ? ITEMS[a.key].name : a.kind==='limit' ? 'Limit Break' : a.kind==='defend' ? 'Defend' : 'Attack';
+const MIRROR = {
+  attack:{ hit:1.8 }, limit:{ hit:3.0 }, spiral:{ hit:()=>1.4*(1 + G.hum/100) }, quick:{ hit:1.0 }, quickshot:{ hit:.95 }, double:{ hit:.75, times:2 },
+  blood:{ hit:2.8, self:.15 }, delayshot:{ hit:1.5, push:2 }, hound:{ raw:e=>e.atk*1.2 + e.mag*3.4 }, dark:{ raw:e=>e.mag*2.4 }, acid:{ raw:e=>e.mag*1.6 },
+  darkga:{ raw:e=>e.mag*2.0, all:true }, jump:{ jump:true }, defend:{ guard:true }, counter:{ counter:true }, chakra:{ selfHeal:.25 },
+  cure:{ heal:e=>e.mag*3.2 }, potion:{ heal:()=>150 }, phoenix:{ revive:.3 }, cover:{ cover:true }, blink:{ blink:true }, quicksong:{ quick:3 }, lullaby:{ hum:10 },
+};
+const mirrorOf = a => MIRROR[a.kind==='skill' || a.kind==='item' ? a.key : a.kind] || {};
+const hostile = m => !!(m.hit || m.raw || m.jump);
+function mirrorTarget(e){
+  const o = originOf(e), lt = o.lastT, ts = targetsForFoes();
+  if (hostile(mirrorOf(o.last))){ const t = lt && lt.key==='tracks' ? byId(lt.of) : null; return ts.includes(t) ? t : null; }
+  return (lt && lt.side==='party' && tracksOf(lt.id)) || e;
+}
+function mirrorRun(e){
+  const o = originOf(e), a = o.last;
+  if (e.air){ const t = targetsForFoes().includes(e.landOn) ? e.landOn : pick(targetsForFoes()); e.air = false; e.landOn = null; log(`${e.name} lands.`, 'foe'); if (t) hitParty(t, e.atk*3.2, {src:e}); return; }
+  if (!a){ log(`${e.name} waits to see what ${o.name} does.`, 'foe'); return; }
+  const m = mirrorOf(a), t = mirrorTarget(e);
+  log(`It does what ${o.name} did: ${actName(a)}.`, 'foe');
+  if (m.jump){ e.air = true; e.landOn = t || pick(targetsForFoes()); log(`${e.name} leaps out of reach.`, 'foe'); return; }
+  if (m.hit || m.raw){
+    const raw = () => m.raw ? m.raw(e) : e.atk * (typeof m.hit==='function' ? m.hit() : m.hit);
+    (m.all ? targetsForFoes() : [t || pick(targetsForFoes())]).forEach(x=>{ for (let i=0; i<(m.times||1); i++) if (x && x.alive){ const b = x.blink; hitParty(x, raw(), {src:e}); if (m.push && x.alive && !b) delayUnit(x, m.push); }
+      if (x && x.alive) addStress(x, 10, `${o.name}'s own move`); });
+    if (m.self){ const c = Math.round(e.hp*m.self); e.hp = Math.max(1, e.hp - c); log(`${e.name} pays ${c} HP.`, 'foe'); }
+  }
+  else if (m.guard){ e.defending = true; log(`${e.name} braces: half damage until its next turn.`, 'foe'); }
+  else if (m.heal) healFoe(t, m.heal(e));
+  else if (m.selfHeal) healFoe(e, e.maxhp*m.selfHeal);
+  else if (m.revive){ const d = G.enemies.find(x=>x.key==='tracks' && !x.alive); if (d){ reviveFoe(d, m.revive); log(`${d.name} gets up at ${d.hp} HP.`, 'foe'); } }
+  else if (m.counter){ e.counter = true; log(`${e.name} is ready to strike back until its next turn.`, 'foe'); }
+  else if (m.cover){ t.cover = true; log(`${t.name}'s next hit taken is halved.`, 'foe'); }
+  else if (m.blink){ t.blink = true; log(`${t.name} will dodge the next hit.`, 'foe'); }
+  else if (m.quick){ t.ct = Math.max(0, t.ct - m.quick*SLOT); log(`${t.name} acts ${m.quick} slots sooner.`, 'foe'); }
+  else if (m.hum){ addHum(m.hum); log(`Nothing in the other tracks is tired. +${m.hum} Danger.`, 'foe'); }
+  else log('Turned around, it does nothing.', 'foe');
+}
 const SCRIPTS = {
   widow:{
     phases:[ {id:'p1', label:'Above 50% HP'},
@@ -1849,6 +2055,197 @@ const SCRIPTS = {
       gaze:{name:'Gaze', rank:3, tags:['Mark'], target:'unblinked', noProvoke:true, power:'—', desc:'Marks a target. Next turn it Devours them.', run:(e,t)=>{ e.mark = t; log(`${t.name} is marked.`); }},
       devour:{name:'Devour', rank:3, tags:['Physical'], target:'mark', power:'6.0× ATK', desc:'Massive damage to the marked ally. Misses if they are airborne; Blink dodges it.',
         run:(e,t)=>{ e.mark = null; if (t.airborne){ log(`Devour misses: ${t.name} is airborne.`); return; } hitParty(t, e.atk*6.0, {src:e}); }} } },
+  /* ---------- Disc 1 chapter bosses ---------- */
+  well:{
+    notes:['The tutorial fight. No tricks beyond the turn order and Stress.'],
+    rules:[ {label:'This is its 3rd, 6th, 9th… turn', when:(e,n)=>n%3===0, skill:'note'},
+            {label:'Otherwise', roll:[[40,'draw'],[60,'bucket']]} ],
+    skills:{
+      draw:{name:'Spiral Draw', rank:3, tags:['Physical','Delay'], target:'random', power:'0.6× ATK', desc:'The water turns: damage, and the target is pulled back 2 slots (+8 Stress).',
+        run:(e,t)=>{ const b = t.blink; hitParty(t, e.atk*.6, {src:e}); if (t.alive && !b) delayUnit(t, 2); }},
+      bucket:{name:'Bucket', rank:3, tags:['Physical'], target:'random', power:'1.4× ATK', desc:'10% crit chance.', run:(e,t)=>hitParty(t, e.atk*1.4, {crit:Math.random()<e.crit, src:e})},
+      note:{name:'The Note', rank:4, tags:['Sound','Stress'], sound:true, target:'all', power:'—', desc:'+10 Stress to each ally. +4 Danger.',
+        run:()=>{ targetsForFoes().forEach(t=>addStress(t, 10, 'The Note', {sound:true})); addHum(4); }} } },
+  wolf:{
+    notes:['It shares the fight with The Dead Wolf, its second slot in the turn order.','When it falls, The Dead Wolf\'s turn comes forward to within 1 slot.','Each time it gets up again, its ATK rises 20%.'],
+    status:e=>e.revived ? `Got up ${e.revived}× · ATK ${e.atk}` : '',
+    // The dead slot hurries: it acts within 1 slot of the wolf falling.
+    onDown:()=>{ const d = foeOf('wolfdead'); if (d){ d.ct = Math.min(d.ct, SLOT); d.plan = planNext(d); log('The Dead Wolf\'s turn comes forward.', 'foe'); } },
+    rules:[ {label:'Every turn', roll:[[65,'bite'],[35,'hamstring']]} ],
+    skills:{
+      bite:{name:'Bite', rank:3, tags:['Physical'], target:'random', power:'1.5× ATK', desc:'12% crit chance.', run:(e,t)=>hitParty(t, e.atk*1.5, {crit:Math.random()<e.crit, src:e})},
+      hamstring:{name:'Hamstring', rank:3, tags:['Physical','Delay'], target:'lowest', power:'0.9× ATK', desc:'Pushes the ally with the lowest HP% back 1 slot (+4 Stress).',
+        run:(e,t)=>{ const b = t.blink; hitParty(t, e.atk*.9, {src:e}); if (t.alive && !b) delayUnit(t, 1); }} } },
+  wolfdead:{
+    notes:['It takes no damage. Any hit pins it until its next turn.','On its turn: with the wolf down and the slot pinned, the wolf stays dead and the fight ends. With the wolf down and no pin, the wolf gets up. With the wolf up, it counts back and the pin wears off.'],
+    status:e=>e.pinned ? 'Pinned until its next turn' : 'Not pinned',
+    hpOf:()=>({ hp:0, max:1, text:'Already dead' }),
+    onDamage:e=>{ if (!e.pinned) log(`${e.name} is pinned until its next turn.`, 'foe'); e.pinned = true; fx(e.id, 'Pinned'); return 0; },
+    rules:[ {label:'The wolf is down and this slot is pinned', react:true, when:e=>!wolfOf().alive && e.pinned, skill:'still'},
+            {label:'The wolf is down', react:true, when:()=>!wolfOf().alive, skill:'rewind'},
+            {label:'Otherwise', skill:'count'} ],
+    skills:{
+      still:{name:'Stays Dead', rank:3, tags:['Defeat'], target:'none', power:'—', desc:'Pinned while the wolf is down: the wolf stays dead, and its second slot closes. You win.',
+        run:e=>{ e.pinned = false; e.alive = false; e.hp = 0; log('The wolf stays down. Its second slot closes.', 'foe'); }},
+      rewind:{name:'Rewind', rank:3, tags:['Heal','Stress'], target:'all', power:'—', desc:'The wolf gets up at 75% HP with ATK +20% for each time it has. +8 Stress to each ally.',
+        run:()=>{ const w = wolfOf(); w.revived = (w.revived||0) + 1; w.atk = Math.round(FOES.wolf.atk*(1 + .2*w.revived)); reviveFoe(w, .75);
+          log(`The Rewound Wolf gets up at ${w.hp} HP.`, 'foe'); targetsForFoes().forEach(t=>addStress(t, 8, 'Rewind')); }},
+      count:{name:'Count Back', rank:3, tags:['Stress'], target:'all', power:'—', desc:'+6 Stress to each ally. A pin wears off.',
+        run:e=>{ if (e.pinned) log(`The pin on ${e.name} wears off.`); e.pinned = false; targetsForFoes().forEach(t=>addStress(t, 6, 'Count Back')); }} } },
+  hen:{
+    notes:['Underwater she can\'t be targeted. Miren landing from Jump splashes her up until her next turn; his landing hit never reaches her.','Each time she surfaces, everyone who sees her gains 10 Stress.','Every 4th turn she comes up for air on her own.','At the start of each of her turns she calls a Wet Chick, up to 3.'],
+    parts:[ {key:'chick', respawn:0, label:'Wet Chick (one called each of her turns, up to 3)'} ],
+    targetable:e=>!!e.up, hidden:()=>'underwater', landProof:true,
+    status:e=>e.up ? 'Surfaced until her next turn' : '',
+    onTurn:e=>{
+      if (e.up){ e.up = false; log('The Lake Hen sinks back under.', 'foe'); }
+      if (chicks().length < 3){ const c = G.enemies.find(x=>x.key==='chick' && !x.alive); if (c){ reviveFoe(c, 1); log(`${c.name} climbs out of the lake.`, 'foe'); } else spawnPart(e, 'chick', SLOT*2); } },
+    onLand:(e,u)=>surface(e, `${u.name}'s splash brings the Lake Hen up`),
+    rules:[ {label:'This is its 4th, 8th, 12th… turn', when:(e,n)=>n%4===0, skill:'air'}, {label:'Otherwise', skill:'peck'} ],
+    skills:{
+      peck:{name:'Peck', rank:4, tags:['Physical'], target:'lowest', power:'1.5× ATK', desc:'From under the water, at the ally with the lowest HP%.', run:(e,t)=>hitParty(t, e.atk*1.5, {crit:Math.random()<e.crit, src:e})},
+      air:{name:'Come Up for Air', rank:4, tags:['Heal'], target:'none', power:'—', desc:'She surfaces until her next turn and can be hit: +10 Stress to each ally. Each Wet Chick alive heals her 10% HP.', run:e=>surface(e, 'The Lake Hen comes up for air')} } },
+  chick:{
+    rules:[ {label:'Every turn', roll:[[60,'peep'],[40,'hum']]} ],
+    skills:{
+      peep:{name:'Peep', rank:3, tags:['Physical'], target:'random', power:'1.0× ATK', desc:'A light, wet peck.', run:(e,t)=>hitParty(t, e.atk, {src:e})},
+      hum:{name:'Hum', rank:3, tags:['Sound','Stress'], sound:true, target:'stress', noProvoke:true, power:'—', desc:'+8 Stress to the ally closest to a Stress Check who can hear it.', run:(e,t)=>{ if (t) addStress(t, 8, 'Hum', {sound:true}); }} } },
+  pelt:{
+    notes:['Empty, it takes no damage.','Summon Hound bites in and holds it open for 2 of its turns: every hit lands, Goku can\'t act, and it thrashes at her. The hold ends early if Goku falls.','On its 4th, 8th… turn it puts on the ally with the lowest HP%, and can be hurt until its next turn.'],
+    init:e=>{ e.hold = 0; e.worn = null; },
+    status:e=>e.hold > 0 && gokuUp() ? `Held open by the hound for ${e.hold} more of its turns` : e.worn ? `Wearing ${e.worn.name}: takes damage until its next turn` : 'Empty: takes no damage',
+    onDamage:(e,d,src)=>{
+      if (src.key==='hound' && !(e.hold > 0)){ e.hold = 2; e.plan = planNext(e); log('The hound bites in and holds the Pelt open. Goku holds the leash.', 'foe'); }
+      if (peltOpen(e)) return d;
+      log(`${e.name} is empty: the hit passes through.`); fx(e.id, 'Empty'); return 0; },
+    holds:(e,u)=>u.id==='goku' && e.hold > 0,
+    holdText:()=>'Goku holds the hound\'s leash and can\'t act.',
+    onTurn:e=>{
+      if (e.worn){ log(`The Pelt slips off ${e.worn.name}.`, 'foe'); e.worn = null; }
+      if (e.hold > 0 && !gokuUp()){ e.hold = 0; log('With Goku down, the hound lets go.', 'foe'); } },
+    afterTurn:e=>{ if (e.hold > 0 && --e.hold === 0) log('The hound lets go. The Pelt is empty again.', 'foe'); },
+    rules:[ {label:'The hound holds it open (it thrashes at Goku)', react:true, when:e=>e.hold > 0 && gokuUp(), skill:'thrash'},
+            {label:'This is its 4th, 8th, 12th… turn', when:(e,n)=>n%4===0, skill:'wear'},
+            {label:'Otherwise', skill:'sleeve'} ],
+    skills:{
+      sleeve:{name:'Empty Sleeve', rank:3, tags:['Physical','Stress'], target:'random', power:'1.3× ATK', desc:'The arm is a person\'s: damage and +8 Stress. 10% crit chance.',
+        run:(e,t)=>{ hitParty(t, e.atk*1.3, {crit:Math.random()<e.crit, src:e}); if (t.alive) addStress(t, 8, 'Empty Sleeve'); }},
+      thrash:{name:'Thrash', rank:3, tags:['Physical'], target:'summoner', noProvoke:true, power:'1.3× ATK', desc:'Held open, it fights the hound through Goku.', run:(e,t)=>hitParty(t, e.atk*1.3, {src:e})},
+      wear:{name:'Put On', rank:3, tags:['Physical','Stress'], target:'lowest', power:'0.8× ATK', desc:'Damage and +15 Stress to the ally with the lowest HP%. Full, it takes damage until its next turn.',
+        run:(e,t)=>{ const b = t.blink; hitParty(t, e.atk*.8, {src:e}); if (t.alive && !b){ addStress(t, 15, 'Put On'); e.worn = t; log(`The Pelt puts on ${t.name}. Full, it can be hurt until its next turn.`, 'foe'); } }} } },
+  lamp:{
+    notes:['It takes no damage while any Wick is lit.','When the last Wick goes out it is dark for 2 of its turns and takes damage; after the second, it relights every Wick.'],
+    parts:[ {key:'wick', respawn:0, label:'Wick ×3 (relit by the other Wicks, or by the Hollow when the dark ends)'} ],
+    init:e=>{ e.dark = 0; },
+    status:e=>e.dark > 0 ? `Dark for ${e.dark} more of its turns: takes damage` : `${wicksLit().length} Wick${wicksLit().length===1?'':'s'} lit: takes no damage`,
+    onDamage:(e,d)=>{ if (e.dark > 0) return d; log(`A Wick is still lit: ${e.name} takes no damage.`); fx(e.id, 'Lit'); return 0; },
+    afterTurn:e=>{ if (e.dark > 0 && --e.dark === 0){ G.enemies.filter(x=>x.key==='wick').forEach(x=>reviveFoe(x, 1)); log('The Lamp Hollow relights every Wick.', 'foe'); } },
+    rules:[ {label:'It is dark', react:true, when:e=>e.dark > 0, skill:'grope'},
+            {label:'This is its 3rd, 6th, 9th… turn', when:(e,n)=>n%3===0, skill:'smoke'},
+            {label:'Otherwise', skill:'flare'} ],
+    skills:{
+      flare:{name:'Flare', rank:3, tags:['Physical'], target:'random', power:'1.5× ATK', desc:'10% crit chance.', run:(e,t)=>hitParty(t, e.atk*1.5, {crit:Math.random()<e.crit, src:e})},
+      smoke:{name:'Lamp Smoke', rank:3, tags:['Stress'], target:'all', power:'—', desc:'Smoke from something that isn\'t oil: +14 Stress to each ally. +4 Danger.',
+        run:()=>{ targetsForFoes().forEach(t=>addStress(t, 14, 'Lamp Smoke')); addHum(4); }},
+      grope:{name:'Grope', rank:3, tags:['Physical'], target:'random', power:'1.0× ATK', desc:'In the dark, it feels for someone.', run:(e,t)=>hitParty(t, e.atk*1.0, {src:e})} } },
+  wick:{
+    notes:['An all-enemy attack (Darkga, an all-enemy Limit Break) can\'t put out a Wick at full HP: it stays lit at 1 HP.','While another Wick is out, its turn relights one at full HP and halves its own HP.'],
+    onDamage:(e,d,src)=>{ if (src.area && e.hp === e.maxhp && d >= e.hp){ log(`${e.name} was at full flame: it gutters but stays lit.`); return e.hp - 1; } return d; },
+    onDown:e=>{ const l = parentOf(e); if (l && l.alive && !wicksLit().length){ l.dark = 2; l.plan = planNext(l); log('Every Wick is out. The Lamp Hollow goes dark for 2 of its turns.', 'foe'); } },
+    rules:[ {label:'Another Wick is out', react:true, when:()=>G.enemies.some(x=>x.key==='wick' && !x.alive), skill:'relight'},
+            {label:'Otherwise', roll:[[55,'gutter'],[45,'spit']]} ],
+    skills:{
+      relight:{name:'Relight', rank:3, tags:['Heal'], target:'none', power:'—', desc:'Relights one Wick that is out, at full HP, from its own flame: this Wick drops to half its HP.',
+        run:e=>{ const x = G.enemies.find(x=>x.key==='wick' && !x.alive); if (!x) return; reviveFoe(x, 1); e.hp = Math.max(1, Math.ceil(e.hp/2)); fx(e.id, 'Half'); log(`${x.name} is lit again from ${e.name}'s flame (${e.name} drops to ${e.hp} HP).`, 'foe'); }},
+      gutter:{name:'Gutter', rank:3, tags:['Physical','Stress'], target:'random', power:'0.7× ATK', desc:'Damage and +6 Stress.', run:(e,t)=>{ hitParty(t, e.atk*.7, {src:e}); if (t.alive) addStress(t, 6, 'Gutter'); }},
+      spit:{name:'Spit Oil', rank:3, tags:['Physical'], target:'random', power:'1.2× ATK', desc:'It isn\'t oil.', run:(e,t)=>hitParty(t, e.atk*1.2, {src:e})} } },
+  rested:{
+    notes:['Four identical sleepers. One is the original, and only it takes damage. They all show its HP.','A hit on a copy wakes it and shows it is a copy, but splits off a new sleeper (up to 6 bodies).','At the start of each sleeper\'s turn, the original rests: +1.5% HP. Sleeping copies take no turns, so they don\'t rest it.','Kiri\'s Lullaby puts every copy to sleep for 2 of its turns. The original never sleeps.','When the original falls, the copies go with it.'],
+    init:e=>{ e.seen = null; if (!G.enemies.some(x=>x.original)) pick(G.enemies.filter(x=>x.key==='rested')).original = true; },
+    hpOf:()=>{ const o = G.enemies.find(x=>x.original); return { hp:o.hp, max:o.maxhp, text:`HP ${o.hp}/${o.maxhp}` }; },
+    status:e=>e.seen==='copy' ? 'A copy' : e.seen==='original' ? 'The original' : '',
+    onTurn:()=>{ const o = G.enemies.find(x=>x.original); if (o && o.alive && o.hp < o.maxhp){ const h = Math.min(o.maxhp - o.hp, Math.round(o.maxhp*.015)); o.hp += h; log(`The sleepers rest (+${h} HP).`, 'foe'); } },
+    onDamage:(e,d)=>{
+      if (e.original){ e.seen = 'original'; return d; }
+      e.seen = 'copy'; if (e.sleep){ e.sleep = 0; e.plan = planNext(e); }
+      if (G.enemies.filter(x=>x.key==='rested' && x.alive).length < 6){ const c = spawnPart(e, 'rested', SLOT*2); c.parentId = null; c.seen = null; log(`It was a copy. A new sleeper rolls out of it.`, 'foe'); }
+      else log('It was a copy. There is no room for another.', 'foe');
+      fx(e.id, 'A copy'); return 0; },
+    onPartyAct:(e,u,act)=>{ if (act.kind!=='skill' || act.key!=='lullaby') return;
+      if (e.original){ e.seen = 'original'; log('One of the sleepers does not close its eyes.', 'foe'); } else { e.sleep = 2; e.seen = 'copy'; } },
+    onDown:e=>{ if (!e.original) return; G.enemies.filter(x=>x.key==='rested' && x.alive).forEach(x=>{ x.alive = false; x.hp = 0; }); log('The copies stop breathing with it.', 'foe'); },
+    rules:[ {label:'Every turn', roll:[[65,'yawn'],[35,'snore']]} ],
+    skills:{
+      yawn:{name:'Yawn', rank:3, tags:['Physical'], target:'random', power:'0.9× ATK', desc:'Damage, and a 10% chance of Sleep: the target loses their next turn unless a hit wakes them first.',
+        run:(e,t)=>{ hitParty(t, e.atk*.9, {src:e}); if (t.alive && Math.random() < .1){ t.sleep = 1; log(`${t.name} falls asleep.`, 'dread'); } }},
+      snore:{name:'Snore', rank:3, tags:['Sound','Stress'], sound:true, target:'all', power:'—', desc:'+10 Stress to each ally who can hear it.', run:()=>targetsForFoes().forEach(t=>addStress(t, 10, 'Snore', {sound:true}))} } },
+  tracks:{
+    notes:['A copy of each of the three you brought, with their stats and 130% of their HP.','Each attack it copies also adds 10 Stress to whoever it hits.','On its turn a copy does what its original did on their last turn. If you attacked Natsu\'s copy, your copy attacks Natsu. A heal on an ally heals that ally\'s copy. Defend makes it brace.','Commands with nothing to copy (Soothe, Howl, Counter-Melody, Provoke, Mix, Foresee, Earplugs) do nothing when it repeats them.'],
+    init:(e,i)=>{ const o = actives()[i]; Object.assign(e, { of:o.id, name:`${o.name}'s Tracks`, maxhp:Math.round(o.maxhp*1.3), hp:Math.round(o.maxhp*1.3), atk:o.atk, def:o.def, mdef:o.def, mag:o.mag, agi:o.agi }); },
+    targetable:e=>!e.air, hidden:()=>'in the air',
+    status:e=>{ const o = originOf(e); return `Copies ${o.name}: ${o.last ? actName(o.last) : 'nothing yet'}`; },
+    planName:e=>e.air ? 'Landing' : originOf(e).last ? actName(originOf(e).last) : 'Wait',
+    planText:e=>{ const o = originOf(e); if (e.air) return `Landing → ${e.landOn ? e.landOn.name : 'random ally'}`; if (!o.last) return 'Wait';
+      const m = mirrorOf(o.last), t = mirrorTarget(e); return `${actName(o.last)} → ${m.all ? 'all' : t ? t.name : hostile(m) ? 'random ally' : e.name}`; },
+    onTurn:e=>{ e.defending = false; e.counter = false; },
+    onDamage:(e,d,src)=>{
+      if (e.blink){ e.blink = false; fx(e.id, 'Dodge'); log(`${e.name} dodges.`); return 0; }
+      if (e.defending) d = Math.round(d/2);
+      if (e.cover){ e.cover = false; d = Math.round(d/2); log(`Cover halves the damage to ${e.name}.`); }
+      if (e.counter && src.attacker && src.attacker.alive && d < e.hp){ log(`${e.name} counters ${src.attacker.name}.`, 'foe'); hitParty(src.attacker, e.atk*1.6); }
+      return d; },
+    rules:[ {label:'Every turn', skill:'follow'} ],
+    skills:{
+      follow:{name:'Follow', rank:3, rankOf:e=>{ const a = originOf(e).last; return e.air || !a ? 3 : a.kind==='skill' ? (a.key==='jump' ? 5 : SKILLS[a.key].delay) : a.kind==='limit' ? 4 : 3; },
+        tags:['Mirror'], target:'mirror', power:'As its original\'s command', desc:'Repeats its original\'s last command at the same power, turned back on the party. Its Delay is that command\'s Delay.', run:e=>mirrorRun(e)} } },
+  helmsman:{
+    notes:['While the ship is on course he can\'t be targeted.','Any push on the Hull throws the ship off course until his next turn. If the Hull is destroyed, the ship stays off course.'],
+    parts:[ {key:'hull', respawn:0, label:'The Hull'} ],
+    targetable:()=>offCourse(), hidden:()=>'at the helm, on course',
+    status:()=>offCourse() ? 'Off course: he can be hit' : '',
+    onTurn:()=>{ const h = foeOf('hull'); if (h && h.off){ h.off = false; log('The Helmsman brings the ship back on course.', 'foe'); } },
+    rules:[ {label:'This is its 4th, 8th, 12th… turn', when:(e,n)=>n%4===0, skill:'correct'},
+            {label:'Otherwise', roll:[[60,'pin'],[40,'route']]} ],
+    skills:{
+      correct:{name:'Course Correction', rank:3, tags:['Physical'], target:'all', power:'1.1× ATK', desc:'The ship heels over: damage to each ally.', run:e=>targetsForFoes().forEach(t=>hitParty(t, e.atk*1.1, {src:e}))},
+      pin:{name:'Belaying Pin', rank:3, tags:['Physical'], target:'random', power:'1.3× ATK', desc:'10% crit chance.', run:(e,t)=>hitParty(t, e.atk*1.3, {crit:Math.random()<e.crit, src:e})},
+      route:{name:'Same Route', rank:3, tags:['Stress'], target:'brink', power:'—', desc:'+12 Stress to the ally closest to a Stress Check. It has always been this route.', run:(e,t)=>addStress(t, 12, 'Same Route')} } },
+  hull:{
+    notes:['A push on it (Delay Shot, a Limit Break push, Disrupt) throws the ship off course: everyone not Defending is pushed back 2 slots, and the Helmsman can be hit until his next turn.'],
+    status:e=>e.off ? 'Off course until the Helmsman\'s next turn' : 'On course',
+    onPush:e=>{ if (e.off) return; e.off = true; log('The Hull is thrown off course. The deck tilts.', 'foe');
+      targetsForFoes().forEach(t=>{ if (t.defending) log(`${t.name} is braced and keeps their footing.`); else delayUnit(t, 2); }); },
+    onDown:()=>log('The Hull breaks up. With nothing left to steer, the Helmsman stands exposed.', 'foe'),
+    rules:[ {label:'Every turn', roll:[[60,'creak'],[40,'crew']]} ],
+    skills:{
+      creak:{name:'Creak', rank:3, tags:['Physical'], target:'random', power:'1.2× ATK', desc:'A beam swings loose.', run:(e,t)=>hitParty(t, e.atk*1.2, {src:e})},
+      crew:{name:'The Old Crew', rank:3, tags:['Stress'], target:'brink', power:'—', desc:'+10 Stress to the ally closest to a Stress Check: the crew who flew the route before climb out of the planks.', run:(e,t)=>addStress(t, 10, 'The Old Crew')} } },
+  chorister:{
+    notes:['Comes in fours. Each Hymn adds 2 more Stress for every other Chorister still singing.'],
+    rules:[ {label:'This is its 4th, 8th, 12th… turn', when:(e,n)=>n%4===0, skill:'amen'},
+            {label:'Otherwise', roll:[[60,'hymn'],[40,'plate']]} ],
+    skills:{
+      hymn:{name:'Hymn', rank:3, tags:['Sound','Stress'], sound:true, target:'all', power:'—', desc:'+4 Stress to each ally who can hear it, +2 more for each other Chorister still singing (up to +10).',
+        run:e=>{ const n = 4 + 2*G.enemies.filter(x=>x!==e && x.key===e.key && x.alive).length; targetsForFoes().forEach(t=>addStress(t, n, 'Hymn', {sound:true})); }},
+      amen:{name:'Amen', rank:4, tags:['Sound','Stress','Delay'], sound:true, target:'all', power:'—', desc:'+6 Stress and pushed back 1 slot (+4 Stress) for each ally who can hear it.',
+        run:()=>targetsForFoes().forEach(t=>{ if (soundImmune(t)){ log(`${t.name} is immune to sound attacks.`); return; } addStress(t, 6, 'Amen', {sound:true}); delayUnit(t, 1); })},
+      plate:{name:'Collection', rank:3, tags:['Physical'], target:'random', power:'1.6× ATK', desc:'The collection plate, edge first.', run:(e,t)=>hitParty(t, e.atk*1.6, {crit:Math.random()<e.crit, src:e})} } },
+  greyhound:{
+    notes:['It can\'t be KO\'d. Every hit raises its ATK 10% instead.','Goku acts on her own. On her turn, if her Stress is under 50, she calls the hound back one step. Three steps end the fight.','Each of its attacks adds 20 Stress to Goku as well, or 10 if its target is Defending and holds it back.'],
+    init:e=>{ e.steps = 0; },
+    hpOf:e=>({ hp:3 - e.steps, max:3, text:`Steps from Goku: ${3 - e.steps}` }),
+    status:e=>`ATK ${e.atk}`,
+    onDamage:e=>{ e.atk = Math.round(e.atk*1.1); log(`${e.name} can't be hurt. The hit only angers it: ATK ${e.atk}.`, 'foe'); fx(e.id, 'ATK +10%'); return 0; },
+    guestTurn:(e,u)=>{
+      if (u.stress >= 50){ log(`Goku is at ${u.stress} Stress and can't find her voice.`, 'dread'); return; }
+      e.steps++; fx(e.id, `${e.steps}/3`); log(`Goku calls the hound back (${e.steps} of 3).`, 'dread');
+      if (e.steps >= 3){ e.alive = false; e.hp = 0; log('The hound lies down at Goku\'s feet.', 'foe'); } },
+    rules:[ {label:'This is its 3rd, 6th, 9th… turn', when:(e,n)=>n%3===0, skill:'pounce'}, {label:'Otherwise', skill:'bite'} ],
+    skills:{
+      bite:{name:'Bite', rank:3, tags:['Physical','Stress'], target:'random', power:'1.4× ATK', desc:'Damage, and +20 Stress to Goku (+10 if the target is Defending: they hold it back).',
+        run:(e,t)=>{ const held = t.defending; hitParty(t, e.atk*1.4, {crit:Math.random()<e.crit, src:e}); addStress(byId('goku'), held ? 10 : 20, held ? 'the hound, held back' : 'the hound'); }},
+      pounce:{name:'Pounce', rank:3, tags:['Physical','Stress'], target:'lowest', power:'2.0× ATK', desc:'Damage to the ally with the lowest HP%, and +20 Stress to Goku (+10 if the target is Defending).',
+        run:(e,t)=>{ const held = t.defending; hitParty(t, e.atk*2.0, {src:e}); addStress(byId('goku'), held ? 10 : 20, held ? 'the hound, held back' : 'the hound'); }} } },
 };
 function phaseOf(e){ const S = SCRIPTS[e.key]; if (!S.phases) return null; let id = S.phases[0].id; S.phases.forEach(p=>{ if (p.when && p.when(e)) id = p.id; }); return id; }
 function aiTarget(type, e){
@@ -1866,6 +2263,7 @@ function aiTarget(type, e){
     case 'unblinked': return pick(ts.filter(t=>!t.blink).length ? ts.filter(t=>!t.blink) : ts);
     case 'uncountered': { const c = ts.filter(t=>!t.counter); return (c.length ? c : ts).sort((a,b)=>b.maxhp-a.maxhp)[0]; }
     case 'fastestCold': { const c = ts.filter(t=>!(t.bloom >= 3)); return (c.length ? c : ts).sort((a,b)=>b.agi-a.agi)[0]; }
+    case 'summoner': return ts.find(t=>t.id==='goku') || pick(ts);
     default: return null;
   }
 }
@@ -1884,7 +2282,16 @@ function planNext(e){
   }
   return null;
 }
+// What the turn order calls its next action. A sleeping foe shows it; a script can name its own (Your Own Tracks).
+function planName(e){
+  const S = SCRIPTS[e.key];
+  if (e.sleep > 0) return 'Asleep';
+  if (S.planName) return S.planName(e);
+  return e.plan ? S.skills[e.plan.skill].name : '';
+}
 function planText(e){
+  if (e.sleep > 0) return `Next: Asleep (${e.sleep} more of its turns)`;
+  if (SCRIPTS[e.key].planText) return 'Next: ' + SCRIPTS[e.key].planText(e);
   if (!e.plan) return '';
   const sk = SCRIPTS[e.key].skills[e.plan.skill];
   const who = sk.late ? ` → ${LATE_TEXT[sk.target]}` : (e.plan.target ? ` → ${e.plan.target.name}` : (sk.target==='all' ? ' → all' : ''));
@@ -1898,7 +2305,8 @@ function onFoeDown(e){
   const parent = e.parentId && G.enemies.find(x=>x.id===e.parentId);
   const PS = parent && SCRIPTS[parent.key];
   const part = PS && PS.parts && PS.parts.find(p=>p.key===e.key);
-  if (part && parent.alive){ const n = (parent.phase==='p2' && part.respawnP2) || part.respawn; parent.respawn[e.id] = n; log(`${e.name} will re-form in ${n} of ${parent.name}'s turns.`, 'foe'); }
+  if (SCRIPTS[e.key] && SCRIPTS[e.key].onDown) SCRIPTS[e.key].onDown(e);
+  if (part && parent.alive && part.respawn){ const n = (parent.phase==='p2' && part.respawnP2) || part.respawn; parent.respawn[e.id] = n; log(`${e.name} will re-form in ${n} of ${parent.name}'s turns.`, 'foe'); }
   if (e.key==='hellstar' || (SCRIPTS[e.key] && SCRIPTS[e.key].parts)){
     G.enemies.filter(x=>x.parentId===e.id && x.alive && SCRIPTS[e.key].parts && SCRIPTS[e.key].parts.some(p=>p.key===x.key)).forEach(x=>{ x.alive = false; x.hp = 0; log(`${x.name} collapses with ${e.name}.`, 'foe'); });
     e.respawn = {};
@@ -1913,11 +2321,12 @@ function runSkill(e, key, t, ttype){
   } else t = null;
   const line = `${e.name}: ${sk.name}${t ? ' → '+t.name : (sk.target==='all' ? ' → all allies' : '')}.`;
   if (sk.odReset) e.od = 0;
+  const rank = sk.rankOf ? sk.rankOf(e) : sk.rank;
   if (window.RigAnim) RigAnim.play(e.id, key);
   if (sk.sound){ soundAttack(e, sk.name, ()=>{ log(line, 'foe'); sk.run(e, t); }); }
   else { log(line, 'foe'); sk.run(e, t); }
   e.last = key;
-  setDelay(e, sk.rank);
+  setDelay(e, rank);
 }
 // A react rule above the planned one now holds: the plan is stale.
 function reacting(e, n){
@@ -1932,8 +2341,10 @@ function execScripted(e){
     if (e.respawn[id] <= 0){ delete e.respawn[id]; const x = G.enemies.find(y=>y.id===id); const part = S.parts.find(p=>p.key===x.key);
       x.alive = true; x.hp = Math.round(x.maxhp*(part.hpPct||1)); x.ct = 2*SLOT; x.brk = 0; x.broken = 0; x.plan = planNext(x); log(`${x.name} re-forms at ${x.hp} HP.`, 'foe'); }
   });
+  if (e.sleep > 0){ e.sleep--; log(`${e.name} sleeps${e.sleep ? '' : ', and stirs'}.`, 'foe'); setDelay(e, 3); e.plan = planNext(e); return; }
   e.count++;
   if (S.onTurn) S.onTurn(e);
+  if (!e.alive) return;
   // 2. phase gate
   const ph = phaseOf(e);
   if (ph !== e.phase){
@@ -1951,6 +2362,7 @@ function execScripted(e){
   if (!plan || reacting(e, e.count) || (rule && rule.when && !rule.when(e, e.count))) plan = planNext(e) || plan;
   if (!plan){ setDelay(e, 2); return; }
   runSkill(e, plan.skill, plan.target, plan.ttype);
+  if (S.afterTurn && e.alive) S.afterTurn(e);
   // 6. plan the next action
   if (e.alive) e.plan = planNext(e);
 }
@@ -1959,7 +2371,9 @@ function execScripted(e){
 const STORY = { tongue:'Hellstar Remina', widow:'The Thing That Drifted Ashore', sailor:'Gyo', orlen:'Honored Ancestors', organ:'The Human Chair', bell:'Uzumaki',
   leech:'Blood-Slurping Darkness', hand:"A Doll's Hellish Burial", maw:'The Hanging Balloons', shell:'The Earthbound', fencer:'Tomio • Red Turtleneck',
   singer:'Used Record', glass:'The Long Dream', tide:'The Enigma of Amigara Fault', exec:'Headless Sculptures', pilgrim:'Glyceride',
-  hour:'Hellstar Remina', ruri:'Tomie', unwound:'Uzumaki + Hellstar Remina', hellstar:'Hellstar Remina' };
+  hour:'Hellstar Remina', ruri:'Tomie', unwound:'Uzumaki + Hellstar Remina', hellstar:'Hellstar Remina',
+  well:'Uzumaki', wolf:'A Gentle Goodbye', wolfdead:'A Gentle Goodbye', hen:'Gyo', chick:'Gyo', pelt:'Frankenstein', lamp:'Long Hair in the Attic', wick:'Long Hair in the Attic',
+  rested:'The Long Dream', tracks:'The Enigma of Amigara Fault', helmsman:'The Long Dream', hull:'The Long Dream', chorister:'Village of the Sirens', greyhound:'Uzumaki' };
 function scriptInfo(key){
   const S = SCRIPTS[key];
   const skills = {};
@@ -1977,12 +2391,18 @@ function scriptInfo(key){
   Object.values(S.skills).filter(v=>v.late).forEach(v=>notes.push(`${v.name} picks its target when it acts, not when it plans, so the turn order you choose decides who it hits.`));
   if (S.rules.some(r=>r.react)) notes.push('Checks marked "reacts" are re-checked the moment you act and again when it acts, so it can answer a counter you play after it planned.');
   if (Object.values(S.skills).some(v=>v.tags.includes('Combined'))) notes.push('Combined attacks use both actors\' turns: the partner\'s next turn is synced to this one.');
-  const pk = FOES[key].parentKey; if (pk) notes.push(`Part of ${FOES[pk].name}. ${SCRIPTS[pk].parts && SCRIPTS[pk].parts.some(p=>p.key===key) ? 'It re-forms after being defeated and collapses if its parent falls.' : 'It reads its parent\'s HP for its phase.'}`);
+  const pk = FOES[key].parentKey, part = pk && SCRIPTS[pk].parts && SCRIPTS[pk].parts.find(p=>p.key===key);
+  if (pk) notes.push(`Part of ${FOES[pk].name}. ${part ? (part.respawn ? 'It re-forms after being defeated and collapses if its parent falls.' : 'It collapses if its parent falls.') : 'It reads its parent\'s HP for its phase.'}`);
   return { skills, tree, notes, phases:S.phases, parts:S.parts, scripted:true };
+}
+// The HP a foe shows. A script can show something else: copies show the original's HP; the Grey Hound has none to lose.
+function hpOf(e){
+  const S = SCRIPTS[e.key], o = S && S.hpOf && e.alive && S.hpOf(e);
+  return o || { hp:e.hp, max:e.maxhp, text:`HP ${e.hp}/${e.maxhp}` };
 }
 function liveState(e){
   if (!e) return '';
-  const lines = [`HP ${e.hp}/${e.maxhp}${e.alive?'':' · defeated'}`];
+  const lines = [`${hpOf(e).text}${e.alive?'':' · defeated'}`];
   const it = e.alive ? planText(e) : ''; if (it) lines.push(`Next: ${it.replace(/^Next: /,'')}`);
   if (e.alive && SCRIPTS[e.key].status){ const st = SCRIPTS[e.key].status(e); if (st) lines.push(st); }
   if (e.alive && e.plan) lines.push(`Chosen by: ${e.plan.rule}`);
@@ -1996,7 +2416,7 @@ function liveState(e){
   return `<div class="live"><b>This battle</b>${lines.map(l=>`<span>${esc(l)}</span>`).join('')}</div>`;
 }
 function openInfo(key, e){
-  const f = FOES[key], info = SCRIPTS[key] && scriptInfo(key); if (!f || !info) return;
+  const f = e && e.key===key ? Object.assign(foeStats(key), {name:e.name, hp:e.maxhp, atk:e.atk, def:e.def, mdef:e.mdef, agi:e.agi}) : foeStats(key), info = SCRIPTS[key] && scriptInfo(key); if (!f || !info) return;
   const sk = info.skills;
   const act = (k, pct, target) => { const s = sk[k]; return `<div class="act${pct!=null?' pct':''}"><b>${pct!=null?esc(pct)+' · ':''}${esc(s.name)}</b><span>${esc(target || s.target)}</span></div>`; };
   const steps = info.tree.map((st, i) => {
@@ -2023,7 +2443,7 @@ function openInfo(key, e){
       <div class="right">
         <section><h3>${info.scripted ? 'Decision tree · picked at the end of its turn, top to bottom; shown as Next' : 'Decision tree · checked top to bottom each turn'}</h3><div class="dt">${steps}</div></section>
         ${info.phases ? `<section><h3>Phases · checked first on each of its turns</h3><ul class="notes">${info.phases.map(p=>`<li><b>${p.id==='p1'?'Phase 1':'Phase 2'}:</b> ${esc(p.label)}${p.enter && !p.free ? ` · entering uses its turn for ${esc(SCRIPTS[key].skills[p.enter].name)}` : (p.when ? ' · entering is free' : '')}</li>`).join('')}</ul></section>` : ''}
-        ${info.parts ? `<section><h3>Parts</h3><ul class="notes">${info.parts.map(p=>`<li><b>${esc(FOES[p.key].name)}:</b> re-forms ${p.respawn} of its turns after being defeated${p.respawnP2?` (${p.respawnP2} in phase 2)`:''}${p.hpPct?` at ${p.hpPct*100}% HP`:''}. Collapses if ${esc(f.name)} falls.</li>`).join('')}</ul></section>` : ''}
+        ${info.parts ? `<section><h3>Parts</h3><ul class="notes">${info.parts.map(p=>`<li><b>${esc(p.label || FOES[p.key].name)}:</b> ${p.respawn ? `re-forms ${p.respawn} of its turns after being defeated${p.respawnP2?` (${p.respawnP2} in phase 2)`:''}${p.hpPct?` at ${p.hpPct*100}% HP`:''}` : 'does not re-form on its own'}. Collapses if ${esc(f.name)} falls.</li>`).join('')}</ul></section>` : ''}
         <section><h3>Skills</h3><div class="skills">${skills}</div></section>
         <section><h3>Notes</h3><ul class="notes">${notes.map(n=>`<li>${esc(n)}</li>`).join('')}</ul></section>
       </div>
@@ -2091,7 +2511,7 @@ async function processChecks(run){
 async function run(run){
   await processChecks(run);
   while (G.run === run){
-    const alive = foesAlive().length, party = actives().some(u=>u.alive);
+    const alive = foesAlive().length, party = actives().some(u=>u.alive && !u.guest);
     if (!alive || !party){ await finish(alive ? 'lose' : 'win'); return; }
     const u = nextActor(); if (!u) return;
     G.current = u; G.state = 'busy'; G.menu = 'root'; render();
@@ -2112,6 +2532,14 @@ async function run(run){
       await processChecks(run); continue;
     }
     u.defending = false; u.counter = false;
+    if (u.guest){ await sleep(550); if (G.run!==run) return; hookFoes('guestTurn', u); u.ct = 3*tickOf(u); render(); await sleep(450); if (G.run!==run) return; await processChecks(run); continue; }
+    // Sleep (from an enemy) and holds (a script keeping someone busy, like Goku on the hound's leash) use up the turn.
+    const held = !u.airborne && G.enemies.find(e=>e.alive && SCRIPTS[e.key] && SCRIPTS[e.key].holds && SCRIPTS[e.key].holds(e, u));
+    if (u.sleep > 0 || held){
+      await sleep(400); if (G.run!==run) return;
+      if (u.sleep > 0){ u.sleep--; log(`${u.name} is asleep and loses the turn.`, 'dread'); } else log(SCRIPTS[held.key].holdText(held, u), 'dread');
+      u.ct = 3*tickOf(u); render(); await sleep(400); if (G.run!==run) return; await processChecks(run); continue;
+    }
     if (u.airborne){ await sleep(400); if (G.run!==run) return; land(u); render(); await sleep(400); if (G.run!==run) return; await processChecks(run); continue; }
     if (afflictionTurn(u)){ render(); await sleep(700); if (G.run!==run) return; await processChecks(run); continue; }
     G.state = 'choose'; refreshRec(); render();
@@ -2147,6 +2575,8 @@ function choose(act){
   else if (act.kind==='attack') target = 'enemy';
   else if (act.kind==='limit') target = (!u.aff && LIMIT_SINGLE.includes(u.id)) ? 'enemy' : 'none';
   else target = 'none';
+  // Jump with nothing in reach still leaves the ground (the Lake Hen's splash needs it); it lands on whatever is there.
+  if (target==='enemy' && !foesHittable().length) target = 'none';
   if (target==='none'){ G.resolve({u, act, target:null}); return; }
   G.act = { ...act, target }; G.menu = 'target'; G.preview = delayOf(u, act); render();
 }
@@ -2168,7 +2598,9 @@ function chips(u){
   else if (!u.alive) c.push('<span class="chip">KO</span>');
   if (u.aff) c.push(`<span class="chip harm" title="${esc(AFFS[u.aff])}">Afflicted: ${u.aff}</span>`);
   if (u.insp) c.push(`<span class="chip virt" title="${esc(INSP[u.insp])}">Inspired: ${u.insp}</span>`);
+  if (u.guest) c.push('<span class="chip">Guest · acts on its own</span>');
   if (u.airborne) c.push('<span class="chip">Airborne</span>');
+  if (u.sleep > 0) c.push('<span class="chip harm">Asleep</span>');
   if (u.earplugs) c.push(`<span class="chip">Earplugs ${u.earplugs}</span>`);
   if (u.defending) c.push('<span class="chip">Defend</span>');
   if (u.cover) c.push('<span class="chip">Cover</span>');
@@ -2217,7 +2649,7 @@ function rvCard(u){
 }
 function slotHtml(f){
   const u = f.u, side = u.side;
-  let k = side==='void' ? 'Lost Turn' : side==='enemy' ? 'Enemy' : (u.airborne ? 'Landing' : 'Party');
+  let k = side==='void' ? 'Lost Turn' : side==='enemy' ? 'Enemy' : (u.airborne ? 'Landing' : u.guest ? 'Guest' : 'Party');
   if (f.now) k = 'Now';
   if (f.land) k = 'Next turn';
   if (f.planned) k = f.planned;
@@ -2225,18 +2657,20 @@ function slotHtml(f){
   const nm = side==='void' ? '<span>Lost Turn</span>' : esc(u.name);
   return `<li class="slot s-${side}${f.now?' now':''}${f.land?' land':''}">${img}<b>${nm}</b><span class="k">${side==='void'?'':k}</span></li>`;
 }
-function renderBar(){ const seen = new Set(); $('#bar').innerHTML = forecast(16, G.preview).map(f=>{ if (f.u.side==='enemy' && !seen.has(f.u.id)){ seen.add(f.u.id); if (SCRIPTS[f.u.key] && f.u.plan) f.planned = SCRIPTS[f.u.key].skills[f.u.plan.skill].name; } return slotHtml(f); }).join(''); }
+function renderBar(){ const seen = new Set(); $('#bar').innerHTML = forecast(16, G.preview).map(f=>{ if (f.u.side==='enemy' && !seen.has(f.u.id)){ seen.add(f.u.id); if (SCRIPTS[f.u.key] && (f.u.plan || f.u.sleep > 0)) f.planned = planName(f.u); } return slotHtml(f); }).join(''); }
 function render(){
   if (!G) return;
   $('#encName').textContent = `${G.enc.title} · Party Lv ${G.enc.lv || 10}`;
   $('#encBrief').innerHTML = (G.enc.role ? `<b>Tests ${ROSTER[G.enc.role].name} · ${ROSTER[G.enc.role].role}</b>` : '<b>Story boss</b>') + esc(G.enc.brief);
   $('#humVal').textContent = G.hum; $('#humBar').style.width = G.hum + '%';
   $('#foes').innerHTML = G.enemies.map(e=>{
-    const tgt = G.menu==='target' && G.act && G.act.target==='enemy' && e.alive;
+    const tgt = G.menu==='target' && G.act && G.act.target==='enemy' && reachable(e);
+    const S = SCRIPTS[e.key], hp = hpOf(e);
     const tag = 'button';
     const tags = [];
     const it = e.alive ? planText(e) : ''; if (it) tags.push(it);
-    if (e.alive && SCRIPTS[e.key].status){ const st = SCRIPTS[e.key].status(e); if (st) tags.push(st); }
+    if (e.alive && !reachable(e)) tags.push(`Can't be targeted: ${S.hidden(e)}`);
+    if (e.alive && S.status){ const st = S.status(e); if (st) tags.push(st); }
     if (e.alive && SCRIPTS[e.key] && SCRIPTS[e.key].overdrive) tags.push(`Overdrive ${Math.floor(e.od)}%`);
     if (e.alive && e.broken > 0) tags.push('BROKEN'); else if (e.alive && e.breakImm > 0) tags.push('Break recovery'); else if (e.alive && e.brk > 0) tags.push(`Break ${e.brk}%`);
     if (!e.alive && e.parentId){ const pp = G.enemies.find(x=>x.id===e.parentId); if (pp && pp.respawn[e.id]) tags.push(`Re-forms in ${pp.respawn[e.id]}`); }
@@ -2246,7 +2680,7 @@ function render(){
     return `<${tag} class="foe${e.alive?'':' dead'}${tgt?' targetable':''}${G.current===e?' acting':''}${shaking(e.id)}${recOn() ? recCls(e) : ''}" ${tgt?`type="button" data-ft="${e.id}" aria-label="Target ${esc(e.name)}"`:`type="button" data-info="${e.id}" aria-label="${esc(e.name)}: stats and decision tree"`}>
       ${fxHtml(e.id)}${(window.RigAnim && RigAnim.box(e.id, e.art, art(e.art))) || `<img src="${art(e.art)}" alt="">`}
       <div class="body"><div class="nm">${esc(e.name)}</div>
-      <div class="meta"><span>HP ${e.hp}/${e.maxhp}</span></div><div class="intent">${tags.map(x=>`<span>${esc(x)}</span>`).join('')}</div>${bar(e.hp,e.maxhp)}${tgt?'':'<span class="ihint">Tap for info</span>'}</div></${tag}>`;
+      <div class="meta"><span>${esc(hp.text)}</span></div><div class="intent">${tags.map(x=>`<span>${esc(x)}</span>`).join('')}</div>${bar(hp.hp,hp.max)}${tgt?'':'<span class="ihint">Tap for info</span>'}</div></${tag}>`;
   }).join('');
   if (window.RigAnim){ RigAnim.forget(new Set(G.enemies.map(x=>x.id))); RigAnim.mount($('#foes'), new Set(G.enemies.filter(x=>!x.alive).map(x=>x.id))); }
   $('#party').innerHTML = actives().map(pcCard).join('');
@@ -2267,8 +2701,24 @@ const plannedSk = e => e.plan ? SCRIPTS[e.key].skills[e.plan.skill] : null;
 const powerOf = s => { const m = s && HEAVY_RX.exec(s.power || ''); return m ? +m[1] : 0; };
 const nm = u => u ? u.name : '';
 function adviseFocus(){
-  const foes = foesAlive(), by = k => foes.find(e=>e.key===k), low = arr => arr.slice().sort((a,b)=>a.hp-b.hp)[0];
+  const foes = foesHittable(), by = k => foes.find(e=>e.key===k), low = arr => arr.slice().sort((a,b)=>a.hp-b.hp)[0];
   const k = cfg.enc;
+  if (!foes.length) return { e:null, why:'' };
+  if (k==='wolf'){ const w = by('wolf'), d = by('wolfdead');
+    if (!w && d) return { e:d, why: d.pinned ? 'it is already pinned; keep it that way' : 'the wolf is down, so pin its dead slot before that slot\'s turn' };
+    return { e:w || d, why:'the dead slot only matters once the wolf is down' }; }
+  if (k==='hen'){ const h = by('hen'), c = low(foes.filter(e=>e.key==='chick'));
+    if (h) return { e:h, why:'she is up until her next turn' };
+    return { e:c, why:'every chick alive when she surfaces heals her 10%' }; }
+  if (k==='lamp'){ const l = by('lamp'); if (l && l.dark > 0) return { e:l, why:'it is dark and takes damage' };
+    // With Kuro, bring every Wick under Darkga's reach. Without her, bring each within one hit, then put them out in a burst.
+    const ws = foes.filter(e=>e.key==='wick'), lim = darkgaReach() || 100, top = ws.slice().sort((a,b)=>b.hp-a.hp)[0];
+    if (top && top.hp > lim) return { e:top, why:`bring every Wick down to ${lim} HP before putting any out` };
+    return { e:low(ws) || l, why:'every Wick is low: put them out one after another before they relight' }; }
+  if (k==='rested'){ const o = foes.find(e=>e.seen==='original'); if (o) return { e:o, why:'it is the original' };
+    const un = foes.filter(e=>!e.seen); return { e:pick(un.length ? un : foes), why:'nobody knows which one is the original yet; a copy will show itself when hit' }; }
+  if (k==='forty'){ const h = by('helmsman'); if (h) return { e:h, why:'the ship is off course and he is exposed' };
+    return { e:by('hull'), why:'the Helmsman is at the helm' }; }
   if (k==='orlen'){ const o = by('orlen'), g = by('organ');
     if (g && o && (o.od >= 45 || g.hp < g.maxhp*.35)) return { e:g, why: o.od >= 45 ? `Orlen's Overdrive is ${Math.floor(o.od)}%; with the Organ down he can't play Requiem` : 'the Organ is low, finish it before Benediction heals it' };
     return { e:o||g, why: o ? 'Orlen is the main threat while his Overdrive is low' : 'only the Organ is left' }; }
@@ -2280,6 +2730,81 @@ function adviseFocus(){
     const w = by('widow'); if (w) return { e:w, why:'Sailors re-form, so damage on the Widow herself counts most' }; }
   const e = low(foes); return { e, why: foes.length > 1 ? `${e.name} has the least HP left` : '' };
 }
+// How much HP a Wick can have for Kuro's next Darkga to put it out (0 if Kuro isn't fighting).
+function darkgaReach(){
+  const k = actives().find(a=>a.id==='kuro' && a.alive); if (!k) return 0;
+  return Math.floor(k.mag*2.0*(1 + Math.min(.4, k.stress/250))*.9 - FOES.wick.mdef);
+}
+// The intended answer to each Disc 1 chapter boss: what the fight is teaching, in Helper form.
+function adviseEncounter(u, { A, D, Sk, R, atF, F, allies, others, lowest, stressed, mp, has }){
+  const P = n => Math.round(n*100) + '%';
+  const k = cfg.enc, foe = key => G.enemies.find(e=>e.key===key && e.alive), healer = u.id==='natsu';
+  const needsHeal = healer && lowest && pctHp(lowest) < .55;
+  if (k==='wolf'){
+    const w = foe('wolf'), d = foe('wolfdead');
+    if (!w && d && !d.pinned) return R(A, d, 'The wolf is down. Hit its dead slot now to pin it, or it gets the wolf up on its turn.');
+    if (!w && d) return R(D, null, 'The dead slot is pinned. Wait for its turn: the wolf stays down.');
+    const pinner = has('natsu') ? u.id==='natsu' : u===allies.slice().sort((a,b)=>a.atk-b.atk)[0];
+    if (w && d && !d.pinned && w.hp <= w.maxhp*.4 && pinner) return R(A, d, `The wolf is at ${P(pctHp(w))} HP. Pin its dead slot now, so the others can finish it before that slot's turn.`);
+  }
+  if (k==='hen'){
+    const h = foe('hen'), cs = G.enemies.filter(e=>e.key==='chick' && e.alive);
+    if (u.id==='miren' && !(h && h.up)) return R(Sk('jump'), cs[0] || null, cs.length ? 'Jump now. Land on a chick, and the splash brings the Lake Hen up for Kiri and Natsu to hit.' : 'Jump now: the splash brings the Lake Hen up.');
+    if (!h.up && !cs.length && !needsHeal) return R(D, null, 'She is underwater and no chicks are out. Defend until she surfaces.');
+  }
+  if (k==='pelt'){
+    const p = foe('pelt'), open = p && peltOpen(p);
+    if (u.id==='goku' && p && !(p.hold > 0)) return R(Sk('hound'), p, 'Summon Hound bites in and holds the Pelt open for 2 of its turns. Goku can\'t act while it holds.');
+    if (!open && !needsHeal){
+      if (u.id==='kiri' && mp(10) && others.some(a=>a.stress >= 40)) return R(Sk('lullaby'), null, 'The Pelt is empty and can\'t be hurt; use the turn on Lullaby.');
+      if (healer && stressed && stressed.stress >= 20) return R(Sk('soothe'), stressed, 'The Pelt is empty and can\'t be hurt; lower Stress instead.');
+      return R(D, null, 'The Pelt is empty: hits pass through. Defend and wait for the hound to hold it open.');
+    }
+  }
+  if (k==='lamp'){
+    const l = foe('lamp'), ws = G.enemies.filter(e=>e.key==='wick' && e.alive), lim = darkgaReach();
+    if (l && !(l.dark > 0) && ws.length){
+      if (u.id==='kuro'){
+        if (ws.every(w=>w.hp <= lim && w.hp < w.maxhp) || ws.length === 1 && ws[0].hp <= lim) return R(Sk('darkga'), null, `Every lit Wick is below ${lim} HP and none is at full flame: Darkga puts them all out at once.`);
+        return R(D, null, 'Not every Wick is weak enough for Darkga yet. Wait for the others to bring them down.');
+      }
+      if (lim){ const top = ws.filter(w=>w.hp > lim).sort((a,b)=>b.hp-a.hp)[0];
+        if (top) return R(A, top, `${top.name} is above what Darkga can put out (${lim} HP). Weaken it, but don't put it out alone: the next Wick would relight it.`);
+        if (!needsHeal) return R(D, null, 'Every Wick is ready for Darkga. Defend and leave them lit for Kuro.');
+      }
+    }
+  }
+  if (k==='rested'){
+    const awake = G.enemies.filter(e=>e.key==='rested' && e.alive && !e.original && !(e.sleep > 0)).length;
+    if (u.id==='kiri' && mp(10) && awake >= 2 && !needsHeal) return R(Sk('lullaby'), null, `${awake} copies are awake. Lullaby puts every copy to sleep; the original stays awake and shows itself.`);
+  }
+  if (k==='tracks' && healer && !needsHeal){
+    const t = stressed && stressed.stress >= 20 ? stressed : allies[0];
+    return R(Sk('soothe'), t, 'Natsu\'s copy repeats whatever she does. Soothe gives it nothing to copy, and a Cure would heal one of them.');
+  }
+  if (k==='forty'){
+    const h = foe('helmsman'), hull = foe('hull'), exposed = h && reachable(h);
+    const ren = allies.find(a=>a.id==='ren'), striker = allies.find(a=>a.id!=='ren' && a.id!=='natsu');
+    if (u.id==='ren' && h && !exposed && hull){
+      // Fire only if the striker still acts before the Helmsman's next turn after the tilt.
+      if (!striker || striker.ct + (striker.defending ? 0 : 2*SLOT) < h.ct) return R(Sk('delayshot'), hull, `Delay Shot on the Hull throws the ship off course, and ${striker ? striker.name + ' still acts before the Helmsman' : 'the Helmsman is exposed until his next turn'}.`);
+      return R(Sk('quickshot'), hull, 'The Helmsman would act before anyone could hit him. Quick Shot the Hull and wait for a better moment.');
+    }
+    if (exposed) return u.id==='ren' ? R(Sk('quickshot'), h, 'The Helmsman is exposed until his next turn: hit him.') : (needsHeal ? null : R(A, h, 'The Helmsman is exposed until his next turn: hit him.'));
+    if (u===striker && hull && ren && ren.ct < 3*tickOf(u)) return R(D, null, 'Ren acts before your next turn. Defend so the tilt doesn\'t push you back, and you can strike the Helmsman when he is exposed.');
+  }
+  if (k==='hound'){
+    const g = byId('goku'), h = foe('greyhound');
+    if (h && healer && g.stress >= 35 && !needsHeal) return R(Sk('soothe'), g, `Goku is at ${g.stress} Stress. Under 50 on her turn, she calls the hound back a step.`);
+    if (h && u.id==='kiri' && g.stress >= 35 && mp(10) && !has('natsu')) return R(Sk('lullaby'), null, `Goku is at ${g.stress} Stress and nobody can Soothe her. Lullaby takes 20 off.`);
+    // Goku will be under 50 by her turn if she already is, or if Natsu Soothes her first.
+    const nat = allies.find(a=>a.id==='natsu'), calm = g.stress < 50 || (nat && nat !== u && nat.ct < g.ct && g.stress - 25 < 50);
+    if (h && u.id==='sayo' && calm && h.ct < g.ct && mp(6)) return R(Sk('quicksong'), g, 'The hound acts before Goku. Quick Song moves her turn ahead of it while her Stress is under 50.');
+    if (h && u.id==='ren' && calm && h.ct < g.ct) return R(Sk('delayshot'), h, 'Push the hound back so Goku acts before it while she is calm. The hit makes it angrier, but she only needs three steps.');
+    if (h && !needsHeal && !(healer && lowest && pctHp(lowest) < .85)) return R(D, null, 'Hitting the hound only makes it stronger. Defend.');
+  }
+  return null;
+}
 function advise(u){
   const A = {kind:'attack'}, D = {kind:'defend'}, L = {kind:'limit'}, Sk = k => ({kind:'skill', key:k}), It = k => ({kind:'item', key:k});
   const allies = actives().filter(a=>a.alive && !a.airborne), others = allies.filter(a=>a!==u);
@@ -2290,7 +2815,8 @@ function advise(u){
   const stressed = allies.slice().sort((a,b)=>b.stress-a.stress)[0];
   const nextFoe = order[0], nsk = nextFoe && plannedSk(nextFoe);
   const mp = c => u.mp >= c;
-  const atF = (act, why) => ({ act, target:F, why: why + (FF.why ? ` Target ${F.name}: ${FF.why}.` : '') });
+  const atF = (act, why) => F ? ({ act, target:F, why: why + (FF.why ? ` Target ${F.name}: ${FF.why}.` : '') })
+    : ({ act:D, target:null, why:'Nothing can be targeted right now, so Defend.' });
   const R = (act, target, why) => ({ act, target, why });
   const P = n => Math.round(n*100) + '%';
 
@@ -2306,6 +2832,8 @@ function advise(u){
     return R(It('potion'), lowest, `${lowest.name} is at ${P(pctHp(lowest))} HP${healer ? '' : ' and nobody can cast Cure'}.`);
   if (nsk && nextFoe.plan && nextFoe.plan.target === u && pctHp(u) < .4 && !['natsu','kugai'].includes(u.id))
     return R(D, null, `${nextFoe.name} acts next with ${nsk.name} aimed at ${u.name}, who is at ${P(pctHp(u))} HP. Defend halves it.`);
+  const enc = adviseEncounter(u, { A, D, Sk, R, atF, F, allies, others, lowest, stressed, mp, has });
+  if (enc) return enc;
 
   switch (u.id){
     case 'kiri': {
@@ -2405,7 +2933,7 @@ function renderCmd(){
   let h = `<div class="who"><img src="${ASSETS[u.id].s}" alt="">${u.name}<small>${u.role} · ${ROLE_DESC[u.id]}${u.aff ? ` · Afflicted: ${u.aff}` : u.insp ? ` · Inspired: ${u.insp}` : ''}</small></div>`;
   if (G.menu==='root'){
     h += `<div class="btns">
-      ${cmdBtn('Attack',3,'data-a="attack"')}
+      ${cmdBtn('Attack',3,'data-a="attack"','',!foesHittable().length)}
       ${cmdBtn('Skill ▸',null,'data-m="skill"')}
       ${cmdBtn('Item ▸',null,'data-m="item"')}
       ${cmdBtn('Defend',3,'data-a="defend"')}
@@ -2414,7 +2942,8 @@ function renderCmd(){
     </div>`;
   } else if (G.menu==='skill'){
     h += `<div class="btns">${u.skills.map(k=>{ const s=SKILLS[k]; const hpPay = s.mp && u.mp < s.mp;
-      return cmdBtn(s.name, s.delay, `data-s="${k}"`, s.mp?`${s.mp} MP${hpPay?' (uses HP)':''} · `:''); }).join('')}
+      const noFoe = s.target==='enemy' && k!=='jump' && !foesHittable().length;
+      return cmdBtn(s.name, s.delay, `data-s="${k}"`, s.mp?`${s.mp} MP${hpPay?' (uses HP)':''} · `:'', noFoe); }).join('')}
       ${cmdBtn('Back',null,'data-m="root"','',false,'ghost')}</div>`;
   } else if (G.menu==='item'){
     h += `<div class="btns">${Object.entries(ITEMS).map(([k,it])=>{
