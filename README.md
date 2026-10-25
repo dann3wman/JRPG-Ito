@@ -6,7 +6,8 @@
 
 Open `index.html` in a browser. There is no build step. Portrait art is embedded in the page as data URIs; the only external resource is Google Fonts.
 
-## Files
+## Layout
 
-- `index.html`: the whole game (markup, styles, script, and embedded art).
-- `*.webp`: character and enemy artwork (`ainsel`, `amigara`, `organ`, `orlen`, `tongue`, `widow`). `index.html` doesn't reference these yet; they're source art kept for future use.
+- `index.html`: the game (markup, styles, script, and embedded art).
+- `tools/`: the dev tool suite. See [`tools/README.md`](tools/README.md).
+  - `tools/bestiary-rig-viewer/`: creature rig and animation previewer, plus the creature sprite sheets (`<creature>.webp`) and arena backdrops (`bg_*.webp`).
