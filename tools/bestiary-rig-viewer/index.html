@@ -36,6 +36,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .tab:hover { color: var(--bone); border-color: var(--faint); }
 .tab[aria-pressed="true"] { color: var(--ink); background: var(--accent); border-color: var(--accent); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.launcher-link { display: inline-block; justify-self: start; color: var(--bone); padding: 8px 0; text-underline-offset: 4px; }
 .main { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; align-items: start; }
 @media (max-width: 900px) { .main { grid-template-columns: minmax(0, 1fr); } }
 .stage { position: relative; background: radial-gradient(ellipse at 50% 85%, color-mix(in srgb, var(--accent) 14%, var(--niche)) 0%, var(--niche) 55%, var(--ink) 100%); border: 1px solid var(--rule); border-radius: 3px; aspect-ratio: 4 / 3; max-width: 100%; overflow: hidden; touch-action: none; }
@@ -98,6 +99,7 @@ aside { display: grid; gap: 14px; min-width: 0; }
 <div class="wrap">
   <header>
     <div class="mast">
+      <a class="launcher-link" href="../index.html">Developer tools</a>
       <div class="eyebrow">Bestiary · <span id="count"></span> creatures · bone rigs · procedural clips</div>
       <h1><span id="bossTitle">Ainsel, the Unwound</span></h1>
     </div>

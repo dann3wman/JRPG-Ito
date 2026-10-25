@@ -22,6 +22,7 @@ html,body{margin:0;background:var(--paper);color:var(--ink)}
 body{font-family:var(--f-body);font-size:14px;line-height:1.5}
 button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--hum);outline-offset:2px}
+.launcher-link{display:inline-block;color:var(--ink-2);padding:8px 0;margin-bottom:8px;text-underline-offset:4px}
 .page{max-width:1240px;margin:0 auto;padding:20px 16px 48px;display:grid;gap:18px}
 header{border-bottom:3px solid var(--ink);padding-bottom:12px}
 h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1;margin:0}
@@ -70,6 +71,7 @@ td select{min-width:6.5em}
 <body>
 <div class="page">
   <header>
+    <a class="launcher-link" href="../index.html">Developer tools</a>
     <h1>CTB Planner</h1>
     <div class="sub">Humming Crystal · turn-order design tool</div>
     <p class="lede">Lay out a fight's tempo before scripting it. Each row acts in a cycle of Delay values; the planner predicts the turn order with the same rules as the battle prototype (tick speed <code>max(8, 30 − Speed)</code>, 12 ticks to a slot, party first on ties, Lost Turns from Danger 30). Use it for the bosses that are tempo puzzles: Forty Years, the Whisperer, the Dazzling Country, the Listener's Eye. The URL holds the whole plan, so paste it into a boss spec.</p>

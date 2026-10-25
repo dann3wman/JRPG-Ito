@@ -4,7 +4,7 @@ Tools for building and checking game content. None needs a build step or a packa
 
 ## Browser tools
 
-Open the tool's `index.html` directly.
+Open the [developer tool launcher](index.html) to choose a tool, launch the battle prototype or browse the development reference. Each tool has a **Developer tools** link back to the launcher. You can also open any tool's `index.html` directly; no server is required.
 
 | Tool | What it does |
 | --- | --- |
