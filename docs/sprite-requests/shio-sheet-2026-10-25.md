@@ -7,7 +7,7 @@ prompt into ChatGPT with `shio-sprite.png` and `shio-portrait.png` attached and 
 ````text
 I'm attaching the current battle sprite and portrait of "Shio" (Oracle), a party member in a dark gothic-horror JRPG in the style of Final Fantasy Record Keeper / Final Fantasy VI battle sprites. Please draw a full SPRITE SHEET for this character, as complete as an FFRK character sheet: battle poses, status poses, and field walking frames.
 
-About the character: a pale young woman in a grey-blue hood and wrapped robes; open eyes scattered across her skin, her hood lining and her hands. Covered in eyes; each one is a future she has already seen. Weapon: no weapon; she reads the future with an open palm that has an eye in it.
+About the character: a pale young woman in a grey-blue hood and wrapped robes; open eyes scattered across her skin, her hood lining and her hands. Covered in eyes; each one is a future she has already seen. Weapon: no weapon; she reads the future with an open palm that has an eye in it. Wherever a frame below mentions a weapon, draw it as this.
 Class action (row 5, frames 1-3): Foresee: she opens her palm toward the enemy; every eye on her body turns to look the same way (3 frames).
 Limit Break (row 5, frames 4-6): All Eyes Open: hood thrown back, every eye on her body wide open.
 

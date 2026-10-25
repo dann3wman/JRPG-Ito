@@ -230,7 +230,7 @@ def sheet_prompt(cid):
         lines.append(f'  {i % SHEET_COLS + 1}. {name}: {desc}')
     return f"""I'm attaching the current battle sprite and portrait of "{c['name']}" ({c['class']}), a party member in a dark gothic-horror JRPG in the style of Final Fantasy Record Keeper / Final Fantasy VI battle sprites. Please draw a full SPRITE SHEET for this character, as complete as an FFRK character sheet: battle poses, status poses, and field walking frames.
 
-About the character: {c['look']}. {c['horror'][0].upper() + c['horror'][1:]}. Weapon: {c['weapon']}.
+About the character: {c['look']}. {c['horror'][0].upper() + c['horror'][1:]}. Weapon: {c['weapon']}. Wherever a frame below mentions a weapon, draw it as this.
 Class action (row 5, frames 1-3): {c['special']}.
 Limit Break (row 5, frames 4-6): {c['limit']}.
 

@@ -7,7 +7,7 @@ prompt into ChatGPT with `hisui-sprite.png` and `hisui-portrait.png` attached an
 ````text
 I'm attaching the current battle sprite and portrait of "Hisui" (Blade Dancer), a party member in a dark gothic-horror JRPG in the style of Final Fantasy Record Keeper / Final Fantasy VI battle sprites. Please draw a full SPRITE SHEET for this character, as complete as an FFRK character sheet: battle poses, status poses, and field walking frames.
 
-About the character: a young woman with long straight black hair and a cold, beautiful face; a long crimson coat; twin curved blades; a large red chrysanthemum-like flower growing at her shoulder. The Tide-Widow's daughter; her wounds bloom into red flowers with eyes. Weapon: twin curved blades, one in each hand.
+About the character: a young woman with long straight black hair and a cold, beautiful face; a long crimson coat; twin curved blades; a large red chrysanthemum-like flower growing at her shoulder. The Tide-Widow's daughter; her wounds bloom into red flowers with eyes. Weapon: twin curved blades, one in each hand. Wherever a frame below mentions a weapon, draw it as this.
 Class action (row 5, frames 1-3): Double Cut: two fast crossing slashes, one per blade (3 frames).
 Limit Break (row 5, frames 4-6): Garden of Eyes: a spinning dance, red petals around her, some petals with eyes.
 

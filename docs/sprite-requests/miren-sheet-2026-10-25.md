@@ -7,7 +7,7 @@ prompt into ChatGPT with `miren-sprite.png` and `miren-portrait.png` attached an
 ````text
 I'm attaching the current battle sprite and portrait of "Miren" (Spearbound), a party member in a dark gothic-horror JRPG in the style of Final Fantasy Record Keeper / Final Fantasy VI battle sprites. Please draw a full SPRITE SHEET for this character, as complete as an FFRK character sheet: battle poses, status poses, and field walking frames.
 
-About the character: a brash young man with messy, spiky pale gold hair; red and dark-iron dragoon armour; a long spear whose shaft has grown into his right forearm, wood fused with veins. His spear has grown into his arm; he refuses to touch the ground. Weapon: a long spear fused into the right forearm, the shaft merging into the skin.
+About the character: a brash young man with messy, spiky pale gold hair; red and dark-iron dragoon armour; a long spear whose shaft has grown into his right forearm, wood fused with veins. His spear has grown into his arm; he refuses to touch the ground. Weapon: a long spear fused into the right forearm, the shaft merging into the skin. Wherever a frame below mentions a weapon, draw it as this.
 Class action (row 5, frames 1-3): Jump: crouch, leap upward out of frame (only his legs visible at the top of the cell), then plunge down spear-first (3 frames). His feet never quite touch the ground in idle frames: he stands on tiptoe.
 Limit Break (row 5, frames 4-6): Falling Star: diving straight down, spear first, trailing pale light.
 

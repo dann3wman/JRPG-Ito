@@ -7,7 +7,7 @@ prompt into ChatGPT with `kugai-sprite.png` and `kugai-portrait.png` attached an
 ````text
 I'm attaching the current battle sprite and portrait of "Kugai" (Void Knight), a party member in a dark gothic-horror JRPG in the style of Final Fantasy Record Keeper / Final Fantasy VI battle sprites. Please draw a full SPRITE SHEET for this character, as complete as an FFRK character sheet: battle poses, status poses, and field walking frames.
 
-About the character: a tall knight in heavy dark armour with blood-red trim; his helmet is open and where the face should be there is smooth black nothing; no ears; a tower shield and a broad sword. A Varn knight with no face and no ears; he has never heard the note. Weapon: a broad sword in the right hand and a tower shield on the left arm.
+About the character: a tall knight in heavy dark armour with blood-red trim; his helmet is open and where the face should be there is smooth black nothing; no ears; a tower shield and a broad sword. A Varn knight with no face and no ears; he has never heard the note. Weapon: a broad sword in the right hand and a tower shield on the left arm. Wherever a frame below mentions a weapon, draw it as this.
 Class action (row 5, frames 1-3): Provoke: he slams the sword against the shield and leans forward (3 frames: raise, strike, brace).
 Limit Break (row 5, frames 4-6): Hollow Crown: sword raised overhead in both hands; the black where his face should be widens.
 

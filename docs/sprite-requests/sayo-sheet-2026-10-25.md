@@ -7,7 +7,7 @@ prompt into ChatGPT with `sayo-sprite.png` and `sayo-portrait.png` attached and 
 ````text
 I'm attaching the current battle sprite and portrait of "Sayo" (Songweaver), a party member in a dark gothic-horror JRPG in the style of Final Fantasy Record Keeper / Final Fantasy VI battle sprites. Please draw a full SPRITE SHEET for this character, as complete as an FFRK character sheet: battle poses, status poses, and field walking frames.
 
-About the character: a young woman with soft wavy silver-white hair; a pale blue and white choir dress with a high collar; a small tuning fork on a chain. A choir defector; the other singers' faces still follow her around. Weapon: a tuning fork on a chain; she casts by singing.
+About the character: a young woman with soft wavy silver-white hair; a pale blue and white choir dress with a high collar; a small tuning fork on a chain. A choir defector; the other singers' faces still follow her around. Weapon: a tuning fork on a chain; she casts by singing. Wherever a frame below mentions a weapon, draw it as this.
 Class action (row 5, frames 1-3): Quick Song: one hand to her chest, mouth open singing, small pale notes curling away from her (3 frames).
 Limit Break (row 5, frames 4-6): Choir of One: arms raised, singing; faint faces of other singers hover around her, singing with her.
 

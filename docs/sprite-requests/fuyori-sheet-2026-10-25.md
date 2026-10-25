@@ -7,7 +7,7 @@ prompt into ChatGPT with `fuyori-sprite.png` and `fuyori-portrait.png` attached 
 ````text
 I'm attaching the current battle sprite and portrait of "Fuyori" (Alchemist), a party member in a dark gothic-horror JRPG in the style of Final Fantasy Record Keeper / Final Fantasy VI battle sprites. Please draw a full SPRITE SHEET for this character, as complete as an FFRK character sheet: battle poses, status poses, and field walking frames.
 
-About the character: a young woman with a neat dark bob haircut and a sharp, studious face; an olive green imperial alchemist's coat with many pockets; patches of pale crystal growing on her cheek and hands; a notebook and glass vials. An imperial alchemist sealed in a crystal coffin, still taking notes. Weapon: glass vials she throws; a notebook in her other hand.
+About the character: a young woman with a neat dark bob haircut and a sharp, studious face; an olive green imperial alchemist's coat with many pockets; patches of pale crystal growing on her cheek and hands; a notebook and glass vials. An imperial alchemist sealed in a crystal coffin, still taking notes. Weapon: glass vials she throws; a notebook in her other hand. Wherever a frame below mentions a weapon, draw it as this.
 Class action (row 5, frames 1-3): Mix: she uncorks a vial, pours it into another, and holds the smoking result up to the light (3 frames).
 Limit Break (row 5, frames 4-6): Distillation: she stands inside a ring of rising vapour, crystal spreading up her arm.
 

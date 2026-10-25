@@ -7,7 +7,7 @@ prompt into ChatGPT with `tetsugi-sprite.png` and `tetsugi-portrait.png` attache
 ````text
 I'm attaching the current battle sprite and portrait of "Tetsugi Haldane" (Monk), a party member in a dark gothic-horror JRPG in the style of Final Fantasy Record Keeper / Final Fantasy VI battle sprites. Please draw a full SPRITE SHEET for this character, as complete as an FFRK character sheet: battle poses, status poses, and field walking frames.
 
-About the character: a lean, muscular young man with a close-shaved head; stitched seams across his scalp, neck and chest; a tan martial artist's gi tied with a rope belt; bare wrapped fists. Kiri's brother, revived by Phoenix Down every night; feathers grow under his stitched skin. Weapon: bare fists with cloth wraps.
+About the character: a lean, muscular young man with a close-shaved head; stitched seams across his scalp, neck and chest; a tan martial artist's gi tied with a rope belt; bare wrapped fists. Kiri's brother, revived by Phoenix Down every night; feathers grow under his stitched skin. Weapon: bare fists with cloth wraps. Wherever a frame below mentions a weapon, draw it as this.
 Class action (row 5, frames 1-3): Counter: a guard stance, then a sudden backhand strike (3 frames: guard, twist, strike).
 Limit Break (row 5, frames 4-6): Again and Again: a flurry of punches; his stitches strain and a feather tip pushes out of one seam.
 

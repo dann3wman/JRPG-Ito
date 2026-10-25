@@ -7,7 +7,7 @@ prompt into ChatGPT with `goku-sprite.png` and `goku-portrait.png` attached and 
 ````text
 I'm attaching the current battle sprite and portrait of "Goku" (Beastcaller), a party member in a dark gothic-horror JRPG in the style of Final Fantasy Record Keeper / Final Fantasy VI battle sprites. Please draw a full SPRITE SHEET for this character, as complete as an FFRK character sheet: battle poses, status poses, and field walking frames.
 
-About the character: a calm young woman with short dark hair under a mossy green-brown hooded cloak; leather wraps; small animal bones on cords; one hand slightly too large and furred. Her body is slowly reshaping into the beasts she calls. Weapon: a short bone whistle; she fights with a clawed hand.
+About the character: a calm young woman with short dark hair under a mossy green-brown hooded cloak; leather wraps; small animal bones on cords; one hand slightly too large and furred. Her body is slowly reshaping into the beasts she calls. Weapon: a short bone whistle; she fights with a clawed hand. Wherever a frame below mentions a weapon, draw it as this.
 Class action (row 5, frames 1-3): Summon Hound: she raises the whistle to her lips; a huge shadowy hound's head rises behind her (3 frames).
 Limit Break (row 5, frames 4-6): The Pack: she drops to all fours, back arched like an animal, with several hound shadows around her.
 

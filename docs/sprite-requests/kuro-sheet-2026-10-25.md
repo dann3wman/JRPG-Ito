@@ -7,7 +7,7 @@ prompt into ChatGPT with `kuro-sprite.png` and `kuro-portrait.png` attached and 
 ````text
 I'm attaching the current battle sprite and portrait of "Kuro" (Shade), a party member in a dark gothic-horror JRPG in the style of Final Fantasy Record Keeper / Final Fantasy VI battle sprites. Please draw a full SPRITE SHEET for this character, as complete as an FFRK character sheet: battle poses, status poses, and field walking frames.
 
-About the character: a thin young woman with very long, lank dark purple-black hair falling over her face; layered violet and black robes; hollow, shadowed eyes. Hollowed out by her own spells; you can hear wind inside her when she speaks. Weapon: no weapon; she casts with one open hand.
+About the character: a thin young woman with very long, lank dark purple-black hair falling over her face; layered violet and black robes; hollow, shadowed eyes. Hollowed out by her own spells; you can hear wind inside her when she speaks. Weapon: no weapon; she casts with one open hand. Wherever a frame below mentions a weapon, draw it as this.
 Class action (row 5, frames 1-3): Dark: she lifts one hand; a black orb forms in her palm and her hair lifts as if in wind (3 frames).
 Limit Break (row 5, frames 4-6): Empty House: her mouth opens wide and darkness pours out of it; her body looks paper-thin.
 

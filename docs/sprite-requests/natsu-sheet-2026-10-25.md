@@ -7,7 +7,7 @@ prompt into ChatGPT with `natsu-sprite.png` and `natsu-portrait.png` attached an
 ````text
 I'm attaching the current battle sprite and portrait of "Natsu" (Healer), a party member in a dark gothic-horror JRPG in the style of Final Fantasy Record Keeper / Final Fantasy VI battle sprites. Please draw a full SPRITE SHEET for this character, as complete as an FFRK character sheet: battle poses, status poses, and field walking frames.
 
-About the character: a gentle young woman with very long pale blonde hair; a cream and white healer's robe; a spiked halo crown behind her head with small human faces caught in it; hands often pressed together. Every patient she heals leaves a face behind in her halo. Weapon: no weapon; she casts with both hands pressed together.
+About the character: a gentle young woman with very long pale blonde hair; a cream and white healer's robe; a spiked halo crown behind her head with small human faces caught in it; hands often pressed together. Every patient she heals leaves a face behind in her halo. Weapon: no weapon; she casts with both hands pressed together. Wherever a frame below mentions a weapon, draw it as this.
 Class action (row 5, frames 1-3): Cure: hands pressed together, then opened outward; the faces in her halo turn toward the target (3 frames).
 Limit Break (row 5, frames 4-6): Halo of Faces: arms spread, the halo flares wide and every face in it opens its mouth.
 
