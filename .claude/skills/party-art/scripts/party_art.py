@@ -431,7 +431,10 @@ def cmd_sheet(args):
     idle = boxes[0]
     if idle is None:
         sys.exit('idle1 is empty: cannot set the scale. Check the sheet and the grid.')
-    scale = args.scale or BODY_H / (idle[3] - idle[1])
+    # bodyFrac (cast.json): the share of idle1's height that is the body, for characters with a halo,
+    # tall headgear or floating extras above the head, so those don't shrink the body below the cast's
+    body = CAST[args.id].get('bodyFrac', 1.0)
+    scale = args.scale or BODY_H / ((idle[3] - idle[1]) * body)
     ground = idle[3]                          # feet of idle1, in cell pixels
     anchor = (idle[0] + idle[2]) / 2          # body centre of idle1, in cell pixels
     out = Image.new('RGBA', (SHEET_COLS * CELL, SHEET_ROWS * CELL), (0, 0, 0, 0))

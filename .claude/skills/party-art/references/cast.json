@@ -30,7 +30,8 @@
       "lowhp": "the faces in the halo have opened their eyes and are all looking at her",
       "zombie": "one face in the halo is mouthing words at her ear",
       "ko": "the faces in the halo are still awake, looking out of the frame"
-    }
+    },
+    "bodyFrac": 0.82
   },
   "tetsugi": {
     "name": "Tetsugi Haldane",

@@ -9,7 +9,7 @@ Party members are drawn as **frame sprites** (like FFRK and FF6), not bone rigs.
 
 | Piece | Grid | ChatGPT canvas | House format |
 | --- | --- | --- | --- |
-| Sprite sheet | 6 × 9 = 54 frames | 1024 × 1536, flat `#00FF00` | `<id>.sheet.webp`, 96 × 96 px frames, feet on row 88, idle height 56 px |
+| Sprite sheet | 6 × 9 = 54 frames | 1024 × 1536, flat `#00FF00` | `<id>.sheet.webp`, 96 × 96 px frames, feet on row 88, idle body height 56 px |
 | Portrait sheet | 4 × 3 = 12 states | 1536 × 1024, black manga gutters | `<id>.portraits.webp`, 256 × 256 px panels (embedded at 154) |
 
 Everything is driven by `scripts/party_art.py` and the character data in `references/cast.json`. The frame list, animations and portrait states are defined once, as `FRAMES`, `ANIMS` and `STATES` in the script. The viewer reads them from the generated `tools/party-sprite-viewer/manifest.js`.
@@ -93,3 +93,4 @@ Every portrait states the generic look for its state, plus the character's own h
   - Background green blended into dark hair at about 50%, which is too far from pure green to key and too deep for an edge-only fix. The slicer now removes green spill everywhere (`despill`), except for characters marked `keepGreen` in `cast.json` (Goku, Fuyori), who get the edge-only pass.
   - Field side-walk frames (walkS1–3) came back three-quarter view rather than a true profile. They're usable, but if they look wrong in the field, strengthen the wording to "strict side profile, like FF6 field sprites walking left".
 - **2026-10-25 · Kiri · first portrait sheet.** The framing stayed consistent across all 12 panels, and the twists landed: a spiral iris when strained, spiral irises when confused, a spiral traced beside her head while asleep. ChatGPT drew the panels 343 × 320, not square, so cutting a centred square from an even grid would have caught gutter. `portraits` now finds panels by their black gutters (`gutter_panels`) and takes the largest centred square inside each one, with the inset default lowered to 0.02. The new framing moved her face from 68% to about 58% across, so `FACE.kiri` changed from `[83,68,45]` to `[58,58,48]`. Always re-fit `FACE` after `embed`, and check the narrow party card, where the eyes clip first.
+- **2026-10-25 · Natsu · sprite sheet.** It sliced cleanly with no warnings, and the halo faces showed in every frame as asked. Scaling idle1 to 56 px counted the halo, so her body came out about 18% shorter than Kiri's. `cast.json` now takes `bodyFrac`, the share of idle1's height that is the body (Natsu 0.82). Set it for any character with a halo, tall headgear or something floating above the head, and compare idle1 against an installed character before embedding.

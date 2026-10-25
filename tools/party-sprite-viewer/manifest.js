@@ -358,7 +358,7 @@ const MANIFEST = {
   "natsu": {
    "name": "Natsu",
    "class": "Healer",
-   "sheet": false,
+   "sheet": true,
    "portraits": false
   },
   "tetsugi": {
