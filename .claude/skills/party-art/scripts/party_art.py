@@ -476,14 +476,40 @@ def cmd_sheet(args):
         print('warning:', w_, file=sys.stderr)
 
 
+def gutter_panels(im, cols, rows, dark=25, solid=0.9):
+    """Panel boxes from the black manga gutters: lines (rows or columns) that are almost all
+    near-black across the whole page. None unless exactly cols x rows panels are found."""
+    d = np.asarray(im.convert('L')) < dark
+
+    def runs(frac):
+        out, start = [], None
+        for i, v in enumerate(list(frac) + [1.0]):
+            if v < solid and start is None:
+                start = i
+            elif v >= solid and start is not None:
+                if i - start > 40:
+                    out.append((start, i))
+                start = None
+        return out
+    xs, ys = runs(d.mean(axis=0)), runs(d.mean(axis=1))
+    if len(xs) != cols or len(ys) != rows:
+        return None
+    return [(x0, y0, x1, y1) for y0, y1 in ys for x0, x1 in xs]
+
+
 def cmd_portraits(args):
     char(args.id)
     im = Image.open(args.src).convert('RGB')
-    cells, cw, ch = grid_cells(im, PORT_COLS, PORT_ROWS)
-    side = min(cw, ch) * (1 - 2 * args.inset)
+    cells = gutter_panels(im, PORT_COLS, PORT_ROWS)
+    if cells:
+        print('panels found by their gutters: ' + ', '.join(f'{x1 - x0}x{y1 - y0}' for x0, y0, x1, y1 in cells[:1]) + ' (first)')
+    else:
+        cells = grid_cells(im, PORT_COLS, PORT_ROWS)[0]
+        print('warning: gutters not found cleanly; cutting an even grid', file=sys.stderr)
     out = Image.new('RGB', (PORT_COLS * PORT, PORT_ROWS * PORT))
     for i, (x0, y0, x1, y1) in enumerate(cells):
         cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+        side = min(x1 - x0, y1 - y0) * (1 - 2 * args.inset)   # the largest centred square in the panel
         p = im.crop((round(cx - side / 2), round(cy - side / 2), round(cx + side / 2), round(cy + side / 2)))
         out.paste(p.resize((PORT, PORT), Image.LANCZOS), ((i % PORT_COLS) * PORT, (i // PORT_COLS) * PORT))
     dst = Path(args.out); dst.mkdir(parents=True, exist_ok=True)
@@ -569,7 +595,7 @@ def main():
     s.add_argument('--colors', type=int, default=0, help='quantize each frame to N colours')
     s.set_defaults(fn=cmd_sheet)
     s = sub.add_parser('portraits'); s.add_argument('src'); s.add_argument('id'); s.add_argument('--out', default='.')
-    s.add_argument('--inset', type=float, default=0.06, help='fraction trimmed off each side of the panel square')
+    s.add_argument('--inset', type=float, default=0.02, help='fraction trimmed off each side of the panel square')
     s.set_defaults(fn=cmd_portraits)
     s = sub.add_parser('install'); s.add_argument('id'); s.add_argument('dir'); s.set_defaults(fn=cmd_install)
     s = sub.add_parser('embed'); s.add_argument('id'); s.set_defaults(fn=cmd_embed)

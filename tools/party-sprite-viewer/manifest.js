@@ -353,7 +353,7 @@ const MANIFEST = {
    "name": "Kiri Haldane",
    "class": "Wanderer",
    "sheet": true,
-   "portraits": false
+   "portraits": true
   },
   "natsu": {
    "name": "Natsu",
