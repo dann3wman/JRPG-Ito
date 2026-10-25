@@ -64,5 +64,6 @@ The design doc's rule is that every classic JRPG beat is kept and played as slow
 - Read [`README.md`](README.md), [`docs/design-doc.md`](docs/design-doc.md) and [`tools/README.md`](tools/README.md) before changing a system. Keep code and the design doc in step: when a change alters a documented rule, update the doc in the same change.
 - `index.html` is a single-file prototype with no build step. Keep it that way unless asked otherwise.
 - For creature rigs, animation clips and sprite sheets, use the `sprite-animation` skill in [`.claude/skills/sprite-animation/`](.claude/skills/sprite-animation/SKILL.md) and log corrections there.
+- For party member sprite sheets and portraits, use the `party-art` skill in [`.claude/skills/party-art/`](.claude/skills/party-art/SKILL.md). Every character follows its fixed frame and portrait-state standard.
 - Match the surrounding code's style, naming and comment density.
 - When a request is a design question, answer as a designer: give a recommendation, the precedent behind it, and the trade-off.

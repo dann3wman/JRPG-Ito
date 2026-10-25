@@ -104,10 +104,11 @@ button{font:inherit;color:inherit}
 .pc .num{font-family:var(--f-mono);font-size:11px;font-variant-numeric:tabular-nums}
 .pc.current{box-shadow:6px 6px 0 var(--ink);translate:-2px -2px}
 .pc.ko .info{background-image:var(--tone);background-size:4px 4px}
-.pc.ko .por img{filter:grayscale(1) brightness(.6)}
+.pc.ko .por img:not(.ps){filter:grayscale(1) brightness(.6)}
 .pc.ko .nm{text-decoration:line-through}
 .pc.harm{outline:2px dashed var(--hum);outline-offset:4px}
-.pc.harm .por img{filter:saturate(.4) hue-rotate(220deg)}
+.pc.harm .por img:not(.ps){filter:saturate(.4) hue-rotate(220deg)}
+.pc .por img.hurt{position:absolute;inset:0;animation:hurt .45s steps(1) forwards}
 .pc.targetable{cursor:pointer;box-shadow:5px 5px 0 var(--hum)}
 .pc.targetable:hover .info,.pc.targetable:focus-visible .info{background:var(--hum-soft)}
 
@@ -144,6 +145,7 @@ button{font:inherit;color:inherit}
 .fx.dread{color:var(--hum)}
 @keyframes rise{from{opacity:1;transform:translateY(4px)}to{opacity:0;transform:translateY(-14px)}}
 .shake{animation:shake .32s linear}
+@keyframes hurt{to{opacity:0}}
 @keyframes shake{25%{transform:translateX(-4px) rotate(-.6deg)}50%{transform:translateX(3px)}75%{transform:translateX(-2px) rotate(.4deg)}}
 
 /* commands */
@@ -244,7 +246,7 @@ details.tune summary{cursor:pointer;font-family:var(--f-mono);font-size:12px;let
 .ov .face{justify-self:center;width:min(220px,60vw);aspect-ratio:1;border:3px solid var(--ink);overflow:hidden;background:var(--ink)}
 .ov .face img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.15);transition:transform 1.2s ease-out, filter 1s}
 .ov .face.on img{transform:scale(1.45)}
-.ov .face.harm.on img{filter:saturate(.3) hue-rotate(220deg) contrast(1.2)}
+.ov .face.harm.on img:not(.ps){filter:saturate(.3) hue-rotate(220deg) contrast(1.2)}
 .ov .kick{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
 .ov .big{font-family:var(--f-display);font-weight:800;font-size:clamp(36px,8vw,68px);line-height:1;margin:0;text-wrap:balance}
 .ov .line{font-family:var(--f-display);font-style:italic;font-size:18px;margin:0}
@@ -1004,6 +1006,20 @@ const ROSTER = {
 const FACE = { kiri:[83,68,45], natsu:[50,50,40], tetsugi:[69,60,35], miren:[96,75,35], goku:[72,62,35], hisui:[100,85,40],
   kuro:[50,50,60], ren:[72,62,35], sayo:[69,60,45], kugai:[31,40,30], fuyori:[78,65,45], shio:[50,50,50] };
 const faceStyle = id => `object-position:${FACE[id][0]}% 50%`;
+// Portrait state, the most telling first (see docs/design-doc.md, Party art). The art is ASSETS[id].ps[state];
+// a state not drawn yet falls back to the standard portrait, which the KO and Afflicted CSS filters then tint.
+function pState(u){
+  if (u.fled) return 'strained';
+  if (!u.alive) return 'ko';
+  if (u.aff) return u.aff.toLowerCase();
+  if (u.insp) return 'inspired';
+  if (u.hp <= u.maxhp*.25) return 'lowhp';
+  if (u.stress >= 75) return 'strained';
+  return 'normal';
+}
+const portrait = (u, st = pState(u)) => { const ps = ASSETS[u.id].ps?.[st]; return `src="${ps || ASSETS[u.id].p}"${ps ? ' class="ps"' : ''}`; };
+// the hurt face flashes over the card for the length of the hit shake
+const hurtFace = u => shaking(u.id) && ASSETS[u.id].ps?.hurt ? `<img class="ps hurt" src="${ASSETS[u.id].ps.hurt}" alt="" style="${faceStyle(u.id)}">` : '';
 const zoomStyle = id => `transform-origin:${FACE[id][1]}% ${FACE[id][2]}%`;
 const ROLE_DESC = {
   kiri:'Turns Danger into damage and party Stress relief.',
@@ -2039,7 +2055,7 @@ async function stressCheck(u){
   log(`Stress Check: ${u.name} is ${bad?'Afflicted':'Inspired'} (${name}).`, 'dread');
   render();
   await overlay(`<div class="kick">Stress Check · ${u.stress} Stress</div>
-    <div class="face ${bad?'harm':''}"><img src="${ASSETS[u.id].p}" alt="" style="${zoomStyle(u.id)}"></div>
+    <div class="face ${bad?'harm':''}"><img ${portrait(u)} alt="" style="${zoomStyle(u.id)}"></div>
     <h2 class="big">${u.name}</h2>
     <p class="word ${bad?'harm':''}">${bad?'Afflicted':'Inspired'}: ${name}</p>
     <p class="what">${what}</p><button class="btn" type="button">Continue</button>`, true);
@@ -2057,7 +2073,7 @@ async function fleeScene(u){
     actives().filter(a=>a.alive && a.id!=='tetsugi').forEach(a=>addStress(a, 15, `${u.name} fled`));
   }
   render();
-  await overlay(`<div class="kick">200 Stress</div><div class="face on"><img src="${ASSETS[u.id].p}" alt="" style="${zoomStyle(u.id)}"></div>
+  await overlay(`<div class="kick">200 Stress</div><div class="face on"><img ${portrait(u)} alt="" style="${zoomStyle(u.id)}"></div>
     <h2 class="big">${u.name} fled</h2>
     <p class="what on">${line}</p><button class="btn" type="button">Continue</button>`);
 }
@@ -2177,7 +2193,7 @@ function pcCard(u){
   const cls = ['pc', u===G.current?'current':'', !u.alive?'ko':'', u.aff?'harm':'', tgt?'targetable':''].join(' ') + shaking(u.id) + (recOn() ? recCls(u) : '');
   const tag = tgt ? 'button' : 'div';
   return `<${tag} class="${cls}" ${tgt?`type="button" data-pt="${u.id}" aria-label="Target ${u.name}"`:''}>
-    <div class="por"><img src="${ASSETS[u.id].p}" alt="${u.name}" style="${faceStyle(u.id)}"></div>
+    <div class="por"><img ${portrait(u)} alt="${u.name}" style="${faceStyle(u.id)}">${hurtFace(u)}</div>
     <div class="info">
       ${fxHtml(u.id)}
       <div class="row"><span class="nm">${u.name}</span><span class="cls">${u.role}</span></div>
@@ -2194,7 +2210,7 @@ function pcCard(u){
 function rvCard(u){
   const st = u.fled ? 'Fled' : !u.alive ? 'KO' : u.aff ? `Afflicted: ${u.aff}` : u.insp ? `Inspired: ${u.insp}` : u.role;
   return `<div class="rv${u.fled?' heard':''}${shaking(u.id)}" title="${esc(u.role+'. '+ROLE_DESC[u.id])}">
-    <img src="${ASSETS[u.id].p}" alt="" style="${faceStyle(u.id)}">
+    <img ${portrait(u)} alt="" style="${faceStyle(u.id)}">
     <div class="i"><div class="nm">${u.name}<small>Stress ${u.stress}</small></div>
     <div class="dr"><i style="width:${u.stress/2}%"></i><b></b></div>
     <div class="st${u.aff?' harm':''}">${esc(st)}</div></div></div>`;
