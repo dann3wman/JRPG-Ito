@@ -4,7 +4,7 @@
 
 ## Running
 
-Open `index.html` in a browser. There is no build step. Portrait art is embedded in the page as data URIs; the only external resource is Google Fonts.
+Open `index.html` in a browser. There is no build step. Portrait art is embedded in the page as data URIs. Animated enemies load their sprite sheets from `tools/bestiary-rig-viewer/` (one copy shared with the rig viewer) and fall back to static art if a sheet is missing. The only external resource is Google Fonts.
 
 ## Checking a change
 

@@ -69,7 +69,6 @@ The bosses in the design doc lean on a handful of mechanics the engine doesn't h
 
 ## Known issues
 
-- **Rig sheets never load in the battle.** The game loads `<creature>.webp` from next to `index.html`, but the sheets live in `tools/bestiary-rig-viewer/`, so all six battle rigs fall back to static art. Either point `load()` at `tools/bestiary-rig-viewer/` (one copy of each sheet; recommended) or copy the sheets to the root. data-check reports it.
 - **The turn-order preview is approximate** past each unit's next turn (it assumes Delay 3). Enemies already have a planned skill, so the forecast can use its rank.
 - **The info panel says crits deal 1.6×.** That is true for enemy crits; party crits deal 1.8×.
 - **Rigs are copied** from the rig viewer into `index.html` by hand. data-check compares the two and warns on drift.
