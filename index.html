@@ -882,7 +882,7 @@ function load(k) {
     const im = new Image();
     im.onload = () => { IMG[k] = im; document.querySelectorAll(`.rigbox[data-rig="${k}"]`).forEach(el => el.classList.add('ready')); units.forEach(u => { if (u.rig.key === k) u.dirty = true; }); res(true); };
     im.onerror = () => res(false); // the static portrait stays visible
-    im.src = k + '.webp';
+    im.src = 'tools/bestiary-rig-viewer/' + k + '.webp';
   });
   return loads[k];
 }
