@@ -6,10 +6,27 @@
 
 Open `index.html` in a browser. There is no build step. Portrait art is embedded in the page as data URIs; the only external resource is Google Fonts.
 
+## Checking a change
+
+The command-line tools need Node 18 or later and nothing else.
+
+```sh
+tools/check.sh          # data integrity, design-doc drift, generated reference, simulator smoke run
+```
+
+CI runs the same script on every push and pull request. [`docs/README.md`](docs/README.md) has the full workflow.
+
 ## Layout
 
 - `index.html`: the game (markup, styles, script, and embedded art).
-- `docs/design-doc.md`: the full design doc (story, cast, battle and Stress systems, bosses, Sphere Grid, side content, endings).
+- `docs/`: design and development docs. See [`docs/README.md`](docs/README.md).
+  - `docs/design-doc.md`: the full design doc (story, cast, battle and Stress systems, bosses, Sphere Grid, side content, endings).
+  - `docs/style-guide.md`, `docs/glossary.md`: the horror rules, house voice, visual language, and canon names.
+  - `docs/systems/battle-math.md`: the prototype's formulas. `docs/reference/game-data.md`: every number it uses (generated).
+  - `docs/implementation-status.md`: what is built, where code and doc disagree, balance findings, open decisions.
+  - `docs/guides/`, `docs/templates/`, `docs/bosses/`: how to build a boss, the spec template, and per-boss specs.
 - `tools/`: the dev tool suite. See [`tools/README.md`](tools/README.md).
   - `tools/bestiary-rig-viewer/`: creature rig and animation previewer, plus the creature sprite sheets (`<creature>.webp`) and arena backdrops (`bg_*.webp`).
-- `.claude/skills/sprite-animation/`: the Claude skill for building and correcting creature animations and sprite sheets. It keeps a log of past corrections and the ChatGPT prompt template for new sheets.
+  - `tools/ctb-planner/`: turn-order design tool for tempo puzzles.
+  - `tools/battle-sim/`, `tools/data-check/`, `tools/data-export/`: command-line balance simulator, data and drift checker, and reference generator.
+- `.claude/skills/`: Claude skills. `sprite-animation` builds and corrects creature animations and sprite sheets; `boss-design` designs, builds and tunes encounters. Each keeps a log of lessons from past corrections.

@@ -61,7 +61,11 @@ The design doc's rule is that every classic JRPG beat is kept and played as slow
 
 ## Working conventions
 
-- Read [`README.md`](README.md), [`docs/design-doc.md`](docs/design-doc.md) and [`tools/README.md`](tools/README.md) before changing a system. Keep code and the design doc in step: when a change alters a documented rule, update the doc in the same change.
+- Read [`README.md`](README.md), [`docs/design-doc.md`](docs/design-doc.md) and [`tools/README.md`](tools/README.md) before changing a system. Keep code and the design doc in step: when a change alters a documented rule, update the doc in the same change. [`docs/README.md`](docs/README.md) maps the rest of the docs and the full workflow.
+- Hold every system, fight and line of text to the horror rules and house voice in [`docs/style-guide.md`](docs/style-guide.md), and use the canon names in [`docs/glossary.md`](docs/glossary.md).
+- Run `tools/check.sh` before committing. Treat its drift warnings as decisions: resolve them in the doc or the code, or log them as open questions in [`docs/implementation-status.md`](docs/implementation-status.md). Never edit `docs/reference/game-data.md` by hand; regenerate it with `node tools/data-export/export.js`.
+- Back balance claims with numbers from `tools/battle-sim/sim.js`, and refresh the baseline (`--write-baseline -n 200`) when a change to the numbers is intended.
+- For bosses, enemies and encounters, use the `boss-design` skill in [`.claude/skills/boss-design/`](.claude/skills/boss-design/SKILL.md) and log lessons there.
 - `index.html` is a single-file prototype with no build step. Keep it that way unless asked otherwise.
 - For creature rigs, animation clips and sprite sheets, use the `sprite-animation` skill in [`.claude/skills/sprite-animation/`](.claude/skills/sprite-animation/SKILL.md) and log corrections there.
 - Match the surrounding code's style, naming and comment density.
