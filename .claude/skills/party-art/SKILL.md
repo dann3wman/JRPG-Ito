@@ -49,6 +49,16 @@ The complexity target is an FFRK character sheet: battle poses, status poses, an
 
 A state with no art falls back to the `normal` portrait, which the existing KO and Afflicted CSS filters then tint. So partial sets are safe to embed.
 
+### Art direction: where the Ito horror goes
+
+The portraits are drawn in Junji Ito's ink style. The sprites are not, and their prompt never names him. Ito's hatching and fine linework can't survive at 56 px, and asking for them pulls ChatGPT off pixel art and off the grid. The horror reaches the sprites through three concrete fields in `cast.json` instead:
+
+- `accent`: the one saturated colour on a muted sepia, bone and grey palette that matches the ink portraits.
+- `tell`: one small wrong detail that persists in every frame, battle and field alike, such as Miren's lifted heels or Kugai's blank face. This is Ito's ordinary-turned-wrong at sprite scale, and players learn to notice it on the field.
+- `twists`: shared with the portraits. Sprite frames that show a portrait state (`FRAME_STATE` in the script: hurt, low HP, Zombie, KO, Sleep, Paralyze, Confuse, Berserk) get that state's twist.
+
+A clean, nearly cute sprite next to an Ito portrait is intentional. It is the manga's cut from the ordinary to the wrong, the same move EarthBound and Mother 3 make with cheerful sprites.
+
 Every portrait states the generic look for its state, plus the character's own horror (`twists` in `cast.json`). That twist is what makes a state an Ito panel instead of a filter. Natsu's halo faces open their eyes at low HP. Hisui's wounds bloom into flowers. Kugai has no face in any panel. A `twists.all` entry applies to every panel. When you add a character or a state, write a twist for it wherever the character's horror has a natural hook.
 
 ## Workflow
@@ -70,5 +80,7 @@ Every portrait states the generic look for its state, plus the character's own h
 
 - Never change the grid order, cell count or frame names for one character. The point is that every sheet is interchangeable. To change the standard, edit `FRAMES`/`ANIMS`/`STATES`, run `manifest`, update this file and the Party art section of `docs/design-doc.md`, and re-request any sheets that no longer fit.
 - Sheets come back on flat green, like the bestiary sheets. Key colours and the checkerboard warning are shared with `sprite-animation/scripts/sheet.py`, and so are its Standing rules on alpha.
+- Don't name Junji Ito (or ask for hatching) in the sprite prompt. Put any new sprite horror into `accent`, `tell` or `twists`.
+- Write each twist so it reads both as a portrait expression and as a pose. It also lands on sprite frames, and it overrides the generic frame description when the two differ.
 - Keep each character's look in `cast.json` in step with the design doc and the current portrait. Prompts are only as consistent as that data.
 - When a returned sheet needed a fix, or a prompt wording failed, note it in this file under a "Lessons" heading. Fix the wording in `sheet_prompt` / `portrait_prompt` so the next request is better.

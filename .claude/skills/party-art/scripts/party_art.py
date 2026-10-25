@@ -205,14 +205,25 @@ def twist(c, state):
     return c.get('twists', {}).get(state, '')
 
 
+# Sprite frames that show a portrait state carry that state's character twist too,
+# so the horror lands in the poses a player sees most when things go wrong.
+FRAME_STATE = {'hurt1': 'hurt', 'lowhp1': 'lowhp', 'lowhp2': 'lowhp', 'zombie1': 'zombie', 'zombie2': 'zombie',
+               'ko': 'ko', 'sleep1': 'sleep', 'sleep2': 'sleep', 'paralyze': 'paralyze',
+               'confuse1': 'confuse', 'confuse2': 'confuse', 'berserk': 'berserk'}
+
+
 def sheet_prompt(cid):
     c = char(cid)
+    first = c['name'].split()[0]
     lines = []
     for i, (name, desc) in enumerate(FRAMES):
         if name.startswith('special'):
             desc = f'Class action, frame {name[-1]} of 3 (described above)'
         elif name.startswith('limit'):
             desc = f'Limit Break, frame {name[-1]} of 3 (described above)'
+        t = twist(c, FRAME_STATE.get(name, ''))
+        if t:
+            desc += f'. For {first}: {t}'
         if i % SHEET_COLS == 0:
             lines.append(f'Row {i // SHEET_COLS + 1}:')
         lines.append(f'  {i % SHEET_COLS + 1}. {name}: {desc}')
@@ -222,7 +233,11 @@ About the character: {c['look']}. {c['horror'][0].upper() + c['horror'][1:]}. We
 Class action (row 5, frames 1-3): {c['special']}.
 Limit Break (row 5, frames 4-6): {c['limit']}.
 
-Style: 16-bit SNES-era pixel art, chibi proportions (head about a third of the body height), crisp 1-pixel dark outlines, a limited palette of about 24 colours, light from the top left. Match the attached sprite's colours and costume, drawn at a higher frame quality. The horror is quiet: the character is drawn normally; their unsettling feature is visible but small.
+Style: 16-bit SNES-era pixel art, chibi proportions (head about a third of the body height), crisp 1-pixel outlines in near-black ink, light from the top left. Match the attached sprite's costume, drawn at a higher frame quality. Keep it clean pixel art: no hatching, no sketch lines, no realistic proportions.
+
+Palette: tie it to the attached ink-drawn portrait. Near-black outlines, muted sepia, bone and grey tones, about 20 colours in all, with {c['accent']} as the only saturated colour.
+
+The horror is quiet. The character looks almost ordinary, even cute, except for one small wrong detail that stays in every frame, battle and field alike: {c['tell']}. Draw it plainly and consistently; never exaggerate it. Where a frame below gives a detail "For {first}", that detail is part of the frame and wins over the generic description if they differ.
 
 Layout: a grid of {SHEET_COLS} columns x {SHEET_ROWS} rows = {len(FRAMES)} square frames. Every frame shows the same character at the same size. Battle frames (rows 1-7) face LEFT (the enemy is to the left); rows 8-9 are field frames facing the direction given. Each figure stands on the same invisible ground line about 15% above the bottom of its cell, horizontally centred in the cell. Keep the whole figure, weapon and effects inside its own cell with clear space around it. Small effects (sparks, glow, notes, petals) are fine if they stay inside the cell.
 

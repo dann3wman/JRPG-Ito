@@ -11,7 +11,11 @@ About the character: a calm young woman with short dark hair under a mossy green
 Class action (row 5, frames 1-3): Summon Hound: she raises the whistle to her lips; a huge shadowy hound's head rises behind her (3 frames).
 Limit Break (row 5, frames 4-6): The Pack: she drops to all fours, back arched like an animal, with several hound shadows around her.
 
-Style: 16-bit SNES-era pixel art, chibi proportions (head about a third of the body height), crisp 1-pixel dark outlines, a limited palette of about 24 colours, light from the top left. Match the attached sprite's colours and costume, drawn at a higher frame quality. The horror is quiet: the character is drawn normally; their unsettling feature is visible but small.
+Style: 16-bit SNES-era pixel art, chibi proportions (head about a third of the body height), crisp 1-pixel outlines in near-black ink, light from the top left. Match the attached sprite's costume, drawn at a higher frame quality. Keep it clean pixel art: no hatching, no sketch lines, no realistic proportions.
+
+Palette: tie it to the attached ink-drawn portrait. Near-black outlines, muted sepia, bone and grey tones, about 20 colours in all, with moss green as the only saturated colour.
+
+The horror is quiet. The character looks almost ordinary, even cute, except for one small wrong detail that stays in every frame, battle and field alike: her right hand is visibly too large, furred and clawed. Draw it plainly and consistently; never exaggerate it. Where a frame below gives a detail "For Goku", that detail is part of the frame and wins over the generic description if they differ.
 
 Layout: a grid of 6 columns x 9 rows = 54 square frames. Every frame shows the same character at the same size. Battle frames (rows 1-7) face LEFT (the enemy is to the left); rows 8-9 are field frames facing the direction given. Each figure stands on the same invisible ground line about 15% above the bottom of its cell, horizontally centred in the cell. Keep the whole figure, weapon and effects inside its own cell with clear space around it. Small effects (sparks, glow, notes, petals) are fine if they stay inside the cell.
 
@@ -42,8 +46,8 @@ Row 4:
   2. item2: Item: tossing the vial forward to the left
   3. hurt1: Hit: recoiling backward to the right, head snapped back
   4. hurt2: Hit: stumbling, recovering balance
-  5. lowhp1: Low HP: down on one knee, head bowed, weapon planted, breathing hard
-  6. lowhp2: Low HP: same kneel, shoulders heaving up
+  5. lowhp1: Low HP: down on one knee, head bowed, weapon planted, breathing hard. For Goku: fur is spreading up her neck and her pupils have narrowed into an animal's
+  6. lowhp2: Low HP: same kneel, shoulders heaving up. For Goku: fur is spreading up her neck and her pupils have narrowed into an animal's
 Row 5:
   1. special1: Class action, frame 1 of 3 (described above)
   2. special2: Class action, frame 2 of 3 (described above)
@@ -59,12 +63,12 @@ Row 6:
   5. zombie2: Zombie: same slack stance, swaying the other way
   6. ko: KO: lying flat on the ground on their back, eyes closed, weapon dropped beside them
 Row 7:
-  1. sleep1: Asleep: sitting or kneeling slumped, head down, eyes closed
-  2. sleep2: Asleep: same, head dipped slightly lower (a breath)
+  1. sleep1: Asleep: sitting or kneeling slumped, head down, eyes closed. For Goku: she is curled the way a dog sleeps
+  2. sleep2: Asleep: same, head dipped slightly lower (a breath). For Goku: she is curled the way a dog sleeps
   3. paralyze: Paralyzed: frozen rigid mid-step, limbs stiff, back arched, straining
   4. confuse1: Confused: wobbling, head tilted, looking the wrong way (right, away from the enemy)
   5. confuse2: Confused: wobbling the other way, a hand at the temple
-  6. berserk: Berserk: hunched forward, weapon gripped too hard, teeth bared, ready to charge
+  6. berserk: Berserk: hunched forward, weapon gripped too hard, teeth bared, ready to charge. For Goku: her jaw has lengthened slightly and her teeth are a hound's
 Row 8:
   1. walkD1: Field, facing the viewer (down): standing, weapon sheathed or at rest
   2. walkD2: Field, facing down: walking, left foot forward

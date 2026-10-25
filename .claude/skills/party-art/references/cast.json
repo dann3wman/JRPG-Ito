@@ -1,9 +1,12 @@
 {
   "kiri": {
-    "name": "Kiri Haldane", "class": "Wanderer",
+    "name": "Kiri Haldane",
+    "class": "Wanderer",
     "look": "a young woman with long straight black hair and a pale, tired face; travel-worn grey-white tunic and dark leggings, a red scarf, a plain single-edged sword",
     "horror": "hums without knowing it; spirals turn up wherever she sleeps",
     "weapon": "a plain single-edged sword held in the right hand",
+    "accent": "the red scarf",
+    "tell": "the loose end of her scarf always curls into a small spiral",
     "special": "Spiral Cut: a single sweeping slash that traces a spiral in the air (3 frames: draw back, spiral sweep, spiral hanging in the air behind the blade)",
     "limit": "Lullaby for Ostrel: she stands still with her eyes closed and mouth slightly open, humming; faint spiral lines rise off her",
     "twists": {
@@ -13,10 +16,13 @@
     }
   },
   "natsu": {
-    "name": "Natsu", "class": "Healer",
+    "name": "Natsu",
+    "class": "Healer",
     "look": "a gentle young woman with very long pale blonde hair; a cream and white healer's robe; a spiked halo crown behind her head with small human faces caught in it; hands often pressed together",
     "horror": "every patient she heals leaves a face behind in her halo",
     "weapon": "no weapon; she casts with both hands pressed together",
+    "accent": "the dull gold of her halo",
+    "tell": "her halo holds three or four tiny pale faces, just a few pixels each, with dark dot eyes",
     "special": "Cure: hands pressed together, then opened outward; the faces in her halo turn toward the target (3 frames)",
     "limit": "Halo of Faces: arms spread, the halo flares wide and every face in it opens its mouth",
     "twists": {
@@ -27,10 +33,13 @@
     }
   },
   "tetsugi": {
-    "name": "Tetsugi Haldane", "class": "Monk",
+    "name": "Tetsugi Haldane",
+    "class": "Monk",
     "look": "a lean, muscular young man with a close-shaved head; stitched seams across his scalp, neck and chest; a tan martial artist's gi tied with a rope belt; bare wrapped fists",
     "horror": "Kiri's brother, revived by Phoenix Down every night; feathers grow under his stitched skin",
     "weapon": "bare fists with cloth wraps",
+    "accent": "rust-red stitching",
+    "tell": "a single grey feather tip pokes out of a seam at his collar",
     "special": "Counter: a guard stance, then a sudden backhand strike (3 frames: guard, twist, strike)",
     "limit": "Again and Again: a flurry of punches; his stitches strain and a feather tip pushes out of one seam",
     "twists": {
@@ -41,10 +50,13 @@
     }
   },
   "miren": {
-    "name": "Miren", "class": "Spearbound",
+    "name": "Miren",
+    "class": "Spearbound",
     "look": "a brash young man with messy, spiky pale gold hair; red and dark-iron dragoon armour; a long spear whose shaft has grown into his right forearm, wood fused with veins",
     "horror": "his spear has grown into his arm; he refuses to touch the ground",
     "weapon": "a long spear fused into the right forearm, the shaft merging into the skin",
+    "accent": "the red of his armour",
+    "tell": "his heels never touch the ground: in every standing frame he is on tiptoe, and the spear shaft runs into his forearm with no hand gripping it",
     "special": "Jump: crouch, leap upward out of frame (only his legs visible at the top of the cell), then plunge down spear-first (3 frames). His feet never quite touch the ground in idle frames: he stands on tiptoe",
     "limit": "Falling Star: diving straight down, spear first, trailing pale light",
     "twists": {
@@ -55,10 +67,13 @@
     }
   },
   "goku": {
-    "name": "Goku", "class": "Beastcaller",
+    "name": "Goku",
+    "class": "Beastcaller",
     "look": "a calm young woman with short dark hair under a mossy green-brown hooded cloak; leather wraps; small animal bones on cords; one hand slightly too large and furred",
     "horror": "her body is slowly reshaping into the beasts she calls",
     "weapon": "a short bone whistle; she fights with a clawed hand",
+    "accent": "moss green",
+    "tell": "her right hand is visibly too large, furred and clawed",
     "special": "Summon Hound: she raises the whistle to her lips; a huge shadowy hound's head rises behind her (3 frames)",
     "limit": "The Pack: she drops to all fours, back arched like an animal, with several hound shadows around her",
     "twists": {
@@ -68,10 +83,13 @@
     }
   },
   "hisui": {
-    "name": "Hisui", "class": "Blade Dancer",
+    "name": "Hisui",
+    "class": "Blade Dancer",
     "look": "a young woman with long straight black hair and a cold, beautiful face; a long crimson coat; twin curved blades; a large red chrysanthemum-like flower growing at her shoulder",
     "horror": "the Tide-Widow's daughter; her wounds bloom into red flowers with eyes",
     "weapon": "twin curved blades, one in each hand",
+    "accent": "the crimson coat and flower",
+    "tell": "the red flower at her shoulder has one dark eye at its centre",
     "special": "Double Cut: two fast crossing slashes, one per blade (3 frames)",
     "limit": "Garden of Eyes: a spinning dance, red petals around her, some petals with eyes",
     "twists": {
@@ -82,10 +100,13 @@
     }
   },
   "kuro": {
-    "name": "Kuro", "class": "Shade",
+    "name": "Kuro",
+    "class": "Shade",
     "look": "a thin young woman with very long, lank dark purple-black hair falling over her face; layered violet and black robes; hollow, shadowed eyes",
     "horror": "hollowed out by her own spells; you can hear wind inside her when she speaks",
     "weapon": "no weapon; she casts with one open hand",
+    "accent": "violet",
+    "tell": "her hair always drifts as if in a wind, even in frames where nothing else moves",
     "special": "Dark: she lifts one hand; a black orb forms in her palm and her hair lifts as if in wind (3 frames)",
     "limit": "Empty House: her mouth opens wide and darkness pours out of it; her body looks paper-thin",
     "twists": {
@@ -95,10 +116,13 @@
     }
   },
   "ren": {
-    "name": "Ren", "class": "Gunslinger",
+    "name": "Ren",
+    "class": "Gunslinger",
     "look": "a weathered man in his late forties with stubble and old scars; a wide-brimmed dark hat; a long dark airship captain's coat with brass buttons; a long-barrelled pistol",
     "horror": "captain of the airship; has flown the same circular route for forty years",
     "weapon": "a long-barrelled pistol held in the right hand",
+    "accent": "brass buttons and muzzle flash",
+    "tell": "his pupils sit in a different place in each idle frame, slowly tracing a circle",
     "special": "Delay Shot: draw, aim with the arm straight out, fire with a bright muzzle flash (3 frames)",
     "limit": "Last Round: fanning the hammer, several muzzle flashes, spent shells in the air",
     "twists": {
@@ -108,10 +132,13 @@
     }
   },
   "sayo": {
-    "name": "Sayo", "class": "Songweaver",
+    "name": "Sayo",
+    "class": "Songweaver",
     "look": "a young woman with soft wavy silver-white hair; a pale blue and white choir dress with a high collar; a small tuning fork on a chain",
     "horror": "a choir defector; the other singers' faces still follow her around",
     "weapon": "a tuning fork on a chain; she casts by singing",
+    "accent": "pale blue",
+    "tell": "one or two faint, pale choir faces float just behind her shoulders in every battle frame",
     "special": "Quick Song: one hand to her chest, mouth open singing, small pale notes curling away from her (3 frames)",
     "limit": "Choir of One: arms raised, singing; faint faces of other singers hover around her, singing with her",
     "twists": {
@@ -122,10 +149,13 @@
     }
   },
   "kugai": {
-    "name": "Kugai", "class": "Void Knight",
+    "name": "Kugai",
+    "class": "Void Knight",
     "look": "a tall knight in heavy dark armour with blood-red trim; his helmet is open and where the face should be there is smooth black nothing; no ears; a tower shield and a broad sword",
     "horror": "a Varn knight with no face and no ears; he has never heard the note",
     "weapon": "a broad sword in the right hand and a tower shield on the left arm",
+    "accent": "blood-red trim",
+    "tell": "inside the open helmet, where his face should be, is flat pure black with no features in every frame",
     "special": "Provoke: he slams the sword against the shield and leans forward (3 frames: raise, strike, brace)",
     "limit": "Hollow Crown: sword raised overhead in both hands; the black where his face should be widens",
     "twists": {
@@ -136,10 +166,13 @@
     }
   },
   "fuyori": {
-    "name": "Fuyori", "class": "Alchemist",
+    "name": "Fuyori",
+    "class": "Alchemist",
     "look": "a young woman with a neat dark bob haircut and a sharp, studious face; an olive green imperial alchemist's coat with many pockets; patches of pale crystal growing on her cheek and hands; a notebook and glass vials",
     "horror": "an imperial alchemist sealed in a crystal coffin, still taking notes",
     "weapon": "glass vials she throws; a notebook in her other hand",
+    "accent": "olive green and pale-blue crystal",
+    "tell": "small pale-blue crystal patches grow on her cheek and the backs of her hands",
     "special": "Mix: she uncorks a vial, pours it into another, and holds the smoking result up to the light (3 frames)",
     "limit": "Distillation: she stands inside a ring of rising vapour, crystal spreading up her arm",
     "twists": {
@@ -149,10 +182,13 @@
     }
   },
   "shio": {
-    "name": "Shio", "class": "Oracle",
+    "name": "Shio",
+    "class": "Oracle",
     "look": "a pale young woman in a grey-blue hood and wrapped robes; open eyes scattered across her skin, her hood lining and her hands",
     "horror": "covered in eyes; each one is a future she has already seen",
     "weapon": "no weapon; she reads the future with an open palm that has an eye in it",
+    "accent": "grey-blue",
+    "tell": "a few small open eyes show on her hands and the lining of her hood",
     "special": "Foresee: she opens her palm toward the enemy; every eye on her body turns to look the same way (3 frames)",
     "limit": "All Eyes Open: hood thrown back, every eye on her body wide open",
     "twists": {

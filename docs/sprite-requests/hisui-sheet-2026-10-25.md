@@ -11,7 +11,11 @@ About the character: a young woman with long straight black hair and a cold, bea
 Class action (row 5, frames 1-3): Double Cut: two fast crossing slashes, one per blade (3 frames).
 Limit Break (row 5, frames 4-6): Garden of Eyes: a spinning dance, red petals around her, some petals with eyes.
 
-Style: 16-bit SNES-era pixel art, chibi proportions (head about a third of the body height), crisp 1-pixel dark outlines, a limited palette of about 24 colours, light from the top left. Match the attached sprite's colours and costume, drawn at a higher frame quality. The horror is quiet: the character is drawn normally; their unsettling feature is visible but small.
+Style: 16-bit SNES-era pixel art, chibi proportions (head about a third of the body height), crisp 1-pixel outlines in near-black ink, light from the top left. Match the attached sprite's costume, drawn at a higher frame quality. Keep it clean pixel art: no hatching, no sketch lines, no realistic proportions.
+
+Palette: tie it to the attached ink-drawn portrait. Near-black outlines, muted sepia, bone and grey tones, about 20 colours in all, with the crimson coat and flower as the only saturated colour.
+
+The horror is quiet. The character looks almost ordinary, even cute, except for one small wrong detail that stays in every frame, battle and field alike: the red flower at her shoulder has one dark eye at its centre. Draw it plainly and consistently; never exaggerate it. Where a frame below gives a detail "For Hisui", that detail is part of the frame and wins over the generic description if they differ.
 
 Layout: a grid of 6 columns x 9 rows = 54 square frames. Every frame shows the same character at the same size. Battle frames (rows 1-7) face LEFT (the enemy is to the left); rows 8-9 are field frames facing the direction given. Each figure stands on the same invisible ground line about 15% above the bottom of its cell, horizontally centred in the cell. Keep the whole figure, weapon and effects inside its own cell with clear space around it. Small effects (sparks, glow, notes, petals) are fine if they stay inside the cell.
 
@@ -40,10 +44,10 @@ Row 3:
 Row 4:
   1. item1: Item: holding a small vial up
   2. item2: Item: tossing the vial forward to the left
-  3. hurt1: Hit: recoiling backward to the right, head snapped back
+  3. hurt1: Hit: recoiling backward to the right, head snapped back. For Hisui: a red bud opens from the fresh cut
   4. hurt2: Hit: stumbling, recovering balance
-  5. lowhp1: Low HP: down on one knee, head bowed, weapon planted, breathing hard
-  6. lowhp2: Low HP: same kneel, shoulders heaving up
+  5. lowhp1: Low HP: down on one knee, head bowed, weapon planted, breathing hard. For Hisui: her wounds have bloomed into red flowers, and the flowers have eyes
+  6. lowhp2: Low HP: same kneel, shoulders heaving up. For Hisui: her wounds have bloomed into red flowers, and the flowers have eyes
 Row 5:
   1. special1: Class action, frame 1 of 3 (described above)
   2. special2: Class action, frame 2 of 3 (described above)
@@ -57,14 +61,14 @@ Row 6:
   3. victory3: Victory: same pose, small change (hair or cloth moves, a breath)
   4. zombie1: Zombie: standing slack, head lolling to one side, arms hanging, skin grey-green
   5. zombie2: Zombie: same slack stance, swaying the other way
-  6. ko: KO: lying flat on the ground on their back, eyes closed, weapon dropped beside them
+  6. ko: KO: lying flat on the ground on their back, eyes closed, weapon dropped beside them. For Hisui: the flowers on her body are still blooming
 Row 7:
   1. sleep1: Asleep: sitting or kneeling slumped, head down, eyes closed
   2. sleep2: Asleep: same, head dipped slightly lower (a breath)
   3. paralyze: Paralyzed: frozen rigid mid-step, limbs stiff, back arched, straining
   4. confuse1: Confused: wobbling, head tilted, looking the wrong way (right, away from the enemy)
   5. confuse2: Confused: wobbling the other way, a hand at the temple
-  6. berserk: Berserk: hunched forward, weapon gripped too hard, teeth bared, ready to charge
+  6. berserk: Berserk: hunched forward, weapon gripped too hard, teeth bared, ready to charge. For Hisui: the flowers on her are all open and staring at the enemy, like she is
 Row 8:
   1. walkD1: Field, facing the viewer (down): standing, weapon sheathed or at rest
   2. walkD2: Field, facing down: walking, left foot forward

@@ -11,7 +11,11 @@ About the character: a tall knight in heavy dark armour with blood-red trim; his
 Class action (row 5, frames 1-3): Provoke: he slams the sword against the shield and leans forward (3 frames: raise, strike, brace).
 Limit Break (row 5, frames 4-6): Hollow Crown: sword raised overhead in both hands; the black where his face should be widens.
 
-Style: 16-bit SNES-era pixel art, chibi proportions (head about a third of the body height), crisp 1-pixel dark outlines, a limited palette of about 24 colours, light from the top left. Match the attached sprite's colours and costume, drawn at a higher frame quality. The horror is quiet: the character is drawn normally; their unsettling feature is visible but small.
+Style: 16-bit SNES-era pixel art, chibi proportions (head about a third of the body height), crisp 1-pixel outlines in near-black ink, light from the top left. Match the attached sprite's costume, drawn at a higher frame quality. Keep it clean pixel art: no hatching, no sketch lines, no realistic proportions.
+
+Palette: tie it to the attached ink-drawn portrait. Near-black outlines, muted sepia, bone and grey tones, about 20 colours in all, with blood-red trim as the only saturated colour.
+
+The horror is quiet. The character looks almost ordinary, even cute, except for one small wrong detail that stays in every frame, battle and field alike: inside the open helmet, where his face should be, is flat pure black with no features in every frame. Draw it plainly and consistently; never exaggerate it. Where a frame below gives a detail "For Kugai", that detail is part of the frame and wins over the generic description if they differ.
 
 Layout: a grid of 6 columns x 9 rows = 54 square frames. Every frame shows the same character at the same size. Battle frames (rows 1-7) face LEFT (the enemy is to the left); rows 8-9 are field frames facing the direction given. Each figure stands on the same invisible ground line about 15% above the bottom of its cell, horizontally centred in the cell. Keep the whole figure, weapon and effects inside its own cell with clear space around it. Small effects (sparks, glow, notes, petals) are fine if they stay inside the cell.
 
@@ -59,12 +63,12 @@ Row 6:
   5. zombie2: Zombie: same slack stance, swaying the other way
   6. ko: KO: lying flat on the ground on their back, eyes closed, weapon dropped beside them
 Row 7:
-  1. sleep1: Asleep: sitting or kneeling slumped, head down, eyes closed
-  2. sleep2: Asleep: same, head dipped slightly lower (a breath)
+  1. sleep1: Asleep: sitting or kneeling slumped, head down, eyes closed. For Kugai: the void is perfectly still; a thin line of frost crosses it
+  2. sleep2: Asleep: same, head dipped slightly lower (a breath). For Kugai: the void is perfectly still; a thin line of frost crosses it
   3. paralyze: Paralyzed: frozen rigid mid-step, limbs stiff, back arched, straining
-  4. confuse1: Confused: wobbling, head tilted, looking the wrong way (right, away from the enemy)
-  5. confuse2: Confused: wobbling the other way, a hand at the temple
-  6. berserk: Berserk: hunched forward, weapon gripped too hard, teeth bared, ready to charge
+  4. confuse1: Confused: wobbling, head tilted, looking the wrong way (right, away from the enemy). For Kugai: the void reflects a second, smaller Kugai looking back
+  5. confuse2: Confused: wobbling the other way, a hand at the temple. For Kugai: the void reflects a second, smaller Kugai looking back
+  6. berserk: Berserk: hunched forward, weapon gripped too hard, teeth bared, ready to charge. For Kugai: red light is collecting in the void like a pupil
 Row 8:
   1. walkD1: Field, facing the viewer (down): standing, weapon sheathed or at rest
   2. walkD2: Field, facing down: walking, left foot forward

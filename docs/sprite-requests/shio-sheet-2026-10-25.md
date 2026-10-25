@@ -11,7 +11,11 @@ About the character: a pale young woman in a grey-blue hood and wrapped robes; o
 Class action (row 5, frames 1-3): Foresee: she opens her palm toward the enemy; every eye on her body turns to look the same way (3 frames).
 Limit Break (row 5, frames 4-6): All Eyes Open: hood thrown back, every eye on her body wide open.
 
-Style: 16-bit SNES-era pixel art, chibi proportions (head about a third of the body height), crisp 1-pixel dark outlines, a limited palette of about 24 colours, light from the top left. Match the attached sprite's colours and costume, drawn at a higher frame quality. The horror is quiet: the character is drawn normally; their unsettling feature is visible but small.
+Style: 16-bit SNES-era pixel art, chibi proportions (head about a third of the body height), crisp 1-pixel outlines in near-black ink, light from the top left. Match the attached sprite's costume, drawn at a higher frame quality. Keep it clean pixel art: no hatching, no sketch lines, no realistic proportions.
+
+Palette: tie it to the attached ink-drawn portrait. Near-black outlines, muted sepia, bone and grey tones, about 20 colours in all, with grey-blue as the only saturated colour.
+
+The horror is quiet. The character looks almost ordinary, even cute, except for one small wrong detail that stays in every frame, battle and field alike: a few small open eyes show on her hands and the lining of her hood. Draw it plainly and consistently; never exaggerate it. Where a frame below gives a detail "For Shio", that detail is part of the frame and wins over the generic description if they differ.
 
 Layout: a grid of 6 columns x 9 rows = 54 square frames. Every frame shows the same character at the same size. Battle frames (rows 1-7) face LEFT (the enemy is to the left); rows 8-9 are field frames facing the direction given. Each figure stands on the same invisible ground line about 15% above the bottom of its cell, horizontally centred in the cell. Keep the whole figure, weapon and effects inside its own cell with clear space around it. Small effects (sparks, glow, notes, petals) are fine if they stay inside the cell.
 
@@ -42,8 +46,8 @@ Row 4:
   2. item2: Item: tossing the vial forward to the left
   3. hurt1: Hit: recoiling backward to the right, head snapped back
   4. hurt2: Hit: stumbling, recovering balance
-  5. lowhp1: Low HP: down on one knee, head bowed, weapon planted, breathing hard
-  6. lowhp2: Low HP: same kneel, shoulders heaving up
+  5. lowhp1: Low HP: down on one knee, head bowed, weapon planted, breathing hard. For Shio: the eyes on her are weeping
+  6. lowhp2: Low HP: same kneel, shoulders heaving up. For Shio: the eyes on her are weeping
 Row 5:
   1. special1: Class action, frame 1 of 3 (described above)
   2. special2: Class action, frame 2 of 3 (described above)
@@ -59,8 +63,8 @@ Row 6:
   5. zombie2: Zombie: same slack stance, swaying the other way
   6. ko: KO: lying flat on the ground on their back, eyes closed, weapon dropped beside them
 Row 7:
-  1. sleep1: Asleep: sitting or kneeling slumped, head down, eyes closed
-  2. sleep2: Asleep: same, head dipped slightly lower (a breath)
+  1. sleep1: Asleep: sitting or kneeling slumped, head down, eyes closed. For Shio: her own two eyes are closed but every other eye on her is open
+  2. sleep2: Asleep: same, head dipped slightly lower (a breath). For Shio: her own two eyes are closed but every other eye on her is open
   3. paralyze: Paralyzed: frozen rigid mid-step, limbs stiff, back arched, straining
   4. confuse1: Confused: wobbling, head tilted, looking the wrong way (right, away from the enemy)
   5. confuse2: Confused: wobbling the other way, a hand at the temple
