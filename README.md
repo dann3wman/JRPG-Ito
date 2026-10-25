@@ -4,7 +4,7 @@
 
 ## Running
 
-Open [`tools/index.html`](tools/index.html) for the developer tool launcher, with links to the rig viewer, CTB planner, battle prototype and development reference.
+Open [`tools/index.html`](tools/index.html) for the developer tool launcher, with links to the rig viewer, party sprite viewer, CTB planner, battle prototype and development reference.
 
 Open `index.html` in a browser. There is no build step. Portrait art is embedded in the page as data URIs. Animated enemies load their sprite sheets from `tools/bestiary-rig-viewer/` (one copy shared with the rig viewer) and fall back to static art if a sheet is missing. The only external resource is Google Fonts.
 
