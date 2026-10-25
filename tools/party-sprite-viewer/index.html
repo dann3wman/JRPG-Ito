@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Party Sprite Viewer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Silkscreen&family=Spectral:ital,wght@0,400;1,400&display=swap">
+<style>
+/* Same dark reliquary as the bestiary viewer: one fixed dark ground so pixel sprites and ink portraits read the same way every time. */
+:root {
+  --ink: #0e0c11; --niche: #17141b; --slab: #1f1b25; --rule: #34303c;
+  --bone: #ebe3d4; --dim: #9a92a3; --faint: #6c6575; --accent: #d06a7c;
+  --f-display: "IM Fell English SC", Georgia, serif;
+  --f-ui: "Silkscreen", "Courier New", ui-monospace, monospace;
+  --f-body: "Spectral", Georgia, serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ink); color: var(--bone); font: 15px/1.5 var(--f-body); }
+header { padding: 18px 16px 8px; border-bottom: 1px solid var(--rule); }
+h1 { font: 28px/1.1 var(--f-display); margin: 0; }
+header p { margin: 4px 0 0; color: var(--dim); }
+.launcher-link { display: inline-block; color: var(--bone); padding: 8px 0 0; text-underline-offset: 4px; font-size: 14px; }
+.cast { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 16px; border-bottom: 1px solid var(--rule); }
+button { font: 11px var(--f-ui); color: var(--bone); background: var(--slab); border: 1px solid var(--rule); padding: 6px 9px; cursor: pointer; }
+button:hover { border-color: var(--dim); }
+button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+button.missing { color: var(--faint); border-style: dashed; }
+main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 16px; padding: 16px; }
+@media (max-width: 860px) { main { grid-template-columns: minmax(0, 1fr); } }
+section { background: var(--niche); border: 1px solid var(--rule); padding: 14px; min-width: 0; }
+h2 { font: 20px/1.2 var(--f-display); margin: 0 0 10px; }
+.label { font: 10px var(--f-ui); letter-spacing: .08em; color: var(--dim); text-transform: uppercase; }
+.stage { background: radial-gradient(ellipse at 50% 85%, #2a2430 0%, var(--slab) 60%); border: 1px solid var(--rule); display: grid; place-items: center; padding: 8px; }
+canvas { image-rendering: pixelated; max-width: 100%; height: auto; }
+.anims { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0; }
+.tints { display: flex; flex-wrap: wrap; gap: 12px; font: 11px var(--f-ui); color: var(--dim); }
+.ports { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+@media (max-width: 480px) { .ports { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+figure { margin: 0; background: var(--ink); border: 2px solid var(--bone); }
+figure div { aspect-ratio: 1; background-repeat: no-repeat; }
+figcaption { font: 10px var(--f-ui); padding: 4px 6px; color: var(--dim); border-top: 2px solid var(--bone); }
+.empty { color: var(--faint); font-style: italic; padding: 24px 8px; text-align: center; }
+code { font: 12px ui-monospace, monospace; color: var(--bone); background: var(--slab); padding: 1px 4px; }
+</style>
+</head>
+<body>
+<header>
+  <a class="launcher-link" href="../index.html">Developer tools</a>
+  <h1>Party Sprite Viewer</h1>
+  <p>The standard art set for each party member: a 54-frame battle and field sheet and 12 state portraits. Built by the <code>party-art</code> skill.</p>
+</header>
+<nav class="cast" id="cast" aria-label="Party members"></nav>
+<main>
+  <section>
+    <h2 id="who"></h2>
+    <div class="stage"><canvas id="cv" width="288" height="288"></canvas></div>
+    <div class="anims" id="anims" role="group" aria-label="Animations"></div>
+    <div class="tints"><label><input type="checkbox" id="flip"> Face right</label><label><input type="checkbox" id="sheet"> Whole sheet</label></div>
+    <div class="tints" role="group" aria-label="Derived status looks (not drawn on the sheet)">
+      <span>Derived:</span>
+      <label><input type="radio" name="fx" value="" checked> none</label>
+      <label><input type="radio" name="fx" value="flash"> hit flash</label>
+      <label><input type="radio" name="fx" value="stone"> stone</label>
+      <label><input type="radio" name="fx" value="vanish"> vanish</label>
+      <label><input type="radio" name="fx" value="mini"> mini</label>
+    </div>
+    <p class="label" id="frame"></p>
+  </section>
+  <section>
+    <h2>Portraits</h2>
+    <div class="ports" id="ports"></div>
+  </section>
+</main>
+<script src="manifest.js"></script>
+<script>
+const M = MANIFEST, S = M.sheet, Z = 3;
+const ids = Object.keys(M.cast);
+const q = new URLSearchParams(location.search);
+const st = { id: ids.includes(q.get('who')) ? q.get('who') : ids[0], anim: 'idle', t0: performance.now(), img: null };
+const $ = s => document.querySelector(s), cv = $('#cv'), cx = cv.getContext('2d');
+// Status looks the engine derives from any frame instead of having them drawn (FFRK sheets bake these in;
+// generating them keeps the ChatGPT request smaller and the looks identical across the cast).
+const off = document.createElement('canvas'), ox = off.getContext('2d');
+off.width = off.height = S.cell;
+function frameCanvas(i, fx, now) {
+  ox.globalCompositeOperation = 'source-over'; ox.filter = 'none'; ox.clearRect(0, 0, S.cell, S.cell);
+  if (fx === 'stone') ox.filter = 'grayscale(1) contrast(1.15) brightness(1.05)';
+  ox.drawImage(st.img, (i % S.cols) * S.cell, Math.floor(i / S.cols) * S.cell, S.cell, S.cell, 0, 0, S.cell, S.cell);
+  ox.filter = 'none';
+  if (fx === 'flash' && Math.floor(now / 70) % 2) { ox.globalCompositeOperation = 'source-atop'; ox.fillStyle = '#fff'; ox.fillRect(0, 0, S.cell, S.cell); }
+  return off;
+}
+
+function pick(id) {
+  st.id = id; st.img = null; st.t0 = performance.now();
+  const c = M.cast[id];
+  $('#who').textContent = `${c.name} · ${c.class}`;
+  document.querySelectorAll('#cast button').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id));
+  history.replaceState(null, '', '?who=' + id);
+  if (c.sheet) { const im = new Image(); im.onload = () => { if (st.id === id) st.img = im; }; im.src = `${id}.sheet.webp`; }
+  $('#ports').innerHTML = c.portraits
+    ? M.portraits.states.map((s, i) => `<figure><div role="img" aria-label="${c.name}, ${s.label}" style="background-image:url(${id}.portraits.webp);background-size:${M.portraits.cols * 100}% ${M.portraits.rows * 100}%;background-position:${(i % M.portraits.cols) / (M.portraits.cols - 1) * 100}% ${Math.floor(i / M.portraits.cols) / (M.portraits.rows - 1) * 100}%"></div><figcaption>${s.label}</figcaption></figure>`).join('')
+    : `<p class="empty" style="grid-column:1/-1">No portrait sheet yet. Run <code>party_art.py prompt ${id} portraits</code>.</p>`;
+}
+
+function draw(now) {
+  cx.fillStyle = '#1f1b25'; cx.clearRect(0, 0, cv.width, cv.height);
+  const whole = $('#sheet').checked;
+  if (!st.img) {
+    cv.width = cv.height = S.cell * Z;
+    cx.fillStyle = '#6c6575'; cx.font = '12px Silkscreen, monospace'; cx.textAlign = 'center';
+    cx.fillText(M.cast[st.id].sheet ? 'loading…' : 'no sprite sheet yet', cv.width / 2, cv.height / 2);
+    $('#frame').textContent = '';
+  } else if (whole) {
+    cv.width = st.img.width * 2; cv.height = st.img.height * 2; cx.imageSmoothingEnabled = false;
+    cx.drawImage(st.img, 0, 0, cv.width, cv.height);
+    $('#frame').textContent = `${S.cols} × ${S.rows} frames of ${S.cell} px`;
+  } else {
+    const a = M.anims[st.anim], n = a.frames.length, k = Math.floor((now - st.t0) / a.ms);
+    const name = a.frames[a.loop ? k % n : Math.min(k, n - 1)], i = S.frames.indexOf(name);
+    if (!a.loop && k > n + 6) st.t0 = now;            // replay one-shots after a pause
+    cv.width = cv.height = S.cell * Z; cx.imageSmoothingEnabled = false;
+    cx.fillStyle = 'rgba(0,0,0,.35)'; cx.beginPath(); cx.ellipse(cv.width / 2, S.base * Z, 16 * Z, 3 * Z, 0, 0, 7); cx.fill();
+    cx.save();
+    if ($('#flip').checked) { cx.translate(cv.width, 0); cx.scale(-1, 1); }
+    const fx = document.querySelector('input[name=fx]:checked').value;
+    if (fx === 'vanish') cx.globalAlpha = 0.25 + 0.15 * Math.sin(now / 160);
+    if (fx === 'mini') { cx.translate(cv.width / 2, S.base * Z); cx.scale(0.5, 0.5); cx.translate(-cv.width / 2, -S.base * Z); }
+    cx.drawImage(frameCanvas(i, fx, now), 0, 0, cv.width, cv.height);
+    cx.restore();
+    $('#frame').textContent = `${st.anim} · ${name} (${i + 1}/${S.frames.length})`;
+  }
+  requestAnimationFrame(draw);
+}
+
+$('#cast').innerHTML = ids.map(id => { const c = M.cast[id]; return `<button type="button" data-id="${id}" class="${c.sheet || c.portraits ? '' : 'missing'}" title="${c.sheet ? '' : 'no sheet'}${c.portraits ? '' : ' no portraits'}">${c.name.split(' ')[0]}</button>`; }).join('');
+$('#cast').onclick = e => { const b = e.target.closest('button'); if (b) pick(b.dataset.id); };
+$('#anims').innerHTML = Object.keys(M.anims).map(a => `<button type="button" data-a="${a}" aria-pressed="${a === st.anim}">${a}</button>`).join('');
+$('#anims').onclick = e => { const b = e.target.closest('button'); if (!b) return; st.anim = b.dataset.a; st.t0 = performance.now(); $('#sheet').checked = false;
+  document.querySelectorAll('#anims button').forEach(x => x.setAttribute('aria-pressed', x === b)); };
+pick(st.id);
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>

@@ -4,7 +4,7 @@
 
 ## Running
 
-Open [`tools/index.html`](tools/index.html) for the developer tool launcher, with links to the rig viewer, CTB planner, battle prototype and development reference.
+Open [`tools/index.html`](tools/index.html) for the developer tool launcher, with links to the rig viewer, party sprite viewer, CTB planner, battle prototype and development reference.
 
 Open `index.html` in a browser. There is no build step. Portrait art is embedded in the page as data URIs. Animated enemies load their sprite sheets from `tools/bestiary-rig-viewer/` (one copy shared with the rig viewer) and fall back to static art if a sheet is missing. The only external resource is Google Fonts.
 
@@ -29,6 +29,8 @@ CI runs the same script on every push and pull request. [`docs/README.md`](docs/
   - `docs/guides/`, `docs/templates/`, `docs/bosses/`: how to build a boss, the spec template, and per-boss specs.
 - `tools/`: the dev tool suite. See [`tools/README.md`](tools/README.md).
   - `tools/bestiary-rig-viewer/`: creature rig and animation previewer, plus the creature sprite sheets (`<creature>.webp`) and arena backdrops (`bg_*.webp`).
+  - `tools/party-sprite-viewer/`: party sprite sheet and state portrait previewer, plus the installed sheets (`<id>.sheet.webp`, `<id>.portraits.webp`).
   - `tools/ctb-planner/`: turn-order design tool for tempo puzzles.
   - `tools/battle-sim/`, `tools/data-check/`, `tools/data-export/`: command-line balance simulator, data and drift checker, and reference generator.
-- `.claude/skills/`: shared project skills. `sprite-animation` builds and corrects creature animations and player/creature sprite sheets, rendering directly in ChatGPT and providing image prompts in Claude; `boss-design` designs, builds and tunes encounters. Each keeps a log of lessons from past corrections.
+- `docs/sprite-requests/`: every ChatGPT art request as sent, with the original image ChatGPT returned.
+- `.claude/skills/`: shared project skills. `sprite-animation` builds and corrects creature animations and player/creature sprite sheets, rendering directly in ChatGPT and providing image prompts in Claude; `party-art` sets the standard party art set (54-frame sprite sheet, 12 state portraits), writes the art requests, and slices, installs and embeds the results; `boss-design` designs, builds and tunes encounters. Each keeps a log of lessons from past corrections.

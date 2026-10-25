@@ -216,6 +216,27 @@ An Afflicted character ignores your command about one turn in three and acts on 
 
 Inspired states end after the dungeon or after resting. Afflictions end when Stress drops below 50.
 
+## Party art
+
+Every party member has the same art set, so their states read the same way across the cast. The generation pipeline is the `party-art` skill (`.claude/skills/party-art/`).
+
+**Sprite sheet.** 54 frames in a fixed grid, at about the scope of a Final Fantasy Record Keeper sheet. It covers the battle loop (idle, ready, defend, step in, two attacks, chant and cast, item, hit, the low-HP kneel), a class action and Limit Break, victory, KO, and status poses (Zombie, Sleep, Paralyze, Confuse, Berserk). It also has field walk cycles in three directions and three cutscene poses (startled, downcast, listening). The hit flash, Stone, Vanish and Mini are generated from these frames, not drawn.
+
+**Portraits.** Twelve states drawn as panels of one manga page, all with the same framing so they swap in place. The battle card shows the most telling state:
+
+| Priority | State | When |
+| --- | --- | --- |
+| 1 | KO | KO'd |
+| 2 | Berserk, Zombie, Paralyze, Confuse, Slow | Afflicted |
+| 3 | Inspired | Inspired |
+| 4 | Low HP | 25% HP or less |
+| 5 | Strained | 75 Stress or more, or fled |
+| 6 | Normal | otherwise |
+| — | Hurt | flashes over the card when hit |
+| — | Asleep | drawn but unused: Sleep is not a status yet |
+
+The Strained portrait warns the player before a Stress Check. The face changes before the meter reaches 100, so the build-up shows on the character and not only in the number. Each state is drawn through the character's own horror rather than a generic filter. Natsu's halo faces open their eyes at low HP. Hisui's wounds bloom. Kugai has no face to change, so the void changes instead.
+
 ## Combat roles and boss design
 
 Each character fills one combat role that no one else covers. A good party of three mixes damage, support and control, and swapping in the right reserve is how you answer a boss.
