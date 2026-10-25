@@ -33,7 +33,7 @@ const FACE = D('FACE'), ASSETS = D('ASSETS'), FOES = D('FOES'), ENCOUNTERS = D('
 const STORY = D('STORY'), ENEMY_ART = D('ENEMY_ART'), SINGLE = D('SINGLE'), TARGET_TEXT = D('TARGET_TEXT'), LATE_TEXT = D('LATE_TEXT');
 const RIGS = B.rigs.get('RIGS'), ATLAS = B.rigs.get('ATLAS'), ART_RIG = B.rigs.get('ART_RIG'), SKILL_CLIP = B.rigs.get('SKILL_CLIP');
 const V = loadViewer(), VRIGS = V.get('RIGS'), VATLAS = V.get('ATLAS');
-const SRC = fs.readFileSync(GAME, 'utf8');
+const SRC = fs.readFileSync(GAME, 'utf8').replace(/\r\n/g, '\n');
 const DOC_PATH = path.join(ROOT, 'docs/design-doc.md');
 const DOC = fs.readFileSync(DOC_PATH, 'utf8');
 const keys = o => Object.keys(o);

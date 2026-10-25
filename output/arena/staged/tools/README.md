@@ -1,0 +1,39 @@
+# Dev tools
+
+Tools for building and checking game content. None needs a build step or a package install.
+
+## Browser tools
+
+Open the [developer tool launcher](index.html) to choose a tool, launch the battle prototype or browse the development reference. Each tool has a **Developer tools** link back to the launcher. You can also open any tool's `index.html` directly; no server is required.
+
+| Tool | What it does |
+| --- | --- |
+| [`bestiary-rig-viewer/`](bestiary-rig-viewer/) | Previews the 22 bestiary creatures as bone rigs on their sprite sheets, with arena backdrops, animation clips, and a skeleton overlay. |
+| [`ctb-planner/`](ctb-planner/) | Plans a fight's tempo: combatants with Speeds and cycles of Delays, pushes and pulls, Danger and Lost Turns, predicted with the battle's own turn-order rules. The URL holds the plan, so it can be linked from a boss spec. |
+
+Each tool loads its assets by relative path, so keep the tool's files together in its folder.
+
+## Command-line tools
+
+Node 18 or later. They load `index.html` headlessly through [`lib/load-game.js`](lib/load-game.js), which runs the page's own scripts in a Node `vm` with a stub DOM, so they always test the real game code and never a copy of it.
+
+| Tool | What it does |
+| --- | --- |
+| [`check.sh`](check.sh) | Runs the three checks below in CI order. `--full` adds a 100-run balance comparison. |
+| [`data-check/check.js`](data-check/check.js) | **Integrity** (errors): every reference between ROSTER, SKILLS, FOES, SCRIPTS, ENCOUNTERS, the rigs and the CTB planner resolves; rule labels are unique; every phase has a fallback rule; every relative link in the repo's Markdown resolves. **Drift** (warnings): pinned numbers in the design doc against the code (Stress values, thresholds, skill Delays, roles, Limit Break names). |
+| [`battle-sim/sim.js`](battle-sim/sim.js) | Plays the real battle loop hundreds of times per encounter under a policy (`advisor` = the in-game Helper, `no-role`, `attack`, `random`) and reports win rate, length, KOs, Stress Checks, flees and Lost Turns. `--baseline` shows each encounter's change from [`battle-sim/baseline.json`](battle-sim/baseline.json). |
+| [`data-export/export.js`](data-export/export.js) | Generates [`docs/reference/game-data.md`](../docs/reference/game-data.md) from the code and the baseline. `--check` fails if it is stale. |
+
+```sh
+node tools/battle-sim/sim.js orlen -n 300                   # one encounter, the Helper playing
+node tools/battle-sim/sim.js t_goku --policy no-role        # does Goku's test need Goku?
+node tools/battle-sim/sim.js widow --party kiri,tetsugi,kugai
+node tools/battle-sim/sim.js --baseline                     # what did my change do to every fight?
+node tools/battle-sim/sim.js -n 200 --write-baseline        # accept the new numbers
+```
+
+## Skills
+
+Creature animations and sprite sheets are built and corrected with the `sprite-animation` Claude skill in [`.claude/skills/sprite-animation/`](../.claude/skills/sprite-animation/SKILL.md). It holds the rig and clip reference, a corrections log of past fixes, the ChatGPT prompt template for new sprite sheets, and scripts to slice and pack sheets (`sheet.py`) and snapshot clips (`snap.js`).
+
+Bosses and encounters are designed, built and tuned with the `boss-design` skill in [`.claude/skills/boss-design/`](../.claude/skills/boss-design/SKILL.md), which drives the [boss authoring guide](../docs/guides/boss-authoring.md) and these command-line tools.

@@ -137,6 +137,8 @@ Every familiar mechanic works as players expect but carries a cost the game neve
 
 ## Battle system: Conditional Turn-Based (CTB)
 
+Creature animation uses readable anticipation, a brief strike and a longer recovery, following classic Final Fantasy battle staging. Breathing continues through actions; hair, fins and hanging bodies follow the main movement with a delay. Deliberate horror holds and fast gestures remain, while clip changes and idle loops preserve continuity. Reduced motion keeps the creature and combat information visible without idle movement, trails or hit flashes. See the [sprite playback guide](guides/sprite-playback.md) for the prototype's implementation and checks.
+
 Battles use a CTB system like FFX. Time stops while you choose a command. A Turn Order list shows the next 16 turns, and hovering a command previews where the character's next turn will land.
 
 **Battle arena.** Combatants share one arena, following the classic Final Fantasy side view: enemies on the left and the active party on the right. Pincer formations split the party across both sides of the enemies. Ambush formations place the party on the left with their backs to enemies on the right; each character turns toward the enemy when they act. The prototype's Formation selector restarts the encounter in the selected layout. These formations change staging only, with no turn-order or damage modifiers. HP, enemy intentions and party status stay readable in panels beneath the arena.

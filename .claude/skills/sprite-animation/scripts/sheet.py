@@ -23,6 +23,7 @@ import argparse
 import json
 import re
 import sys
+import subprocess
 from collections import deque
 from pathlib import Path
 
@@ -35,7 +36,7 @@ SHEET_W, GAP = 1024, 2
 
 
 def load_atlas():
-    src = VIEWER.read_text()
+    src = VIEWER.read_text(encoding='utf-8')
     return json.loads(re.search(r'const ATLAS = (\{.*?\});\n', src).group(1))
 
 
@@ -144,7 +145,7 @@ def shelf_pack(sizes):
 def cmd_pack(args):
     im = to_rgba(args.src, args.key, args.tol, args.fringe)
     parts = json.loads(Path(args.parts).read_text())
-    crops = {}
+    crops, metadata = {}, {}
     for name, box in parts.items():
         if isinstance(box[0], list):  # a part scattered over several blobs (sparks, confetti): take their union
             x0, y0 = min(b[0] for b in box), min(b[1] for b in box)
@@ -153,12 +154,15 @@ def cmd_pack(args):
         c = im.crop((x, y, x + w, y + h))
         if args.scale != 1:
             c = c.resize((max(1, round(w * args.scale)), max(1, round(h * args.scale))), Image.LANCZOS)
+        scaled = c.size
         bb = None if args.no_trim else c.getbbox(alpha_only=True)
         if bb and bb[:2] != (0, 0):
             # the part's pixel origin moved, so pv / at / tip given in its pixels shift by this much
             print(f'  trimmed {name}: origin moved by ({bb[0]}, {bb[1]}); subtract it from pv / tip and '
                   "from children's at", file=sys.stderr)
         crops[name] = c.crop(bb) if bb else c
+        metadata[name] = {'sourceSize': [w, h], 'cropOrigin': [x, y], 'scale': [scaled[0] / w, scaled[1] / h],
+                          'trimOffset': list(bb[:2]) if bb else [0, 0], 'packedSize': list(crops[name].size)}
     if args.base:
         # revisions only: keep every part of the creature's current sheet that the new art doesn't replace
         old = load_atlas()[args.base]
@@ -167,13 +171,20 @@ def cmd_pack(args):
         print(f'  kept {len(kept)} parts from {args.base}.webp, replaced or added {len(crops)}', file=sys.stderr)
         parts = {**{n: None for n in old}, **parts}  # old name order first, new parts at the end
         crops = {**kept, **crops}
+        for name, crop in kept.items():
+            metadata[name] = {'sourceSize': list(crop.size), 'cropOrigin': old[name][:2], 'scale': [1, 1],
+                              'trimOffset': [0, 0], 'packedSize': list(crop.size), 'unchanged': True}
     pos, height = shelf_pack({n: crops[n].size for n in parts})
     sheet = Image.new('RGBA', (SHEET_W, height), (0, 0, 0, 0))
     for n, (x, y, _, _) in pos.items():
         sheet.paste(crops[n], (x, y))
-    sheet.save(args.out, lossless=True, method=6)
+    sheet.save(args.out, lossless=True, method=6, exact=True)
     entry = {n: pos[n] for n in parts}  # keep the caller's name order
     Path(Path(args.out).with_suffix('.atlas.json')).write_text(json.dumps(entry))
+    Path(Path(args.out).with_suffix('.metadata.json')).write_text(json.dumps({
+        'version': 1, 'creature': args.base, 'coordinateBasis': 'source-crop',
+        'source': Path(args.src).name, 'parts': metadata
+    }, indent=2) + '\n', encoding='utf-8')
     print(f'{args.out}: {SHEET_W}x{height}, {len(pos)} parts')
     print(json.dumps(entry, separators=(',', ':')))
 
@@ -199,13 +210,73 @@ def cmd_diff(args):
                       're-fit pv / at / tip on this bone and at on its children')
 
 
+def migration_proposal(rig, metadata, old_atlas):
+    if metadata.get('version') != 1 or metadata.get('coordinateBasis') != 'source-crop':
+        raise ValueError('Unsupported sheet metadata')
+    if metadata.get('creature') not in (None, rig['creature']):
+        raise ValueError('Sheet metadata belongs to another creature')
+    parts = metadata['parts']
+    bones = json.loads(json.dumps(rig['bones']))
+    old_bones = {b['id']: b for b in rig['bones']}
+    reviews, changed = [], []
+
+    def convert(point, part):
+        m = parts[part]
+        return [point[i] * m['scale'][i] - m['trimOffset'][i] for i in range(2)]
+
+    for b in bones:
+        part = b.get('img')
+        parent_part = old_bones.get(b.get('p'), {}).get('img')
+        touched = False
+        if part in parts and not parts[part].get('unchanged'):
+            m = parts[part]
+            for field in ['pv', 'tip']:
+                if field in b:
+                    b[field] = convert(b[field], part)
+            touched = True
+            old_size = old_atlas.get(part, [0, 0, 0, 0])[2:]
+            if old_size != m['sourceSize']:
+                reviews.append(f"{b['id']}: source crop size differs from old art; coordinate correspondence needs review")
+            if m['scale'] != [1, 1]:
+                reviews.append(f"{b['id']}: scaled art needs rest-scale and animation-offset review")
+            if 'pv' in b and any(v < 0 or v > m['packedSize'][i] for i, v in enumerate(b['pv'])):
+                reviews.append(f"{b['id']}: proposed pivot lies outside the trimmed art")
+        if parent_part in parts and not parts[parent_part].get('unchanged'):
+            b['at'] = convert(b.get('at', [0, 0]), parent_part)
+            touched = True
+        if touched:
+            b.pop('fit', None)
+            if b != old_bones[b['id']]:
+                changed.append(b)
+    constraints = json.loads(json.dumps(rig.get('constraints', [])))
+    for c in constraints:
+        part = old_bones[c['lower']].get('img')
+        if part in parts and not parts[part].get('unchanged'):
+            c['tip'] = convert(c['tip'], part)
+    return {'version': 1, 'creature': rig['creature'], 'bones': changed, 'constraints': constraints, 'clips': {},
+            'migration': {'assumption': 'Old part coordinates correspond to the source crop before scaling and trimming. Changed anatomy requires refitting.',
+                          'review': sorted(set(reviews)), 'applied': False}}
+
+
+def cmd_migrate(args):
+    result = subprocess.run(['node', str(REPO / 'tools' / 'rig-data' / 'export.js'), args.creature],
+                            check=True, capture_output=True, text=True, encoding='utf-8')
+    rig = json.loads(result.stdout)
+    metadata = json.loads(Path(args.metadata).read_text(encoding='utf-8'))
+    proposal = migration_proposal(rig, metadata, load_atlas()[args.creature])
+    Path(args.out).write_text(json.dumps(proposal, indent=2) + '\n', encoding='utf-8')
+    print(f"Proposed {len(proposal['bones'])} bone changes -> {args.out}; no rig or sheet was installed")
+    for review in proposal['migration']['review']:
+        print('REVIEW: ' + review)
+
+
 def cmd_install(args):
     import shutil
-    src = VIEWER.read_text()
+    src = VIEWER.read_text(encoding='utf-8')
     m = re.search(r'const ATLAS = (\{.*?\});\n', src)
     atlas = json.loads(m.group(1))
     atlas[args.creature] = json.loads(Path(args.atlas).read_text())
-    VIEWER.write_text(src[:m.start(1)] + json.dumps(atlas, separators=(',', ':')) + src[m.end(1):])
+    VIEWER.write_text(src[:m.start(1)] + json.dumps(atlas, separators=(',', ':')) + src[m.end(1):], encoding='utf-8')
     shutil.copyfile(args.sheet, VIEWER.parent / f'{args.creature}.webp')
     print(f'installed {args.creature}.webp and its ATLAS entry ({len(atlas[args.creature])} parts)')
 
@@ -242,6 +313,11 @@ def main():
     f.add_argument('creature')
     f.add_argument('new', help='the .atlas.json written by pack')
     f.set_defaults(fn=cmd_diff)
+    m = sub.add_parser('migrate', help='write a proposed coordinate patch; never installs it')
+    m.add_argument('creature')
+    m.add_argument('metadata', help='the .metadata.json written by pack')
+    m.add_argument('--out', required=True, help='reviewable .rig-patch.json destination')
+    m.set_defaults(fn=cmd_migrate)
     i = sub.add_parser('install')
     i.add_argument('creature')
     i.add_argument('sheet', help='the .webp written by pack')

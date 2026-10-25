@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CTB Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Same paper, ink and hum as the battle page, so a plan reads like the turn-order strip it predicts. */
+:root{
+  --paper:#ecebe6; --paper-2:#dcdbd4; --ink:#151515; --ink-2:#4b4a46; --rule:#8f8e88; --hum:#5c4874; --hum-soft:#d6cee0;
+  --tone: radial-gradient(var(--ink) .7px, transparent .9px);
+  --f-display:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",Georgia,serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+body{font-family:var(--f-body);font-size:14px;line-height:1.5}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--hum);outline-offset:2px}
+.launcher-link{display:inline-block;color:var(--ink-2);padding:8px 0;margin-bottom:8px;text-underline-offset:4px}
+.page{max-width:1240px;margin:0 auto;padding:20px 16px 48px;display:grid;gap:18px}
+header{border-bottom:3px solid var(--ink);padding-bottom:12px}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1;margin:0}
+.sub{font-size:12px;color:var(--ink-2);letter-spacing:.08em;text-transform:uppercase;margin-top:6px}
+.lede{max-width:75ch;margin:10px 0 0;font-size:13.5px}
+.eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin:0 0 6px}
+.panel{border:3px solid var(--ink);background:var(--paper);padding:12px;min-width:0}
+.grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+table{border-collapse:collapse;width:100%}
+th{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-align:left;color:var(--ink-2);padding:4px 6px;border-bottom:2px solid var(--ink)}
+td{padding:4px 6px;border-bottom:1px solid var(--rule);vertical-align:middle}
+td input,td select{width:100%;border:2px solid var(--ink);background:var(--paper);padding:3px 6px;min-width:0}
+td input.n{width:4.5em;font-family:var(--f-mono)}
+td input.acts{font-family:var(--f-mono);min-width:12em}
+td select{min-width:6.5em}
+.side-party{border-left:6px solid var(--ink)}
+.side-enemy{border-left:6px double var(--ink)}
+.row-btn{border:2px solid var(--ink);background:var(--paper);padding:2px 8px;cursor:pointer}
+.tools{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:10px}
+.tools label{display:flex;gap:6px;align-items:center;font-size:13px}
+.tools select,.tools input[type=number]{border:2px solid var(--ink);background:var(--paper);padding:3px 6px}
+.btn{border:3px solid var(--ink);background:var(--ink);color:var(--paper);padding:5px 12px;cursor:pointer;font-weight:700}
+.btn.ghost{background:var(--paper);color:var(--ink)}
+.help{font-size:12.5px;color:var(--ink-2);margin:8px 0 0}
+.help code,.lede code{font-family:var(--f-mono);font-size:12px;background:var(--paper-2);padding:0 4px}
+/* the predicted turn order, as a strip of frames */
+.strip{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.slot{border:2px solid var(--ink);padding:4px 8px;display:grid;grid-template-columns:auto 1fr;gap:0 8px;align-items:baseline;min-height:44px;background:var(--paper)}
+.slot .i{font-family:var(--f-mono);font-size:11px;color:var(--ink-2);grid-row:span 2}
+.slot .nm{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.slot .meta{font-family:var(--f-mono);font-size:11px;color:var(--ink-2)}
+/* as in the battle page: enemy turns are inverted, Lost Turns are dashed and screentoned */
+.slot.enemy{background:var(--ink);color:var(--paper)}
+.slot.enemy .i,.slot.enemy .meta{color:var(--hum-soft)}
+.slot.void{border-style:dashed;color:var(--ink-2);background-image:var(--tone);background-size:5px 5px}
+.slot.void .nm,.slot.void .meta{background:var(--paper);padding:0 4px;justify-self:start}
+.slot.twice{outline:3px dashed var(--hum);outline-offset:-6px}
+.lanes{width:100%;height:auto;display:block}
+.lanes text{font-family:var(--f-mono);font-size:11px;fill:var(--ink)}
+.stats{font-size:13px;margin:10px 0 0;padding-left:18px}
+.stats li{margin:2px 0}
+.warn{color:var(--hum);font-weight:700}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <a class="launcher-link" href="../index.html">Developer tools</a>
+    <h1>CTB Planner</h1>
+    <div class="sub">Humming Crystal · turn-order design tool</div>
+    <p class="lede">Lay out a fight's tempo before scripting it. Each row acts in a cycle of Delay values; the planner predicts the turn order with the same rules as the battle prototype (tick speed <code>max(8, 30 − Speed)</code>, 12 ticks to a slot, party first on ties, Lost Turns from Danger 30). Use it for the bosses that are tempo puzzles: Forty Years, the Whisperer, the Dazzling Country, the Listener's Eye. The URL holds the whole plan, so paste it into a boss spec.</p>
+  </header>
+
+  <div class="grid">
+    <section class="panel" aria-labelledby="unitsH">
+      <h2 class="eyebrow" id="unitsH">Combatants</h2>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>Name</th><th>Side</th><th>Speed</th><th>First turn (ticks)</th><th>Actions (cycle)</th><th></th></tr></thead>
+          <tbody id="units"></tbody>
+        </table>
+      </div>
+      <div class="tools">
+        <label>Add <select id="preset"></select></label>
+        <button class="btn ghost" type="button" id="addBlank">Blank row</button>
+      </div>
+      <p class="help">Actions are a comma-separated cycle. Each is a Delay, then any effects: <code>&gt;Orlen:2</code> pushes Orlen back 2 slots (Delay Shot), <code>&lt;Kiri:3</code> moves Kiri 3 slots sooner (Quick Song), <code>^10</code> adds 10 Danger (Lullaby). Example for Ren: <code>4&gt;Hull:2, 2</code>. Attack, Defend and items are 3; Jump is 5 and lands as the next turn.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="setH">
+      <h2 class="eyebrow" id="setH">Field</h2>
+      <div class="tools">
+        <label>Danger <input type="number" id="danger" min="0" max="100" value="20" style="width:5em"></label>
+        <label><input type="checkbox" id="lost" checked> Lost Turns</label>
+        <label><input type="checkbox" id="creep" checked> +1 Danger per enemy turn</label>
+        <label>Slots <input type="number" id="slots" min="4" max="64" value="24" style="width:5em"></label>
+      </div>
+      <p class="help" id="voidNote"></p>
+      <h2 class="eyebrow" style="margin-top:12px">Turns in this window</h2>
+      <ul class="stats" id="stats"></ul>
+      <div class="tools"><button class="btn" type="button" id="copy">Copy link to this plan</button><span id="copied" class="help" aria-live="polite"></span></div>
+    </section>
+  </div>
+
+  <section class="panel" aria-labelledby="orderH">
+    <h2 class="eyebrow" id="orderH">Predicted turn order</h2>
+    <ol class="strip" id="strip"></ol>
+    <p class="help">A dashed frame marks a unit acting twice in a row (the Listener's Eye punishes it; most bosses exploit it).</p>
+  </section>
+
+  <section class="panel" aria-labelledby="lanesH">
+    <h2 class="eyebrow" id="lanesH">Lanes (ticks)</h2>
+    <div id="lanes"></div>
+  </section>
+</div>
+
+<script>
+// Speeds copied from index.html (ROSTER and FOES). tools/data-check checks them, so a change to a
+// character's or foe's Speed in the game shows up as an error until this table is updated too.
+const PRESETS = {
+  party: { Kiri:13, Natsu:12, Tetsugi:10, Miren:14, Goku:11, Hisui:16, Kuro:11, Ren:13, Sayo:14, Kugai:8, Fuyori:12, Shio:12 },
+  enemy: { 'Tide-Widow':11, 'Drowned Sailor':9, 'Archbishop Orlen':10, 'Great Organ':13, 'Spiral Ringer':11, 'Blood Drinker':11, 'Funeral Doll':20,
+    'Hanging Balloon':11, 'Earthbound Woman':7, 'Red Turtleneck':18, 'Record Singer':10, 'Long Dreamer':12, 'Amigara Wall':11, 'Headless Sculpture':10,
+    'Grease Father':10, 'Ruri':15, 'Ainsel, the Unwound':12, 'The Hellstar':9, 'Hellstar Tongue':14, 'Star Fragment':11 },
+};
+const SLOT = 12;
+const tickOf = agi => Math.max(8, 30 - agi);
+const voidInterval = hum => Math.round(Math.max(60, 230 - hum * 1.7));
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+
+const DEFAULT = { danger: 20, lost: true, creep: true, slots: 24, units: [
+  { name:'Kiri', side:'party', agi:13, first:null, acts:'3' },
+  { name:'Natsu', side:'party', agi:12, first:null, acts:'4' },
+  { name:'Ren', side:'party', agi:13, first:null, acts:'4>Archbishop Orlen:2, 2' },
+  { name:'Archbishop Orlen', side:'enemy', agi:10, first:null, acts:'3, 4' },
+] };
+let st;
+try { st = JSON.parse(decodeURIComponent(location.hash.slice(1))); } catch (e) { st = null; }
+if (!st || !Array.isArray(st.units)) st = JSON.parse(JSON.stringify(DEFAULT));
+
+// "4>Orlen:2 ^3" -> { delay: 4, push: [['Orlen', 2]], pull: [], hum: 3 }
+function parseAct(tok) {
+  const a = { delay: 3, push: [], pull: [], hum: 0, text: tok.trim() };
+  const m = /^\s*(\d+)/.exec(tok); if (m) a.delay = Math.max(1, +m[1]);
+  for (const e of tok.matchAll(/([<>])\s*([^:<>^,]+?)\s*:\s*(\d+)/g)) (e[1] === '>' ? a.push : a.pull).push([e[2].trim(), +e[3]]);
+  for (const e of tok.matchAll(/\^\s*(-?\d+)/g)) a.hum += +e[1];
+  return a;
+}
+
+// The battle loop, reduced to timing. Mirrors nextActor/forecast in index.html.
+function simulate() {
+  const units = st.units.filter(u => u.name.trim()).map((u, i) => ({
+    ...u, i, tick: tickOf(+u.agi || 0), plan: (u.acts || '3').split(',').filter(s => s.trim()).map(parseAct), k: 0,
+    ct: u.first != null && u.first !== '' ? +u.first : 2 * tickOf(+u.agi || 0), turns: 0,
+  }));
+  const byName = n => units.find(u => u.name.trim().toLowerCase() === n.toLowerCase());
+  let hum = +st.danger || 0, t = 0;
+  const lostOn = () => st.lost && hum >= 30;
+  const vd = { name: 'Lost Turn', side: 'void', ct: lostOn() ? voidInterval(hum) : null, turns: 0 };
+  const out = [], marks = [];
+  const order = { party: 0, enemy: 1, void: 2 };
+  for (let n = 0; n < st.slots && units.length; n++) {
+    const pool = [...units, ...(vd.ct != null ? [vd] : [])];
+    const m = Math.min(...pool.map(u => u.ct));
+    pool.forEach(u => u.ct -= m); t += m;
+    const ready = pool.filter(u => u.ct <= 1e-6).sort((a, b) => order[a.side] - order[b.side] || (a.i ?? 99) - (b.i ?? 99));
+    const u = ready[0];
+    u.turns++;
+    if (u.side === 'void') {
+      out.push({ u, t, label: '+5 Stress to all' }); marks.push({ u, t });
+      u.ct = voidInterval(hum); continue;
+    }
+    const a = u.plan[u.k % u.plan.length]; u.k++;
+    const notes = [];
+    for (const [nm, s] of a.push) { const x = byName(nm); if (x) { x.ct += s * SLOT; notes.push(`${x.name} −${s}`); } else notes.push(`? ${nm}`); }
+    for (const [nm, s] of a.pull) { const x = byName(nm); if (x) { x.ct = Math.max(0, x.ct - s * SLOT); notes.push(`${x.name} +${s}`); } else notes.push(`? ${nm}`); }
+    if (a.hum) { hum = Math.max(0, Math.min(100, hum + a.hum)); notes.push(`Danger ${a.hum > 0 ? '+' : ''}${a.hum}`); }
+    if (u.side === 'enemy' && st.creep) hum = Math.min(100, hum + 1);
+    if (lostOn() && vd.ct == null) vd.ct = voidInterval(hum);
+    if (!lostOn()) vd.ct = null;
+    u.ct = a.delay * u.tick;
+    out.push({ u, t, label: `Delay ${a.delay}${notes.length ? ' · ' + notes.join(', ') : ''}`, hum });
+    marks.push({ u, t });
+  }
+  return { out, marks, units, vd, hum, t };
+}
+
+function renderUnits() {
+  $('#units').innerHTML = st.units.map((u, i) => `<tr class="side-${u.side}">
+    <td><input data-i="${i}" data-k="name" value="${esc(u.name)}" aria-label="Name"></td>
+    <td><select data-i="${i}" data-k="side" aria-label="Side"><option value="party"${u.side === 'party' ? ' selected' : ''}>Party</option><option value="enemy"${u.side === 'enemy' ? ' selected' : ''}>Enemy</option></select></td>
+    <td><input class="n" type="number" data-i="${i}" data-k="agi" value="${esc(u.agi)}" aria-label="Speed" title="Tick speed ${tickOf(+u.agi || 0)}"></td>
+    <td><input class="n" type="number" data-i="${i}" data-k="first" value="${u.first ?? ''}" placeholder="${2 * tickOf(+u.agi || 0)}" aria-label="First turn in ticks"></td>
+    <td><input class="acts" data-i="${i}" data-k="acts" value="${esc(u.acts)}" aria-label="Actions"></td>
+    <td><button class="row-btn" type="button" data-del="${i}" aria-label="Remove ${esc(u.name)}">×</button></td></tr>`).join('');
+}
+
+function render() {
+  const { out, marks, units, vd, hum, t } = simulate();
+  $('#voidNote').textContent = st.lost
+    ? (vd.ct != null || out.some(o => o.u.side === 'void') ? `Lost Turns on: one every ${voidInterval(hum)} ticks at Danger ${hum} (${(voidInterval(hum) / SLOT).toFixed(1)} slots).` : `No Lost Turns until Danger reaches 30 (ends this window at ${hum}).`)
+    : 'Lost Turns are off.';
+  $('#strip').innerHTML = out.map((o, i) => {
+    const twice = i > 0 && out[i - 1].u === o.u && o.u.side !== 'void';
+    return `<li class="slot ${o.u.side}${twice ? ' twice' : ''}"><span class="i">${i + 1}</span><span class="nm">${esc(o.u.name)}</span><span class="meta">t ${Math.round(o.t)} · ${esc(o.label)}</span></li>`;
+  }).join('');
+  const all = [...units, ...(out.some(o => o.u.side === 'void') ? [vd] : [])];
+  $('#stats').innerHTML = all.map(u => {
+    const n = out.filter(o => o.u === u).length;
+    return `<li><b>${esc(u.name)}</b>: ${n} turn${n === 1 ? '' : 's'} (${Math.round(n / Math.max(1, out.length) * 100)}%)${u.tick ? ` · tick ${u.tick}` : ''}</li>`;
+  }).join('') + (out.some((o, i) => i && out[i - 1].u === o.u && o.u.side !== 'void') ? '<li class="warn">Someone acts twice in a row.</li>' : '');
+  // lanes
+  const W = 1000, rowH = 26, left = 150, H = all.length * rowH + 30, span = Math.max(1, t);
+  const x = v => left + (v / span) * (W - left - 10);
+  let svg = `<svg class="lanes" viewBox="0 0 ${W} ${H}" role="img" aria-label="Turn times per combatant">`;
+  for (let g = 0; g <= span; g += SLOT * 4) svg += `<line x1="${x(g)}" x2="${x(g)}" y1="0" y2="${H - 20}" stroke="#8f8e88" stroke-width="0.5"/><text x="${x(g)}" y="${H - 6}" text-anchor="middle">${g}</text>`;
+  all.forEach((u, r) => {
+    const y = r * rowH + 14;
+    svg += `<text x="4" y="${y + 4}">${esc(u.name.slice(0, 20))}</text><line x1="${left}" x2="${W - 10}" y1="${y}" y2="${y}" stroke="#151515" stroke-width="0.6"/>`;
+    marks.filter(m => m.u === u).forEach(m => {
+      svg += u.side === 'void'
+        ? `<rect x="${x(m.t) - 4}" y="${y - 8}" width="8" height="16" fill="#ecebe6" stroke="#151515" stroke-width="1.5" stroke-dasharray="3 2"/>`
+        : `<rect x="${x(m.t) - 4}" y="${y - 8}" width="8" height="16" fill="${u.side === 'enemy' ? '#151515' : '#5c4874'}"/>`;
+    });
+  });
+  $('#lanes').innerHTML = svg + '</svg>';
+  history.replaceState(null, '', '#' + encodeURIComponent(JSON.stringify(st)));
+}
+
+$('#preset').innerHTML = '<option value="">Character or foe…</option>' +
+  Object.entries(PRESETS).map(([side, list]) => `<optgroup label="${side === 'party' ? 'Party' : 'Foes'}">${Object.entries(list).map(([n, a]) => `<option value="${side}|${esc(n)}">${esc(n)} (Speed ${a})</option>`).join('')}</optgroup>`).join('');
+$('#preset').addEventListener('change', e => {
+  if (!e.target.value) return;
+  const [side, name] = e.target.value.split('|');
+  st.units.push({ name, side, agi: PRESETS[side][name], first: null, acts: side === 'party' ? '3' : '3' });
+  e.target.value = ''; renderUnits(); render();
+});
+$('#addBlank').addEventListener('click', () => { st.units.push({ name: 'New', side: 'enemy', agi: 10, first: null, acts: '3' }); renderUnits(); render(); });
+$('#units').addEventListener('input', e => {
+  const i = e.target.dataset.i, k = e.target.dataset.k; if (i == null) return;
+  const v = e.target.value;
+  st.units[i][k] = k === 'agi' ? +v : k === 'first' ? (v === '' ? null : +v) : v;
+  if (k === 'side') renderUnits();
+  render();
+});
+$('#units').addEventListener('click', e => { const d = e.target.dataset.del; if (d != null) { st.units.splice(+d, 1); renderUnits(); render(); } });
+for (const [id, k, f] of [['danger', 'danger', Number], ['slots', 'slots', Number]]) { $('#' + id).value = st[k]; $('#' + id).addEventListener('input', e => { st[k] = Math.max(0, f(e.target.value) || 0); render(); }); }
+for (const [id, k] of [['lost', 'lost'], ['creep', 'creep']]) { $('#' + id).checked = st[k]; $('#' + id).addEventListener('change', e => { st[k] = e.target.checked; render(); }); }
+$('#copy').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(location.href); $('#copied').textContent = 'Copied.'; } catch (e) { $('#copied').textContent = 'Copy the address bar instead.'; }
+});
+renderUnits(); render();
+</script>
+</body>
+</html>

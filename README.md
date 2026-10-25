@@ -31,4 +31,4 @@ CI runs the same script on every push and pull request. [`docs/README.md`](docs/
   - `tools/bestiary-rig-viewer/`: creature rig and animation previewer, plus the creature sprite sheets (`<creature>.webp`) and arena backdrops (`bg_*.webp`).
   - `tools/ctb-planner/`: turn-order design tool for tempo puzzles.
   - `tools/battle-sim/`, `tools/data-check/`, `tools/data-export/`: command-line balance simulator, data and drift checker, and reference generator.
-- `.claude/skills/`: Claude skills. `sprite-animation` builds and corrects creature animations and sprite sheets; `boss-design` designs, builds and tunes encounters. Each keeps a log of lessons from past corrections.
+- `.claude/skills/`: shared project skills. `sprite-animation` builds and corrects creature animations and player/creature sprite sheets, rendering directly in ChatGPT and providing image prompts in Claude; `boss-design` designs, builds and tunes encounters. Each keeps a log of lessons from past corrections.

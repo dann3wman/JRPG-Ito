@@ -10,6 +10,7 @@ Everything written about *Final Fantasy: The Humming Crystal* and its battle pro
 | [Style guide](style-guide.md) | Writing any player-facing text, designing a fight or system, styling a page | Rules |
 | [Glossary](glossary.md) | Naming anything; reading code that says `hum`, `void` or `dread` | Reference |
 | [Battle math](systems/battle-math.md) | Changing a number, or predicting what a change will do | How the prototype works |
+| [Sprite playback](guides/sprite-playback.md) | Editing animation timing, rig fitting, rendering quality or regression checks | How the prototype works |
 | [Game data reference](reference/game-data.md) | Looking up a stat, skill or enemy script | Generated from the code |
 | [Implementation status](implementation-status.md) | Planning work; checking whether something is built; open decisions | Tracker |
 | [Boss authoring guide](guides/boss-authoring.md) | Building or tuning a boss or encounter | How-to |

@@ -70,6 +70,8 @@ The bosses in the design doc lean on a handful of mechanics the engine doesn't h
 
 ## Known issues
 
+- **Sprite playback:** continuous idle layering, action blends, loop pose/velocity closure, a shared visible-time clock, decoded/prewarmed sheets, padded part caches and adaptive effect detail are implemented. The animation checker samples all 22 rigs / 88 clips and compares the six battle rigs with the viewer. Browser checks cover playback, interruption, suspension, reduced motion, missing sheets and a throttled six-rig scene. See [sprite playback](guides/sprite-playback.md). Attachment-box warnings are review prompts, not proof of broken joints; fitted and intentionally separated parts can extend outside their parent's atlas rectangle. Frame rate still depends on the device and scene.
+
 - **The turn-order preview is approximate** past each unit's next turn (it assumes Delay 3). Enemies already have a planned skill, so the forecast can use its rank.
 - **The info panel says crits deal 1.6×.** That is true for enemy crits; party crits deal 1.8×.
 - **Rigs are copied** from the rig viewer into `index.html` by hand. data-check compares the two and warns on drift.

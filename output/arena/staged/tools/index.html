@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Developer tools · The Humming Crystal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#ecebe6; --ink:#151515; --ink-2:#4b4a46; --hum:#5c4874; --hum-soft:#d6cee0;
+  --f-display:"Shippori Mincho B1","Yu Mincho",Georgia,serif;
+  --f-body:"Zen Kaku Gothic New","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+a{color:inherit;text-underline-offset:4px}
+a:hover{color:var(--hum)}
+:focus-visible{outline:3px solid var(--hum);outline-offset:5px}
+.page{max-width:1120px;margin:0 auto;padding:36px 24px 48px}
+header{border-bottom:3px solid var(--ink);padding-bottom:24px;margin-bottom:32px}
+.project{margin:0 0 10px;color:var(--ink-2)}
+h1,h2{font-family:var(--f-display);line-height:1.2}
+h1{font-size:clamp(32px,6vw,52px);margin:0 0 14px;font-weight:800}
+h2{font-size:26px;margin:0 0 18px}
+p{margin:0}
+.intro{color:var(--ink-2);max-width:60ch}
+.apps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;list-style:none;margin:0;padding:0}
+.app{height:100%;display:flex;flex-direction:column;align-items:start;border:3px solid var(--ink);padding:24px;text-decoration:none}
+.app:hover{background:var(--hum-soft);color:var(--ink)}
+.app p{margin:14px 0 24px;color:var(--ink-2);max-width:40ch}
+.open{margin-top:auto;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.prototype{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin:20px 0 36px;padding:18px 24px;border:2px solid var(--ink)}
+.prototype h2{font-size:21px;margin-bottom:4px}
+.prototype p{color:var(--ink-2)}
+.play{display:inline-block;padding:10px 16px;background:var(--hum);color:var(--paper);font-weight:700;text-decoration:none}
+.play:hover{background:var(--ink);color:var(--paper)}
+.reference{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:36px;border-top:3px solid var(--ink);padding-top:24px}
+.docs{list-style:none;margin:0;padding:0}
+.docs a{display:inline-block;padding:8px 0}
+.note{color:var(--ink-2);font-size:14px;margin-bottom:16px}
+dl{margin:0}
+dt{font-weight:700;margin-top:16px}
+dd{margin:4px 0 0}
+code{font-family:var(--f-mono);font-size:13px;overflow-wrap:anywhere}
+footer{margin-top:32px;color:var(--ink-2);font-size:14px}
+@media(max-width:640px){
+  .page{padding:24px 18px 32px}
+  .apps,.reference{grid-template-columns:minmax(0,1fr)}
+  .app{padding:20px}
+  .reference{gap:28px}
+  .prototype{padding:18px 20px}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <header>
+    <p class="project">Final Fantasy: The Humming Crystal</p>
+    <h1>Developer tools</h1>
+    <p class="intro">Inspect a creature, plan the turn order, then try the fight.</p>
+  </header>
+
+  <nav aria-label="Browser tools">
+    <ul class="apps">
+      <li><a class="app" href="bestiary-rig-viewer/index.html">
+        <h2>Bestiary Rig Viewer</h2>
+        <p>Preview creature rigs, animation clips and arena backdrops. Inspect bones with the skeleton overlay.</p>
+        <span class="open">Open rig viewer</span>
+      </a></li>
+      <li><a class="app" href="ctb-planner/index.html">
+        <h2>CTB Planner</h2>
+        <p>Plan Speed and Delay cycles, pushes, pulls and Lost Turns. Save a fight's tempo in its URL.</p>
+        <span class="open">Open turn-order planner</span>
+      </a></li>
+    </ul>
+  </nav>
+
+  <section class="prototype" aria-labelledby="battle-title">
+    <div>
+      <h2 id="battle-title">Battle prototype</h2>
+      <p>Play an encounter with the game's battle rules.</p>
+    </div>
+    <a class="play" href="../index.html">Launch battle</a>
+  </section>
+
+  <div class="reference">
+    <nav aria-labelledby="reference-title">
+      <h2 id="reference-title">Development reference</h2>
+      <p class="note">Markdown files in this checkout.</p>
+      <ul class="docs">
+        <li><a href="../docs/design-doc.md">Game design document</a></li>
+        <li><a href="../docs/guides/boss-authoring.md">Boss authoring guide</a></li>
+        <li><a href="../docs/reference/game-data.md">Game data reference</a></li>
+        <li><a href="README.md">Tool instructions</a></li>
+      </ul>
+    </nav>
+    <section aria-labelledby="checks-title">
+      <h2 id="checks-title">Command-line checks</h2>
+      <p class="note">Run from the repository root with Node 18 or later.</p>
+      <dl>
+        <dt>Check data and design drift</dt>
+        <dd><code>node tools/data-check/check.js</code></dd>
+        <dt>Compare encounter balance</dt>
+        <dd><code>node tools/battle-sim/sim.js --baseline</code></dd>
+        <dt>Check generated reference freshness</dt>
+        <dd><code>node tools/data-export/export.js --check</code></dd>
+      </dl>
+    </section>
+  </div>
+  <footer>Browser tools open directly. No build step or server required.</footer>
+</main>
+</body>
+</html>

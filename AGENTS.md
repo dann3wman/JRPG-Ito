@@ -68,5 +68,6 @@ The design doc's rule is that every classic JRPG beat is kept and played as slow
 - For bosses, enemies and encounters, use the `boss-design` skill in [`.claude/skills/boss-design/`](.claude/skills/boss-design/SKILL.md) and log lessons there.
 - `index.html` is a single-file prototype with no build step. Keep it that way unless asked otherwise.
 - For creature rigs, animation clips and sprite sheets, use the `sprite-animation` skill in [`.claude/skills/sprite-animation/`](.claude/skills/sprite-animation/SKILL.md) and log corrections there.
+- For image and sprite-sheet requests, identify the running platform from the session identity and available tools, not from the `.claude` folder name. On ChatGPT/OpenAI Codex, generate and display the image directly with the available image-generation tool; do not stop at a handoff prompt. On Claude/Claude Code, provide one complete copy-paste prompt for ChatGPT, with the reference attachments named. Follow the sprite skill's platform workflow, including its unavailable-tool fallback.
 - Match the surrounding code's style, naming and comment density.
 - When a request is a design question, answer as a designer: give a recommendation, the precedent behind it, and the trade-off.

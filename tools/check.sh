@@ -13,6 +13,10 @@ node tools/data-check/check.js --quiet
 echo "== game data reference"
 node tools/data-export/export.js --check
 
+echo "== animation continuity and viewer/battle parity"
+node tools/animation-check/check.js
+node tools/animation-check/authoring.js
+
 echo "== battle simulator smoke run (every encounter, 5 battles each)"
 node tools/battle-sim/sim.js -n 5 --strict > /dev/null
 echo "every encounter ran to a result"
