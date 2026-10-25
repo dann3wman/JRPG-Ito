@@ -29,6 +29,8 @@ CI runs the same script on every push and pull request. [`docs/README.md`](docs/
   - `docs/guides/`, `docs/templates/`, `docs/bosses/`: how to build a boss, the spec template, and per-boss specs.
 - `tools/`: the dev tool suite. See [`tools/README.md`](tools/README.md).
   - `tools/bestiary-rig-viewer/`: creature rig and animation previewer, plus the creature sprite sheets (`<creature>.webp`) and arena backdrops (`bg_*.webp`).
+  - `tools/party-sprite-viewer/`: party sprite sheet and state portrait previewer, plus the installed sheets (`<id>.sheet.webp`, `<id>.portraits.webp`).
   - `tools/ctb-planner/`: turn-order design tool for tempo puzzles.
   - `tools/battle-sim/`, `tools/data-check/`, `tools/data-export/`: command-line balance simulator, data and drift checker, and reference generator.
-- `.claude/skills/`: Claude skills. `sprite-animation` builds and corrects creature animations and sprite sheets; `boss-design` designs, builds and tunes encounters. Each keeps a log of lessons from past corrections.
+- `docs/sprite-requests/`: every ChatGPT art request as sent, with the original image ChatGPT returned.
+- `.claude/skills/`: Claude skills. `sprite-animation` builds and corrects creature animations and sprite sheets; `party-art` sets the standard party art set (54-frame sprite sheet, 12 state portraits), writes the ChatGPT requests, and slices, installs and embeds the results; `boss-design` designs, builds and tunes encounters. Each keeps a log of lessons from past corrections.
