@@ -12,3 +12,4 @@ Open `index.html` in a browser. There is no build step. Portrait art is embedded
 - `docs/design-doc.md`: the full design doc (story, cast, battle and Stress systems, bosses, Sphere Grid, side content, endings).
 - `tools/`: the dev tool suite. See [`tools/README.md`](tools/README.md).
   - `tools/bestiary-rig-viewer/`: creature rig and animation previewer, plus the creature sprite sheets (`<creature>.webp`) and arena backdrops (`bg_*.webp`).
+- `.claude/skills/sprite-animation/`: the Claude skill for building and correcting creature animations and sprite sheets. It keeps a log of past corrections and the ChatGPT prompt template for new sheets.
