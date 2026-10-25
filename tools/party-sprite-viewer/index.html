@@ -21,6 +21,7 @@ body { margin: 0; background: var(--ink); color: var(--bone); font: 15px/1.5 var
 header { padding: 18px 16px 8px; border-bottom: 1px solid var(--rule); }
 h1 { font: 28px/1.1 var(--f-display); margin: 0; }
 header p { margin: 4px 0 0; color: var(--dim); }
+.launcher-link { display: inline-block; color: var(--bone); padding: 8px 0 0; text-underline-offset: 4px; font-size: 14px; }
 .cast { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 16px; border-bottom: 1px solid var(--rule); }
 button { font: 11px var(--f-ui); color: var(--bone); background: var(--slab); border: 1px solid var(--rule); padding: 6px 9px; cursor: pointer; }
 button:hover { border-color: var(--dim); }
@@ -46,6 +47,7 @@ code { font: 12px ui-monospace, monospace; color: var(--bone); background: var(-
 </head>
 <body>
 <header>
+  <a class="launcher-link" href="../index.html">Developer tools</a>
   <h1>Party Sprite Viewer</h1>
   <p>The standard art set for each party member: a 54-frame battle and field sheet and 12 state portraits. Built by the <code>party-art</code> skill.</p>
 </header>
