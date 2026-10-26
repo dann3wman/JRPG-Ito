@@ -69,6 +69,14 @@ Hooks for fights that bend the usual rules. Each is optional; the Disc 1 chapter
 | `hpOf(e)` | `{hp, max, text}` to show instead of its own HP | Well-Rested (the original's HP on every body), Dead Wolf, Grey Hound |
 | `planName(e)`, `planText(e)` | Override what the turn order and the card call its next action, when the action is decided live | Your Own Tracks |
 | `guestTurn(e, u)` | Drives the encounter's guest (below) on the guest's turns | Grey Hound |
+| `hint` | The Scan hint (a string). Disc 2 and later bosses need one | Every Disc 2 boss |
+| `noTurn` | `true`: it never takes a turn of its own (another foe acts for it) | Mirens' copies, Sleepers |
+| `takesItem(e, u)` + `onItem(e, u, key)` | Lets the party use an item on it; the item menu then offers it as a target | Lead Listener (sealing the coffin) |
+| `onHeal(e, t, healer)` | Runs whenever an ally is healed (`healer` is the acting ally, `G.hitKey` the skill) | Face Thief |
+| `obey(e, u)` | Carries out a forced command when a whispered ally chooses Obey | Whisperer |
+| `onSwap(e, out, in)` | Runs when an ally Swaps out | — |
+
+An enemy skill can inflict a status with `inflict(t, 'Silence' | 'Paralyze' | 'Confuse', turns, chancePercent)`. A whispered ally (`u.whisper = {text, …}`) gets a menu of Obey or Swap; a grabbed ally (`u.grabbed`) leaves the turn order. The Helper and the simulator can Swap with the command `{kind:'swap', id}`.
 
 A sleeping foe (`e.sleep > 0`) skips its turns and the turn order says so. A skill can set `rankOf(e)` to choose its Delay when it acts.
 
@@ -94,7 +102,7 @@ widow: { lv:8, group:'Story bosses', title:'Port of Vesk · Tide-Widow', foes:['
   brief:'…threat as a rule. The answer. (Ito source)' },
 ```
 
-`lv` sets party stat scaling, `hum` the starting Danger, `party` the default trio, and `inv` overrides the starting bag. `stats: { key: {hp, atk, …} }` restates a foe's stats for this encounter only, so one script serves a recurring boss at several levels (Ruri ×1 at level 7). `guest` names a character who fights beside the party under a foe script's `guestTurn`, starting at `guestStress`: never Swapped, never targeted, capped below a Stress Check. A role test sets `role` and `group:'Role tests'`. The brief follows the [style guide](../style-guide.md#encounter-briefs).
+`lv` sets party stat scaling, `hum` the starting Danger, `party` the default trio, and `inv` overrides the starting bag. `aim: { skill: true }` lets a skill that normally targets its user aim at an ally (Tetsugi's Chakra against the Face Thief). `stats: { key: {hp, atk, …} }` restates a foe's stats for this encounter only, so one script serves a recurring boss at several levels (Ruri ×1 at level 7). `guest` names a character who fights beside the party under a foe script's `guestTurn`, starting at `guestStress`: never Swapped, never targeted, capped below a Stress Check. A role test sets `role` and `group:'Role tests'`. The brief follows the [style guide](../style-guide.md#encounter-briefs).
 
 ### Also
 

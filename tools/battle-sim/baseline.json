@@ -274,19 +274,19 @@
    "win": 1,
    "timeout": 0,
    "stalled": 0,
-   "turns": 30.47,
-   "winTurns": 30.47,
-   "foeTurns": 38.545,
-   "kos": 0.065,
-   "afflicted": 1.985,
-   "inspired": 0.575,
-   "fled": 0.625,
-   "lost": 6.19,
-   "limits": 0.905,
-   "phoenix": 0.065,
-   "stress": 98.473,
-   "danger": 92.6,
-   "hp": 0.643
+   "turns": 29.665,
+   "winTurns": 29.665,
+   "foeTurns": 38.385,
+   "kos": 0.09,
+   "afflicted": 1.865,
+   "inspired": 0.59,
+   "fled": 0.545,
+   "lost": 6.09,
+   "limits": 0.945,
+   "phoenix": 0.085,
+   "stress": 98.815,
+   "danger": 92.59,
+   "hp": 0.676
   }
  },
  "hound": {
@@ -316,6 +316,296 @@
    "stress": 8.168,
    "danger": 26.895,
    "hp": 0.935
+  }
+ },
+ "whisperer": {
+  "party": [
+   "kiri",
+   "natsu",
+   "hisui"
+  ],
+  "policy": "advisor",
+  "n": 200,
+  "seed": 1,
+  "s": {
+   "n": 200,
+   "win": 0.955,
+   "timeout": 0.045,
+   "stalled": 0,
+   "turns": 73.695,
+   "winTurns": 62.984,
+   "foeTurns": 17.885,
+   "kos": 0,
+   "afflicted": 0.565,
+   "inspired": 0.25,
+   "fled": 0.405,
+   "lost": 5.485,
+   "limits": 0.105,
+   "phoenix": 0,
+   "stress": 29.883,
+   "danger": 48.77,
+   "hp": 0.977
+  }
+ },
+ "ruri5": {
+  "party": [
+   "kuro",
+   "natsu",
+   "hisui"
+  ],
+  "policy": "advisor",
+  "n": 200,
+  "seed": 1,
+  "s": {
+   "n": 200,
+   "win": 0.99,
+   "timeout": 0,
+   "stalled": 0,
+   "turns": 34.455,
+   "winTurns": 34.611,
+   "foeTurns": 51.475,
+   "kos": 0.44,
+   "afflicted": 1.035,
+   "inspired": 0.335,
+   "fled": 0.225,
+   "lost": 4.81,
+   "limits": 1.72,
+   "phoenix": 0.385,
+   "stress": 75.664,
+   "danger": 77.74,
+   "hp": 0.629
+  }
+ },
+ "engine": {
+  "party": [
+   "ren",
+   "hisui",
+   "natsu"
+  ],
+  "policy": "advisor",
+  "n": 200,
+  "seed": 1,
+  "s": {
+   "n": 200,
+   "win": 1,
+   "timeout": 0,
+   "stalled": 0,
+   "turns": 37.63,
+   "winTurns": 37.63,
+   "foeTurns": 4.495,
+   "kos": 0,
+   "afflicted": 0,
+   "inspired": 0,
+   "fled": 0,
+   "lost": 0.355,
+   "limits": 0.17,
+   "phoenix": 0,
+   "stress": 8.702,
+   "danger": 31.12,
+   "hp": 0.775
+  }
+ },
+ "listeners": {
+  "party": [
+   "kiri",
+   "hisui",
+   "natsu"
+  ],
+  "policy": "advisor",
+  "n": 200,
+  "seed": 1,
+  "s": {
+   "n": 200,
+   "win": 0.965,
+   "timeout": 0,
+   "stalled": 0,
+   "turns": 49.945,
+   "winTurns": 46.492,
+   "foeTurns": 29.835,
+   "kos": 0.15,
+   "afflicted": 0.565,
+   "inspired": 0.19,
+   "fled": 0.36,
+   "lost": 7.09,
+   "limits": 0.97,
+   "phoenix": 0.135,
+   "stress": 49.797,
+   "danger": 69.195,
+   "hp": 0.817
+  }
+ },
+ "mirens": {
+  "party": [
+   "miren",
+   "kuro",
+   "natsu"
+  ],
+  "policy": "advisor",
+  "n": 200,
+  "seed": 1,
+  "s": {
+   "n": 200,
+   "win": 1,
+   "timeout": 0,
+   "stalled": 0,
+   "turns": 35.845,
+   "winTurns": 35.845,
+   "foeTurns": 15.89,
+   "kos": 0.03,
+   "afflicted": 0.115,
+   "inspired": 0.035,
+   "fled": 0,
+   "lost": 3.47,
+   "limits": 1.25,
+   "phoenix": 0.03,
+   "stress": 41.327,
+   "danger": 40.89,
+   "hp": 0.791
+  }
+ },
+ "ruri8": {
+  "party": [
+   "kuro",
+   "natsu",
+   "sayo"
+  ],
+  "policy": "advisor",
+  "n": 200,
+  "seed": 1,
+  "s": {
+   "n": 200,
+   "win": 0.96,
+   "timeout": 0,
+   "stalled": 0,
+   "turns": 34.38,
+   "winTurns": 34.813,
+   "foeTurns": 69.03,
+   "kos": 0.875,
+   "afflicted": 1.935,
+   "inspired": 0.685,
+   "fled": 0.77,
+   "lost": 7.33,
+   "limits": 2.29,
+   "phoenix": 0.68,
+   "stress": 82.638,
+   "danger": 97.635,
+   "hp": 0.609
+  }
+ },
+ "facethief": {
+  "party": [
+   "kiri",
+   "tetsugi",
+   "natsu"
+  ],
+  "policy": "advisor",
+  "n": 200,
+  "seed": 1,
+  "s": {
+   "n": 200,
+   "win": 0.875,
+   "timeout": 0,
+   "stalled": 0,
+   "turns": 69.805,
+   "winTurns": 64.274,
+   "foeTurns": 22.775,
+   "kos": 1.365,
+   "afflicted": 0.805,
+   "inspired": 0.265,
+   "fled": 0.09,
+   "lost": 8.16,
+   "limits": 0.565,
+   "phoenix": 0.915,
+   "stress": 18.327,
+   "danger": 53.69,
+   "hp": 0.96
+  }
+ },
+ "tongue2": {
+  "party": [
+   "kiri",
+   "natsu",
+   "hisui"
+  ],
+  "policy": "advisor",
+  "n": 200,
+  "seed": 1,
+  "s": {
+   "n": 200,
+   "win": 0.885,
+   "timeout": 0,
+   "stalled": 0,
+   "turns": 33.495,
+   "winTurns": 34.226,
+   "foeTurns": 10.66,
+   "kos": 0.23,
+   "afflicted": 0,
+   "inspired": 0,
+   "fled": 0,
+   "lost": 2.15,
+   "limits": 0,
+   "phoenix": 0,
+   "stress": 25.382,
+   "danger": 35.66,
+   "hp": 0.861
+  }
+ },
+ "congregation": {
+  "party": [
+   "hisui",
+   "natsu",
+   "kiri"
+  ],
+  "policy": "advisor",
+  "n": 200,
+  "seed": 1,
+  "s": {
+   "n": 200,
+   "win": 0.985,
+   "timeout": 0,
+   "stalled": 0,
+   "turns": 61.005,
+   "winTurns": 61.117,
+   "foeTurns": 38.855,
+   "kos": 0.495,
+   "afflicted": 3.075,
+   "inspired": 1.14,
+   "fled": 2.37,
+   "lost": 6.84,
+   "limits": 1.655,
+   "phoenix": 0.445,
+   "stress": 124.717,
+   "danger": 67.905,
+   "hp": 0.51
+  }
+ },
+ "taste": {
+  "party": [
+   "kuro",
+   "sayo",
+   "kiri"
+  ],
+  "policy": "advisor",
+  "n": 200,
+  "seed": 1,
+  "s": {
+   "n": 200,
+   "win": 1,
+   "timeout": 0,
+   "stalled": 0,
+   "turns": 36.5,
+   "winTurns": 36.5,
+   "foeTurns": 10.925,
+   "kos": 0.005,
+   "afflicted": 0,
+   "inspired": 0,
+   "fled": 0,
+   "lost": 2.865,
+   "limits": 0.035,
+   "phoenix": 0.005,
+   "stress": 26.708,
+   "danger": 65.58,
+   "hp": 0.689
   }
  },
  "widow": {

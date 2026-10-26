@@ -110,8 +110,18 @@ Sim columns come from `tools/battle-sim/baseline.json`: the in-game Helper playi
 | rested | The Flooded Ruins · The Well-Rested | 12 | 20 | Kiri, Miren, Natsu | The Well-Rested, The Well-Rested, The Well-Rested, The Well-Rested | 100% | 36 | 0.0 |
 | tracks | The Calm · Your Own Tracks | 16 | 25 | Kiri, Natsu, Hisui | Your Own Tracks, Your Own Tracks, Your Own Tracks | 100% | 29 | 0.0 |
 | forty | The Gull of Patience · Forty Years | 18 | 25 | Ren, Kiri, Natsu | The Helmsman, The Hull | 100% | 53 | 0.6 |
-| choir | Lumen · Choir of Lumen | 19 | 30 | Sayo, Kuro, Natsu | Chorister, Chorister, Chorister, Chorister | 100% | 30 | 2.0 |
+| choir | Lumen · Choir of Lumen | 19 | 30 | Sayo, Kuro, Natsu | Chorister, Chorister, Chorister, Chorister | 100% | 30 | 1.9 |
 | hound | The Earth Crystal · The Grey Hound | 20 | 20 | Natsu, Ren, Sayo | The Grey Hound | 100% | 12 | 0.0 |
+| whisperer | The Lumen Archive · The Whisperer | 20 | 25 | Kiri, Natsu, Hisui | The Whisperer | 96% | 63 | 0.6 |
+| ruri5 | Varn · Ruri ×5 | 21 | 25 | Kuro, Natsu, Hisui | Ruri, Ruri, Ruri, Ruri, Ruri | 99% | 35 | 1.0 |
+| engine | Varn · Resonance Engine Mk. IV | 21 | 25 | Ren, Hisui, Natsu | Resonance Engine Mk. IV | 100% | 38 | 0.0 |
+| listeners | The Sunken Monastery · The Hundred Listeners | 21 | 25 | Kiri, Hisui, Natsu | The Abbot, Lead Listener, Lead Listener, Lead Listener | 97% | 46 | 0.6 |
+| mirens | The Save Point · The Mirens | 22 | 25 | Miren, Kuro, Natsu | The Mirens' Turn, Miren, Miren, Miren, Miren | 100% | 36 | 0.1 |
+| ruri8 | Lumen Square · Ruri ×8 | 22 | 25 | Kuro, Natsu, Sayo | Ruri, Ruri, Ruri, Ruri, Ruri, Ruri, Ruri, Ruri | 96% | 35 | 1.9 |
+| facethief | Ostrel · The Face Thief | 22 | 25 | Kiri, Tetsugi, Natsu | The Face Thief | 88% | 64 | 0.8 |
+| tongue2 | The Ear · The Tongue | 23 | 25 | Kiri, Natsu, Hisui | The Tongue | 89% | 34 | 0.0 |
+| congregation | The Ruins of Lumen · The Congregation | 24 | 25 | Hisui, Natsu, Kiri | The Congregation | 99% | 61 | 3.1 |
+| taste | The Tongue's Surface · Taste of Ostrel | 25 | 20 | Kuro, Sayo, Kiri | Taste of Ostrel, Sleeper, Sleeper, Sleeper, Sleeper | 100% | 37 | 0.0 |
 | widow | Port of Vesk · Tide-Widow | 8 | 20 | Kiri, Natsu, Tetsugi | Tide-Widow | 100% | 84 | 1.6 |
 | ruri2 | Moogle Market · Ruri ×2 | 14 | 15 | Miren, Hisui, Kuro | Ruri, Ruri | 100% | 45 | 0.6 |
 | orlen | Lumen · Orlen and the Great Organ | 22 | 45 | Kuro, Sayo, Natsu | Archbishop Orlen, Great Organ | 100% | 64 | 4.5 |
@@ -140,6 +150,16 @@ Sim columns come from `tools/battle-sim/baseline.json`: the in-game Helper playi
 - **The Gull of Patience · Forty Years** (`forty`). The Helmsman can't be targeted while the ship is on course. A push on the Hull throws it off course until his next turn, but the deck tilts and everyone not Defending is pushed back 2. Defend, then Delay Shot the Hull, then strike. Every 4th turn Course Correction hits everyone. (The Long Dream)
 - **Lumen · Choir of Lumen** (`choir`). Four Choristers. Each Hymn adds more Stress for every other Chorister still singing, and every 4th turn they push the listeners back with Amen. Thin the choir with Darkga and block the big songs with Counter-Melody. (Village of the Sirens)
 - **The Earth Crystal · The Grey Hound** (`hound`). Goku fights beside you on her own. The hound can't be KO'd and every hit makes it stronger. When Goku acts with under 50 Stress she calls it back one step, and three steps end the fight, but each of its attacks adds 20 Stress to her (10 if its target Defends and holds it back). Soothe her, and move her turn ahead of its. (Uzumaki)
+- **The Lumen Archive · The Whisperer** (`whisperer`). She stands behind one of you and can't be targeted while she does. Each turn she whispers that ally's next command, and on their turn they carry it out instead of yours, sometimes an attack on an ally. Swap the whispered ally out: with no one to stand behind, she can be hit until her next turn. At 50% HP she stands behind two. (The Whispering Woman)
+- **Varn · Ruri ×5** (`ruri5`). Five Ruris, each sure she is the Empress's favourite. They attack each other until half of them are down; then the rest stop fighting each other and turn on you. Spread the damage so they keep fighting. (Tomie)
+- **Varn · Resonance Engine Mk. IV** (`engine`). It starts slow. Stomp can Paralyze for 2 turns, and every 3rd turn its Resonance adds Stress to everyone. Below 50% HP its turns come 2 slots sooner: Delay Shot and Break keep it slow. (Gyo)
+- **The Sunken Monastery · The Hundred Listeners** (`listeners`). The Abbot can't be targeted while any of his 3 Lead Listeners stand. A Listener brought to 0 HP is only knocked into its coffin: before the Abbot's next turn, a different ally must seal it by using any item on it. At 50% HP he reopens a sealed coffin every 2nd turn. (Tombs)
+- **The Save Point · The Mirens** (`mirens`). Four copies of Miren share one turn, and answer every time the real Miren acts. Copies in the air can't be targeted, and each copy defeated pushes the real Miren back 2. When only 2 are left they Jump every turn. (Tomie)
+- **Lumen Square · Ruri ×8** (`ruri8`). Eight Ruris, furious that the world is talking about another girl. They fight each other until half are down, then turn on you together. Darkga keeps the crowd thin and even. (Tomie)
+- **Ostrel · The Face Thief** (`facethief`). Each turn she stares at one of you and steals a feature: −20% stats each, and with all three gone they are KO'd and she heals 25%. A feature comes back when, before her next turn, an ally heals its owner and someone hits her. At 50% HP she takes only Kiri's face, and only Tetsugi's Chakra can give it back. (The Face Burglar)
+- **The Ear · The Tongue** (`tongue2`). Grab takes whoever has the most Stress out of the turn order: +5 Stress each of its turns, and KO'd after 3. It lets go only after hits from 3 different characters, so Swap someone in for the third taste. Soothe decides who it takes. At 50% HP it takes two. (Hellstar Remina)
+- **The Ruins of Lumen · The Congregation** (`congregation`). It stares at one of you, starting with Natsu, and takes no damage from them; the stare adds 10 Stress a turn. A critical hit or a Limit Break pulls the stare onto whoever landed it. At 50% HP it splits into 3 Faces, each staring at a different one of you. (Hellstar Remina)
+- **The Tongue's Surface · Taste of Ostrel** (`taste`). It heals 5% a turn for each of its 4 Sleepers still humming. A hit wakes a Sleeper (no damage, +10 Stress to whoever wakes a villager, once per action), and it drifts back after 2 of the boss's turns, so wake them all close together. At 50% HP Kiri's sleeping body hums them back to sleep every other turn; Counter-Melody stops it. (Uzumaki)
 - **Port of Vesk · Tide-Widow** (`widow`). At half HP she enters phase 2 and releases 2 Drowned Sailors, which re-form 3 of her turns after you defeat them. Undertow pushes whoever is about to act back 3 slots. (The Thing That Drifted Ashore)
 - **Moogle Market · Ruri ×2** (`ruri2`). Two Ruris, each claiming to be the one you killed. They attack each other more as one weakens, and Charm adds 12 Stress to whoever is closest to breaking. (Tomie)
 - **Lumen · Orlen and the Great Organ** (`orlen`). Orlen fills Overdrive as your party gains Stress; when full, he and the Organ attack together with Requiem. Counter-Melody makes him hold his voice, but the Organ will play into it to clear the way. Destroy the Organ and it is rebuilt 4 of his turns later. (Honored Ancestors · The Human Chair)
@@ -194,6 +214,17 @@ Sim columns come from `tools/battle-sim/baseline.json`: the in-game Helper playi
 | The Helmsman | helmsman | 800 | 78 | 10 | 10 | 12 | 18 | 10% | — | The Long Dream |
 | The Hull | hull | 5000 | 62 | 22 | 10 | 8 | 22 | 10% | The Helmsman | The Long Dream |
 | Chorister | chorister | 1300 | 74 | 8 | 6 | 11 | 19 | 10% | — | Village of the Sirens |
+| The Whisperer | whisperer | 1900 | 60 | 12 | 12 | 12 | 18 | 10% | — | The Whispering Woman |
+| Resonance Engine Mk. IV | engine | 5000 | 150 | 22 | 14 | 6 | 24 | 10% | — | Gyo |
+| The Abbot | abbot | 2000 | 90 | 14 | 14 | 7 | 23 | 10% | — | Tombs |
+| Lead Listener | listener | 450 | 66 | 8 | 8 | 9 | 21 | 10% | The Abbot | Tombs |
+| The Mirens' Turn | mirenslot | 1 | 0 | 0 | 0 | 8 | 22 | 10% | — | Tomie |
+| Miren | mirencopy | 1300 | 82 | 16 | 12 | 14 | 16 | 10% | The Mirens' Turn | Tomie |
+| The Face Thief | facethief | 2800 | 80 | 14 | 14 | 7 | 23 | 10% | — | The Face Burglar |
+| The Tongue | licker | 3000 | 90 | 16 | 16 | 9 | 21 | 10% | — | Hellstar Remina |
+| The Congregation | congregation | 3400 | 84 | 14 | 14 | 10 | 20 | 10% | — | Hellstar Remina |
+| Taste of Ostrel | taste | 3800 | 100 | 16 | 16 | 10 | 20 | 10% | — | Uzumaki |
+| Sleeper | sleeper | 1 | 0 | 0 | 0 | 1 | 29 | 10% | Taste of Ostrel | Uzumaki |
 | The Grey Hound | greyhound | 1 | 62 | 10 | 10 | 13 | 17 | 10% | — | Uzumaki |
 
 ## Enemy scripts
@@ -270,7 +301,7 @@ Parts: Great Organ, re-forms 4 turns after defeat at 50% HP.
 
 Phases: **p1** Another Ruri is alive (or she came alone); **p2** Last Ruri standing: Spite, ATK +30%.
 
-1. If another Ruri is alive: **Jealousy**, chance 15%, rising to 75% as the weakest copy loses HP
+1. If another Ruri is alive, and fewer than half of a crowd of 5 or more are down: **Jealousy**, chance 15%, rising to 75% as the weakest copy loses HP
 2. Otherwise: roll Charm 45% (54% if an ally is within 20 Stress of a Stress Check or fleeing), Slap 55% (46% then)
 
 | Skill | Rank | Tags | Target | Power | Effect |
@@ -686,3 +717,167 @@ Parts: The Hull, re-forms 0 turns after defeat.
 - It can't be KO'd. Every hit raises its ATK 10% instead.
 - Goku acts on her own. On her turn, if her Stress is under 50, she calls the hound back one step. Three steps end the fight.
 - Each of its attacks adds 20 Stress to Goku as well, or 10 if its target is Defending and holds it back.
+
+### The Whisperer (`whisperer`)
+
+Phases: **p1** Above 50% HP: she stands behind one ally; **p2** 50% HP or below: she stands behind two, and is exposed only when both are gone.
+
+1. If this is its 3rd, 6th, 9th… turn: **Read Aloud**
+2. Otherwise: **Whisper**
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Read Aloud | 3 | Sound, Stress | All allies | — | She reads out what each of you is about to do: +10 Stress to each ally who can hear it. She whispers to no one this turn. |
+| Whisper | 3 | Stress, Silence | — | — | Whispers the next command of each ally she stands behind: +12 Stress, a 20% chance of Silence for 2 turns, and a 50% chance the command is to attack an ally. |
+
+- She can't be targeted while anyone she stands behind is still fighting.
+- A whispered ally can only carry out the whisper or Swap out. Swapping them out leaves her exposed until her next turn, when she moves behind someone else.
+- Half of her whispers are to attack an ally (1.6× the ally's ATK); the rest are to stand still.
+
+### Resonance Engine Mk. IV (`engine`)
+
+Phases: **p1** Above 50% HP: slow; **p2** 50% HP or below: overclocked, its turns come 2 slots sooner.
+
+1. If this is its 3rd, 6th, 9th… turn: **Resonance**
+2. Phase 1: **Stomp**
+3. Phase 2: roll Stomp 55%, Trample 45%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Stomp | 4 | Physical, Paralyze | Random ally | 1.7× ATK | A 20% chance of Paralyze for 2 turns. |
+| Resonance | 4 | Sound, Stress | All allies | — | The people inside it hum: +16 Stress to each ally. +5 Danger. |
+| Trample | 3 | Physical | All allies | 1.0× ATK | Walks over everyone. |
+
+- Below 50% HP each of its turns comes 2 slots sooner. Delay attacks and Break still work.
+
+### The Abbot (`abbot`)
+
+Phases: **p1** Above 50% HP; **p2** 50% HP or below: every 2nd turn he reopens a sealed coffin.
+Parts: Lead Listener, re-forms 0 turns after defeat.
+
+1. Every turn: roll Chant 50%, Prayer Staff 50%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Chant | 4 | Sound, Stress | All allies | — | +12 Stress to each ally who can hear it. |
+| Prayer Staff | 4 | Physical | Random ally | 1.5× ATK | 10% crit chance. |
+
+- He can't be targeted while any of his Lead Listeners is standing (not in its coffin).
+- At the start of each of his turns, every coffin that wasn't sealed opens and its Listener climbs out at full HP.
+- In phase 2, every 2nd turn he reopens a sealed coffin.
+
+### Lead Listener (`listener`)
+
+1. If it is in its coffin *(reacts)*: **Lie Still**
+2. Otherwise: roll Dry Touch 70%, Listen 30%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Lie Still | 3 |  | — | — | In its coffin, it does nothing. |
+| Dry Touch | 3 | Physical, Paralyze | Random ally | 1.2× ATK | A 20% chance of Paralyze for 2 turns. |
+| Listen | 3 | Stress | Ally closest to a Stress Check or fleeing | — | It listens to your heart: +10 Stress to the ally closest to a Stress Check. |
+
+- Already dead: at 0 HP it is only knocked into its coffin.
+- Before the Abbot's next turn, an ally who didn't knock it in must seal the coffin with any item (use the item on it). Otherwise it climbs out at full HP.
+- Checks marked "reacts" are re-checked the moment you act and again when it acts, so it can answer a counter you play after it planned.
+- Part of The Abbot. It collapses if its parent falls.
+
+### The Mirens' Turn (`mirenslot`)
+
+Phases: **p1** More than 2 copies left; **p2** 2 copies or fewer: they Jump every turn.
+Parts: Miren, re-forms 0 turns after defeat.
+
+1. Every turn: **The Next Miren**
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| The Next Miren | 3 | Physical | — | 1.4× ATK (Spear), 3.2× ATK (Land) | The next copy in line: lands if it is in the air, Jumps (40%, always in phase 2), or thrusts with its Spear (+10 Stress). |
+
+- One turn shared by every copy: each turn, the next copy in line acts. Every time the real Miren acts, the copies take a turn right after him.
+- A copy in the air can't be targeted; it lands on its next action.
+- Each copy defeated pushes the real Miren back 2 slots.
+
+### Miren (`mirencopy`)
+
+1. Every turn: **Argue**
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Argue | 3 |  | — | — | It acts only through The Mirens' Turn. |
+
+- Part of The Mirens' Turn. It collapses if its parent falls.
+
+### The Face Thief (`facethief`)
+
+Phases: **p1** Above 50% HP; **p2** 50% HP or below: she takes only Kiri's face, and only Tetsugi's Chakra gives it back.
+
+1. If Phase 2 only: Phase 2: Kiri is here: **Stare** → Kiri (random ally if she is not standing)
+2. Otherwise: **Stare**
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Stare | 3 | Stress, Confuse | Random ally (ignores Provoke) | — | Steals a feature (eyes, nose, then mouth): −20% stats, +10 Stress, a 30% chance of Confuse for 2 turns. The third one KOs and heals her 25%. |
+
+- Each missing feature: −20% ATK, DEF and MAG. Missing all three: KO'd (the face comes back with them), and she heals 25%.
+- A round is the time between two of her turns. A feature comes back when, in the same round, an ally heals its owner and anyone hits her.
+- In this fight Tetsugi's Chakra can be aimed at an ally.
+
+### The Tongue (`licker`)
+
+Phases: **p1** Above 50% HP: it grabs one; **p2** 50% HP or below: it grabs two at once.
+
+1. Otherwise: roll Lick 60%, Savour 40%
+2. Otherwise: **Grab**
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Grab | 3 | Physical, Stress | Ally with the most Stress (ignores Provoke) | 0.6× ATK | Takes the ally with the most Stress (in phase 2, the two with the most) out of the turn order. They are KO'd after 3 of its turns unless 3 different characters hit it. |
+| Lick | 4 | Physical | Random ally | 1.3× ATK | 10% crit chance. |
+| Savour | 4 | Stress | All allies | — | +8 Stress to each ally it isn't holding. |
+
+- A grabbed ally leaves the turn order and can't be targeted: +5 Stress on each of its turns, KO'd after 3.
+- It lets go when 3 different characters have hit it since the grab. Swap someone in for the third taste.
+- Cover and Provoke don't affect Grab.
+- Grab picks its target when it acts, not when it plans, so the turn order you choose decides who it hits.
+
+### The Congregation (`congregation`)
+
+Phases: **p1** Above 50% HP; **p2** 50% HP or below: it splits into 3 Faces.
+
+1. Every turn: roll Verdict 60%, Murmur 40%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Verdict | 3 | Physical, Confuse | Random ally | 1.4× ATK | A 30% chance of Confuse for 2 turns. |
+| Murmur | 3 | Sound, Stress | All allies | — | +8 Stress to each ally who can hear it. |
+
+- It takes no damage from the ally it is staring at, and the stare adds 10 Stress to them at the start of each of its turns.
+- Above 50% HP, a critical hit or a Limit Break pulls the stare onto whoever landed it.
+- At 50% HP it splits into 3 Faces, each staring at a different active ally. Each Face can be hurt only by the other two.
+
+### Taste of Ostrel (`taste`)
+
+Phases: **p1** Above 50% HP; **p2** 50% HP or below: Kiri's sleeping body rises with the village.
+Parts: Sleeper, re-forms 0 turns after defeat.
+
+1. If Phase 2 only: Phase 2: every other turn, Kiri's body hums: **Kiri's Lullaby**
+2. Otherwise: roll Lap 60%, Village Note 40%
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Lap | 3 | Physical | Random ally | 1.4× ATK | 10% crit chance. |
+| Village Note | 3 | Sound, Stress | All allies | — | +10 Stress to each ally who can hear it. |
+| Kiri's Lullaby | 3 | Sound | — | — | Kiri's sleeping body hums: every Sleeper falls back asleep. |
+
+- At the start of each of its turns it heals 5% for each Sleeper still humming. A Sleeper woken four times stays awake for good.
+- In phase 2, every other turn Kiri's sleeping body hums a Lullaby that puts every Sleeper back to sleep. It is a sound attack: Counter-Melody cancels it.
+
+### Sleeper (`sleeper`)
+
+1. Every turn: **Hum**
+
+| Skill | Rank | Tags | Target | Power | Effect |
+| --- | --- | --- | --- | --- | --- |
+| Hum | 3 |  | — | — | It never acts. While it hums, Taste of Ostrel heals 5% a turn. A hit wakes it for 2 of the boss's turns: no damage, and +10 Stress to the ally who woke it (once per action, however many wake). Woken a fourth time, it stays awake for good. |
+
+- Part of Taste of Ostrel. It collapses if its parent falls.

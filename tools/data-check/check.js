@@ -243,7 +243,7 @@ const DOC_RULES = [
   ['Natsu: Soothe', /Soothe: −(\d+) Stress to one ally/, /case 'soothe':[^\n]*addStress\(tt, -(\d+)\)/],
   ['Natsu: Cures before Cure adds Stress', /after (\d+) Cures in a battle/, /if \(u\.cures > (\d+)\)/],
   ['Natsu: Stress per Cure past the limit', /each adds (\d+) Stress to the target/, /addStress\(tt, (\d+), 'Cure past/],
-  ['Tetsugi: Chakra heal %', /Chakra: heal (\d+)% HP/, /heal\(u, u\.maxhp\*\.(\d+)\); addStress\(u, -10\)/],
+  ['Tetsugi: Chakra heal %', /Chakra: heal (\d+)% HP/, /heal\(c, c\.maxhp\*\.(\d+)\); addStress\(c, -10\)/],
   ['Miren: Stress on landing', /\+(\d+) Stress on landing/, /addStress\(u, (\d+), 'landing'\)/],
   ['Goku: Stress per summon', /Each summon: \+(\d+) Stress to Goku/, /addStress\(u, (\d+), 'Summon'\)/],
   ['Goku: Howl enemy attack down %', /Howl: all enemies' attack −(\d+)%/, /if \(src && src\.weak > 0\) raw \*= \.(\d+)/, null, v => 100 - v * 10],

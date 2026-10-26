@@ -35,7 +35,7 @@ Status key: **Built** matches the doc · **Partial** built with gaps or extras �
 
 ## Encounters
 
-The prototype has 15 story fights (every Disc 1 chapter boss, Orlen and the final battle) and 12 role tests. The 12 role tests are prototype-only: each teaches one character's role through an Ito short story the design doc doesn't use. Simulator numbers are in the balance section below.
+The prototype has 25 story fights (every Disc 1 and Disc 2 chapter boss and the final battle) and 12 role tests. The 12 role tests are prototype-only: each teaches one character's role through an Ito short story the design doc doesn't use. Simulator numbers are in the balance section below.
 
 | Encounter | Doc chapter | Status | Notes |
 | --- | --- | --- | --- |
@@ -52,11 +52,17 @@ The prototype has 15 story fights (every Disc 1 chapter boss, Orlen and the fina
 | Forty Years | Ch. 10 | Partial | Helmsman, Hull, the tilt, Course Correction: match. Adds the destroyed Hull leaving the ship off course (the way through without Ren). [Spec](bosses/forty.md) |
 | Choir of Lumen | Ch. 11 | Partial | Four sound singers. Adds Hymn growing with the choir and Amen every 4th turn. [Spec](bosses/choir.md) |
 | The Grey Hound | Ch. 12 | Partial | Goku as an AI guest, the unkillable hound, damage raising its ATK, three steps: match. Adds the Defending target halving Goku's Stress. [Spec](bosses/hound.md) |
+| The Whisperer | Ch. 13 | Partial | Standing behind, whispered commands, Swap to expose her, Silence 20%, two at 50%: match. Adds Read Aloud every 3rd turn; whispers are attack-an-ally or stand still. [Spec](bosses/whisperer.md) |
+| Ruri ×5, Ruri ×8 | Ch. 14, 17 | Built | The shared script plus the Ch. 14 rule: in a crowd of 5 or more, once half are down the rest stop fighting each other. Encounter stats per level. [Spec](bosses/ruri5.md) |
+| Resonance Engine Mk. IV | Ch. 14 | Partial | Slow start, 2 slots sooner below 50%, Stomp Paralyze 20%: match. Adds Resonance every 3rd turn and Trample in phase 2. [Spec](bosses/engine.md) |
+| The Hundred Listeners | Ch. 15 | Built | Abbot gated by 3 Listeners, coffins sealed with an item by a different character in the same round, Paralyze 20%, reopening at 50%. [Spec](bosses/listeners.md) |
+| The Mirens | Ch. 16 | Partial | Copies in the air untargetable, each defeat delaying the real Miren, Jumping every turn at the end: match. The shared slot is one turn among the copies that also answers each of Miren's actions. [Spec](bosses/mirens.md) |
+| The Face Thief | Ch. 18 | Built | Features, −20% each, KO at three with a 25% heal, heal-plus-hit in the same round, Confuse 30%, Kiri-only with Tetsugi's aimed Chakra at 50%. [Spec](bosses/facethief.md) |
 | Orlen and the Great Organ | Ch. 19 | Drift | Chord every 5th Organ turn, Earplugs halving it, Sayo and Kugai immune: all match. The doc's 50% rule (stripping Protect and Shell) is replaced by Sermon +30, since there's no Protect or Shell. Adds Overdrive and Requiem |
+| The Tongue | Ch. 20 | Built | Grab on the highest Stress, +5 Stress a turn, KO after 3, freed by 3 different characters, Swap for the third, two at 50%. [Spec](bosses/tongue2.md) |
+| The Congregation | Ch. 21 | Built | Stare starting on Natsu, no damage from the stared, moved by crits and Limit Breaks, +10 Stress, Confuse 30%, 3 Faces at 50%. [Spec](bosses/congregation.md) |
+| Taste of Ostrel | Ch. 22 | Partial | Sleepers healing 5% each, waking for 2 boss turns, Kiri's Lullaby at 50% and Counter-Melody: match. Waking several in one action costs the 10 Stress once, and a Sleeper woken a fourth time stays awake (so the fight always ends). [Spec](bosses/taste.md) |
 | The Hellstar (final) | Ch. 27 | Drift | The doc has three forms in sequence: Ainsel the Unwound, the Eaten, the Listener's Eye. The prototype fights Ainsel, the Hellstar and its Tongue at once, with Gaze, Devour and Overdrive. Open question 7 |
-| Ruri (×5, ×8) | Ch. 14, 17 | Not built | The script exists; needs the "half down, the rest stop fighting" rule |
-| The Whisperer, Resonance Engine Mk. IV, The Hundred Listeners | Ch. 13–15 | Not built | |
-| The Mirens, The Face Thief, The Tongue (alone), The Congregation, Taste of Ostrel | Ch. 16–22 | Not built | The Tongue exists as a part of the final battle |
 | The Groaning Pipes, The Puppeteers, The Neighbour, The Four Heard, The Eaten, The Listener's Eye, The Last Note | Ch. 23–28 | Not built | |
 | Optional bosses, the Ruri Garden, the four superbosses | — | Not built | |
 | Rematches | — | Not built | |
@@ -68,15 +74,15 @@ The bosses in the design doc lean on a handful of mechanics the engine doesn't h
 | Feature | Needed by | Notes |
 | --- | --- | --- |
 | **Damage gating**: enemies that can't be targeted or take no damage until a condition holds | Whisperer, Hundred Listeners, Congregation, Puppeteers, Groaning Pipes, Neighbour (6 left) | **Built** for Disc 1: `targetable` + `hidden` (the card says why) and `onDamage`, which can refuse or change damage. See the [authoring guide](guides/boss-authoring.md#scriptskey) |
-| **Inflicted statuses with durations**: Sleep, Silence, Stop, Slow, Paralyze, Confuse, Protect, Shell | About 15 bosses ("30% chance of Stop for 2 turns") | Separate from Stress Check Afflictions. Shown on the character card and in the turn order. Only Sleep exists (`u.sleep`, `e.sleep`), built for the Well-Rested |
+| **Inflicted statuses with durations**: Sleep, Silence, Stop, Slow, Paralyze, Confuse, Protect, Shell | Disc 3 bosses (Stop, Slow) and Protect and Shell | **Built** for Disc 2: Silence, Paralyze and Confuse (`inflict`, `u.st`), counted in their owner's turns, shown as chips and in the turn order. Sleep is separate (`u.sleep`). Stop, Slow, Protect and Shell remain | Separate from Stress Check Afflictions. Shown on the character card and in the turn order. Only Sleep exists (`u.sleep`, `e.sleep`), built for the Well-Rested |
 | **Second HP threshold** (20%), then four (superbosses) | Every Disc 3 boss and rematch | `phases` already supports several; `phaseOf` and the log assume two |
-| **"Same round" windows**: two different characters acting between two of the boss's turns | Hundred Listeners, Face Thief, Puppeteers, Taste of Ostrel, Last Note | Needs a definition first (open question 5) |
+| **"Same round" windows**: two different characters acting between two of the boss's turns | Puppeteers, Last Note | **Built per script** for the Hundred Listeners and the Face Thief: the boss's own turn ends the round (open question 5, decided). Showing the window in the turn order is still to do |
 | **Encounter commands**: a command only one fight offers | Groaning Pipes (Plug), Neighbour (Hold back), the One That Walks (Dream, Rouse) | A per-encounter command list next to Attack and Defend |
 | **Guest allies under AI control** | Neighbour (Ruri), Our Lady (Grey Mother) | **Built** for the Grey Hound: `ENCOUNTERS[k].guest`, driven by a foe script's `guestTurn`. A guest that attacks needs its own targeting |
 | **Command memory**: what each character used, and on whom | Four Heard, the Head Beneath the Mountain | `u.last` and `u.lastT` (its target) exist and drive Your Own Tracks; the rest need a history |
-| **Items on enemies** | Hundred Listeners (sealing a coffin) | Items target allies only |
-| **More than one turn-order slot per unit, or a shared slot** | The Mirens | The Rewound Wolf uses a second foe as its dead slot; the Mirens need a truly shared slot |
-| **Forced and whispered commands written into the turn order** | The Whisperer, the One That Walks | The forecast strip needs per-slot text |
+| **Items on enemies** | — | **Built**: `takesItem` and `onItem` let a foe accept an item (the Listeners' coffins) |
+| **More than one turn-order slot per unit, or a shared slot** | — | **Built by composition**: the Rewound Wolf's dead slot is a second foe; the Mirens' shared slot is a turn-only foe driving turnless copies (`noTurn`). Truly shared slot |
+| **Forced and whispered commands written into the turn order** | the One That Walks | **Built** for the Whisperer: `u.whisper`, a "Whispered" turn-order slot and a menu of Obey or Swap |
 
 ## Known issues
 
@@ -105,6 +111,16 @@ From `tools/battle-sim/sim.js`, 200 battles per encounter with each encounter's 
 | The Grey Hound | 100% | — | 0% | 0% | 12 | 0.0 |
 | Tide-Widow | 100% | — | 8% | 48% | 84 | 1.6 |
 | Ruri ×2 | 100% | — | 49% | 80% | 45 | 0.6 |
+| The Whisperer | 96% | — | 10% | 6% | 63 | 0.6 |
+| Ruri ×5 | 99% | — | 0% | 52% | 35 | 1.0 |
+| Resonance Engine Mk. IV | 100% | — | 2% | 81% | 38 | 0.0 |
+| The Hundred Listeners | 97% | — | 0% | 0% | 46 | 0.6 |
+| The Mirens | 100% | — | 0% | 86% | 36 | 0.1 |
+| Ruri ×8 | 96% | — | 0% | 6% | 35 | 1.9 |
+| The Face Thief | 88% | — | 0% | 0% | 64 | 0.8 |
+| The Tongue | 89% | — | 0% | 0% | 34 | 0.0 |
+| The Congregation | 99% | — | 4% | 30% | 61 | 3.1 |
+| Taste of Ostrel | 100% | — | 2% | 63% | 37 | 0.0 |
 | Orlen and the Great Organ | 100% | — | 3% | 49% | 65 | 4.5 |
 | The Hellstar | 100% | — | 0% | 2% | 103 | 7.1 |
 | Kiri · Spiral Ringer | 100% | 100% | 11% | 90% | 53 | 2.3 |
@@ -130,6 +146,7 @@ What the numbers say:
 6. **The Hellstar is the only fight that leans on Stress**: 7.1 Afflicted per fight. Good for a finale, but random play wins 2% of the time, so it relies on the Helper's knowledge more than any other fight.
 7. **Quick Song is never exercised.** In Sayo's test the Helper spends every turn on Counter-Melody against the Amigara Wall's Calling. Setting Quick Song to the doc's 2 slots or the code's 3 gives identical results, so open question 3 can't be settled by any existing fight.
 8. **The Disc 1 chapter bosses each need their answer, but most leave Stress as decoration.** All eleven are won 99–100% by the Helper. Pressing Attack wins 0–21% of nine of them; the exceptions are the Village Well (100%, the tutorial, by design), Ruri ×1 (49%, an opening act) and the Choir (43%, but only after about 5 characters flee). Every story boss stays winnable without its key character: the Lake Hen without Miren 100% (85 commands), the Pelt without Goku 100% (107), the Lamp Hollow without Kuro 45% (136), the Well-Rested without Kiri 63% (58), Forty Years without Ren 100% (70), the Grey Hound without Natsu 47%. But the Helper keeps Afflicted under 0.5 in eight of eleven, because Natsu or Kiri is in almost every default party. The Grey Hound is short (12 commands): three steps is the doc's number.
+9. **The Disc 2 chapter bosses all defeat pressing Attack** (0–10%) and are won 88–100% by the Helper, inside the 35–70 command band except Ruri ×5 and ×8 (35) and the Tongue (34). The Resonance Engine, the Mirens and Taste of Ostrel are won 100% with almost no Stress: Ren's Delay Shot answers the Engine completely, Miren's Jump starves his copies of turns, and Darkga keeps the Taste's Sleepers awake. Each fight stays winnable without its key character (Engine without Ren 100%, Mirens without Miren 100%, Face Thief without Tetsugi 45%, Taste without Kuro 40%). Afflicted sits under the 1–3 band in six of ten, again because the Helper Soothes early.
 
 ## Open design questions
 
@@ -139,7 +156,7 @@ Each needs a decision before it can be resolved in both the doc and the code. Re
 2. **Delay of support skills.** The doc says most skills are Delay 4; the code gives support and utility skills 3. *Recommendation:* update the doc. The 3/4 split carries meaning: support keeps the basic attack's tempo, and damage spells are the slower, heavier choice.
 3. **Quick Song: 2 or 3 slots?** *Recommendation:* decide after a fight exists that needs Quick Song (Forty Years is the natural one), then measure both. Until then, align the doc to the code (3).
 4. **Adopt Break into the design doc?** *Recommendation:* yes. It is what makes Ren's Delay Shot and Sayo's and Shio's Limit Breaks matter against bosses, and the Long Dreamer already builds a lesson on it. It needs a rule for Disc 3, where Delay attacks push back 1 slot at most.
-5. **What is a "round"?** Five design-doc bosses need two characters to act "in the same round", which CTB doesn't have. *Recommendation:* define it as "between two consecutive turns of the boss", show the window in the turn order as a bracket, and let the CTB planner draw it.
+5. **What is a "round"?** *Decided (2026-10-25):* the time between two consecutive turns of the boss, as recommended. The Hundred Listeners and the Face Thief use it, and each script resets its round on the boss's turn. Still to do: draw the window in the turn order as a bracket.
 6. **Make the role tests canon?** *Recommendation:* yes, as optional fights that unlock each character's Sphere Grid arm (Bravely Default's asterisk fights, FFX's Cloister Trials as rooms to solve). Their Ito short-story sources are new material the doc doesn't use yet.
 7. **The final battle's shape.** The doc's three sequential forms are stronger as an Ito reveal: each form peels back a layer, ending in an enemy with no HP bar. The prototype's simultaneous fight is a stronger CTB puzzle. *Recommendation:* keep the doc's structure and reuse the prototype's Gaze and Devour as form 1's mechanics.
 8. **Lost Turns at or above 30 Danger?** *Recommendation:* the code's "30 and up" is easier to read on the meter (the dashed line sits at 30). Change the doc's wording.
