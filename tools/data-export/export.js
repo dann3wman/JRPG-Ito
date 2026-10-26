@@ -115,7 +115,7 @@ for (const [k, S] of Object.entries(SCRIPTS)) {
 
 const md = L.join('\n').replace(/\n+$/, '\n');
 if (process.argv.includes('--check')) {
-  const cur = fs.existsSync(OUT) ? fs.readFileSync(OUT, 'utf8') : '';
+  const cur = fs.existsSync(OUT) ? fs.readFileSync(OUT, 'utf8').replace(/\r\n/g, '\n') : '';
   if (cur !== md) { console.error(`${path.relative(process.cwd(), OUT)} is out of date: run node tools/data-export/export.js`); process.exit(1); }
   console.log(`${path.relative(process.cwd(), OUT)} is up to date.`);
   process.exit(0);

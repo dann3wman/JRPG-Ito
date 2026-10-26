@@ -88,12 +88,29 @@ aside { display: grid; gap: 14px; min-width: 0; }
 .part:disabled { cursor: default; opacity: .55; }
 .part:disabled:hover { border-color: var(--rule); }
 .part.on { border-color: var(--accent); }
-.part canvas { width: 72px; height: 72px; image-rendering: pixelated; }
+.part canvas { width: 72px; height: 72px; }
 .part span { font-family: var(--f-ui); font-size: 9.5px; color: var(--dim); text-align: center; line-height: 1.2; }
 .part .kind { color: var(--faint); font-size: 8.5px; letter-spacing: .08em; }
 .part.fx .kind { color: var(--accent); }
 .loading { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--f-ui); color: var(--faint); font-size: 12px; }
 @media (max-width: 520px) { .stage { aspect-ratio: 1 / 1; } .clip .nm { font-size: 16px; } }
+.editor { margin-top: 14px; color: var(--bone); }
+.editor summary { cursor: pointer; font-size: 18px; }
+.editor .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-block: 12px; }
+.editor label { display: grid; gap: 4px; min-width: 0; }
+.editor input, .editor select, .editor textarea { box-sizing: border-box; width: 100%; min-width: 0; padding: 7px; border: 1px solid var(--faint); background: var(--ink); color: var(--bone); font: inherit; }
+.editor input[type=checkbox] { width: auto; justify-self: start; }
+.editor textarea { min-height: 110px; font-family: ui-monospace, monospace; font-size: 12px; }
+.editor fieldset { border: 1px solid var(--rule); margin: 12px 0; min-width: 0; }
+.editor legend { padding-inline: 6px; }
+.editor .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.editor button { padding: 7px 10px; background: var(--slab); border: 1px solid var(--faint); }
+.editor button:disabled { opacity: .5; cursor: default; }
+.editor p { margin: 8px 0; overflow-wrap: anywhere; }
+.editor .wide { grid-column: 1 / -1; }
+.markers { display: flex; gap: 8px; flex-wrap: wrap; padding: 8px 12px; }
+.markers button { background: var(--niche); border: 1px solid var(--rule); padding: 5px 8px; color: var(--bone); }
+@media (max-width: 520px) { .editor .fields { grid-template-columns: minmax(0, 1fr); } }
 </style>
 
 <div class="wrap">
@@ -123,9 +140,63 @@ aside { display: grid; gap: 14px; min-width: 0; }
           <label><input type="checkbox" id="tBones" checked> Bones</label>
           <label><input type="checkbox" id="tSprites" checked> Sprites</label>
           <label><input type="checkbox" id="tRef"> Reference</label>
-          <label><input type="checkbox" id="tCrisp" checked> Crisp</label>
+          <label><input type="checkbox" id="tCrisp"> Crisp</label>
+          <label>Effects <select id="detail" aria-label="Effect detail"><option value="full">Full</option><option value="low">Low</option></select></label>
+          <button id="hitPreview" type="button">Preview hit</button>
+          <label><input type="checkbox" id="tBounds"> Bounds</label>
+          <label><input type="checkbox" id="tFitFX"> Fit effects</label>
         </div>
       </div>
+      <div class="markers" id="markers" aria-label="Clip markers"></div>
+      <details class="card editor" id="editor">
+        <summary>Rig authoring</summary>
+        <p>Edits stay in this tab. Export a patch to keep them. Setup uses the rest pose; animation previews the clip.</p>
+        <div class="fields">
+          <label>Mode<select id="editMode"><option value="animation">Animation</option><option value="setup">Setup</option></select></label>
+          <label>Drag tool<select id="editTool"><option value="rotate">Rotate joint</option><option value="pivot">Move pivot, keep artwork</option><option value="attach">Move attachment</option><option value="target">Move limb target</option></select></label>
+        </div>
+        <p id="selectedBone">Select a bone in the skeleton or on the stage.</p>
+        <fieldset id="boneFields" disabled><legend>Selected bone</legend>
+          <div class="fields">
+            <label>Pivot X<input id="pvX" type="number" step="0.1"></label><label>Pivot Y<input id="pvY" type="number" step="0.1"></label>
+            <label>Attachment X<input id="atX" type="number" step="0.1"></label><label>Attachment Y<input id="atY" type="number" step="0.1"></label>
+            <label>Rest rotation (degrees)<input id="restR" type="number" step="0.1"></label><label>Scale<input id="restS" type="number" min="0.001" step="0.01"></label>
+          </div>
+          <button id="applyBone" type="button">Apply bone values</button>
+        </fieldset>
+        <fieldset><legend>Limb target</legend>
+          <p>Select a lower limb bone, then add a target at its tip. Coordinates are in rig space.</p>
+          <div class="fields">
+            <label class="wide">Constraint<select id="constraintList"><option value="">No limb targets</option></select></label>
+            <label>Target X<input id="targetX" type="number" step="0.1"></label><label>Target Y<input id="targetY" type="number" step="0.1"></label>
+            <label>Influence (0–1)<input id="targetMix" type="number" min="0" max="1" step="0.05" value="1"></label>
+            <label>Bend direction<select id="targetBend"><option value="1">Clockwise</option><option value="-1">Anticlockwise</option></select></label>
+          </div>
+          <div class="actions"><button id="addTarget" type="button">Add target</button><button id="applyTarget" type="button">Apply target</button><button id="removeTarget" type="button">Remove target</button></div>
+        </fieldset>
+        <fieldset><legend>Current clip</legend>
+          <div class="fields">
+            <label>Blend in (seconds)<input id="clipIn" type="number" min="0" step="0.01"></label><label>Blend out (seconds)<input id="clipOut" type="number" min="0" step="0.01"></label>
+            <label>Interruption blend (seconds)<input id="clipMix" type="number" min="0" step="0.01"></label><label>Outgoing effects fade (seconds)<input id="clipFX" type="number" min="0" step="0.01"></label>
+            <label>Anticipation marker<input id="markAnticipation" type="number" min="0" step="0.01" placeholder="Unset"></label>
+            <label>Impact marker<input id="markImpact" type="number" min="0" step="0.01" placeholder="Unset"></label>
+            <label>Recovery marker<input id="markRecovery" type="number" min="0" step="0.01" placeholder="Unset"></label>
+            <label>Hold final pose<input id="clipHold" type="checkbox"></label>
+          </div>
+          <details><summary>Pose tracks and sprite swaps</summary>
+            <p>Tracks: [{"bone":"head","field":"r","mode":"hold","keys":[[0,0],[1,12]]}]. Modes: smooth, linear, hold. Swaps: [{"bones":["open","shut"],"keys":[[0,"shut"],[1,"open"]]}]. Use this rig’s bone names.</p>
+            <label>Pose tracks (JSON)<textarea id="clipTracks" spellcheck="false">[]</textarea></label>
+            <label>Sprite swaps (JSON)<textarea id="clipSwaps" spellcheck="false">[]</textarea></label>
+          </details>
+          <button id="applyClip" type="button">Apply clip settings</button>
+        </fieldset>
+        <div class="actions">
+          <button id="undoEdit" type="button">Undo</button><button id="redoEdit" type="button">Redo</button>
+          <button id="exportRig" type="button">Export changed definitions</button>
+          <button id="importRig" type="button">Import patch</button><input id="patchFile" type="file" accept=".json" hidden>
+        </div>
+        <p id="editStatus" role="status" aria-live="polite">No edits.</p>
+      </details>
     </section>
 
     <aside>
@@ -155,6 +226,10 @@ aside { display: grid; gap: 14px; min-width: 0; }
 </div>
 
 <script>
+window.addEventListener('error', event => {
+  const message = document.getElementById('loading');
+  if (message) { message.hidden = false; message.textContent = 'Rig error: ' + event.message; }
+});
 const ATLAS = {"ainsel":{"assembled":[0,0,274,280],"unwind":[276,0,349,243],"tendril2":[627,0,242,240],"ribbon1":[0,282,180,236],"tendril1":[182,282,238,231],"torso":[422,282,213,228],"upperArmL":[637,282,160,228],"ribbon2":[799,282,167,228],"ribbon3":[0,520,138,227],"upperArmR":[140,520,135,201],"offbeat":[277,520,219,191],"tendril3":[498,520,209,189],"forearmR":[709,520,122,188],"forearmL":[833,520,135,165],"ribbon4":[0,749,145,159],"hair":[147,749,184,135],"head":[333,749,152,133],"handR":[487,749,112,110],"handL":[601,749,114,108]},"amigara":{"rock":[0,0,735,371],"assembled":[0,373,773,370],"hole3":[775,373,71,249],"hole1":[848,373,78,238],"hole5":[928,373,68,215],"hole4":[0,745,66,210],"depth3":[68,745,65,207],"depth1":[135,745,64,199],"depth5":[201,745,58,193],"hole2":[261,745,63,190],"scree1":[326,745,141,179],"depth4":[469,745,61,176],"pull":[532,745,264,172],"calling":[798,745,204,168],"depth2":[0,957,56,165],"scree2":[58,957,234,159],"chunk2":[294,957,93,115],"footprints":[389,957,200,113],"chunk1":[591,957,101,105],"dust2":[694,957,94,105],"dust1":[790,957,103,103],"dust3":[895,957,84,101],"chunk3":[0,1124,87,97],"chunk5":[89,1124,85,97],"chunk4":[176,1124,108,89],"chunk6":[286,1124,108,70],"chunk7":[396,1124,68,57],"chunk8":[466,1124,52,37]},"organ":{"assembled":[0,0,351,315],"pipesC":[353,0,197,297],"pipesL":[552,0,202,280],"pipesR":[756,0,186,274],"case":[0,317,285,273],"chord":[287,317,220,194],"drone":[509,317,204,193],"finger3":[715,317,115,182],"finger2":[832,317,113,175],"finger1":[0,592,138,139],"keyboard":[140,592,257,128],"eyelid":[399,592,171,124],"eye":[572,592,171,123],"finger4":[745,592,185,110]},"orlen":{"assembled":[0,0,333,340],"stole":[335,0,96,240],"skirt":[433,0,177,239],"crozier":[612,0,72,225],"torso":[686,0,165,223],"head":[853,0,111,218],"benediction":[0,342,173,200],"crozierFx":[175,342,200,197],"anc1":[377,342,103,191],"anc3":[482,342,108,190],"anc4":[592,342,108,190],"anc5":[702,342,111,190],"anc2":[815,342,112,186],"sermon":[0,544,177,183],"upperArmL":[179,544,85,158],"upperArmR":[266,544,101,154],"handR":[369,544,71,151],"forearmR":[442,544,66,142],"fist":[510,544,100,126],"forearmL":[612,544,110,118],"jaw":[724,544,55,82],"handL":[781,544,109,80]},"widow":{"assembled":[0,0,483,202],"bodyBack":[485,0,355,201],"bodyGlass":[0,204,355,201],"head":[357,204,254,194],"lock2":[613,204,217,191],"lock1":[0,407,210,182],"lock4":[212,407,171,182],"lock3":[385,407,204,177],"stream1":[591,407,111,171],"stream2":[704,407,95,171],"tail":[801,407,193,170],"finL":[0,591,184,163],"fig4":[186,591,71,155],"lullaby":[259,591,265,152],"finR":[526,591,171,149],"undertow":[699,591,274,142],"fig5":[0,756,76,142],"release":[78,756,204,139],"fig3":[284,756,156,109],"fig6":[442,756,54,98],"fig2":[498,756,79,86],"fig1":[579,756,103,69]},"tongue":{"assembled":[0,0,335,486],"seg1":[337,0,151,371],"seg2":[490,0,145,335],"grab":[637,0,306,298],"seg3":[0,488,125,293],"release":[127,488,408,286],"lick":[537,488,468,274],"seg4":[0,783,122,259],"lip":[124,783,352,242],"seg5":[478,783,118,227],"tip":[598,783,225,179],"inside":[0,1044,253,177],"mouthOpen3":[255,1044,90,124],"mouthOpen5":[347,1044,91,122],"mouthOpen6":[440,1044,86,122],"mouthOpen4":[528,1044,96,120],"mouthOpen7":[626,1044,93,120],"mouthOpen2":[721,1044,95,119],"mouthOpen8":[818,1044,86,117],"mouthOpen1":[906,1044,90,115],"mouthShut1":[0,1223,97,68],"mouthShut2":[99,1223,96,68],"mouthShut7":[197,1223,94,68],"mouthShut4":[293,1223,104,67],"mouthShut5":[399,1223,92,67],"mouthShut3":[493,1223,94,66],"mouthShut6":[589,1223,90,66],"mouthShut8":[681,1223,96,66]},"congregation":{"assembled":[0,0,397,404],"banner":[399,0,413,267],"poleL":[814,0,92,242],"poleR":[908,0,84,238],"crowd":[0,406,422,230],"confuse":[424,406,361,216],"stare":[0,638,426,208],"arm1":[428,638,279,204],"armU2":[709,638,151,195],"armF3":[862,638,141,193],"armF2":[0,848,171,188],"armU4":[173,848,123,187],"armF4":[298,848,207,186],"armU3":[507,848,177,178],"murmur":[0,1038,429,170],"head1":[431,1038,152,162],"headOpen1":[585,1038,151,161],"headB2":[738,1038,151,161],"headOpen5":[891,1038,128,153],"headOpen2":[0,1210,112,147],"head5":[114,1210,124,145],"headOpen4":[240,1210,109,145],"head2":[351,1210,112,143],"headOpen3":[465,1210,114,143],"headB1":[581,1210,114,143],"head4":[697,1210,109,142],"head3":[808,1210,115,141]},"facethief":{"assembled":[0,0,270,389],"hair":[272,0,197,251],"hairFront":[471,0,197,251],"skirt":[670,0,213,219],"legs":[0,391,175,209],"head":[177,391,144,202],"torso":[323,391,160,195],"forearmL":[485,391,111,194],"return":[598,391,182,182],"upperArmL":[782,391,106,169],"upperArmR":[890,391,105,158],"handR":[0,602,106,134],"forearmR":[108,602,103,131],"handL":[213,602,147,116],"stare":[362,602,184,107],"steal":[548,602,226,97],"nose":[776,602,64,89],"mouth":[842,602,160,77],"eyes":[0,738,187,65]},"ostrel":{"assembled":[0,0,468,407],"spiral":[470,0,428,262],"lullaby":[0,409,374,246],"hum":[376,409,446,241],"house2":[824,409,191,234],"wake":[0,657,443,234],"surface":[445,657,410,210],"smoke2":[857,657,91,186],"house3":[0,893,184,180],"smoke4":[186,893,69,170],"smoke1":[257,893,77,169],"smoke3":[336,893,62,165],"house1":[400,893,185,164]},"pipes":{"assembled":[0,0,856,284],"burst":[0,286,313,217],"pipesFront":[315,286,599,208],"pipesFrontL":[0,505,599,208],"pipesFrontR":[0,715,599,208],"groan":[601,715,294,198],"grab":[0,925,256,194],"plug":[258,925,318,161],"pipesBack":[0,1121,580,136],"faceClosed":[582,1121,129,136],"drips":[0,1259,445,136],"pipesBackL":[0,1397,580,136],"pipesBackR":[0,1535,580,136],"faceOpen":[582,1535,133,135],"upperArm":[717,1535,274,113],"hand":[0,1673,234,110],"grate1":[236,1673,183,106],"grate3":[421,1673,184,106],"grate4":[607,1673,182,106],"grate2":[791,1673,182,105],"forearm":[0,1785,264,98],"hole1":[266,1785,179,75],"hole2":[447,1785,179,75],"hole3":[628,1785,178,75],"hole4":[808,1785,180,75],"floor":[0,1885,953,65]},"neighbour":{"assembled":[0,0,488,418],"wall":[490,0,355,414],"shuttered":[0,420,370,364],"shutterL":[372,420,118,290],"shutterR":[492,420,118,290],"frame":[612,420,239,244],"call":[0,786,437,214],"pull":[439,786,418,179],"hand":[0,1002,236,175],"neck1":[238,1002,262,168],"neck2":[502,1002,280,168],"head":[0,1179,282,164],"upperArm":[284,1179,271,154],"neck3":[557,1179,315,149],"jaw":[0,1345,190,131],"forearm":[192,1345,258,115]},"puppeteers":{"puppetA":[0,0,256,324],"puppetB":[258,0,278,249],"master":[538,0,54,216],"strings":[594,0,159,214],"barA":[755,0,183,198],"string":[0,326,159,184],"jerk":[161,326,166,184],"cut":[329,326,149,184],"armA":[480,326,148,168],"armB":[630,326,155,166],"hoodB":[787,326,143,156],"barB":[0,512,191,155],"bodyA":[193,512,173,152],"hoodA":[368,512,130,149],"bodyB":[500,512,192,146]},"fourheard":{"fire_assembled":[0,0,410,467],"wind_assembled":[412,0,472,463],"water_assembled":[0,469,408,416],"earth_assembled":[410,469,452,388],"fire_armR":[0,887,188,364],"wind_slash":[190,887,590,318],"fire_torso":[782,887,241,316],"wind_star":[0,1253,325,294],"water_armR":[327,1253,209,282],"fire_star":[538,1253,295,282],"wind_armR":[0,1549,227,278],"fire_slash":[229,1549,436,274],"water_torso":[667,1549,223,261],"fire_cape":[0,1829,295,261],"wind_cape":[297,1829,220,238],"earth_star":[519,1829,244,237],"water_cape":[0,2092,323,225],"earth_slash":[325,2092,431,222],"wind_torso":[758,2092,210,198],"water_star":[0,2319,204,188],"earth_torso":[206,2319,152,188],"water_head":[360,2319,216,185],"water_slash":[578,2319,353,179],"fire_head":[0,2509,186,177],"wind_head":[188,2509,153,171],"earth_cape":[343,2509,293,168],"earth_armR":[638,2509,262,157],"water_upperArmR":[902,2509,94,153],"water_upperArmL":[0,2688,116,151],"water_thighL":[118,2688,103,143],"water_shinR":[223,2688,108,141],"earth_head":[333,2688,167,141],"earth_shinL":[502,2688,129,136],"earth_upperArmR":[633,2688,110,131],"water_shinL":[745,2688,103,130],"earth_shinR":[850,2688,98,129],"fire_shinL":[0,2841,97,129],"wind_shinR":[99,2841,106,128],"water_thighR":[207,2841,107,128],"wind_forearmL":[316,2841,130,124],"water_forearmL":[448,2841,180,123],"earth_upperArmL":[630,2841,96,123],"wind_shinL":[728,2841,107,123],"fire_upperArmL":[837,2841,71,115],"fire_upperArmR":[910,2841,69,110],"fire_shinR":[0,2972,96,109],"earth_thighR":[98,2972,105,108],"fire_thighL":[205,2972,91,108],"earth_forearmL":[298,2972,149,104],"wind_plinth":[449,2972,293,103],"wind_thighL":[744,2972,118,100],"fire_thighR":[864,2972,101,100],"earth_thighL":[0,3083,104,99],"fire_faceClosed":[106,3083,98,96],"fire_faceOpen":[206,3083,95,96],"wind_upperArmL":[303,3083,91,90],"earth_plinth":[396,3083,309,90],"wind_thighR":[707,3083,96,87],"fire_plinth":[0,3184,285,87],"wind_upperArmR":[287,3184,75,86],"fire_forearmL":[364,3184,154,80],"wind_faceClosed":[520,3184,79,79],"wind_faceOpen":[601,3184,80,78],"water_plinth":[683,3184,282,78],"water_faceClosed":[0,3273,64,69],"water_faceOpen":[66,3273,62,69],"earth_faceClosed":[130,3273,60,64],"earth_faceOpen":[192,3273,61,64]},"lastnote":{"assembled":[0,0,378,256],"shell":[380,0,249,232],"strike":[631,0,113,205],"silence":[746,0,183,179],"head":[0,258,153,158],"tail3":[155,258,109,145],"escape":[266,258,226,109],"split":[494,258,132,93],"mouth":[628,258,68,91],"tail2":[698,258,156,90],"tail1":[856,258,115,89]},"pelt":{"assembled":[0,0,113,194],"tail":[115,0,79,189],"hollow":[196,0,118,186],"torso":[316,0,111,184],"lower":[429,0,125,183],"armL":[556,0,98,182],"armR":[656,0,103,180],"heldOpen":[761,0,173,178],"lash":[0,196,186,167],"face":[188,196,148,164],"mane":[338,196,119,155],"pawL":[459,196,76,148],"pawR":[537,196,84,148],"hook1":[623,196,53,138],"hook2":[678,196,54,137],"muzzle":[734,196,117,131]},"wellrested":{"assembled":[0,0,331,456],"asleep":[333,0,295,306],"pack":[630,0,192,292],"cloak":[0,458,220,267],"scarf":[222,458,199,224],"armR":[423,458,96,201],"armL":[521,458,92,198],"head":[615,458,250,192],"dream":[867,458,65,140],"yawn":[0,727,240,137],"legL":[242,727,98,128],"legR":[342,727,101,124],"eyeOpenL":[445,727,38,41],"eyeOpenR":[485,727,22,40],"mouthOpen":[509,727,32,36],"eyeHalfL":[543,727,39,22],"eyeHalfR":[584,727,24,22],"eyeShutL":[610,727,41,20],"eyeShutR":[653,727,31,20],"mouthShut":[686,727,29,12]},"lamp":{"assembled":[0,0,182,616],"postLower":[184,0,84,306],"postUpper":[270,0,130,304],"housing":[402,0,141,279],"dark":[545,0,134,232],"wickLit":[681,0,118,219],"base":[801,0,159,218],"wickOut":[0,618,107,188],"relight":[109,618,285,175],"glare":[396,618,256,160],"bracket":[654,618,158,159],"glow":[814,618,157,153],"face":[0,808,90,118]},"lakehen":{"assembled":[0,0,544,433],"wingR":[546,0,297,260],"tail":[0,435,229,253],"wingL":[231,435,259,240],"swipe":[492,435,239,211],"body":[0,690,305,206],"splash":[307,690,305,187],"ripple":[0,898,417,177],"head":[419,898,172,175],"neck1":[593,898,179,165],"neck2":[774,898,135,149],"splashSmall":[0,1077,198,126],"neck3":[200,1077,139,118],"chick1peep":[341,1077,102,107],"chick2peep":[445,1077,101,106],"ringFront":[0,1205,492,106],"chick3peep":[494,1205,101,105],"lowerBeak":[597,1205,86,102],"chick1":[685,1205,104,100],"chick2":[791,1205,100,100],"chick3":[893,1205,101,99],"upperBeak":[0,1313,96,68],"ringBackR":[98,1313,306,48],"ringBackL":[406,1313,288,45]},"fortyyears":{"assembled":[0,0,465,343],"hull":[467,0,442,209],"offCourse":[0,345,309,203],"ram":[311,345,290,199],"course":[0,550,460,194],"deck":[462,550,355,168],"wheel":[819,550,148,164],"hTorso":[0,746,164,153],"legs":[166,746,174,153],"hHead":[342,746,167,132],"crewHead1":[511,746,159,128],"crewHead2":[672,746,162,127],"crewHead4":[836,746,119,121],"crewHead3":[0,901,155,119],"crewArm1":[157,901,240,119],"hForeR":[399,901,167,117],"crewArm2":[568,901,175,114],"hUpperR":[745,901,89,113],"hUpperL":[836,901,94,110],"crewArm3":[0,1022,213,106],"sail1":[215,1022,243,92],"sail2":[460,1022,236,90],"hForeL":[698,1022,150,88]},"listeners":{"assembled":[0,0,469,537],"armL":[471,0,176,369],"torso":[649,0,274,359],"touch":[0,539,266,280],"seal":[268,539,327,274],"chant":[597,539,319,249],"armR":[0,821,165,228],"skull":[167,821,168,207],"bellHand":[337,821,103,202],"coffin":[442,821,462,161],"legs":[0,1051,317,147],"jaw":[319,1051,133,107]},"greyhound":{"assembled":[0,0,551,303],"mane":[553,0,339,261],"enrage":[0,305,376,248],"maul":[378,305,265,236],"callback":[0,555,400,211],"torso":[402,555,409,185],"collar":[813,555,143,181],"tail":[0,768,325,180],"legA1":[327,768,179,164],"legC1":[508,768,151,151],"legD1":[661,768,141,149],"legA2":[804,768,95,144],"legB1":[0,950,159,143],"legB2":[161,950,145,137],"legC2":[308,950,134,136],"legD2":[444,950,151,127],"earL":[597,950,132,120],"earR":[731,950,105,112],"head":[838,950,130,102],"jaw":[0,1095,86,51]},"whisperer":{"assembled":[0,0,429,652],"skirt":[431,0,281,336],"exposed":[0,654,384,291],"apron":[386,654,210,257],"whisper":[0,947,427,254],"silence":[429,947,313,237],"torso":[744,947,198,224],"upperArmL":[0,1203,148,188],"head":[150,1203,176,184],"cupHand":[328,1203,81,151],"forearmL":[411,1203,113,145],"upperArmR":[526,1203,174,145],"bun":[702,1203,135,144],"forearmR":[839,1203,114,139],"handR":[0,1393,113,132]}};
 const FITS = {};
 // ===== Rig definitions =====
@@ -213,7 +288,8 @@ ainsel: {
       const off = [[-70, -10, -12], [40, 6, 10], [-20, -18, -6], [0, 0, 0]];
       let k = -1; beats.forEach((b, i) => { if (t >= b) k = i; });
       const o = k < 0 ? [0, 0, 0] : off[k];
-      P.root.x += o[0]; P.root.y += o[1]; P.torso.r += o[2];
+      const previous = k > 0 ? off[k - 1] : [0, 0, 0], snap = k < 0 ? 1 : smooth5((t - beats[k]) / 0.06);
+      P.root.x += previous[0] + (o[0] - previous[0]) * snap; P.root.y += previous[1] + (o[1] - previous[1]) * snap; P.torso.r += previous[2] + (o[2] - previous[2]) * snap;
       P.head.r += k >= 0 ? (k % 2 ? 18 : -14) * (1 - ramp(t, beats[k], beats[k] + 0.35)) : 0;
       P.ghosts = [{ dt: 0.1, a: 0.32 }, { dt: 0.2, a: 0.18 }, { dt: 0.3, a: 0.08 }];
       beats.forEach((b, i) => {
@@ -396,10 +472,12 @@ orlen: {
     } },
     crozier: { label: 'Crozier strike', fx: ['crozierFx'], dur: 2.6, fn(t, P, F) {
       RIGS.orlen.anims.idle.fn(t, P, F);
-      const k = [[0.1, 0], [0.75, 1], [0.95, -1], [1.6, -1], [2.4, 0]];
+      const k = [[0.1, 0], [0.75, 1], [0.95, -1], [1.15, -1], [2.4, 0]];
       const a = keys(t, k.map(([x, v]) => [x, v > 0 ? 40 : v < 0 ? -40 : 0]));
       const c = keys(t, k.map(([x, v]) => [x, v > 0 ? -70 : v < 0 ? 150 : 0]));
       P.upperArmL.r += a; P.crozier.r += c;
+      P.crozier.r += settle(t, 0.95, 9, 0.28, 5);
+      ['anc1', 'anc2', 'anc3', 'anc4'].forEach((id, i) => P[id].r += settle(t, 1.02 + i * 0.07, 2 + i * 0.4, 0.42, 4));
       P.torso.r += keys(t, [[0.1, 0], [0.75, -6], [0.95, 8], [1.6, 8], [2.4, 0]]); P.head.r += keys(t, [[0.1, 0], [0.75, -5], [0.95, 6], [1.6, 6], [2.4, 0]]);
       P.root.x = osc(t, 0.06, 4) * env(t, 1.0, 1.05, 1.2, 1.5);
       const u = pulse(t, 0.98, 1.2);
@@ -459,11 +537,13 @@ widow: {
         F.push({ img: 'lullaby', b: 'head', at: [215, 105], s: 0.3 + 0.85 * u, a: e * (1 - u) * 0.9, z: 6, blend: 'lighter' });
       }
     } },
-    undertow: { label: 'Undertow', fx: ['undertow'], dur: 3, fn(t, P, F) {
+    undertow: { label: 'Undertow', fx: ['undertow'], dur: 3, markers: { anticipation: 0.2, impact: 0.9, recovery: 1.2 }, fn(t, P, F) {
       RIGS.widow.anims.idle.fn(t, P, F);
-      const back = env(t, 0.1, 0.6, 0.6, 0.8), lunge = env(t, 0.7, 0.9, 1.6, 2.4);
+      const back = env(t, 0.1, 0.6, 0.6, 0.8), lunge = keys(t, [[0, 0], [0.7, 0], [0.9, 1.12], [1.14, 1], [1.45, 1], [2.65, 0]]);
       P.root.x = -30 * back + 60 * lunge; P.root.r += -4 * back + 5 * lunge;
-      P.tail.r += -25 * back + 30 * lunge; P.finL.r += 20 * lunge; P.finR.r += -15 * lunge;
+      const trail = keys(t - 0.09, [[0, 0], [0.7, 0], [0.9, 1.12], [1.14, 1], [1.45, 1], [2.65, 0]]);
+      P.tail.r += -25 * back + 30 * trail + settle(t, 1.05, 3, 0.45, 4); P.finL.r += 20 * trail; P.finR.r += -15 * trail;
+      for (let i = 1; i <= 4; i++) P['lock' + i].r += settle(t, 0.94 + i * 0.06, 2 + i * 0.5, 0.5, 3.5);
       P.head.r += 8 * lunge;
       // water inside lags behind the lunge, so the figures slosh toward the tail
       const slosh = env(t, 0.75, 1.1, 1.6, 2.6);
@@ -670,8 +750,8 @@ ostrel: {
   lore: 'A village grown on a tongue. The tongue ripples under the houses, the chimneys breathe a slow spiral, and someone in every house is asleep.',
   anims: {
     idle: { label: 'Night', dur: 6, fn(t, P) {
-      P.spiral.r = t * 10; P.spiral.sx *= 1 + osc(t, 3, 0.03); P.spiral.sy = P.spiral.sx;
-      ['smoke1', 'smoke2', 'smoke3'].forEach((id, k) => { P[id].y = -6 * ((t / 2 + k / 3) % 1); P[id].r = osc(t, 2, 5, k); });
+      P.spiral.r = osc(t, 6, 8); P.spiral.sx *= 1 + osc(t, 3, 0.03); P.spiral.sy = P.spiral.sx;
+      ['smoke1', 'smoke2', 'smoke3'].forEach((id, k) => { P[id].y = -3 + osc(t, 2, 3, k * TAU / 3); P[id].r = osc(t, 2, 5, k); });
       P.surface.sy *= 1 + osc(t, 3, 0.015);
       // each house rocks on the tongue with its own timing, like boats
       [['house1', 0], ['house2', 1.3], ['house3', 2.4], ['house4', 3.3]].forEach(([id, ph]) => { P[id].r = osc(t, 3, 2.5, ph); P[id].y = osc(t, 3, 2, ph + 0.8); });
@@ -1238,6 +1318,11 @@ amigara: {
 
 
 // ===== math =====
+// The shorter second torso needs an on-sprite hip pivot; retain its fitted rest position.
+Object.assign(RIGS.puppeteers.bones.find(b => b.id === 'bodyB'), { pv: [90, 140], at: [140, 269] });
+// Fit the bent sleeve to the reference elbow instead of leaving two open cuffs apart.
+Object.assign(RIGS.whisperer.bones.find(b => b.id === 'upperArmR'), { fit: [224, 199, 16, 0.86, false] });
+Object.assign(RIGS.whisperer.bones.find(b => b.id === 'forearmR'), { fit: [282, 205, 0, 0.86, false], pv: [36, 108] });
 const T = (x, y) => [1, 0, 0, 1, x, y];
 const R = d => { const r = d * Math.PI / 180, c = Math.cos(r), s = Math.sin(r); return [c, s, -s, c, 0, 0]; };
 const S = (x, y) => [x, 0, 0, y, 0, 0];
@@ -1247,7 +1332,7 @@ const inv = m => { const d = m[0]*m[3] - m[1]*m[2]; return [m[3]/d, -m[1]/d, -m[
 
 // ===== state =====
 const IMG = {};
-const st = { arena: 'none', boss: 'ainsel', anim: 'idle', t: 0, playing: true, speed: 1, manual: {}, sel: null, hover: null, drag: null, view: null };
+const st = { arena: 'none', boss: 'ainsel', anim: 'idle', t: 0, clock: 0, blend: null, blendAt: 0, hitAt: -1, once: false, playing: true, speed: 1, manual: {}, sel: null, hover: null, drag: null, view: null };
 try { const s = JSON.parse(localStorage.getItem('rigviewer') || '{}'); if (RIGS[s.boss]) st.boss = s.boss; } catch (e) {}
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) st.playing = false;
 const qs = new URLSearchParams(location.search);
@@ -1277,25 +1362,278 @@ function applyFits(r) {
     }
   }
 }
-for (const k in RIGS) { const r = RIGS[k]; r.key = k; { const seen = new Set(), out = []; let rest = r.bones.slice(); while (rest.length) { const nx = rest.filter(b => !b.p || seen.has(b.p)); nx.forEach(b => { seen.add(b.id); out.push(b); }); rest = rest.filter(b => !seen.has(b.id)); if (!nx.length) break; } r.bones = out; } r.byId = {}; r.bones.forEach(b => r.byId[b.id] = b);
+for (const k in RIGS) { const r = RIGS[k]; r.key = k; r.bones = validateRig(r, k); r.byId = {}; r.bones.forEach(b => r.byId[b.id] = b);
   r.kids = {}; r.bones.forEach(b => { if (b.p) (r.kids[b.p] = r.kids[b.p] || []).push(b); }); applyFits(r); }
 
 const blankPose = () => ({ x: 0, y: 0, r: 0, sx: 1, sy: 1, a: 1, warp: 1 });
-function makePose(rig) { const P = {}; for (const b of rig.bones) P[b.id] = { x: 0, y: 0, r: 0, sx: 1, sy: 1, a: b.a ?? 1, warp: 1 }; return new Proxy(P, { get: (o, k) => (k in o || typeof k !== 'string' || k === 'ghosts') ? o[k] : (o[k] = blankPose()) }); }
-
-function evalAnim(rig, name, t) {
-  const P = makePose(rig), F = []; rig.anims[name].fn(t, P, F); return { P, F };
+function makePose(rig, clip = 'setup') {
+  const P = Object.create(null); for (const b of rig.bones) P[b.id] = { x: 0, y: 0, r: 0, sx: 1, sy: 1, a: b.a ?? 1, warp: 1 };
+  const known = k => typeof k !== 'string' || Object.hasOwn(P, k) || ['ghosts', 'ik', 'swaps', 'toJSON'].includes(k);
+  return new Proxy(P, {
+    get(o, k) { if (!known(k)) throw new Error(rig.key + '.' + clip + ': unknown pose bone ' + k); return o[k]; },
+    set(o, k, v) { if (!known(k)) throw new Error(rig.key + '.' + clip + ': unknown pose bone ' + k); o[k] = v; return true; }
+  });
 }
 
-function solve(rig, P, manual) {
-  const M = {};
-  for (const b of rig.bones) {
-    const q = P[b.id], par = b.p ? rig.byId[b.p] : null, pp = par && par.pv ? par.pv : [0, 0], at = b.at || [0, 0], s = b.s ?? 1;
-    const L = mul(T(at[0] + q.x - pp[0], at[1] + q.y - pp[1]), mul(R((b.r || 0) + q.r + (manual[b.id] || 0)), S((b.flip ? -1 : 1) * s * q.sx, s * q.sy)));
-    M[b.id] = par ? mul(M[par.id], L) : L;
+// Animation sampling is identical in the viewer and the embedded battle renderer.
+function validateRig(rig, key) {
+  const fail = message => { throw new Error('Rig ' + key + ': ' + message); };
+  const bones = rig.bones, ids = new Set(), table = ATLAS[key];
+  if (!Array.isArray(bones) || !bones.length) fail('no bones');
+  if (!table) fail('missing atlas');
+  const pair = v => Array.isArray(v) && v.length === 2 && v.every(Number.isFinite);
+  for (const b of bones) {
+    if (!b.id || ['ghosts', 'ik', 'swaps', '__proto__', 'constructor'].includes(b.id) || ids.has(b.id)) fail('duplicate or reserved bone ' + b.id);
+    ids.add(b.id);
+    if (b.img && !table[b.img]) fail(b.id + ': missing sprite ' + b.img);
+    if ((b.img || b.box) && !pair(b.pv)) fail(b.id + ': invalid pivot');
+    for (const f of ['at', 'tip']) if (b[f] !== undefined && !pair(b[f])) fail(b.id + ': invalid ' + f);
+    for (const f of ['r', 's', 'sx', 'sy', 'a', 'z']) if (b[f] !== undefined && (!Number.isFinite(b[f]) || (['s', 'sx', 'sy'].includes(f) && b[f] <= 0))) fail(b.id + ': invalid ' + f);
+  }
+  for (const b of bones) {
+    if (b.p && !ids.has(b.p)) fail(b.id + ': missing parent ' + b.p);
+    if (b.clip && !bones.some(c => c.id === b.clip && c.img)) fail(b.id + ': invalid mask ' + b.clip);
+  }
+  const sorted = [], seen = new Set();
+  while (sorted.length < bones.length) {
+    const next = bones.filter(b => !seen.has(b.id) && (!b.p || seen.has(b.p)));
+    if (!next.length) fail('parent cycle: ' + bones.filter(b => !seen.has(b.id)).map(b => b.id).join(', '));
+    for (const b of next) { sorted.push(b); seen.add(b.id); }
+  }
+  if (!rig.anims || !rig.anims.idle) fail('missing idle clip');
+  const keyframes = (ks, dur, discrete = false) => {
+    if (!Array.isArray(ks) || !ks.length || ks.some((k, i) => !Array.isArray(k) || !Number.isFinite(k[0]) || k[0] < 0 || k[0] > dur || (i && k[0] <= ks[i - 1][0]) || (!discrete && !Number.isFinite(k[1])))) fail('invalid or unsorted keyframes');
+  };
+  for (const [name, clip] of Object.entries(rig.anims)) {
+    if (!(Number.isFinite(clip.dur) && clip.dur > 0) || typeof clip.fn !== 'function') fail(name + ': invalid duration or function');
+    for (const img of clip.fx || []) if (!table[img]) fail(name + ': missing FX sprite ' + img);
+    for (const [f, v] of Object.entries(clip.timing || {})) {
+      if (f === 'holdEnd') { if (typeof v !== 'boolean') fail(name + ': holdEnd must be boolean'); }
+      else if (!['in', 'out', 'mix', 'fxOut'].includes(f) || !Number.isFinite(v) || v < 0) fail(name + ': invalid timing ' + f);
+    }
+    for (const [label, t] of Object.entries(clip.markers || {})) if (!Number.isFinite(t) || t < 0 || t > clip.dur) fail(name + ': invalid marker ' + label);
+    const markers = clip.markers || {};
+    if (['anticipation', 'impact', 'recovery'].every(k => markers[k] !== undefined) && !(markers.anticipation <= markers.impact && markers.impact <= markers.recovery)) fail(name + ': markers out of order');
+    for (const track of clip.tracks || []) {
+      if (!ids.has(track.bone) || !['x', 'y', 'r', 'sx', 'sy', 'a', 'warp'].includes(track.field) || !['smooth', 'linear', 'hold'].includes(track.mode || 'smooth')) fail(name + ': invalid pose track');
+      keyframes(track.keys, clip.dur);
+      if (['sx', 'sy'].includes(track.field) && track.keys.some(k => k[1] <= 0)) fail(name + ': nonpositive track scale');
+    }
+    for (const swap of clip.swaps || []) {
+      if (!Array.isArray(swap.bones) || !swap.bones.length || swap.bones.some(id => !ids.has(id))) fail(name + ': invalid swap bones');
+      keyframes(swap.keys, clip.dur, true);
+      if (swap.keys.some(k => !swap.bones.includes(k[1]))) fail(name + ': invalid swap selection');
+    }
+  }
+  const constraintIds = new Set();
+  for (const c of rig.constraints || []) {
+    const upper = bones.find(b => b.id === c.upper), lower = bones.find(b => b.id === c.lower);
+    if (!c.id || constraintIds.has(c.id) || !upper || !lower || lower.p !== upper.id || !pair(c.tip) || !pair(c.target) || !Number.isFinite(c.mix ?? 1) || (c.mix ?? 1) < 0 || (c.mix ?? 1) > 1 || ![1, -1].includes(c.bend ?? 1)) fail('invalid two-bone constraint ' + c.id);
+    constraintIds.add(c.id);
+  }
+  for (const [id, reason] of Object.entries(rig.review?.attachments || {})) if (!ids.has(id) || typeof reason !== 'string' || !reason.trim()) fail('invalid attachment exception ' + id);
+  for (const [name, reason] of Object.entries(rig.review?.overflow || {})) if (!rig.anims[name] || typeof reason !== 'string' || !reason.trim()) fail('invalid overflow exception ' + name);
+  return sorted;
+}
+function trackValue(t, ks, mode = 'smooth') {
+  if (t <= ks[0][0]) return ks[0][1];
+  for (let i = 1; i < ks.length; i++) if (t < ks[i][0]) {
+    const [a, v] = ks[i - 1], [b, w] = ks[i];
+    if (mode === 'hold') return v;
+    const u = (t - a) / (b - a);
+    return v + (w - v) * (mode === 'linear' ? u : smooth5(u));
+  }
+  return ks[ks.length - 1][1];
+}
+function applySwaps(P) {
+  for (const [id, a] of Object.entries(P.swaps || {})) P[id].a = a;
+}
+function captureBlend(rig, sampled, clock) {
+  return { P: sampled.P, F: sampled.F.map(f => ({ ...f })), idle: idlePose(rig, clock).P };
+}
+const POSE_FIELDS = ['x', 'y', 'r', 'sx', 'sy', 'a', 'warp'];
+const loopTime = (t, dur) => ((t % dur) + dur) % dur;
+const smooth5 = x => { x = Math.max(0, Math.min(1, x)); return x * x * x * (x * (x * 6 - 15) + 10); };
+function rawAnim(rig, name, t) {
+  const clip = rig.anims[name], P = makePose(rig, name), F = [];
+  clip.fn(t, P, F);
+  for (const track of clip.tracks || []) P[track.bone][track.field] = trackValue(t, track.keys, track.mode);
+  for (const swap of clip.swaps || []) {
+    const active = trackValue(t, swap.keys, 'hold');
+    P.swaps ||= {}; for (const id of swap.bones) P.swaps[id] = id === active ? 1 : 0;
+  }
+  applySwaps(P);
+  for (const f of F) {
+    if (!ATLAS[rig.key][f.img] || (f.b && !rig.byId[f.b]) || (f.clip && !rig.byId[f.clip]?.img)) throw new Error(rig.key + '.' + name + ': invalid FX reference ' + f.img);
+    if (!Number.isFinite(f.a)) throw new Error(rig.key + '.' + name + ': invalid FX alpha');
+  }
+  return { P, F, clip: name };
+}
+function idlePose(rig, clock) {
+  const dur = rig.anims.idle.dur, t = loopTime(clock, dur), s = t / dur;
+  // Close both position and velocity without erasing authored holds or snaps inside the loop.
+  if (!rig._seam) {
+    const h = 0.0001, a = rawAnim(rig, 'idle', 0).P, b = rawAnim(rig, 'idle', dur).P;
+    const an = rawAnim(rig, 'idle', h).P, bn = rawAnim(rig, 'idle', dur - h).P;
+    rig._seam = {};
+    for (const bone of rig.bones) {
+      const id = bone.id; rig._seam[id] = {};
+      for (const f of POSE_FIELDS) {
+        const delta = b[id][f] - a[id][f], velocity = (b[id][f] - bn[id][f] - an[id][f] + a[id][f]) / h;
+        rig._seam[id][f] = [delta, Math.abs(velocity) < 0.01 ? 0 : velocity];
+      }
+    }
+  }
+  const e = rawAnim(rig, 'idle', t);
+  for (const bone of rig.bones) for (const f of POSE_FIELDS) {
+    const [delta, velocity] = rig._seam[bone.id][f];
+    e.P[bone.id][f] -= (3 * s * s - 2 * s * s * s) * delta + (s * s * s - s * s) * dur * velocity;
+    if (f === 'a') e.P[bone.id][f] = Math.max(0, Math.min(1, e.P[bone.id][f]));
+  }
+  applySwaps(e.P); return e;
+}
+function evalAnim(rig, name, t, idleClock = t) {
+  const idle = idlePose(rig, idleClock);
+  if (name === 'idle') return idle;
+  const clip = rig.anims[name], dur = clip.dur, timing = clip.timing || {};
+  t = Math.max(0, Math.min(dur, t));
+  const e = rawAnim(rig, name, t), base = rawAnim(rig, 'idle', t).P;
+  const entry = timing.in ?? 0.12, exit = timing.out ?? 0.22;
+  const weight = (entry ? smooth5(t / entry) : 1) * (timing.holdEnd || !exit ? 1 : smooth5((dur - t) / exit));
+  for (const b of rig.bones) for (const f of POSE_FIELDS) {
+    e.P[b.id][f] = idle.P[b.id][f] + (e.P[b.id][f] - base[b.id][f]) * weight;
+    if (f === 'a') e.P[b.id][f] = Math.max(0, Math.min(1, e.P[b.id][f]));
+  }
+  e.F.forEach(f => f.a *= weight);
+  if (e.P.ghosts) e.P.ghosts = e.P.ghosts.map(g => ({ ...g, a: g.a * weight }));
+  applySwaps(e.P); return e;
+}
+function blendPose(rig, target, source, age, clock) {
+  const timing = rig.anims[target.clip || 'idle'].timing || {}, duration = timing.mix ?? 0.16, fxDuration = timing.fxOut ?? duration;
+  if (!source || age >= Math.max(duration, fxDuration)) return target;
+  const idle = idlePose(rig, clock).P, w = duration ? smooth5(age / duration) : 1;
+  for (const b of rig.bones) for (const f of POSE_FIELDS) {
+    const start = idle[b.id][f] + source.P[b.id][f] - source.idle[b.id][f];
+    target.P[b.id][f] = start + (target.P[b.id][f] - start) * w;
+  }
+  target.F.forEach(f => f.a *= w);
+  const fxWeight = fxDuration ? 1 - smooth5(age / fxDuration) : 0;
+  target.F.push(...(source.F || []).map(f => ({ ...f, a: f.a * fxWeight })));
+  // Visibility choices switch atomically; transforms remain blendable.
+  applySwaps(target.P);
+  return target;
+}
+function animationDelta(previous, ms, hidden) {
+  if (hidden || previous === null) return 0;
+  const dt = (ms - previous) / 1000;
+  // A suspended tab resumes in place; ordinary slow frames retain their elapsed time.
+  return dt >= 0 && dt <= 0.25 ? dt : 0;
+}
+function warpPhase(rig, speed, clock) {
+  const dur = rig.anims.idle.dur, cycles = Math.max(1, Math.round(speed * dur / TAU));
+  return TAU * cycles * loopTime(clock, dur) / dur;
+}
+function hitPose(P, age) {
+  if (age < 0 || age >= 0.8) return;
+  const attack = smooth5(age / 0.035);
+  P.root.x += attack * (settle(age, 0, 9, 0.16, 6) - 10 * Math.exp(-age * 9));
+  P.root.y += attack * 4 * Math.exp(-age * 7);
+  P.root.r += attack * settle(age, 0, 2.5, 0.2, 6);
+}
+function partImage(cache, key, name, sheet) {
+  const id = key + ':' + name;
+  if (!cache.has(id)) {
+    const [x, y, w, h] = ATLAS[key][name], c = document.createElement('canvas');
+    c.width = w + 4; c.height = h + 4;
+    const g = c.getContext('2d'); g.drawImage(sheet, x, y, w, h, 2, 2, w, h);
+    cache.set(id, c);
+  }
+  return cache.get(id);
+}
+function solve(rig, P, manual = {}, constraints = true) {
+  const M = {}, offsets = { ...manual }, angle = x => ((x + 540) % 360) - 180;
+  const update = () => {
+    for (const b of rig.bones) {
+      const q = P[b.id], par = b.p ? rig.byId[b.p] : null, pp = par?.pv || [0, 0], at = b.at || [0, 0], s = b.s ?? 1;
+      const L = mul(T(at[0] + q.x - pp[0], at[1] + q.y - pp[1]), mul(R((b.r || 0) + q.r + (offsets[b.id] || 0)), S((b.flip ? -1 : 1) * s * q.sx, s * q.sy)));
+      M[b.id] = par ? mul(M[par.id], L) : L;
+    }
+  };
+  update();
+  if (!constraints) return M;
+  const rotateTo = (id, end, target) => {
+    const b = rig.byId[id], origin = ap(M[id], 0, 0), parent = b.p ? M[b.p] : [1, 0, 0, 1, 0, 0], local = inv(parent);
+    const o = ap(local, ...origin), e = ap(local, ...end), t = ap(local, ...target);
+    const delta = angle((Math.atan2(t[1] - o[1], t[0] - o[0]) - Math.atan2(e[1] - o[1], e[0] - o[0])) * 180 / Math.PI);
+    offsets[id] = (offsets[id] || 0) + delta; update();
+  };
+  for (const c of rig.constraints || []) {
+    const override = P.ik?.[c.id] || {}, target = override.target || c.target, mix = Math.max(0, Math.min(1, override.mix ?? c.mix ?? 1));
+    if (!mix) continue;
+    if (!target.every(Number.isFinite)) throw new Error(rig.key + ': invalid IK target ' + c.id);
+    const lower = rig.byId[c.lower], tip = [c.tip[0] - (lower.pv?.[0] || 0), c.tip[1] - (lower.pv?.[1] || 0)];
+    const startUpper = offsets[c.upper] || 0, startLower = offsets[c.lower] || 0;
+    const root = ap(M[c.upper], 0, 0), elbow = ap(M[c.lower], 0, 0), end = ap(M[c.lower], ...tip);
+    const a = Math.hypot(elbow[0] - root[0], elbow[1] - root[1]), b = Math.hypot(end[0] - elbow[0], end[1] - elbow[1]);
+    if (a < 1e-7 || b < 1e-7) throw new Error(rig.key + ': zero-length IK chain ' + c.id);
+    const dx = target[0] - root[0], dy = target[1] - root[1], distance = Math.hypot(dx, dy);
+    const d = Math.max(Math.abs(a - b) + 1e-7, Math.min(a + b - 1e-7, distance));
+    const heading = distance > 1e-7 ? Math.atan2(dy, dx) : Math.atan2(elbow[1] - root[1], elbow[0] - root[0]);
+    const bend = override.bend ?? c.bend ?? 1;
+    const theta = heading + bend * Math.acos(Math.max(-1, Math.min(1, (a * a + d * d - b * b) / (2 * a * d))));
+    rotateTo(c.upper, elbow, [root[0] + a * Math.cos(theta), root[1] + a * Math.sin(theta)]);
+    rotateTo(c.lower, ap(M[c.lower], ...tip), target);
+    // Refine non-uniformly scaled chains with a fixed, deterministic iteration budget.
+    for (let i = 0; i < 16; i++) {
+      const end = ap(M[c.lower], ...tip);
+      if (Math.hypot(end[0] - target[0], end[1] - target[1]) < 0.001) break;
+      rotateTo(c.upper, end, target); rotateTo(c.lower, ap(M[c.lower], ...tip), target);
+    }
+    offsets[c.upper] = startUpper + angle((offsets[c.upper] || 0) - startUpper) * mix;
+    offsets[c.lower] = startLower + angle((offsets[c.lower] || 0) - startLower) * mix;
+    update();
   }
   return M;
 }
+function movePivot(rig, id, pivot) {
+  const b = rig.byId[id], old = b.pv || [0, 0], M = solve(rig, makePose(rig), {}, false);
+  const next = ap(M[id], (pivot[0] - old[0]) * (b.sx ?? 1), (pivot[1] - old[1]) * (b.sy ?? 1));
+  const par = b.p ? rig.byId[b.p] : null, local = par ? ap(inv(M[b.p]), ...next) : next;
+  b.at = [local[0] + (par?.pv?.[0] || 0), local[1] + (par?.pv?.[1] || 0)]; b.pv = [...pivot]; delete b.fit;
+  const after = solve(rig, makePose(rig), {}, false);
+  for (const child of rig.bones.filter(c => c.p === id)) {
+    const at = ap(inv(after[id]), M[child.id][4], M[child.id][5]);
+    child.at = [at[0] + pivot[0], at[1] + pivot[1]]; delete child.fit;
+  }
+}
+function itemBounds(rig, it) {
+  const rc = it.box ? [0, 0, ...it.box] : ATLAS[rig.key][it.img];
+  const amp = it.warp ? Math.abs(it.warp.amp * (it.wm ?? 1)) : 0;
+  const px = it.warp?.ax === 'y' ? amp + 1 : 1, py = it.warp?.ax === 'x' ? amp + 1 : 1;
+  const points = [[-px, -py], [rc[2] + px, -py], [-px, rc[3] + py], [rc[2] + px, rc[3] + py]].map(p => ap(it.m, ...p));
+  return [Math.min(...points.map(p => p[0])), Math.min(...points.map(p => p[1])), Math.max(...points.map(p => p[0])), Math.max(...points.map(p => p[1]))];
+}
+function animationBounds(rig, includeFX = false) {
+  const bounds = [Infinity, Infinity, -Infinity, -Infinity];
+  for (const [name, clip] of Object.entries(rig.anims)) {
+    const times = new Set(Array.from({ length: 65 }, (_, i) => clip.dur * i / 64));
+    for (const t of Object.values(clip.markers || {})) times.add(t);
+    for (const track of [...(clip.tracks || []), ...(clip.swaps || [])]) for (const [t] of track.keys) { times.add(t); times.add(Math.max(0, t - 0.001)); }
+    for (const phase of [0, 1.37]) for (const t of times) {
+      const { P, F } = evalAnim(rig, name, t, t + phase), M = solve(rig, P);
+      for (const it of frame(rig, P, includeFX ? F : [], M)) {
+        if (it.clip) continue;
+        const b = itemBounds(rig, it);
+        bounds[0] = Math.min(bounds[0], b[0]); bounds[1] = Math.min(bounds[1], b[1]);
+        bounds[2] = Math.max(bounds[2], b[2]); bounds[3] = Math.max(bounds[3], b[3]);
+      }
+    }
+  }
+  const ex = rig.extend || [0, 0, 0, 0];
+  return [bounds[0] - ex[0], bounds[1] - ex[1], bounds[2] + ex[2], bounds[3] + ex[3]];
+}
+// End shared animation sampling.
+
 
 // An item with a clip is masked to another bone's sprite silhouette (e.g. figures inside a translucent body).
 function clipTo(it, rig, id, M) { const cb = rig.byId[id]; it.clip = id; it.clipImg = cb.img; it.clipM = mul(M[id], T(-cb.pv[0], -cb.pv[1])); }
@@ -1311,7 +1649,7 @@ function frame(rig, P, F, M) {
   }
   for (const f of F) {
     if (!(f.a > 0.001)) continue;
-    const rc = ATLAS[st.boss][f.img]; if (!rc) continue;
+    const rc = ATLAS[rig.key][f.img]; if (!rc) continue;
     const pv = f.pv || [rc[2] / 2, rc[3] / 2], at = f.at || [0, 0];
     let base = T(at[0], at[1]);
     if (f.b) { const bb = rig.byId[f.b]; base = mul(M[f.b], T(at[0] - bb.pv[0], at[1] - bb.pv[1])); }
@@ -1336,17 +1674,7 @@ function resize() {
 new ResizeObserver(resize).observe(document.getElementById('stage'));
 
 function computeBounds(rig) {
-  let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
-  const add = it => { const rc = it.box ? [0, 0, it.box[0], it.box[1]] : ATLAS[st.boss][it.img]; for (const [u, v] of [[0, 0], [rc[2], 0], [0, rc[3]], [rc[2], rc[3]]]) { const [x, y] = ap(it.m, u, v); x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); } };
-  for (const name of ['idle']) {
-    const dur = rig.anims[name].dur;
-    for (let i = 0; i < 16; i++) {
-      const { P, F } = evalAnim(rig, name, dur * i / 16), M = solve(rig, P, {});
-      for (const it of frame(rig, P, [], M)) add(it);
-    }
-  }
-  const ex = rig.extend || [0, 0, 0, 0];
-  return [x0 - ex[0], y0 - ex[1], x1 + ex[2], y1 + ex[3]];
+  return animationBounds(rig, false);
 }
 // Battle backgrounds. bottom: where the rig's lowest point sits (fraction of stage height);
 // height: tallest the rig may be; water: mirror the rig in the floor.
@@ -1364,7 +1692,7 @@ function loadBg(id) {
 }
 function getView(rig) {
   if (st.view && st.view.boss === st.boss && st.view.arena === st.arena) return st.view.m;
-  const [x0, y0, x1, y1] = rig._bounds || (rig._bounds = computeBounds(rig));
+  const [x0, y0, x1, y1] = $('tFitFX').checked ? (rig._fxBounds || (rig._fxBounds = animationBounds(rig, true))) : (rig._bounds || (rig._bounds = computeBounds(rig)));
   const w = x1 - x0, h = y1 - y0, A = ARENAS[st.arena];
   let m;
   if (A.file) {
@@ -1390,6 +1718,7 @@ function drawArena() {
 
 // offscreen layer for clipped groups
 const oc = document.createElement('canvas'), octx = oc.getContext('2d');
+const partCache = new Map();
 function drawList(items, V, t, alphaMul) {
   const rig = RIGS[st.boss];
   for (let i = 0; i < items.length; i++) {
@@ -1413,7 +1742,7 @@ function drawTankLight(g, m, rc, t, cfg) {
   const [, , w, h] = rc;
   g.setTransform(m[0] * dpr, m[1] * dpr, m[2] * dpr, m[3] * dpr, m[4] * dpr, m[5] * dpr);
   g.globalCompositeOperation = 'lighter';
-  for (let k = 0; k < 3; k++) {
+  for (let k = 0; k < (document.getElementById('detail').value === 'low' ? 1 : 3); k++) {
     const x = ((t / 4 + k / 3) % 1) * (w + 160) - 80, sk = 60;
     const gr = g.createLinearGradient(x - 30, 0, x + 30, 0);
     gr.addColorStop(0, 'rgba(120,230,215,0)'); gr.addColorStop(0.5, `rgba(120,230,215,${cfg.shaft ?? 0.1})`); gr.addColorStop(1, 'rgba(120,230,215,0)');
@@ -1421,7 +1750,7 @@ function drawTankLight(g, m, rc, t, cfg) {
     g.beginPath(); g.moveTo(x - 30 + sk, 0); g.lineTo(x + 30 + sk, 0); g.lineTo(x + 30 - sk, h); g.lineTo(x - 30 - sk, h); g.closePath(); g.fill();
   }
   g.globalCompositeOperation = 'source-over';
-  for (let k = 0; k < (cfg.bubbles ?? 14); k++) {
+  for (let k = 0; k < (document.getElementById('detail').value === 'low' ? 4 : (cfg.bubbles ?? 14)); k++) {
     const hx = hash('bx' + k), hy = hash('by' + k), per = 2 + 2 * Math.round(hash('bp' + k));
     const u = ((t / per) + hy) % 1, x = 40 + hx * (w - 80) + Math.sin(TAU * (u * 2 + hx)) * 4, y = h * 0.92 - u * h * 0.85, r = 1.2 + 2 * hash('br' + k);
     g.globalAlpha = 0.55 * Math.sin(Math.PI * u);
@@ -1434,26 +1763,27 @@ function drawItem(it, V, t, alphaMul, g = ctx, op) {
   const ctx = g;
   if (it.box) { const m = mul(V, it.m); ctx.setTransform(m[0] * dpr, m[1] * dpr, m[2] * dpr, m[3] * dpr, m[4] * dpr, m[5] * dpr);
     ctx.globalAlpha = it.a * alphaMul; ctx.globalCompositeOperation = op || 'source-over'; ctx.fillStyle = it.fill || '#000'; ctx.fillRect(0, 0, it.box[0], it.box[1]); return; }
-  const img = IMG[st.boss], rc = ATLAS[st.boss][it.img]; if (!img || !rc) return;
+  const rc = ATLAS[st.boss][it.img]; if (!IMG[st.boss] || !rc) return;
+  const img = partImage(partCache, st.boss, it.img, IMG[st.boss]);
   const m = mul(V, it.m);
   ctx.setTransform(m[0] * dpr, m[1] * dpr, m[2] * dpr, m[3] * dpr, m[4] * dpr, m[5] * dpr);
   ctx.globalAlpha = it.a * alphaMul;
   ctx.globalCompositeOperation = op || it.blend || 'source-over';
-  const [sx, sy, w, h] = rc;
+  const [, , w, h] = rc, sx = 2, sy = 2;
   if (it.reveal !== undefined) {
     const rw = Math.max(1, Math.round(w * it.reveal));
     if (it.revealDir === -1) ctx.drawImage(img, sx, sy, rw, h, 0, 0, rw, h);
     else ctx.drawImage(img, sx + w - rw, sy, rw, h, w - rw, 0, rw, h);
   } else if (it.warp && it.wm > 0) {
-    const W = it.warp, amp = W.amp * it.wm, step = 2;
+    const W = it.warp, amp = W.amp * it.wm, step = document.getElementById('detail').value === 'low' ? 10 : 2, phase = warpPhase(RIGS[st.boss], W.spd, t);
     const b = it.id ? RIGS[st.boss].byId[it.id] : null, pv = b ? b.pv : [w / 2, h / 2];
     if (W.ax === 'y') {
       const md = Math.max(pv[1], h - pv[1]) || 1;
-      for (let y = 0; y < h; y += step) { const v = Math.abs(y + step / 2 - pv[1]) / md, o = amp * v * Math.sin(TAU * W.len * v - W.spd * t);
+      for (let y = 0; y < h; y += step) { const v = Math.abs(y + step / 2 - pv[1]) / md, o = amp * v * Math.sin(TAU * W.len * v - phase);
         ctx.drawImage(img, sx, sy + y, w, Math.min(step, h - y), o, y, w, Math.min(step, h - y) + 0.6); }
     } else {
       const md = Math.max(pv[0], w - pv[0]) || 1;
-      for (let x = 0; x < w; x += step) { const v = Math.abs(x + step / 2 - pv[0]) / md, o = amp * v * Math.sin(TAU * W.len * v - W.spd * t);
+      for (let x = 0; x < w; x += step) { const v = Math.abs(x + step / 2 - pv[0]) / md, o = amp * v * Math.sin(TAU * W.len * v - phase);
         ctx.drawImage(img, sx + x, sy, Math.min(step, w - x), h, x, o, Math.min(step, w - x) + 0.6, h); }
     }
   } else ctx.drawImage(img, sx, sy, w, h, 0, 0, w, h);
@@ -1508,18 +1838,21 @@ function render() {
   const V = getView(rig);
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
   ctx.imageSmoothingEnabled = !document.getElementById('tCrisp').checked;
-  const { P, F } = evalAnim(rig, st.anim, st.t);
+  const clock = st.clock;
+  const { P, F } = st.mode === 'setup' ? { P: makePose(rig), F: [] } : blendPose(rig, evalAnim(rig, st.anim, st.t, clock), st.blend, clock - st.blendAt, clock);
+  if (st.hitAt >= 0) hitPose(P, clock - st.hitAt);
   const M = solve(rig, P, st.manual);
   const showS = document.getElementById('tSprites').checked;
   drawArena();
   ctx.imageSmoothingEnabled = !document.getElementById('tCrisp').checked;
+  ctx.imageSmoothingQuality = 'high';
   const AR = ARENAS[st.arena];
   if (showS && AR.water && BG[st.arena]) {
     // reflection: mirror the rig about the waterline it floats over, fading with depth
     const axis = CH * AR.bottom;
     const Vr = mul([1, 0, 0, -1, 0, 2 * axis], V);
     ctx.save(); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.beginPath(); ctx.rect(0, axis, CW, CH - axis); ctx.clip();
-    drawList(frame(rig, P, F.filter(f => !f.blend), M), Vr, st.t, 0.22);
+    drawList(frame(rig, P, F.filter(f => !f.blend), M), Vr, clock, 0.22);
     ctx.restore();
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
     const fade = ctx.createLinearGradient(0, axis, 0, CH);
@@ -1527,11 +1860,12 @@ function render() {
     ctx.fillStyle = fade; ctx.fillRect(0, axis, CW, CH - axis);
   }
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  if (showS && P.ghosts) for (const g of P.ghosts) {
-    const tg = ((st.t - g.dt) % A.dur + A.dur) % A.dur, e = evalAnim(rig, st.anim, tg), Mg = solve(rig, e.P, st.manual);
-    drawList(frame(rig, e.P, [], Mg), V, tg, g.a);
+  if (showS && P.ghosts && $('detail').value !== 'low') for (const g of P.ghosts.slice(0, 3)) {
+    if (st.t < g.dt || clock - st.blendAt < g.dt) continue;
+    const tg = st.t - g.dt, e = evalAnim(rig, st.anim, tg, clock - g.dt), Mg = solve(rig, e.P, st.manual);
+    drawList(frame(rig, e.P, [], Mg), V, clock - g.dt, g.a);
   }
-  if (showS) drawList(frame(rig, P, F, M), V, st.t, 1);
+  if (showS) drawList(frame(rig, P, F, M), V, clock, 1);
   else { ctx.globalAlpha = 1; for (const it of frame(rig, P, F, M)) { if (!it.fx && !it.box) { const m = mul(V, it.m), rc = ATLAS[st.boss][it.img]; ctx.setTransform(m[0]*dpr, m[1]*dpr, m[2]*dpr, m[3]*dpr, m[4]*dpr, m[5]*dpr); ctx.strokeStyle = '#3c3645'; ctx.lineWidth = 1 / Math.hypot(m[0], m[1]); ctx.strokeRect(0, 0, rc[2], rc[3]); } } }
   ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
   if (document.getElementById('tRef').checked) {
@@ -1543,11 +1877,114 @@ function render() {
     ctx.font = '9px Silkscreen, monospace'; ctx.fillStyle = '#9a92a3'; ctx.fillText('REFERENCE', x, y + rc[3] * s + 13);
   }
   if (document.getElementById('tBones').checked) drawBones(rig, M, V); else joints = [];
+  drawAuthoring(rig, P, F, M, V);
   document.getElementById('hud').innerHTML = `<b>${rig.bones.length - 1}</b> bones · <b>${rig.bones.filter(b => b.img).length}</b> sprites · ${A.label}`;
 }
 
 // ===== UI =====
+function drawAuthoring(rig, P, F, M, V) {
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.globalAlpha = 1; ctx.strokeStyle = '#ebe3d4'; ctx.lineWidth = 1;
+  if ($('tBounds').checked) for (const it of frame(rig, P, F, M)) {
+    if (it.clip) continue;
+    const b = itemBounds(rig, it), a = ap(V, b[0], b[1]), z = ap(V, b[2], b[3]);
+    ctx.setLineDash(it.fx ? [4, 3] : []); ctx.strokeRect(a[0], a[1], z[0] - a[0], z[1] - a[1]);
+  }
+  ctx.setLineDash([]);
+  if ($('editor').open) for (const c of rig.constraints || []) {
+    const p = ap(V, ...c.target); ctx.beginPath();
+    ctx.moveTo(p[0] - 7, p[1]); ctx.lineTo(p[0] + 7, p[1]); ctx.moveTo(p[0], p[1] - 7); ctx.lineTo(p[0], p[1] + 7); ctx.stroke();
+    ctx.font = '12px sans-serif'; ctx.fillStyle = '#ebe3d4'; ctx.fillText(c.id, p[0] + 10, p[1]);
+  }
+}
 const $ = id => document.getElementById(id);
+const clipFields = ['timing', 'markers', 'tracks', 'swaps'];
+const clone = value => JSON.parse(JSON.stringify(value));
+function snapshotRig(rig) {
+  return clone({ bones: rig.bones, constraints: rig.constraints || [], clips: Object.fromEntries(Object.entries(rig.anims).map(([name, clip]) => [name, Object.fromEntries(clipFields.filter(k => clip[k] !== undefined).map(k => [k, clip[k]]))])) });
+}
+const editHistory = Object.fromEntries(Object.entries(RIGS).map(([key, rig]) => [key, { original: snapshotRig(rig), undo: [], redo: [] }]));
+function restoreRig(rig, data) {
+  rig.bones = clone(data.bones); rig.constraints = clone(data.constraints);
+  for (const [name, metadata] of Object.entries(data.clips)) {
+    for (const field of clipFields) delete rig.anims[name][field];
+    Object.assign(rig.anims[name], clone(metadata));
+  }
+  rig.bones = validateRig(rig, rig.key); rig.byId = Object.fromEntries(rig.bones.map(b => [b.id, b]));
+  rig.kids = {}; for (const b of rig.bones) if (b.p) (rig.kids[b.p] ||= []).push(b);
+  delete rig._seam; delete rig._bounds; delete rig._fxBounds;
+}
+function commitEdit(before, message) {
+  const rig = RIGS[st.boss], history = editHistory[st.boss], after = snapshotRig(rig);
+  restoreRig(rig, after);
+  if (JSON.stringify(before) !== JSON.stringify(after)) { history.undo.push(before); if (history.undo.length > 100) history.undo.shift(); history.redo = []; }
+  st.blend = null; st.hitAt = -1; st.view = null;
+  buildTree(); buildClips(); syncEditor(); $('editStatus').textContent = message;
+}
+function editRig(change, message) {
+  const rig = RIGS[st.boss], before = snapshotRig(rig);
+  try { change(rig); commitEdit(before, message); }
+  catch (error) { restoreRig(rig, before); $('editStatus').textContent = error.message; }
+}
+function editNumber(id) {
+  const text = $(id).value, value = Number(text);
+  if (!text.trim() || !Number.isFinite(value)) throw new Error('Enter a finite number for ' + $(id).closest('label').textContent.trim());
+  return value;
+}
+function syncEditor() {
+  const rig = RIGS[st.boss], b = rig.byId[st.sel], setup = st.mode === 'setup', history = editHistory[st.boss];
+  $('selectedBone').textContent = b ? 'Selected: ' + b.id : 'Select a bone in the skeleton or on the stage.';
+  $('boneFields').disabled = !b || !setup;
+  for (const [id, value] of Object.entries({ pvX: b?.pv?.[0] ?? 0, pvY: b?.pv?.[1] ?? 0, atX: b?.at?.[0] ?? 0, atY: b?.at?.[1] ?? 0, restR: b?.r || 0, restS: b?.s ?? 1 })) $(id).value = +value.toFixed(4);
+  $('undoEdit').disabled = !history.undo.length; $('redoEdit').disabled = !history.redo.length;
+  $('exportRig').disabled = JSON.stringify(snapshotRig(rig)) === JSON.stringify(history.original);
+  const selected = $('constraintList').value;
+  $('constraintList').replaceChildren();
+  for (const c of rig.constraints || []) { const o = document.createElement('option'); o.value = c.id; o.textContent = c.id; $('constraintList').append(o); }
+  if (!(rig.constraints || []).length) { const o = document.createElement('option'); o.value = ''; o.textContent = 'No limb targets'; $('constraintList').append(o); }
+  if ((rig.constraints || []).some(c => c.id === selected)) $('constraintList').value = selected;
+  syncTarget();
+  const clip = rig.anims[st.anim], timing = clip.timing || {};
+  for (const [id, value] of Object.entries({ clipIn: timing.in ?? .12, clipOut: timing.out ?? .22, clipMix: timing.mix ?? .16, clipFX: timing.fxOut ?? timing.mix ?? .16 })) $(id).value = value;
+  $('clipHold').checked = !!timing.holdEnd;
+  for (const name of ['Anticipation', 'Impact', 'Recovery']) $('mark' + name).value = clip.markers?.[name.toLowerCase()] ?? '';
+  $('clipTracks').value = JSON.stringify(clip.tracks || [], null, 2); $('clipSwaps').value = JSON.stringify(clip.swaps || [], null, 2);
+  $('markers').replaceChildren();
+  for (const [name, t] of Object.entries(clip.markers || {})) {
+    const button = document.createElement('button'); button.type = 'button'; button.textContent = name + ' · ' + t.toFixed(2) + ' s';
+    button.onclick = () => { st.mode = 'animation'; $('editMode').value = st.mode; st.t = t; st.clock = t; st.playing = false; st.blend = null; syncPlay(); syncEditor(); render(); };
+    $('markers').append(button);
+  }
+  $('hint').textContent = setup ? 'Setup: ' + $('editTool').selectedOptions[0].textContent : 'Drag a joint to preview rotation';
+}
+function syncTarget() {
+  const rig = RIGS[st.boss], c = (rig.constraints || []).find(c => c.id === $('constraintList').value);
+  $('applyTarget').disabled = !c; $('removeTarget').disabled = !c;
+  for (const id of ['targetX', 'targetY', 'targetMix', 'targetBend']) $(id).disabled = !c;
+  if (c) { $('targetX').value = c.target[0]; $('targetY').value = c.target[1]; $('targetMix').value = c.mix ?? 1; $('targetBend').value = c.bend ?? 1; }
+  const b = rig.byId[st.sel]; $('addTarget').disabled = !b?.p || !rig.byId[b.p]?.p;
+}
+function exportPatch() {
+  const rig = RIGS[st.boss], original = editHistory[st.boss].original, current = snapshotRig(rig);
+  return { version: 1, creature: st.boss,
+    bones: current.bones.filter(b => JSON.stringify(b) !== JSON.stringify(original.bones.find(o => o.id === b.id))),
+    constraints: current.constraints,
+    clips: Object.fromEntries(Object.entries(current.clips).filter(([name, meta]) => JSON.stringify(meta) !== JSON.stringify(original.clips[name])))
+  };
+}
+function importPatch(patch) {
+  if (patch.version !== 1 || patch.creature !== st.boss || !Array.isArray(patch.bones) || !Array.isArray(patch.constraints) || !patch.clips || typeof patch.clips !== 'object') throw new Error('Choose a version 1 patch for ' + st.boss);
+  const rig = RIGS[st.boss], data = snapshotRig(rig), seen = new Set();
+  for (const b of patch.bones) {
+    const index = data.bones.findIndex(o => o.id === b.id);
+    if (index < 0 || seen.has(b.id)) throw new Error('Unknown or duplicate patch bone ' + b.id);
+    seen.add(b.id); data.bones[index] = b;
+  }
+  for (const [name, meta] of Object.entries(patch.clips)) {
+    if (!rig.anims[name] || Object.keys(meta).some(k => !clipFields.includes(k))) throw new Error('Invalid clip metadata ' + name);
+    data.clips[name] = meta;
+  }
+  data.constraints = patch.constraints; restoreRig(rig, data);
+}
 function buildTabs() {
   $('bossTabs').innerHTML = '';
   for (const k in RIGS) { const b = document.createElement('button'); b.className = 'tab'; b.type = 'button'; b.textContent = RIGS[k].short; b.setAttribute('aria-pressed', k === st.boss); b.onclick = () => setBoss(k); $('bossTabs').append(b); if (k === st.boss) requestAnimationFrame(() => { try { b.scrollIntoView({ block: 'nearest', inline: 'nearest' }); } catch (e) {} }); }
@@ -1556,7 +1993,14 @@ function buildClips() {
   const rig = RIGS[st.boss]; $('clips').innerHTML = '';
   for (const k in rig.anims) { const a = rig.anims[k], b = document.createElement('button'); b.type = 'button'; b.className = 'clip'; b.setAttribute('aria-pressed', k === st.anim);
     b.innerHTML = `<span class="nm">${a.label}</span><span class="du">${a.dur.toFixed(1)} s</span><span class="fxs">${a.fx ? 'FX · ' + a.fx.map(label).join(', ') : 'Loop · bones only'}</span>`;
-    b.onclick = () => { st.anim = k; st.t = 0; st.playing = true; buildClips(); syncPlay(); }; $('clips').append(b); }
+    b.onclick = () => playClip(k); $('clips').append(b); }
+}
+function playClip(name) {
+  const rig = RIGS[st.boss], clock = st.clock;
+  st.blend = captureBlend(rig, blendPose(rig, evalAnim(rig, st.anim, st.t, clock), st.blend, clock - st.blendAt, clock), clock);
+  st.clock = clock; st.blendAt = clock; st.anim = name; st.t = 0; st.once = name !== 'idle'; st.playing = true;
+  if (st.mode === 'setup') { st.mode = 'animation'; $('editMode').value = 'animation'; }
+  buildClips(); syncPlay(); syncEditor();
 }
 function buildTree() {
   const rig = RIGS[st.boss], ul = $('tree'); ul.innerHTML = '';
@@ -1582,11 +2026,11 @@ function buildParts() {
     const d = document.createElement('button'); d.type = 'button'; d.className = 'part' + (isFx ? ' fx' : ''); d.dataset.id = bonesByImg[name] || '';
     const c = document.createElement('canvas'); c.width = 144; c.height = 144;
     const rc = ATLAS[st.boss][name], g = c.getContext('2d'), s = Math.min(136 / rc[2], 136 / rc[3]);
-    g.imageSmoothingEnabled = s < 1; g.drawImage(IMG[st.boss], rc[0], rc[1], rc[2], rc[3], (144 - rc[2] * s) / 2, (144 - rc[3] * s) / 2, rc[2] * s, rc[3] * s);
+    g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high'; g.drawImage(IMG[st.boss], rc[0], rc[1], rc[2], rc[3], (144 - rc[2] * s) / 2, (144 - rc[3] * s) / 2, rc[2] * s, rc[3] * s);
     d.append(c); const sp = document.createElement('span'); sp.textContent = label(name); d.append(sp);
     const k = document.createElement('span'); k.className = 'kind'; k.textContent = isFx ? 'EFFECT' : 'BONE'; d.append(k);
     if (bonesByImg[name]) { d.onclick = () => selectBone(st.sel === bonesByImg[name] ? null : bonesByImg[name]); d.onmouseenter = () => st.hover = bonesByImg[name]; d.onmouseleave = () => st.hover = null; }
-    else { const clip = Object.keys(rig.anims).find(k => (rig.anims[k].fx || []).includes(name)); if (!clip) { k.textContent = 'SPARE'; d.disabled = true; d.title = 'Drawn on the sheet but not used by this rig'; el.append(d); continue; } d.onclick = () => { st.anim = clip; st.t = 0; st.playing = true; buildClips(); syncPlay(); }; d.title = 'Play ' + rig.anims[clip].label; }
+    else { const clip = Object.keys(rig.anims).find(k => (rig.anims[k].fx || []).includes(name)); if (!clip) { k.textContent = 'SPARE'; d.disabled = true; d.title = 'Drawn on the sheet but not used by this rig'; el.append(d); continue; } d.onclick = () => playClip(clip); d.title = 'Play ' + rig.anims[clip].label; }
     el.append(d);
   }
 }
@@ -1594,21 +2038,34 @@ function selectBone(id) {
   st.sel = id;
   document.querySelectorAll('.tree button').forEach(b => b.classList.toggle('on', b.dataset.id === id));
   document.querySelectorAll('.part').forEach(b => b.classList.toggle('on', !!id && b.dataset.id === id));
+  syncEditor();
 }
 function syncRots() { for (const el of document.querySelectorAll('[data-rot]')) { const v = st.manual[el.dataset.rot]; el.textContent = v ? (v > 0 ? '+' : '') + Math.round(v) + '°' : ''; } }
 function setBoss(k) {
-  st.boss = k; st.anim = 'idle'; st.t = 0; st.manual = {}; st.sel = null; st.view = null; st.playing = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  st.boss = k; st.anim = 'idle'; st.t = 0; st.clock = 0; st.blend = null; st.blendAt = 0; st.hitAt = -1; st.once = false; st.manual = {}; st.sel = null; st.view = null; st.playing = !matchMedia('(prefers-reduced-motion: reduce)').matches;
   try { localStorage.setItem('rigviewer', JSON.stringify({ boss: k })); } catch (e) {}
   const rig = RIGS[k];
+  if (st.mode === 'setup') st.playing = false;
   document.documentElement.style.setProperty('--accent', rig.accent);
   $('bossTitle').textContent = rig.name; $('lore').textContent = rig.lore;
-  buildTabs(); buildClips(); buildTree(); syncPlay();
+  buildTabs(); buildClips(); buildTree(); syncPlay(); syncEditor();
   setArena(rig.arena || 'none');
-  load(k).then(() => { buildParts(); $('loading').hidden = true; });
+  load(k).then(ok => { if (st.boss !== k) return; if (ok) { buildParts(); $('loading').hidden = true; } });
 }
 const loads = {};
 function load(k) {
-  if (!loads[k]) loads[k] = new Promise((res, rej) => { const im = new Image(); im.onload = () => { IMG[k] = im; res(); }; im.onerror = () => { $('loading').textContent = 'Sprite sheet failed to load. Reload the page to try again.'; rej(); }; im.src = k + '.webp'; });
+  if (!loads[k]) loads[k] = new Promise(res => {
+    const im = new Image();
+    const failed = () => { if (st.boss === k) $('loading').textContent = 'Sprite sheet failed to load. Choose the creature again to retry.'; delete loads[k]; res(false); };
+    im.onload = async () => {
+      try { if (im.decode) await im.decode(); } catch (e) { failed(); return; }
+      IMG[k] = im;
+      for (const b of RIGS[k].bones) if (b.img) partImage(partCache, k, b.img, im);
+      for (const a of Object.values(RIGS[k].anims)) for (const name of a.fx || []) partImage(partCache, k, name, im);
+      res(true);
+    };
+    im.onerror = failed; im.src = k + '.webp';
+  });
   if (!IMG[k]) $('loading').hidden = false;
   return loads[k];
 }
@@ -1626,18 +2083,88 @@ function setArena(id) {
   document.querySelectorAll('#arenas .arena').forEach((b, i) => b.setAttribute('aria-pressed', Object.keys(ARENAS)[i] === id));
 }
 function syncPlay() { $('playBtn').textContent = st.playing ? 'Pause' : 'Play'; }
-$('playBtn').onclick = () => { st.playing = !st.playing; syncPlay(); };
-$('scrub').oninput = e => { const A = RIGS[st.boss].anims[st.anim]; st.t = e.target.value / 1000 * A.dur; st.playing = false; syncPlay(); };
+$('editMode').onchange = () => {
+  st.mode = $('editMode').value; st.playing = false; st.manual = {}; st.blend = null; st.hitAt = -1;
+  syncPlay(); syncEditor(); render();
+};
+$('editTool').onchange = () => { if ($('editTool').value !== 'rotate') { $('editMode').value = 'setup'; $('editMode').onchange(); } syncEditor(); };
+$('constraintList').onchange = syncTarget;
+$('applyBone').onclick = () => editRig(rig => {
+  const b = rig.byId[st.sel], pivot = [editNumber('pvX'), editNumber('pvY')], at = [editNumber('atX'), editNumber('atY')], previousAt = b.at || [0, 0];
+  const changedAt = at.some((v, i) => Math.abs(v - previousAt[i]) > 0.0001);
+  movePivot(rig, b.id, pivot);
+  if (changedAt) b.at = at;
+  b.r = editNumber('restR'); b.s = editNumber('restS'); delete b.fit;
+}, 'Bone updated. Pivot changes preserve artwork and child placement.');
+$('addTarget').onclick = () => editRig(rig => {
+  const b = rig.byId[st.sel], M = solve(rig, makePose(rig), {}, false), tip = tipOf(rig, b);
+  if (!tip) throw new Error('This bone has no drawable tip.');
+  let id = b.id + 'Target'; while ((rig.constraints || []).some(c => c.id === id)) id += '2';
+  const target = ap(M[b.id], tip[0] - (b.pv?.[0] || 0), tip[1] - (b.pv?.[1] || 0));
+  const root = ap(M[b.p], 0, 0), elbow = ap(M[b.id], 0, 0);
+  const cross = (target[0] - root[0]) * (elbow[1] - root[1]) - (target[1] - root[1]) * (elbow[0] - root[0]);
+  (rig.constraints ||= []).push({ id, upper: b.p, lower: b.id, tip, target, mix: 1, bend: cross < 0 ? -1 : 1 });
+}, 'Limb target added at the rest-pose tip.');
+$('applyTarget').onclick = () => editRig(rig => {
+  const c = rig.constraints.find(c => c.id === $('constraintList').value);
+  c.target = [editNumber('targetX'), editNumber('targetY')]; c.mix = editNumber('targetMix'); c.bend = editNumber('targetBend');
+}, 'Limb target updated.');
+$('removeTarget').onclick = () => editRig(rig => { rig.constraints = rig.constraints.filter(c => c.id !== $('constraintList').value); }, 'Limb target removed.');
+$('applyClip').onclick = () => editRig(rig => {
+  const clip = rig.anims[st.anim];
+  clip.timing = { in: editNumber('clipIn'), out: editNumber('clipOut'), mix: editNumber('clipMix'), fxOut: editNumber('clipFX'), holdEnd: $('clipHold').checked };
+  clip.markers = { ...(clip.markers || {}) };
+  for (const name of ['Anticipation', 'Impact', 'Recovery']) {
+    const id = 'mark' + name, key = name.toLowerCase(); delete clip.markers[key];
+    if ($(id).value !== '') clip.markers[key] = editNumber(id);
+  }
+  clip.tracks = JSON.parse($('clipTracks').value); clip.swaps = JSON.parse($('clipSwaps').value);
+  if (!Array.isArray(clip.tracks) || !Array.isArray(clip.swaps)) throw new Error('Tracks and swaps must be JSON arrays.');
+}, 'Clip settings updated. Markers select exact review frames.');
+for (const [id, from, to] of [['undoEdit', 'undo', 'redo'], ['redoEdit', 'redo', 'undo']]) $(id).onclick = () => {
+  const rig = RIGS[st.boss], history = editHistory[st.boss]; if (!history[from].length) return;
+  history[to].push(snapshotRig(rig)); restoreRig(rig, history[from].pop()); st.view = null; st.blend = null;
+  buildTree(); buildClips(); syncEditor(); $('editStatus').textContent = from === 'undo' ? 'Edit undone.' : 'Edit restored.';
+};
+$('exportRig').onclick = () => {
+  const url = URL.createObjectURL(new Blob([JSON.stringify(exportPatch(), null, 2) + '\n'], { type: 'application/json' }));
+  const a = document.createElement('a'); a.href = url; a.download = st.boss + '.rig-patch.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  $('editStatus').textContent = 'Exported changed definitions. Import the patch here to resume; source files are unchanged.';
+};
+$('importRig').onclick = () => $('patchFile').click();
+$('patchFile').onchange = async () => {
+  const file = $('patchFile').files[0]; if (!file) return;
+  try { const patch = JSON.parse(await file.text()); editRig(() => importPatch(patch), 'Patch imported and validated.'); }
+  catch (error) { $('editStatus').textContent = error.message; }
+  $('patchFile').value = '';
+};
+$('tFitFX').onchange = () => { st.view = null; render(); };
+$('playBtn').onclick = () => { if (st.mode === 'setup') { st.mode = 'animation'; $('editMode').value = st.mode; syncEditor(); } st.playing = !st.playing; syncPlay(); };
+$('scrub').oninput = e => { const A = RIGS[st.boss].anims[st.anim]; st.mode = 'animation'; $('editMode').value = st.mode; st.t = e.target.value / 1000 * A.dur; st.clock = st.t; st.blend = null; st.hitAt = -1; st.playing = false; syncPlay(); syncEditor(); };
+$('hitPreview').onclick = () => { st.mode = 'animation'; $('editMode').value = st.mode; st.hitAt = st.clock; st.playing = true; syncPlay(); syncEditor(); };
 $('resetPose').onclick = () => { st.manual = {}; syncRots(); };
 [0.25, 0.5, 1, 2].forEach(v => { const b = document.createElement('button'); b.type = 'button'; b.textContent = v + '×'; b.setAttribute('aria-pressed', v === 1);
   b.onclick = () => { st.speed = v; document.querySelectorAll('#speed button').forEach(x => x.setAttribute('aria-pressed', x === b)); }; $('speed').append(b); });
-document.addEventListener('keydown', e => { if (e.code === 'Space' && !/INPUT|BUTTON/.test(document.activeElement.tagName)) { e.preventDefault(); st.playing = !st.playing; syncPlay(); } });
+document.addEventListener('keydown', e => { if (e.code === 'Space' && !/INPUT|BUTTON|SELECT|TEXTAREA/.test(document.activeElement.tagName)) { e.preventDefault(); $('playBtn').click(); } });
 
 // joint dragging
 const stage = $('stage');
 const pos = e => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
 const nearest = (x, y) => { let best = null, bd = 14; for (const j of joints) { const d = Math.hypot(j.x - x, j.y - y); if (d < bd) { bd = d; best = j; } } return best; };
 stage.addEventListener('pointerdown', e => {
+  if (st.mode === 'setup') {
+    const [x, y] = pos(e), rig = RIGS[st.boss], tool = $('editTool').value, V = getView(rig), before = snapshotRig(rig);
+    if (tool === 'target') {
+      const c = (rig.constraints || []).find(c => { const p = ap(V, ...c.target); return Math.hypot(x - p[0], y - p[1]) < 16; });
+      if (!c) return;
+      $('constraintList').value = c.id; syncTarget(); st.drag = { tool, target: c.id, before, V };
+    } else {
+      const j = nearest(x, y); if (!j) return; selectBone(j.id);
+      const b = rig.byId[j.id], M = solve(rig, makePose(rig), {}, false);
+      st.drag = { tool, id: b.id, before, V, M, start: [x, y], joint: [j.x, j.y], a0: Math.atan2(y - j.y, x - j.x), r0: b.r || 0 };
+    }
+    stage.setPointerCapture(e.pointerId); e.preventDefault(); return;
+  }
   const [x, y] = pos(e), j = nearest(x, y); if (!j) return;
   const rig = RIGS[st.boss], b = rig.byId[j.id]; selectBone(j.id);
   if (!b.p) return;
@@ -1646,31 +2173,78 @@ stage.addEventListener('pointerdown', e => {
 });
 stage.addEventListener('pointermove', e => {
   const [x, y] = pos(e);
+  if (st.drag?.tool) {
+    const d = st.drag, rig = RIGS[st.boss], world = ap(inv(d.V), x, y);
+    if (d.tool === 'target') rig.constraints.find(c => c.id === d.target).target = world;
+    else {
+      const b = rig.byId[d.id], initial = d.before.bones.find(b => b.id === d.id);
+      if (d.tool === 'rotate') { b.r = d.r0 + ((Math.atan2(y - d.joint[1], x - d.joint[0]) - d.a0) * 180 / Math.PI); delete b.fit; }
+      if (d.tool === 'attach') {
+        const startWorld = ap(inv(d.V), ...d.start), oldWorld = ap(d.M[d.id], 0, 0), next = [oldWorld[0] + world[0] - startWorld[0], oldWorld[1] + world[1] - startWorld[1]];
+        const par = b.p ? rig.byId[b.p] : null, local = par ? ap(inv(d.M[b.p]), ...next) : next;
+        b.at = [local[0] + (par?.pv?.[0] || 0), local[1] + (par?.pv?.[1] || 0)]; delete b.fit;
+      }
+      if (d.tool === 'pivot') {
+        restoreRig(rig, d.before);
+        const local = ap(inv(d.M[d.id]), ...world), rc = b.img ? ATLAS[rig.key][b.img] : null;
+        const pivot = [local[0] / (b.sx ?? 1) + (initial.pv?.[0] || 0), local[1] / (b.sy ?? 1) + (initial.pv?.[1] || 0)];
+        if (rc) { pivot[0] = Math.max(0, Math.min(rc[2], pivot[0])); pivot[1] = Math.max(0, Math.min(rc[3], pivot[1])); }
+        movePivot(rig, d.id, pivot);
+      }
+    }
+    syncEditor(); render(); return;
+  }
   if (st.drag) { const j = joints.find(q => q.id === st.drag.id); if (!j) return;
     let d = (Math.atan2(y - j.y, x - j.x) - st.drag.a0) * 180 / Math.PI; d = ((d + 540) % 360) - 180;
     st.manual[st.drag.id] = st.drag.m0 + d; syncRots(); return; }
   const j = nearest(x, y); st.hover = j ? j.id : null; stage.style.cursor = j ? (RIGS[st.boss].byId[j.id].p ? 'grab' : 'pointer') : 'default';
 });
-const endDrag = () => { st.drag = null; };
+const endDrag = e => {
+  const drag = st.drag; st.drag = null;
+  if (drag?.before) {
+    if (e.type === 'pointercancel') { restoreRig(RIGS[st.boss], drag.before); syncEditor(); }
+    else try { commitEdit(drag.before, 'Setup edit recorded.'); } catch (error) { restoreRig(RIGS[st.boss], drag.before); syncEditor(); $('editStatus').textContent = error.message; }
+  }
+};
 stage.addEventListener('pointerup', endDrag); stage.addEventListener('pointercancel', endDrag);
 stage.addEventListener('pointerleave', () => { if (!st.drag) st.hover = null; });
 
-let last = performance.now();
+let last = null;
+document.addEventListener('visibilitychange', () => { last = null; });
 function tick(now) {
-  const dt = Math.min(0.05, (now - last) / 1000); last = now;
-  const A = RIGS[st.boss].anims[st.anim];
-  if (st.playing) st.t = (st.t + dt * st.speed) % A.dur;
-  $('scrub').value = Math.round(st.t / A.dur * 1000);
-  $('time').textContent = `${st.t.toFixed(2)} / ${A.dur.toFixed(2)} s`;
-  render();
+  const dt = animationDelta(last, now, document.hidden === true); last = now;
+  if (document.hidden === true) { requestAnimationFrame(tick); return; }
+  advanceViewer(dt);
   requestAnimationFrame(tick);
 }
+function advanceViewer(dt) {
+  const A = RIGS[st.boss].anims[st.anim];
+  if (st.playing) {
+    st.t += dt * st.speed; st.clock += dt * st.speed;
+    if (st.t >= A.dur) {
+      if (st.once && A.timing?.holdEnd) { st.t = A.dur; st.playing = false; syncPlay(); }
+      else if (st.once) { st.anim = 'idle'; st.once = false; st.blend = null; st.t = loopTime(st.clock, RIGS[st.boss].anims.idle.dur); buildClips(); syncEditor(); }
+      else st.t %= A.dur;
+    }
+  }
+  const active = RIGS[st.boss].anims[st.anim];
+  $('scrub').value = Math.round(st.t / active.dur * 1000);
+  $('time').textContent = `${st.t.toFixed(2)} / ${active.dur.toFixed(2)} s`;
+  render();
+}
+window.advanceTime = ms => { advanceViewer(Math.max(0, ms) / 1000); };
+window.render_game_to_text = () => JSON.stringify({
+  creature: st.boss, clip: st.anim, time: st.t, playing: st.playing, mode: st.mode || 'animation',
+  selectedBone: st.sel, constraints: RIGS[st.boss].constraints || [],
+  coordinateSystem: 'Rig space: X right, Y down; pivots use sprite pixels, attachments use parent sprite pixels.',
+  edits: editHistory[st.boss].undo.length, message: $('editStatus').textContent
+});
 
 // test hooks for still renders
 if (qs.get('anim')) { st.anim = qs.get('anim'); }
 setBoss(st.boss);
 if (qs.get('anim')) { st.anim = qs.get('anim'); buildClips(); }
-if (qs.get('t')) { st.t = +qs.get('t'); st.playing = false; syncPlay(); }
+if (qs.get('t')) { st.t = +qs.get('t'); st.clock = st.t; st.playing = false; syncPlay(); }
 if (qs.get('bones') === '0') $('tBones').checked = false;
 buildArenas(); setArena(st.arena); $('count').textContent = Object.keys(RIGS).length;
 if (qs.get('arena') && ARENAS[qs.get('arena')]) setArena(qs.get('arena'));

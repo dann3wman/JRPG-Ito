@@ -93,7 +93,7 @@ function makeContext({ seed = 1, onOverlay = null } = {}) {
 }
 
 function scripts(file) {
-  const html = fs.readFileSync(file, 'utf8');
+  const html = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
   return [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]);
 }
 
@@ -137,8 +137,8 @@ function loadViewer(opts = {}) {
   const src = scripts(VIEWER).find(s => s.includes('const RIGS'));
   if (!src) throw new Error('load-game: no <script> in the rig viewer defines RIGS');
   const ctx = makeContext(opts);
-  // Stop at the UI wiring: everything the tools need is defined before `const st =`.
-  const cut = src.indexOf('\nconst st = ');
+  // Animation checks also need fitted rigs and sampling functions, but never canvas/UI wiring.
+  const cut = src.indexOf(opts.animations ? '\n// ===== canvas =====' : '\nconst st = ');
   vm.runInContext(cut > 0 ? src.slice(0, cut) : src, ctx, { filename: 'bestiary-rig-viewer' });
   return handle(ctx);
 }

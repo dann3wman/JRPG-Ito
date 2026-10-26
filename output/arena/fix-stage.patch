@@ -1,0 +1,225 @@
+--- a/index.html
++++ b/index.html
+@@ -973,6 +973,7 @@
+ 
+ window.RigAnim = {
+   rigFor: art => ART_RIG[art] || null,
++  arenaFor: art => { const r = RIGS[ART_RIG[art]]; return r && r.arena || 'hillside'; },
+   // markup for a portrait slot; the static art stays underneath until the sheet loads
+   box: (id, art, fallback) => { const k = ART_RIG[art]; if (!k) return null; load(k); return `<div class="rigbox${IMG[k] ? ' ready' : ''}" data-rig="${k}" data-rig-id="${id}"><img src="${fallback}" alt=""></div>`; },
+   // after innerHTML: move each unit's persistent canvas into its slot
+@@ -1085,7 +1086,6 @@
+   goku:'Heavy damage to all enemies.',
+   hisui:'5 hits on random enemies.',
+   kuro:'Heavy magic damage to all enemies. Costs 20% HP.',
+-  arenaFor: art => { const r = RIGS[ART_RIG[art]]; return r && r.arena || 'hillside'; },
+   ren:'6 shots at random enemies.',
+   sayo:'All enemies pushed back 3 slots. −15 Stress to allies.',
+   kugai:'Massive damage to one enemy. −20 Stress to allies.',
+@@ -1495,6 +1495,7 @@
+   log(`${u.name} is out of MP and pays ${hp} HP.`, 'dread');
+ }
+ function doAction(u, act, target, forced=false){
++  if (u.side==='party' && !G.turned.includes(u.id)) G.turned.push(u.id);
+   const delay = delayOf(u, act);
+   const foe = () => (target && target.alive) ? target : pick(foesAlive());
+   switch (act.kind){
+@@ -1614,7 +1615,6 @@
+       log(`${u.name} is Paralyzed and skips the turn (−${c} HP).`, 'dread'); doAction(u, {kind:'skip'}, null, true); return true; }
+     case 'Confuse': {
+       const t = pick(actives().filter(a=>a!==u && a.alive && !a.aff && !a.airborne));
+-  if (u.side==='party' && !G.turned.includes(u.id)) G.turned.push(u.id);
+       if (!t) return false;
+       log(`${u.name} is Confused and attacks ${t.name}.`, 'dread');
+       hitParty(t, u.atk*1.4); doAction(u, {kind:'skip'}, null, true); return true;
+@@ -2239,6 +2239,78 @@
+   return `<li class="slot s-${side}${f.now?' now':''}${f.land?' land':''}">${img}<b>${nm}</b><span class="k">${side==='void'?'':k}</span></li>`;
+ }
+ function renderBar(){ const seen = new Set(); $('#bar').innerHTML = forecast(16, G.preview).map(f=>{ if (f.u.side==='enemy' && !seen.has(f.u.id)){ seen.add(f.u.id); if (SCRIPTS[f.u.key] && f.u.plan) f.planned = SCRIPTS[f.u.key].skills[f.u.plan.skill].name; } return slotHtml(f); }).join(''); }
++const FORMATIONS = {
++  standard:'Standard: enemies left, party right.',
++  pincer:'Pincer: party on both sides, enemies in the middle.',
++  ambush:'Ambush: party left, backs turned until they act.'
++};
++const arenaSprites = new Map();
++function arenaSprite(id, src){
++  if (arenaSprites.has(id)) return arenaSprites.get(id);
++  arenaSprites.set(id, src);
++  const img = new Image();
++  img.onload = () => {
++    // The embedded sprites have dark backdrops. Clear only edge-connected backdrop pixels.
++    const cv = document.createElement('canvas'); cv.width = img.width; cv.height = img.height;
++    const ctx = cv.getContext('2d'); ctx.drawImage(img, 0, 0);
++    const pixels = ctx.getImageData(0, 0, cv.width, cv.height), d = pixels.data;
++    const seen = new Uint8Array(cv.width * cv.height), todo = [];
++    const visit = (x,y) => {
++      if (x<0 || y<0 || x>=cv.width || y>=cv.height) return;
++      const p = y*cv.width+x, n = p*4;
++      if (seen[p]) return; seen[p] = 1;
++      if (Math.max(d[n],d[n+1],d[n+2]) > 32) return;
++      d[n+3] = 0; todo.push([x,y]);
++    };
++    for (let x=0;x<cv.width;x++){ visit(x,0); visit(x,cv.height-1); }
++    for (let y=0;y<cv.height;y++){ visit(0,y); visit(cv.width-1,y); }
++    while (todo.length){ const [x,y] = todo.pop(); visit(x-1,y); visit(x+1,y); visit(x,y-1); visit(x,y+1); }
++    ctx.putImageData(pixels,0,0);
++    const clean = cv.toDataURL(); arenaSprites.set(id,clean);
++    document.querySelectorAll(`[data-sprite="${id}"]`).forEach(el=>el.src=clean);
++  };
++  img.src = src;
++  return src;
++}
++function arenaPositions(){
++  const ambush = G.formation==='ambush', pincer = G.formation==='pincer';
++  const n = G.enemies.length, cols = n>3 ? 2 : 1, rows = Math.ceil(n/cols);
++  const span = pincer ? 42 : 54, center = pincer ? 50 : ambush ? 70 : 30;
++  const enemies = G.enemies.map((u,i)=>({u, x:center+(i%cols-(cols-1)/2)*span/cols,
++    y:8+(rows-1-Math.floor(i/cols))*80/rows, w:span/cols, h:80/rows, face:ambush?-1:1}));
++  const party = actives().map((u,i)=>({u, x:pincer ? (i%2 ? 88 : 12) : ambush ? 16+i*5 : 76+i*5,
++    y:pincer ? (i%2 ? 35 : 56-Math.floor(i/2)*42) : 58-i*25, w:12, h:pincer?26:24,
++    face:pincer ? (i%2 ? -1 : 1) : ambush && G.turned.includes(u.id) ? 1 : -1}));
++  return [...enemies,...party.filter(p=>!p.u.fled)];
++}
++function renderArena(){
++  const stage = $('#arenaStage');
++  const bg = window.RigAnim ? RigAnim.arenaFor(G.enemies[0].art) : 'hillside';
++  stage.style.backgroundImage = `url("tools/bestiary-rig-viewer/bg_${bg}.webp")`;
++  $('#arenaCaption').textContent = FORMATIONS[G.formation];
++  stage.innerHTML = arenaPositions().map(p=>{
++    const u = p.u, enemy = u.side==='enemy';
++    const tgt = G.menu==='target' && G.act && (enemy ? G.act.target==='enemy' && u.alive :
++      (G.act.target==='ally' && u.alive && !u.airborne) || (G.act.target==='ko' && !u.alive && !u.fled));
++    const tag = enemy || tgt ? 'button' : 'div';
++    const action = tgt ? `data-${enemy?'ft':'pt'}="${u.id}"` : enemy ? `data-info="${u.id}"` : '';
++    const state = !u.alive ? (enemy?'Defeated':'KO') : u.airborne ? 'Airborne' : '';
++    const label = `${tgt?'Target ':''}${u.name}${state ? ': '+state : ''}${enemy && !tgt ? ': stats and decision tree' : ''}`;
++    const spriteId = enemy ? 'enemy:'+u.art : u.id;
++    const sprite = arenaSprite(spriteId,enemy ? art(u.art) : ASSETS[u.id].s);
++    const visual = enemy ? (window.RigAnim && RigAnim.box(u.id,u.art,sprite)) || `<img data-sprite="${spriteId}" src="${sprite}" alt="">` :
++      `<img class="sprite" data-sprite="${spriteId}" src="${sprite}" alt="">`;
++    return `<${tag} class="arena-unit${enemy?' enemy':' ally'}${tgt?' targetable':''}${u===G.current?' acting':''}${!u.alive?' dead':''}${u.airborne?' airborne':''}" ${tag==='button'?'type="button"':''} ${action} aria-label="${esc(label)}" data-unit="${u.id}" data-facing="${p.face===1?'right':'left'}" style="--x:${p.x}%;--y:${p.y}%;--w:${p.w}%;--h:${p.h}%;--face:${p.face};z-index:${100-Math.round(p.y)}">
++      ${visual}<span class="unit-name">${esc(u.name)}${state?' · '+state:''}</span>${fxHtml(u.id)}</${tag}>`;
++  }).join('');
++  if (window.RigAnim){ RigAnim.forget(new Set(G.enemies.map(x=>x.id))); RigAnim.mount(stage,new Set(G.enemies.filter(x=>!x.alive).map(x=>x.id))); }
++}
++window.render_game_to_text = () => JSON.stringify(G && {
++  state:G.state, menu:G.menu, formation:G.formation, current:G.current && G.current.id,
++  coordinates:'Percent of arena; x from left, y from bottom; x is center, y is feet.',
++  units:arenaPositions().map(p=>({id:p.u.id, side:p.u.side, x:p.x, y:p.y, facing:p.face===1?'right':'left', hp:p.u.hp, alive:p.u.alive, airborne:!!p.u.airborne})),
++  turnOrder:forecast(16,G.preview).map(f=>f.u.id)
++});
+ function render(){
+   if (!G) return;
+   $('#encName').textContent = `${G.enc.title} · Party Lv ${G.enc.lv || 10}`;
+@@ -2358,78 +2430,6 @@
+     }
+     case 'kuro': {
+       if (foes.length >= 2 && (mp(24) || pctHp(u) > .6)) return R(Sk('darkga'), null, `Darkga hits all ${foes.length} enemies at once${mp(24) ? '' : ' (paid with HP)'}.`);
+-const FORMATIONS = {
+-  standard:'Standard: enemies left, party right.',
+-  pincer:'Pincer: party on both sides, enemies in the middle.',
+-  ambush:'Ambush: party left, backs turned until they act.'
+-};
+-const arenaSprites = new Map();
+-function arenaSprite(id, src){
+-  if (arenaSprites.has(id)) return arenaSprites.get(id);
+-  arenaSprites.set(id, src);
+-  const img = new Image();
+-  img.onload = () => {
+-    // The embedded sprites have dark backdrops. Clear only edge-connected backdrop pixels.
+-    const cv = document.createElement('canvas'); cv.width = img.width; cv.height = img.height;
+-    const ctx = cv.getContext('2d'); ctx.drawImage(img, 0, 0);
+-    const pixels = ctx.getImageData(0, 0, cv.width, cv.height), d = pixels.data;
+-    const seen = new Uint8Array(cv.width * cv.height), todo = [];
+-    const visit = (x,y) => {
+-      if (x<0 || y<0 || x>=cv.width || y>=cv.height) return;
+-      const p = y*cv.width+x, n = p*4;
+-      if (seen[p]) return; seen[p] = 1;
+-      if (Math.max(d[n],d[n+1],d[n+2]) > 32) return;
+-      d[n+3] = 0; todo.push([x,y]);
+-    };
+-    for (let x=0;x<cv.width;x++){ visit(x,0); visit(x,cv.height-1); }
+-    for (let y=0;y<cv.height;y++){ visit(0,y); visit(cv.width-1,y); }
+-    while (todo.length){ const [x,y] = todo.pop(); visit(x-1,y); visit(x+1,y); visit(x,y-1); visit(x,y+1); }
+-    ctx.putImageData(pixels,0,0);
+-    const clean = cv.toDataURL(); arenaSprites.set(id,clean);
+-    document.querySelectorAll(`[data-sprite="${id}"]`).forEach(el=>el.src=clean);
+-  };
+-  img.src = src;
+-  return src;
+-}
+-function arenaPositions(){
+-  const ambush = G.formation==='ambush', pincer = G.formation==='pincer';
+-  const n = G.enemies.length, cols = n>3 ? 2 : 1, rows = Math.ceil(n/cols);
+-  const span = pincer ? 42 : 54, center = pincer ? 50 : ambush ? 70 : 30;
+-  const enemies = G.enemies.map((u,i)=>({u, x:center+(i%cols-(cols-1)/2)*span/cols,
+-    y:8+(rows-1-Math.floor(i/cols))*80/rows, w:span/cols, h:80/rows, face:ambush?-1:1}));
+-  const party = actives().map((u,i)=>({u, x:pincer ? (i%2 ? 88 : 12) : ambush ? 16+i*5 : 76+i*5,
+-    y:pincer ? (i%2 ? 35 : 56-Math.floor(i/2)*42) : 58-i*25, w:12, h:pincer?26:24,
+-    face:pincer ? (i%2 ? -1 : 1) : ambush && G.turned.includes(u.id) ? 1 : -1}));
+-  return [...enemies,...party.filter(p=>!p.u.fled)];
+-}
+-function renderArena(){
+-  const stage = $('#arenaStage');
+-  const bg = window.RigAnim ? RigAnim.arenaFor(G.enemies[0].art) : 'hillside';
+-  stage.style.backgroundImage = `url("tools/bestiary-rig-viewer/bg_${bg}.webp")`;
+-  $('#arenaCaption').textContent = FORMATIONS[G.formation];
+-  stage.innerHTML = arenaPositions().map(p=>{
+-    const u = p.u, enemy = u.side==='enemy';
+-    const tgt = G.menu==='target' && G.act && (enemy ? G.act.target==='enemy' && u.alive :
+-      (G.act.target==='ally' && u.alive && !u.airborne) || (G.act.target==='ko' && !u.alive && !u.fled));
+-    const tag = enemy || tgt ? 'button' : 'div';
+-    const action = tgt ? `data-${enemy?'ft':'pt'}="${u.id}"` : enemy ? `data-info="${u.id}"` : '';
+-    const state = !u.alive ? (enemy?'Defeated':'KO') : u.airborne ? 'Airborne' : '';
+-    const label = `${tgt?'Target ':''}${u.name}${state ? ': '+state : ''}${enemy && !tgt ? ': stats and decision tree' : ''}`;
+-    const spriteId = enemy ? 'enemy:'+u.art : u.id;
+-    const sprite = arenaSprite(spriteId,enemy ? art(u.art) : ASSETS[u.id].s);
+-    const visual = enemy ? (window.RigAnim && RigAnim.box(u.id,u.art,sprite)) || `<img data-sprite="${spriteId}" src="${sprite}" alt="">` :
+-      `<img class="sprite" data-sprite="${spriteId}" src="${sprite}" alt="">`;
+-    return `<${tag} class="arena-unit${enemy?' enemy':' ally'}${tgt?' targetable':''}${u===G.current?' acting':''}${!u.alive?' dead':''}${u.airborne?' airborne':''}" ${tag==='button'?'type="button"':''} ${action} aria-label="${esc(label)}" data-unit="${u.id}" data-facing="${p.face===1?'right':'left'}" style="--x:${p.x}%;--y:${p.y}%;--w:${p.w}%;--h:${p.h}%;--face:${p.face};z-index:${100-Math.round(p.y)}">
+-      ${visual}<span class="unit-name">${esc(u.name)}${state?' · '+state:''}</span>${fxHtml(u.id)}</${tag}>`;
+-  }).join('');
+-  if (window.RigAnim){ RigAnim.forget(new Set(G.enemies.map(x=>x.id))); RigAnim.mount(stage,new Set(G.enemies.filter(x=>!x.alive).map(x=>x.id))); }
+-}
+-window.render_game_to_text = () => JSON.stringify(G && {
+-  state:G.state, menu:G.menu, formation:G.formation, current:G.current && G.current.id,
+-  coordinates:'Percent of arena; x from left, y from bottom; x is center, y is feet.',
+-  units:arenaPositions().map(p=>({id:p.u.id, side:p.u.side, x:p.x, y:p.y, facing:p.face===1?'right':'left', hp:p.u.hp, alive:p.u.alive, airborne:!!p.u.airborne})),
+-  turnOrder:forecast(16,G.preview).map(f=>f.u.id)
+-});
+       if (mp(10) || pctHp(u) > .5) return atF(Sk('dark'), `Dark (2.4× MAG${u.stress>=25?`, +${Math.round(Math.min(.4,u.stress/250)*100)}% from Stress`:''}) is Kuro's best single-target damage.`);
+       return atF(A, 'Out of MP and too hurt to pay with HP.');
+     }
+@@ -2578,6 +2578,9 @@
+   $('#cfgEnc').innerHTML = Object.entries(groups).map(([g,list])=>`<optgroup label="${g}">${list.map(([k,v])=>`<option value="${k}">${v.role ? ROSTER[v.role].name+' ('+ROSTER[v.role].role+') · '+v.title.replace('Test · ','') : v.title}</option>`).join('')}</optgroup>`).join('');
+ })();
+ if (!ENCOUNTERS[cfg.enc]) cfg.enc = 'widow';
++if (!FORMATIONS[cfg.formation]) cfg.formation = 'standard';
++$('#cfgFormation').value = cfg.formation;
++$('#cfgFormation').addEventListener('change', e=>{ cfg.formation=e.target.value; saveCfg(); $('#ov').hidden=true; newGame(); });
+ $('#cfgEnc').value = cfg.enc;
+ $('#cfgEnc').addEventListener('change', e=>{
+   cfg.enc = e.target.value; const enc = ENCOUNTERS[cfg.enc];
+@@ -2614,6 +2617,4 @@
+ })();
+ </script>
+ 
+-</body></html>if (!FORMATIONS[cfg.formation]) cfg.formation = 'standard';
+-$('#cfgFormation').value = cfg.formation;
+-$('#cfgFormation').addEventListener('change', e=>{ cfg.formation=e.target.value; saveCfg(); $('#ov').hidden=true; newGame(); });
++</body></html>
+\ No newline at end of file
+--- a/docs/design-doc.md
++++ b/docs/design-doc.md
+@@ -139,9 +139,9 @@
+ 
+ Battles use a CTB system like FFX. Time stops while you choose a command. A Turn Order list shows the next 16 turns, and hovering a command previews where the character's next turn will land.
+ 
++**Battle arena.** Combatants share one arena, following the classic Final Fantasy side view: enemies on the left and the active party on the right. Pincer formations split the party across both sides of the enemies. Ambush formations place the party on the left with their backs to enemies on the right; each character turns toward the enemy when they act. The prototype's Formation selector restarts the encounter in the selected layout. These formations change staging only, with no turn-order or damage modifiers. HP, enemy intentions and party status stay readable in panels beneath the arena.
++
+ **Delay.** Every action has a Delay value: the higher it is, the longer until that character acts again.
+-
+-**Battle arena.** Combatants share one arena, following the classic Final Fantasy side view: enemies on the left and the active party on the right. Pincer formations split the party across both sides of the enemies. Ambush formations place the party on the left with their backs to enemies on the right; each character turns toward the enemy when they act. The prototype's Formation selector restarts the encounter in the selected layout. These formations change staging only, with no turn-order or damage modifiers. HP, enemy intentions and party status stay readable in panels beneath the arena.
+ 
+ | Action | Delay |
+ | --- | --- |
