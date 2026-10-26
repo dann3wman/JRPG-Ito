@@ -36,6 +36,23 @@ Copy this block to the top of the Log section and fill in every field.
 - **Verification:** local-file Chromium playback produced different rendered sprite pixels and advancing clocks for all three forms. Exercised all 18 clips, actual joint dragging, Setup deformation, undo/redo, patch import/export, transforms, 320/390/768px layouts, reduced motion, missing art and 18 transparent PNG exports. No page exceptions. Native mesh checks sampled 3,294 poses at three idle-clock offsets with no inverted triangles; 2,178 source samples also passed. Existing editor browser checks passed, including rendered interruption continuity.
 - **Rule for next time:** integrate first, then prove visible motion and editable skin using the real launch path. Bone counts and numerical transforms alone do not establish a satisfactory animation experience.
 
+### 2026-10-25 · Ren · sprite effects and Sleep
+- **Reported problem:** The slicer warned on cast1, special2 and special3; Ren also slept kneeling despite his character-specific upright Sleep.
+- **Original generation:** A 6-by-9 green-key sheet requested compact effects and appended the upright twist to the generic sitting/kneeling Sleep description.
+- **Root cause:** Unsuitable sheet art: muzzle flashes reached adjacent cuts, and the generic pose dominated the character override.
+- **Solution implemented:** Image generation shortened gun reach and flashes and redrew both Sleep frames standing. The revision has real alpha, sliced with `--key=` without warnings. Ren's cast data now explicitly says standing on both feet, never sitting or kneeling. The shared sheet prompt counts flashes and shells as weapon reach.
+- **ChatGPT revision:** Exact revision text is retained in `docs/sprite-requests/ren-generation-2026-10-25.md`. No further slicing fixes were needed.
+- **Rule for next time:** Check effect pixels as well as limbs at cell cuts; inspect character-specific pose overrides rather than trusting the generic frame label. Circular pupil motion remains too subtle to verify in the packed Ren idle frames.
+
+### 2026-10-25 · Hisui and Kuro · sprite grounding and portrait crops
+- **Reported problem:** Hisui's first three attack frames touched cell edges, her portrait square crops clipped an eye, and ordinary sprite rows floated above the baseline.
+- **Original generation:** long blades exceeded horizontal gaps; the portrait reference's side-heavy composition carried into the sheet. The slicer treated any source-relative bottom offset over 6 px as an airborne pose.
+- **Root cause:** generated framing and an inferred-jump placement rule.
+- **Solution implemented:** image edits shortened Hisui's attack blades and reduced/recentred her portrait heads. `cmd_sheet` now uses `BASE` unless the frame is explicitly in `airborneFrames`; Miren declares the four jump/dive frames. Re-sliced only Hisui and Kuro, preserving prior installed artwork.
+- **ChatGPT revision:** retained prompts and images are recorded in `docs/sprite-requests/hisui-generation-2026-10-25.md` and `kuro-generation-2026-10-25.md`.
+- **Verification:** no slicing warnings; 54 occupied sprite cells per character, each ending at row 88. Chromium exercised 26 animation controls, 12 portraits, all derived looks, flipping, whole-sheet view, existing cast selection and mobile layout without page errors. Battle embedding was unchanged.
+- **Rule for next time:** declare intentional airborne frames; row drift is not evidence of a jump. Inspect portrait square crops as well as the full source page.
+
 ### 2026-10-25 · Hellstar · three-form weighted sprite rigs
 - **Reported problem:** the three approved still images needed animation and rigging. The earlier combined battle sprite only had whole-body idle motion.
 - **Original generation:** three complete transparent images, with interwoven ribbons, ribs and skin; no articulated bone or clip data.
@@ -43,6 +60,15 @@ Copy this block to the top of the Log section and fill in every field.
 - **Solution implemented:** preserve the source PNGs and bind each to a 32-by-32 weighted grid. Authored 17/20/16 bones and six clips per form in `assets/bosses/hellstar-rigs.js`; added sampler, WebGL/Canvas renderer and dedicated preview. Same-form clip selection preserves the idle clock. Export reuses one renderer to avoid accumulating GPU contexts. Transitions contract and crossfade rather than claiming a newly painted anatomical morph.
 - **Verification:** 2,178 numerical samples cover weights, rest placement, loop pose/velocity, action boundaries, frame bounds and positive triangle winding. Chromium rendered 72 samples across 18 clips; exercised live playback, all-form sequence, bone controls, rest/wire overlays, 320/390/768px layouts, reduced motion, missing art and direct-file Canvas fallback. Inspected three contact sheets and bone placement. All 18 exported sheets are 1536-square RGBA with true alpha; three JSON exports retain mesh weights. No page exceptions. Existing bestiary authoring/parity checks pass; their 16 attachment review notes remain separate.
 - **Rule for next time:** choose the rig method from the actual art. A continuous mesh preserves joins but cannot reveal hidden surfaces. Keep animation assets, sampled sheets and combat integration distinct; inspect rendered extrema as well as numerical transforms.
+
+### 2026-10-25 · Miren and Goku · party source sheets
+- **Reported problem:** spear tips and hound effects crossed cells; Goku's last portrait column clipped faces. Miren's transparent output produced false occupied gaps.
+- **Original generation:** effects exceeded margins; intermediate Miren revisions omitted a Limit frame or reversed field-facing directions. Background alpha 1–127 counted as art during cell detection although final output discarded it.
+- **Root cause:** source composition and alpha preprocessing order.
+- **Solution implemented:** regenerated compact effects and wider spacing, corrected Miren's down-facing frames and regenerated Goku's equal-width portraits. Applied the existing alpha >= 128 cutoff before cell detection in `party_art.py`. Miren's preview uses `--scale 0.52`; Goku uses default sizing.
+- **ChatGPT revision:** full prompts, sources and limitations are recorded in `docs/sprite-requests/miren-generation-2026-10-25.md` and `goku-generation-2026-10-25.md`.
+- **Verification:** both retained sprite previews and portrait grids slice without warnings; each sprite atlas contains 54 nonempty cells. No runtime integration. Miren's smaller preview, spear continuity, heel lift, portrait framing and animation grounding remain review items.
+- **Rule for next time:** count all cells, specify field facing, bound effects with the body and apply final opacity rules before finding empty gaps. Clean slices are not runtime approval.
 
 ### 2026-10-25 · Three Hellstar stills · final Eye framing
 - **Reported problem:** the new final Eye sprite placed outer ribs too close to the left and right boundaries despite a requested transparent margin.
@@ -53,6 +79,14 @@ Copy this block to the top of the Log section and fill in every field.
 - **Verification:** all three outputs are 1254-square RGBA with true transparent pixels. Inspected browser rendering against both light and dark backgrounds; visible anatomy is complete and the three forms read distinctly. Very faint alpha reaches some source edges, so these are source stills rather than trimmed atlas-ready parts. No battle integration or animation claim.
 - **Rule for next time:** inspect actual alpha and rendered contours separately; do not assume an image-generation margin instruction was obeyed. Retain full anatomical source images and apply any deliberate viewport crop only during integration.
 
+### 2026-10-25 · Tetsugi · party sheet generation
+- **Reported problem:** Limit Break effects crossed a cell boundary; chant poses disagreed on facing.
+- **Original generation:** the generic clear-space instruction allowed trails near neighbouring cells, and the generic chant descriptions did not repeat the left-facing requirement.
+- **Root cause:** unsuitable sheet art and underspecified pose margins.
+- **Solution implemented:** regenerated with wider internal margins, shorter effects and explicit left-facing chants. Updated `party_art.py` prompt wording. The final source is `docs/sprite-requests/tetsugi-sheet-2026-10-25.source.png`; all 54 frames slice without warnings.
+- **ChatGPT revision:** two edits returned RGBA images with residual slicing warnings. A fresh generation from the original portrait produced the retained sheet. All 12 portraits sliced cleanly on the first attempt.
+- **Rule for next time:** inspect actual alpha, require internal margins around effects, and distinguish clean slicing from runtime proof. Grounding offsets and the sprite KO eye detail remain review items; no battle assets were replaced.
+
 ### 2026-10-25 · Hellstar combined battle sprite
 - **Reported problem:** the final boss lacked scale and appeared as three separate sprites.
 - **Original generation:** arena formation placed Ainsel, the Hellstar and its Tongue in three equal rows, each with its own image or rig.
@@ -61,6 +95,15 @@ Copy this block to the top of the Log section and fill in every field.
 - **ChatGPT revision:** built-in generation used all three embedded portraits as identity/style references. Prompt and output are recorded in [the generation record](../../../../docs/sprite-requests/hellstar-combined-2026-10-25.md). Output is 1254 × 1254 RGBA with 544,348 fully transparent pixels, rather than the requested 1536 square. It is assembled artwork, not a packed atlas or a new bone rig.
 - **Verification:** browser inspection at 1440, 768, 390 and 320px across three formations; one canvas, three unobstructed 44px-minimum targets, separate damage/status state, defeat/regrowth and reduced motion. Party details remain outside the artwork.
 - **Rule for next time:** separate shared artwork from combat state. Mirror hit regions with the image and test each region after death and regrowth; never infer shared HP from a shared sprite.
+
+### 2026-10-25 · Rig authoring, validation and coordinate migration
+- **Reported problem:** implement six improvements: strict rig validation, setup editing, clip timing choices, optional limb targets, sheet metadata and rendered regression checks.
+- **Original generation:** unresolved parent chains were discarded by sorting; a pose Proxy created unknown bone names silently. Dragging only changed temporary rotation. All clips shared 120/220 ms edge envelopes and a 160 ms interruption blend, with outgoing FX discarded. Sheet trimming printed coordinate warnings without preserving metadata.
+- **Root cause:** tooling allowed invalid definitions to look successful and left setup coordinates and visual continuity difficult to inspect.
+- **Solution implemented:** validate before sorting and throw named pose errors; setup pivot/attachment/rotation editing with child/world preservation, per-creature undo/redo and patch round trips; optional timing, marker, held-track and discrete-swap metadata; deterministic two-bone targets with adjustable influence and bend direction. Interruption captures now retain outgoing FX and fade them using the incoming clip's policy. Sheet packing writes source/scale/trim metadata and migrate emits a review-only coordinate proposal.
+- **Additional correction:** a revised-parts test found that lossless WebP encoding alone could change RGB under zero alpha. Added `exact=True`; retained parts now compare byte-for-byte in decoded RGBA. No existing sprite sheet was rewritten.
+- **Verification:** numerical authoring tests run in viewer and battle; Chromium editor checks cover pivot/target dragging, undo/redo, export/import, held clips, invalid-input recovery and pixel-identical interruption starts. Six extreme-pose references were rendered and inspected. All-clip overflow scanning includes FX and warp bounds. Existing 16 attachment and 10 FX-framing warnings remain review findings.
+- **Rule for next time:** fail malformed definitions before deriving rigs; preserve child placement when moving pivots; keep visibility swaps discrete; test outgoing FX as rendered pixels. Coordinate migration requires art correspondence, and visual references require inspection before acceptance.
 
 ### 2026-10-25 · Platform routing and Kiri source sheet
 - **Reported problem:** ChatGPT sessions were producing image handoff prompts instead of rendering player-character sheets.

@@ -546,7 +546,7 @@ widow: {
         F.push({ img: 'lullaby', b: 'head', at: [215, 105], s: 0.3 + 0.85 * u, a: e * (1 - u) * 0.9, z: 6, blend: 'lighter' });
       }
     } },
-    undertow: { label: 'Undertow', fx: ['undertow'], dur: 3, markers: { anticipation: 0.2, impact: 0.9, recovery: 1.2 }, fn(t, P, F) {
+    undertow: { label: 'Undertow', fx: ['undertow'], dur: 3, markers: { anticipation: 0.1, impact: 0.9, recovery: 1.45 }, fn(t, P, F) {
       RIGS.widow.anims.idle.fn(t, P, F);
       const back = env(t, 0.1, 0.6, 0.6, 0.8), lunge = keys(t, [[0, 0], [0.7, 0], [0.9, 1.12], [1.14, 1], [1.45, 1], [2.65, 0]]);
       P.root.x = -30 * back + 60 * lunge; P.root.r += -4 * back + 5 * lunge;
@@ -1393,11 +1393,15 @@ function validateRig(rig, key) {
   if (!table) fail('missing atlas');
   const pair = v => Array.isArray(v) && v.length === 2 && v.every(Number.isFinite);
   for (const b of bones) {
-    if (!b.id || ['ghosts', 'ik', 'swaps', '__proto__', 'constructor'].includes(b.id) || ids.has(b.id)) fail('duplicate or reserved bone ' + b.id);
+    if (typeof b.id !== 'string' || !b.id || ['ghosts', 'ik', 'swaps', '__proto__', 'constructor'].includes(b.id) || ids.has(b.id)) fail('duplicate or reserved bone ' + b.id);
     ids.add(b.id);
-    if (b.img && !table[b.img]) fail(b.id + ': missing sprite ' + b.img);
+    if (b.img && !Object.hasOwn(table, b.img)) fail(b.id + ': missing sprite ' + b.img);
     if ((b.img || b.box) && !pair(b.pv)) fail(b.id + ': invalid pivot');
-    for (const f of ['at', 'tip']) if (b[f] !== undefined && !pair(b[f])) fail(b.id + ': invalid ' + f);
+    if (b.img && pair(b.pv) && (b.pv[0] < 0 || b.pv[1] < 0 || b.pv[0] > table[b.img][2] || b.pv[1] > table[b.img][3])) fail(b.id + ': pivot outside sprite');
+    for (const f of ['at', 'pv', 'tip']) if (b[f] !== undefined && !pair(b[f])) fail(b.id + ': invalid ' + f);
+    if (b.box && (!pair(b.box) || b.box.some(v => v <= 0))) fail(b.id + ': invalid box');
+    if (b.fit && (!Array.isArray(b.fit) || b.fit.length !== 5 || !b.fit.slice(0, 4).every(Number.isFinite) || b.fit[3] <= 0 || typeof b.fit[4] !== 'boolean')) fail(b.id + ': invalid fit');
+    if (b.warp && (!['x', 'y'].includes(b.warp.ax) || !['amp', 'len', 'spd'].every(f => Number.isFinite(b.warp[f])))) fail(b.id + ': invalid warp');
     for (const f of ['r', 's', 'sx', 'sy', 'a', 'z']) if (b[f] !== undefined && (!Number.isFinite(b[f]) || (['s', 'sx', 'sy'].includes(f) && b[f] <= 0))) fail(b.id + ': invalid ' + f);
   }
   for (const b of bones) {
@@ -1416,7 +1420,8 @@ function validateRig(rig, key) {
   };
   for (const [name, clip] of Object.entries(rig.anims)) {
     if (!(Number.isFinite(clip.dur) && clip.dur > 0) || typeof clip.fn !== 'function') fail(name + ': invalid duration or function');
-    for (const img of clip.fx || []) if (!table[img]) fail(name + ': missing FX sprite ' + img);
+    for (const field of ['fx', 'tracks', 'swaps']) if (clip[field] !== undefined && !Array.isArray(clip[field])) fail(name + ': ' + field + ' must be an array');
+    for (const img of clip.fx || []) if (!Object.hasOwn(table, img)) fail(name + ': missing FX sprite ' + img);
     for (const [f, v] of Object.entries(clip.timing || {})) {
       if (f === 'holdEnd') { if (typeof v !== 'boolean') fail(name + ': holdEnd must be boolean'); }
       else if (!['in', 'out', 'mix', 'fxOut'].includes(f) || !Number.isFinite(v) || v < 0) fail(name + ': invalid timing ' + f);
@@ -1438,8 +1443,10 @@ function validateRig(rig, key) {
   const constraintIds = new Set();
   for (const c of rig.constraints || []) {
     const upper = bones.find(b => b.id === c.upper), lower = bones.find(b => b.id === c.lower);
-    if (!c.id || constraintIds.has(c.id) || !upper || !lower || lower.p !== upper.id || !pair(c.tip) || !pair(c.target) || !Number.isFinite(c.mix ?? 1) || (c.mix ?? 1) < 0 || (c.mix ?? 1) > 1 || ![1, -1].includes(c.bend ?? 1)) fail('invalid two-bone constraint ' + c.id);
+    if (typeof c.id !== 'string' || !c.id || ['__proto__', 'constructor', 'prototype'].includes(c.id) || constraintIds.has(c.id) || !upper || !lower || lower.p !== upper.id || !pair(c.tip) || !pair(c.target) || !Number.isFinite(c.mix ?? 1) || (c.mix ?? 1) < 0 || (c.mix ?? 1) > 1 || ![1, -1].includes(c.bend ?? 1)) fail('invalid two-bone constraint ' + c.id);
     constraintIds.add(c.id);
+    const at = lower.at || [0, 0], up = upper.pv || [0, 0], pv = lower.pv || [0, 0];
+    if (Math.hypot(at[0] - up[0], at[1] - up[1]) < 1e-7 || Math.hypot(c.tip[0] - pv[0], c.tip[1] - pv[1]) < 1e-7) fail('zero-length IK chain ' + c.id);
   }
   for (const [id, reason] of Object.entries(rig.review?.attachments || {})) if (!ids.has(id) || typeof reason !== 'string' || !reason.trim()) fail('invalid attachment exception ' + id);
   for (const [name, reason] of Object.entries(rig.review?.overflow || {})) if (!rig.anims[name] || typeof reason !== 'string' || !reason.trim()) fail('invalid overflow exception ' + name);
@@ -1458,6 +1465,14 @@ function trackValue(t, ks, mode = 'smooth') {
 function applySwaps(P) {
   for (const [id, a] of Object.entries(P.swaps || {})) P[id].a = a;
 }
+function blendIK(rig, P, from, weight) {
+  for (const c of rig.constraints || []) {
+    const a = from.ik?.[c.id] || c, b = P.ik?.[c.id] || c, at = a.target || c.target, bt = b.target || c.target;
+    const am = a.mix ?? c.mix ?? 1, bm = b.mix ?? c.mix ?? 1;
+    P.ik ||= {};
+    P.ik[c.id] = { target: at.map((v, i) => v + (bt[i] - v) * weight), mix: am + (bm - am) * weight, bend: weight < .5 ? (a.bend ?? c.bend ?? 1) : (b.bend ?? c.bend ?? 1) };
+  }
+}
 function captureBlend(rig, sampled, clock) {
   return { P: sampled.P, F: sampled.F.map(f => ({ ...f })), idle: idlePose(rig, clock).P };
 }
@@ -1473,6 +1488,9 @@ function rawAnim(rig, name, t) {
     P.swaps ||= {}; for (const id of swap.bones) P.swaps[id] = id === active ? 1 : 0;
   }
   applySwaps(P);
+  for (const [id, override] of Object.entries(P.ik || {})) {
+    if (!(rig.constraints || []).some(c => c.id === id) || !override || (override.target && (override.target.length !== 2 || !override.target.every(Number.isFinite))) || (override.mix !== undefined && (!Number.isFinite(override.mix) || override.mix < 0 || override.mix > 1)) || (override.bend !== undefined && ![-1, 1].includes(override.bend))) throw new Error(rig.key + '.' + name + ': invalid IK override ' + id);
+  }
   for (const f of F) {
     if (!ATLAS[rig.key][f.img] || (f.b && !rig.byId[f.b]) || (f.clip && !rig.byId[f.clip]?.img)) throw new Error(rig.key + '.' + name + ': invalid FX reference ' + f.img);
     if (!Number.isFinite(f.a)) throw new Error(rig.key + '.' + name + ': invalid FX alpha');
@@ -1516,6 +1534,7 @@ function evalAnim(rig, name, t, idleClock = t) {
   }
   e.F.forEach(f => f.a *= weight);
   if (e.P.ghosts) e.P.ghosts = e.P.ghosts.map(g => ({ ...g, a: g.a * weight }));
+  blendIK(rig, e.P, idle.P, weight);
   applySwaps(e.P); return e;
 }
 function blendPose(rig, target, source, age, clock) {
@@ -1529,6 +1548,7 @@ function blendPose(rig, target, source, age, clock) {
   target.F.forEach(f => f.a *= w);
   const fxWeight = fxDuration ? 1 - smooth5(age / fxDuration) : 0;
   target.F.push(...(source.F || []).map(f => ({ ...f, a: f.a * fxWeight })));
+  blendIK(rig, target.P, source.P, w);
   // Visibility choices switch atomically; transforms remain blendable.
   applySwaps(target.P);
   return target;
@@ -1581,7 +1601,7 @@ function solve(rig, P, manual = {}, constraints = true) {
     const override = P.ik?.[c.id] || {}, target = override.target || c.target, mix = Math.max(0, Math.min(1, override.mix ?? c.mix ?? 1));
     if (!mix) continue;
     if (!target.every(Number.isFinite)) throw new Error(rig.key + ': invalid IK target ' + c.id);
-    const lower = rig.byId[c.lower], tip = [c.tip[0] - (lower.pv?.[0] || 0), c.tip[1] - (lower.pv?.[1] || 0)];
+    const lower = rig.byId[c.lower], tip = [(c.tip[0] - (lower.pv?.[0] || 0)) * (lower.sx ?? 1), (c.tip[1] - (lower.pv?.[1] || 0)) * (lower.sy ?? 1)];
     const startUpper = offsets[c.upper] || 0, startLower = offsets[c.lower] || 0;
     const root = ap(M[c.upper], 0, 0), elbow = ap(M[c.lower], 0, 0), end = ap(M[c.lower], ...tip);
     const a = Math.hypot(elbow[0] - root[0], elbow[1] - root[1]), b = Math.hypot(end[0] - elbow[0], end[1] - elbow[1]);
@@ -1618,7 +1638,9 @@ function movePivot(rig, id, pivot) {
 }
 function itemBounds(rig, it) {
   const rc = it.box ? [0, 0, ...it.box] : ATLAS[rig.key][it.img];
-  const amp = it.warp ? Math.abs(it.warp.amp * (it.wm ?? 1)) : 0;
+  const b = it.id ? rig.byId[it.id] : null, axis = it.warp?.ax === 'y' ? 1 : 0, pivot = b?.pv?.[axis] ?? rc[axis + 2] / 2;
+  const extent = Math.max(Math.abs(pivot), Math.abs(rc[axis + 2] - pivot)) || 1;
+  const amp = it.warp ? Math.abs(it.warp.amp * (it.wm ?? 1)) * (1 + 5 / extent) : 0;
   const px = it.warp?.ax === 'y' ? amp + 1 : 1, py = it.warp?.ax === 'x' ? amp + 1 : 1;
   const points = [[-px, -py], [rc[2] + px, -py], [-px, rc[3] + py], [rc[2] + px, rc[3] + py]].map(p => ap(it.m, ...p));
   return [Math.min(...points.map(p => p[0])), Math.min(...points.map(p => p[1])), Math.max(...points.map(p => p[0])), Math.max(...points.map(p => p[1]))];
@@ -1680,6 +1702,7 @@ function resize() {
   const r = cv.getBoundingClientRect(); dpr = Math.min(2, window.devicePixelRatio || 1);
   CW = r.width; CH = r.height; cv.width = Math.round(CW * dpr); cv.height = Math.round(CH * dpr);
   st.view = null;
+  render();
 }
 new ResizeObserver(resize).observe(document.getElementById('stage'));
 
@@ -1969,7 +1992,7 @@ function editNumber(id) {
 }
 function syncEditor() {
   const rig = RIGS[st.boss], b = rig.byId[st.sel], setup = st.mode === 'setup', history = editHistory[st.boss];
-  $('selectedBone').textContent = b ? 'Selected: ' + b.id : 'Select a bone in the skeleton or on the stage.';
+  $('selectedBone').textContent = b ? 'Selected: ' + b.id + (setup ? '' : '. Switch to Setup to edit rest values.') : 'Select a bone in the skeleton or on the stage.';
   $('boneFields').disabled = !b || !setup;
   for (const [id, value] of Object.entries({ pvX: b?.pv?.[0] ?? 0, pvY: b?.pv?.[1] ?? 0, atX: b?.at?.[0] ?? 0, atY: b?.at?.[1] ?? 0, restR: b?.r || 0, restS: b?.s ?? 1 })) $(id).value = +value.toFixed(4);
   $('undoEdit').disabled = !history.undo.length; $('redoEdit').disabled = !history.redo.length;
@@ -2131,18 +2154,21 @@ $('editMode').onchange = () => {
 };
 $('editTool').onchange = () => { if ($('editTool').value !== 'rotate') { $('editMode').value = 'setup'; $('editMode').onchange(); } syncEditor(); };
 $('constraintList').onchange = syncTarget;
+$('editor').addEventListener('focusin', e => { if (/INPUT|TEXTAREA/.test(e.target.tagName)) { st.playing = false; syncPlay(); } });
 $('applyBone').onclick = () => editRig(rig => {
   const b = rig.byId[st.sel], pivot = [editNumber('pvX'), editNumber('pvY')], at = [editNumber('atX'), editNumber('atY')], previousAt = b.at || [0, 0];
   const changedAt = at.some((v, i) => Math.abs(v - previousAt[i]) > 0.0001);
-  movePivot(rig, b.id, pivot);
-  if (changedAt) b.at = at;
-  b.r = editNumber('restR'); b.s = editNumber('restS'); delete b.fit;
+  if (pivot.some((v, i) => Math.abs(v - (b.pv?.[i] || 0)) > .0001)) movePivot(rig, b.id, pivot);
+  if (changedAt) { b.at = at; delete b.fit; }
+  const rotation = editNumber('restR'), scale = editNumber('restS');
+  if (Math.abs(rotation - (b.r || 0)) > .00005) { b.r = rotation; delete b.fit; }
+  if (Math.abs(scale - (b.s ?? 1)) > .00005) { b.s = scale; delete b.fit; }
 }, 'Bone updated. Pivot changes preserve artwork and child placement.');
 $('addTarget').onclick = () => editRig(rig => {
   const b = rig.byId[st.sel], M = solve(rig, makePose(rig), {}, false), tip = tipOf(rig, b);
   if (!tip) throw new Error('This bone has no drawable tip.');
   let id = b.id + 'Target'; while ((rig.constraints || []).some(c => c.id === id)) id += '2';
-  const target = ap(M[b.id], tip[0] - (b.pv?.[0] || 0), tip[1] - (b.pv?.[1] || 0));
+  const target = ap(M[b.id], (tip[0] - (b.pv?.[0] || 0)) * (b.sx ?? 1), (tip[1] - (b.pv?.[1] || 0)) * (b.sy ?? 1));
   const root = ap(M[b.p], 0, 0), elbow = ap(M[b.id], 0, 0);
   const cross = (target[0] - root[0]) * (elbow[1] - root[1]) - (target[1] - root[1]) * (elbow[0] - root[0]);
   (rig.constraints ||= []).push({ id, upper: b.p, lower: b.id, tip, target, mix: 1, bend: cross < 0 ? -1 : 1 });

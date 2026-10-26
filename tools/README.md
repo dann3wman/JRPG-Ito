@@ -26,8 +26,15 @@ Node 18 or later. They load `index.html` headlessly through [`lib/load-game.js`]
 | [`data-export/export.js`](data-export/export.js) | Generates [`docs/reference/game-data.md`](../docs/reference/game-data.md) from the code and the baseline. `--check` fails if it is stale. |
 | [`animation-check/check.js`](animation-check/check.js) | Samples all rigs for loop/action continuity, valid pivots/transforms, timing and viewer/battle parity. Included in `check.sh`. |
 | [`animation-check/browser.js`](animation-check/browser.js) | Chromium playback, reduced-motion, load-failure and throttled rendering checks. Requires Playwright; writes ignored review artifacts under `output/playwright/`. |
+| [`animation-check/authoring.js`](animation-check/authoring.js) | Strict rig validation, pivot preservation, optional IK, held tracks, swaps and interrupted FX tests in both runtimes. Included in `check.sh`. |
 | [`animation-check/hellstar.js`](animation-check/hellstar.js) | Hellstar weights, rest placement, loop velocity, action recovery, framing and triangle winding checks. Included in `check.sh`. |
 | [`animation-check/hellstar-browser.js`](animation-check/hellstar-browser.js) | Checks native Hellstar entries in the Bestiary Rig Viewer through local-file playback, pixel motion, joint dragging, Setup edits, patch round trips and mobile layouts; uses a temporary HTTP server for PNG exports. Requires Playwright. |
+| [`animation-check/editor-browser.js`](animation-check/editor-browser.js) | Chromium setup editing, undo/redo, patch round trips, clip controls, responsive layout and rendered interruption checks. |
+| [`animation-check/visual.js`](animation-check/visual.js) | Six extreme-pose image comparisons and all-clip effect/warp overflow review. `--accept` updates references after inspection. Requires Playwright. |
+| [`animation-check/sheet_test.py`](animation-check/sheet_test.py) | Sheet metadata, trim/scale proposals and pixel-exact retained-part tests. Requires Pillow and NumPy. |
+| [`rig-data/export.js`](rig-data/export.js) | Exports resolved bone definitions and optional metadata for one creature; used by `sheet.py migrate`. |
+
+The rig viewer's **Rig authoring** panel edits setup geometry, clip metadata and optional limb targets. Export patches before closing the tab. See the [sprite authoring guide](../docs/guides/sprite-playback.md#rig-authoring) for patch application and sheet migration.
 
 ```sh
 node tools/battle-sim/sim.js orlen -n 300                   # one encounter, the Helper playing

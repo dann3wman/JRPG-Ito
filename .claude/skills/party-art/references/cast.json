@@ -54,6 +54,7 @@
   "miren": {
     "name": "Miren",
     "class": "Spearbound",
+    "airborneFrames": ["special2", "special3", "limit1", "limit2"],
     "look": "a brash young man with messy, spiky pale gold hair; red and dark-iron dragoon armour; a long spear whose shaft has grown into his right forearm, wood fused with veins",
     "horror": "his spear has grown into his arm; he refuses to touch the ground",
     "weapon": "a long spear fused into the right forearm, the shaft merging into the skin",
@@ -130,7 +131,7 @@
     "limit": "Last Round: fanning the hammer, several muzzle flashes, spent shells in the air",
     "twists": {
       "strained": "he is checking an old pocket watch; its hands have no numbers to point to",
-      "sleep": "he sleeps upright, hat tipped down, one hand still on the gun",
+      "sleep": "he sleeps standing upright on both feet, never sitting or kneeling, hat tipped down over his eyes, one hand still on the lowered gun",
       "slow": "his face has aged decades; his eyes are tracing a circle"
     }
   },

@@ -364,43 +364,43 @@ const MANIFEST = {
   "tetsugi": {
    "name": "Tetsugi Haldane",
    "class": "Monk",
-   "sheet": false,
-   "portraits": false
+   "sheet": true,
+   "portraits": true
   },
   "miren": {
    "name": "Miren",
    "class": "Spearbound",
-   "sheet": false,
-   "portraits": false
+   "sheet": true,
+   "portraits": true
   },
   "goku": {
    "name": "Goku",
    "class": "Beastcaller",
-   "sheet": false,
-   "portraits": false
+   "sheet": true,
+   "portraits": true
   },
   "hisui": {
    "name": "Hisui",
    "class": "Blade Dancer",
-   "sheet": false,
-   "portraits": false
+   "sheet": true,
+   "portraits": true
   },
   "kuro": {
    "name": "Kuro",
    "class": "Shade",
-   "sheet": false,
-   "portraits": false
+   "sheet": true,
+   "portraits": true
   },
   "ren": {
    "name": "Ren",
    "class": "Gunslinger",
-   "sheet": false,
+   "sheet": true,
    "portraits": false
   },
   "sayo": {
    "name": "Sayo",
    "class": "Songweaver",
-   "sheet": false,
+   "sheet": true,
    "portraits": false
   },
   "kugai": {

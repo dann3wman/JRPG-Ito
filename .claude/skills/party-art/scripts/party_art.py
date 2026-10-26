@@ -72,8 +72,8 @@ FRAMES = [
     ('attackB3', 'Second attack: follow-through'),
     ('advance1', 'Step forward: walking left, one foot forward'),
     ('advance2', 'Step forward: walking left, other foot forward'),
-    ('chant1', 'Chant: casting stance, hands raised, eyes on the target'),
-    ('chant2', 'Chant: same, hands slightly higher, a faint glow at the hands'),
+    ('chant1', 'Chant: facing LEFT, hands raised on the left toward the target'),
+    ('chant2', 'Chant: still facing LEFT, hands slightly higher on the left, a faint glow at the hands'),
     ('cast1', 'Cast: releasing the spell, arm thrust forward to the left'),
     ('cast2', 'Cast: recovery, arm lowering'),
     ('item1', 'Item: holding a small vial up'),
@@ -233,6 +233,7 @@ def sheet_prompt(cid):
 About the character: {c['look']}. {c['horror'][0].upper() + c['horror'][1:]}. Weapon: {c['weapon']}. Wherever a frame below mentions a weapon, draw it as this.
 Class action (row 5, frames 1-3): {c['special']}.
 Limit Break (row 5, frames 4-6): {c['limit']}.
+Weapon reach includes muzzle flashes and spent shells: keep these inside the cell margins by shortening the gesture and effects.
 
 Style: 16-bit SNES-era pixel art, chibi proportions (head about a third of the body height), crisp 1-pixel outlines in near-black ink, light from the top left. Match the attached sprite's costume, drawn at a higher frame quality. Keep it clean pixel art: no hatching, no sketch lines, no realistic proportions.
 
@@ -240,7 +241,7 @@ Palette: tie it to the attached ink-drawn portrait. Near-black outlines, muted s
 
 The horror is quiet. The character looks almost ordinary, even cute, except for one small wrong detail that stays in every frame, battle and field alike: {c['tell']}. Draw it plainly and consistently; never exaggerate it. Where a frame below gives a detail "For {first}", that detail is part of the frame and wins over the generic description if they differ.
 
-Layout: a grid of {SHEET_COLS} columns x {SHEET_ROWS} rows = {len(FRAMES)} square frames. Every frame shows the same character at the same size. Battle frames (rows 1-7) face LEFT (the enemy is to the left); rows 8-9 are field frames facing the direction given. Each figure stands on the same invisible ground line about 15% above the bottom of its cell, horizontally centred in the cell. Keep the whole figure, weapon and effects inside its own cell with clear space around it. Small effects (sparks, glow, notes, petals) are fine if they stay inside the cell.
+Layout: a grid of {SHEET_COLS} columns x {SHEET_ROWS} rows = {len(FRAMES)} square frames. Every frame shows the same character at the same size. Battle frames (rows 1-7) face LEFT (the enemy is to the left); rows 8-9 are field frames facing the direction given. Each figure stands on the same invisible ground line about 15% above the bottom of its cell, horizontally centred in the cell. Keep the whole figure, weapon and effects inside its own cell with at least 24 pixels of empty background on all four sides. Small effects (sparks, glow, notes, petals) must also respect this margin; shorten trails rather than letting them approach a neighbouring cell.
 
 Frames, left to right, top to bottom:
 {chr(10).join(lines)}
@@ -415,6 +416,7 @@ def cmd_sheet(args):
     arr = np.asarray(im).copy()
     if args.key:
         despill(arr, CAST[args.id].get('keepGreen', False))
+    arr[..., 3] = np.where(arr[..., 3] >= 128, 255, 0)
     cells = detect_cells(arr, SHEET_COLS, SHEET_ROWS)
     boxes, warn = [], []
     for (x0, y0, x1, y1), (name, _) in zip(cells, FRAMES):
@@ -451,9 +453,9 @@ def cmd_sheet(args):
             part = part.quantize(args.colors, method=Image.Quantize.FASTOCTREE).convert('RGBA')
             part.putalpha(Image.fromarray(pa[..., 3]))
         # keep each frame's lunge/recoil relative to idle1; feet snap to the ground line
-        # unless the frame is clearly airborne (a jump), which keeps its height
+        # only declared jump frames retain a positive vertical offset
         lift = (ground - b[3]) * scale
-        bottom = BASE - (lift if lift > 6 else 0)
+        bottom = BASE - (max(0, lift) if name in CAST[args.id].get('airborneFrames', []) else 0)
         px = round(CELL / 2 + (b[0] - anchor) * scale)
         py = round(bottom - h)
         if px < 0 or py < 0 or px + w > CELL or py + h > CELL:

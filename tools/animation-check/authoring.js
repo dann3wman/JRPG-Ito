@@ -42,6 +42,14 @@ for (const runtime of [loadViewer({ animations: true }), loadBattle({ rigs: true
   r.bones[0].flip = true; r.constraints[0].mix = 1; r.constraints[0].target = [-12, 8];
   target = end(pose(r)); assert.ok(Math.hypot(target[0] + 12, target[1] - 8) < .01, 'mirrored parent supports IK');
   r.bones[0].flip = false;
+  r.bones[2].sx = 1.5; r.constraints[0].target = [15, 6];
+  const scaledTip = ap(solve(r, pose(r)).lower, 15, 0);
+  assert.ok(Math.hypot(scaledTip[0] - 15, scaledTip[1] - 6) < .01, 'IK accounts for sprite-only tip scale');
+  delete r.bones[2].sx;
+  const stretchedPose = pose(r); stretchedPose.root.sx = 1.4;
+  r.constraints[0].target = [16, 8];
+  const stretchedTip = ap(solve(r, stretchedPose).lower, 10, 0);
+  assert.ok(Math.hypot(stretchedTip[0] - 16, stretchedTip[1] - 8) < .05, 'IK refines a non-uniform parent');
   const before = solve(r, pose(r), {}, false);
   runtime.get('movePivot')(r, 'upper', [2, 3]);
   const after = solve(r, pose(r), {}, false);
@@ -64,5 +72,11 @@ for (const runtime of [loadViewer({ animations: true }), loadBattle({ rigs: true
   assert.equal(finished.F.length, 1, 'outgoing effects expire');
   const bounds = runtime.get('itemBounds')(rigs.widow, { img: 'undertow', m: [1, 0, 0, 1, 0, 0], warp: { ax: 'y', amp: 20 }, wm: 2 });
   assert.ok(bounds[0] <= -40 && bounds[2] >= 314, 'bounds include warp displacement');
+  r.anims.aim = { dur: 2, fn(t, P) { P.ik = { hand: { target: [3, 4], mix: .2 } }; } };
+  assert.equal(sample(r, 'aim', 0).P.ik.hand.mix, 1, 'action target envelope starts at idle influence');
+  const aimSource = runtime.get('captureBlend')(r, sample(r, 'aim', 1), 1);
+  const aimBlend = runtime.get('blendPose')(r, sample(r, 'strike', .5), aimSource, 0, 1);
+  assert.ok(Math.abs(aimBlend.P.ik.hand.mix - .2) < 1e-8, 'interrupted target influence starts continuously');
+  assert.deepEqual(Array.from(aimBlend.P.ik.hand.target), [3, 4], 'interrupted target position starts continuously');
 }
 console.log('Authoring checks passed in viewer and battle: malformed rigs, IK, pivot preservation, held tracks, swaps and interrupted FX.');

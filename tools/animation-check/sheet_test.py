@@ -3,6 +3,7 @@ import importlib.util
 import json
 from pathlib import Path
 import sys
+import subprocess
 import tempfile
 from types import SimpleNamespace
 import unittest
@@ -15,6 +16,24 @@ spec.loader.exec_module(sheet)
 
 
 class SheetCoordinates(unittest.TestCase):
+    def test_migrate_cli(self):
+        with tempfile.TemporaryDirectory(prefix='rig-sheet-') as directory:
+            work = Path(directory)
+            size = sheet.load_atlas()['widow']['head'][2:]
+            metadata = {'version': 1, 'creature': 'widow', 'coordinateBasis': 'source-crop',
+                        'parts': {'head': {'sourceSize': size, 'cropOrigin': [0, 0], 'scale': [1, 1],
+                                           'trimOffset': [1, 1], 'packedSize': [size[0] - 1, size[1] - 1]}}}
+            source_before = sheet.VIEWER.read_bytes()
+            (work / 'metadata.json').write_text(json.dumps(metadata))
+            subprocess.run([sys.executable, str(Path(sheet.__file__)), 'migrate', 'widow',
+                            str(work / 'metadata.json'), '--out', str(work / 'patch.json')], check=True,
+                           capture_output=True, text=True)
+            proposal = json.loads((work / 'patch.json').read_text())
+            self.assertEqual(proposal['creature'], 'widow')
+            self.assertTrue(any(b['id'] == 'head' for b in proposal['bones']))
+            self.assertFalse(proposal['migration']['applied'])
+            self.assertEqual(sheet.VIEWER.read_bytes(), source_before)
+
     def test_trim_metadata_and_proposal(self):
         with tempfile.TemporaryDirectory(prefix='rig-sheet-') as directory:
             work = Path(directory)

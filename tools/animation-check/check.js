@@ -20,7 +20,10 @@ for (const [key, rig] of Object.entries(rigs)) {
     if (rc) check(b.pv && b.pv[0] >= 0 && b.pv[1] >= 0 && b.pv[0] <= rc[2] && b.pv[1] <= rc[3], `${key}.${b.id}: pivot outside sprite`);
     if (b.p && rig.byId[b.p].img) {
       const parent = atlas[key][rig.byId[b.p].img];
-      if (b.at[0] < 0 || b.at[1] < 0 || b.at[0] > parent[2] || b.at[1] > parent[3]) warnings.push(`${key}.${b.id}: attachment outside parent art; inspect overlap`);
+      if (b.at[0] < 0 || b.at[1] < 0 || b.at[0] > parent[2] || b.at[1] > parent[3]) {
+        const reason = rig.review?.attachments?.[b.id];
+        warnings.push(`${key}.${b.id}: ${reason ? 'documented separation: ' + reason : 'attachment outside parent art; inspect overlap'}`);
+      }
     }
   }
   const dur = rig.anims.idle.dur, h = 0.0001;
@@ -33,8 +36,13 @@ for (const [key, rig] of Object.entries(rigs)) {
   }
   for (const [name, clip] of Object.entries(rig.anims)) {
     clips++;
-    for (let i = 0; i <= 60; i++) {
-      const t = clip.dur * i / 60, clock = 1.37 + t, e = sample(rig, name, t, clock);
+    const times = new Set(Array.from({ length: 61 }, (_, i) => clip.dur * i / 60));
+    for (const t of Object.values(clip.markers || {})) times.add(t);
+    for (const track of [...(clip.tracks || []), ...(clip.swaps || [])]) for (const [t] of track.keys) {
+      times.add(t); times.add(Math.max(0, t - .0001)); times.add(Math.min(clip.dur, t + .0001));
+    }
+    for (const t of times) {
+      const clock = 1.37 + t, e = sample(rig, name, t, clock);
       samples++;
       for (const bone of rig.bones) for (const f of fields) {
         check(Number.isFinite(e.P[bone.id][f]), `${key}.${name}.${bone.id}.${f}: nonfinite pose`);
@@ -43,11 +51,18 @@ for (const [key, rig] of Object.entries(rigs)) {
       const transforms = viewer.get('solve')(rig, e.P, {});
       check(Object.values(transforms).every(m => m.every(Number.isFinite)), `${key}.${name}: invalid world transform`);
       const timing = clip.timing || {};
-      const idleBoundary = (i === 0 && (timing.in ?? .12) > 0) || (i === 60 && !timing.holdEnd && (timing.out ?? .22) > 0);
+      const idleBoundary = (t === 0 && (timing.in ?? .12) > 0) || (t === clip.dur && !timing.holdEnd && (timing.out ?? .22) > 0);
       if (name !== 'idle' && idleBoundary) {
         const idle = sample(rig, 'idle', clock).P;
-        for (const bone of rig.bones) for (const f of fields) check(Math.abs(e.P[bone.id][f] - idle[bone.id][f]) < 1e-7, `${key}.${name}: action boundary differs from live idle`);
+        for (const bone of rig.bones) for (const f of fields) {
+          if (f === 'a' && e.P.swaps && Object.hasOwn(e.P.swaps, bone.id)) continue;
+          check(Math.abs(e.P[bone.id][f] - idle[bone.id][f]) < 1e-7, `${key}.${name}: action boundary differs from live idle`);
+        }
         check(e.F.every(f => !(f.a > 0.001)), `${key}.${name}: visible FX at boundary`);
+      }
+      for (const fx of e.F) {
+        for (const f of ['a', 'r', 's', 'sx', 'sy', 'z', 'reveal']) if (fx[f] !== undefined) check(Number.isFinite(fx[f]), `${key}.${name}.${fx.img}: nonfinite FX ${f}`);
+        for (const f of ['at', 'pv']) if (fx[f]) check(fx[f].length === 2 && fx[f].every(Number.isFinite), `${key}.${name}.${fx.img}: invalid FX ${f}`);
       }
       if (battleRigs[key]) {
         const other = battle.get('evalAnim')(battleRigs[key], name, t, clock);

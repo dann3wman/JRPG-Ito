@@ -17,6 +17,25 @@ Delivery audit (changed arena and formation controls only):
 - Craftsmanship PASS: attack and item targets, swapping and ambush turns exercised in browser; all encounter/formation/viewport bounds passed. Combat data unchanged; unrelated project drift and art-review notes remain outside this task.
 - Remaining task TODOs: none. No claim of resolving unrelated design drift or creature-art review notes.
 
+## Rig authoring improvements (2026-10-25)
+
+- User request: implement all six suggested rigging improvements. Scope covers validation, setup editing, clip timing and swaps, optional two-bone targets, sheet coordinate metadata/migration proposals, and rendered regression checks.
+- Preserved the pre-existing arena, playback and image-generation workflow changes. No commits or publication.
+- Added strict pre-sort rig validation and named pose errors to both embedded runtimes. Shared sampling, IK and bounds functions remain identical.
+- Added viewer setup/animation modes, pivot/attachment/rotation handles, numeric editing, undo/redo, changed-definition export/import, timing/marker/held-track/swap controls and optional limb targets. Edits remain local to the tab until exported.
+- UI direction: retain the viewer's existing dark stage and ledger, typography and creature accents. ENERGY 1 / RHYTHM 1 / MOTION 1 for authoring controls; the creature remains the focal point. Controls appear in one collapsed Rig authoring panel.
+- Numerical authoring tests and Chromium editor interactions passed, including pivot preservation, target dragging, patch round trip, hold controls, invalid-input recovery and exact rendered FX continuity at interruption start.
+- Sheet packing now writes coordinate metadata; migrate emits a review-only patch. Tests found and fixed WebP transparent RGB loss with exact encoding; revised-parts tests pass.
+- Six deterministic extreme-pose references created and visually inspected. Overflow scan reports 10 effect-framing warnings; none automatically labelled intentional.
+- Final project checks passed: data integrity 0 errors / 2 existing design-rule warnings, reference freshness, 22 rigs / 88 clips / 5,368 numerical samples, both-runtime authoring tests, and 5 simulated battles per encounter.
+- Python sheet tests passed, including the actual migrate CLI and a check that it leaves the viewer source unchanged.
+- Chromium editor tests passed after final bounds/resize changes at desktop, 390 px and 320 px. Reviewed the mobile stage capture; resizing now repaints immediately even when animation callbacks are paused.
+- Six visual-reference comparisons passed after bounds refinement; maximum changed fraction was about 0.18%, below the 0.5% tolerance. References were not reaccepted to conceal that small framing change.
+- Ran the supplied web-game Playwright client through the existing Chromium wrapper; inspected its stage capture and matching render_game_to_text state. No JavaScript page exceptions were recorded. Its console noted a blocked external resource and a missing favicon; local rig sheets loaded and the stage rendered. The dedicated editor and playback reports have empty page-error lists.
+- Final playback browser run passed all 22 rigs / 88 clips (440 rendered samples), interruption, reduced motion, suspension and missing-sheet fallback checks. The six-rig throttled profile selected low effect detail; this is machine-specific evidence, not a universal frame-rate guarantee.
+- Delivery audit: Hard gate PASS for changed controls (labelled native inputs, responsive bounds, actual control interactions and error recovery). Purpose gate PASS (controls edit or inspect rig data; no decorative assets added). Liveliness PASS (existing creature focal point, stage/ledger structure and accents retained). Craftsmanship PASS (undo/redo, patch round trip, malformed-input recovery and rendered interruption checks).
+- Remaining implementation TODOs: none. Existing attachment and effect-framing warnings require visual art decisions; the 2 unrelated design-rule drifts remain recorded in implementation-status.md.
+
 ## Shared final-boss sprite (2026-10-25)
 
 - Request: make the final fight epic in scale, combining its three enemies into one giant sprite while retaining independent combat targets.

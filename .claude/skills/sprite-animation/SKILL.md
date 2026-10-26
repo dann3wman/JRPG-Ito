@@ -96,6 +96,11 @@ After **every** correction to a generated sprite animation or sheet, whether the
 - When adding scale pulsation, test shrinking/defeat clips at independent idle-clock phases; additive idle offsets can invert a near-zero collapse scale. Keep transforms valid through the transparent tail (2026-10-25 Listener's Eye correction).
 - Register new boss forms in the existing Bestiary Rig Viewer and use its playback, Skeleton and authoring controls. A different skinning method does not justify a separate application page. Verify visible sprite motion through the user's actual file/HTTP launch path, not only nonzero bone matrices (2026-10-25 Hellstar integration correction).
 - For continuous interwoven art, a weighted mesh can preserve painted joins without a cut-out atlas. Validate normalized weights, bind placement, triangle winding and clip extrema; document that it cannot reveal hidden anatomy. See the 2026-10-25 Hellstar mesh-rig correction and [guide](../../../docs/guides/hellstar-rigging.md).
+- Validate raw rig definitions before sorting. Unknown pose names are errors with rig/clip context; do not restore permissive bone creation to hide a typo.
+- Use the viewer's Rig authoring panel for setup edits; moving a pivot must preserve artwork and child world placement. Export changed definitions before closing the tab and keep embedded battle definitions in sync.
+- Declare deliberate holds and swaps through clip metadata. Test both pose continuity and outgoing FX at interruption; sprite swaps remain discrete after blending.
+- Sheet packing writes coordinate metadata. Use `sheet.py migrate <creature> <metadata.json> --out <patch.json>` for a proposed update, then review anatomy and coordinate correspondence. Preserve retained WebP pixels with exact lossless encoding.
+- Run `node tools/animation-check/authoring.js` for rig/sampler changes and the editor/visual browser checks for rendered changes. Inspect references before `visual.js --accept`. Document exceptions with specific reasons; never silence an art warning without inspection. See [the authoring guide](../../../docs/guides/sprite-playback.md#rig-authoring).
 
 Distilled from the corrections log. Check every new generation against these.
 
