@@ -52,6 +52,34 @@ sailor:{ name:'Drowned Sailor', hp:390, atk:45, def:4, mdef:4, agi:9, art:'sailo
 | `notes` | Extra lines for the info panel; say what the rules can't |
 | `overdrive` | `true` to fill `e.od` from party Stress (0.6 per point) |
 
+Hooks for fights that bend the usual rules. Each is optional; the Disc 1 chapter bosses show each one in use.
+
+| Hook | What it does | Used by |
+| --- | --- | --- |
+| `init(e, i)` | Sets up state at battle start, before the turn order (`i` is its place in the encounter's foe list) | Well-Rested (picks the original), Your Own Tracks (copies the party) |
+| `targetable(e)` + `hidden(e)` | While `targetable` is false the party can't target or hit it, and the card shows ``Can't be targeted: ${hidden(e)}``. Area attacks and landings skip it too | Lake Hen, Helmsman, a Track in the air |
+| `landProof` | `true`: Miren's landing never hits it, even when it can be targeted | Lake Hen |
+| `onDamage(e, d, src)` | Runs before damage lands. Return the damage to deal (0 refuses it, and the hook logs why). `src` has `attacker`, `magic`, `key` (the party skill, or `'limit'`) and `area` | Pelt, Lamp Hollow, Wick, Well-Rested, Dead Wolf, Grey Hound, Tracks |
+| `onPush(e, slots)` | Runs when anything tries to push it, even if Break recovery resists | The Hull (off course) |
+| `onDown(e)` | Runs when it is defeated | Wick (the dark), Rewound Wolf, Well-Rested original |
+| `onPartyAct(e, u, act, target)` | Runs after every party command | Well-Rested (Lullaby puts copies to sleep) |
+| `onLand(e, u)` | Runs when an airborne ally lands | Lake Hen (the splash) |
+| `holds(e, u)` + `holdText(e, u)` | While `holds` is true, that ally's turns are spent, with `holdText` in the log | Pelt (Goku on the leash) |
+| `afterTurn(e)` | Runs after its action, before it plans the next. Use it for "for N of its turns" counters | Pelt hold, Lamp Hollow dark |
+| `hpOf(e)` | `{hp, max, text}` to show instead of its own HP | Well-Rested (the original's HP on every body), Dead Wolf, Grey Hound |
+| `planName(e)`, `planText(e)` | Override what the turn order and the card call its next action, when the action is decided live | Your Own Tracks |
+| `guestTurn(e, u)` | Drives the encounter's guest (below) on the guest's turns | Grey Hound |
+| `hint` | The Scan hint (a string). Disc 2 and later bosses need one | Every Disc 2 boss |
+| `noTurn` | `true`: it never takes a turn of its own (another foe acts for it) | Mirens' copies, Sleepers |
+| `takesItem(e, u)` + `onItem(e, u, key)` | Lets the party use an item on it; the item menu then offers it as a target | Lead Listener (sealing the coffin) |
+| `onHeal(e, t, healer)` | Runs whenever an ally is healed (`healer` is the acting ally, `G.hitKey` the skill) | Face Thief |
+| `obey(e, u)` | Carries out a forced command when a whispered ally chooses Obey | Whisperer |
+| `onSwap(e, out, in)` | Runs when an ally Swaps out | — |
+
+An enemy skill can inflict a status with `inflict(t, 'Silence' | 'Paralyze' | 'Confuse', turns, chancePercent)`. A whispered ally (`u.whisper = {text, …}`) gets a menu of Obey or Swap; a grabbed ally (`u.grabbed`) leaves the turn order. The Helper and the simulator can Swap with the command `{kind:'swap', id}`.
+
+A sleeping foe (`e.sleep > 0`) skips its turns and the turn order says so. A skill can set `rankOf(e)` to choose its Delay when it acts.
+
 A **rule** is `{ label, phase?, when?(e, n), chance?, chanceText?, roll?, rollText?, skill?, target?, react? }`:
 
 - `when(e, n)`: `n` is the turn number about to be planned (1-based), so `n % 5 === 0` is "every 5th turn".
@@ -62,7 +90,7 @@ A **rule** is `{ label, phase?, when?(e, n), chance?, chanceText?, roll?, rollTe
 A **skill** is `{ name, rank, tags, target, power, desc, run(e, t), sound?, late?, noProvoke?, odReset? }`:
 
 - `rank` is its Delay. `tags` show in the info panel; use `Physical`, `Sound`, `Stress`, `Delay`, `Heal`, `Summon`, `Phase`, `Mark`, `Combined`, `Defeat`. A `Sound` tag needs `sound: true` as well.
-- `target` is one of `random`, `lowest` (HP%), `fastest`, `biggest` (max HP), `stress` (closest to a Stress Check, who can hear), `brink` (closest to a Stress Check), `last` (acted last), `next` (acts next), `mark`, `unblinked`, `uncountered`, `fastestCold`, `all`, `none` or `foe`. A new type needs a case in `aiTarget`, a `TARGET_TEXT` line, and an entry in `SINGLE` if it picks one ally.
+- `target` is one of `random`, `lowest` (HP%), `fastest`, `biggest` (max HP), `stress` (closest to a Stress Check, who can hear), `brink` (closest to a Stress Check), `last` (acted last), `next` (acts next), `mark`, `unblinked`, `uncountered`, `fastestCold`, `summoner` (Goku), `mirror` (decided by the script), `all`, `none` or `foe`. A new type needs a case in `aiTarget`, a `TARGET_TEXT` line, and an entry in `SINGLE` if it picks one ally.
 - `late: true` picks the target when it acts, which lets the player steer it with the turn order. It needs a `LATE_TEXT` entry.
 - `run(e, t)` does the work, using the battle helpers: `hitParty(t, e.atk * k, {src: e, crit})`, `addStress(t, n, 'Name', {sound: true})`, `delayUnit(t, slots)`, `addHum(n)`, `spawnPart(e, key, ct)`, `log`. (`heal()` is for party members; to heal an enemy, change `hp` and call `fx`, as Benediction does.) State helpers: `foeOf(key)`, `parentOf(e)`, `hearers()`, `targetsForFoes()`, `nearBrink(ts, n)`, `toBrink(t)`, `markValid(e)`, `p2(e)`, `provokeUp()`, `unplugged()`.
 - `power` and `desc` are what the info panel shows. They must agree with `run`.
@@ -74,7 +102,7 @@ widow: { lv:8, group:'Story bosses', title:'Port of Vesk · Tide-Widow', foes:['
   brief:'…threat as a rule. The answer. (Ito source)' },
 ```
 
-`lv` sets party stat scaling, `hum` the starting Danger, `party` the default trio, and `inv` overrides the starting bag. A role test sets `role` and `group:'Role tests'`. The brief follows the [style guide](../style-guide.md#encounter-briefs).
+`lv` sets party stat scaling, `hum` the starting Danger, `party` the default trio, and `inv` overrides the starting bag. `aim: { skill: true }` lets a skill that normally targets its user aim at an ally (Tetsugi's Chakra against the Face Thief). `stats: { key: {hp, atk, …} }` restates a foe's stats for this encounter only, so one script serves a recurring boss at several levels (Ruri ×1 at level 7). `guest` names a character who fights beside the party under a foe script's `guestTurn`, starting at `guestStress`: never Swapped, never targeted, capped below a Stress Check. A role test sets `role` and `group:'Role tests'`. The brief follows the [style guide](../style-guide.md#encounter-briefs).
 
 ### Also
 

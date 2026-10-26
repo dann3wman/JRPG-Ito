@@ -34,7 +34,15 @@ One name for each thing, and where it lives in the code. The prototype's code wa
 | **Reacts** | A rule re-checked when the party acts, so the enemy can answer a counter | `rule.react`, `reacting` |
 | **Late target** | A skill that picks its target when it acts, not when it plans | `skill.late` |
 | **Phase** | A boss state with its own rules, usually from 50% HP | `SCRIPTS[k].phases`, `e.phase` |
-| **Part** | A body piece of a boss that re-forms after defeat (Sailors, Organ, Tongue) | `SCRIPTS[k].parts`, `FOES[k].parentKey`, `spawnPart` |
+| **Part** | A body piece of a boss that re-forms after defeat (Sailors, Organ, Tongue), or that only collapses with it (Wicks, the Hull, Wet Chicks) | `SCRIPTS[k].parts` (`respawn: 0` never re-forms), `FOES[k].parentKey`, `spawnPart` |
+| **Untargetable** | A foe the party can't target or hit for now: underwater, at the helm, in the air. The card says why | `SCRIPTS[k].targetable`, `hidden`, `reachable`, `foesHittable` |
+| **Guest** | An ally who fights beside the party under their own AI: never Swapped, never targeted, no Stress Checks (Goku against the Grey Hound) | `ENCOUNTERS[k].guest`, `u.guest`, `SCRIPTS[k].guestTurn` |
+| **Sleep** | Loses the next turn(s). On the party it lasts 1 turn and a hit wakes them; on enemies it counts their turns | `u.sleep`, `e.sleep` |
+| **Inflicted status** | Silence (no skills or Limit Breaks), Paralyze (loses the turn) or Confuse (attacks an ally), from an enemy attack, lasting a number of the owner's turns. Separate from Afflicted | `inflict`, `u.st`, `STATUS`, `statusTurn` |
+| **Round** | The time between two consecutive turns of a boss. "In the same round" means before the boss acts again | Per script: the boss's `onTurn` resets it |
+| **Whisper** | A command the Whisperer gives an ally; on their turn they obey it or Swap out | `u.whisper`, `SCRIPTS.whisperer.obey` |
+| **Grab** | The Tongue holding an ally out of the turn order until three different characters hit it | `u.grabbed`, `heldBy` |
+| **Scan hint** | The one-line hint Disc 2 and later bosses show in the info panel | `SCRIPTS[k].hint` |
 | **Encounter** | A playable fight in the prototype | `ENCOUNTERS` |
 | **Role test** | A short fight built to teach one character's role | `ENCOUNTERS[k].role` |
 | **Helper** | The in-game advisor that recommends a command and says why | `cfg.helper`, `advise`, `adviseFocus` |
