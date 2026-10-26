@@ -83,6 +83,10 @@ const keys = o => Object.keys(o);
     if (e.party && e.party.length !== 3) warn(A, `${k}: default party has ${e.party.length} members (three fight at a time)`);
     if (e.role && !ROSTER[e.role]) err(A, `${k}: role "${e.role}" is not in ROSTER`);
     if (e.role && e.party && !e.party.includes(e.role)) err(A, `${k}: role test for ${e.role} doesn't put ${e.role} in the party`);
+    for (const f of keys(e.stats || {})) if (!e.foes.includes(f)) err(A, `${k}: stats override for "${f}", which isn't one of its foes`);
+    if (e.guest && !ROSTER[e.guest]) err(A, `${k}: guest "${e.guest}" is not in ROSTER`);
+    if (e.guest && (e.party || []).includes(e.guest)) err(A, `${k}: guest ${e.guest} is also in the default party`);
+    if (e.guest && !e.foes.some(f => SCRIPTS[f] && SCRIPTS[f].guestTurn)) err(A, `${k}: has a guest but no foe script with guestTurn to drive it`);
     if (!(e.hum >= 0 && e.hum <= 100)) err(A, `${k}: Danger (hum) ${e.hum} is outside 0–100`);
     for (const i of keys(e.inv || {})) if (!ITEMS[i]) err(A, `${k}: inv item "${i}" is not in ITEMS`);
     if (!e.brief) warn(A, `${k}: no brief (the setup panel shows it)`);
@@ -96,7 +100,8 @@ const keys = o => Object.keys(o);
   for (const [k, f] of Object.entries(FOES)) {
     if (f.ai === 'script' && !SCRIPTS[k]) err(F, `${k}: ai is 'script' but SCRIPTS has no entry`);
     if (f.parentKey && !FOES[f.parentKey]) err(F, `${k}: parentKey "${f.parentKey}" is not in FOES`);
-    if (!ENEMY_ART[f.art]) warn(F, `${k}: art "${f.art}" has no ENEMY_ART image (the canvas fallback is drawn)`);
+    // A foe needs an image: an ENEMY_ART entry, or an ink drawing in art()'s canvas fallback.
+    if (!ENEMY_ART[f.art] && !SRC.includes(`kind==='${f.art}'`)) warn(F, `${k}: art "${f.art}" has no ENEMY_ART image and no canvas drawing in art() (it shows as a blank panel)`);
     if (!STORY[k]) warn(F, `${k}: no STORY entry (the Ito work it draws on)`);
     for (const s of ['hp', 'atk', 'def', 'mdef', 'agi']) if (typeof f[s] !== 'number') err(F, `${k}: stat ${s} is missing`);
   }
@@ -108,7 +113,7 @@ const keys = o => Object.keys(o);
 // ---------- enemy scripts ----------
 {
   const A = 'scripts';
-  const TARGETS = new Set([...SINGLE, 'all', 'none', 'foe']);
+  const TARGETS = new Set([...SINGLE, ...keys(TARGET_TEXT)]);
   for (const [k, S] of Object.entries(SCRIPTS)) {
     const sk = S.skills || {}, phases = new Set((S.phases || []).map(p => p.id));
     if (!FOES[k]) err(A, `${k}: script has no FOES entry`);
@@ -129,6 +134,9 @@ const keys = o => Object.keys(o);
       if (!fallback) err(A, `${k}${ph ? ' ' + ph : ''}: no unconditional last rule, so some turns have no plan`);
     }
     for (const p of S.phases || []) if (p.enter && !sk[p.enter]) err(A, `${k} phase ${p.id}: entry skill "${p.enter}" is not in its skills`);
+    // Hooks that come in pairs: the UI needs the second to explain the first.
+    if (S.targetable && typeof S.hidden !== 'function') err(A, `${k}: targetable needs hidden(e), the reason shown while it can't be targeted`);
+    if (S.holds && typeof S.holdText !== 'function') err(A, `${k}: holds needs holdText(e, u) for the log`);
     for (const p of S.parts || []) {
       if (!FOES[p.key]) err(A, `${k} part ${p.key}: not in FOES`);
       else if (FOES[p.key].parentKey !== k) err(A, `${k} part ${p.key}: FOES.${p.key}.parentKey should be "${k}"`);
@@ -251,7 +259,7 @@ const DOC_RULES = [
   ['Natsu: Soothe', /Soothe: −(\d+) Stress to one ally/, /case 'soothe':[^\n]*addStress\(tt, -(\d+)\)/],
   ['Natsu: Cures before Cure adds Stress', /after (\d+) Cures in a battle/, /if \(u\.cures > (\d+)\)/],
   ['Natsu: Stress per Cure past the limit', /each adds (\d+) Stress to the target/, /addStress\(tt, (\d+), 'Cure past/],
-  ['Tetsugi: Chakra heal %', /Chakra: heal (\d+)% HP/, /heal\(u, u\.maxhp\*\.(\d+)\); addStress\(u, -10\)/],
+  ['Tetsugi: Chakra heal %', /Chakra: heal (\d+)% HP/, /heal\(c, c\.maxhp\*\.(\d+)\); addStress\(c, -10\)/],
   ['Miren: Stress on landing', /\+(\d+) Stress on landing/, /addStress\(u, (\d+), 'landing'\)/],
   ['Goku: Stress per summon', /Each summon: \+(\d+) Stress to Goku/, /addStress\(u, (\d+), 'Summon'\)/],
   ['Goku: Howl enemy attack down %', /Howl: all enemies' attack −(\d+)%/, /if \(src && src\.weak > 0\) raw \*= \.(\d+)/, null, v => 100 - v * 10],

@@ -13,7 +13,7 @@
 //
 // Policies (who picks the party's commands):
 //   advisor  the in-game Helper (advise()): a competent player who knows the role tricks
-//   attack   Attack every turn: the floor; a fight it wins does not test anything
+//   attack   Attack every turn (Defend when no foe can be targeted): the floor; a fight it wins does not test anything
 //   no-role  the Helper, but the encounter's tested character (ENCOUNTERS[k].role) never uses
 //            a signature skill; on story fights it plays like advisor
 //   random   any legal command: a confused first-timer
@@ -50,7 +50,7 @@ const B = loadBattle({ seed: opt.seed, onOverlay: (html, click) => onOverlay(htm
 const ENC = B.get('ENCOUNTERS'), cfg = B.get('cfg');
 const getG = B.run('() => G');
 const advise = B.get('advise'), SKILLS = B.get('SKILLS'), ITEMS = B.get('ITEMS');
-const foesAlive = B.get('foesAlive'), actives = B.get('actives');
+const foesHittable = B.get('foesHittable'), actives = B.get('actives');
 const encs = args.length ? args : Object.keys(ENC);
 for (const k of encs) if (!ENC[k]) { console.error(`unknown encounter "${k}"; encounters: ${Object.keys(ENC).join(', ')}`); process.exit(1); }
 if (!['advisor', 'no-role', 'attack', 'random'].includes(opt.policy)) { console.error(`unknown policy "${opt.policy}" (advisor, no-role, attack, random)`); process.exit(1); }
@@ -60,10 +60,11 @@ const POLICY = {
   advisor: G => { const r = advise(G.current); return { act: r.act, target: r.target }; },
   'no-role': G => {
     const r = advise(G.current), role = G.enc.role;
-    if (role && G.current.id === role && r.act.kind === 'skill') return { act: { kind: 'attack' }, target: r.target && r.target.side === 'enemy' ? r.target : pick(foesAlive()) };
+    if (role && G.current.id === role && r.act.kind === 'skill') return { act: { kind: 'attack' }, target: r.target && r.target.side === 'enemy' ? r.target : pick(foesHittable()) };
     return { act: r.act, target: r.target };
   },
-  attack: () => ({ act: { kind: 'attack' }, target: pick(foesAlive()) }),
+  // Foes that can't be targeted right now (underwater, at the helm) are skipped, as in the menu; with none in reach, Defend.
+  attack: () => foesHittable().length ? { act: { kind: 'attack' }, target: pick(foesHittable()) } : { act: { kind: 'defend' }, target: null },
   random: G => {
     const u = G.current, acts = [{ kind: 'attack' }, { kind: 'defend' }];
     u.skills.forEach(k => acts.push({ kind: 'skill', key: k }));
@@ -73,7 +74,7 @@ const POLICY = {
     const ok = acts.filter(a => !(a.kind === 'item' && ITEMS[a.key].target === 'ko' && !kod.length));
     const act = pick(ok);
     const t = act.kind === 'skill' ? SKILLS[act.key].target : act.kind === 'item' ? ITEMS[act.key].target : 'enemy';
-    const target = t === 'ally' ? pick(actives().filter(a => a.alive && !a.airborne)) : t === 'ko' ? kod[0] : pick(foesAlive());
+    const target = t === 'ally' ? pick(actives().filter(a => a.alive && !a.airborne)) : t === 'ko' ? kod[0] : pick(foesHittable());
     return { act, target };
   },
 };
