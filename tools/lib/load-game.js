@@ -137,6 +137,9 @@ function loadViewer(opts = {}) {
   const src = scripts(VIEWER).find(s => s.includes('const RIGS'));
   if (!src) throw new Error('load-game: no <script> in the rig viewer defines RIGS');
   const ctx = makeContext(opts);
+  for (const file of ['assets/bosses/hellstar-rigs.js','tools/bestiary-rig-viewer/mesh-skin.js','tools/bestiary-rig-viewer/hellstar.js']) {
+    vm.runInContext(fs.readFileSync(path.join(ROOT,file),'utf8'),ctx,{filename:file});
+  }
   // Animation checks also need fitted rigs and sampling functions, but never canvas/UI wiring.
   const cut = src.indexOf(opts.animations ? '\n// ===== canvas =====' : '\nconst st = ');
   vm.runInContext(cut > 0 ? src.slice(0, cut) : src, ctx, { filename: 'bestiary-rig-viewer' });

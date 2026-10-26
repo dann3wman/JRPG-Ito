@@ -30,6 +30,7 @@ const B = loadBattle({ rigs: true });
 const D = n => B.get(n);
 const ROSTER = D('ROSTER'), ORDER = D('ORDER'), SKILLS = D('SKILLS'), ITEMS = D('ITEMS'), LIMIT = D('LIMIT'), ROLE_DESC = D('ROLE_DESC');
 const FACE = D('FACE'), ASSETS = D('ASSETS'), FOES = D('FOES'), ENCOUNTERS = D('ENCOUNTERS'), SCRIPTS = D('SCRIPTS');
+const BOSS_BODIES = D('BOSS_BODIES');
 const STORY = D('STORY'), ENEMY_ART = D('ENEMY_ART'), SINGLE = D('SINGLE'), TARGET_TEXT = D('TARGET_TEXT'), LATE_TEXT = D('LATE_TEXT');
 const RIGS = B.rigs.get('RIGS'), ATLAS = B.rigs.get('ATLAS'), ART_RIG = B.rigs.get('ART_RIG'), SKILL_CLIP = B.rigs.get('SKILL_CLIP');
 const V = loadViewer(), VRIGS = V.get('RIGS'), VATLAS = V.get('ATLAS');
@@ -63,6 +64,21 @@ const keys = o => Object.keys(o);
   const A = 'encounters';
   for (const [k, e] of Object.entries(ENCOUNTERS)) {
     for (const f of e.foes) if (!FOES[f]) err(A, `${k}: foe "${f}" is not in FOES`);
+    if (e.body) {
+      const body = BOSS_BODIES[e.body];
+      if (!body) err(A, `${k}: shared body "${e.body}" is missing`);
+      else {
+        if (!fs.existsSync(path.join(ROOT, body.src))) err(A, `${k}: shared body image ${body.src} is missing`);
+        const numbers = new Set();
+        for (const [key, p] of Object.entries(body.parts)) {
+          if (e.foes.filter(f => f === key).length !== 1) err(A, `${k}: body region ${key} must map to exactly one combatant`);
+          if (!p.label || !Number.isInteger(p.number) || p.number < 1 || numbers.has(p.number)) err(A, `${k}: body region ${key} needs a label and unique positive number`);
+          numbers.add(p.number);
+          if (![p.x,p.y,p.w,p.h].every(Number.isFinite) || p.w <= 0 || p.h <= 0 || p.x-p.w/2 < 0 || p.x+p.w/2 > 100 || p.y-p.h/2 < 0 || p.y+p.h/2 > 100) err(A, `${k}: body region ${key} is outside image bounds`);
+          if (!Array.isArray(p.mask) || p.mask.length < 3 || p.mask.some(pt => pt.length !== 2 || pt.some(n => !Number.isFinite(n) || n < 0 || n > 100))) err(A, `${k}: body region ${key} has an invalid defeat mask`);
+        }
+      }
+    }
     for (const p of e.party || []) if (!ROSTER[p]) err(A, `${k}: party member "${p}" is not in ROSTER`);
     if (e.party && e.party.length !== 3) warn(A, `${k}: default party has ${e.party.length} members (three fight at a time)`);
     if (e.role && !ROSTER[e.role]) err(A, `${k}: role "${e.role}" is not in ROSTER`);

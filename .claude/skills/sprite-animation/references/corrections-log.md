@@ -20,6 +20,48 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-10-25 · Listener's Eye · unstable pulsation and squirming
+- **Reported problem:** phase three should pulsate and squirm wildly as though unstable.
+- **Original generation:** a restrained 12-second single-cycle idle with small iris rotations and anchor sway; the final form moved less than the earlier forms.
+- **Root cause:** clip motion contradicted the requested escalation.
+- **Solution implemented:** phase-three-only changes: root X scale ±12% and Y scale ∓9.5%, 10 pulses per 12-second loop, plus opposing lid/iris movement and independently staggered anchor, face and hair cycles (7–17 per loop). Broadened selected third-form influences for continuous skin. Renamed its default clip `Unstable / Convulsions`; attacks inherit this motion. Collapse/transition scales now fade to transparency at a minimum 0.3 instead of 0.04: the native sampler adds continuous idle scale offsets, so the old near-zero scale could invert at a different idle-clock phase.
+- **Verification:** 2,178 source samples and 3,294 native mesh samples passed with positive triangle winding; shared continuity checks passed for 25 rigs / 106 clips. Inspected local-file idle extremes, attacks, collapse and mobile framing; no page exceptions, clocks advance, reduced motion remains paused. First and second form definitions compare exactly with the pre-change snapshot. Browser evidence is under `output/playwright/hellstar-unstable/`.
+- **Rule for next time:** combine different local frequencies for instability instead of uniformly accelerating the whole sprite. When adding scale pulsation, test collapse clips at independent idle-clock offsets; transparent final frames still need valid transforms.
+
+### 2026-10-25 · Hellstar · integrate with the existing bestiary
+- **Reported problem:** a separate page for one boss was unnecessary, and animation/rigging was not apparent.
+- **Original generation:** three mesh rigs lived in an isolated viewer with temporary bone rotation controls. Body idle offsets were only a few bind-space pixels, with smaller weighted displacement on screen. Numerical motion checks passed without establishing that the movement read clearly in the intended workflow.
+- **Root cause:** tooling integration and motion readability. The new skinning method was treated as a reason to build another application instead of extending the existing one.
+- **Solution implemented:** removed the extra page and launcher card. `hellstar.js` registers Hellstar I–III as native RIGS entries with parent-relative bones; the existing solver drives the mesh through inverse bind matrices. Playback, skeleton selection, joint dragging, Setup edits, undo/redo, patch round trips and clip tracks use the existing controls. Regional idle offsets increased 2.4x, attack rotation/translation 1.8x and influence radii 1.18x; source images are unchanged. The first amplitude-only test exposed a folded Devour triangle; widening influence radii resolved the fold rather than bypassing validation. The weighted-skin reference tray uses its own wrapping layout to prevent image/text overlap.
+- **Verification:** local-file Chromium playback produced different rendered sprite pixels and advancing clocks for all three forms. Exercised all 18 clips, actual joint dragging, Setup deformation, undo/redo, patch import/export, transforms, 320/390/768px layouts, reduced motion, missing art and 18 transparent PNG exports. No page exceptions. Native mesh checks sampled 3,294 poses at three idle-clock offsets with no inverted triangles; 2,178 source samples also passed. Existing editor browser checks passed, including rendered interruption continuity.
+- **Rule for next time:** integrate first, then prove visible motion and editable skin using the real launch path. Bone counts and numerical transforms alone do not establish a satisfactory animation experience.
+
+### 2026-10-25 · Hellstar · three-form weighted sprite rigs
+- **Reported problem:** the three approved still images needed animation and rigging. The earlier combined battle sprite only had whole-body idle motion.
+- **Original generation:** three complete transparent images, with interwoven ribbons, ribs and skin; no articulated bone or clip data.
+- **Root cause:** missing animation assets. Cutting the approved continuous anatomy into rigid parts would require overlap art that the stills do not contain.
+- **Solution implemented:** preserve the source PNGs and bind each to a 32-by-32 weighted grid. Authored 17/20/16 bones and six clips per form in `assets/bosses/hellstar-rigs.js`; added sampler, WebGL/Canvas renderer and dedicated preview. Same-form clip selection preserves the idle clock. Export reuses one renderer to avoid accumulating GPU contexts. Transitions contract and crossfade rather than claiming a newly painted anatomical morph.
+- **Verification:** 2,178 numerical samples cover weights, rest placement, loop pose/velocity, action boundaries, frame bounds and positive triangle winding. Chromium rendered 72 samples across 18 clips; exercised live playback, all-form sequence, bone controls, rest/wire overlays, 320/390/768px layouts, reduced motion, missing art and direct-file Canvas fallback. Inspected three contact sheets and bone placement. All 18 exported sheets are 1536-square RGBA with true alpha; three JSON exports retain mesh weights. No page exceptions. Existing bestiary authoring/parity checks pass; their 16 attachment review notes remain separate.
+- **Rule for next time:** choose the rig method from the actual art. A continuous mesh preserves joins but cannot reveal hidden surfaces. Keep animation assets, sampled sheets and combat integration distinct; inspect rendered extrema as well as numerical transforms.
+
+### 2026-10-25 · Three Hellstar stills · final Eye framing
+- **Reported problem:** the new final Eye sprite placed outer ribs too close to the left and right boundaries despite a requested transparent margin.
+- **Original generation:** 1254 × 1254 RGBA; visible-art bounds at alpha > 127 were `[10,132,1246,1127]`. The first two stages were retained, with distinct connected silhouettes and recognisable Ainsel features.
+- **Root cause:** generated framing did not follow the requested percentage safety margin.
+- **Solution implemented:** a built-in image edit requested the complete creature within the central 78% of the image, preserving the spinal iris, three anchors and tiny face. Retained final-form bounds are `[56,184,1206,1097]`; output is `assets/bosses/hellstar-stage-3-listeners-eye.png`. The margin improved but did not match the requested 11% exactly. No code-based raster edits were made.
+- **ChatGPT revision:** prompts, retained asset links and measurements are in [the three-stage generation record](../../../../docs/sprite-requests/hellstar-three-stages-2026-10-25.md).
+- **Verification:** all three outputs are 1254-square RGBA with true transparent pixels. Inspected browser rendering against both light and dark backgrounds; visible anatomy is complete and the three forms read distinctly. Very faint alpha reaches some source edges, so these are source stills rather than trimmed atlas-ready parts. No battle integration or animation claim.
+- **Rule for next time:** inspect actual alpha and rendered contours separately; do not assume an image-generation margin instruction was obeyed. Retain full anatomical source images and apply any deliberate viewport crop only during integration.
+
+### 2026-10-25 · Hellstar combined battle sprite
+- **Reported problem:** the final boss lacked scale and appeared as three separate sprites.
+- **Original generation:** arena formation placed Ainsel, the Hellstar and its Tongue in three equal rows, each with its own image or rig.
+- **Root cause:** presentation assumed one sprite per combatant; the Tongue reference also included a fragment of the Hellstar's mouth.
+- **Solution implemented:** generated one connected transparent sprite with Ainsel fused into the left surface and a continuous tongue. The final encounter renders one canvas, with three independent numbered buttons mapped to existing enemy IDs. Region masks dim defeated parts; regrowth redraws living art. One subtle eight-second idle breath respects reduced motion. Existing individual rigs remain unchanged.
+- **ChatGPT revision:** built-in generation used all three embedded portraits as identity/style references. Prompt and output are recorded in [the generation record](../../../../docs/sprite-requests/hellstar-combined-2026-10-25.md). Output is 1254 × 1254 RGBA with 544,348 fully transparent pixels, rather than the requested 1536 square. It is assembled artwork, not a packed atlas or a new bone rig.
+- **Verification:** browser inspection at 1440, 768, 390 and 320px across three formations; one canvas, three unobstructed 44px-minimum targets, separate damage/status state, defeat/regrowth and reduced motion. Party details remain outside the artwork.
+- **Rule for next time:** separate shared artwork from combat state. Mirror hit regions with the image and test each region after death and regrowth; never infer shared HP from a shared sprite.
+
 ### 2026-10-25 · Platform routing and Kiri source sheet
 - **Reported problem:** ChatGPT sessions were producing image handoff prompts instead of rendering player-character sheets.
 - **Original generation:** the skill said "Sprite sheet art is generated in ChatGPT, not here" and always asked the user to copy a prompt elsewhere.

@@ -72,3 +72,12 @@ The design doc's rule is that every classic JRPG beat is kept and played as slow
 - For party member sprite sheets and portraits, use the `party-art` skill in [`.claude/skills/party-art/`](.claude/skills/party-art/SKILL.md). Every character follows its fixed frame and portrait-state standard.
 - Match the surrounding code's style, naming and comment density.
 - When a request is a design question, answer as a designer: give a recommendation, the precedent behind it, and the trade-off.
+
+## Engineering principles
+
+- **YAGNI:** Don't build it until you need it.
+- **DRY:** Extract patterns after the second duplication, not before.
+- **Fail explicitly:** Explicit errors beat silent failures.
+- **Simple first:** Write the obvious solution; optimize only when needed.
+- **Delete aggressively:** Less code means fewer bugs. Remove unused or obsolete code.
+- **Semantic naming:** Always give variables, parameters and API endpoints verbose, self-documenting names that optimize for comprehension by both humans and LLMs, not brevity. For example, prefer `wait_until_observation_is_true=true` over `wait=true`.

@@ -143,6 +143,8 @@ Battles use a CTB system like FFX. Time stops while you choose a command. A Turn
 
 **Battle arena.** Combatants share one arena, following the classic Final Fantasy side view: enemies on the left and the active party on the right. Pincer formations split the party across both sides of the enemies. Ambush formations place the party on the left with their backs to enemies on the right; each character turns toward the enemy when they act. The prototype's Formation selector restarts the encounter in the selected layout. These formations change staging only, with no turn-order or damage modifiers. HP, enemy intentions and party status stay readable in panels beneath the arena.
 
+**Multipart boss presentation.** The prototype's final encounter presents Ainsel, the Hellstar and its Tongue as one giant connected sprite, following Final Fantasy's multipart bosses. Numbered regions on the body select separate combatants: each retains its own HP, stats, moves, planned turn, Break and supported status effects. Matching numbered panels show the full details. Defeated regions darken and stop accepting attacks; the Tongue's existing regrowth restores its region. Formation changes move or mirror the whole body and its target regions together. This presentation does not implement the three sequential story forms described in Chapter 27.
+
 **Delay.** Every action has a Delay value: the higher it is, the longer until that character acts again.
 
 | Action | Delay |

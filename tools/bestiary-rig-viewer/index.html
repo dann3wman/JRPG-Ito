@@ -83,6 +83,9 @@ aside { display: grid; gap: 14px; min-width: 0; }
 .tray { display: grid; gap: 10px; }
 .tray h2 { font-family: var(--f-ui); font-weight: 400; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); margin: 0; }
 .parts { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; }
+.parts.mesh-parts { display:flex; flex-wrap:wrap; align-items:center; gap:24px; }
+.parts.mesh-parts canvas { width:min(240px,100%); height:auto; }
+.parts.mesh-parts p { flex:1 1 240px; max-width:40ch; }
 .part { display: grid; gap: 4px; justify-items: center; background: var(--niche); border: 1px solid var(--rule); border-radius: 2px; padding: 8px 4px 6px; }
 .part:hover { border-color: var(--faint); }
 .part:disabled { cursor: default; opacity: .55; }
@@ -145,9 +148,11 @@ aside { display: grid; gap: 14px; min-width: 0; }
           <button id="hitPreview" type="button">Preview hit</button>
           <label><input type="checkbox" id="tBounds"> Bounds</label>
           <label><input type="checkbox" id="tFitFX"> Fit effects</label>
+          <label id="meshToggle" hidden><input type="checkbox" id="tMesh"> Mesh</label>
         </div>
       </div>
       <div class="markers" id="markers" aria-label="Clip markers"></div>
+      <div class="markers" id="meshExports" hidden><button id="exportMesh" type="button">Export weighted rig</button><button id="exportMeshSheet" type="button">Export 16-frame PNG</button></div>
       <details class="card editor" id="editor">
         <summary>Rig authoring</summary>
         <p>Edits stay in this tab. Export a patch to keep them. Setup uses the rest pose; animation previews the clip.</p>
@@ -220,11 +225,15 @@ aside { display: grid; gap: 14px; min-width: 0; }
   </div>
 
   <section class="tray">
-    <h2>Parts on this rig</h2>
+    <h2 id="partsTitle">Parts on this rig</h2>
     <div class="parts" id="parts"></div>
   </section>
 </div>
 
+<script src="../../assets/bosses/hellstar-rigs.js"></script>
+<script src="mesh-skin.js"></script>
+<script src="mesh-renderer.js"></script>
+<script src="hellstar.js"></script>
 <script>
 window.addEventListener('error', event => {
   const message = document.getElementById('loading');
@@ -1331,6 +1340,7 @@ const ap = (m, x, y) => [m[0]*x + m[2]*y + m[4], m[1]*x + m[3]*y + m[5]];
 const inv = m => { const d = m[0]*m[3] - m[1]*m[2]; return [m[3]/d, -m[1]/d, -m[2]/d, m[0]/d, (m[2]*m[5]-m[3]*m[4])/d, (m[1]*m[4]-m[0]*m[5])/d]; };
 
 // ===== state =====
+installHellstarRigs(RIGS, ATLAS);
 const IMG = {};
 const st = { arena: 'none', boss: 'ainsel', anim: 'idle', t: 0, clock: 0, blend: null, blendAt: 0, hitAt: -1, once: false, playing: true, speed: 1, manual: {}, sel: null, hover: null, drag: null, view: null };
 try { const s = JSON.parse(localStorage.getItem('rigviewer') || '{}'); if (RIGS[s.boss]) st.boss = s.boss; } catch (e) {}
@@ -1692,14 +1702,14 @@ function loadBg(id) {
 }
 function getView(rig) {
   if (st.view && st.view.boss === st.boss && st.view.arena === st.arena) return st.view.m;
-  const [x0, y0, x1, y1] = $('tFitFX').checked ? (rig._fxBounds || (rig._fxBounds = animationBounds(rig, true))) : (rig._bounds || (rig._bounds = computeBounds(rig)));
+  const [x0, y0, x1, y1] = rig.mesh ? [-60,-60,1060,1060] : $('tFitFX').checked ? (rig._fxBounds || (rig._fxBounds = animationBounds(rig, true))) : (rig._bounds || (rig._bounds = computeBounds(rig)));
   const w = x1 - x0, h = y1 - y0, A = ARENAS[st.arena];
   let m;
   if (A.file) {
     const k = Math.min(CW * 0.8 / w, CH * A.height / h);
     m = [k, 0, 0, k, CW / 2 - k * (x0 + x1) / 2, CH * A.bottom - k * y1];
   } else {
-    const pad = 0.12, k = Math.min(CW * (1 - 2 * pad) / w, CH * (1 - 2 * pad) / h);
+    const pad = rig.mesh ? .04 : .12, k = Math.min(CW * (1 - 2 * pad) / w, CH * (1 - 2 * pad) / h);
     m = [k, 0, 0, k, CW / 2 - k * (x0 + x1) / 2, CH / 2 - k * (y0 + y1) / 2 + CH * 0.01];
   }
   st.view = { boss: st.boss, arena: st.arena, m }; return m;
@@ -1805,6 +1815,7 @@ function drawBones(rig, M, V) {
   for (const b of rig.bones) {
     const j = ap(mul(V, M[b.id]), 0, 0);
     joints.push({ id: b.id, x: j[0], y: j[1] });
+    if(rig.mesh&&b.p){const parent=ap(mul(V,M[b.p]),0,0);ctx.beginPath();ctx.moveTo(...parent);ctx.lineTo(...j);ctx.strokeStyle=acc;ctx.lineWidth=1.5;ctx.stroke();}
     if (!b.img) continue;
     const tp = tipOf(rig, b);
     if (tp) {
@@ -1832,6 +1843,31 @@ function drawBones(rig, M, V) {
 const LABELS = { upperArmL: 'upper arm L', upperArmR: 'upper arm R', forearmL: 'forearm L', forearmR: 'forearm R', handL: 'hand L', handR: 'hand R', pipesL: 'pipes left', pipesC: 'pipes centre', pipesR: 'pipes right', finL: 'fin L', finR: 'fin R', crozierFx: 'crozier (fx)', scree1: 'falling scree 1', scree2: 'falling scree 2', pull: 'the pull', anc1: 'ancestor head 1', anc2: 'ancestor head 2', anc3: 'ancestor head 3', anc4: 'ancestor head 4', anc5: 'ancestor head 5', drowned: 'drowned figures', fig1: 'drowned 1', fig2: 'drowned 2', fig3: 'drowned 3', fig4: 'drowned 4', fig5: 'drowned 5', fig6: 'drowned 6', body: 'body', bodyBack: 'body (back wall)', bodyGlass: 'body (glass skin)', glass: 'glass skin', stream1: 'water stream 1', stream2: 'water stream 2', fist: 'hand R (grip)', skirt: 'vestment skirt', head: 'head', rock: 'rock face', lock1: 'hair lock 1', lock2: 'hair lock 2', lock3: 'hair lock 3', lock4: 'hair lock 4', root: 'root' };
 const label = id => LABELS[id] || id.replace(/(\d)/, ' $1');
 
+let meshRenderer;
+function meshFrame(rig,P,M){
+  const source=HellstarRigs.rigs[rig.mesh],mesh=meshRenderer.getMesh(rig.mesh);
+  const matrices=source.bones.map(b=>mul(M[b.id],T(-b.at[0]-(rig.byId[b.id].pv?.[0]||0),-b.at[1]-(rig.byId[b.id].pv?.[1]||0))));
+  return {rig:source,mesh,matrices,points:HellstarSkin.skin(mesh,matrices),opacity:P.root.a};
+}
+function renderMeshRig(rig,P,M,V,showSprites){
+  meshRenderer ||= new HellstarRenderer(cv);
+  meshRenderer.screen = p => ap(V,...p).map(n=>n*dpr);
+  const f=meshFrame(rig,P,M);
+  ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
+  if(showSprites)meshRenderer.draw(IMG[rig.key],f);
+  const next=rig.anims[st.anim].next;
+  if(showSprites&&next&&IMG[next]&&st.mode!=='setup'){
+    const nextRig=RIGS[next],sample=evalAnim(nextRig,'idle',0,0);
+    meshRenderer.draw(IMG[next],meshFrame(nextRig,sample.P,solve(nextRig,sample.P)),1-f.opacity);
+  }
+  if($('tMesh').checked||!showSprites)meshRenderer.overlays(f,{wire:true});
+  if($('tBounds').checked){ctx.setTransform(dpr,0,0,dpr,0,0);const p=ap(V,0,0);ctx.strokeStyle='#ebe3d4';ctx.strokeRect(...p,1000*V[0],1000*V[3]);}
+  if($('tRef').checked){ctx.setTransform(dpr,0,0,dpr,0,0);const size=Math.min(CW*.2,CH*.24);ctx.drawImage(IMG[rig.key],CW-size-12,12,size,size);}
+  if($('tBones').checked)drawBones(rig,M,V);else joints=[];
+  drawAuthoring(rig,P,[],M,V);
+  if(st.sel){const b=HellstarRigs.rigs[rig.mesh].bones.find(b=>b.id===st.sel),p=ap(V,...ap(M[b.id],0,0));ctx.setTransform(dpr,0,0,dpr,0,0);ctx.strokeStyle=accentRGB();ctx.setLineDash([4,4]);ctx.beginPath();ctx.ellipse(...p,b.radius[0]*V[0],b.radius[1]*V[3],0,0,TAU);ctx.stroke();ctx.setLineDash([]);}
+  $('hud').innerHTML=`<b>${rig.bones.length}</b> bones · <b>1</b> weighted sprite · ${rig.anims[st.anim].label}`;
+}
 function render() {
   const rig = RIGS[st.boss], A = rig.anims[st.anim];
   if (!IMG[st.boss] || !CW) return;
@@ -1846,6 +1882,7 @@ function render() {
   drawArena();
   ctx.imageSmoothingEnabled = !document.getElementById('tCrisp').checked;
   ctx.imageSmoothingQuality = 'high';
+  if(rig.mesh){renderMeshRig(rig,P,M,V,showS);return;}
   const AR = ARENAS[st.arena];
   if (showS && AR.water && BG[st.arena]) {
     // reflection: mirror the rig about the waterline it floats over, fading with depth
@@ -1992,7 +2029,7 @@ function buildTabs() {
 function buildClips() {
   const rig = RIGS[st.boss]; $('clips').innerHTML = '';
   for (const k in rig.anims) { const a = rig.anims[k], b = document.createElement('button'); b.type = 'button'; b.className = 'clip'; b.setAttribute('aria-pressed', k === st.anim);
-    b.innerHTML = `<span class="nm">${a.label}</span><span class="du">${a.dur.toFixed(1)} s</span><span class="fxs">${a.fx ? 'FX · ' + a.fx.map(label).join(', ') : 'Loop · bones only'}</span>`;
+    b.innerHTML = `<span class="nm">${a.label}</span><span class="du">${a.dur.toFixed(1)} s</span><span class="fxs">${rig.mesh ? (k==='idle'?'Loop':'Action')+' · weighted bones' : a.fx ? 'FX · ' + a.fx.map(label).join(', ') : 'Loop · bones only'}</span>`;
     b.onclick = () => playClip(k); $('clips').append(b); }
 }
 function playClip(name) {
@@ -2013,10 +2050,13 @@ function buildTree() {
     const kids = rig.kids[b.id] || [];
     kids.forEach((c, i) => walk(c, b.p ? pre + (last ? '  ' : '│ ') : '', i === kids.length - 1));
   };
-  walk(rig.bones[0], '', true);
+  rig.bones.filter(b => !b.p).forEach((b, i, roots) => walk(b, '', i === roots.length - 1));
 }
 function buildParts() {
   const rig = RIGS[st.boss], el = $('parts'); el.innerHTML = '';
+  el.classList.toggle('mesh-parts',!!rig.mesh);
+  $('partsTitle').textContent=rig.mesh?'Weighted skin':'Parts on this rig';
+  if(rig.mesh){const c=document.createElement('canvas');c.width=c.height=240;c.getContext('2d').drawImage(IMG[st.boss],0,0,240,240);el.append(c);const note=document.createElement('p');note.textContent='One continuous sprite. '+rig.bones.length+' bones deform its connected mesh; select them in the Skeleton list.';el.append(note);return;}
   const fxs = new Set(); Object.values(rig.anims).forEach(a => (a.fx || []).forEach(f => fxs.add(f)));
   const bonesByImg = {}; rig.bones.forEach(b => b.img && (bonesByImg[b.img] = b.id));
   const order = [...rig.bones.filter(b => b.img).map(b => b.img), ...fxs, ...Object.keys(ATLAS[st.boss])].filter((n, i, arr) => arr.indexOf(n) === i);
@@ -2045,12 +2085,14 @@ function setBoss(k) {
   st.boss = k; st.anim = 'idle'; st.t = 0; st.clock = 0; st.blend = null; st.blendAt = 0; st.hitAt = -1; st.once = false; st.manual = {}; st.sel = null; st.view = null; st.playing = !matchMedia('(prefers-reduced-motion: reduce)').matches;
   try { localStorage.setItem('rigviewer', JSON.stringify({ boss: k })); } catch (e) {}
   const rig = RIGS[k];
+  $('meshToggle').hidden=$('meshExports').hidden=!rig.mesh;
   if (st.mode === 'setup') st.playing = false;
   document.documentElement.style.setProperty('--accent', rig.accent);
   $('bossTitle').textContent = rig.name; $('lore').textContent = rig.lore;
   buildTabs(); buildClips(); buildTree(); syncPlay(); syncEditor();
   setArena(rig.arena || 'none');
   load(k).then(ok => { if (st.boss !== k) return; if (ok) { buildParts(); $('loading').hidden = true; } });
+  if(rig.mesh&&rig.anims.transition.next)load(rig.anims.transition.next);
 }
 const loads = {};
 function load(k) {
@@ -2064,9 +2106,9 @@ function load(k) {
       for (const a of Object.values(RIGS[k].anims)) for (const name of a.fx || []) partImage(partCache, k, name, im);
       res(true);
     };
-    im.onerror = failed; im.src = k + '.webp';
+    im.onerror = failed; im.src = RIGS[k].sheet || k + '.webp';
   });
-  if (!IMG[k]) $('loading').hidden = false;
+  if (!IMG[k]&&st.boss===k) $('loading').hidden = false;
   return loads[k];
 }
 function buildArenas() {
@@ -2139,6 +2181,27 @@ $('patchFile').onchange = async () => {
   $('patchFile').value = '';
 };
 $('tFitFX').onchange = () => { st.view = null; render(); };
+$('tMesh').onchange = render;
+$('exportMesh').onclick=()=>{
+  const rig=RIGS[st.boss];meshRenderer ||= new HellstarRenderer(cv);
+  const payload={version:2,creature:st.boss,source:HellstarRigs.rigs[rig.mesh],definition:snapshotRig(rig),mesh:meshRenderer.getMesh(rig.mesh)};
+  const url=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=st.boss+'.rig.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+$('exportMeshSheet').onclick=async()=>{
+  const rig=RIGS[st.boss],name=st.anim,clip=rig.anims[name],cell=document.createElement('canvas'),sheet=document.createElement('canvas');cell.width=cell.height=384;sheet.width=sheet.height=1536;
+  const renderer=new HellstarRenderer(cell),g=sheet.getContext('2d');meshRenderer ||= new HellstarRenderer(cv);
+  try{
+    for(let i=0;i<16;i++){
+      const t=clip.dur*i/(name==='idle'?16:15),sample=evalAnim(rig,name,t,t);renderer.clear();renderer.draw(IMG[rig.key],meshFrame(rig,sample.P,solve(rig,sample.P)));
+      if(clip.next&&IMG[clip.next]){const next=RIGS[clip.next],e=evalAnim(next,'idle',0,0);renderer.draw(IMG[next.key],meshFrame(next,e.P,solve(next,e.P)),1-sample.P.root.a);}
+      g.drawImage(cell,(i%4)*384,Math.floor(i/4)*384);
+    }
+    const blob=await new Promise(resolve=>sheet.toBlob(resolve));if(!blob)throw Error('No image');
+    const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=st.boss+'-'+name+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    $('editStatus').textContent='Exported 16 transparent frames, including current authored edits.';
+  }catch(error){$('editStatus').textContent='PNG export needs an HTTP origin. Serve the repository with python -m http.server 8771, then open this same viewer at localhost:8771.';}
+  finally{if(renderer.gl)renderer.gl.getExtension('WEBGL_lose_context')?.loseContext();}
+};
 $('playBtn').onclick = () => { if (st.mode === 'setup') { st.mode = 'animation'; $('editMode').value = st.mode; syncEditor(); } st.playing = !st.playing; syncPlay(); };
 $('scrub').oninput = e => { const A = RIGS[st.boss].anims[st.anim]; st.mode = 'animation'; $('editMode').value = st.mode; st.t = e.target.value / 1000 * A.dur; st.clock = st.t; st.blend = null; st.hitAt = -1; st.playing = false; syncPlay(); syncEditor(); };
 $('hitPreview').onclick = () => { st.mode = 'animation'; $('editMode').value = st.mode; st.hitAt = st.clock; st.playing = true; syncPlay(); syncEditor(); };
@@ -2222,7 +2285,8 @@ function advanceViewer(dt) {
   if (st.playing) {
     st.t += dt * st.speed; st.clock += dt * st.speed;
     if (st.t >= A.dur) {
-      if (st.once && A.timing?.holdEnd) { st.t = A.dur; st.playing = false; syncPlay(); }
+      if(st.once&&A.next){setBoss(A.next);return;}
+      else if (st.once && A.timing?.holdEnd) { st.t = A.dur; st.playing = false; syncPlay(); }
       else if (st.once) { st.anim = 'idle'; st.once = false; st.blend = null; st.t = loopTime(st.clock, RIGS[st.boss].anims.idle.dur); buildClips(); syncEditor(); }
       else st.t %= A.dur;
     }

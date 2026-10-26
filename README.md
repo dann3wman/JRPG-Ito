@@ -8,6 +8,10 @@ Open [`tools/index.html`](tools/index.html) for the developer tool launcher, wit
 
 Open `index.html` in a browser. There is no build step. Portrait art is embedded in the page as data URIs. Animated enemies load their sprite sheets from `tools/bestiary-rig-viewer/` (one copy shared with the rig viewer) and fall back to static art if a sheet is missing. The only external resource is Google Fonts.
 
+The final encounter loads its combined boss sprite from `assets/bosses/hellstar-combined.png`. Ainsel, the Eye and the Tongue are selectable regions on one body, with separate HP, moves and status panels. Keep the asset beside the prototype when copying the project.
+
+The three planned final-boss forms are **Hellstar I, II and III** in the existing [Bestiary Rig Viewer](tools/bestiary-rig-viewer/index.html). They use its playback, skeleton, joint dragging and rig-authoring controls, with 18 clips and PNG/JSON export. See the [rigging guide](docs/guides/hellstar-rigging.md). The battle still uses the combined encounter above.
+
 ## Checking a change
 
 The command-line tools need Node 18 or later and nothing else.

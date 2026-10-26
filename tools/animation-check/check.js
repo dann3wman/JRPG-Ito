@@ -42,7 +42,9 @@ for (const [key, rig] of Object.entries(rigs)) {
       }
       const transforms = viewer.get('solve')(rig, e.P, {});
       check(Object.values(transforms).every(m => m.every(Number.isFinite)), `${key}.${name}: invalid world transform`);
-      if (name !== 'idle' && (i === 0 || i === 60)) {
+      const timing = clip.timing || {};
+      const idleBoundary = (i === 0 && (timing.in ?? .12) > 0) || (i === 60 && !timing.holdEnd && (timing.out ?? .22) > 0);
+      if (name !== 'idle' && idleBoundary) {
         const idle = sample(rig, 'idle', clock).P;
         for (const bone of rig.bones) for (const f of fields) check(Math.abs(e.P[bone.id][f] - idle[bone.id][f]) < 1e-7, `${key}.${name}: action boundary differs from live idle`);
         check(e.F.every(f => !(f.a > 0.001)), `${key}.${name}: visible FX at boundary`);

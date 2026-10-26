@@ -310,6 +310,24 @@ button.arena-unit{cursor:pointer}
 .arena-unit.airborne .sprite{translate:0 -24px;opacity:.65}
 .arena-unit .fx{background:var(--paper);padding:0 4px;white-space:nowrap;font-size:clamp(13px,2vw,22px)}
 @media (max-width:480px){.arena-stage{height:300px}.arena-unit .unit-name{font-size:9px}.arena-head{font-size:10px}}
+.arena-stage.multipart{height:clamp(340px,48vw,570px);container-type:size}
+.arena-stage.multipart::before{content:"";position:absolute;inset:0;background:#15151566;z-index:-1;pointer-events:none}
+.boss-body{position:absolute;left:40%;top:50%;width:min(78%,94cqh);aspect-ratio:1;translate:-50% -50%}
+.multipart[data-formation="pincer"] .boss-body{left:50%;width:min(66%,94cqh)}
+.multipart[data-formation="ambush"] .boss-body{left:60%}
+.boss-body canvas{display:block;width:100%;height:100%;transform:scaleX(var(--face));animation:boss-breath 8s ease-in-out infinite}
+.boss-part{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);translate:-50% -50%;min-width:44px;min-height:44px;background:none;border:2px solid transparent;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;padding:2px;color:var(--ink)}
+.boss-part .part-name{background:var(--paper);border:1px solid var(--ink);padding:2px 5px;font:11px var(--f-mono);white-space:nowrap}
+.boss-part.targetable{border:2px dashed var(--hum-soft)}
+.boss-part:hover,.boss-part:focus-visible{border:2px solid var(--paper);outline:2px solid var(--hum);outline-offset:1px}
+.boss-part.acting .part-name{background:var(--hum);color:var(--paper)}
+.boss-part.dead .part-label{text-decoration:line-through}
+.boss-part .part-state{display:block;text-decoration:none;font-size:10px}
+.boss-part .fx{background:var(--paper);padding:2px 5px;white-space:nowrap}
+.boss-art-error{position:absolute;inset:8%;display:grid;place-content:start center;color:var(--paper);font:12px var(--f-mono);text-align:center}
+@keyframes boss-breath{50%{transform:scaleX(var(--face)) scaleY(1.012)}}
+@media(prefers-reduced-motion:reduce){.boss-body canvas{animation:none}}
+@media(max-width:480px){.boss-part .part-name{font-size:10px;padding:2px}.boss-part .part-state{font-size:9px}}
 </style>
 
 <div class="page">
@@ -1433,7 +1451,7 @@ const ENCOUNTERS = {
     brief:'Two Ruris, each claiming to be the one you killed. They attack each other more as one weakens, and Charm adds 12 Stress to whoever is closest to breaking. (Tomie)' },
   orlen: { lv:22, group:'Story bosses', title:'Lumen · Orlen and the Great Organ', foes:['orlen','organ'], hum:45, party:['kuro','sayo','natsu'],
     brief:'Orlen fills Overdrive as your party gains Stress; when full, he and the Organ attack together with Requiem. Counter-Melody makes him hold his voice, but the Organ will play into it to clear the way. Destroy the Organ and it is rebuilt 4 of his turns later. (Honored Ancestors · The Human Chair)' },
-  final: { lv:32, group:'Story bosses', title:'The Hellstar · Final battle', foes:['unwound','hellstar','tongue'], hum:90, party:['kiri','natsu','kugai'],
+  final: { lv:32, group:'Story bosses', title:'The Hellstar · Final battle', foes:['unwound','hellstar','tongue'], body:'hellstar', hum:90, party:['kiri','natsu','kugai'],
     brief:'The Hellstar marks a target with Gaze, then Devours it, but only while its Tongue is attached. Blink on the marked ally makes it look elsewhere. Sever the Tongue to buy time; it regrows. Its Overdrive fills as your party gains Stress. (Uzumaki · Hellstar Remina)' },
   t_kiri: { lv:8, group:'Role tests', role:'kiri', title:'Test · Spiral Ringer', foes:['bell'], hum:40, party:['kiri','tetsugi','hisui'],
     brief:'It adds 6 Danger every turn, and each Toll adds 14 Stress. High Danger makes Spiral Cut hit harder, and Lullaby clears the Stress. (Uzumaki)' },
@@ -2545,6 +2563,52 @@ const FORMATIONS = {
   pincer:'Pincer: party on both sides, enemies in the middle.',
   ambush:'Ambush: party left, backs turned until they act.'
 };
+// Artwork and hit regions are presentation data; every part keeps its own combatant.
+const BOSS_BODIES = {
+  hellstar:{src:'assets/bosses/hellstar-combined.png', parts:{
+    unwound:{number:1,label:'Ainsel',x:39,y:57,w:36,h:31,mask:[[0,32],[42,30],[66,62],[65,100],[0,100]]},
+    hellstar:{number:2,label:'Eye',x:72,y:29,w:35,h:30,mask:[[42,0],[100,0],[100,62],[66,62],[42,30]]},
+    tongue:{number:3,label:'Tongue',x:83,y:81,w:29,h:29,mask:[[68,52],[86,57],[100,74],[100,100],[65,100],[75,80]]}
+  }}
+};
+const bossImages = new Map();
+function bossBody(){ return BOSS_BODIES[G.enc.body]; }
+function bossPart(u){ return bossBody()?.parts[u.key]; }
+function drawBossBody(){
+  const body = bossBody(), canvas = $('#bossCanvas');
+  if (!body || !canvas) return;
+  let img = bossImages.get(body.src);
+  if (!img){
+    img = new Image(); bossImages.set(body.src,img);
+    img.onload = () => { if (G && bossBody()===body) drawBossBody(); };
+    img.onerror = () => { if (G && bossBody()===body) drawBossBody(); };
+    img.src = body.src;
+  }
+  if (!img.complete) return;
+  const error = $('#bossArtError');
+  if (!img.naturalWidth){ if (error) error.hidden = false; return; }
+  if (error) error.hidden = true;
+  canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img,0,0);
+  G.enemies.filter(u=>!u.alive && bossPart(u)).forEach(u=>{
+    ctx.save(); ctx.beginPath();
+    bossPart(u).mask.forEach(([x,y],i)=>ctx[i?'lineTo':'moveTo'](x*canvas.width/100,y*canvas.height/100));
+    ctx.closePath(); ctx.clip(); ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.filter = 'grayscale(1) brightness(.35)'; ctx.drawImage(img,0,0); ctx.restore();
+  });
+}
+function bossHtml(){
+  if (!bossBody()) return '';
+  const flip = G.formation==='ambush';
+  return `<div class="boss-body" style="--face:${flip?-1:1}"><canvas id="bossCanvas" role="img" aria-label="The Hellstar, with Ainsel fused into its body and its Tongue extending from its mouth"></canvas><span id="bossArtError" class="boss-art-error" hidden>Boss artwork unavailable. The three targets remain available.</span>${G.enemies.filter(bossPart).map(u=>{
+    const p = bossPart(u), tgt = G.menu==='target' && G.act?.target==='enemy' && u.alive;
+    const parent = G.enemies.find(e=>e.id===u.parentId), turns = parent?.respawn[u.id];
+    const state = !u.alive ? (turns ? `Re-forms in ${turns}` : 'Defeated') : u.broken>0 ? 'Broken' : '';
+    const label = `${tgt?'Target ':''}${u.name}, HP ${u.hp}/${u.maxhp}${state?', '+state:''}${tgt?'':', stats and decision tree'}`;
+    return `<button type="button" class="boss-part${tgt?' targetable':''}${u===G.current?' acting':''}${!u.alive?' dead':''}${shaking(u.id)}" data-unit="${u.id}" data-part="${u.key}" data-${tgt?'ft':'info'}="${u.id}" aria-label="${esc(label)}" style="--x:${flip?100-p.x:p.x}%;--y:${p.y}%;--w:${p.w}%;--h:${p.h}%"><span class="part-name"><span class="part-label">${p.number} · ${p.label}</span>${state?`<span class="part-state">${state}</span>`:''}</span>${fxHtml(u.id)}</button>`;
+  }).join('')}</div>`;
+}
 const arenaSprites = new Map();
 function arenaSprite(id, src){
   if (arenaSprites.has(id)) return arenaSprites.get(id);
@@ -2582,14 +2646,18 @@ function arenaPositions(){
   const party = actives().map((u,i)=>({u, x:pincer ? (i%2 ? 88 : 12) : ambush ? 16+i*5 : 76+i*5,
     y:pincer ? (i%2 ? 35 : 56-Math.floor(i/2)*42) : 58-i*25, w:12, h:pincer?26:24,
     face:pincer ? (i%2 ? -1 : 1) : ambush && G.turned.includes(u.id) ? 1 : -1}));
+  if (bossBody()){
+    party.forEach((p,i)=>{ p.x = pincer ? (i%2?92:8) : ambush ? 12-i*2 : 84+i*2; p.w=10; p.h=20; });
+  }
   return [...enemies,...party.filter(p=>!p.u.fled)];
 }
 function renderArena(){
   const stage = $('#arenaStage');
   const bg = window.RigAnim ? RigAnim.arenaFor(G.enemies[0].art) : 'hillside';
   stage.style.backgroundImage = `url("tools/bestiary-rig-viewer/bg_${bg}.webp")`;
-  $('#arenaCaption').textContent = FORMATIONS[G.formation];
-  stage.innerHTML = arenaPositions().map(p=>{
+  stage.classList.toggle('multipart',!!bossBody()); stage.dataset.formation = G.formation;
+  $('#arenaCaption').textContent = bossBody() ? `The Hellstar · One body, three targets. ${FORMATIONS[G.formation]}` : FORMATIONS[G.formation];
+  stage.innerHTML = bossHtml() + arenaPositions().filter(p=>!bossPart(p.u)).map(p=>{
     const u = p.u, enemy = u.side==='enemy';
     const tgt = G.menu==='target' && G.act && (enemy ? G.act.target==='enemy' && u.alive :
       (G.act.target==='ally' && u.alive && !u.airborne) || (G.act.target==='ko' && !u.alive && !u.fled));
@@ -2604,12 +2672,15 @@ function renderArena(){
     return `<${tag} class="arena-unit${enemy?' enemy':' ally'}${tgt?' targetable':''}${u===G.current?' acting':''}${!u.alive?' dead':''}${u.airborne?' airborne':''}" ${tag==='button'?'type="button"':''} ${action} aria-label="${esc(label)}" data-unit="${u.id}" data-facing="${p.face===1?'right':'left'}" style="--x:${p.x}%;--y:${p.y}%;--w:${p.w}%;--h:${p.h}%;--face:${p.face};z-index:${100-Math.round(p.y)}">
       ${visual}<span class="unit-name">${esc(u.name)}${state?' · '+state:''}</span>${fxHtml(u.id)}</${tag}>`;
   }).join('');
+  drawBossBody();
   if (window.RigAnim){ RigAnim.forget(new Set(G.enemies.map(x=>x.id))); RigAnim.mount(stage,new Set(G.enemies.filter(x=>!x.alive).map(x=>x.id))); }
 }
 window.render_game_to_text = () => JSON.stringify(G && {
   state:G.state, menu:G.menu, formation:G.formation, current:G.current && G.current.id,
-  coordinates:'Percent of arena; x from left, y from bottom; x is center, y is feet.',
-  units:arenaPositions().map(p=>({id:p.u.id, side:p.u.side, x:p.x, y:p.y, facing:p.face===1?'right':'left', hp:p.u.hp, alive:p.u.alive, airborne:!!p.u.airborne})),
+  coordinates:'Percent of arena; x from left, y from bottom; x is center, y is feet. Shared-body regions use image percentages from top left.',
+  body:G.enc.body || null,
+  parts:G.enemies.filter(bossPart).map(u=>({id:u.id,key:u.key,region:bossPart(u),hp:u.hp,maxhp:u.maxhp,alive:u.alive,weak:u.weak,acid:u.acid,broken:u.broken,plan:u.plan?.skill,respawn:G.enemies.find(e=>e.id===u.parentId)?.respawn[u.id] || 0})),
+  units:arenaPositions().map(p=>({id:p.u.id, side:p.u.side, ...(bossPart(p.u)?{body:G.enc.body}:{x:p.x,y:p.y}), facing:p.face===1?'right':'left', hp:p.u.hp, alive:p.u.alive, airborne:!!p.u.airborne})),
   turnOrder:forecast(16,G.preview).map(f=>f.u.id)
 });
 function render(){
@@ -2631,7 +2702,7 @@ function render(){
     if (!e.alive) tags.push('Defeated');
     return `<${tag} class="foe${e.alive?'':' dead'}${tgt?' targetable':''}${G.current===e?' acting':''}${shaking(e.id)}${recOn() ? recCls(e) : ''}" ${tgt?`type="button" data-ft="${e.id}" aria-label="Target ${esc(e.name)}"`:`type="button" data-info="${e.id}" aria-label="${esc(e.name)}: stats and decision tree"`}>
       ${fxHtml(e.id)}
-      <div class="body"><div class="nm">${esc(e.name)}</div>
+      <div class="body"><div class="nm">${bossPart(e)?bossPart(e).number+' · ':''}${esc(e.name)}</div>
       <div class="meta"><span>HP ${e.hp}/${e.maxhp}</span></div><div class="intent">${tags.map(x=>`<span>${esc(x)}</span>`).join('')}</div>${bar(e.hp,e.maxhp)}${tgt?'':'<span class="ihint">Tap for info</span>'}</div></${tag}>`;
   }).join('');
   renderArena();
@@ -2829,7 +2900,7 @@ function renderCmd(){
     if (want){ const k = want.replace(/[\[\]]/g,''); h = h.replace(new RegExp(`class="btn ([^"]*)"([^>]*?)${k.replace(/[.*+?^${}()|]/g,'\\$&')}`), (m, c, rest) => `class="btn rec ${c}"${rest}${k}`); }
     h += `<div class="advice" role="note"><b>Helper · ${esc(label)}${esc(tname)}</b><span>${esc(r.why)}</span></div>`;
   }
-  h += `<p class="desc" id="desc">${G.menu==='swap' ? `Swap ${u.name} out at no cost. The incoming character takes this turn.` : G.menu==='target' ? 'Select a highlighted card.' : 'Hover a command for details.'}</p>`;
+  h += `<p class="desc" id="desc">${G.menu==='swap' ? `Swap ${u.name} out at no cost. The incoming character takes this turn.` : G.menu==='target' ? 'Select a highlighted target.' : 'Hover a command for details.'}</p>`;
   el.innerHTML = h;
 }
 

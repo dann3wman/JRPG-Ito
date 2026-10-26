@@ -16,6 +16,7 @@ node tools/data-export/export.js --check
 echo "== animation continuity and viewer/battle parity"
 node tools/animation-check/check.js
 node tools/animation-check/authoring.js
+node tools/animation-check/hellstar.js
 
 echo "== battle simulator smoke run (every encounter, 5 battles each)"
 node tools/battle-sim/sim.js -n 5 --strict > /dev/null

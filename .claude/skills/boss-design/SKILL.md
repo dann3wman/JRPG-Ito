@@ -58,6 +58,12 @@ Answer as a designer: the verdict, the precedent behind it, and the trade-off. B
 
 Newest first. Each entry: the fight, what the numbers or a playtest showed, the cause, what changed (exact values), and the rule it suggests.
 
+### 2026-10-25 · Shared final-boss body
+
+- **Seen:** three separately staged sprites made the final encounter read as a normal enemy group. One connected body with numbered regions gives it scale while preserving the tactical targets.
+- **Changed:** presentation only: `ENCOUNTERS.final.body` selects a shared canvas and three target regions. Combatant IDs, HP, stats, skill scripts, turn order, statuses and parent/regrowth rules are unchanged. Browser checks exercised separate damage, status state, Tongue defeat, three parent turns of regrowth and parent collapse.
+- **Rule:** a rendered body is not a combatant. Map regions to existing combatant IDs; keep intentions and status panels per target. The current Hellstar death rule collapses the Tongue but leaves a living Ainsel active, so keep his region selectable. Do not silently change this rule while changing the artwork.
+
 ### 2026-10-25 · Baseline survey of all 16 encounters
 
 - **Seen:** under the `no-role` policy, seven of twelve role tests (Kiri, Natsu, Goku, Hisui, Kuro, Kugai, Shio) are still won at least 93% of the time. Only Sayo's test truly needs its role (1%); Tetsugi's, Ren's and Miren's are partway (56–67%). Kuro's test teaches only by speed: it takes 33 commands without Darkga instead of 12.

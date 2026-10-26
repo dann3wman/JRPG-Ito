@@ -93,6 +93,10 @@ After **every** correction to a generated sprite animation or sheet, whether the
 
 ## Standing rules
 
+- When adding scale pulsation, test shrinking/defeat clips at independent idle-clock phases; additive idle offsets can invert a near-zero collapse scale. Keep transforms valid through the transparent tail (2026-10-25 Listener's Eye correction).
+- Register new boss forms in the existing Bestiary Rig Viewer and use its playback, Skeleton and authoring controls. A different skinning method does not justify a separate application page. Verify visible sprite motion through the user's actual file/HTTP launch path, not only nonzero bone matrices (2026-10-25 Hellstar integration correction).
+- For continuous interwoven art, a weighted mesh can preserve painted joins without a cut-out atlas. Validate normalized weights, bind placement, triangle winding and clip extrema; document that it cannot reveal hidden anatomy. See the 2026-10-25 Hellstar mesh-rig correction and [guide](../../../docs/guides/hellstar-rigging.md).
+
 Distilled from the corrections log. Check every new generation against these.
 
 - Route by runtime platform, not repository folder names: ChatGPT renders images; Claude supplies copy-paste prompts (2026-10-25 platform correction).
