@@ -28,7 +28,8 @@ Status key: **Built** matches the doc Â· **Partial** built with gaps or extras Â
 | Enemy Overdrive | Partial | Built for Orlen and the Hellstar; not in the doc |
 | Scan | Partial | The info panel shows the full script: the Disc 1 rule. Disc 2 hints and Disc 3 hint-only Scan: not built |
 | Boss HP phases | Partial | One phase change at 50%. The 20% phase (Disc 3) and superboss 75/50/25/10 phases need a second threshold |
-| Sphere Grid, AP, S.Lv, Spheres, Resolve | Not built | The encounter level scales stats as a stand-in |
+| Sphere Grid, AP, S.Lv, Spheres, Resolve | Not built | The encounter level scales stats as a stand-in. Sections, attunement, forks and spell placement are designed; open questions 9 and 10 |
+| Black Magic and White Magic menus | Built | Cure is White Magic; Dark and Darkga are Black Magic. A menu shows only while the character has a spell of its school; Silence disables it. The other 22 spells in the doc aren't built |
 | Speed above 150 lowers Delay | Not built | |
 | Materia, summons as systems, save points, inns, Phoenix Down count | Not built | |
 | Overworld, towns, dungeons, story scenes | Not built | |
@@ -160,3 +161,5 @@ Each needs a decision before it can be resolved in both the doc and the code. Re
 6. **Make the role tests canon?** *Recommendation:* yes, as optional fights that unlock each character's Sphere Grid arm (Bravely Default's asterisk fights, FFX's Cloister Trials as rooms to solve). Their Ito short-story sources are new material the doc doesn't use yet.
 7. **The final battle's shape.** The doc's three sequential forms are stronger as an Ito reveal: each form peels back a layer, ending in an enemy with no HP bar. The prototype's simultaneous fight is a stronger CTB puzzle. *Recommendation:* keep the doc's structure and reuse the prototype's Gaze and Devour as form 1's mechanics.
 8. **Lost Turns at or above 30 Danger?** *Recommendation:* the code's "30 and up" is easier to read on the meter (the dashed line sits at 30). Change the doc's wording.
+9. **Do borrowed sections dissolve the role answers?** From ring 3 (Ch. 12) a neighbour can learn a role's signature skill, so Disc 2 and 3 bosses built on "only X can" can be answered by a borrower. *Recommendation:* keep it. Persona and FFV make this the late-game pleasure, and the owner still does it better: higher stats, their Stress trait and their Limit Break. Each boss spec from Ch. 12 on should name both answers and test the borrower's with the simulator once the grid exists. Role tests (question 6) are a natural Gate: winning one opens that section's Gates to everyone.
+10. **Three attunement slots, or two?** Three slots for a party of three gives nine sections in play out of twelve, which may be close to "everything" by Disc 3. *Recommendation:* build with three, measure how often a party holds both schools' cores, and drop to two plus Deep Chorus if most Disc 3 parties carry every answer.

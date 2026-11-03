@@ -38,6 +38,7 @@ One name for each thing, and where it lives in the code. The prototype's code wa
 | **Untargetable** | A foe the party can't target or hit for now: underwater, at the helm, in the air. The card says why | `SCRIPTS[k].targetable`, `hidden`, `reachable`, `foesHittable` |
 | **Guest** | An ally who fights beside the party under their own AI: never Swapped, never targeted, no Stress Checks (Goku against the Grey Hound) | `ENCOUNTERS[k].guest`, `u.guest`, `SCRIPTS[k].guestTurn` |
 | **Sleep** | Loses the next turn(s). On the party it lasts 1 turn and a hit wakes them; on enemies it counts their turns | `u.sleep`, `e.sleep` |
+| **Black Magic / White Magic** | Battle menus for spells of each school, shown only while the character holds one; other commands sit under Skill | `SKILLS[k].school`, `SKILL_MENUS`, `menuOf` |
 | **Inflicted status** | Silence (no skills or Limit Breaks), Paralyze (loses the turn) or Confuse (attacks an ally), from an enemy attack, lasting a number of the owner's turns. Separate from Afflicted | `inflict`, `u.st`, `STATUS`, `statusTurn` |
 | **Round** | The time between two consecutive turns of a boss. "In the same round" means before the boss acts again | Per script: the boss's `onTurn` resets it |
 | **Whisper** | A command the Whisperer gives an ally; on their turn they obey it or Swap out | `u.whisper`, `SCRIPTS.whisperer.obey` |
@@ -56,7 +57,14 @@ These are in the design doc and not yet in the prototype.
 | Canon term | Meaning |
 | --- | --- |
 | **Sphere Grid** | The spiral board characters grow on; there are no levels |
-| **AP / S.Lv (Sphere Level)** | AP fills to grant S.Lv; each S.Lv moves one node |
+| **AP / S.Lv (Sphere Level)** | AP fills to grant S.Lv; each S.Lv activates one node next to an activated one |
+| **Section** | One character's arm of the grid: their skills, spells, stats and Limit Break levels. Twelve in all |
+| **Home section** | A character's own section, always attuned |
+| **Attuned** | A section a character currently holds (1 to 3, 4 with Deep Chorus). Only attuned sections can grow or lend skills; stat nodes apply either way |
+| **Retune** | Change attuned sections: free at a save point, or with a Return Sphere |
+| **Seam** | A crossing path between sections, open to everyone; holds the general abilities |
+| **Gate** | The Seam node that lets a character attune the section it touches |
+| **Fork / path / sealed** | Six sections split into two paths; taking one seals the other for that character |
 | **Deep node** | Ring 7 nodes with a permanent cost |
 | **Resolve** | Stat reducing Stress gained, 1% per point, up to 50% |
 | **Save point / camping** | Saving costs +10 Stress; three saves in one area spawn a copy |
@@ -80,6 +88,7 @@ These are in the design doc and not yet in the prototype.
 
 | Avoid | Use | Why |
 | --- | --- | --- |
+| Active (for sections) | Attuned | "Active" already means the three fighting |
 | Hum (for the meter) | Danger | "The hum" is the sound in the story. The meter is what the sound does to you |
 | Sanity, fear, panic | Stress | One meter, one word. "Stress" is plain enough to turn strange |
 | Level (for characters) | S.Lv, or the encounter's level in the prototype | The game has no character levels |
