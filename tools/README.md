@@ -9,7 +9,7 @@ Open the [developer tool launcher](index.html) to choose a tool, launch the batt
 | Tool | What it does |
 | --- | --- |
 | [`bestiary-rig-viewer/`](bestiary-rig-viewer/) | Previews the 22 bestiary creatures as bone rigs on their sprite sheets, with arena backdrops, animation clips, and a skeleton overlay. |
-| [`party-sprite-viewer/`](party-sprite-viewer/) | Plays and edits the party's sprite animations: a frame-by-frame timeline, frame library, timing, onion skin, guides, undo, and per-skill choreographies (such as Kiri's Spiral Cut): movement, afterimages, effect layers, cues and a stage dim, played against a training dummy. It also shows the derived Stone, Vanish, Mini and hit-flash looks and the 12 state portraits. Export the edits and apply them with `party_art.py anims`. Open with `?who=<id>`. |
+| [`party-sprite-viewer/`](party-sprite-viewer/) | Plays and edits the party's sprite animations: a frame-by-frame timeline, frame library, timing, onion skin, guides, undo, and per-skill choreographies (Kiri's Spiral Cut, Natsu's Cure): movement, afterimages, effect layers that can stay on stage, damage and heal cues and a stage dim, played against a training dummy or an ally. It also shows the derived Stone, Vanish, Mini and hit-flash looks and the 12 state portraits. Export the edits and apply them with `party_art.py anims`. Open with `?who=<id>`. |
 | [`ctb-planner/`](ctb-planner/) | Plans a fight's tempo: combatants with Speeds and cycles of Delays, pushes and pulls, Danger and Lost Turns, predicted with the battle's own turn-order rules. The URL holds the plan, so it can be linked from a boss spec. |
 
 Each tool loads its assets by relative path, so keep the tool's files together in its folder.

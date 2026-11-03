@@ -1,0 +1,145 @@
+{
+  "asset": "Natsu / Cure",
+  "version": "v01",
+  "status": "choreography prototype, placeholder actors",
+  "duration_ms": 4100,
+  "loop": false,
+  "on_complete": "hold idle with ally healed and fourth halo face present",
+  "native_scene": {
+    "w": 384,
+    "h": 216
+  },
+  "output": {
+    "w": 1536,
+    "h": 864,
+    "fps": 60,
+    "frames": 246
+  },
+  "atlas": {
+    "file": "poses.png",
+    "size": {
+      "w": 128,
+      "h": 128
+    },
+    "rows": 2,
+    "columns": 2,
+    "cell": {
+      "w": 64,
+      "h": 64
+    },
+    "pivot": {
+      "x": 32,
+      "y": 56
+    },
+    "labels": [
+      "IDLE",
+      "PRAYER",
+      "OFFER",
+      "RECOVER"
+    ]
+  },
+  "ally_atlas": {
+    "file": "ally_poses.png",
+    "source": "Spiral Cut v02 placeholder",
+    "columns": 3,
+    "cell": {
+      "w": 64,
+      "h": 64
+    },
+    "hurt_pose_index": 4,
+    "healed_pose_index": 0
+  },
+  "anchors": {
+    "caster": {
+      "x": 266,
+      "y": 166
+    },
+    "ally": {
+      "x": 120,
+      "y": 166
+    },
+    "halo": {
+      "x": 266,
+      "y": 128
+    },
+    "new_face": {
+      "x": 275,
+      "y": 131
+    }
+  },
+  "events": [
+    {
+      "name": "halo_awaken",
+      "time_ms": 1000
+    },
+    {
+      "name": "heal",
+      "time_ms": 2000
+    },
+    {
+      "name": "face_added",
+      "time_ms": 2880
+    },
+    {
+      "name": "effect_clear",
+      "time_ms": 3350
+    }
+  ],
+  "beats": [
+    {
+      "name": "Ready",
+      "start_ms": 0,
+      "end_ms": 450
+    },
+    {
+      "name": "Prayer",
+      "start_ms": 450,
+      "end_ms": 1000
+    },
+    {
+      "name": "Halo awakens",
+      "start_ms": 1000,
+      "end_ms": 1400
+    },
+    {
+      "name": "Light gathers",
+      "start_ms": 1400,
+      "end_ms": 2000
+    },
+    {
+      "name": "Cure",
+      "start_ms": 2000,
+      "end_ms": 2400
+    },
+    {
+      "name": "A face returns",
+      "start_ms": 2400,
+      "end_ms": 2880
+    },
+    {
+      "name": "The halo remembers",
+      "start_ms": 2880,
+      "end_ms": 3350
+    },
+    {
+      "name": "Ready",
+      "start_ms": 3350,
+      "end_ms": 4100
+    }
+  ],
+  "layers": [
+    {
+      "name": "stage, actors, new halo face",
+      "resolution": "384x216",
+      "filter": "nearest",
+      "scale": 4,
+      "blend": "source-over"
+    },
+    {
+      "name": "rings, light, trails",
+      "resolution": "1536x864",
+      "filter": "smooth",
+      "blend": "source-over with partial alpha"
+    }
+  ]
+}

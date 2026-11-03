@@ -1,0 +1,64 @@
+Create a short battle-scene choreography prototype for Natsu's CURE in
+FINAL FANTASY: THE HUMMING CRYSTAL. Use clearly identified placeholder actors.
+Do not assume any existing party sheet, portrait set, or battle background is
+finished or approved.
+
+Natsu is a gentle young adult healer with extremely long pale blonde hair,
+a cream-and-white robe, and a spiked halo behind her head containing small human
+faces. No weapon. She casts with both hands. Each patient she heals leaves a
+face behind in the halo. Preserve this original identity and restrained horror.
+
+Use FFRK/FFVI-style crisp pixel character sprites with one-native-pixel dark
+contours where appropriate. Use separate smooth translucent light layers for
+ribbons, rings, glows, and particles. Do not impose a universal six-color palette,
+binary alpha, or dark outlines on the VFX. Use cream, bone, muted gold, pale sage,
+and slate teal. Avoid a violent explosion or full-screen white flash.
+
+Use the supplied FFRK clips as references for stationary casting, small cues
+growing into layered effects, repeated rings, and clear recovery. This ability
+should feel gentle at first, with the unsettling cost arriving after the benefit.
+Do not reuse their footage, audio, exact characters, or ability designs.
+
+SCENE
+384x216 native pixel scene enlarged exactly 4x to 1536x864. Simple test stage,
+with light and dark versions for readability checks. Natsu stands on the right
+at (266,166), facing left toward a wounded allied Kiri at (120,166). Both remain
+in their horizontal slots. The ally may rise two pixels out of a tired posture.
+No dash, sword attack, knockback, or damage event in this healing sequence.
+
+SPRITE LAYOUT
+Natsu: clean transparent 128x128 atlas, two columns and two rows, 64x64 cells.
+R1C1 IDLE, R1C2 PRAYER, R2C1 OFFER, R2C2 RECOVER.
+Shared local pivot (32,56), top-left origin, positive x right and y down.
+Keep the halo and full body inside cell bounds with transparent margins.
+Maintain robe, hair, halo placement, scale, and character identity across poses.
+Use a separate labeled review sheet; no labels in the import atlas.
+Use clearly labeled placeholder Kiri poses for tired and healed states.
+
+TIMELINE: 4100 milliseconds, one shot
+0-450: establish idle caster and tired ally.
+450-1000: Natsu presses her palms together; crown light gathers.
+1000-1400: she opens both hands toward the ally; two pale ribbons travel there.
+1400-2000: three elliptical rings rise around the ally and motes collect.
+2000-2400: one healing pulse restores the ally; the body straightens and the
+review health bar rises. Use a localized bloom, not a screen-filling flash.
+2400-2880: a small face-like echo travels back to the lower-right halo arc.
+2880-3350: the face becomes caught on small halo thorns; Natsu lowers her
+shoulders slightly and returns her hands to her chest. The glow fades.
+3350-4100: settle in idle with the ally healed and the extra face still present.
+
+EVENTS
+halo_awaken at 1000 ms; heal once at 2000 ms; face_added once at 2880 ms;
+effect_clear at 3350 ms. Clearing transient effects must not remove the new face.
+Replay resets this single-cast demonstration instead of adding faces indefinitely.
+Draw the new face at native pixel resolution, distinct from the soft return trail.
+
+OUTPUTS
+Silent 60 fps MP4; self-contained interactive replay with pause, scrub, slow
+motion, and light/dark stages; editable renderer; actor atlases and 4x previews;
+labeled pose sheet; storyboard; machine-readable timeline; concise validation.
+Distinguish unique drawn poses from runtime paths, opacity, holds, and compositing.
+Verify actual dimensions, duration, one heal event, one added-face event, anchor
+stability, transient cleanup, and persistent final face. Inspect on both stage
+tones. State browser and engine limitations honestly. Do not claim placeholders
+are production-approved final art.

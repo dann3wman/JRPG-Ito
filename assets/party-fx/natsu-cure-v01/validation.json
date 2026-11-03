@@ -1,0 +1,21 @@
+{
+  "passed": [
+    "One heal event at 2000 ms",
+    "One face-added event at 2880 ms",
+    "Stationary caster and ally horizontal anchors",
+    "All transient effects end at 3350 ms",
+    "Fourth halo face persists through final state",
+    "Final caster pose is idle",
+    "Shared renderer executed with Canvas 2D",
+    "Simulated-DOM preview controls: replay, pause, seek, half speed and light stage",
+    "Four cues emitted exactly once per play",
+    "Native atlas dimensions and 8-pixel sprite safety margins",
+    "Binary actor alpha and exact 4x nearest-neighbor replication",
+    "Video: 1536x864, 60 fps, 246 frames, 4.100 seconds"
+  ],
+  "limitations": [
+    "Placeholder art, not approved final Natsu or Kiri sprite sheets.",
+    "Real-browser UI layout and game-engine integration remain untested.",
+    "Browser controls exercised in a simulated DOM; no real-browser layout test."
+  ]
+}

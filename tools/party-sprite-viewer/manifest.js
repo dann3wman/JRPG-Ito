@@ -359,6 +359,7 @@ const MANIFEST = {
     -196,
     0
    ],
+   "targetActor": null,
    "dim": [
     400,
     750,
@@ -506,7 +507,8 @@ const MANIFEST = {
      "at": [
       0,
       0
-     ]
+     ],
+     "hold": false
     },
     {
      "name": "target light",
@@ -567,7 +569,8 @@ const MANIFEST = {
      "at": [
       0,
       0
-     ]
+     ],
+     "hold": false
     },
     {
      "name": "Kiri's light",
@@ -609,7 +612,438 @@ const MANIFEST = {
      "at": [
       0,
       0
-     ]
+     ],
+     "hold": false
+    }
+   ]
+  },
+  "natsuCure": {
+   "who": "natsu",
+   "skill": "cure",
+   "label": "Cure",
+   "source": "assets/party-fx/natsu-cure-v01/",
+   "target": [
+    -146,
+    0
+   ],
+   "targetActor": {
+    "who": "kiri",
+    "track": [
+     {
+      "f": "lowhp1",
+      "ms": 2000
+     },
+     {
+      "f": "idle1",
+      "ms": 2100
+     }
+    ]
+   },
+   "dim": [
+    450,
+    850,
+    2850,
+    3350,
+    0.18
+   ],
+   "cues": {
+    "haloAwaken": 1000,
+    "heal": 2000,
+    "faceAdded": 2880,
+    "clear": 3350
+   },
+   "actor": [
+    {
+     "f": "idle1",
+     "beat": "Ready",
+     "ms": 450,
+     "x": 0,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    },
+    {
+     "f": "special1",
+     "beat": "Prayer",
+     "ms": 550,
+     "x": 0,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    },
+    {
+     "f": "special2",
+     "beat": "Halo awakens",
+     "ms": 400,
+     "x": 0,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    },
+    {
+     "f": "special2",
+     "beat": "Light gathers",
+     "ms": 600,
+     "x": 0,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    },
+    {
+     "f": "special2",
+     "beat": "Cure",
+     "ms": 400,
+     "x": 0,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    },
+    {
+     "f": "special2",
+     "beat": "A face returns",
+     "ms": 480,
+     "x": 0,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    },
+    {
+     "f": "idle1",
+     "beat": "The halo remembers",
+     "ms": 320,
+     "x": 0,
+     "y": 1,
+     "arc": 0,
+     "ease": "out",
+     "ghosts": 0
+    },
+    {
+     "f": "idle1",
+     "beat": "The halo remembers",
+     "ms": 150,
+     "x": 0,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    },
+    {
+     "f": "idle1",
+     "beat": "Ready",
+     "ms": 750,
+     "x": 0,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    }
+   ],
+   "layers": [
+    {
+     "name": "Halo light",
+     "image": "fx/natsu-cure-v01.crown.webp",
+     "cell": [
+      64,
+      64
+     ],
+     "cols": 8,
+     "res": 2,
+     "ms": [
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      20
+     ],
+     "start": 450,
+     "anchor": "actor",
+     "pivot": [
+      28,
+      84
+     ],
+     "at": [
+      0,
+      0
+     ],
+     "hold": false
+    },
+    {
+     "name": "Light streams",
+     "image": "fx/natsu-cure-v01.streams.webp",
+     "cell": [
+      136,
+      48
+     ],
+     "cols": 4,
+     "res": 2,
+     "ms": [
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40
+     ],
+     "start": 1000,
+     "anchor": "actor",
+     "pivot": [
+      154,
+      70
+     ],
+     "at": [
+      0,
+      0
+     ],
+     "hold": false
+    },
+    {
+     "name": "Light on the ally",
+     "image": "fx/natsu-cure-v01.ally.webp",
+     "cell": [
+      112,
+      104
+     ],
+     "cols": 6,
+     "res": 2,
+     "ms": [
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      40,
+      20
+     ],
+     "start": 1350,
+     "anchor": "target",
+     "pivot": [
+      56,
+      82
+     ],
+     "at": [
+      0,
+      0
+     ],
+     "hold": false
+    },
+    {
+     "name": "Echo trail",
+     "image": "fx/natsu-cure-v01.echoTrail.webp",
+     "cell": [
+      184,
+      60
+     ],
+     "cols": 4,
+     "res": 2,
+     "ms": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+     ],
+     "start": 2400,
+     "anchor": "actor",
+     "pivot": [
+      154,
+      82
+     ],
+     "at": [
+      0,
+      0
+     ],
+     "hold": false
+    },
+    {
+     "name": "Returning face",
+     "image": "fx/natsu-cure-v01.echoFace.webp",
+     "cell": [
+      184,
+      60
+     ],
+     "cols": 4,
+     "res": 1,
+     "ms": [
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30
+     ],
+     "start": 2430,
+     "anchor": "actor",
+     "pivot": [
+      154,
+      82
+     ],
+     "at": [
+      0,
+      0
+     ],
+     "hold": false
+    },
+    {
+     "name": "Face in the halo",
+     "image": "fx/natsu-cure-v01.newFace.webp",
+     "cell": [
+      16,
+      12
+     ],
+     "cols": 4,
+     "res": 1,
+     "ms": [
+      40,
+      40,
+      40,
+      100
+     ],
+     "start": 2880,
+     "anchor": "actor",
+     "pivot": [
+      -3,
+      47
+     ],
+     "at": [
+      0,
+      0
+     ],
+     "hold": true
     }
    ]
   }

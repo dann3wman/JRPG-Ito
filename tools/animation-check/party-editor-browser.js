@@ -56,6 +56,16 @@ fs.mkdirSync(out, { recursive: true });
     assert.deepEqual([doc.actor[3].f, doc.actor[3].ms, doc.cues.damage], ['special2', 220, 1820]);
     assert.ok(await page.locator('#skills button[data-changed="false"]').count());
     await page.click('#anims button[data-a="idle"]');
+    // A heal on an ally: Natsu's Cure targets Kiri, who rises on the heal cue, and the new face stays in the halo.
+    await page.click('#cast button[data-id="natsu"]');
+    await page.click('#skills button[data-k="natsuCure"]');
+    await page.click('#play');
+    await page.locator('#scrub').fill('2100'); await frame(/Cure · Cure · step 5\/9.*Light on the ally 19\/30.*cue: HEAL/);
+    await page.locator('#scrub').fill('2640'); await frame(/A face returns.*Returning face 8\/15/);
+    await page.locator('#scrub').fill('4000'); await frame(/Ready · step 9\/9.*Echo trail done.*Face in the halo held/);
+    assert.match(await page.textContent('#readout'), /Target: Kiri Haldane, lowhp1 2000 ms → idle1 2100 ms/);
+    await page.screenshot({ path: path.join(out, 'natsu-cure.png') });
+    await page.click('#anims button[data-a="idle"]');
     // Standard animations can't be deleted; new ones can.
     assert.ok(await page.locator('#delAnim').isDisabled());
     await page.fill('#newName', 'testPose'); await page.click('#addAnim');
@@ -66,7 +76,7 @@ fs.mkdirSync(out, { recursive: true });
     await page.click('#cast button[data-id="goku"]');
     assert.match(await page.textContent('#skills'), /None yet/);
     assert.deepEqual(errors, []);
-    console.log('Party animation editor checks passed: frame stepping, skill beats, layers and cues, step and cue edits, undo, delete rules.');
+    console.log('Party animation editor checks passed: frame stepping, Spiral Cut and Cure beats, layers, cues and held layers, step and cue edits, undo, delete rules.');
   } finally {
     await browser.close();
   }

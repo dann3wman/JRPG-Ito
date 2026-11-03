@@ -203,8 +203,9 @@ const $ = s => document.querySelector(s), cv = $('#cv'), cx = cv.getContext('2d'
 const DRAFT = 'party-anim-draft-v3', NAME = /^[a-z][A-Za-z0-9]{0,23}$/, MAX_FRAMES = 32, EASES = ['linear', 'out', 'smooth'];
 const clone = o => JSON.parse(JSON.stringify(o)), clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const BASE = clone(M.anims), BASE_SKILLS = clone(M.skills || {}), REQUIRED = new Set(Object.keys(BASE));
-// The battle's standard reaction to a `damage` cue: a white flash, then a shake that settles (FF6's flinch).
-const FLASH_MS = 60, SHAKE_MS = 380, GHOST_GAP = 28, GHOST_TAIL = 70, DEFAULT_TARGET = [-96, 0];
+// The battle's standard reactions. `damage`: a white flash, then a shake that settles (FF6's flinch), and the
+// HP bar drops. `heal`: a soft pale flash and the HP bar refills over HEAL_MS, with no shake.
+const FLASH_MS = 60, SHAKE_MS = 380, HEAL_FLASH_MS = 180, HEAL_MS = 300, GHOST_GAP = 28, GHOST_TAIL = 70, DEFAULT_TARGET = [-96, 0];
 const DUMMY = { src: 'fx/training-dummy.webp', cell: 64, feet: [32, 57] };
 const st = { id: ids.includes(q.get('who')) ? q.get('who') : ids[0], anim: 'idle', skill: null, t0: performance.now(), img: null,
   playing: true, pauseT: 0, sel: 0, shown: '' };
@@ -237,9 +238,12 @@ function problems(set, skills) {
     });
     for (const L of c.layers || []) {
       if (!Array.isArray(L.ms) || !L.ms.length || L.ms.some(m => !whole(m, 10, 5000))) bad.push(`${k} ${L.name}: durations must be 10 to 5000 ms`);
+      if (typeof L.hold !== 'boolean') bad.push(`${k} ${L.name}: hold must be true or false`);
       if (!whole(L.start, 0, 20000) || !pair(L.at, -400, 400)) bad.push(`${k} ${L.name}: bad start or offset`);
     }
-    if (!c.cues || !whole(c.cues.damage, 0, 20000) || Object.values(c.cues).some(t => !whole(t, 0, 20000))) bad.push(`${k}: cues must be 0 to 20000 ms and include damage`);
+    if (!c.cues || !('damage' in c.cues || 'heal' in c.cues) || Object.values(c.cues).some(t => !whole(t, 0, 20000))) bad.push(`${k}: cues must be 0 to 20000 ms and include damage or heal`);
+    const ta = c.targetActor;
+    if (ta !== null && !(ta && M.cast[ta.who] && Array.isArray(ta.track) && ta.track.length && ta.track.every(x => S.frames.includes(x.f) && whole(x.ms, 10, 20000)))) bad.push(`${k}: targetActor is null or an ally with a frame track`);
   }
   return bad;
 }
@@ -302,7 +306,10 @@ function rootAt(T, ms) {
   const u = clamp((ms - T.starts[i]) / s.ms), e = EASE[s.ease](u);
   return [prev.x + (s.x - prev.x) * e, prev.y + (s.y - prev.y) * e - Math.sin(u * Math.PI) * s.arc];
 }
-function layerFrame(l, ms) { return ms >= l.L.start && ms < l.end ? l.cum.findIndex(c => c > ms - l.L.start) - 1 : -1; }
+function layerFrame(l, ms) {
+  if (ms >= l.end) return l.L.hold ? l.L.ms.length - 1 : -1;   // a held layer keeps its last frame after the skill
+  return ms >= l.L.start ? l.cum.findIndex(c => c > ms - l.L.start) - 1 : -1;
+}
 function dimAt(c, ms) {
   const d = c && c.dim; if (!d) return 0;
   if (ms < d[0] || ms >= d[3]) return 0;
@@ -381,7 +388,8 @@ function draw(now) {
     if (cv.width !== G.w * Z || cv.height !== C * Z) { cv.width = G.w * Z; cv.height = C * Z; } else cx.clearRect(0, 0, cv.width, cv.height);
     cx.imageSmoothingEnabled = false;
     const look = document.querySelector('input[name=fx]:checked').value;
-    const hit = c ? ms - c.cues.damage : -1, shake = hit >= 0 && hit < SHAKE_MS ? (Math.sin(hit / 30) * 4 - 5) * (1 - hit / SHAKE_MS) : 0;
+    const hit = c && 'damage' in c.cues ? ms - c.cues.damage : -1, shake = hit >= 0 && hit < SHAKE_MS ? (Math.sin(hit / 30) * 4 - 5) * (1 - hit / SHAKE_MS) : 0;
+    const healed = c && 'heal' in c.cues ? ms - c.cues.heal : -1;
     cx.save();
     if ($('#flip').checked) { cx.translate(cv.width, 0); cx.scale(-1, 1); }
     const dim = dimAt(c, ms);
@@ -389,7 +397,21 @@ function draw(now) {
     const ground = (x, r) => { cx.fillStyle = 'rgba(0,0,0,.35)'; cx.beginPath(); cx.ellipse(x * Z, S.base * Z, r * Z, 3 * Z, 0, 0, 7); cx.fill(); };
     // The target: the study's masked training dummy, flashing and shaking on the damage cue.
     const tx = G.target[0] + shake, ty = G.target[1];
-    const dummy = $('#dummy').checked && image(DUMMY.src);
+    const ally = c && c.targetActor, allySheet = ally && image(`${ally.who}.sheet.webp`);
+    const dummy = !ally && $('#dummy').checked && image(DUMMY.src);
+    if (allySheet) {
+      // An ally target plays frames from their own sheet: the last frame of the track holds.
+      let t = 0, f = ally.track[ally.track.length - 1].f;
+      for (const x of ally.track) { if (ms < t + x.ms) { f = x.f; break; } t += x.ms; }
+      ground(G.target[0], 17);
+      const k = S.frames.indexOf(f);
+      ox.globalCompositeOperation = 'source-over'; ox.filter = 'none'; ox.clearRect(0, 0, C, C);
+      ox.drawImage(allySheet, (k % S.cols) * C, Math.floor(k / S.cols) * C, C, C, 0, 0, C, C);
+      if (healed >= 0 && healed < HEAL_FLASH_MS) { ox.globalCompositeOperation = 'source-atop'; ox.fillStyle = `rgba(239,247,218,${.35 * (1 - healed / HEAL_FLASH_MS)})`; ox.fillRect(0, 0, C, C); }
+      cx.drawImage(off, Math.round(tx - C / 2) * Z, Math.round(ty - S.base) * Z, C * Z, C * Z);
+      const hp = healed < 0 ? 10 : Math.round(10 + 19 * clamp(healed / HEAL_MS));
+      cx.fillStyle = '#10151c'; cx.fillRect((G.target[0] - 17) * Z, (S.base + 4) * Z, 34 * Z, 3 * Z); cx.fillStyle = healed >= 0 ? '#b1c69a' : '#a47b6e'; cx.fillRect((G.target[0] - 16) * Z, (S.base + 5) * Z, hp * Z, Z);
+    }
     if (dummy) {
       ground(G.target[0], 16);
       dx.globalCompositeOperation = 'source-over'; dx.clearRect(0, 0, DUMMY.cell, DUMMY.cell); dx.drawImage(dummy, 0, 0);
@@ -443,7 +465,7 @@ function draw(now) {
       $('#frame').textContent = `${name} · step ${i + 1}/${T.list.length} · ${s.f}${describe(s.f) ? ' · ' + describe(s.f) : ''}`;
       if (c) {
         const passed = Object.entries(c.cues).filter(([, t]) => t <= ms).sort((a, b) => b[1] - a[1])[0];
-        $('#cueline').textContent = T.layers.map((l, j) => `${l.L.name} ${frames[j] >= 0 ? frames[j] + 1 + '/' + l.L.ms.length : ms >= l.end ? 'done' : 'waiting'}`).join(' · ') +
+        $('#cueline').textContent = T.layers.map((l, j) => `${l.L.name} ${ms >= l.end ? (l.L.hold ? 'held' : 'done') : frames[j] >= 0 ? frames[j] + 1 + '/' + l.L.ms.length : 'waiting'}`).join(' · ') +
           (passed && ms - passed[1] < 200 ? ` · cue: ${passed[0].toUpperCase()}` : '');
       }
     }
@@ -505,7 +527,7 @@ function renderLayers() {
     <label class="label">start <input type="number" data-l="${j}" data-f="start" value="${L.start}" min="0" max="20000" step="10"></label>
     <label class="label">dx <input type="number" data-l="${j}" data-f="at0" value="${L.at[0]}" min="-400" max="400"></label>
     <label class="label">dy <input type="number" data-l="${j}" data-f="at1" value="${L.at[1]}" min="-400" max="400"></label>
-    <span class="readout">on the ${L.anchor === 'actor' ? 'party member' : 'target'} · ${L.ms.length} frames · ${L.res > 1 ? 'soft light, ' + L.res + '× art' : 'native pixels'}</span></div>
+    <span class="readout">on the ${L.anchor === 'actor' ? 'caster' : 'target'} · ${L.ms.length} frames · ${L.res > 1 ? 'soft light, ' + L.res + '× art' : 'native pixels'}${L.hold ? ' · stays after the skill' : ''}</span></div>
     <details><summary>Frame durations</summary><div class="strip fxstrip">${L.ms.map((m, k) => `<label class="chip fxchip">${k + 1}<input type="number" data-l="${j}" data-f="ms" data-k="${k}" value="${m}" min="10" max="5000" step="10" aria-label="${L.name} frame ${k + 1} ms"></label>`).join('')}</div></details></fieldset>`).join('');
 }
 function refresh(msg) {
@@ -523,8 +545,8 @@ function refresh(msg) {
     $('#dimOn').checked = !!c.dim; document.querySelectorAll('.dimT').forEach(el => { el.value = c.dim ? c.dim[+el.dataset.k] : ''; el.disabled = !c.dim; });
     $('#dimA').value = c.dim ? c.dim[4] : ''; $('#dimA').disabled = !c.dim;
     renderLayers();
-    const end = Math.max(...T.layers.map(l => l.end));
-    $('#readout').textContent = `${n} steps, ${T.len} ms · effects end ${end} ms · ` + Object.entries(c.cues).map(([k, v]) => `${k} ${v}`).join(' · ') + ` ms. Plays once.`;
+    const end = Math.max(...T.layers.map(l => l.end)), ta = c.targetActor;
+    $('#readout').textContent = `${n} steps, ${T.len} ms · effects end ${end} ms · ` + Object.entries(c.cues).map(([k, v]) => `${k} ${v}`).join(' · ') + ` ms. Plays once.` + (ta ? ` Target: ${M.cast[ta.who].name}, ${ta.track.map(x => `${x.f} ${x.ms} ms`).join(' → ')}.` : ' Target: training dummy.');
   } else {
     const a = cur();
     $('#animName').textContent = `${st.anim}${REQUIRED.has(st.anim) ? ' · standard' : ' · new'}${changedAnim(st.anim) ? ' · edited' : ''}`;

@@ -123,8 +123,10 @@ ANIMS = json.loads(ANIMS_FILE.read_text())
 # moves the feet to [x, y] (sprite px from home) with an `ease` and an `arc` hop, leaving `ghosts`
 # afterimages. `layers` are effect strips (`cell` [w, h] native px, `res` art px per native px) that start
 # at `start` ms, hang their `pivot` on the actor's feet or the target's, offset by `at`, and hide after their
-# last frame. `cues` name the moments the battle reacts to (`damage` lands the hit). `target` places the
-# target's feet from the actor's home; `dim` darkens the stage [in, full, fade, off, amount].
+# last frame unless `hold` keeps it (a lasting mark, like a face added to Natsu's halo). `cues` name the moments
+# the battle reacts to: `damage` lands a hit, `heal` restores an ally. `target` places the target's feet from
+# the actor's home; `targetActor` is null for an enemy (the training dummy) or {who, track: [{f, ms}]} for an
+# ally playing frames from their own sheet. `dim` darkens the stage [in, full, fade, off, amount].
 SKILLS_FILE = HERE.parent / 'references' / 'skills.json'
 SKILLS = json.loads(SKILLS_FILE.read_text())
 EASES = ('linear', 'out', 'smooth')
@@ -567,7 +569,7 @@ def check_skills(skills):
     """Problems with a set of skill choreographies, as a list of messages (empty when it is valid)."""
     if not isinstance(skills, dict):
         return ['skills: expected an object of {name: choreography}']
-    keys, frames, bad = {'who', 'skill', 'label', 'source', 'target', 'dim', 'actor', 'layers', 'cues'}, {n for n, _ in FRAMES}, []
+    keys, frames, bad = {'who', 'skill', 'label', 'source', 'target', 'targetActor', 'dim', 'actor', 'layers', 'cues'}, {n for n, _ in FRAMES}, []
     num = lambda v, lo, hi: isinstance(v, (int, float)) and not isinstance(v, bool) and lo <= v <= hi
     whole = lambda v, lo, hi: isinstance(v, int) and not isinstance(v, bool) and lo <= v <= hi
     pair = lambda v, lo, hi: isinstance(v, list) and len(v) == 2 and all(whole(x, lo, hi) for x in v)
@@ -580,6 +582,11 @@ def check_skills(skills):
             bad.append(f'{k}: unknown character "{c["who"]}"')
         if not pair(c['target'], -400, 400):
             bad.append(f'{k}: target must be two whole numbers')
+        ta = c['targetActor']
+        if ta is not None and not (isinstance(ta, dict) and set(ta) == {'who', 'track'} and ta['who'] in CAST
+                                   and isinstance(ta['track'], list) and 1 <= len(ta['track']) <= 32
+                                   and all(isinstance(x, dict) and set(x) == {'f', 'ms'} and x['f'] in frames and whole(x['ms'], 10, 20000) for x in ta['track'])):
+            bad.append(f'{k}: targetActor is null or {{who, track: [{{f, ms}}]}} with known frames')
         d = c['dim']
         if d is not None and not (isinstance(d, list) and len(d) == 5 and all(whole(x, 0, 20000) for x in d[:4])
                                   and d[0] <= d[1] <= d[2] <= d[3] and num(d[4], 0, 0.8)):
@@ -601,7 +608,7 @@ def check_skills(skills):
         ls = c['layers']
         if not isinstance(ls, list) or len(ls) > 8:
             bad.append(f'{k}: layers must list up to 8 effect strips'); ls = []
-        lkeys = {'name', 'image', 'cell', 'cols', 'res', 'ms', 'start', 'anchor', 'pivot', 'at'}
+        lkeys = {'name', 'image', 'cell', 'cols', 'res', 'ms', 'start', 'anchor', 'pivot', 'at', 'hold'}
         for L in ls:
             if not isinstance(L, dict) or set(L) != lkeys:
                 bad.append(f'{k}: each layer needs exactly ' + ', '.join(sorted(lkeys))); continue
@@ -609,11 +616,12 @@ def check_skills(skills):
             if not (pair(L['cell'], 1, 512) and whole(L['cols'], 1, 64) and L['res'] in (1, 2, 4)): bad.append(f'{k} {L["name"]}: bad cell, cols or res')
             if not (isinstance(L['ms'], list) and 1 <= len(L['ms']) <= 128 and all(whole(m, 10, 5000) for m in L['ms'])): bad.append(f'{k} {L["name"]}: ms must list 1 to 128 durations of 10 to 5000')
             if not whole(L['start'], 0, 20000): bad.append(f'{k} {L["name"]}: start must be 0 to 20000 ms')
+            if not isinstance(L['hold'], bool): bad.append(f'{k} {L["name"]}: hold must be true or false')
             if L['anchor'] not in ('actor', 'target'): bad.append(f'{k} {L["name"]}: anchor is actor or target')
             if not (pair(L['pivot'], -512, 512) and pair(L['at'], -400, 400)): bad.append(f'{k} {L["name"]}: pivot and at must be two whole numbers')
         cues = c['cues']
-        if not isinstance(cues, dict) or 'damage' not in cues or not all(re.fullmatch(r'[a-z][A-Za-z0-9]{0,23}', n) and whole(t, 0, 20000) for n, t in cues.items()):
-            bad.append(f'{k}: cues must name times from 0 to 20000 ms and include damage')
+        if not isinstance(cues, dict) or not ({'damage', 'heal'} & set(cues)) or not all(re.fullmatch(r'[a-z][A-Za-z0-9]{0,23}', n) and whole(t, 0, 20000) for n, t in cues.items()):
+            bad.append(f'{k}: cues must name times from 0 to 20000 ms and include damage or heal')
     return bad
 
 
@@ -622,7 +630,7 @@ def write_skills(skills):
     out = []
     for k in sorted(skills):
         c = skills[k]
-        fields = [f'  {json.dumps(f)}: {json.dumps(c[f])}' for f in ('who', 'skill', 'label', 'source', 'target', 'dim', 'cues')]
+        fields = [f'  {json.dumps(f)}: {json.dumps(c[f])}' for f in ('who', 'skill', 'label', 'source', 'target', 'targetActor', 'dim', 'cues')]
         fields.append('  "actor": [\n' + ',\n'.join(f'   {json.dumps(st)}' for st in c['actor']) + '\n  ]')
         fields.append('  "layers": [\n' + ',\n'.join(f'   {json.dumps(L)}' for L in c['layers']) + '\n  ]')
         out.append(f' {json.dumps(k)}: {{\n' + ',\n'.join(fields) + '\n }')
