@@ -88,17 +88,21 @@ legend { font: 16px var(--f-display); padding: 0 6px; }
     <label class="label scrub">Time <input type="range" id="scrub" min="0" max="1000" step="1" value="0"> <span id="clock">0 ms</span></label>
     <div class="controls" role="group" aria-label="Playback">
       <button type="button" id="play" aria-pressed="true" title="Space">Pause</button>
-      <button type="button" id="prev" title="Previous change in either layer (comma)">◀ Frame</button>
-      <button type="button" id="next" title="Next change in either layer (full stop)">Frame ▶</button>
+      <button type="button" id="prev" title="Previous change in any layer (comma)">◀ Frame</button>
+      <button type="button" id="next" title="Next change in any layer (full stop)">Frame ▶</button>
       <button type="button" id="replay">Replay</button>
       <label class="label">Speed <select id="speed"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
       <label class="label">Zoom <select id="zoom"><option>2</option><option selected>3</option><option>4</option></select></label>
     </div>
+    <p class="label">Animations · shared by the whole cast</p>
     <div class="anims" id="anims" role="group" aria-label="Animations"></div>
+    <p class="label">Skills · this character's own choreographies</p>
+    <div class="anims" id="skills" role="group" aria-label="Skills"></div>
     <div class="tints">
       <label><input type="checkbox" id="flip"> Face right</label>
       <label><input type="checkbox" id="onion"> Onion skin</label>
       <label><input type="checkbox" id="guides"> Ground and cells</label>
+      <label><input type="checkbox" id="dummy" checked> Target</label>
       <label><input type="checkbox" id="sheet"> Whole sheet</label>
     </div>
     <div class="tints" role="group" aria-label="Derived status looks (not drawn on the sheet)">
@@ -110,43 +114,54 @@ legend { font: 16px var(--f-display); padding: 0 6px; }
       <label><input type="radio" name="fx" value="mini"> mini</label>
     </div>
     <p class="label" id="frame" aria-live="polite"></p>
+    <p class="readout" id="cueline"></p>
   </section>
   <section id="editor" aria-labelledby="edit-h">
     <h2 id="edit-h">Animation editor</h2>
     <p class="label" id="animName"></p>
-    <div class="strip" id="strip" role="listbox" aria-label="Frames in this animation, in play order"></div>
-    <div class="controls" role="group" aria-label="Selected frame">
+    <div class="strip" id="strip" role="listbox" aria-label="Steps in play order"></div>
+    <div class="controls" role="group" aria-label="Selected step">
       <button type="button" id="left" title="Move earlier">← Move</button>
       <button type="button" id="right" title="Move later">Move →</button>
-      <button type="button" id="hold" title="Repeat this frame to hold it longer">Hold +1</button>
+      <button type="button" id="hold" title="Repeat this step">Duplicate</button>
       <button type="button" id="remove" title="Delete">Remove</button>
     </div>
-    <div class="controls" role="group" aria-label="Timing">
+    <div class="controls" id="animTiming" role="group" aria-label="Timing">
       <label class="label">ms per frame <input type="number" id="ms" min="30" max="2000" step="10"></label>
       <label class="label"><input type="checkbox" id="loop"> Loop</label>
     </div>
-    <p class="readout" id="readout"></p>
-    <fieldset id="fxBox">
-      <legend>Effect over the target</legend>
-      <p class="readout" id="fxNone"></p>
-      <div id="fxEdit">
-        <div class="controls">
-          <label class="label">Effect <select id="fxPick"></select></label>
-          <label class="label"><input type="checkbox" id="fxShow" checked> Show</label>
-        </div>
-        <div class="strip fxstrip" id="fxStrip" role="group" aria-label="Effect frames and their durations"></div>
-        <div class="controls">
-          <label class="label">Starts on step <select id="fxStart"></select></label>
-          <label class="label">Impact on frame <select id="fxImpact"></select></label>
-        </div>
-        <div class="controls">
-          <label class="label">Target dx <input type="number" id="fxX" min="-200" max="200" step="1"></label>
-          <label class="label">dy <input type="number" id="fxY" min="-200" max="200" step="1"></label>
-        </div>
-        <p class="readout" id="fxInfo"></p>
+    <div id="stepEdit" hidden>
+      <div class="controls">
+        <label class="label">Beat <input type="text" id="sBeat" maxlength="40" spellcheck="false"></label>
+        <label class="label">ms <input type="number" id="sMs" min="10" max="5000" step="10"></label>
+        <label class="label">Ease <select id="sEase"><option value="linear">linear</option><option value="out">ease out</option><option value="smooth">smooth</option></select></label>
       </div>
+      <div class="controls">
+        <label class="label">Feet x <input type="number" id="sX" min="-400" max="400"></label>
+        <label class="label">y <input type="number" id="sY" min="-400" max="400"></label>
+        <label class="label">Hop <input type="number" id="sArc" min="-64" max="64"></label>
+        <label class="label">Afterimages <input type="number" id="sGhosts" min="0" max="6"></label>
+      </div>
+    </div>
+    <p class="readout" id="readout"></p>
+    <fieldset id="skillBox" hidden>
+      <legend>Skill staging</legend>
+      <div class="controls">
+        <label class="label">Target dx <input type="number" id="tX" min="-400" max="400"></label>
+        <label class="label">dy <input type="number" id="tY" min="-400" max="400"></label>
+      </div>
+      <div class="controls" id="cues" role="group" aria-label="Cues"></div>
+      <div class="controls" role="group" aria-label="Stage dim">
+        <label class="label"><input type="checkbox" id="dimOn"> Dim</label>
+        <label class="label">in <input type="number" class="dimT" data-k="0" min="0" max="20000" step="10"></label>
+        <label class="label">full <input type="number" class="dimT" data-k="1" min="0" max="20000" step="10"></label>
+        <label class="label">fade <input type="number" class="dimT" data-k="2" min="0" max="20000" step="10"></label>
+        <label class="label">off <input type="number" class="dimT" data-k="3" min="0" max="20000" step="10"></label>
+        <label class="label">amount <input type="number" id="dimA" min="0" max="0.8" step="0.02"></label>
+      </div>
+      <div id="layers"></div>
     </fieldset>
-    <p class="label">Frame library · click to insert after the selected frame, or drag onto the strip</p>
+    <p class="label" id="libLabel"></p>
     <div class="lib" id="lib"></div>
     <div class="controls" role="group" aria-label="Animation set">
       <button type="button" id="undo" title="Ctrl+Z">Undo</button>
@@ -154,7 +169,7 @@ legend { font: 16px var(--f-display); padding: 0 6px; }
       <button type="button" id="resetAnim">Reset this</button>
       <button type="button" id="resetAll">Reset all</button>
     </div>
-    <div class="controls" role="group" aria-label="New animation">
+    <div class="controls" id="newRow" role="group" aria-label="New animation">
       <label class="label">Name <input type="text" id="newName" placeholder="jumpUp" spellcheck="false" autocomplete="off"></label>
       <button type="button" id="addAnim">New</button>
       <button type="button" id="copyAnim">Duplicate this</button>
@@ -170,7 +185,7 @@ legend { font: 16px var(--f-display); padding: 0 6px; }
       <summary>Apply to the repository</summary>
       <p>Edits are kept in this browser until you reset them. To make them the standard, download the set and run:</p>
       <p><code>python3 .claude/skills/party-art/scripts/party_art.py anims party-anims.json</code></p>
-      <p>It checks every animation and effect, writes <code>references/anims.json</code> and <code>references/fx.json</code>, and rebuilds <code>manifest.js</code>. The standard animations can be changed but not deleted, because the game plays them by name.</p>
+      <p>It checks every animation and skill, writes <code>references/anims.json</code> and <code>references/skills.json</code>, and rebuilds <code>manifest.js</code>. The standard animations can be changed but not deleted, because the game plays them by name.</p>
       <textarea id="json" readonly aria-label="Exported animation set"></textarea>
     </details>
   </section>
@@ -181,128 +196,155 @@ legend { font: 16px var(--f-display); padding: 0 6px; }
 </main>
 <script src="manifest.js"></script>
 <script>
-const M = MANIFEST, S = M.sheet;
+const M = MANIFEST, S = M.sheet, C = S.cell;
 const ids = Object.keys(M.cast);
 const q = new URLSearchParams(location.search);
 const $ = s => document.querySelector(s), cv = $('#cv'), cx = cv.getContext('2d');
-const DRAFT = 'party-anim-draft-v2', NAME = /^[a-z][A-Za-z0-9]{0,23}$/, MAX_FRAMES = 32, IMPACT_MS = 80;
-const clone = o => JSON.parse(JSON.stringify(o)), sum = a => a.reduce((x, y) => x + y, 0);
-const BASE = clone(M.anims), BASE_FX = clone(M.fx || {}), REQUIRED = new Set(Object.keys(BASE));
-// The stage is two cells wide, like the right half of a battle: the target on the left, the party member
-// on the right facing it. `at` offsets in fx.json are measured from the party member's feet.
-const FEET = [S.cell * 1.5, S.base];
-const st = { id: ids.includes(q.get('who')) ? q.get('who') : ids[0], anim: 'idle', t0: performance.now(), img: null,
-  playing: true, pauseT: 0, sel: 0, shown: '', fxKey: null };
+const DRAFT = 'party-anim-draft-v3', NAME = /^[a-z][A-Za-z0-9]{0,23}$/, MAX_FRAMES = 32, EASES = ['linear', 'out', 'smooth'];
+const clone = o => JSON.parse(JSON.stringify(o)), clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const BASE = clone(M.anims), BASE_SKILLS = clone(M.skills || {}), REQUIRED = new Set(Object.keys(BASE));
+// The battle's standard reaction to a `damage` cue: a white flash, then a shake that settles (FF6's flinch).
+const FLASH_MS = 60, SHAKE_MS = 380, GHOST_GAP = 28, GHOST_TAIL = 70, DEFAULT_TARGET = [-96, 0];
+const DUMMY = { src: 'fx/training-dummy.webp', cell: 64, feet: [32, 57] };
+const st = { id: ids.includes(q.get('who')) ? q.get('who') : ids[0], anim: 'idle', skill: null, t0: performance.now(), img: null,
+  playing: true, pauseT: 0, sel: 0, shown: '' };
 
-// ---------- the animation set being edited ----------
-// Same rules as party_art.py check_anims / check_fx, so anything the editor exports will apply.
-function problems(set, effects) {
+// ---------- the set being edited ----------
+// Same rules as party_art.py check_anims / check_skills, so anything the editor exports will apply.
+const whole = (v, lo, hi) => Number.isInteger(v) && v >= lo && v <= hi;
+const pair = (v, lo, hi) => Array.isArray(v) && v.length === 2 && v.every(x => whole(x, lo, hi));
+function problems(set, skills) {
   const bad = [];
   for (const k of REQUIRED) if (!set[k]) bad.push(`standard animation "${k}" is missing`);
   for (const [k, a] of Object.entries(set)) {
     if (!NAME.test(k)) bad.push(`"${k}": use camelCase letters and digits`);
     if (!a || !Array.isArray(a.frames) || !a.frames.length || a.frames.length > MAX_FRAMES) { bad.push(`${k}: 1 to ${MAX_FRAMES} frames`); continue; }
     for (const f of a.frames) if (!S.frames.includes(f)) bad.push(`${k}: unknown frame "${f}"`);
-    if (!Number.isInteger(a.ms) || a.ms < 30 || a.ms > 2000) bad.push(`${k}: ms must be 30 to 2000`);
+    if (!whole(a.ms, 30, 2000)) bad.push(`${k}: ms must be 30 to 2000`);
     if (typeof a.loop !== 'boolean') bad.push(`${k}: loop must be true or false`);
   }
-  for (const [k, e] of Object.entries(effects || {})) {
-    if (!e || !BASE_FX[k]) { bad.push(`fx ${k}: only effects already in fx.json can be edited here`); continue; }
-    if (!Array.isArray(e.ms) || !e.ms.length || e.ms.some(m => !Number.isInteger(m) || m < 20 || m > 2000)) bad.push(`fx ${k}: durations must be 20 to 2000 ms`);
-    else if (!Number.isInteger(e.impact) || e.impact < 0 || e.impact >= e.ms.length) bad.push(`fx ${k}: impact must be one of its frames`);
-    const a = set[e.anim];
-    if (!a) bad.push(`fx ${k}: unknown animation "${e.anim}"`);
-    else if (!Number.isInteger(e.start) || e.start < 0 || e.start >= a.frames.length) bad.push(`fx ${k}: start must be a step of ${e.anim}`);
-    if (!Array.isArray(e.at) || e.at.length !== 2 || e.at.some(v => !Number.isInteger(v) || Math.abs(v) > 200)) bad.push(`fx ${k}: target offset must be two whole numbers`);
+  for (const [k, c] of Object.entries(skills || {})) {
+    if (!c || !BASE_SKILLS[k]) { bad.push(`${k}: only skills already in skills.json can be edited here`); continue; }
+    if (!pair(c.target, -400, 400)) bad.push(`${k}: target must be two whole numbers`);
+    const d = c.dim;
+    if (d !== null && !(Array.isArray(d) && d.length === 5 && d.slice(0, 4).every(x => whole(x, 0, 20000)) && d[0] <= d[1] && d[1] <= d[2] && d[2] <= d[3] && d[4] >= 0 && d[4] <= 0.8)) bad.push(`${k}: dim times must run in order, amount 0 to 0.8`);
+    if (!Array.isArray(c.actor) || !c.actor.length || c.actor.length > MAX_FRAMES) bad.push(`${k}: 1 to ${MAX_FRAMES} actor steps`);
+    else c.actor.forEach((s, n) => {
+      if (!S.frames.includes(s.f)) bad.push(`${k} step ${n + 1}: unknown frame`);
+      if (!whole(s.ms, 10, 5000)) bad.push(`${k} step ${n + 1}: ms must be 10 to 5000`);
+      if (!whole(s.x, -400, 400) || !whole(s.y, -400, 400) || !whole(s.arc, -64, 64) || !whole(s.ghosts, 0, 6)) bad.push(`${k} step ${n + 1}: x, y, hop or afterimages out of range`);
+      if (!EASES.includes(s.ease) || typeof s.beat !== 'string') bad.push(`${k} step ${n + 1}: bad ease or beat`);
+    });
+    for (const L of c.layers || []) {
+      if (!Array.isArray(L.ms) || !L.ms.length || L.ms.some(m => !whole(m, 10, 5000))) bad.push(`${k} ${L.name}: durations must be 10 to 5000 ms`);
+      if (!whole(L.start, 0, 20000) || !pair(L.at, -400, 400)) bad.push(`${k} ${L.name}: bad start or offset`);
+    }
+    if (!c.cues || !whole(c.cues.damage, 0, 20000) || Object.values(c.cues).some(t => !whole(t, 0, 20000))) bad.push(`${k}: cues must be 0 to 20000 ms and include damage`);
   }
   return bad;
 }
 function loadDraft() {
   try {
     const d = JSON.parse(localStorage.getItem(DRAFT));
-    if (d && d.anims && !problems(d.anims, d.fx).length) return d;
+    if (d && d.anims && d.skills && !problems(d.anims, d.skills).length) return d;
   } catch (e) { /* no storage or a bad draft: start from the manifest */ }
-  return { anims: clone(BASE), fx: clone(BASE_FX) };
+  return { anims: clone(BASE), skills: clone(BASE_SKILLS) };
 }
-let { anims, fx } = loadDraft();
+let { anims, skills } = loadDraft();
 const past = [], future = [];
-const snapshot = () => JSON.stringify({ anims, fx });
+const snapshot = () => JSON.stringify({ anims, skills });
 function saveDraft() { try { localStorage.setItem(DRAFT, snapshot()); } catch (e) { /* the draft only lasts this visit */ } }
 function edit(fn, msg) {
   const before = snapshot();
   fn();
-  // An effect keeps its start step inside its animation when frames are removed.
-  for (const e of Object.values(fx)) if (anims[e.anim]) e.start = Math.min(e.start, anims[e.anim].frames.length - 1);
   if (snapshot() === before) return;
   past.push(before); if (past.length > 200) past.shift(); future.length = 0;
   saveDraft(); refresh(msg);
 }
 function undoStep(from, to, msg) {
   if (!from.length) return;
-  to.push(snapshot()); ({ anims, fx } = JSON.parse(from.pop()));
+  to.push(snapshot()); ({ anims, skills } = JSON.parse(from.pop()));
   if (!anims[st.anim]) st.anim = 'idle';
   saveDraft(); refresh(msg);
 }
-const changed = k => JSON.stringify(anims[k]) !== JSON.stringify(BASE[k]) ||
-  Object.keys(fx).some(f => fx[f].anim === k && JSON.stringify(fx[f]) !== JSON.stringify(BASE_FX[f]));
+const changedAnim = k => JSON.stringify(anims[k]) !== JSON.stringify(BASE[k]);
+const changedSkill = k => JSON.stringify(skills[k]) !== JSON.stringify(BASE_SKILLS[k]);
+const sk = () => st.skill && skills[st.skill];
 const cur = () => anims[st.anim];
-function exportText() { return JSON.stringify({ version: 1, anims, fx }, null, 1) + '\n'; }
+// The steps on the strip: frames of an animation (one shared ms) or a skill's actor steps (each its own).
+const steps = () => sk() ? sk().actor : cur().frames.map(f => ({ f, ms: cur().ms }));
+function exportText() { return JSON.stringify({ version: 2, anims, skills }, null, 1) + '\n'; }
 
-// ---------- effects ----------
-const fxImg = {};
-function effectImage(e) {
-  if (!fxImg[e.image]) { const im = new Image(); fxImg[e.image] = { im, ok: false }; im.onload = () => { fxImg[e.image].ok = true; renderFx(); }; im.src = e.image; }
-  return fxImg[e.image].ok ? fxImg[e.image].im : null;
-}
-const effectsHere = () => Object.keys(fx).filter(k => fx[k].who === st.id && fx[k].anim === st.anim);
-function effect() {
-  const here = effectsHere();
-  if (!here.length) return null;
-  if (!here.includes(st.fxKey)) st.fxKey = here[0];
-  return fx[st.fxKey];
-}
-// Every time in ms that matters for this animation and its effect.
+// ---------- timing ----------
+const EASE = { linear: u => u, out: u => 1 - Math.pow(1 - u, 3), smooth: u => u * u * (3 - 2 * u) };
 function timing() {
-  const a = cur(), n = a.frames.length, len = n * a.ms, e = $('#fxShow').checked ? effect() : null;
-  const t = { a, n, len, span: len, e: null };
-  if (e) {
-    const startMs = e.start * a.ms, cum = e.ms.reduce((c, m) => (c.push(c[c.length - 1] + m), c), [0]);
-    t.e = { e, startMs, cum, end: startMs + cum[cum.length - 1], impactMs: startMs + cum[e.impact] };
-    if (!a.loop) t.span = Math.max(len, t.e.end);
+  const c = sk(), list = steps(), starts = [];
+  let t = 0; for (const s of list) { starts.push(t); t += s.ms; }
+  const T = { c, list, starts, len: t, loop: !c && cur().loop, span: t, layers: [] };
+  if (c) {
+    for (const L of c.layers) {
+      const cum = L.ms.reduce((a, m) => (a.push(a[a.length - 1] + m), a), [0]);
+      T.layers.push({ L, cum, end: L.start + cum[cum.length - 1], hidden: hiddenLayers.has(c.label + T.layers.length) });
+    }
+    T.span = Math.max(t, ...T.layers.map(l => l.end), ...Object.values(c.cues));
   }
-  return t;
+  return T;
 }
-function frameAt(T, ms) {
-  const step = T.a.loop ? Math.floor(ms / T.a.ms) % T.n : Math.min(Math.floor(ms / T.a.ms), T.n - 1);
-  let fxFrame = -1;
-  if (T.e && ms >= T.e.startMs && ms < T.e.end) fxFrame = T.e.cum.findIndex(c => c > ms - T.e.startMs) - 1;
-  return { step, fxFrame, impact: !!T.e && ms >= T.e.impactMs && ms < T.e.impactMs + IMPACT_MS };
+function stepIndex(T, ms) {
+  if (T.loop) ms %= T.len;
+  let i = T.starts.length - 1; while (i > 0 && T.starts[i] > ms) i--;
+  return i;
 }
-// The times at which either layer changes, for frame-by-frame stepping.
+// Feet offset from home at a moment: each step moves from where the last one ended.
+function rootAt(T, ms) {
+  if (!T.c) return [0, 0];
+  const i = stepIndex(T, ms), s = T.list[i], prev = i ? T.list[i - 1] : { x: 0, y: 0 };
+  const u = clamp((ms - T.starts[i]) / s.ms), e = EASE[s.ease](u);
+  return [prev.x + (s.x - prev.x) * e, prev.y + (s.y - prev.y) * e - Math.sin(u * Math.PI) * s.arc];
+}
+function layerFrame(l, ms) { return ms >= l.L.start && ms < l.end ? l.cum.findIndex(c => c > ms - l.L.start) - 1 : -1; }
+function dimAt(c, ms) {
+  const d = c && c.dim; if (!d) return 0;
+  if (ms < d[0] || ms >= d[3]) return 0;
+  return d[4] * Math.min(d[1] > d[0] ? clamp((ms - d[0]) / (d[1] - d[0])) : 1, d[3] > d[2] ? clamp((d[3] - ms) / (d[3] - d[2])) : 1);
+}
+// The times at which anything on stage changes, for frame-by-frame stepping.
 function marks(T) {
-  const m = new Set([0]);
-  for (let k = 0; k < T.n; k++) m.add(k * T.a.ms);
-  if (T.e) T.e.cum.forEach(c => m.add(T.e.startMs + c));
-  return [...m].filter(v => v < T.span || v === 0).sort((x, y) => x - y);
+  const m = new Set([0, ...T.starts]);
+  if (T.c) { for (const l of T.layers) l.cum.forEach(c => m.add(l.L.start + c)); Object.values(T.c.cues).forEach(v => m.add(v)); }
+  return [...m].filter(v => v <= T.span).sort((x, y) => x - y);
+}
+function clockAt(now, T) {
+  if (!st.playing) return Math.min(st.pauseT, T.span);
+  let ms = (now - st.t0) * +$('#speed').value;
+  if (!T.loop && ms > T.span + 600) { st.t0 = now; ms = 0; }   // replay one-shots after a pause
+  return T.loop ? ms % T.len : Math.min(ms, T.span);
 }
 
-// ---------- drawing frames ----------
+// ---------- drawing ----------
 // Status looks the engine derives from any frame instead of having them drawn (FFRK sheets bake these in;
 // generating them keeps the ChatGPT request smaller and the looks identical across the cast).
 const off = document.createElement('canvas'), ox = off.getContext('2d');
-off.width = off.height = S.cell;
-function frameCanvas(i, fx, now) {
-  ox.globalCompositeOperation = 'source-over'; ox.filter = 'none'; ox.clearRect(0, 0, S.cell, S.cell);
-  if (fx === 'stone') ox.filter = 'grayscale(1) contrast(1.15) brightness(1.05)';
-  ox.drawImage(st.img, (i % S.cols) * S.cell, Math.floor(i / S.cols) * S.cell, S.cell, S.cell, 0, 0, S.cell, S.cell);
+off.width = off.height = C;
+function frameCanvas(i, look, now) {
+  ox.globalCompositeOperation = 'source-over'; ox.filter = 'none'; ox.clearRect(0, 0, C, C);
+  if (look === 'stone') ox.filter = 'grayscale(1) contrast(1.15) brightness(1.05)';
+  ox.drawImage(st.img, (i % S.cols) * C, Math.floor(i / S.cols) * C, C, C, 0, 0, C, C);
   ox.filter = 'none';
-  if (fx === 'flash' && Math.floor(now / 70) % 2) { ox.globalCompositeOperation = 'source-atop'; ox.fillStyle = '#fff'; ox.fillRect(0, 0, S.cell, S.cell); }
+  if (look === 'flash' && Math.floor(now / 70) % 2) { ox.globalCompositeOperation = 'source-atop'; ox.fillStyle = '#fff'; ox.fillRect(0, 0, C, C); }
   return off;
 }
+const images = {};
+function image(src) {
+  if (!images[src]) { const im = new Image(); images[src] = { im, ok: false }; im.onload = () => { images[src].ok = true; st.shown = ''; if (sk()) renderLayers(); }; im.src = src; }
+  return images[src].ok ? images[src].im : null;
+}
+const dummyCv = document.createElement('canvas'), dx = dummyCv.getContext('2d');
+dummyCv.width = dummyCv.height = DUMMY.cell;
 function thumb(name) {
-  const c = document.createElement('canvas'); c.width = c.height = S.cell / 2;
+  const c = document.createElement('canvas'); c.width = c.height = C / 2;
   const i = S.frames.indexOf(name), g = c.getContext('2d');
-  if (st.img && i >= 0) { g.imageSmoothingEnabled = false; g.drawImage(st.img, (i % S.cols) * S.cell, Math.floor(i / S.cols) * S.cell, S.cell, S.cell, 0, 0, c.width, c.height); }
+  if (st.img && i >= 0) { g.imageSmoothingEnabled = false; g.drawImage(st.img, (i % S.cols) * C, Math.floor(i / S.cols) * C, C, C, 0, 0, c.width, c.height); }
   else { g.fillStyle = '#6c6575'; g.font = '8px Silkscreen, monospace'; g.textAlign = 'center'; g.fillText(name, c.width / 2, c.height / 2 + 3, c.width - 2); }
   c.setAttribute('aria-hidden', 'true');
   return c;
@@ -314,72 +356,96 @@ function describe(name) {
   if (/^limit\d/.test(name)) return `Limit Break, frame ${name.slice(-1)} of 3`;
   return '';
 }
-
-function clockAt(now, T) {
-  if (!st.playing) return Math.min(st.pauseT, T.span);
-  let ms = (now - st.t0) * +$('#speed').value;
-  if (!T.a.loop && ms > T.span + 600) { st.t0 = now; ms = 0; }   // replay one-shots after a pause
-  return T.a.loop ? ms % T.len : Math.min(ms, T.span);
+// Stage geometry in native px: the party member's home is the right-hand cell, the target to their left.
+function stage(T) {
+  const target = T.c ? T.c.target : DEFAULT_TARGET;
+  const w = Math.max(2 * C, C + 32 - target[0]), home = [w - C / 2, S.base];
+  return { w, home, target: [home[0] + target[0], home[1] + target[1]] };
 }
 
 function draw(now) {
-  const Z = +$('#zoom').value, whole = $('#sheet').checked;
+  const Z = +$('#zoom').value;
   if (!st.img) {
-    cv.width = S.cell * 2 * Z; cv.height = S.cell * Z;
+    cv.width = C * 2 * Z; cv.height = C * Z;
     cx.fillStyle = '#6c6575'; cx.font = '12px Silkscreen, monospace'; cx.textAlign = 'center';
     cx.fillText(M.cast[st.id].sheet ? 'loading…' : 'no sprite sheet yet', cv.width / 2, cv.height / 2);
     $('#frame').textContent = M.cast[st.id].sheet ? '' : `${M.cast[st.id].name} has no sheet; pick Kiri or Natsu to see frames.`;
     st.shown = '';
-  } else if (whole) {
+  } else if ($('#sheet').checked) {
     cv.width = st.img.width * 2; cv.height = st.img.height * 2; cx.imageSmoothingEnabled = false;
     cx.drawImage(st.img, 0, 0, cv.width, cv.height);
-    $('#frame').textContent = `${S.cols} × ${S.rows} frames of ${S.cell} px`;
+    $('#frame').textContent = `${S.cols} × ${S.rows} frames of ${C} px`;
     st.shown = '';
   } else {
-    const T = timing(), ms = clockAt(now, T), { step, fxFrame, impact } = frameAt(T, ms);
-    const a = T.a, n = T.n, name = a.frames[step], i = S.frames.indexOf(name), C = S.cell;
-    if (cv.width !== C * 2 * Z || cv.height !== C * Z) { cv.width = C * 2 * Z; cv.height = C * Z; } else cx.clearRect(0, 0, cv.width, cv.height);
+    const T = timing(), ms = clockAt(now, T), G = stage(T), i = stepIndex(T, ms), s = T.list[i], c = T.c;
+    if (cv.width !== G.w * Z || cv.height !== C * Z) { cv.width = G.w * Z; cv.height = C * Z; } else cx.clearRect(0, 0, cv.width, cv.height);
     cx.imageSmoothingEnabled = false;
+    const look = document.querySelector('input[name=fx]:checked').value;
+    const hit = c ? ms - c.cues.damage : -1, shake = hit >= 0 && hit < SHAKE_MS ? (Math.sin(hit / 30) * 4 - 5) * (1 - hit / SHAKE_MS) : 0;
     cx.save();
     if ($('#flip').checked) { cx.translate(cv.width, 0); cx.scale(-1, 1); }
-    // The target: a ghost on the ground under the effect's pivot, which flashes on the impact frame.
-    const e = T.e && T.e.e, tx = FEET[0] + (e ? e.at[0] : -96), ty = FEET[1] + (e ? e.at[1] : -30);
-    cx.fillStyle = 'rgba(0,0,0,.35)'; cx.beginPath(); cx.ellipse(tx * Z, S.base * Z, 16 * Z, 3 * Z, 0, 0, 7); cx.fill();
-    cx.strokeStyle = impact ? '#fff' : 'rgba(154,146,163,.35)'; cx.lineWidth = impact ? 2 : 1;
-    cx.beginPath(); cx.moveTo((tx - 5) * Z, ty * Z); cx.lineTo((tx + 5) * Z, ty * Z); cx.moveTo(tx * Z, (ty - 5) * Z); cx.lineTo(tx * Z, (ty + 5) * Z); cx.stroke();
-    // The party member.
-    cx.fillStyle = 'rgba(0,0,0,.35)'; cx.beginPath(); cx.ellipse(FEET[0] * Z, S.base * Z, 16 * Z, 3 * Z, 0, 0, 7); cx.fill();
-    cx.save();
-    const look = document.querySelector('input[name=fx]:checked').value;
-    if ($('#onion').checked && n > 1 && (step > 0 || a.loop)) {
-      cx.globalAlpha = 0.3; cx.drawImage(frameCanvas(S.frames.indexOf(a.frames[(step + n - 1) % n]), '', now), C * Z, 0, C * Z, C * Z); cx.globalAlpha = 1;
+    const dim = dimAt(c, ms);
+    if (dim) { cx.fillStyle = `rgba(2,6,14,${dim})`; cx.fillRect(0, 0, cv.width, cv.height); }
+    const ground = (x, r) => { cx.fillStyle = 'rgba(0,0,0,.35)'; cx.beginPath(); cx.ellipse(x * Z, S.base * Z, r * Z, 3 * Z, 0, 0, 7); cx.fill(); };
+    // The target: the study's masked training dummy, flashing and shaking on the damage cue.
+    const tx = G.target[0] + shake, ty = G.target[1];
+    const dummy = $('#dummy').checked && image(DUMMY.src);
+    if (dummy) {
+      ground(G.target[0], 16);
+      dx.globalCompositeOperation = 'source-over'; dx.clearRect(0, 0, DUMMY.cell, DUMMY.cell); dx.drawImage(dummy, 0, 0);
+      if (hit >= 0 && hit < FLASH_MS) { dx.globalCompositeOperation = 'source-atop'; dx.fillStyle = 'rgba(255,247,219,.8)'; dx.fillRect(0, 0, DUMMY.cell, DUMMY.cell); }
+      cx.drawImage(dummyCv, Math.round(tx - DUMMY.feet[0]) * Z, Math.round(ty - DUMMY.feet[1]) * Z, DUMMY.cell * Z, DUMMY.cell * Z);
+      if (c) { cx.fillStyle = '#10151c'; cx.fillRect((G.target[0] - 17) * Z, (S.base + 4) * Z, 34 * Z, 3 * Z); cx.fillStyle = hit >= 0 ? '#80535b' : '#8e9586'; cx.fillRect((G.target[0] - 16) * Z, (S.base + 5) * Z, (hit >= 0 ? 13 : 31) * Z, Z); }
     }
-    if (look === 'vanish') cx.globalAlpha = 0.25 + 0.15 * Math.sin(now / 160);
-    if (look === 'mini') { cx.translate(FEET[0] * Z, S.base * Z); cx.scale(0.5, 0.5); cx.translate(-FEET[0] * Z, -S.base * Z); }
-    cx.drawImage(frameCanvas(i, look, now), C * Z, 0, C * Z, C * Z);
-    cx.restore();
-    // The effect, above the target, pivot on the target point, whole pixels only.
-    const im = e && fxFrame >= 0 && effectImage(e);
-    if (im) {
-      const fc = e.cell, sx = (fxFrame % e.cols) * fc, sy = Math.floor(fxFrame / e.cols) * fc;
-      cx.drawImage(im, sx, sy, fc, fc, Math.round(tx - e.pivot[0]) * Z, Math.round(ty - e.pivot[1]) * Z, fc * Z, fc * Z);
+    // The party member, with afterimages trailing a step that leaves them.
+    const actorAt = (f, r, alpha) => {
+      cx.save(); cx.globalAlpha = alpha;
+      const x = Math.round(G.home[0] + r[0] - C / 2) * Z, y = Math.round(r[1]) * Z;
+      if (look === 'vanish') cx.globalAlpha *= 0.25 + 0.15 * Math.sin(now / 160);
+      if (look === 'mini') { const fx0 = (G.home[0] + r[0]) * Z, fy = (S.base + r[1]) * Z; cx.translate(fx0, fy); cx.scale(0.5, 0.5); cx.translate(-fx0, -fy); }
+      cx.drawImage(frameCanvas(S.frames.indexOf(f), alpha < 1 ? '' : look, now), x, y, C * Z, C * Z);
+      cx.restore();
+    };
+    const root = rootAt(T, ms);
+    ground(G.home[0] + root[0], 17);
+    if ($('#onion').checked && T.list.length > 1 && (i > 0 || T.loop)) { const j = (i + T.list.length - 1) % T.list.length; actorAt(T.list[j].f, rootAt(T, T.starts[j] + T.list[j].ms - 1), 0.3); }
+    T.list.forEach((g, j) => {
+      if (!g.ghosts || ms < T.starts[j] || ms >= T.starts[j] + g.ms + GHOST_TAIL) return;
+      for (let k = g.ghosts; k >= 1; k--) actorAt(g.f, rootAt(T, Math.max(T.starts[j], Math.min(ms, T.starts[j] + g.ms) - k * GHOST_GAP)), 0.06 * (g.ghosts + 1 - k));
+    });
+    actorAt(s.f, root, 1);
+    // Effect layers in list order, above both actors. Native-pixel layers stay on whole pixels.
+    const frames = [];
+    for (const l of T.layers) {
+      const n = layerFrame(l, ms); frames.push(n);
+      if (n < 0 || l.hidden) continue;
+      const L = l.L, im = image(L.image); if (!im) continue;
+      const a = L.anchor === 'actor' ? [G.home[0] + root[0], G.home[1] + root[1]] : [tx, ty], w = L.cell[0], h = L.cell[1], r = L.res;
+      const px = a[0] + L.at[0] - L.pivot[0], py = a[1] + L.at[1] - L.pivot[1], snap = r > 1 ? v => v : Math.round;
+      cx.imageSmoothingEnabled = r > 1;
+      cx.drawImage(im, (n % L.cols) * w * r, Math.floor(n / L.cols) * h * r, w * r, h * r, snap(px) * Z, snap(py) * Z, w * Z, h * Z);
+      cx.imageSmoothingEnabled = false;
     }
     cx.restore();
     if ($('#guides').checked) {
       cx.strokeStyle = 'rgba(208,106,124,.8)'; cx.lineWidth = 1;
-      cx.strokeRect(0.5, 0.5, cv.width - 1, cv.height - 1); cx.strokeRect(C * Z + 0.5, 0.5, C * Z - 1, cv.height - 1);
+      const hx = $('#flip').checked ? 0 : (G.w - C) * Z;
+      cx.strokeRect(0.5, 0.5, cv.width - 1, cv.height - 1); cx.strokeRect(hx + 0.5, 0.5, C * Z - 1, cv.height - 1);
       cx.beginPath(); cx.moveTo(0, S.base * Z + 0.5); cx.lineTo(cv.width, S.base * Z + 0.5); cx.stroke();
-      if (e) { cx.setLineDash([4, 4]); const fl = $('#flip').checked, ex = Math.round(tx - e.pivot[0]) * Z, ey = Math.round(ty - e.pivot[1]) * Z;
-        cx.strokeRect(fl ? cv.width - ex - e.cell * Z + 0.5 : ex + 0.5, ey + 0.5, e.cell * Z - 1, e.cell * Z - 1); cx.setLineDash([]); }
     }
-    const key = `${step}|${fxFrame}|${impact}|${Math.round(ms)}`;
+    const key = `${i}|${frames.join(',')}|${Math.round(ms)}`;
     if (key !== st.shown) {
-      if (st.shown.split('|')[0] !== String(step)) document.querySelectorAll('#strip .chip').forEach((c, j) => c.setAttribute('aria-current', j === step));
-      st.shown = key; if (st.playing) st.sel = step;
+      if (st.shown.split('|')[0] !== String(i)) document.querySelectorAll('#strip .chip').forEach((el, j) => el.setAttribute('aria-current', j === i));
+      st.shown = key; if (st.playing) st.sel = i;
       $('#scrub').max = Math.max(1, T.span); $('#scrub').value = Math.round(ms);
       $('#clock').textContent = `${Math.round(ms)} / ${T.span} ms`;
-      const fxText = e ? (fxFrame >= 0 ? ` · effect frame ${fxFrame + 1}/${e.ms.length}${impact ? ' · IMPACT' : ''}` : ms >= T.e.end ? ' · effect hidden' : ' · effect waiting') : '';
-      $('#frame').textContent = `${st.anim} · step ${step + 1}/${n} · ${name}${describe(name) ? ' · ' + describe(name) : ''}${fxText}`;
+      const name = c ? `${c.label}${s.beat ? ' · ' + s.beat : ''}` : st.anim;
+      $('#frame').textContent = `${name} · step ${i + 1}/${T.list.length} · ${s.f}${describe(s.f) ? ' · ' + describe(s.f) : ''}`;
+      if (c) {
+        const passed = Object.entries(c.cues).filter(([, t]) => t <= ms).sort((a, b) => b[1] - a[1])[0];
+        $('#cueline').textContent = T.layers.map((l, j) => `${l.L.name} ${frames[j] >= 0 ? frames[j] + 1 + '/' + l.L.ms.length : ms >= l.end ? 'done' : 'waiting'}`).join(' · ') +
+          (passed && ms - passed[1] < 200 ? ` · cue: ${passed[0].toUpperCase()}` : '');
+      }
     }
   }
   requestAnimationFrame(draw);
@@ -388,6 +454,7 @@ function draw(now) {
 // ---------- page ----------
 function pick(id) {
   st.id = id; st.img = null; st.shown = '';
+  if (st.skill && skills[st.skill].who !== id) st.skill = null;
   const c = M.cast[id];
   $('#who').textContent = `${c.name} · ${c.class}`;
   document.querySelectorAll('#cast button').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id));
@@ -400,23 +467,28 @@ function pick(id) {
 }
 
 function renderAnims() {
-  const withFx = new Set(Object.values(fx).filter(e => e.who === st.id).map(e => e.anim));
-  $('#anims').innerHTML = Object.keys(anims).map(a => `<button type="button" data-a="${a}" aria-pressed="${a === st.anim}" data-changed="${changed(a)}" title="${changed(a) ? (BASE[a] ? 'edited' : 'new') : ''}${withFx.has(a) ? ' has an effect' : ''}">${a}${withFx.has(a) ? ' ✦' : ''}</button>`).join('');
+  $('#anims').innerHTML = Object.keys(anims).map(a => `<button type="button" data-a="${a}" aria-pressed="${!st.skill && a === st.anim}" data-changed="${changedAnim(a)}" title="${changedAnim(a) ? (BASE[a] ? 'edited' : 'new') : ''}">${a}</button>`).join('');
+  const mine = Object.keys(skills).filter(k => skills[k].who === st.id);
+  $('#skills').innerHTML = mine.length ? mine.map(k => `<button type="button" data-k="${k}" aria-pressed="${st.skill === k}" data-changed="${changedSkill(k)}">✦ ${skills[k].label}</button>`).join('')
+    : `<span class="readout">None yet for ${M.cast[st.id].name}. Skills are added to references/skills.json (see the party-art skill).</span>`;
 }
 function renderStrip() {
-  const a = cur(), strip = $('#strip');
-  strip.replaceChildren(...a.frames.map((f, j) => {
+  const list = steps();
+  $('#strip').replaceChildren(...list.map((s, j) => {
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'chip'; b.draggable = true; b.dataset.j = j;
     b.setAttribute('role', 'option'); b.setAttribute('aria-current', j === st.sel);
-    b.setAttribute('aria-label', `Step ${j + 1}: ${f}`); b.title = describe(f);
-    b.append(thumb(f), `${j + 1} ${f}`);
+    b.setAttribute('aria-label', `Step ${j + 1}: ${s.f}`); b.title = (s.beat ? s.beat + ' · ' : '') + describe(s.f);
+    b.append(thumb(s.f), `${j + 1} ${s.f}`);
+    if (sk()) { const t = document.createElement('span'); t.textContent = `${s.ms} ms`; b.append(t); }
     return b;
   }));
   st.shown = '';
 }
 function renderLib() {
-  const used = new Set(cur().frames);
+  const used = new Set(steps().map(s => s.f));
+  $('#libLabel').textContent = sk() ? 'Frame library · click to swap the selected step’s frame, or drag onto the strip to add a step'
+    : 'Frame library · click to insert after the selected frame, or drag onto the strip';
   $('#lib').replaceChildren(...S.frames.map(f => {
     const b = document.createElement('button');
     b.type = 'button'; b.dataset.f = f; b.draggable = true; b.title = `${f}: ${describe(f)}`;
@@ -425,46 +497,51 @@ function renderLib() {
     return b;
   }));
 }
-function renderFx() {
-  const here = effectsHere(), e = effect(), a = cur();
-  $('#fxNone').hidden = !!e; $('#fxEdit').hidden = !e;
-  if (!e) { $('#fxNone').textContent = `No effect on ${st.anim} for ${M.cast[st.id].name}. Effects are added in references/fx.json (see the party-art skill).`; return; }
-  $('#fxPick').innerHTML = here.map(k => `<option value="${k}"${k === st.fxKey ? ' selected' : ''}>${fx[k].label}</option>`).join('');
-  const im = effectImage(e);
-  $('#fxStrip').replaceChildren(...e.ms.map((m, j) => {
-    const box = document.createElement('label'); box.className = 'chip fxchip';
-    const c = document.createElement('canvas'); c.width = c.height = e.cell; c.setAttribute('aria-hidden', 'true');
-    if (im) { const g = c.getContext('2d'); g.imageSmoothingEnabled = false; g.drawImage(im, (j % e.cols) * e.cell, Math.floor(j / e.cols) * e.cell, e.cell, e.cell, 0, 0, e.cell, e.cell); }
-    const inp = document.createElement('input'); inp.type = 'number'; inp.min = 20; inp.max = 2000; inp.step = 10; inp.value = m; inp.dataset.j = j;
-    inp.setAttribute('aria-label', `Effect frame ${j + 1} ms`);
-    box.append(c, `${j + 1}${j === e.impact ? ' ✦' : ''}`, inp);
-    return box;
-  }));
-  $('#fxStart').innerHTML = a.frames.map((f, j) => `<option value="${j}"${j === e.start ? ' selected' : ''}>${j + 1} ${f}</option>`).join('');
-  $('#fxImpact').innerHTML = e.ms.map((_, j) => `<option value="${j}"${j === e.impact ? ' selected' : ''}>${j + 1}</option>`).join('');
-  $('#fxX').value = e.at[0]; $('#fxY').value = e.at[1];
-  const T = timing();
-  $('#fxInfo').textContent = T.e
-    ? `Starts ${T.e.startMs} ms · impact ${T.e.impactMs} ms · hides ${T.e.end} ms · ${st.anim} ends ${T.len} ms${a.loop && T.e.end > T.len ? ' · the loop cuts the effect short' : ''}${!a.loop && T.e.end > T.len ? ` · the pose holds ${T.e.end - T.len} ms for the effect` : ''}. Pivot (${e.pivot}) of a ${e.cell} px frame.`
-    : 'Hidden.';
+const hiddenLayers = new Set();
+function renderLayers() {
+  const c = sk(); if (!c) return;
+  $('#layers').innerHTML = c.layers.map((L, j) => `<fieldset><legend>${L.name}</legend>
+    <div class="controls"><label class="label"><input type="checkbox" data-l="${j}" data-f="show"${hiddenLayers.has(c.label + j) ? '' : ' checked'}> Show</label>
+    <label class="label">start <input type="number" data-l="${j}" data-f="start" value="${L.start}" min="0" max="20000" step="10"></label>
+    <label class="label">dx <input type="number" data-l="${j}" data-f="at0" value="${L.at[0]}" min="-400" max="400"></label>
+    <label class="label">dy <input type="number" data-l="${j}" data-f="at1" value="${L.at[1]}" min="-400" max="400"></label>
+    <span class="readout">on the ${L.anchor === 'actor' ? 'party member' : 'target'} · ${L.ms.length} frames · ${L.res > 1 ? 'soft light, ' + L.res + '× art' : 'native pixels'}</span></div>
+    <details><summary>Frame durations</summary><div class="strip fxstrip">${L.ms.map((m, k) => `<label class="chip fxchip">${k + 1}<input type="number" data-l="${j}" data-f="ms" data-k="${k}" value="${m}" min="10" max="5000" step="10" aria-label="${L.name} frame ${k + 1} ms"></label>`).join('')}</div></details></fieldset>`).join('');
 }
 function refresh(msg) {
-  const a = cur();
-  st.sel = Math.min(st.sel, a.frames.length - 1);
-  renderAnims(); renderStrip(); renderLib(); renderFx();
-  $('#animName').textContent = `${st.anim}${REQUIRED.has(st.anim) ? ' · standard' : ' · new'}${changed(st.anim) ? ' · edited' : ''}`;
-  $('#ms').value = a.ms; $('#loop').checked = a.loop;
-  $('#readout').textContent = `${a.frames.length} steps × ${a.ms} ms = ${a.frames.length * a.ms} ms${a.loop ? ' per loop' : ', then holds the last frame'} · ${(1000 / a.ms).toFixed(1)} fps`;
-  const sel = !st.playing, n = a.frames.length;
+  const c = sk(), list = steps(), n = list.length;
+  st.sel = Math.min(st.sel, n - 1);
+  renderAnims(); renderStrip(); renderLib();
+  $('#animTiming').hidden = !!c; $('#stepEdit').hidden = !c; $('#skillBox').hidden = !c; $('#newRow').hidden = !!c;
+  const T = timing();
+  if (c) {
+    const s = list[st.sel];
+    $('#animName').textContent = `${c.label} · ${M.cast[c.who].name}'s skill (${c.skill})${changedSkill(st.skill) ? ' · edited' : ''}`;
+    $('#sBeat').value = s.beat; $('#sMs').value = s.ms; $('#sEase').value = s.ease; $('#sX').value = s.x; $('#sY').value = s.y; $('#sArc').value = s.arc; $('#sGhosts').value = s.ghosts;
+    $('#tX').value = c.target[0]; $('#tY').value = c.target[1];
+    $('#cues').innerHTML = Object.entries(c.cues).map(([k, v]) => `<label class="label">${k} <input type="number" data-cue="${k}" value="${v}" min="0" max="20000" step="10"></label>`).join('');
+    $('#dimOn').checked = !!c.dim; document.querySelectorAll('.dimT').forEach(el => { el.value = c.dim ? c.dim[+el.dataset.k] : ''; el.disabled = !c.dim; });
+    $('#dimA').value = c.dim ? c.dim[4] : ''; $('#dimA').disabled = !c.dim;
+    renderLayers();
+    const end = Math.max(...T.layers.map(l => l.end));
+    $('#readout').textContent = `${n} steps, ${T.len} ms · effects end ${end} ms · ` + Object.entries(c.cues).map(([k, v]) => `${k} ${v}`).join(' · ') + ` ms. Plays once.`;
+  } else {
+    const a = cur();
+    $('#animName').textContent = `${st.anim}${REQUIRED.has(st.anim) ? ' · standard' : ' · new'}${changedAnim(st.anim) ? ' · edited' : ''}`;
+    $('#ms').value = a.ms; $('#loop').checked = a.loop;
+    $('#readout').textContent = `${n} steps × ${a.ms} ms = ${n * a.ms} ms${a.loop ? ' per loop' : ', then holds the last frame'} · ${(1000 / a.ms).toFixed(1)} fps`;
+    $('#cueline').textContent = '';
+  }
+  const sel = !st.playing;
   $('#left').disabled = !sel || st.sel === 0; $('#right').disabled = !sel || st.sel === n - 1;
   $('#hold').disabled = !sel || n >= MAX_FRAMES; $('#remove').disabled = !sel || n <= 1;
   $('#undo').disabled = !past.length; $('#redo').disabled = !future.length;
-  $('#resetAnim').disabled = !changed(st.anim) || !BASE[st.anim];
-  $('#delAnim').disabled = REQUIRED.has(st.anim) || Object.values(fx).some(e => e.anim === st.anim);
-  const nChanged = Object.keys(anims).filter(changed).length + Object.keys(BASE).filter(k => !anims[k]).length;
+  $('#resetAnim').disabled = c ? !changedSkill(st.skill) : !changedAnim(st.anim) || !BASE[st.anim];
+  $('#delAnim').disabled = REQUIRED.has(st.anim);
+  const nChanged = Object.keys(anims).filter(changedAnim).length + Object.keys(BASE).filter(k => !anims[k]).length + Object.keys(skills).filter(changedSkill).length;
   $('#resetAll').disabled = !nChanged;
   $('#json').value = exportText();
-  $('#status').textContent = msg || (nChanged ? `${nChanged} animation${nChanged > 1 ? 's' : ''} differ from manifest.js. Download and apply to keep them.` : 'Matches manifest.js.');
+  $('#status').textContent = msg || (nChanged ? `${nChanged} animation${nChanged > 1 ? 's or skills' : ' or skill'} differ from manifest.js. Download and apply to keep them.` : 'Matches manifest.js.');
 }
 function setPlaying(on) {
   st.playing = on; $('#play').textContent = on ? 'Pause' : 'Play'; $('#play').setAttribute('aria-pressed', on);
@@ -473,28 +550,33 @@ function setPlaying(on) {
 }
 function seek(ms) {
   const T = timing();
-  st.pauseT = Math.max(0, Math.min(ms, T.span)); st.sel = frameAt(T, st.pauseT).step;
+  st.pauseT = Math.max(0, Math.min(ms, T.span)); st.sel = stepIndex(T, st.pauseT);
   $('#scrub').value = Math.round(st.pauseT); $('#clock').textContent = `${Math.round(st.pauseT)} / ${T.span} ms`;
   if (st.playing) setPlaying(false); else { st.shown = ''; refresh(); }
 }
-function nowMs() { const T = timing(); return clockAt(performance.now(), T); }
-function select(j) { st.sel = Math.max(0, Math.min(j, cur().frames.length - 1)); seek(st.sel * cur().ms); }
-function chooseAnim(k) { st.anim = k; st.sel = 0; st.pauseT = 0; st.t0 = performance.now(); $('#sheet').checked = false; refresh(); }
-function insert(f, at) {
-  if (cur().frames.length >= MAX_FRAMES) { $('#status').textContent = `An animation holds at most ${MAX_FRAMES} steps.`; return; }
-  edit(() => { cur().frames.splice(at, 0, f); st.sel = at; st.pauseT = at * cur().ms; }, `Inserted ${f} at step ${at + 1}.`);
+const nowMs = () => clockAt(performance.now(), timing());
+const startOf = j => timing().starts[j];
+function select(j) { st.sel = Math.max(0, Math.min(j, steps().length - 1)); seek(startOf(st.sel)); }
+function chooseAnim(k) { st.skill = null; st.anim = k; st.sel = 0; st.pauseT = 0; st.t0 = performance.now(); $('#sheet').checked = false; refresh(); }
+function chooseSkill(k) { st.skill = k; st.sel = 0; st.pauseT = 0; st.t0 = performance.now(); $('#sheet').checked = false; refresh(); }
+// The list the strip edits: an animation's frame names, or a skill's step objects.
+const editList = () => sk() ? sk().actor : cur().frames;
+const stepFor = f => sk() ? { ...sk().actor[st.sel], f } : f;
+function insert(item, at) {
+  if (editList().length >= MAX_FRAMES) { $('#status').textContent = `At most ${MAX_FRAMES} steps.`; return; }
+  edit(() => { editList().splice(at, 0, clone(item)); st.sel = at; st.pauseT = startOf(at); }, `Added step ${at + 1}.`);
   if (st.playing) setPlaying(false);
 }
 function move(from, to) {
-  const fr = cur().frames;
-  if (to < 0 || to >= fr.length || from === to) return;
-  edit(() => { fr.splice(to, 0, fr.splice(from, 1)[0]); st.sel = to; st.pauseT = to * cur().ms; });
+  const list = editList();
+  if (to < 0 || to >= list.length || from === to) return;
+  edit(() => { list.splice(to, 0, list.splice(from, 1)[0]); st.sel = to; st.pauseT = startOf(to); });
 }
-function editFx(fn, msg) { const k = st.fxKey; edit(() => fn(fx[k]), msg); }
 
 $('#cast').innerHTML = ids.map(id => { const c = M.cast[id]; return `<button type="button" data-id="${id}" class="${c.sheet || c.portraits ? '' : 'missing'}" title="${c.sheet ? '' : 'no sheet'}${c.portraits ? '' : ' no portraits'}">${c.name.split(' ')[0]}</button>`; }).join('');
 $('#cast').onclick = e => { const b = e.target.closest('button'); if (b) pick(b.dataset.id); };
 $('#anims').onclick = e => { const b = e.target.closest('button'); if (b) chooseAnim(b.dataset.a); };
+$('#skills').onclick = e => { const b = e.target.closest('button'); if (b) chooseSkill(b.dataset.k); };
 $('#play').onclick = () => { if (st.playing) { st.pauseT = nowMs(); setPlaying(false); } else setPlaying(true); };
 $('#prev').onclick = () => { const T = timing(), t = st.playing ? nowMs() : st.pauseT, m = marks(T), before = m.filter(v => v < t - 0.5); seek(before.length ? before[before.length - 1] : m[m.length - 1]); };
 $('#next').onclick = () => { const T = timing(), t = st.playing ? nowMs() : st.pauseT, m = marks(T), after = m.find(v => v > t + 0.5); seek(after === undefined ? 0 : after); };
@@ -502,38 +584,57 @@ $('#replay').onclick = () => { st.pauseT = 0; setPlaying(true); };
 $('#scrub').oninput = () => seek(+$('#scrub').value);
 $('#speed').onchange = () => { if (st.playing) { st.pauseT = nowMs(); setPlaying(true); } };
 $('#strip').onclick = e => { const b = e.target.closest('.chip'); if (b) select(+b.dataset.j); };
-$('#lib').onclick = e => { const b = e.target.closest('button'); if (b) insert(b.dataset.f, Math.min(st.sel + 1, cur().frames.length)); };
+$('#lib').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (sk()) edit(() => { sk().actor[st.sel].f = b.dataset.f; }, `Step ${st.sel + 1} now shows ${b.dataset.f}.`);
+  else insert(b.dataset.f, Math.min(st.sel + 1, cur().frames.length));
+};
 $('#left').onclick = () => move(st.sel, st.sel - 1);
 $('#right').onclick = () => move(st.sel, st.sel + 1);
-$('#hold').onclick = () => insert(cur().frames[st.sel], st.sel + 1);
-$('#remove').onclick = () => { const f = cur().frames[st.sel]; edit(() => { cur().frames.splice(st.sel, 1); st.sel = Math.max(0, st.sel - 1); st.pauseT = st.sel * cur().ms; }, `Removed ${f}.`); };
+$('#hold').onclick = () => insert(editList()[st.sel], st.sel + 1);
+$('#remove').onclick = () => edit(() => { editList().splice(st.sel, 1); st.sel = Math.max(0, st.sel - 1); st.pauseT = startOf(st.sel); }, `Removed step ${st.sel + 1}.`);
 $('#ms').onchange = () => {
   const v = Math.round(+$('#ms').value);
   if (!(v >= 30 && v <= 2000)) { $('#ms').value = cur().ms; $('#status').textContent = 'ms per frame runs from 30 to 2000.'; return; }
   edit(() => { cur().ms = v; });
 };
 $('#loop').onchange = () => edit(() => { cur().loop = $('#loop').checked; });
-$('#fxPick').onchange = () => { st.fxKey = $('#fxPick').value; refresh(); };
-$('#fxShow').onchange = () => { st.shown = ''; refresh(); };
-$('#fxStrip').onchange = e => {
-  const j = +e.target.dataset.j, v = Math.round(+e.target.value);
-  if (!(v >= 20 && v <= 2000)) { renderFx(); $('#status').textContent = 'Effect frames run from 20 to 2000 ms.'; return; }
-  editFx(x => { x.ms[j] = v; }, `Effect frame ${j + 1} now ${v} ms.`);
+// Skill step fields. Numbers outside their range are refused and the field restored.
+const numField = (el, lo, hi, set) => el.onchange = () => {
+  const v = Math.round(+el.value);
+  if (!(v >= lo && v <= hi) || el.value === '') { $('#status').textContent = `That field runs from ${lo} to ${hi}.`; refresh(`That field runs from ${lo} to ${hi}.`); return; }
+  edit(() => set(v));
 };
-$('#fxStart').onchange = () => editFx(x => { x.start = +$('#fxStart').value; });
-$('#fxImpact').onchange = () => editFx(x => { x.impact = +$('#fxImpact').value; });
-for (const [id, k] of [['#fxX', 0], ['#fxY', 1]]) $(id).onchange = () => {
-  const v = Math.round(+$(id).value);
-  if (!(Math.abs(v) <= 200)) { renderFx(); return; }
-  editFx(x => { x.at[k] = v; });
-};
+numField($('#sMs'), 10, 5000, v => { sk().actor[st.sel].ms = v; });
+numField($('#sX'), -400, 400, v => { sk().actor[st.sel].x = v; });
+numField($('#sY'), -400, 400, v => { sk().actor[st.sel].y = v; });
+numField($('#sArc'), -64, 64, v => { sk().actor[st.sel].arc = v; });
+numField($('#sGhosts'), 0, 6, v => { sk().actor[st.sel].ghosts = v; });
+numField($('#tX'), -400, 400, v => { sk().target[0] = v; });
+numField($('#tY'), -400, 400, v => { sk().target[1] = v; });
+$('#sEase').onchange = () => edit(() => { sk().actor[st.sel].ease = $('#sEase').value; });
+$('#sBeat').onchange = () => edit(() => { sk().actor[st.sel].beat = $('#sBeat').value.slice(0, 40); });
+$('#cues').onchange = e => { const k = e.target.dataset.cue, v = Math.round(+e.target.value);
+  if (!(v >= 0 && v <= 20000)) return refresh('Cues run from 0 to 20000 ms.');
+  edit(() => { sk().cues[k] = v; }, `${k} cue at ${v} ms.`); };
+$('#dimOn').onchange = () => edit(() => { sk().dim = $('#dimOn').checked ? (BASE_SKILLS[st.skill].dim || [0, 200, 800, 1000, 0.24]) : null; });
+$('#skillBox').addEventListener('change', e => {
+  if (e.target.classList.contains('dimT') || e.target.id === 'dimA') {
+    const d = [...document.querySelectorAll('.dimT')].map(el => Math.round(+el.value)).concat(+$('#dimA').value);
+    if (!(d[0] <= d[1] && d[1] <= d[2] && d[2] <= d[3] && d.slice(0, 4).every(v => v >= 0 && v <= 20000) && d[4] >= 0 && d[4] <= 0.8)) return refresh('Dim times run in order (in ≤ full ≤ fade ≤ off), amount 0 to 0.8.');
+    edit(() => { sk().dim = d; });
+  }
+  const l = e.target.dataset.l; if (l === undefined) return;
+  const L = sk().layers[+l], f = e.target.dataset.f;
+  if (f === 'show') { const key = sk().label + l; e.target.checked ? hiddenLayers.delete(key) : hiddenLayers.add(key); st.shown = ''; return; }
+  const v = Math.round(+e.target.value), [lo, hi] = f === 'ms' ? [10, 5000] : f === 'start' ? [0, 20000] : [-400, 400];
+  if (!(v >= lo && v <= hi)) return refresh(`That field runs from ${lo} to ${hi}.`);
+  edit(() => { if (f === 'ms') L.ms[+e.target.dataset.k] = v; else if (f === 'start') L.start = v; else L.at[f === 'at0' ? 0 : 1] = v; });
+});
 $('#undo').onclick = () => undoStep(past, future, 'Undone.');
 $('#redo').onclick = () => undoStep(future, past, 'Redone.');
-$('#resetAnim').onclick = () => edit(() => {
-  anims[st.anim] = clone(BASE[st.anim]);
-  for (const k of Object.keys(fx)) if (fx[k].anim === st.anim && BASE_FX[k]) fx[k] = clone(BASE_FX[k]);
-}, `${st.anim} reset to manifest.js.`);
-$('#resetAll').onclick = () => { if (confirm('Discard every animation and effect edit and return to manifest.js?')) edit(() => { anims = clone(BASE); fx = clone(BASE_FX); st.anim = 'idle'; }, 'All animations reset to manifest.js.'); };
+$('#resetAnim').onclick = () => edit(() => { if (sk()) skills[st.skill] = clone(BASE_SKILLS[st.skill]); else anims[st.anim] = clone(BASE[st.anim]); }, 'Reset to manifest.js.');
+$('#resetAll').onclick = () => { if (confirm('Discard every animation and skill edit and return to manifest.js?')) edit(() => { anims = clone(BASE); skills = clone(BASE_SKILLS); if (!anims[st.anim]) st.anim = 'idle'; }, 'Everything reset to manifest.js.'); };
 function newAnim(from) {
   const k = $('#newName').value.trim();
   if (!NAME.test(k)) { $('#status').textContent = 'Name it in camelCase: a lower-case letter, then letters and digits (up to 24).'; $('#newName').focus(); return; }
@@ -543,7 +644,7 @@ function newAnim(from) {
 }
 $('#addAnim').onclick = () => newAnim(false);
 $('#copyAnim').onclick = () => { if (!$('#newName').value.trim()) $('#newName').value = st.anim + 'Alt'; newAnim(true); };
-$('#delAnim').onclick = () => { const k = st.anim; if (!$('#delAnim').disabled) edit(() => { delete anims[k]; st.anim = 'idle'; st.sel = 0; }, `Deleted ${k}.`); };
+$('#delAnim').onclick = () => { const k = st.anim; if (!REQUIRED.has(k)) edit(() => { delete anims[k]; st.anim = 'idle'; st.sel = 0; }, `Deleted ${k}.`); };
 $('#export').onclick = () => {
   const url = URL.createObjectURL(new Blob([exportText()], { type: 'application/json' }));
   const a = document.createElement('a'); a.href = url; a.download = 'party-anims.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
@@ -558,14 +659,14 @@ $('#importFile').onchange = async () => {
   const file = $('#importFile').files[0]; $('#importFile').value = '';
   if (!file) return;
   try {
-    const d = JSON.parse(await file.text()), set = d && d.anims ? d.anims : d, effects = d && d.anims ? (d.fx || fx) : fx;
-    const bad = problems(set || {}, effects);
+    const d = JSON.parse(await file.text()), set = d && d.anims ? d.anims : d, sks = d && d.skills ? d.skills : skills;
+    const bad = problems(set || {}, sks);
     if (bad.length) throw new Error(bad.slice(0, 3).join('; '));
-    edit(() => { anims = set; fx = effects; if (!anims[st.anim]) st.anim = 'idle'; }, `Imported ${file.name}.`);
+    edit(() => { anims = set; skills = sks; if (!anims[st.anim]) st.anim = 'idle'; if (st.skill && !skills[st.skill]) st.skill = null; }, `Imported ${file.name}.`);
   } catch (e) { $('#status').textContent = 'Not imported: ' + e.message; }
 };
 
-// Drag a strip step to reorder it, or a library frame onto the strip to insert it.
+// Drag a strip step to reorder it, or a library frame onto the strip to add a step.
 let drag = null;
 document.addEventListener('dragstart', e => {
   const chip = e.target.closest('#strip .chip'), lib = e.target.closest('#lib button');
@@ -579,8 +680,8 @@ $('#strip').addEventListener('dragover', e => {
 });
 $('#strip').addEventListener('drop', e => {
   if (!drag) return; e.preventDefault();
-  const c = e.target.closest('.chip'), n = cur().frames.length, at = c ? +c.dataset.j : n;
-  if (drag.f) insert(drag.f, at); else move(drag.j, Math.min(at > drag.j ? at - 1 : at, n - 1));
+  const c = e.target.closest('.chip'), n = editList().length, at = c ? +c.dataset.j : n;
+  if (drag.f) insert(stepFor(drag.f), at); else move(drag.j, Math.min(at > drag.j ? at - 1 : at, n - 1));
   drag = null;
 });
 document.addEventListener('dragend', () => { drag = null; document.querySelectorAll('#strip .drop').forEach(c => c.classList.remove('drop')); });

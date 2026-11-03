@@ -349,34 +349,269 @@ const MANIFEST = {
    "loop": true
   }
  },
- "fx": {
+ "skills": {
   "kiriSpiralCut": {
    "who": "kiri",
    "skill": "spiral",
    "label": "Spiral Cut",
-   "image": "fx/kiri-spiral-cut.png",
-   "cell": 64,
-   "cols": 3,
-   "ms": [
-    60,
-    60,
-    80,
-    120,
-    100,
-    80
+   "source": "assets/party-fx/kiri-spiral-cut-v02/",
+   "target": [
+    -196,
+    0
    ],
-   "pivot": [
-    32,
-    32
+   "dim": [
+    400,
+    750,
+    1950,
+    2200,
+    0.24
    ],
-   "impact": 2,
-   "anim": "special",
-   "start": 1,
-   "at": [
-    -96,
-    -30
+   "cues": {
+    "contact": 1100,
+    "damage": 1820,
+    "clear": 2200,
+    "return": 2700
+   },
+   "actor": [
+    {
+     "f": "ready1",
+     "beat": "Ready",
+     "ms": 400,
+     "x": 0,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    },
+    {
+     "f": "special1",
+     "beat": "Draw back",
+     "ms": 450,
+     "x": 4,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    },
+    {
+     "f": "attack2",
+     "beat": "Forward burst",
+     "ms": 180,
+     "x": -146,
+     "y": 0,
+     "arc": 4,
+     "ease": "out",
+     "ghosts": 3
+    },
+    {
+     "f": "special2",
+     "beat": "Spiral incision",
+     "ms": 220,
+     "x": -146,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    },
+    {
+     "f": "attack3",
+     "beat": "Suspended wound",
+     "ms": 410,
+     "x": -146,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    },
+    {
+     "f": "ready2",
+     "beat": "Suspended wound",
+     "ms": 540,
+     "x": -146,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    },
+    {
+     "f": "advance1",
+     "beat": "Recovery",
+     "ms": 500,
+     "x": 0,
+     "y": 0,
+     "arc": 9,
+     "ease": "smooth",
+     "ghosts": 0
+    },
+    {
+     "f": "ready1",
+     "beat": "Ready",
+     "ms": 600,
+     "x": 0,
+     "y": 0,
+     "arc": 0,
+     "ease": "linear",
+     "ghosts": 0
+    }
    ],
-   "source": "assets/party-fx/kiri-spiral-cut-v01/"
+   "layers": [
+    {
+     "name": "incision",
+     "image": "fx/kiri-spiral-cut-v02.incision.webp",
+     "cell": [
+      96,
+      96
+     ],
+     "cols": 8,
+     "res": 1,
+     "ms": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      570,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+     ],
+     "start": 1030,
+     "anchor": "target",
+     "pivot": [
+      48,
+      82
+     ],
+     "at": [
+      0,
+      0
+     ]
+    },
+    {
+     "name": "target light",
+     "image": "fx/kiri-spiral-cut-v02.targetLight.webp",
+     "cell": [
+      144,
+      112
+     ],
+     "cols": 8,
+     "res": 2,
+     "ms": [
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30
+     ],
+     "start": 1030,
+     "anchor": "target",
+     "pivot": [
+      64,
+      90
+     ],
+     "at": [
+      0,
+      0
+     ]
+    },
+    {
+     "name": "Kiri's light",
+     "image": "fx/kiri-spiral-cut-v02.actorLight.webp",
+     "cell": [
+      112,
+      48
+     ],
+     "cols": 7,
+     "res": 2,
+     "ms": [
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      30,
+      20
+     ],
+     "start": 500,
+     "anchor": "actor",
+     "pivot": [
+      16,
+      52
+     ],
+     "at": [
+      0,
+      0
+     ]
+    }
+   ]
   }
  },
  "portraits": {

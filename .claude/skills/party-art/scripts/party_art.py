@@ -21,7 +21,7 @@ Commands
   embed     ID                      write the installed art into index.html's ASSETS
                                     (p = normal portrait, s = idle sprite, ps = all states)
   anims     FILE                    validate an animation set exported by the viewer's editor,
-                                    write references/anims.json and fx.json, rebuild manifest.js
+                                    write references/anims.json and skills.json, rebuild manifest.js
   manifest                          rebuild tools/party-sprite-viewer/manifest.js
 
 Requires Pillow and numpy.
@@ -118,12 +118,16 @@ assert len(FRAMES) == SHEET_COLS * SHEET_ROWS
 # for longer is listed more than once. The game will use the same names when the battle stage gets sprites.
 ANIMS_FILE = HERE.parent / 'references' / 'anims.json'
 ANIMS = json.loads(ANIMS_FILE.read_text())
-# Skill effects drawn over the target (references/fx.json): a strip of `cell` px frames, `cols` per row,
-# each held for its own ms. The effect starts on step `start` of the character's `anim`, its `pivot`
-# sits `at` [dx, dy] sprite px from the character's feet (negative dx is toward the enemy), and the
-# game's impact (damage number, hit flash) lands when frame `impact` begins. It hides after its last frame.
-FX_FILE = HERE.parent / 'references' / 'fx.json'
-FX = json.loads(FX_FILE.read_text())
+# Skill choreographies (references/skills.json): one per character skill, as FF6 and FFRK give each
+# ability its own sequence. `actor` is the character's track: each step shows a sheet frame for `ms` and
+# moves the feet to [x, y] (sprite px from home) with an `ease` and an `arc` hop, leaving `ghosts`
+# afterimages. `layers` are effect strips (`cell` [w, h] native px, `res` art px per native px) that start
+# at `start` ms, hang their `pivot` on the actor's feet or the target's, offset by `at`, and hide after their
+# last frame. `cues` name the moments the battle reacts to (`damage` lands the hit). `target` places the
+# target's feet from the actor's home; `dim` darkens the stage [in, full, fade, off, amount].
+SKILLS_FILE = HERE.parent / 'references' / 'skills.json'
+SKILLS = json.loads(SKILLS_FILE.read_text())
+EASES = ('linear', 'out', 'smooth')
 # The standard animations every sheet must play. The editor can add others but not remove these.
 REQUIRED_ANIMS = (
     'idle', 'ready', 'defend', 'advance', 'attack', 'attackB', 'chant', 'cast',
@@ -526,7 +530,7 @@ def cmd_manifest(_=None):
         'sheet': {'cols': SHEET_COLS, 'rows': SHEET_ROWS, 'cell': CELL, 'base': BASE, 'frames': [n for n, _ in FRAMES],
                   'desc': [d or '' for _, d in FRAMES]},
         'anims': ANIMS,
-        'fx': FX,
+        'skills': SKILLS,
         'portraits': {'cols': PORT_COLS, 'rows': PORT_ROWS, 'size': PORT, 'states': [{'key': k, 'label': l} for k, l, _ in STATES]},
         'cast': {cid: {'name': c['name'], 'class': c['class'], **have[cid]} for cid, c in CAST.items()},
     }
@@ -559,34 +563,70 @@ def check_anims(anims):
     return bad
 
 
-def check_fx(fx, anims):
-    """Problems with a set of skill effects, as a list of messages (empty when it is valid)."""
-    if not isinstance(fx, dict):
-        return ['fx: expected an object of {name: effect}']
-    keys, bad = {'who', 'skill', 'label', 'image', 'cell', 'cols', 'ms', 'pivot', 'impact', 'anim', 'start', 'at', 'source'}, []
-    for k, e in fx.items():
+def check_skills(skills):
+    """Problems with a set of skill choreographies, as a list of messages (empty when it is valid)."""
+    if not isinstance(skills, dict):
+        return ['skills: expected an object of {name: choreography}']
+    keys, frames, bad = {'who', 'skill', 'label', 'source', 'target', 'dim', 'actor', 'layers', 'cues'}, {n for n, _ in FRAMES}, []
+    num = lambda v, lo, hi: isinstance(v, (int, float)) and not isinstance(v, bool) and lo <= v <= hi
+    whole = lambda v, lo, hi: isinstance(v, int) and not isinstance(v, bool) and lo <= v <= hi
+    pair = lambda v, lo, hi: isinstance(v, list) and len(v) == 2 and all(whole(x, lo, hi) for x in v)
+    for k, c in skills.items():
         if not re.fullmatch(r'[a-z][A-Za-z0-9]{0,31}', k):
-            bad.append(f'fx "{k}": names are camelCase letters and digits'); continue
-        if not isinstance(e, dict) or set(e) != keys:
-            bad.append(f'fx {k}: needs exactly ' + ', '.join(sorted(keys))); continue
-        if e['who'] not in CAST:
-            bad.append(f'fx {k}: unknown character "{e["who"]}"')
-        if not (VIEWER / e['image']).exists():
-            bad.append(f'fx {k}: no image at {VIEWER.relative_to(REPO)}/{e["image"]}')
-        ms = e['ms']
-        if not isinstance(ms, list) or not 1 <= len(ms) <= 32 or any(not isinstance(m, int) or isinstance(m, bool) or not 20 <= m <= 2000 for m in ms):
-            bad.append(f'fx {k}: ms must list 1 to 32 whole durations from 20 to 2000'); continue
-        if not isinstance(e['impact'], int) or not 0 <= e['impact'] < len(ms):
-            bad.append(f'fx {k}: impact must be a frame index from 0 to {len(ms) - 1}')
-        a = anims.get(e['anim'])
-        if not a:
-            bad.append(f'fx {k}: unknown animation "{e["anim"]}"')
-        elif not isinstance(e['start'], int) or not 0 <= e['start'] < len(a['frames']):
-            bad.append(f'fx {k}: start must be a step of {e["anim"]} (0 to {len(a["frames"]) - 1})')
-        for f in ('pivot', 'at'):
-            if not (isinstance(e[f], list) and len(e[f]) == 2 and all(isinstance(v, int) and -200 <= v <= 200 for v in e[f])):
-                bad.append(f'fx {k}: {f} must be two whole numbers')
+            bad.append(f'skill "{k}": names are camelCase letters and digits'); continue
+        if not isinstance(c, dict) or set(c) != keys:
+            bad.append(f'{k}: needs exactly ' + ', '.join(sorted(keys))); continue
+        if c['who'] not in CAST:
+            bad.append(f'{k}: unknown character "{c["who"]}"')
+        if not pair(c['target'], -400, 400):
+            bad.append(f'{k}: target must be two whole numbers')
+        d = c['dim']
+        if d is not None and not (isinstance(d, list) and len(d) == 5 and all(whole(x, 0, 20000) for x in d[:4])
+                                  and d[0] <= d[1] <= d[2] <= d[3] and num(d[4], 0, 0.8)):
+            bad.append(f'{k}: dim is null or [in, full, fade, off, amount] in order, amount 0 to 0.8')
+        a = c['actor']
+        if not isinstance(a, list) or not 1 <= len(a) <= 32:
+            bad.append(f'{k}: actor must list 1 to 32 steps')
+        else:
+            for n, st in enumerate(a, 1):
+                if not isinstance(st, dict) or set(st) != {'f', 'beat', 'ms', 'x', 'y', 'arc', 'ease', 'ghosts'}:
+                    bad.append(f'{k} step {n}: needs f, beat, ms, x, y, arc, ease, ghosts'); continue
+                if st['f'] not in frames: bad.append(f'{k} step {n}: unknown frame "{st["f"]}"')
+                if not isinstance(st['beat'], str) or len(st['beat']) > 40: bad.append(f'{k} step {n}: beat is a short label')
+                if not whole(st['ms'], 10, 5000): bad.append(f'{k} step {n}: ms must be 10 to 5000')
+                if not (whole(st['x'], -400, 400) and whole(st['y'], -400, 400)): bad.append(f'{k} step {n}: x and y must be whole numbers')
+                if not whole(st['arc'], -64, 64): bad.append(f'{k} step {n}: arc must be -64 to 64')
+                if st['ease'] not in EASES: bad.append(f'{k} step {n}: ease is one of {", ".join(EASES)}')
+                if not whole(st['ghosts'], 0, 6): bad.append(f'{k} step {n}: ghosts must be 0 to 6')
+        ls = c['layers']
+        if not isinstance(ls, list) or len(ls) > 8:
+            bad.append(f'{k}: layers must list up to 8 effect strips'); ls = []
+        lkeys = {'name', 'image', 'cell', 'cols', 'res', 'ms', 'start', 'anchor', 'pivot', 'at'}
+        for L in ls:
+            if not isinstance(L, dict) or set(L) != lkeys:
+                bad.append(f'{k}: each layer needs exactly ' + ', '.join(sorted(lkeys))); continue
+            if not (VIEWER / L['image']).exists(): bad.append(f'{k} {L["name"]}: no image at {VIEWER.relative_to(REPO)}/{L["image"]}')
+            if not (pair(L['cell'], 1, 512) and whole(L['cols'], 1, 64) and L['res'] in (1, 2, 4)): bad.append(f'{k} {L["name"]}: bad cell, cols or res')
+            if not (isinstance(L['ms'], list) and 1 <= len(L['ms']) <= 128 and all(whole(m, 10, 5000) for m in L['ms'])): bad.append(f'{k} {L["name"]}: ms must list 1 to 128 durations of 10 to 5000')
+            if not whole(L['start'], 0, 20000): bad.append(f'{k} {L["name"]}: start must be 0 to 20000 ms')
+            if L['anchor'] not in ('actor', 'target'): bad.append(f'{k} {L["name"]}: anchor is actor or target')
+            if not (pair(L['pivot'], -512, 512) and pair(L['at'], -400, 400)): bad.append(f'{k} {L["name"]}: pivot and at must be two whole numbers')
+        cues = c['cues']
+        if not isinstance(cues, dict) or 'damage' not in cues or not all(re.fullmatch(r'[a-z][A-Za-z0-9]{0,23}', n) and whole(t, 0, 20000) for n, t in cues.items()):
+            bad.append(f'{k}: cues must name times from 0 to 20000 ms and include damage')
     return bad
+
+
+def write_skills(skills):
+    """One line per actor step, layer and field, so a diff shows what an edit changed."""
+    out = []
+    for k in sorted(skills):
+        c = skills[k]
+        fields = [f'  {json.dumps(f)}: {json.dumps(c[f])}' for f in ('who', 'skill', 'label', 'source', 'target', 'dim', 'cues')]
+        fields.append('  "actor": [\n' + ',\n'.join(f'   {json.dumps(st)}' for st in c['actor']) + '\n  ]')
+        fields.append('  "layers": [\n' + ',\n'.join(f'   {json.dumps(L)}' for L in c['layers']) + '\n  ]')
+        out.append(f' {json.dumps(k)}: {{\n' + ',\n'.join(fields) + '\n }')
+    SKILLS_FILE.write_text('{\n' + ',\n'.join(out) + '\n}\n')
 
 
 def cmd_anims(args):
@@ -595,9 +635,8 @@ def cmd_anims(args):
     except (OSError, ValueError) as e:
         sys.exit(f'cannot read {args.src}: {e}')
     anims = data.get('anims', data) if isinstance(data, dict) else data   # the editor wraps the set with a version
-    fx = data.get('fx', FX) if isinstance(data, dict) and 'anims' in data else FX
-    bad = check_anims(anims)
-    bad += check_fx(fx, anims) if not bad else []
+    skills = data.get('skills', SKILLS) if isinstance(data, dict) and 'anims' in data else SKILLS
+    bad = check_anims(anims) + check_skills(skills)
     if bad:
         sys.exit('not applied:\n  ' + '\n  '.join(bad))
     order = [k for k in REQUIRED_ANIMS] + sorted(k for k in anims if k not in REQUIRED_ANIMS)
@@ -605,10 +644,10 @@ def cmd_anims(args):
     ANIMS_FILE.write_text('{\n' + ',\n'.join(f' {json.dumps(k)}: {json.dumps(anims[k])}' for k in order) + '\n}\n')
     ANIMS.clear(); ANIMS.update({k: anims[k] for k in order})
     print(f'{ANIMS_FILE.relative_to(REPO)}: ' + (', '.join(changed) + ' changed' if changed else 'no changes'))
-    fx_changed = [k for k in fx if FX.get(k) != fx[k]] + [f'-{k}' for k in FX if k not in fx]
-    FX_FILE.write_text('{\n' + ',\n'.join(f' {json.dumps(k)}: {json.dumps(fx[k])}' for k in sorted(fx)) + '\n}\n')
-    FX.clear(); FX.update(fx)
-    print(f'{FX_FILE.relative_to(REPO)}: ' + (', '.join(fx_changed) + ' changed' if fx_changed else 'no changes'))
+    sk_changed = [k for k in skills if SKILLS.get(k) != skills[k]] + [f'-{k}' for k in SKILLS if k not in skills]
+    write_skills(skills)
+    SKILLS.clear(); SKILLS.update(skills)
+    print(f'{SKILLS_FILE.relative_to(REPO)}: ' + (', '.join(sk_changed) + ' changed' if sk_changed else 'no changes'))
     cmd_manifest()
 
 
