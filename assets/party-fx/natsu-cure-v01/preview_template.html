@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Natsu’s Cure · Motion Study 01</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#10171d;color:#e3e0d7;font:16px system-ui,sans-serif}main{max-width:1100px;margin:28px auto;padding:0 16px}h1{font-size:24px;font-weight:600;margin:0 0 8px}p{color:#a8b5bb;line-height:1.5;margin:0 0 20px}canvas{width:100%;height:auto;display:block;background:#17232b;border:1px solid #33414a;border-radius:5px}section{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0}button,select{font:inherit;color:inherit;background:#23313b;border:1px solid #52616a;border-radius:6px;padding:10px 14px;min-height:44px}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #d8c99f;outline-offset:3px}button{cursor:pointer}input[type=range]{width:100%;margin:0;accent-color:#b88a85;min-height:28px}label{display:flex;align-items:center;gap:8px}output{margin-left:auto;font-variant-numeric:tabular-nums;color:#c4c9c7}small{display:block;color:#93a2a9;line-height:1.5;margin-top:16px}@media(max-width:500px){main{margin:18px auto;padding:0 10px}h1{font-size:21px}section{gap:8px}output{width:100%;margin:0}}
+</style></head><body><main>
+<h1>Natsu’s Cure</h1><p>A prayer answered. A wound closed. A face left behind.</p>
+<canvas id="scene" width="1536" height="864" aria-label="Natsu’s Cure battle choreography with placeholder Natsu healing an allied Kiri"></canvas>
+<section><button id="play" type="button">Play</button><button id="replay" type="button">Replay</button><label>Speed <select id="speed"><option value="1">1×</option><option value="0.5">0.5×</option><option value="0.25">0.25×</option></select></label><label>Stage <select id="stage"><option value="dark">Dark</option><option value="light">Light</option></select></label><output id="status" aria-live="polite">Ready</output></section>
+<input id="seek" aria-label="Animation time" type="range" min="0" max="4100" value="0" step="1">
+<small>Choreography prototype with placeholder actors. Heal: 2.00 s. Face added: 2.88 s. Transient effects clear: 3.35 s. Plays once.</small>
+</main><script>/*POSES_DATA*/</script><script>/*RENDER_SOURCE*/</script><script>
+const canvas=document.getElementById('scene'),seek=document.getElementById('seek'),play=document.getElementById('play'),replay=document.getElementById('replay'),speed=document.getElementById('speed'),stage=document.getElementById('stage'),status=document.getElementById('status');
+let time=0,running=false,last=0,lastPhase='';window.playedEvents=[];
+function render(){let st=NatsuCure.draw(canvas,time,stage.value==='light');seek.value=Math.round(time);if(st&&st.phase!==lastPhase){lastPhase=st.phase;status.textContent=st.phase;}}
+function events(a,b){for(const e of NatsuCure.cues)if(a<e.time_ms&&b>=e.time_ms)window.playedEvents.push({...e});}
+function frame(now){if(running){let old=time;time=Math.min(NatsuCure.total,time+(now-last)*Number(speed.value));events(old,time);render();if(time===NatsuCure.total){running=false;play.textContent='Play';}}last=now;requestAnimationFrame(frame);}
+play.onclick=()=>{if(time>=NatsuCure.total){time=0;window.playedEvents=[];}running=!running;play.textContent=running?'Pause':'Play';last=performance.now();render();};
+replay.onclick=()=>{time=0;window.playedEvents=[];running=true;play.textContent='Pause';last=performance.now();render();};
+seek.oninput=()=>{time=Number(seek.value);running=false;play.textContent='Play';render();};stage.onchange=render;
+window.renderAt=(ms,light=false)=>{running=false;time=ms;stage.value=light?'light':'dark';render();return NatsuCure.state(ms);};
+NatsuCure.ready.then(()=>{render();window.previewReady=true;requestAnimationFrame(frame);});
+</script></body></html>

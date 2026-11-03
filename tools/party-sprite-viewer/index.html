@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Party Sprite Viewer</title>
+<title>Party Sprite Editor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Silkscreen&family=Spectral:ital,wght@0,400;1,400&display=swap">
 <style>
@@ -43,21 +43,68 @@ figure div { aspect-ratio: 1; background-repeat: no-repeat; }
 figcaption { font: 10px var(--f-ui); padding: 4px 6px; color: var(--dim); border-top: 2px solid var(--bone); }
 .empty { color: var(--faint); font-style: italic; padding: 24px 8px; text-align: center; }
 code { font: 12px ui-monospace, monospace; color: var(--bone); background: var(--slab); padding: 1px 4px; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0; }
+.controls select, .controls input[type=number], .controls input[type=text] { font: 11px var(--f-ui); color: var(--bone); background: var(--ink); border: 1px solid var(--rule); padding: 5px 6px; }
+.controls input[type=number] { width: 72px; }
+.controls input[type=text] { width: 120px; }
+.anims button[data-changed="true"]::after { content: " •"; color: var(--accent); }
+button[aria-pressed="true"][data-changed="true"]::after { color: var(--ink); }
+button:disabled { opacity: .4; cursor: default; }
+.strip { display: flex; gap: 4px; overflow-x: auto; padding: 6px; background: var(--ink); border: 1px solid var(--rule); min-height: 88px; }
+.chip { flex: none; display: grid; justify-items: center; gap: 2px; padding: 3px; font-size: 9px; background: var(--slab); }
+.chip[aria-current="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.chip.drop { border-left: 3px solid var(--accent); }
+.chip canvas, .lib canvas { width: 48px; height: 48px; background: #241f2a; }
+.lib { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; margin-top: 8px; }
+.lib button { display: grid; justify-items: center; gap: 2px; padding: 3px 2px; font-size: 9px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lib button.used { border-color: var(--dim); }
+.readout { font: 11px var(--f-ui); color: var(--dim); margin: 6px 0; }
+.status { font-size: 13px; color: var(--dim); min-height: 1.5em; margin: 6px 0 0; }
+details { margin-top: 12px; }
+summary { cursor: pointer; font: 16px var(--f-display); }
+textarea { width: 100%; min-height: 120px; font: 11px ui-monospace, monospace; color: var(--bone); background: var(--ink); border: 1px solid var(--rule); padding: 6px; }
+.wide { grid-column: 1 / -1; }
+.scrub { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.scrub input { flex: 1; min-width: 0; accent-color: var(--accent); }
+fieldset { border: 1px solid var(--rule); margin: 10px 0; padding: 8px 10px; min-width: 0; }
+legend { font: 16px var(--f-display); padding: 0 6px; }
+.fxchip { cursor: default; border: 1px solid var(--rule); }
+.fxchip canvas { width: 64px; height: 64px; image-rendering: pixelated; background: #241f2a; }
+.fxchip input { width: 58px; font: 10px var(--f-ui); color: var(--bone); background: var(--ink); border: 1px solid var(--rule); padding: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 </style>
 </head>
 <body>
 <header>
   <a class="launcher-link" href="../index.html">Developer tools</a>
-  <h1>Party Sprite Viewer</h1>
-  <p>The standard art set for each party member: a 54-frame battle and field sheet and 12 state portraits. Built by the <code>party-art</code> skill.</p>
+  <h1>Party Sprite Viewer and Editor</h1>
+  <p>The standard art set for each party member: a 54-frame battle and field sheet and 12 state portraits. Built by the <code>party-art</code> skill. The animation editor changes the standard set every party member shares; export it and apply it with <code>party_art.py anims</code>.</p>
 </header>
 <nav class="cast" id="cast" aria-label="Party members"></nav>
 <main>
   <section>
     <h2 id="who"></h2>
-    <div class="stage"><canvas id="cv" width="288" height="288"></canvas></div>
+    <div class="stage"><canvas id="cv" width="576" height="288"></canvas></div>
+    <label class="label scrub">Time <input type="range" id="scrub" min="0" max="1000" step="1" value="0"> <span id="clock">0 ms</span></label>
+    <div class="controls" role="group" aria-label="Playback">
+      <button type="button" id="play" aria-pressed="true" title="Space">Pause</button>
+      <button type="button" id="prev" title="Previous change in any layer (comma)">◀ Frame</button>
+      <button type="button" id="next" title="Next change in any layer (full stop)">Frame ▶</button>
+      <button type="button" id="replay">Replay</button>
+      <label class="label">Speed <select id="speed"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+      <label class="label">Zoom <select id="zoom"><option>2</option><option selected>3</option><option>4</option></select></label>
+    </div>
+    <p class="label">Animations · shared by the whole cast</p>
     <div class="anims" id="anims" role="group" aria-label="Animations"></div>
-    <div class="tints"><label><input type="checkbox" id="flip"> Face right</label><label><input type="checkbox" id="sheet"> Whole sheet</label></div>
+    <p class="label">Skills · this character's own choreographies</p>
+    <div class="anims" id="skills" role="group" aria-label="Skills"></div>
+    <div class="tints">
+      <label><input type="checkbox" id="flip"> Face right</label>
+      <label><input type="checkbox" id="onion"> Onion skin</label>
+      <label><input type="checkbox" id="guides"> Ground and cells</label>
+      <label><input type="checkbox" id="dummy" checked> Target</label>
+      <label><input type="checkbox" id="sheet"> Whole sheet</label>
+    </div>
     <div class="tints" role="group" aria-label="Derived status looks (not drawn on the sheet)">
       <span>Derived:</span>
       <label><input type="radio" name="fx" value="" checked> none</label>
@@ -66,80 +113,612 @@ code { font: 12px ui-monospace, monospace; color: var(--bone); background: var(-
       <label><input type="radio" name="fx" value="vanish"> vanish</label>
       <label><input type="radio" name="fx" value="mini"> mini</label>
     </div>
-    <p class="label" id="frame"></p>
+    <p class="label" id="frame" aria-live="polite"></p>
+    <p class="readout" id="cueline"></p>
   </section>
-  <section>
+  <section id="editor" aria-labelledby="edit-h">
+    <h2 id="edit-h">Animation editor</h2>
+    <p class="label" id="animName"></p>
+    <div class="strip" id="strip" role="listbox" aria-label="Steps in play order"></div>
+    <div class="controls" role="group" aria-label="Selected step">
+      <button type="button" id="left" title="Move earlier">← Move</button>
+      <button type="button" id="right" title="Move later">Move →</button>
+      <button type="button" id="hold" title="Repeat this step">Duplicate</button>
+      <button type="button" id="remove" title="Delete">Remove</button>
+    </div>
+    <div class="controls" id="animTiming" role="group" aria-label="Timing">
+      <label class="label">ms per frame <input type="number" id="ms" min="30" max="2000" step="10"></label>
+      <label class="label"><input type="checkbox" id="loop"> Loop</label>
+    </div>
+    <div id="stepEdit" hidden>
+      <div class="controls">
+        <label class="label">Beat <input type="text" id="sBeat" maxlength="40" spellcheck="false"></label>
+        <label class="label">ms <input type="number" id="sMs" min="10" max="5000" step="10"></label>
+        <label class="label">Ease <select id="sEase"><option value="linear">linear</option><option value="out">ease out</option><option value="smooth">smooth</option></select></label>
+      </div>
+      <div class="controls">
+        <label class="label">Feet x <input type="number" id="sX" min="-400" max="400"></label>
+        <label class="label">y <input type="number" id="sY" min="-400" max="400"></label>
+        <label class="label">Hop <input type="number" id="sArc" min="-64" max="64"></label>
+        <label class="label">Afterimages <input type="number" id="sGhosts" min="0" max="6"></label>
+      </div>
+    </div>
+    <p class="readout" id="readout"></p>
+    <fieldset id="skillBox" hidden>
+      <legend>Skill staging</legend>
+      <div class="controls">
+        <label class="label">Target dx <input type="number" id="tX" min="-400" max="400"></label>
+        <label class="label">dy <input type="number" id="tY" min="-400" max="400"></label>
+      </div>
+      <div class="controls" id="cues" role="group" aria-label="Cues"></div>
+      <div class="controls" role="group" aria-label="Stage dim">
+        <label class="label"><input type="checkbox" id="dimOn"> Dim</label>
+        <label class="label">in <input type="number" class="dimT" data-k="0" min="0" max="20000" step="10"></label>
+        <label class="label">full <input type="number" class="dimT" data-k="1" min="0" max="20000" step="10"></label>
+        <label class="label">fade <input type="number" class="dimT" data-k="2" min="0" max="20000" step="10"></label>
+        <label class="label">off <input type="number" class="dimT" data-k="3" min="0" max="20000" step="10"></label>
+        <label class="label">amount <input type="number" id="dimA" min="0" max="0.8" step="0.02"></label>
+      </div>
+      <div id="layers"></div>
+    </fieldset>
+    <p class="label" id="libLabel"></p>
+    <div class="lib" id="lib"></div>
+    <div class="controls" role="group" aria-label="Animation set">
+      <button type="button" id="undo" title="Ctrl+Z">Undo</button>
+      <button type="button" id="redo" title="Ctrl+Shift+Z">Redo</button>
+      <button type="button" id="resetAnim">Reset this</button>
+      <button type="button" id="resetAll">Reset all</button>
+    </div>
+    <div class="controls" id="newRow" role="group" aria-label="New animation">
+      <label class="label">Name <input type="text" id="newName" placeholder="jumpUp" spellcheck="false" autocomplete="off"></label>
+      <button type="button" id="addAnim">New</button>
+      <button type="button" id="copyAnim">Duplicate this</button>
+      <button type="button" id="delAnim">Delete this</button>
+    </div>
+    <div class="controls" role="group" aria-label="Export">
+      <button type="button" id="export">Download party-anims.json</button>
+      <button type="button" id="copy">Copy JSON</button>
+      <button type="button" id="import">Import JSON</button><input type="file" id="importFile" accept=".json,application/json" hidden>
+    </div>
+    <p class="status" id="status" role="status"></p>
+    <details>
+      <summary>Apply to the repository</summary>
+      <p>Edits are kept in this browser until you reset them. To make them the standard, download the set and run:</p>
+      <p><code>python3 .claude/skills/party-art/scripts/party_art.py anims party-anims.json</code></p>
+      <p>It checks every animation and skill, writes <code>references/anims.json</code> and <code>references/skills.json</code>, and rebuilds <code>manifest.js</code>. The standard animations can be changed but not deleted, because the game plays them by name.</p>
+      <textarea id="json" readonly aria-label="Exported animation set"></textarea>
+    </details>
+  </section>
+  <section class="wide">
     <h2>Portraits</h2>
     <div class="ports" id="ports"></div>
   </section>
 </main>
 <script src="manifest.js"></script>
 <script>
-const M = MANIFEST, S = M.sheet, Z = 3;
+const M = MANIFEST, S = M.sheet, C = S.cell;
 const ids = Object.keys(M.cast);
 const q = new URLSearchParams(location.search);
-const st = { id: ids.includes(q.get('who')) ? q.get('who') : ids[0], anim: 'idle', t0: performance.now(), img: null };
 const $ = s => document.querySelector(s), cv = $('#cv'), cx = cv.getContext('2d');
+const DRAFT = 'party-anim-draft-v3', NAME = /^[a-z][A-Za-z0-9]{0,23}$/, MAX_FRAMES = 32, EASES = ['linear', 'out', 'smooth'];
+const clone = o => JSON.parse(JSON.stringify(o)), clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const BASE = clone(M.anims), BASE_SKILLS = clone(M.skills || {}), REQUIRED = new Set(Object.keys(BASE));
+// The battle's standard reactions. `damage`: a white flash, then a shake that settles (FF6's flinch), and the
+// HP bar drops. `heal`: a soft pale flash and the HP bar refills over HEAL_MS, with no shake.
+const FLASH_MS = 60, SHAKE_MS = 380, HEAL_FLASH_MS = 180, HEAL_MS = 300, GHOST_GAP = 28, GHOST_TAIL = 70, DEFAULT_TARGET = [-96, 0];
+const DUMMY = { src: 'fx/training-dummy.webp', cell: 64, feet: [32, 57] };
+const st = { id: ids.includes(q.get('who')) ? q.get('who') : ids[0], anim: 'idle', skill: null, t0: performance.now(), img: null,
+  playing: true, pauseT: 0, sel: 0, shown: '' };
+
+// ---------- the set being edited ----------
+// Same rules as party_art.py check_anims / check_skills, so anything the editor exports will apply.
+const whole = (v, lo, hi) => Number.isInteger(v) && v >= lo && v <= hi;
+const pair = (v, lo, hi) => Array.isArray(v) && v.length === 2 && v.every(x => whole(x, lo, hi));
+function problems(set, skills) {
+  const bad = [];
+  for (const k of REQUIRED) if (!set[k]) bad.push(`standard animation "${k}" is missing`);
+  for (const [k, a] of Object.entries(set)) {
+    if (!NAME.test(k)) bad.push(`"${k}": use camelCase letters and digits`);
+    if (!a || !Array.isArray(a.frames) || !a.frames.length || a.frames.length > MAX_FRAMES) { bad.push(`${k}: 1 to ${MAX_FRAMES} frames`); continue; }
+    for (const f of a.frames) if (!S.frames.includes(f)) bad.push(`${k}: unknown frame "${f}"`);
+    if (!whole(a.ms, 30, 2000)) bad.push(`${k}: ms must be 30 to 2000`);
+    if (typeof a.loop !== 'boolean') bad.push(`${k}: loop must be true or false`);
+  }
+  for (const [k, c] of Object.entries(skills || {})) {
+    if (!c || !BASE_SKILLS[k]) { bad.push(`${k}: only skills already in skills.json can be edited here`); continue; }
+    if (!pair(c.target, -400, 400)) bad.push(`${k}: target must be two whole numbers`);
+    const d = c.dim;
+    if (d !== null && !(Array.isArray(d) && d.length === 5 && d.slice(0, 4).every(x => whole(x, 0, 20000)) && d[0] <= d[1] && d[1] <= d[2] && d[2] <= d[3] && d[4] >= 0 && d[4] <= 0.8)) bad.push(`${k}: dim times must run in order, amount 0 to 0.8`);
+    if (!Array.isArray(c.actor) || !c.actor.length || c.actor.length > MAX_FRAMES) bad.push(`${k}: 1 to ${MAX_FRAMES} actor steps`);
+    else c.actor.forEach((s, n) => {
+      if (!S.frames.includes(s.f)) bad.push(`${k} step ${n + 1}: unknown frame`);
+      if (!whole(s.ms, 10, 5000)) bad.push(`${k} step ${n + 1}: ms must be 10 to 5000`);
+      if (!whole(s.x, -400, 400) || !whole(s.y, -400, 400) || !whole(s.arc, -64, 64) || !whole(s.ghosts, 0, 6)) bad.push(`${k} step ${n + 1}: x, y, hop or afterimages out of range`);
+      if (!EASES.includes(s.ease) || typeof s.beat !== 'string') bad.push(`${k} step ${n + 1}: bad ease or beat`);
+    });
+    for (const L of c.layers || []) {
+      if (!Array.isArray(L.ms) || !L.ms.length || L.ms.some(m => !whole(m, 10, 5000))) bad.push(`${k} ${L.name}: durations must be 10 to 5000 ms`);
+      if (typeof L.hold !== 'boolean') bad.push(`${k} ${L.name}: hold must be true or false`);
+      if (!whole(L.start, 0, 20000) || !pair(L.at, -400, 400)) bad.push(`${k} ${L.name}: bad start or offset`);
+    }
+    if (!c.cues || !('damage' in c.cues || 'heal' in c.cues) || Object.values(c.cues).some(t => !whole(t, 0, 20000))) bad.push(`${k}: cues must be 0 to 20000 ms and include damage or heal`);
+    const ta = c.targetActor;
+    if (ta !== null && !(ta && M.cast[ta.who] && Array.isArray(ta.track) && ta.track.length && ta.track.every(x => S.frames.includes(x.f) && whole(x.ms, 10, 20000)))) bad.push(`${k}: targetActor is null or an ally with a frame track`);
+  }
+  return bad;
+}
+function loadDraft() {
+  try {
+    const d = JSON.parse(localStorage.getItem(DRAFT));
+    if (d && d.anims && d.skills && !problems(d.anims, d.skills).length) return d;
+  } catch (e) { /* no storage or a bad draft: start from the manifest */ }
+  return { anims: clone(BASE), skills: clone(BASE_SKILLS) };
+}
+let { anims, skills } = loadDraft();
+const past = [], future = [];
+const snapshot = () => JSON.stringify({ anims, skills });
+function saveDraft() { try { localStorage.setItem(DRAFT, snapshot()); } catch (e) { /* the draft only lasts this visit */ } }
+function edit(fn, msg) {
+  const before = snapshot();
+  fn();
+  if (snapshot() === before) return;
+  past.push(before); if (past.length > 200) past.shift(); future.length = 0;
+  saveDraft(); refresh(msg);
+}
+function undoStep(from, to, msg) {
+  if (!from.length) return;
+  to.push(snapshot()); ({ anims, skills } = JSON.parse(from.pop()));
+  if (!anims[st.anim]) st.anim = 'idle';
+  saveDraft(); refresh(msg);
+}
+const changedAnim = k => JSON.stringify(anims[k]) !== JSON.stringify(BASE[k]);
+const changedSkill = k => JSON.stringify(skills[k]) !== JSON.stringify(BASE_SKILLS[k]);
+const sk = () => st.skill && skills[st.skill];
+const cur = () => anims[st.anim];
+// The steps on the strip: frames of an animation (one shared ms) or a skill's actor steps (each its own).
+const steps = () => sk() ? sk().actor : cur().frames.map(f => ({ f, ms: cur().ms }));
+function exportText() { return JSON.stringify({ version: 2, anims, skills }, null, 1) + '\n'; }
+
+// ---------- timing ----------
+const EASE = { linear: u => u, out: u => 1 - Math.pow(1 - u, 3), smooth: u => u * u * (3 - 2 * u) };
+function timing() {
+  const c = sk(), list = steps(), starts = [];
+  let t = 0; for (const s of list) { starts.push(t); t += s.ms; }
+  const T = { c, list, starts, len: t, loop: !c && cur().loop, span: t, layers: [] };
+  if (c) {
+    for (const L of c.layers) {
+      const cum = L.ms.reduce((a, m) => (a.push(a[a.length - 1] + m), a), [0]);
+      T.layers.push({ L, cum, end: L.start + cum[cum.length - 1], hidden: hiddenLayers.has(c.label + T.layers.length) });
+    }
+    T.span = Math.max(t, ...T.layers.map(l => l.end), ...Object.values(c.cues));
+  }
+  return T;
+}
+function stepIndex(T, ms) {
+  if (T.loop) ms %= T.len;
+  let i = T.starts.length - 1; while (i > 0 && T.starts[i] > ms) i--;
+  return i;
+}
+// Feet offset from home at a moment: each step moves from where the last one ended.
+function rootAt(T, ms) {
+  if (!T.c) return [0, 0];
+  const i = stepIndex(T, ms), s = T.list[i], prev = i ? T.list[i - 1] : { x: 0, y: 0 };
+  const u = clamp((ms - T.starts[i]) / s.ms), e = EASE[s.ease](u);
+  return [prev.x + (s.x - prev.x) * e, prev.y + (s.y - prev.y) * e - Math.sin(u * Math.PI) * s.arc];
+}
+function layerFrame(l, ms) {
+  if (ms >= l.end) return l.L.hold ? l.L.ms.length - 1 : -1;   // a held layer keeps its last frame after the skill
+  return ms >= l.L.start ? l.cum.findIndex(c => c > ms - l.L.start) - 1 : -1;
+}
+function dimAt(c, ms) {
+  const d = c && c.dim; if (!d) return 0;
+  if (ms < d[0] || ms >= d[3]) return 0;
+  return d[4] * Math.min(d[1] > d[0] ? clamp((ms - d[0]) / (d[1] - d[0])) : 1, d[3] > d[2] ? clamp((d[3] - ms) / (d[3] - d[2])) : 1);
+}
+// The times at which anything on stage changes, for frame-by-frame stepping.
+function marks(T) {
+  const m = new Set([0, ...T.starts]);
+  if (T.c) { for (const l of T.layers) l.cum.forEach(c => m.add(l.L.start + c)); Object.values(T.c.cues).forEach(v => m.add(v)); }
+  return [...m].filter(v => v <= T.span).sort((x, y) => x - y);
+}
+function clockAt(now, T) {
+  if (!st.playing) return Math.min(st.pauseT, T.span);
+  let ms = (now - st.t0) * +$('#speed').value;
+  if (!T.loop && ms > T.span + 600) { st.t0 = now; ms = 0; }   // replay one-shots after a pause
+  return T.loop ? ms % T.len : Math.min(ms, T.span);
+}
+
+// ---------- drawing ----------
 // Status looks the engine derives from any frame instead of having them drawn (FFRK sheets bake these in;
 // generating them keeps the ChatGPT request smaller and the looks identical across the cast).
 const off = document.createElement('canvas'), ox = off.getContext('2d');
-off.width = off.height = S.cell;
-function frameCanvas(i, fx, now) {
-  ox.globalCompositeOperation = 'source-over'; ox.filter = 'none'; ox.clearRect(0, 0, S.cell, S.cell);
-  if (fx === 'stone') ox.filter = 'grayscale(1) contrast(1.15) brightness(1.05)';
-  ox.drawImage(st.img, (i % S.cols) * S.cell, Math.floor(i / S.cols) * S.cell, S.cell, S.cell, 0, 0, S.cell, S.cell);
+off.width = off.height = C;
+function frameCanvas(i, look, now) {
+  ox.globalCompositeOperation = 'source-over'; ox.filter = 'none'; ox.clearRect(0, 0, C, C);
+  if (look === 'stone') ox.filter = 'grayscale(1) contrast(1.15) brightness(1.05)';
+  ox.drawImage(st.img, (i % S.cols) * C, Math.floor(i / S.cols) * C, C, C, 0, 0, C, C);
   ox.filter = 'none';
-  if (fx === 'flash' && Math.floor(now / 70) % 2) { ox.globalCompositeOperation = 'source-atop'; ox.fillStyle = '#fff'; ox.fillRect(0, 0, S.cell, S.cell); }
+  if (look === 'flash' && Math.floor(now / 70) % 2) { ox.globalCompositeOperation = 'source-atop'; ox.fillStyle = '#fff'; ox.fillRect(0, 0, C, C); }
   return off;
 }
+const images = {};
+function image(src) {
+  if (!images[src]) { const im = new Image(); images[src] = { im, ok: false }; im.onload = () => { images[src].ok = true; st.shown = ''; if (sk()) renderLayers(); }; im.src = src; }
+  return images[src].ok ? images[src].im : null;
+}
+const dummyCv = document.createElement('canvas'), dx = dummyCv.getContext('2d');
+dummyCv.width = dummyCv.height = DUMMY.cell;
+function thumb(name) {
+  const c = document.createElement('canvas'); c.width = c.height = C / 2;
+  const i = S.frames.indexOf(name), g = c.getContext('2d');
+  if (st.img && i >= 0) { g.imageSmoothingEnabled = false; g.drawImage(st.img, (i % S.cols) * C, Math.floor(i / S.cols) * C, C, C, 0, 0, c.width, c.height); }
+  else { g.fillStyle = '#6c6575'; g.font = '8px Silkscreen, monospace'; g.textAlign = 'center'; g.fillText(name, c.width / 2, c.height / 2 + 3, c.width - 2); }
+  c.setAttribute('aria-hidden', 'true');
+  return c;
+}
+function describe(name) {
+  const d = S.desc && S.desc[S.frames.indexOf(name)];
+  if (d) return d;
+  if (/^special\d/.test(name)) return `Class action, frame ${name.slice(-1)} of 3`;
+  if (/^limit\d/.test(name)) return `Limit Break, frame ${name.slice(-1)} of 3`;
+  return '';
+}
+// Stage geometry in native px: the party member's home is the right-hand cell, the target to their left.
+function stage(T) {
+  const target = T.c ? T.c.target : DEFAULT_TARGET;
+  const w = Math.max(2 * C, C + 32 - target[0]), home = [w - C / 2, S.base];
+  return { w, home, target: [home[0] + target[0], home[1] + target[1]] };
+}
 
+function draw(now) {
+  const Z = +$('#zoom').value;
+  if (!st.img) {
+    cv.width = C * 2 * Z; cv.height = C * Z;
+    cx.fillStyle = '#6c6575'; cx.font = '12px Silkscreen, monospace'; cx.textAlign = 'center';
+    cx.fillText(M.cast[st.id].sheet ? 'loading…' : 'no sprite sheet yet', cv.width / 2, cv.height / 2);
+    $('#frame').textContent = M.cast[st.id].sheet ? '' : `${M.cast[st.id].name} has no sheet; pick Kiri or Natsu to see frames.`;
+    st.shown = '';
+  } else if ($('#sheet').checked) {
+    cv.width = st.img.width * 2; cv.height = st.img.height * 2; cx.imageSmoothingEnabled = false;
+    cx.drawImage(st.img, 0, 0, cv.width, cv.height);
+    $('#frame').textContent = `${S.cols} × ${S.rows} frames of ${C} px`;
+    st.shown = '';
+  } else {
+    const T = timing(), ms = clockAt(now, T), G = stage(T), i = stepIndex(T, ms), s = T.list[i], c = T.c;
+    if (cv.width !== G.w * Z || cv.height !== C * Z) { cv.width = G.w * Z; cv.height = C * Z; } else cx.clearRect(0, 0, cv.width, cv.height);
+    cx.imageSmoothingEnabled = false;
+    const look = document.querySelector('input[name=fx]:checked').value;
+    const hit = c && 'damage' in c.cues ? ms - c.cues.damage : -1, shake = hit >= 0 && hit < SHAKE_MS ? (Math.sin(hit / 30) * 4 - 5) * (1 - hit / SHAKE_MS) : 0;
+    const healed = c && 'heal' in c.cues ? ms - c.cues.heal : -1;
+    cx.save();
+    if ($('#flip').checked) { cx.translate(cv.width, 0); cx.scale(-1, 1); }
+    const dim = dimAt(c, ms);
+    if (dim) { cx.fillStyle = `rgba(2,6,14,${dim})`; cx.fillRect(0, 0, cv.width, cv.height); }
+    const ground = (x, r) => { cx.fillStyle = 'rgba(0,0,0,.35)'; cx.beginPath(); cx.ellipse(x * Z, S.base * Z, r * Z, 3 * Z, 0, 0, 7); cx.fill(); };
+    // The target: the study's masked training dummy, flashing and shaking on the damage cue.
+    const tx = G.target[0] + shake, ty = G.target[1];
+    const ally = c && c.targetActor, allySheet = ally && image(`${ally.who}.sheet.webp`);
+    const dummy = !ally && $('#dummy').checked && image(DUMMY.src);
+    if (allySheet) {
+      // An ally target plays frames from their own sheet: the last frame of the track holds.
+      let t = 0, f = ally.track[ally.track.length - 1].f;
+      for (const x of ally.track) { if (ms < t + x.ms) { f = x.f; break; } t += x.ms; }
+      ground(G.target[0], 17);
+      const k = S.frames.indexOf(f);
+      ox.globalCompositeOperation = 'source-over'; ox.filter = 'none'; ox.clearRect(0, 0, C, C);
+      ox.drawImage(allySheet, (k % S.cols) * C, Math.floor(k / S.cols) * C, C, C, 0, 0, C, C);
+      if (healed >= 0 && healed < HEAL_FLASH_MS) { ox.globalCompositeOperation = 'source-atop'; ox.fillStyle = `rgba(239,247,218,${.35 * (1 - healed / HEAL_FLASH_MS)})`; ox.fillRect(0, 0, C, C); }
+      cx.drawImage(off, Math.round(tx - C / 2) * Z, Math.round(ty - S.base) * Z, C * Z, C * Z);
+      const hp = healed < 0 ? 10 : Math.round(10 + 19 * clamp(healed / HEAL_MS));
+      cx.fillStyle = '#10151c'; cx.fillRect((G.target[0] - 17) * Z, (S.base + 4) * Z, 34 * Z, 3 * Z); cx.fillStyle = healed >= 0 ? '#b1c69a' : '#a47b6e'; cx.fillRect((G.target[0] - 16) * Z, (S.base + 5) * Z, hp * Z, Z);
+    }
+    if (dummy) {
+      ground(G.target[0], 16);
+      dx.globalCompositeOperation = 'source-over'; dx.clearRect(0, 0, DUMMY.cell, DUMMY.cell); dx.drawImage(dummy, 0, 0);
+      if (hit >= 0 && hit < FLASH_MS) { dx.globalCompositeOperation = 'source-atop'; dx.fillStyle = 'rgba(255,247,219,.8)'; dx.fillRect(0, 0, DUMMY.cell, DUMMY.cell); }
+      cx.drawImage(dummyCv, Math.round(tx - DUMMY.feet[0]) * Z, Math.round(ty - DUMMY.feet[1]) * Z, DUMMY.cell * Z, DUMMY.cell * Z);
+      if (c) { cx.fillStyle = '#10151c'; cx.fillRect((G.target[0] - 17) * Z, (S.base + 4) * Z, 34 * Z, 3 * Z); cx.fillStyle = hit >= 0 ? '#80535b' : '#8e9586'; cx.fillRect((G.target[0] - 16) * Z, (S.base + 5) * Z, (hit >= 0 ? 13 : 31) * Z, Z); }
+    }
+    // The party member, with afterimages trailing a step that leaves them.
+    const actorAt = (f, r, alpha) => {
+      cx.save(); cx.globalAlpha = alpha;
+      const x = Math.round(G.home[0] + r[0] - C / 2) * Z, y = Math.round(r[1]) * Z;
+      if (look === 'vanish') cx.globalAlpha *= 0.25 + 0.15 * Math.sin(now / 160);
+      if (look === 'mini') { const fx0 = (G.home[0] + r[0]) * Z, fy = (S.base + r[1]) * Z; cx.translate(fx0, fy); cx.scale(0.5, 0.5); cx.translate(-fx0, -fy); }
+      cx.drawImage(frameCanvas(S.frames.indexOf(f), alpha < 1 ? '' : look, now), x, y, C * Z, C * Z);
+      cx.restore();
+    };
+    const root = rootAt(T, ms);
+    ground(G.home[0] + root[0], 17);
+    if ($('#onion').checked && T.list.length > 1 && (i > 0 || T.loop)) { const j = (i + T.list.length - 1) % T.list.length; actorAt(T.list[j].f, rootAt(T, T.starts[j] + T.list[j].ms - 1), 0.3); }
+    T.list.forEach((g, j) => {
+      if (!g.ghosts || ms < T.starts[j] || ms >= T.starts[j] + g.ms + GHOST_TAIL) return;
+      for (let k = g.ghosts; k >= 1; k--) actorAt(g.f, rootAt(T, Math.max(T.starts[j], Math.min(ms, T.starts[j] + g.ms) - k * GHOST_GAP)), 0.06 * (g.ghosts + 1 - k));
+    });
+    actorAt(s.f, root, 1);
+    // Effect layers in list order, above both actors. Native-pixel layers stay on whole pixels.
+    const frames = [];
+    for (const l of T.layers) {
+      const n = layerFrame(l, ms); frames.push(n);
+      if (n < 0 || l.hidden) continue;
+      const L = l.L, im = image(L.image); if (!im) continue;
+      const a = L.anchor === 'actor' ? [G.home[0] + root[0], G.home[1] + root[1]] : [tx, ty], w = L.cell[0], h = L.cell[1], r = L.res;
+      const px = a[0] + L.at[0] - L.pivot[0], py = a[1] + L.at[1] - L.pivot[1], snap = r > 1 ? v => v : Math.round;
+      cx.imageSmoothingEnabled = r > 1;
+      cx.drawImage(im, (n % L.cols) * w * r, Math.floor(n / L.cols) * h * r, w * r, h * r, snap(px) * Z, snap(py) * Z, w * Z, h * Z);
+      cx.imageSmoothingEnabled = false;
+    }
+    cx.restore();
+    if ($('#guides').checked) {
+      cx.strokeStyle = 'rgba(208,106,124,.8)'; cx.lineWidth = 1;
+      const hx = $('#flip').checked ? 0 : (G.w - C) * Z;
+      cx.strokeRect(0.5, 0.5, cv.width - 1, cv.height - 1); cx.strokeRect(hx + 0.5, 0.5, C * Z - 1, cv.height - 1);
+      cx.beginPath(); cx.moveTo(0, S.base * Z + 0.5); cx.lineTo(cv.width, S.base * Z + 0.5); cx.stroke();
+    }
+    const key = `${i}|${frames.join(',')}|${Math.round(ms)}`;
+    if (key !== st.shown) {
+      if (st.shown.split('|')[0] !== String(i)) document.querySelectorAll('#strip .chip').forEach((el, j) => el.setAttribute('aria-current', j === i));
+      st.shown = key; if (st.playing) st.sel = i;
+      $('#scrub').max = Math.max(1, T.span); $('#scrub').value = Math.round(ms);
+      $('#clock').textContent = `${Math.round(ms)} / ${T.span} ms`;
+      const name = c ? `${c.label}${s.beat ? ' · ' + s.beat : ''}` : st.anim;
+      $('#frame').textContent = `${name} · step ${i + 1}/${T.list.length} · ${s.f}${describe(s.f) ? ' · ' + describe(s.f) : ''}`;
+      if (c) {
+        const passed = Object.entries(c.cues).filter(([, t]) => t <= ms).sort((a, b) => b[1] - a[1])[0];
+        $('#cueline').textContent = T.layers.map((l, j) => `${l.L.name} ${ms >= l.end ? (l.L.hold ? 'held' : 'done') : frames[j] >= 0 ? frames[j] + 1 + '/' + l.L.ms.length : 'waiting'}`).join(' · ') +
+          (passed && ms - passed[1] < 200 ? ` · cue: ${passed[0].toUpperCase()}` : '');
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+
+// ---------- page ----------
 function pick(id) {
-  st.id = id; st.img = null; st.t0 = performance.now();
+  st.id = id; st.img = null; st.shown = '';
+  if (st.skill && skills[st.skill].who !== id) st.skill = null;
   const c = M.cast[id];
   $('#who').textContent = `${c.name} · ${c.class}`;
   document.querySelectorAll('#cast button').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id));
-  history.replaceState(null, '', '?who=' + id);
-  if (c.sheet) { const im = new Image(); im.onload = () => { if (st.id === id) st.img = im; }; im.src = `${id}.sheet.webp`; }
+  try { history.replaceState(null, '', '?who=' + id); } catch (e) { /* file:// in some browsers */ }
+  if (c.sheet) { const im = new Image(); im.onload = () => { if (st.id === id) { st.img = im; st.shown = ''; renderStrip(); renderLib(); } }; im.src = `${id}.sheet.webp`; }
+  refresh();
   $('#ports').innerHTML = c.portraits
     ? M.portraits.states.map((s, i) => `<figure><div role="img" aria-label="${c.name}, ${s.label}" style="background-image:url(${id}.portraits.webp);background-size:${M.portraits.cols * 100}% ${M.portraits.rows * 100}%;background-position:${(i % M.portraits.cols) / (M.portraits.cols - 1) * 100}% ${Math.floor(i / M.portraits.cols) / (M.portraits.rows - 1) * 100}%"></div><figcaption>${s.label}</figcaption></figure>`).join('')
     : `<p class="empty" style="grid-column:1/-1">No portrait sheet yet. Run <code>party_art.py prompt ${id} portraits</code>.</p>`;
 }
 
-function draw(now) {
-  cx.fillStyle = '#1f1b25'; cx.clearRect(0, 0, cv.width, cv.height);
-  const whole = $('#sheet').checked;
-  if (!st.img) {
-    cv.width = cv.height = S.cell * Z;
-    cx.fillStyle = '#6c6575'; cx.font = '12px Silkscreen, monospace'; cx.textAlign = 'center';
-    cx.fillText(M.cast[st.id].sheet ? 'loading…' : 'no sprite sheet yet', cv.width / 2, cv.height / 2);
-    $('#frame').textContent = '';
-  } else if (whole) {
-    cv.width = st.img.width * 2; cv.height = st.img.height * 2; cx.imageSmoothingEnabled = false;
-    cx.drawImage(st.img, 0, 0, cv.width, cv.height);
-    $('#frame').textContent = `${S.cols} × ${S.rows} frames of ${S.cell} px`;
+function renderAnims() {
+  $('#anims').innerHTML = Object.keys(anims).map(a => `<button type="button" data-a="${a}" aria-pressed="${!st.skill && a === st.anim}" data-changed="${changedAnim(a)}" title="${changedAnim(a) ? (BASE[a] ? 'edited' : 'new') : ''}">${a}</button>`).join('');
+  const mine = Object.keys(skills).filter(k => skills[k].who === st.id);
+  $('#skills').innerHTML = mine.length ? mine.map(k => `<button type="button" data-k="${k}" aria-pressed="${st.skill === k}" data-changed="${changedSkill(k)}">✦ ${skills[k].label}</button>`).join('')
+    : `<span class="readout">None yet for ${M.cast[st.id].name}. Skills are added to references/skills.json (see the party-art skill).</span>`;
+}
+function renderStrip() {
+  const list = steps();
+  $('#strip').replaceChildren(...list.map((s, j) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.draggable = true; b.dataset.j = j;
+    b.setAttribute('role', 'option'); b.setAttribute('aria-current', j === st.sel);
+    b.setAttribute('aria-label', `Step ${j + 1}: ${s.f}`); b.title = (s.beat ? s.beat + ' · ' : '') + describe(s.f);
+    b.append(thumb(s.f), `${j + 1} ${s.f}`);
+    if (sk()) { const t = document.createElement('span'); t.textContent = `${s.ms} ms`; b.append(t); }
+    return b;
+  }));
+  st.shown = '';
+}
+function renderLib() {
+  const used = new Set(steps().map(s => s.f));
+  $('#libLabel').textContent = sk() ? 'Frame library · click to swap the selected step’s frame, or drag onto the strip to add a step'
+    : 'Frame library · click to insert after the selected frame, or drag onto the strip';
+  $('#lib').replaceChildren(...S.frames.map(f => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.dataset.f = f; b.draggable = true; b.title = `${f}: ${describe(f)}`;
+    if (used.has(f)) b.classList.add('used');
+    b.append(thumb(f), f);
+    return b;
+  }));
+}
+const hiddenLayers = new Set();
+function renderLayers() {
+  const c = sk(); if (!c) return;
+  $('#layers').innerHTML = c.layers.map((L, j) => `<fieldset><legend>${L.name}</legend>
+    <div class="controls"><label class="label"><input type="checkbox" data-l="${j}" data-f="show"${hiddenLayers.has(c.label + j) ? '' : ' checked'}> Show</label>
+    <label class="label">start <input type="number" data-l="${j}" data-f="start" value="${L.start}" min="0" max="20000" step="10"></label>
+    <label class="label">dx <input type="number" data-l="${j}" data-f="at0" value="${L.at[0]}" min="-400" max="400"></label>
+    <label class="label">dy <input type="number" data-l="${j}" data-f="at1" value="${L.at[1]}" min="-400" max="400"></label>
+    <span class="readout">on the ${L.anchor === 'actor' ? 'caster' : 'target'} · ${L.ms.length} frames · ${L.res > 1 ? 'soft light, ' + L.res + '× art' : 'native pixels'}${L.hold ? ' · stays after the skill' : ''}</span></div>
+    <details><summary>Frame durations</summary><div class="strip fxstrip">${L.ms.map((m, k) => `<label class="chip fxchip">${k + 1}<input type="number" data-l="${j}" data-f="ms" data-k="${k}" value="${m}" min="10" max="5000" step="10" aria-label="${L.name} frame ${k + 1} ms"></label>`).join('')}</div></details></fieldset>`).join('');
+}
+function refresh(msg) {
+  const c = sk(), list = steps(), n = list.length;
+  st.sel = Math.min(st.sel, n - 1);
+  renderAnims(); renderStrip(); renderLib();
+  $('#animTiming').hidden = !!c; $('#stepEdit').hidden = !c; $('#skillBox').hidden = !c; $('#newRow').hidden = !!c;
+  const T = timing();
+  if (c) {
+    const s = list[st.sel];
+    $('#animName').textContent = `${c.label} · ${M.cast[c.who].name}'s skill (${c.skill})${changedSkill(st.skill) ? ' · edited' : ''}`;
+    $('#sBeat').value = s.beat; $('#sMs').value = s.ms; $('#sEase').value = s.ease; $('#sX').value = s.x; $('#sY').value = s.y; $('#sArc').value = s.arc; $('#sGhosts').value = s.ghosts;
+    $('#tX').value = c.target[0]; $('#tY').value = c.target[1];
+    $('#cues').innerHTML = Object.entries(c.cues).map(([k, v]) => `<label class="label">${k} <input type="number" data-cue="${k}" value="${v}" min="0" max="20000" step="10"></label>`).join('');
+    $('#dimOn').checked = !!c.dim; document.querySelectorAll('.dimT').forEach(el => { el.value = c.dim ? c.dim[+el.dataset.k] : ''; el.disabled = !c.dim; });
+    $('#dimA').value = c.dim ? c.dim[4] : ''; $('#dimA').disabled = !c.dim;
+    renderLayers();
+    const end = Math.max(...T.layers.map(l => l.end)), ta = c.targetActor;
+    $('#readout').textContent = `${n} steps, ${T.len} ms · effects end ${end} ms · ` + Object.entries(c.cues).map(([k, v]) => `${k} ${v}`).join(' · ') + ` ms. Plays once.` + (ta ? ` Target: ${M.cast[ta.who].name}, ${ta.track.map(x => `${x.f} ${x.ms} ms`).join(' → ')}.` : ' Target: training dummy.');
   } else {
-    const a = M.anims[st.anim], n = a.frames.length, k = Math.floor((now - st.t0) / a.ms);
-    const name = a.frames[a.loop ? k % n : Math.min(k, n - 1)], i = S.frames.indexOf(name);
-    if (!a.loop && k > n + 6) st.t0 = now;            // replay one-shots after a pause
-    cv.width = cv.height = S.cell * Z; cx.imageSmoothingEnabled = false;
-    cx.fillStyle = 'rgba(0,0,0,.35)'; cx.beginPath(); cx.ellipse(cv.width / 2, S.base * Z, 16 * Z, 3 * Z, 0, 0, 7); cx.fill();
-    cx.save();
-    if ($('#flip').checked) { cx.translate(cv.width, 0); cx.scale(-1, 1); }
-    const fx = document.querySelector('input[name=fx]:checked').value;
-    if (fx === 'vanish') cx.globalAlpha = 0.25 + 0.15 * Math.sin(now / 160);
-    if (fx === 'mini') { cx.translate(cv.width / 2, S.base * Z); cx.scale(0.5, 0.5); cx.translate(-cv.width / 2, -S.base * Z); }
-    cx.drawImage(frameCanvas(i, fx, now), 0, 0, cv.width, cv.height);
-    cx.restore();
-    $('#frame').textContent = `${st.anim} · ${name} (${i + 1}/${S.frames.length})`;
+    const a = cur();
+    $('#animName').textContent = `${st.anim}${REQUIRED.has(st.anim) ? ' · standard' : ' · new'}${changedAnim(st.anim) ? ' · edited' : ''}`;
+    $('#ms').value = a.ms; $('#loop').checked = a.loop;
+    $('#readout').textContent = `${n} steps × ${a.ms} ms = ${n * a.ms} ms${a.loop ? ' per loop' : ', then holds the last frame'} · ${(1000 / a.ms).toFixed(1)} fps`;
+    $('#cueline').textContent = '';
   }
-  requestAnimationFrame(draw);
+  const sel = !st.playing;
+  $('#left').disabled = !sel || st.sel === 0; $('#right').disabled = !sel || st.sel === n - 1;
+  $('#hold').disabled = !sel || n >= MAX_FRAMES; $('#remove').disabled = !sel || n <= 1;
+  $('#undo').disabled = !past.length; $('#redo').disabled = !future.length;
+  $('#resetAnim').disabled = c ? !changedSkill(st.skill) : !changedAnim(st.anim) || !BASE[st.anim];
+  $('#delAnim').disabled = REQUIRED.has(st.anim);
+  const nChanged = Object.keys(anims).filter(changedAnim).length + Object.keys(BASE).filter(k => !anims[k]).length + Object.keys(skills).filter(changedSkill).length;
+  $('#resetAll').disabled = !nChanged;
+  $('#json').value = exportText();
+  $('#status').textContent = msg || (nChanged ? `${nChanged} animation${nChanged > 1 ? 's or skills' : ' or skill'} differ from manifest.js. Download and apply to keep them.` : 'Matches manifest.js.');
+}
+function setPlaying(on) {
+  st.playing = on; $('#play').textContent = on ? 'Pause' : 'Play'; $('#play').setAttribute('aria-pressed', on);
+  if (on) st.t0 = performance.now() - st.pauseT / +$('#speed').value;
+  st.shown = ''; refresh();
+}
+function seek(ms) {
+  const T = timing();
+  st.pauseT = Math.max(0, Math.min(ms, T.span)); st.sel = stepIndex(T, st.pauseT);
+  $('#scrub').value = Math.round(st.pauseT); $('#clock').textContent = `${Math.round(st.pauseT)} / ${T.span} ms`;
+  if (st.playing) setPlaying(false); else { st.shown = ''; refresh(); }
+}
+const nowMs = () => clockAt(performance.now(), timing());
+const startOf = j => timing().starts[j];
+function select(j) { st.sel = Math.max(0, Math.min(j, steps().length - 1)); seek(startOf(st.sel)); }
+function chooseAnim(k) { st.skill = null; st.anim = k; st.sel = 0; st.pauseT = 0; st.t0 = performance.now(); $('#sheet').checked = false; refresh(); }
+function chooseSkill(k) { st.skill = k; st.sel = 0; st.pauseT = 0; st.t0 = performance.now(); $('#sheet').checked = false; refresh(); }
+// The list the strip edits: an animation's frame names, or a skill's step objects.
+const editList = () => sk() ? sk().actor : cur().frames;
+const stepFor = f => sk() ? { ...sk().actor[st.sel], f } : f;
+function insert(item, at) {
+  if (editList().length >= MAX_FRAMES) { $('#status').textContent = `At most ${MAX_FRAMES} steps.`; return; }
+  edit(() => { editList().splice(at, 0, clone(item)); st.sel = at; st.pauseT = startOf(at); }, `Added step ${at + 1}.`);
+  if (st.playing) setPlaying(false);
+}
+function move(from, to) {
+  const list = editList();
+  if (to < 0 || to >= list.length || from === to) return;
+  edit(() => { list.splice(to, 0, list.splice(from, 1)[0]); st.sel = to; st.pauseT = startOf(to); });
 }
 
 $('#cast').innerHTML = ids.map(id => { const c = M.cast[id]; return `<button type="button" data-id="${id}" class="${c.sheet || c.portraits ? '' : 'missing'}" title="${c.sheet ? '' : 'no sheet'}${c.portraits ? '' : ' no portraits'}">${c.name.split(' ')[0]}</button>`; }).join('');
 $('#cast').onclick = e => { const b = e.target.closest('button'); if (b) pick(b.dataset.id); };
-$('#anims').innerHTML = Object.keys(M.anims).map(a => `<button type="button" data-a="${a}" aria-pressed="${a === st.anim}">${a}</button>`).join('');
-$('#anims').onclick = e => { const b = e.target.closest('button'); if (!b) return; st.anim = b.dataset.a; st.t0 = performance.now(); $('#sheet').checked = false;
-  document.querySelectorAll('#anims button').forEach(x => x.setAttribute('aria-pressed', x === b)); };
+$('#anims').onclick = e => { const b = e.target.closest('button'); if (b) chooseAnim(b.dataset.a); };
+$('#skills').onclick = e => { const b = e.target.closest('button'); if (b) chooseSkill(b.dataset.k); };
+$('#play').onclick = () => { if (st.playing) { st.pauseT = nowMs(); setPlaying(false); } else setPlaying(true); };
+$('#prev').onclick = () => { const T = timing(), t = st.playing ? nowMs() : st.pauseT, m = marks(T), before = m.filter(v => v < t - 0.5); seek(before.length ? before[before.length - 1] : m[m.length - 1]); };
+$('#next').onclick = () => { const T = timing(), t = st.playing ? nowMs() : st.pauseT, m = marks(T), after = m.find(v => v > t + 0.5); seek(after === undefined ? 0 : after); };
+$('#replay').onclick = () => { st.pauseT = 0; setPlaying(true); };
+$('#scrub').oninput = () => seek(+$('#scrub').value);
+$('#speed').onchange = () => { if (st.playing) { st.pauseT = nowMs(); setPlaying(true); } };
+$('#strip').onclick = e => { const b = e.target.closest('.chip'); if (b) select(+b.dataset.j); };
+$('#lib').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (sk()) edit(() => { sk().actor[st.sel].f = b.dataset.f; }, `Step ${st.sel + 1} now shows ${b.dataset.f}.`);
+  else insert(b.dataset.f, Math.min(st.sel + 1, cur().frames.length));
+};
+$('#left').onclick = () => move(st.sel, st.sel - 1);
+$('#right').onclick = () => move(st.sel, st.sel + 1);
+$('#hold').onclick = () => insert(editList()[st.sel], st.sel + 1);
+$('#remove').onclick = () => edit(() => { editList().splice(st.sel, 1); st.sel = Math.max(0, st.sel - 1); st.pauseT = startOf(st.sel); }, `Removed step ${st.sel + 1}.`);
+$('#ms').onchange = () => {
+  const v = Math.round(+$('#ms').value);
+  if (!(v >= 30 && v <= 2000)) { $('#ms').value = cur().ms; $('#status').textContent = 'ms per frame runs from 30 to 2000.'; return; }
+  edit(() => { cur().ms = v; });
+};
+$('#loop').onchange = () => edit(() => { cur().loop = $('#loop').checked; });
+// Skill step fields. Numbers outside their range are refused and the field restored.
+const numField = (el, lo, hi, set) => el.onchange = () => {
+  const v = Math.round(+el.value);
+  if (!(v >= lo && v <= hi) || el.value === '') { $('#status').textContent = `That field runs from ${lo} to ${hi}.`; refresh(`That field runs from ${lo} to ${hi}.`); return; }
+  edit(() => set(v));
+};
+numField($('#sMs'), 10, 5000, v => { sk().actor[st.sel].ms = v; });
+numField($('#sX'), -400, 400, v => { sk().actor[st.sel].x = v; });
+numField($('#sY'), -400, 400, v => { sk().actor[st.sel].y = v; });
+numField($('#sArc'), -64, 64, v => { sk().actor[st.sel].arc = v; });
+numField($('#sGhosts'), 0, 6, v => { sk().actor[st.sel].ghosts = v; });
+numField($('#tX'), -400, 400, v => { sk().target[0] = v; });
+numField($('#tY'), -400, 400, v => { sk().target[1] = v; });
+$('#sEase').onchange = () => edit(() => { sk().actor[st.sel].ease = $('#sEase').value; });
+$('#sBeat').onchange = () => edit(() => { sk().actor[st.sel].beat = $('#sBeat').value.slice(0, 40); });
+$('#cues').onchange = e => { const k = e.target.dataset.cue, v = Math.round(+e.target.value);
+  if (!(v >= 0 && v <= 20000)) return refresh('Cues run from 0 to 20000 ms.');
+  edit(() => { sk().cues[k] = v; }, `${k} cue at ${v} ms.`); };
+$('#dimOn').onchange = () => edit(() => { sk().dim = $('#dimOn').checked ? (BASE_SKILLS[st.skill].dim || [0, 200, 800, 1000, 0.24]) : null; });
+$('#skillBox').addEventListener('change', e => {
+  if (e.target.classList.contains('dimT') || e.target.id === 'dimA') {
+    const d = [...document.querySelectorAll('.dimT')].map(el => Math.round(+el.value)).concat(+$('#dimA').value);
+    if (!(d[0] <= d[1] && d[1] <= d[2] && d[2] <= d[3] && d.slice(0, 4).every(v => v >= 0 && v <= 20000) && d[4] >= 0 && d[4] <= 0.8)) return refresh('Dim times run in order (in ≤ full ≤ fade ≤ off), amount 0 to 0.8.');
+    edit(() => { sk().dim = d; });
+  }
+  const l = e.target.dataset.l; if (l === undefined) return;
+  const L = sk().layers[+l], f = e.target.dataset.f;
+  if (f === 'show') { const key = sk().label + l; e.target.checked ? hiddenLayers.delete(key) : hiddenLayers.add(key); st.shown = ''; return; }
+  const v = Math.round(+e.target.value), [lo, hi] = f === 'ms' ? [10, 5000] : f === 'start' ? [0, 20000] : [-400, 400];
+  if (!(v >= lo && v <= hi)) return refresh(`That field runs from ${lo} to ${hi}.`);
+  edit(() => { if (f === 'ms') L.ms[+e.target.dataset.k] = v; else if (f === 'start') L.start = v; else L.at[f === 'at0' ? 0 : 1] = v; });
+});
+$('#undo').onclick = () => undoStep(past, future, 'Undone.');
+$('#redo').onclick = () => undoStep(future, past, 'Redone.');
+$('#resetAnim').onclick = () => edit(() => { if (sk()) skills[st.skill] = clone(BASE_SKILLS[st.skill]); else anims[st.anim] = clone(BASE[st.anim]); }, 'Reset to manifest.js.');
+$('#resetAll').onclick = () => { if (confirm('Discard every animation and skill edit and return to manifest.js?')) edit(() => { anims = clone(BASE); skills = clone(BASE_SKILLS); if (!anims[st.anim]) st.anim = 'idle'; }, 'Everything reset to manifest.js.'); };
+function newAnim(from) {
+  const k = $('#newName').value.trim();
+  if (!NAME.test(k)) { $('#status').textContent = 'Name it in camelCase: a lower-case letter, then letters and digits (up to 24).'; $('#newName').focus(); return; }
+  if (anims[k]) { $('#status').textContent = `"${k}" already exists.`; return; }
+  edit(() => { anims[k] = from ? clone(cur()) : { frames: ['idle1'], ms: 200, loop: true }; st.anim = k; st.sel = 0; st.pauseT = 0; }, `Added ${k}.`);
+  $('#newName').value = '';
+}
+$('#addAnim').onclick = () => newAnim(false);
+$('#copyAnim').onclick = () => { if (!$('#newName').value.trim()) $('#newName').value = st.anim + 'Alt'; newAnim(true); };
+$('#delAnim').onclick = () => { const k = st.anim; if (!REQUIRED.has(k)) edit(() => { delete anims[k]; st.anim = 'idle'; st.sel = 0; }, `Deleted ${k}.`); };
+$('#export').onclick = () => {
+  const url = URL.createObjectURL(new Blob([exportText()], { type: 'application/json' }));
+  const a = document.createElement('a'); a.href = url; a.download = 'party-anims.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  $('#status').textContent = 'Downloaded party-anims.json. Apply it with party_art.py anims.';
+};
+$('#copy').onclick = async () => {
+  try { await navigator.clipboard.writeText(exportText()); $('#status').textContent = 'Copied the animation set as JSON.'; }
+  catch (e) { $('#json').closest('details').open = true; $('#json').select(); $('#status').textContent = 'Clipboard blocked; the JSON is selected below.'; }
+};
+$('#import').onclick = () => $('#importFile').click();
+$('#importFile').onchange = async () => {
+  const file = $('#importFile').files[0]; $('#importFile').value = '';
+  if (!file) return;
+  try {
+    const d = JSON.parse(await file.text()), set = d && d.anims ? d.anims : d, sks = d && d.skills ? d.skills : skills;
+    const bad = problems(set || {}, sks);
+    if (bad.length) throw new Error(bad.slice(0, 3).join('; '));
+    edit(() => { anims = set; skills = sks; if (!anims[st.anim]) st.anim = 'idle'; if (st.skill && !skills[st.skill]) st.skill = null; }, `Imported ${file.name}.`);
+  } catch (e) { $('#status').textContent = 'Not imported: ' + e.message; }
+};
+
+// Drag a strip step to reorder it, or a library frame onto the strip to add a step.
+let drag = null;
+document.addEventListener('dragstart', e => {
+  const chip = e.target.closest('#strip .chip'), lib = e.target.closest('#lib button');
+  drag = chip ? { j: +chip.dataset.j } : lib ? { f: lib.dataset.f } : null;
+  if (drag) e.dataTransfer.setData('text/plain', chip ? 'step' : drag.f);
+});
+$('#strip').addEventListener('dragover', e => {
+  if (!drag) return; e.preventDefault();
+  document.querySelectorAll('#strip .drop').forEach(c => c.classList.remove('drop'));
+  const c = e.target.closest('.chip'); if (c) c.classList.add('drop');
+});
+$('#strip').addEventListener('drop', e => {
+  if (!drag) return; e.preventDefault();
+  const c = e.target.closest('.chip'), n = editList().length, at = c ? +c.dataset.j : n;
+  if (drag.f) insert(stepFor(drag.f), at); else move(drag.j, Math.min(at > drag.j ? at - 1 : at, n - 1));
+  drag = null;
+});
+document.addEventListener('dragend', () => { drag = null; document.querySelectorAll('#strip .drop').forEach(c => c.classList.remove('drop')); });
+
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input, select, textarea')) return;
+  const mod = e.ctrlKey || e.metaKey;
+  if (mod && e.key.toLowerCase() === 'z') { e.preventDefault(); e.shiftKey ? $('#redo').click() : $('#undo').click(); }
+  else if (mod && e.key.toLowerCase() === 'y') { e.preventDefault(); $('#redo').click(); }
+  else if (e.key === ' ' && !e.target.matches('button')) { e.preventDefault(); $('#play').click(); }
+  else if (e.key === ',') $('#prev').click();
+  else if (e.key === '.') $('#next').click();
+  else if ((e.key === 'Delete' || e.key === 'Backspace') && e.target.closest('#strip')) { e.preventDefault(); if (!$('#remove').disabled) $('#remove').click(); }
+});
+
 pick(st.id);
 requestAnimationFrame(draw);
 </script>

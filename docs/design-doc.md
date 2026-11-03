@@ -222,6 +222,10 @@ Every party member has the same art set, so their states read the same way acros
 
 **Sprite sheet.** 54 frames in a fixed grid, at about the scope of a Final Fantasy Record Keeper sheet. It covers the battle loop (idle, ready, defend, step in, two attacks, chant and cast, item, hit, the low-HP kneel), a class action and Limit Break, victory, KO, and status poses (Zombie, Sleep, Paralyze, Confuse, Berserk). It also has field walk cycles in three directions and three cutscene poses (startled, downcast, listening). The hit flash, Stone, Vanish and Mini are generated from these frames, not drawn.
 
+**Skill choreography.** Each skill has its own sequence, as in Final Fantasy VI and Record Keeper: the character steps in, strikes, an effect plays over the target, and the hit lands on a marked damage beat before they return. The effect is its own layer over the target, not drawn on the attacker's sheet. Damage numbers, hit flashes and the target's flinch always land on that beat, so the player learns when a blow connects. Kiri's Spiral Cut uses that promise against them. She cuts a spiral into the target and nothing happens. The spiral hangs in the air for most of a second, then the wound arrives all at once as the spiral comes apart. The pause is the same every time, so it reads as the skill's rule and not as lag.
+
+Natsu's Cure turns the cost around: the help comes first and the horror after. She prays, light gathers on the ally, and the wound closes. Then a small pale face drifts back across the field and catches on the thorns of her halo, and it stays.
+
 **Portraits.** Twelve states drawn as panels of one manga page, all with the same framing so they swap in place. The battle card shows the most telling state:
 
 | Priority | State | When |
