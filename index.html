@@ -1347,7 +1347,7 @@ const ROLE_DESC = {
 const SKILLS = {
   spiral:   { name:'Spiral Cut',    mp:0,  delay:3, target:'enemy', desc:'Physical damage. +1% damage per point of Danger.' },
   lullaby:  { name:'Lullaby',       mp:10, delay:4, target:'none',  desc:'−20 Stress to the other active allies. +10 Danger.' },
-  cure:     { name:'Cure',          mp:8,  delay:4, target:'ally',  desc:'Heal one ally. Stronger at high Stress. After 8 Cures, each adds 3 Stress to the target.' },
+  cure:     { name:'Cure',          mp:8,  delay:4, target:'ally',  school:'white',  desc:'Heal one ally. Stronger at high Stress. After 8 Cures, each adds 3 Stress to the target.' },
   soothe:   { name:'Soothe',        mp:8,  delay:3, target:'ally',  desc:'−25 Stress to one ally.' },
   counter:  { name:'Counter',       mp:0,  delay:2, target:'none',  desc:'Until his next turn, Tetsugi strikes back at every enemy that hits him.' },
   chakra:   { name:'Chakra',        mp:0,  delay:3, target:'none',  desc:'Heal 25% HP and −10 Stress.' },
@@ -1357,8 +1357,8 @@ const SKILLS = {
   howl:     { name:'Howl',          mp:8,  delay:4, target:'none',  desc:'All enemies deal 20% less damage for 3 of their turns.' },
   double:   { name:'Double Cut',    mp:0,  delay:2, target:'enemy', desc:'Two light hits.' },
   blood:    { name:'Blood Strike',  mp:0,  delay:4, target:'enemy', desc:'Costs 15% of current HP. Heavy damage.' },
-  dark:     { name:'Dark',          mp:10, delay:4, target:'enemy', desc:'Magic damage. Up to +40% at high Stress. Uses HP when out of MP.' },
-  darkga:   { name:'Darkga',        mp:24, delay:5, target:'none',  desc:'Magic damage to all enemies. Up to +40% at high Stress. Uses HP when out of MP.' },
+  dark:     { name:'Dark',          mp:10, delay:4, target:'enemy', school:'black', desc:'Magic damage. Up to +40% at high Stress. Uses HP when out of MP.' },
+  darkga:   { name:'Darkga',        mp:24, delay:5, target:'none',  school:'black', desc:'Magic damage to all enemies. Up to +40% at high Stress. Uses HP when out of MP.' },
   delayshot:{ name:'Delay Shot',    mp:0,  delay:4, target:'enemy', desc:'Damage. Pushes the target back 2 slots.' },
   quickshot:{ name:'Quick Shot',    mp:0,  delay:2, target:'enemy', desc:'Light damage. Acts again sooner.' },
   quicksong:{ name:'Quick Song',    mp:6,  delay:3, target:'ally',  desc:'Target ally acts 3 slots sooner. +3 Danger.' },
@@ -1370,6 +1370,10 @@ const SKILLS = {
   foresee:  { name:'Foresee',       mp:8,  delay:3, target:'none',  desc:'Removes the next Lost Turn from the turn order.' },
   blink:    { name:'Blink',         mp:6,  delay:3, target:'ally',  desc:'Target ally dodges the next hit.' },
 };
+// Spells carry a school. The battle menu shows Black Magic or White Magic only while the character
+// holds a spell of that school; everything else sits under Skill. There is no parent node to unlock.
+const SKILL_MENUS = [ ['skill','Skill'], ['black','Black Magic'], ['white','White Magic'] ];
+const menuOf = k => SKILLS[k].school || 'skill';
 const ITEMS = {
   potion:  { name:'Potion',       target:'ally', desc:'Heal 150 HP.' },
   phoenix: { name:'Phoenix Down', target:'ko',   desc:'Revive a KO\'d ally at 30% HP. Allies who see it gain 5 Stress.' },
@@ -3750,14 +3754,14 @@ function renderCmd(){
   } else if (G.menu==='root'){
     h += `<div class="btns">
       ${cmdBtn('Attack',3,'data-a="attack"','',!foesHittable().length)}
-      ${cmdBtn('Skill ▸',null,'data-m="skill"','',silenced(u))}
+      ${SKILL_MENUS.filter(([m])=>u.skills.some(k=>menuOf(k)===m)).map(([m,label])=>cmdBtn(`${label} ▸`,null,`data-m="${m}"`,'',silenced(u))).join('')}
       ${cmdBtn('Item ▸',null,'data-m="item"')}
       ${cmdBtn('Defend',3,'data-a="defend"')}
       ${cmdBtn('Swap ▸',null,'data-m="swap"','',!reserves().some(r=>r.alive))}
       ${cmdBtn(`Limit: ${esc(u.lb)}`,4,'data-a="limit"','',!ready(u) || silenced(u),'hum')}
     </div>`;
-  } else if (G.menu==='skill'){
-    h += `<div class="btns">${u.skills.map(k=>{ const s=SKILLS[k]; const hpPay = s.mp && u.mp < s.mp;
+  } else if (SKILL_MENUS.some(([m])=>m===G.menu)){
+    h += `<div class="btns">${u.skills.filter(k=>menuOf(k)===G.menu).map(k=>{ const s=SKILLS[k]; const hpPay = s.mp && u.mp < s.mp;
       const noFoe = s.target==='enemy' && k!=='jump' && !foesHittable().length;
       return cmdBtn(s.name, s.delay, `data-s="${k}"`, s.mp?`${s.mp} MP${hpPay?' (uses HP)':''} · `:'', noFoe); }).join('')}
       ${cmdBtn('Back',null,'data-m="root"','',false,'ghost')}</div>`;
@@ -3782,8 +3786,8 @@ function renderCmd(){
       : a.kind==='swap' ? `Swap in ${byId(a.id).name}` : a.kind==='obey' ? 'Obey the whisper' : 'Attack';
     const tname = r.target ? ` → ${r.target.name}` : '';
     let want = null;
-    if (G.menu==='root' || G.menu==='whisper') want = sel[a.kind] || (a.kind==='skill' ? '[data-m="skill"]' : a.kind==='item' ? '[data-m="item"]' : a.kind==='swap' ? '[data-m="swap"]' : a.kind==='obey' ? '[data-a="obey"]' : null);
-    else if (G.menu==='skill') want = a.kind==='skill' ? `[data-s="${a.key}"]` : '[data-m="root"]';
+    if (G.menu==='root' || G.menu==='whisper') want = sel[a.kind] || (a.kind==='skill' ? `[data-m="${menuOf(a.key)}"]` : a.kind==='item' ? '[data-m="item"]' : a.kind==='swap' ? '[data-m="swap"]' : a.kind==='obey' ? '[data-a="obey"]' : null);
+    else if (SKILL_MENUS.some(([m])=>m===G.menu)) want = a.kind==='skill' && menuOf(a.key)===G.menu ? `[data-s="${a.key}"]` : '[data-m="root"]';
     else if (G.menu==='item') want = a.kind==='item' ? `[data-i="${a.key}"]` : '[data-m="root"]';
     else if (G.menu==='swap') want = a.kind==='swap' ? `[data-sw="${a.id}"]` : `[data-m="${back}"]`;
     if (want){ const k = want.replace(/[\[\]]/g,''); h = h.replace(new RegExp(`class="btn ([^"]*)"([^>]*?)${k.replace(/[.*+?^${}()|]/g,'\\$&')}`), (m, c, rest) => `class="btn rec ${c}"${rest}${k}`); }

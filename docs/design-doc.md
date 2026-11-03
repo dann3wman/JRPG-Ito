@@ -127,7 +127,7 @@ Every familiar mechanic works as players expect but carries a cost the game neve
 | System | How it works | The cost |
 | --- | --- | --- |
 | Materia | Crystal shards slot into weapons and armor to add elements, status effects and resistances | Equipped materia slowly moves into the character's skin; portraits update to show it |
-| Sphere Grid | Spend Spheres to activate stat and skill nodes (see Character growth) | Each activated node draws more of a spiral on the character's skin; at the grid's center it covers the face |
+| Sphere Grid | Attune up to three sections of the board and spend Spheres to activate their nodes (see Character growth) | Each activated node draws more of a spiral on the character's skin; at the grid's center it covers the face |
 | Save points | Save at any glowing circle | Saving more than 3 times in one area spawns a copy of a party member as an enemy |
 | Phoenix Down | Revives a KO'd ally | Each revive is counted; at 20 revives the character's battle cry changes to birdsong |
 | Summons | Calls a powerful creature | The summoner permanently gains one feature of that summon |
@@ -239,9 +239,9 @@ The Strained portrait warns the player before a Stress Check. The face changes b
 
 ## Combat roles and boss design
 
-Each character fills one combat role that no one else covers. A good party of three mixes damage, support and control, and swapping in the right reserve is how you answer a boss.
+Each character's home section carries one combat role that no one else starts with. From ring 3 others can attune that section and learn its skills, but Limit Breaks and Stress traits stay with their owner and a borrower uses the skills with their own stats (see Character growth). A good party of three mixes damage, support and control, and swapping in the right reserve is how you answer a boss.
 
-| Character | Role | What only they do | Skills | Stress trait | Limit Break |
+| Character | Role | What only their section does | Skills | Stress trait | Limit Break |
 | --- | --- | --- | --- | --- | --- |
 | Kiri | Danger Striker | Turns the Danger meter into damage and party Stress relief | Spiral Cut: damage rises with Danger; Lullaby: −20 Stress to the other active allies, +10 Danger | None | Lullaby for Ostrel: heal all 30%, −30 Stress to allies |
 | Natsu | Healer | The only single-target HP and Stress healer | Cure: heal one ally; Soothe: −25 Stress to one ally | Cure is stronger at high Stress; after 8 Cures in a battle, each adds 3 Stress to the target | Halo of Faces: heal all 50%, revive KO'd allies at 25% |
@@ -304,9 +304,15 @@ Boss difficulty ramps up by disc. Disc 1 plays like a standard Final Fantasy, Di
 
 ## Character growth: the Sphere Grid
 
-There are no character levels. Characters grow on a Sphere Grid like FFX's: a board of nodes they move across, activating each node with a Sphere. The grid is shaped like one large spiral, and the further in a character goes, the stronger the nodes get.
+There are no character levels. Characters grow on a Sphere Grid: a board of nodes shaped like one large spiral, where the further in a character goes, the stronger the nodes get. The board is split into twelve **sections**, one per character, and by the postgame every character can reach and learn every section.
 
-**AP and Sphere Levels.** Characters earn AP from battles. Each time a character's AP bar fills, they gain one Sphere Level (S.Lv). Each S.Lv lets them move one node. Moving across nodes they have already activated is free.
+It differs from FFX's grid in three ways, each borrowed from a proven system:
+
+- **No token.** A character doesn't walk the board. They activate any node next to one they have already activated, as on FFXII's License Board. Position never wastes a Sphere Level.
+- **Attunement.** A character holds only a few sections at once, like FFT's primary and secondary skillsets or FFV's ability slots. They grow and fight only with the sections they hold, so a party of three is a choice of nine sections, not of everything.
+- **Forks.** Six sections split into two long paths, and taking one seals the other, like Kingdom Hearts' Dawn choice or the job pairs in FFXII: The Zodiac Age. The choice decides a build for most of the game.
+
+**AP and Sphere Levels.** Characters earn AP from battles. Each time a character's AP bar fills, they gain one Sphere Level (S.Lv). Each S.Lv activates one node, which also uses one Sphere of the node's type.
 
 | Who | AP earned |
 | --- | --- |
@@ -314,39 +320,114 @@ There are no character levels. Characters grow on a Sphere Grid like FFX's: a bo
 | In reserve and never acted | 50% |
 | Inspired when the battle ends | 200% |
 
-An Afflicted character still earns AP but cannot move on the grid until their Stress drops below 50. Each S.Lv gained still plays the cheerful level-up fanfare.
+An Afflicted character still earns AP but cannot activate nodes or retune until their Stress drops below 50. Each S.Lv gained still plays the cheerful level-up fanfare.
 
-**Spheres.** Enemies drop Spheres. Activating a node uses one Sphere of the matching type.
+**Spheres.** Enemies drop Spheres.
 
-| Sphere | Activates | Main source |
+| Sphere | Use | Main source |
 | --- | --- | --- |
-| Power | HP, Attack, Defense nodes | Most enemies |
-| Mana | MP, Magic, Magic Defense nodes | Spellcasting enemies |
-| Speed | Speed, Accuracy, Evasion nodes | Fast enemies |
-| Ability | Skills, auto-abilities, Limit Break levels | Most enemies |
-| Resolve | Resolve nodes, Stress auto-abilities | Bosses; winning a battle with no one Afflicted |
-| Fortune | Luck nodes | Rare drops |
+| Power | Activates HP, Attack, Defense nodes | Most enemies |
+| Mana | Activates MP, Magic, Magic Defense nodes | Spellcasting enemies |
+| Speed | Activates Speed, Accuracy, Evasion nodes | Fast enemies |
+| Ability | Activates skills, spells, auto-abilities, Limit Break levels | Most enemies |
+| Resolve | Activates Resolve nodes, Stress auto-abilities | Bosses; winning a battle with no one Afflicted |
+| Fortune | Activates Luck nodes | Rare drops |
 | Key (Lv.1 to Lv.4) | Opens a lock of that level | Bosses and treasure |
-| Return | Moves a character to any node they have activated | Pip's shop |
-| Friend | Moves a character to an ally's position | Rare drops |
-| Clear | Empties an activated node | Postgame |
+| Return | Retunes a character away from a save point | Pip's shop |
+| Friend | Activates a node an ally has activated, in an attuned section, even if it isn't next to one of the character's own | Rare drops |
+| Clear | Empties an activated node. Emptying the first node of a fork's path reopens the fork | Postgame |
 | Attribute (HP, Attack, etc.) | Fills an empty node with that stat | Postgame |
 
 **Resolve** is a new stat. Each point reduces Stress gained by 1%, up to 50%. **Speed** shortens Delay in CTB: above 150 Speed, every action costs 1 less Delay (minimum 2).
 
-**Layout.** The grid has seven rings. Each character starts on the outer ring at the start of their own arm, which winds inward. Arms run side by side, so neighbouring arms meet along crossing paths. Characters who join late start with their arm already activated up to the ring the party has reached.
+**Layout.** The grid has seven rings. Each section is one character's arm, winding from the outer ring to the Center. Between neighbouring arms run **Seams**: crossing paths that belong to no section and are always open to everyone. They hold the general abilities. Each character starts at the outer end of their own arm. Characters who join late start with their home section activated up to the ring the party has reached.
 
 | Ring | Reached around | Lock to enter | Stat nodes | What opens |
 | --- | --- | --- | --- | --- |
 | 1 (outer) | Ch. 1–5 | None | +1, +100 HP | Starting skills |
-| 2 | Ch. 5–11 | Lv.1 | +2, +200 HP | Second signature skill; Limit Break Lv.2 |
-| 3 | Ch. 12–16 | Lv.2 | +2, +200 HP | Crossing paths to the two neighbouring arms |
+| 2 | Ch. 5–11 | Lv.1 | +2, +200 HP | Second signature skill; Limit Break Lv.2; the forks of Kiri and Goku |
+| 3 | Ch. 12–16 | Lv.2 | +2, +200 HP | Second attunement slot; Seams to the two neighbouring sections; the other four forks |
 | 4 | Ch. 17–22 | Lv.2 | +3, +300 HP | Upgraded signature skills; Limit Break Lv.3 |
-| 5 | Disc 3 | Lv.3 | +3, +300 HP | Crossing paths to any arm |
-| 6 | Disc 3, optional | Lv.3 | +4, +400 HP | Top auto-abilities |
+| 5 | Disc 3 | Lv.3 | +3, +300 HP | Third attunement slot; Seams to every section |
+| 6 | Disc 3, optional | Lv.3 | +4, +400 HP | Top auto-abilities; the end of every fork's paths |
 | 7 (inner) | Postgame | Lv.4 | +4, +500 HP | Deep nodes and the Center |
 
-**Keeping roles distinct.** Any character can cross into another's arm and take its stat nodes and general abilities. Signature skills (those in the Combat roles table) and Limit Break levels belong to their owner and appear greyed out to everyone else, so each role stays unique. General abilities on the crossing paths include:
+The arms run in this order around the spiral, and the last meets the first: **Kiri, Natsu, Kugai, Tetsugi, Miren, Ren, Hisui, Kuro, Goku, Fuyori, Sayo, Shio**. A character's first borrowed section is a choice between their two neighbours, and each pair offers two different answers: Kiri can take Natsu's healing or Shio's control of Lost Turns. Natsu's and Kuro's sections sit opposite each other, so no one reaches both schools' cores before Disc 3.
+
+**Attunement.** A character's **home section** is always attuned and can't be removed. Every other section must be attuned to use it.
+
+| | Attuned section | Section not attuned |
+| --- | --- | --- |
+| Activate its nodes | Yes, any node next to one already activated | No |
+| Its skills, spells and auto-abilities | Usable | Kept, but greyed out and unusable |
+| Its stat nodes (HP, Attack, Resolve and the rest) | Applied | Still applied |
+
+- **Slots.** A character holds 1 section (home) until they activate their first ring-3 node, 2 from then, and 3 from their first ring-5 node. The Deep node Deep Chorus adds a 4th.
+- **Gates.** A section can be attuned once the character has activated the Seam node that touches it, its Gate. The Gates to neighbouring sections are on ring 3; the Gates to every section are on ring 5. That is the order the grid opens in: your own section, then your neighbours', then everyone's.
+- **Retuning.** Change attuned sections at any save point, for free, or anywhere outside battle with a Return Sphere. Nodes already activated in a section stay activated when it is let go and are there to grow from when it is attuned again.
+- **Optional characters' sections.** Fuyori's and Shio's sections are on the board whether or not they have been found. Their Gates open the same way, and the portrait beside the section stays an outline until they join.
+
+**What stays theirs.** Anyone can attune anyone's section and learn its skills, spells and auto-abilities, including signature skills. Four things keep each role distinct:
+
+- **Limit Break levels** in a section can be activated only by its owner. Everyone else sees them greyed out.
+- **Stress traits** belong to the character, not the section. Tetsugi's Counter doesn't make the borrower immune to Stress from KOs, and Kuro's +40% at high Stress applies to every spell Kuro casts, including borrowed ones.
+- **A skill's own rules travel with it.** Cure still adds Stress after its 8th cast in a battle, whoever casts it, and Dark still costs HP without MP. Learning a skill means learning its cost.
+- **Stats.** A borrower casts with their own Magic and hits with their own Attack. Tetsugi can learn Darkga; with 8 Magic it barely scratches.
+
+**Forks.** In six sections, two paths leave the trunk at the fork. Each path is a full build of about 15 nodes, with its own skills, stats and capstone, and runs alongside the trunk to its own end in ring 6. The paths never rejoin and are never short spurs that send the player back: each is the way forward for that build. The trunk carries on to the Center with the Limit Break levels, signature upgrades and Gates, so a sealed path never blocks the rest of the section. Activating the first node of one path seals the other for that character. The fork is per character: if Kiri takes the Spiral in her own section, Natsu can still take the Lullaby when she borrows it. A Clear Sphere on the first node of a path reopens the fork, but only in the postgame.
+
+| Section | Fork | Path | What it builds | Skills and spells | Capstone (ring 6) |
+| --- | --- | --- | --- | --- | --- |
+| Kiri | Ring 2 | The Spiral | Danger as damage; Attack and Speed | Wind Up: +15 Danger, the next Spiral Cut is a critical hit | Coil: Spiral Cut gains +2% damage per point of Danger, not +1% |
+| | | The Lullaby | Stress relief and control; Resolve and Magic | Sleep (black magic); Hush: −10 Stress to every reserve, +5 Danger | Cradle: Lullaby adds +5 Danger, not +10 |
+| Natsu | Ring 3 | The Halo | HP healing; Magic and MP | Cura, Regen, Arise (white magic) | Many Hands: Cure adds Stress only after its 16th cast in a battle, not its 8th |
+| | | The Faces | Stress care; Resolve | Take In: moves up to 30 Stress from one ally to Natsu; Hold Still: −10 Stress to every active ally, +10 to Natsu | Kind Face: Soothe also removes Silence, Paralyze and Confuse |
+| Miren | Ring 3 | The Sky | Jump; Attack | High Jump: lands 7 slots later for double Jump damage | Never Land: after landing, Miren's next Jump is Delay 3 |
+| | | The Spear | Ground fighting, despite himself; Defense and Speed | Lancet: damage, heals Miren half of it; Spear-Arm: Attack hits twice for 2 turns | Rooted: no Stress from being pushed back; +5 Stress at the start of each of his turns on the ground |
+| Goku | Ring 2 | The Pack | Summons; Magic | Summon Crows: 4 hits on random enemies, Delay 6 | Pack Leader: each summon adds 5 Stress to Goku, not 10 |
+| | | The Shape | Becoming the beast; Attack and HP | Maul: heavy physical damage, Delay 4; Hide: Goku's Defense +50% for 3 of her turns | Wearing It: Goku's Attack uses Summon Hound's damage. Her portrait gains one feature of the Hound for every 5 nodes on this path |
+| Kuro | Ring 3 | The Hollow | One target, paid in HP; Magic | Drain, Darkra, Doom (black magic) | Hollowed: below 30% HP, Kuro's spells cost no MP |
+| | | The Echo | Every enemy at once; MP and Magic Defense | Aftershock: the next -ga spell hits twice at half power | Wide House: -ga spells are Delay 4, not 5 |
+| Sayo | Ring 3 | The Choir | Moving allies' turns; Speed | Chorus: two allies act 2 slots sooner, +5 Danger | Many Voices: Quick Song adds +1 Danger, not +3 |
+| | | The Solo | Shutting sound down; Resolve and Magic Defense | Hold the Note: until Sayo's next turn, every sound attack on the party targets her | Last Voice: Counter-Melody cancels the next 2 sound attacks |
+
+The other six sections run as one trunk, with short side paths for stat nodes. Kugai, Fuyori and Shio, who join late or optionally, have no fork, so no one arrives with a choice already made for them.
+
+**Black Magic and White Magic.** Spells are skill nodes like any other, and each belongs to a school. The battle menu shows a **Black Magic** command while the character holds at least one usable black spell, and a **White Magic** command while they hold a white one. There is no parent "Black Magic" node to buy: attune a section with Water in it and the menu appears; let the section go and it disappears. Every other command sits under **Skill**. Silence blocks all three.
+
+Natsu's section is the white mage's and Kuro's the black mage's. They hold the core of each school: the Cure line, and the Dark line with every spell that hits all enemies. The rest of each school is spread through the sections where it fits, so building a caster means borrowing. All spells are Delay 4 except -ga spells (5).
+
+| Spell | School | Section | Ring | Effect |
+| --- | --- | --- | --- | --- |
+| Cure | White | Natsu | 1 | Heal one ally |
+| Cura | White | Natsu (the Halo) | 3 | Heal one ally, about twice Cure |
+| Regen | White | Natsu (the Halo) | 4 | One ally heals 5% max HP at the start of each of their next 5 turns |
+| Arise | White | Natsu (the Halo) | 5 | Revive a KO'd ally at full HP |
+| Raise | White | Tetsugi | 2 | Revive a KO'd ally at 30% HP. Counts as a revive, like Phoenix Down |
+| Protect | White | Kugai | 2 | One ally takes −30% physical damage for 5 of their turns |
+| Holy | White | Kugai | 6 | Heavy magic damage to one enemy |
+| Shell | White | Shio | 2 | One ally takes −30% magic damage for 5 of their turns |
+| Reraise | White | Shio | 5 | One ally revives at 25% HP the next time they are KO'd in this battle |
+| Haste | White | Sayo | 4 | One ally's actions cost 1 less Delay for 5 of their turns (minimum 2) |
+| Esuna | White | Fuyori | 2 | Removes Silence, Paralyze and Confuse from one ally |
+| Dark | Black | Kuro | 1 | Magic damage |
+| Darkga | Black | Kuro | 1 | Magic damage to all enemies |
+| Drain | Black | Kuro (the Hollow) | 3 | Magic damage; Kuro heals half of it |
+| Darkra | Black | Kuro (the Hollow) | 4 | Heavy magic damage to one enemy |
+| Doom | Black | Kuro (the Hollow) | 6 | The target is KO'd after 5 of its turns. Bosses are immune |
+| Sleep | Black | Kiri (the Lullaby) | 3 | One enemy sleeps for 2 of its turns |
+| Water | Black | Hisui | 2 | Magic damage |
+| Aero | Black | Miren | 2 | Magic damage; +50% to an enemy in the air |
+| Quake | Black | Goku | 3 | Magic damage; misses an enemy in the air |
+| Fire | Black | Ren | 2 | Magic damage |
+| Slow | Black | Ren | 3 | One enemy's actions cost 1 more Delay for 3 of its turns |
+| Stop | Black | Ren | 6 | 30% chance: one enemy loses its next 2 turns |
+| Bio | Black | Fuyori | 3 | Magic damage, then 5% of the target's max HP at the start of each of its next 3 turns |
+| Silence | Black | Sayo | 2 | One enemy can't use sound attacks for 3 of its turns |
+
+Natsu holds 4 of the 11 white spells and Kuro 5 of the 14 black ones. A dedicated white mage is Natsu plus Shio or Kugai; a dedicated black mage is Kuro plus Hisui, Goku or Ren.
+
+**General abilities** sit on the Seams, so they never take an attunement slot:
 
 - **Scan:** shows an enemy's HP, weaknesses and next action
 - **Steal:** takes an item from an enemy
@@ -364,15 +445,18 @@ An Afflicted character still earns AP but cannot move on the grid until their St
 | Deep Speed | Every action costs 1 less Delay | Being pushed back adds 8 Stress per slot instead of 4 |
 | Deep Calm | Resolve +30 | Can no longer be Inspired |
 | Deep Life | Max HP +50% | Cannot be revived by Phoenix Down, only by Reraise or the end of battle |
+| Deep Chorus | A 4th attunement slot | Each of their turns adds 1 Danger: they hum every section they hold |
 | The Center (one per character) | All stats +10% | Stress never drops below 40 |
 
-**The cost you can see.** Every activated node draws one more line of a spiral onto the character's skin, and their portrait updates as it grows. By ring 5 the spiral reaches the neck. A character standing on the Center has it across the whole face in cutscenes, and townspeople start humming when they walk past.
+**Pacing.** A section holds about 60 nodes: a trunk of about 30 and, where there is a fork, two paths of about 15. A character who fights in most battles should reach about 90 S.Lv by the end of Disc 2: their home trunk, one path and the start of one borrowed section. Every section can be completed by every character, but only in the postgame. These are targets for tuning once the grid is built.
+
+**The cost you can see.** Every activated node draws one more line of a spiral onto the character's skin, and their portrait updates as it grows. A node in someone else's section draws the line in that person's hand: their spiral, on your skin. Characters who keep a borrowed section long enough pick up its owner's habits in field scenes; Tetsugi starts humming Sayo's songs. By ring 5 the spiral reaches the neck. A character standing on the Center has it across the whole face in cutscenes, and townspeople start humming when they walk past.
 
 **Story beats on the grid**
 
-- **Goku (Ch. 12).** When she becomes the Grey Mother, her grid freezes. The summon's power scales with how many nodes she activated.
-- **Tetsugi (Ch. 18).** When he rejoins, nodes along his arm are activated that the player never paid for: one for each night he was away.
-- **Kiri (Ch. 18).** After the reveal, her grid shows a second path, the original Kiri's, activated far ahead of her. It stays greyed out until The Great Spiral (Ch. 19), when it becomes hers.
+- **Goku (Ch. 12).** When she becomes the Grey Mother, her grid freezes, attuned sections and all. The summon's power scales with how many nodes she activated, and its form follows her fork: the Pack calls the litter, the Shape is her.
+- **Tetsugi (Ch. 18).** When he rejoins, nodes are activated that the player never paid for, one for each night he was away. Some are in sections he has never attuned, the one place the game breaks its own rule.
+- **Kiri (Ch. 18).** After the reveal, the sealed path of her fork shows as activated far ahead of her: whichever path the player chose, the original Kiri took the other. It stays sealed until The Great Spiral (Ch. 19), when it becomes hers. She is the only character who ends the game with both paths.
 
 ## Side quests, optional bosses and minigames
 

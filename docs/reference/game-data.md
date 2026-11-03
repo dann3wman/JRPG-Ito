@@ -42,32 +42,34 @@ Base stats at level 0. A character's HP, MP, ATK, DEF and MAG are scaled by `0.6
 
 Attack, Defend and items are Delay 3; Limit Breaks are Delay 4. Out of MP, a spell costs 4 HP per missing MP.
 
-| Skill | Key | User | MP | Delay | Target | Effect |
-| --- | --- | --- | --- | --- | --- | --- |
-| Spiral Cut | spiral | Kiri | 0 | 3 | enemy | Physical damage. +1% damage per point of Danger. |
-| Lullaby | lullaby | Kiri | 10 | 4 | none | −20 Stress to the other active allies. +10 Danger. |
-| Cure | cure | Natsu | 8 | 4 | ally | Heal one ally. Stronger at high Stress. After 8 Cures, each adds 3 Stress to the target. |
-| Soothe | soothe | Natsu | 8 | 3 | ally | −25 Stress to one ally. |
-| Counter | counter | Tetsugi | 0 | 2 | none | Until his next turn, Tetsugi strikes back at every enemy that hits him. |
-| Chakra | chakra | Tetsugi | 0 | 3 | none | Heal 25% HP and −10 Stress. |
-| Jump | jump | Miren | 0 | 5 | enemy | Leave the turn order and land later for heavy damage. No Stress while airborne; +15 Stress on landing. |
-| Quick Hit | quick | Miren | 0 | 2 | enemy | Light damage. Acts again sooner. |
-| Summon Hound | hound | Goku | 0 | 6 | enemy | Heavy damage to one enemy. Goku +10 Stress, each ally −5. |
-| Howl | howl | Goku | 8 | 4 | none | All enemies deal 20% less damage for 3 of their turns. |
-| Double Cut | double | Hisui | 0 | 2 | enemy | Two light hits. |
-| Blood Strike | blood | Hisui | 0 | 4 | enemy | Costs 15% of current HP. Heavy damage. |
-| Dark | dark | Kuro | 10 | 4 | enemy | Magic damage. Up to +40% at high Stress. Uses HP when out of MP. |
-| Darkga | darkga | Kuro | 24 | 5 | none | Magic damage to all enemies. Up to +40% at high Stress. Uses HP when out of MP. |
-| Delay Shot | delayshot | Ren | 0 | 4 | enemy | Damage. Pushes the target back 2 slots. |
-| Quick Shot | quickshot | Ren | 0 | 2 | enemy | Light damage. Acts again sooner. |
-| Quick Song | quicksong | Sayo | 6 | 3 | ally | Target ally acts 3 slots sooner. +3 Danger. |
-| Counter-Melody | melody | Sayo | 8 | 4 | none | Cancels the next enemy sound attack on the party. +3 Danger. |
-| Provoke | provoke | Kugai | 0 | 3 | none | Enemies target Kugai with their next 3 single-target attacks. |
-| Cover | cover | Kugai | 0 | 3 | ally | Target ally takes half damage from the next hit. |
-| Mix | mix | Fuyori | 6 | 3 | none | Add a random item to the bag. Above 100 Stress, always makes Earplugs. |
-| Acid | acid | Fuyori | 4 | 3 | enemy | Magic damage. Target defense −30%. |
-| Foresee | foresee | Shio | 8 | 3 | none | Removes the next Lost Turn from the turn order. |
-| Blink | blink | Shio | 6 | 3 | ally | Target ally dodges the next hit. |
+The battle menu files each command under Skill, or under Black Magic or White Magic for spells of that school. A menu appears only while the character holds a command for it.
+
+| Skill | Key | User | Menu | MP | Delay | Target | Effect |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Spiral Cut | spiral | Kiri | Skill | 0 | 3 | enemy | Physical damage. +1% damage per point of Danger. |
+| Lullaby | lullaby | Kiri | Skill | 10 | 4 | none | −20 Stress to the other active allies. +10 Danger. |
+| Cure | cure | Natsu | White Magic | 8 | 4 | ally | Heal one ally. Stronger at high Stress. After 8 Cures, each adds 3 Stress to the target. |
+| Soothe | soothe | Natsu | Skill | 8 | 3 | ally | −25 Stress to one ally. |
+| Counter | counter | Tetsugi | Skill | 0 | 2 | none | Until his next turn, Tetsugi strikes back at every enemy that hits him. |
+| Chakra | chakra | Tetsugi | Skill | 0 | 3 | none | Heal 25% HP and −10 Stress. |
+| Jump | jump | Miren | Skill | 0 | 5 | enemy | Leave the turn order and land later for heavy damage. No Stress while airborne; +15 Stress on landing. |
+| Quick Hit | quick | Miren | Skill | 0 | 2 | enemy | Light damage. Acts again sooner. |
+| Summon Hound | hound | Goku | Skill | 0 | 6 | enemy | Heavy damage to one enemy. Goku +10 Stress, each ally −5. |
+| Howl | howl | Goku | Skill | 8 | 4 | none | All enemies deal 20% less damage for 3 of their turns. |
+| Double Cut | double | Hisui | Skill | 0 | 2 | enemy | Two light hits. |
+| Blood Strike | blood | Hisui | Skill | 0 | 4 | enemy | Costs 15% of current HP. Heavy damage. |
+| Dark | dark | Kuro | Black Magic | 10 | 4 | enemy | Magic damage. Up to +40% at high Stress. Uses HP when out of MP. |
+| Darkga | darkga | Kuro | Black Magic | 24 | 5 | none | Magic damage to all enemies. Up to +40% at high Stress. Uses HP when out of MP. |
+| Delay Shot | delayshot | Ren | Skill | 0 | 4 | enemy | Damage. Pushes the target back 2 slots. |
+| Quick Shot | quickshot | Ren | Skill | 0 | 2 | enemy | Light damage. Acts again sooner. |
+| Quick Song | quicksong | Sayo | Skill | 6 | 3 | ally | Target ally acts 3 slots sooner. +3 Danger. |
+| Counter-Melody | melody | Sayo | Skill | 8 | 4 | none | Cancels the next enemy sound attack on the party. +3 Danger. |
+| Provoke | provoke | Kugai | Skill | 0 | 3 | none | Enemies target Kugai with their next 3 single-target attacks. |
+| Cover | cover | Kugai | Skill | 0 | 3 | ally | Target ally takes half damage from the next hit. |
+| Mix | mix | Fuyori | Skill | 6 | 3 | none | Add a random item to the bag. Above 100 Stress, always makes Earplugs. |
+| Acid | acid | Fuyori | Skill | 4 | 3 | enemy | Magic damage. Target defense −30%. |
+| Foresee | foresee | Shio | Skill | 8 | 3 | none | Removes the next Lost Turn from the turn order. |
+| Blink | blink | Shio | Skill | 6 | 3 | ally | Target ally dodges the next hit. |
 
 | Item | Key | Target | Effect |
 | --- | --- | --- | --- |

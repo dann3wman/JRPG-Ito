@@ -53,8 +53,10 @@ L.push('## Commands');
 L.push('');
 L.push('Attack, Defend and items are Delay 3; Limit Breaks are Delay 4. Out of MP, a spell costs 4 HP per missing MP.');
 L.push('');
-L.push(table(['Skill', 'Key', 'User', 'MP', 'Delay', 'Target', 'Effect'],
-  Object.entries(SKILLS).map(([k, s]) => [s.name, k, (owner(k) || {}).name || '—', s.mp, s.delay, s.target, s.desc])));
+L.push('The battle menu files each command under Skill, or under Black Magic or White Magic for spells of that school. A menu appears only while the character holds a command for it.');
+L.push('');
+L.push(table(['Skill', 'Key', 'User', 'Menu', 'MP', 'Delay', 'Target', 'Effect'],
+  Object.entries(SKILLS).map(([k, s]) => [s.name, k, (owner(k) || {}).name || '—', { black: 'Black Magic', white: 'White Magic' }[s.school] || 'Skill', s.mp, s.delay, s.target, s.desc])));
 L.push('');
 L.push(table(['Item', 'Key', 'Target', 'Effect'], Object.entries(ITEMS).map(([k, i]) => [i.name, k, i.target, i.desc])));
 L.push('');
