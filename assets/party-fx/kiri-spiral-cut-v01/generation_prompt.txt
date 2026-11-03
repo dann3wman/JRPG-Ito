@@ -1,0 +1,11 @@
+Selected image-generation prompt, prior to native-pixel production cleanup:
+
+A TRUE CONNECTED SPIRAL pixel art videogame effect sprite sheet, transparent background, 3 columns by 2 rows, canvas 1536x1024. Each cell represents a 64x64 pixel canvas enlarged 8x with nearest neighbor, all pixels are 8x8 squares. No glow whatsoever, NO haze, no gradient, no background, no labels, no shadows.
+The SPIRAL is a SINGLE UNBROKEN IVORY RIBBON starting at outer upper-left, traveling CLOCKWISE over top, down right, across bottom, then bending INWARDS continuously through left quadrant and curling up and over to a small inner tip. A connected snail-shell spiral, NOT an outer ring with a separate inner curl. 1.25 turns. Pixelated uneven incisive sword stroke, bone ivory bordered in dark charcoal. Central pivot (32,32). Center remains open. Outer radius max22 pixels, inner tip radius4 pixels. FFRK/FFVI 16bit horror battle effect, no character. Six colors: #17141C, #49414D, #938A87, #D6CDB8, #F5EAD2, #803D49. Whole shape fully opaque against true transparent pixels.
+Cell1: only a short beginning hook upper-left within local pixels x14..30,y14..30.
+Cell2: ivory arc sweeps clockwise across top and down right, left open, local bounds x12..51,y10..46.
+Cell3: complete CONNECTED 1.25 turn spiral. Two-pixel ivory core and one-pixel charcoal contour. Tiny red accent at inner tip. Art within local x8..55,y8..55.
+Cell4: precisely SAME connected spiral as cell3, thinner one-pixel ivory core, dark one-pixel outline. No red or bright highlight.
+Cell5: erase portions of cell4 to leave three outer curved fragments PLUS inner hook at the same locations. Outer fragments do not move.
+Cell6: Only small inner hook inside local x27..38,y27..38, shaded #938A87 bordered #17141C.
+Keep fixed grid/cell registration. Exactly six sprites. Exact rigid square pixels. NO antialiasing. NO painted rendering.

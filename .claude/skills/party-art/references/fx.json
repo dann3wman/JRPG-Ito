@@ -1,0 +1,3 @@
+{
+ "kiriSpiralCut": {"who": "kiri", "skill": "spiral", "label": "Spiral Cut", "image": "fx/kiri-spiral-cut.png", "cell": 64, "cols": 3, "ms": [60, 60, 80, 120, 100, 80], "pivot": [32, 32], "impact": 2, "anim": "special", "start": 1, "at": [-96, -30], "source": "assets/party-fx/kiri-spiral-cut-v01/"}
+}

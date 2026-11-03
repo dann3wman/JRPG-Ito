@@ -60,6 +60,62 @@ const MANIFEST = {
    "shock",
    "downcast",
    "listen"
+  ],
+  "desc": [
+   "Idle: standing at rest, weapon lowered, facing left",
+   "Idle: breathing in, shoulders slightly raised",
+   "Idle: breathing out, shoulders slightly lowered",
+   "Ready: weapon raised, weight forward, about to act",
+   "Ready: same stance, small bob down",
+   "Defend: guarding, arms/weapon crossed in front, braced",
+   "Attack: wind-up, weapon drawn back",
+   "Attack: mid-swing, body lunging left",
+   "Attack: follow-through, weapon fully extended to the left",
+   "Second attack: wind-up for a different strike (other hand or reverse swing)",
+   "Second attack: mid-strike",
+   "Second attack: follow-through",
+   "Step forward: walking left, one foot forward",
+   "Step forward: walking left, other foot forward",
+   "Chant: casting stance, hands raised, eyes on the target",
+   "Chant: same, hands slightly higher, a faint glow at the hands",
+   "Cast: releasing the spell, arm thrust forward to the left",
+   "Cast: recovery, arm lowering",
+   "Item: holding a small vial up",
+   "Item: tossing the vial forward to the left",
+   "Hit: recoiling backward to the right, head snapped back",
+   "Hit: stumbling, recovering balance",
+   "Low HP: down on one knee, head bowed, weapon planted, breathing hard",
+   "Low HP: same kneel, shoulders heaving up",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "",
+   "Victory: turning toward the viewer, weapon lowering",
+   "Victory: the character's victory pose",
+   "Victory: same pose, small change (hair or cloth moves, a breath)",
+   "Zombie: standing slack, head lolling to one side, arms hanging, skin grey-green",
+   "Zombie: same slack stance, swaying the other way",
+   "KO: lying flat on the ground on their back, eyes closed, weapon dropped beside them",
+   "Asleep: sitting or kneeling slumped, head down, eyes closed",
+   "Asleep: same, head dipped slightly lower (a breath)",
+   "Paralyzed: frozen rigid mid-step, limbs stiff, back arched, straining",
+   "Confused: wobbling, head tilted, looking the wrong way (right, away from the enemy)",
+   "Confused: wobbling the other way, a hand at the temple",
+   "Berserk: hunched forward, weapon gripped too hard, teeth bared, ready to charge",
+   "Field, facing the viewer (down): standing, weapon sheathed or at rest",
+   "Field, facing down: walking, left foot forward",
+   "Field, facing down: walking, right foot forward",
+   "Field, back to the viewer (up): standing",
+   "Field, facing up: walking, left foot forward",
+   "Field, facing up: walking, right foot forward",
+   "Field, side view facing left: standing",
+   "Field, facing left: walking, front foot forward",
+   "Field, facing left: walking, back foot forward",
+   "Cutscene, facing the viewer: startled, leaning back, arms raised a little",
+   "Cutscene, facing the viewer: head bowed, arms hanging",
+   "Cutscene, facing the viewer: head tilted, one hand cupped to the ear, listening to something"
   ]
  },
  "anims": {
@@ -291,6 +347,36 @@ const MANIFEST = {
    ],
    "ms": 400,
    "loop": true
+  }
+ },
+ "fx": {
+  "kiriSpiralCut": {
+   "who": "kiri",
+   "skill": "spiral",
+   "label": "Spiral Cut",
+   "image": "fx/kiri-spiral-cut.png",
+   "cell": 64,
+   "cols": 3,
+   "ms": [
+    60,
+    60,
+    80,
+    120,
+    100,
+    80
+   ],
+   "pivot": [
+    32,
+    32
+   ],
+   "impact": 2,
+   "anim": "special",
+   "start": 1,
+   "at": [
+    -96,
+    -30
+   ],
+   "source": "assets/party-fx/kiri-spiral-cut-v01/"
   }
  },
  "portraits": {

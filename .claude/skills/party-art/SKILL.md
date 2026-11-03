@@ -12,7 +12,7 @@ Party members are drawn as **frame sprites** (like FFRK and FF6), not bone rigs.
 | Sprite sheet | 6 × 9 = 54 frames | 1024 × 1536, flat `#00FF00` | `<id>.sheet.webp`, 96 × 96 px frames, feet on row 88, idle body height 56 px |
 | Portrait sheet | 4 × 3 = 12 states | 1536 × 1024, black manga gutters | `<id>.portraits.webp`, 256 × 256 px panels (embedded at 154) |
 
-Everything is driven by `scripts/party_art.py` and the character data in `references/cast.json`. The frame list, animations and portrait states are defined once, as `FRAMES`, `ANIMS` and `STATES` in the script. The viewer reads them from the generated `tools/party-sprite-viewer/manifest.js`.
+Everything is driven by `scripts/party_art.py` and the character data in `references/cast.json`. The frame list and portrait states are defined once, as `FRAMES` and `STATES` in the script. The animations over those frames live in `references/anims.json` and the skill effects in `references/fx.json`, so the viewer's editor can change them. The viewer reads all of it from the generated `tools/party-sprite-viewer/manifest.js`.
 
 ## The standard
 
@@ -61,6 +61,33 @@ A clean, nearly cute sprite next to an Ito portrait is intentional. It is the ma
 
 Every portrait states the generic look for its state, plus the character's own horror (`twists` in `cast.json`). That twist is what makes a state an Ito panel instead of a filter. Natsu's halo faces open their eyes at low HP. Hisui's wounds bloom into flowers. Kugai has no face in any panel. A `twists.all` entry applies to every panel. When you add a character or a state, write a twist for it wherever the character's horror has a natural hook.
 
+## Animations and skill effects
+
+`tools/party-sprite-viewer/` is both the viewer and the animation editor. Animations are shared by the whole cast (`anims.json`: `{name: {frames, ms, loop}}`, one `ms` for every step; list a frame twice to hold it). Effects belong to one character's skill (`fx.json`).
+
+**Editing.** Open the viewer, pick an animation and pause. Click a step on the strip, then reorder it, hold it (+1 step) or remove it. Click or drag frames in from the library, and set `ms` and Loop. Use the time scrubber and `,` `.` to step through every change in either layer, with onion skin and the ground and cell guides to check registration. Edits are kept in the browser, with undo and redo. **Download party-anims.json**, then:
+
+```sh
+python3 .claude/skills/party-art/scripts/party_art.py anims party-anims.json
+```
+
+It validates the set with the same rules the editor uses (`check_anims`, `check_fx`), writes both JSON files and rebuilds `manifest.js`. The standard animations (`REQUIRED_ANIMS`) can be changed but not deleted, because the game plays them by name. New animations are allowed.
+
+**Effects.** An effect is a strip of square frames drawn above the target, the way FF6 and FFRK draw a weapon's slash over the enemy, not on the attacker's sheet:
+
+| Field | Meaning |
+| --- | --- |
+| `who`, `skill`, `label` | the character, the `SKILLS` key in `index.html`, the display name |
+| `image`, `cell`, `cols` | the atlas under `tools/party-sprite-viewer/`, the frame size, frames per row (row-major) |
+| `ms` | each frame's own duration; the effect hides after the last one and never loops |
+| `pivot` | the frame pixel placed on the target point |
+| `anim`, `start` | it starts when that step of the character's animation begins |
+| `at` | the target point, `[dx, dy]` sprite px from the character's feet (negative dx is toward the enemy) |
+| `impact` | the frame on which the hit lands: damage number, hit flash and the target's `hurt` |
+| `source` | the delivered package (editable source, prompt, validation) under `assets/party-fx/` |
+
+The editor changes timing, sync, impact frame and placement. To add an effect, put the package in `assets/party-fx/<id>-<skill>-v<n>/`, copy its atlas to `tools/party-sprite-viewer/fx/<id>-<skill>.png`, add the entry to `fx.json` and run `manifest`. Keep the art in native pixels with binary alpha, and draw it with whole-pixel placement and no smoothing.
+
 ## Workflow
 
 `P=.claude/skills/party-art/scripts/party_art.py`, `W=<scratch dir, not in the repo>`
@@ -78,7 +105,7 @@ Every portrait states the generic look for its state, plus the character's own h
 
 ## Rules
 
-- Never change the grid order, cell count or frame names for one character. The point is that every sheet is interchangeable. To change the standard, edit `FRAMES`/`ANIMS`/`STATES`, run `manifest`, update this file and the Party art section of `docs/design-doc.md`, and re-request any sheets that no longer fit.
+- Never change the grid order, cell count or frame names for one character. The point is that every sheet is interchangeable. To change the standard, edit `FRAMES`/`STATES` (and the animations through the editor or `anims.json`), run `manifest`, update this file and the Party art section of `docs/design-doc.md`, and re-request any sheets that no longer fit.
 - Sheets come back on flat green, like the bestiary sheets. Key colours and the checkerboard warning are shared with `sprite-animation/scripts/sheet.py`, and so are its Standing rules on alpha.
 - Don't name Junji Ito (or ask for hatching) in the sprite prompt. Put any new sprite horror into `accent`, `tell` or `twists`.
 - Write each twist so it reads both as a portrait expression and as a pose. It also lands on sprite frames, and it overrides the generic frame description when the two differ.
@@ -95,3 +122,4 @@ Every portrait states the generic look for its state, plus the character's own h
 - **2026-10-25 · Kiri · first portrait sheet.** The framing stayed consistent across all 12 panels, and the twists landed: a spiral iris when strained, spiral irises when confused, a spiral traced beside her head while asleep. ChatGPT drew the panels 343 × 320, not square, so cutting a centred square from an even grid would have caught gutter. `portraits` now finds panels by their black gutters (`gutter_panels`) and takes the largest centred square inside each one, with the inset default lowered to 0.02. The new framing moved her face from 68% to about 58% across, so `FACE.kiri` changed from `[83,68,45]` to `[58,58,48]`. Always re-fit `FACE` after `embed`, and check the narrow party card, where the eyes clip first.
 - **2026-10-25 · Natsu · sprite sheet.** It sliced cleanly with no warnings, and the halo faces showed in every frame as asked. Scaling idle1 to 56 px counted the halo, so her body came out about 18% shorter than Kiri's. `cast.json` now takes `bodyFrac`, the share of idle1's height that is the body (Natsu 0.82). Set it for any character with a halo, tall headgear or something floating above the head, and compare idle1 against an installed character before embedding.
 - **2026-10-25 · Natsu · portrait sheet.** The panels sliced cleanly by their gutters (351 × 328), the framing held across all 12, and the centred face matched `FACE.natsu` with no change. Design note: the narrow party card crops to the face, so twists drawn at the panel edges (the halo faces, the Zombie whisperer at her ear) only show in full-portrait views. Put a twist on the face itself when it must read on the card.
+- **2026-11-03 · Kiri · Spiral Cut effect (v01).** Delivered as a complete package: a 3 × 2 atlas of 64 px frames with binary alpha and six colours, per-frame durations (60/60/80/120/100/80, 500 ms), pivot (32, 32), an impact cue at the start of SC03 (120 ms), hide-on-complete, plus an Aseprite source and a validation report. It needed no cleanup. Stored with `impact` as a frame index, not a time, so the cue moves with the frame when durations change. Synced to start on `special2` (the forward sweep), the impact lands at 260 ms and the effect hides at 640 ms. That outlasts the 560 ms `special` animation, so the last pose holds 80 ms (the editor reports this). Design note: Kiri's own `special3` already leaves a spiral hanging behind her blade, so a second spiral now opens on the target. Two spirals at once is Uzumaki's repetition, and it reads as intended. If it reads as noise in battle, draw `special3` without the spiral rather than cutting the effect.

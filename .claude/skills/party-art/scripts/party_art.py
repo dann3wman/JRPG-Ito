@@ -20,6 +20,8 @@ Commands
                                     tools/party-sprite-viewer/ and rebuild its manifest.js
   embed     ID                      write the installed art into index.html's ASSETS
                                     (p = normal portrait, s = idle sprite, ps = all states)
+  anims     FILE                    validate an animation set exported by the viewer's editor,
+                                    write references/anims.json and fx.json, rebuild manifest.js
   manifest                          rebuild tools/party-sprite-viewer/manifest.js
 
 Requires Pillow and numpy.
@@ -111,36 +113,24 @@ FRAMES = [
 ]
 assert len(FRAMES) == SHEET_COLS * SHEET_ROWS
 
-# Animations over those frames: (frames, ms per frame, loop). The viewer plays these;
-# the game will use the same names when the battle stage gets sprites.
-ANIMS = {
-    'idle':    (['idle1', 'idle2', 'idle3', 'idle2'], 240, True),
-    'ready':   (['ready1', 'ready2'], 180, True),
-    'defend':  (['defend'], 400, True),
-    'advance': (['advance1', 'advance2'], 150, True),
-    'attack':  (['ready1', 'attack1', 'attack2', 'attack3', 'attack3'], 90, False),
-    'attackB': (['ready1', 'attackB1', 'attackB2', 'attackB3', 'attackB3'], 90, False),
-    'chant':   (['chant1', 'chant2'], 220, True),
-    'cast':    (['chant1', 'chant2', 'cast1', 'cast2', 'cast2'], 130, False),
-    'item':    (['item1', 'item1', 'item2', 'item2'], 150, False),
-    'hurt':    (['hurt1', 'hurt2', 'hurt2'], 110, False),
-    'lowhp':   (['lowhp1', 'lowhp2'], 480, True),
-    'special': (['special1', 'special2', 'special3', 'special3'], 140, False),
-    'limit':   (['limit1', 'limit2', 'limit3', 'limit3', 'limit3'], 160, False),
-    'victory': (['victory1', 'victory2', 'victory3', 'victory2'], 260, True),
-    'zombie':  (['zombie1', 'zombie2'], 620, True),
-    'ko':      (['ko'], 400, True),
-    'sleep':   (['sleep1', 'sleep2'], 900, True),
-    'paralyze': (['paralyze'], 400, True),
-    'confuse': (['confuse1', 'confuse2'], 420, True),
-    'berserk': (['berserk', 'ready1'], 200, True),
-    'walkDown': (['walkD1', 'walkD2', 'walkD1', 'walkD3'], 170, True),
-    'walkUp':  (['walkU1', 'walkU2', 'walkU1', 'walkU3'], 170, True),
-    'walkSide': (['walkS1', 'walkS2', 'walkS1', 'walkS3'], 170, True),
-    'shock':   (['shock'], 400, True),
-    'downcast': (['downcast'], 400, True),
-    'listen':  (['listen'], 400, True),
-}
+# Animations over those frames: {name: {frames, ms per frame, loop}}, kept in references/anims.json
+# so the party sprite viewer's editor can export them and `anims` can apply them. A frame shown
+# for longer is listed more than once. The game will use the same names when the battle stage gets sprites.
+ANIMS_FILE = HERE.parent / 'references' / 'anims.json'
+ANIMS = json.loads(ANIMS_FILE.read_text())
+# Skill effects drawn over the target (references/fx.json): a strip of `cell` px frames, `cols` per row,
+# each held for its own ms. The effect starts on step `start` of the character's `anim`, its `pivot`
+# sits `at` [dx, dy] sprite px from the character's feet (negative dx is toward the enemy), and the
+# game's impact (damage number, hit flash) lands when frame `impact` begins. It hides after its last frame.
+FX_FILE = HERE.parent / 'references' / 'fx.json'
+FX = json.loads(FX_FILE.read_text())
+# The standard animations every sheet must play. The editor can add others but not remove these.
+REQUIRED_ANIMS = (
+    'idle', 'ready', 'defend', 'advance', 'attack', 'attackB', 'chant', 'cast',
+    'item', 'hurt', 'lowhp', 'special', 'limit', 'victory', 'zombie', 'ko',
+    'sleep', 'paralyze', 'confuse', 'berserk', 'walkDown', 'walkUp', 'walkSide', 'shock',
+    'downcast', 'listen',
+)
 
 # Portrait sheet: row-major, 4 per row. Same head size and framing in every panel.
 PORT_COLS, PORT_ROWS = 4, 3
@@ -533,8 +523,10 @@ def cmd_manifest(_=None):
     have = {cid: {'sheet': (VIEWER / f'{cid}.sheet.webp').exists(), 'portraits': (VIEWER / f'{cid}.portraits.webp').exists()}
             for cid in CAST}
     m = {
-        'sheet': {'cols': SHEET_COLS, 'rows': SHEET_ROWS, 'cell': CELL, 'base': BASE, 'frames': [n for n, _ in FRAMES]},
-        'anims': {k: {'frames': f, 'ms': ms, 'loop': lp} for k, (f, ms, lp) in ANIMS.items()},
+        'sheet': {'cols': SHEET_COLS, 'rows': SHEET_ROWS, 'cell': CELL, 'base': BASE, 'frames': [n for n, _ in FRAMES],
+                  'desc': [d or '' for _, d in FRAMES]},
+        'anims': ANIMS,
+        'fx': FX,
         'portraits': {'cols': PORT_COLS, 'rows': PORT_ROWS, 'size': PORT, 'states': [{'key': k, 'label': l} for k, l, _ in STATES]},
         'cast': {cid: {'name': c['name'], 'class': c['class'], **have[cid]} for cid, c in CAST.items()},
     }
@@ -542,6 +534,82 @@ def cmd_manifest(_=None):
                                         f'const MANIFEST = {json.dumps(m, indent=1)};\n')
     print(f'{VIEWER.relative_to(REPO)}/manifest.js: ' + ', '.join(
         f'{cid}{"" if h["sheet"] else " -sheet"}{"" if h["portraits"] else " -portraits"}' for cid, h in have.items()))
+
+
+def check_anims(anims):
+    """Problems with an animation set, as a list of messages (empty when it is valid)."""
+    if not isinstance(anims, dict):
+        return ['expected an object of {name: {frames, ms, loop}}']
+    names, bad = {n for n, _ in FRAMES}, []
+    bad += [f'standard animation "{k}" is missing' for k in REQUIRED_ANIMS if k not in anims]
+    for k, a in anims.items():
+        if not re.fullmatch(r'[a-z][A-Za-z0-9]{0,23}', k):
+            bad.append(f'"{k}": names are camelCase letters and digits, starting lower case')
+        if not isinstance(a, dict) or set(a) != {'frames', 'ms', 'loop'}:
+            bad.append(f'{k}: needs exactly frames, ms and loop'); continue
+        f, ms, lp = a['frames'], a['ms'], a['loop']
+        if not isinstance(f, list) or not 1 <= len(f) <= 32:
+            bad.append(f'{k}: frames must be a list of 1 to 32 frame names')
+        else:
+            bad += [f'{k}: unknown frame "{n}"' for n in f if n not in names]
+        if not isinstance(ms, int) or isinstance(ms, bool) or not 30 <= ms <= 2000:
+            bad.append(f'{k}: ms must be a whole number from 30 to 2000')
+        if not isinstance(lp, bool):
+            bad.append(f'{k}: loop must be true or false')
+    return bad
+
+
+def check_fx(fx, anims):
+    """Problems with a set of skill effects, as a list of messages (empty when it is valid)."""
+    if not isinstance(fx, dict):
+        return ['fx: expected an object of {name: effect}']
+    keys, bad = {'who', 'skill', 'label', 'image', 'cell', 'cols', 'ms', 'pivot', 'impact', 'anim', 'start', 'at', 'source'}, []
+    for k, e in fx.items():
+        if not re.fullmatch(r'[a-z][A-Za-z0-9]{0,31}', k):
+            bad.append(f'fx "{k}": names are camelCase letters and digits'); continue
+        if not isinstance(e, dict) or set(e) != keys:
+            bad.append(f'fx {k}: needs exactly ' + ', '.join(sorted(keys))); continue
+        if e['who'] not in CAST:
+            bad.append(f'fx {k}: unknown character "{e["who"]}"')
+        if not (VIEWER / e['image']).exists():
+            bad.append(f'fx {k}: no image at {VIEWER.relative_to(REPO)}/{e["image"]}')
+        ms = e['ms']
+        if not isinstance(ms, list) or not 1 <= len(ms) <= 32 or any(not isinstance(m, int) or isinstance(m, bool) or not 20 <= m <= 2000 for m in ms):
+            bad.append(f'fx {k}: ms must list 1 to 32 whole durations from 20 to 2000'); continue
+        if not isinstance(e['impact'], int) or not 0 <= e['impact'] < len(ms):
+            bad.append(f'fx {k}: impact must be a frame index from 0 to {len(ms) - 1}')
+        a = anims.get(e['anim'])
+        if not a:
+            bad.append(f'fx {k}: unknown animation "{e["anim"]}"')
+        elif not isinstance(e['start'], int) or not 0 <= e['start'] < len(a['frames']):
+            bad.append(f'fx {k}: start must be a step of {e["anim"]} (0 to {len(a["frames"]) - 1})')
+        for f in ('pivot', 'at'):
+            if not (isinstance(e[f], list) and len(e[f]) == 2 and all(isinstance(v, int) and -200 <= v <= 200 for v in e[f])):
+                bad.append(f'fx {k}: {f} must be two whole numbers')
+    return bad
+
+
+def cmd_anims(args):
+    try:
+        data = json.loads(Path(args.src).read_text())
+    except (OSError, ValueError) as e:
+        sys.exit(f'cannot read {args.src}: {e}')
+    anims = data.get('anims', data) if isinstance(data, dict) else data   # the editor wraps the set with a version
+    fx = data.get('fx', FX) if isinstance(data, dict) and 'anims' in data else FX
+    bad = check_anims(anims)
+    bad += check_fx(fx, anims) if not bad else []
+    if bad:
+        sys.exit('not applied:\n  ' + '\n  '.join(bad))
+    order = [k for k in REQUIRED_ANIMS] + sorted(k for k in anims if k not in REQUIRED_ANIMS)
+    changed = [k for k in order if ANIMS.get(k) != anims[k]] + [f'-{k}' for k in ANIMS if k not in anims]
+    ANIMS_FILE.write_text('{\n' + ',\n'.join(f' {json.dumps(k)}: {json.dumps(anims[k])}' for k in order) + '\n}\n')
+    ANIMS.clear(); ANIMS.update({k: anims[k] for k in order})
+    print(f'{ANIMS_FILE.relative_to(REPO)}: ' + (', '.join(changed) + ' changed' if changed else 'no changes'))
+    fx_changed = [k for k in fx if FX.get(k) != fx[k]] + [f'-{k}' for k in FX if k not in fx]
+    FX_FILE.write_text('{\n' + ',\n'.join(f' {json.dumps(k)}: {json.dumps(fx[k])}' for k in sorted(fx)) + '\n}\n')
+    FX.clear(); FX.update(fx)
+    print(f'{FX_FILE.relative_to(REPO)}: ' + (', '.join(fx_changed) + ' changed' if fx_changed else 'no changes'))
+    cmd_manifest()
 
 
 def cmd_install(args):
@@ -602,6 +670,7 @@ def main():
     s.set_defaults(fn=cmd_portraits)
     s = sub.add_parser('install'); s.add_argument('id'); s.add_argument('dir'); s.set_defaults(fn=cmd_install)
     s = sub.add_parser('embed'); s.add_argument('id'); s.set_defaults(fn=cmd_embed)
+    s = sub.add_parser('anims'); s.add_argument('src'); s.set_defaults(fn=cmd_anims)
     s = sub.add_parser('manifest'); s.set_defaults(fn=cmd_manifest)
     args = p.parse_args()
     args.fn(args)

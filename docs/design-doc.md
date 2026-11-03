@@ -222,6 +222,8 @@ Every party member has the same art set, so their states read the same way acros
 
 **Sprite sheet.** 54 frames in a fixed grid, at about the scope of a Final Fantasy Record Keeper sheet. It covers the battle loop (idle, ready, defend, step in, two attacks, chant and cast, item, hit, the low-HP kneel), a class action and Limit Break, victory, KO, and status poses (Zombie, Sleep, Paralyze, Confuse, Berserk). It also has field walk cycles in three directions and three cutscene poses (startled, downcast, listening). The hit flash, Stone, Vanish and Mini are generated from these frames, not drawn.
 
+**Skill effects.** A skill's slash or spell is drawn over the target as its own short strip, as in Final Fantasy VI and Record Keeper, not on the attacker's sheet. Each effect starts on a set step of the character's animation and marks one frame as the impact, where the damage number, hit flash and the target's flinch land. The player sees the blow connect on the same frame every time. The first is Kiri's Spiral Cut: a single spiral cut opens on the target and comes apart in pieces, one curl left last.
+
 **Portraits.** Twelve states drawn as panels of one manga page, all with the same framing so they swap in place. The battle card shows the most telling state:
 
 | Priority | State | When |

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Party Sprite Viewer</title>
+<title>Party Sprite Editor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Silkscreen&family=Spectral:ital,wght@0,400;1,400&display=swap">
 <style>
@@ -43,21 +43,64 @@ figure div { aspect-ratio: 1; background-repeat: no-repeat; }
 figcaption { font: 10px var(--f-ui); padding: 4px 6px; color: var(--dim); border-top: 2px solid var(--bone); }
 .empty { color: var(--faint); font-style: italic; padding: 24px 8px; text-align: center; }
 code { font: 12px ui-monospace, monospace; color: var(--bone); background: var(--slab); padding: 1px 4px; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0; }
+.controls select, .controls input[type=number], .controls input[type=text] { font: 11px var(--f-ui); color: var(--bone); background: var(--ink); border: 1px solid var(--rule); padding: 5px 6px; }
+.controls input[type=number] { width: 72px; }
+.controls input[type=text] { width: 120px; }
+.anims button[data-changed="true"]::after { content: " •"; color: var(--accent); }
+button[aria-pressed="true"][data-changed="true"]::after { color: var(--ink); }
+button:disabled { opacity: .4; cursor: default; }
+.strip { display: flex; gap: 4px; overflow-x: auto; padding: 6px; background: var(--ink); border: 1px solid var(--rule); min-height: 88px; }
+.chip { flex: none; display: grid; justify-items: center; gap: 2px; padding: 3px; font-size: 9px; background: var(--slab); }
+.chip[aria-current="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.chip.drop { border-left: 3px solid var(--accent); }
+.chip canvas, .lib canvas { width: 48px; height: 48px; background: #241f2a; }
+.lib { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; margin-top: 8px; }
+.lib button { display: grid; justify-items: center; gap: 2px; padding: 3px 2px; font-size: 9px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lib button.used { border-color: var(--dim); }
+.readout { font: 11px var(--f-ui); color: var(--dim); margin: 6px 0; }
+.status { font-size: 13px; color: var(--dim); min-height: 1.5em; margin: 6px 0 0; }
+details { margin-top: 12px; }
+summary { cursor: pointer; font: 16px var(--f-display); }
+textarea { width: 100%; min-height: 120px; font: 11px ui-monospace, monospace; color: var(--bone); background: var(--ink); border: 1px solid var(--rule); padding: 6px; }
+.wide { grid-column: 1 / -1; }
+.scrub { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.scrub input { flex: 1; min-width: 0; accent-color: var(--accent); }
+fieldset { border: 1px solid var(--rule); margin: 10px 0; padding: 8px 10px; min-width: 0; }
+legend { font: 16px var(--f-display); padding: 0 6px; }
+.fxchip { cursor: default; border: 1px solid var(--rule); }
+.fxchip canvas { width: 64px; height: 64px; image-rendering: pixelated; background: #241f2a; }
+.fxchip input { width: 58px; font: 10px var(--f-ui); color: var(--bone); background: var(--ink); border: 1px solid var(--rule); padding: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 </style>
 </head>
 <body>
 <header>
   <a class="launcher-link" href="../index.html">Developer tools</a>
-  <h1>Party Sprite Viewer</h1>
-  <p>The standard art set for each party member: a 54-frame battle and field sheet and 12 state portraits. Built by the <code>party-art</code> skill.</p>
+  <h1>Party Sprite Viewer and Editor</h1>
+  <p>The standard art set for each party member: a 54-frame battle and field sheet and 12 state portraits. Built by the <code>party-art</code> skill. The animation editor changes the standard set every party member shares; export it and apply it with <code>party_art.py anims</code>.</p>
 </header>
 <nav class="cast" id="cast" aria-label="Party members"></nav>
 <main>
   <section>
     <h2 id="who"></h2>
-    <div class="stage"><canvas id="cv" width="288" height="288"></canvas></div>
+    <div class="stage"><canvas id="cv" width="576" height="288"></canvas></div>
+    <label class="label scrub">Time <input type="range" id="scrub" min="0" max="1000" step="1" value="0"> <span id="clock">0 ms</span></label>
+    <div class="controls" role="group" aria-label="Playback">
+      <button type="button" id="play" aria-pressed="true" title="Space">Pause</button>
+      <button type="button" id="prev" title="Previous change in either layer (comma)">◀ Frame</button>
+      <button type="button" id="next" title="Next change in either layer (full stop)">Frame ▶</button>
+      <button type="button" id="replay">Replay</button>
+      <label class="label">Speed <select id="speed"><option value="0.25">¼×</option><option value="0.5">½×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+      <label class="label">Zoom <select id="zoom"><option>2</option><option selected>3</option><option>4</option></select></label>
+    </div>
     <div class="anims" id="anims" role="group" aria-label="Animations"></div>
-    <div class="tints"><label><input type="checkbox" id="flip"> Face right</label><label><input type="checkbox" id="sheet"> Whole sheet</label></div>
+    <div class="tints">
+      <label><input type="checkbox" id="flip"> Face right</label>
+      <label><input type="checkbox" id="onion"> Onion skin</label>
+      <label><input type="checkbox" id="guides"> Ground and cells</label>
+      <label><input type="checkbox" id="sheet"> Whole sheet</label>
+    </div>
     <div class="tints" role="group" aria-label="Derived status looks (not drawn on the sheet)">
       <span>Derived:</span>
       <label><input type="radio" name="fx" value="" checked> none</label>
@@ -66,20 +109,184 @@ code { font: 12px ui-monospace, monospace; color: var(--bone); background: var(-
       <label><input type="radio" name="fx" value="vanish"> vanish</label>
       <label><input type="radio" name="fx" value="mini"> mini</label>
     </div>
-    <p class="label" id="frame"></p>
+    <p class="label" id="frame" aria-live="polite"></p>
   </section>
-  <section>
+  <section id="editor" aria-labelledby="edit-h">
+    <h2 id="edit-h">Animation editor</h2>
+    <p class="label" id="animName"></p>
+    <div class="strip" id="strip" role="listbox" aria-label="Frames in this animation, in play order"></div>
+    <div class="controls" role="group" aria-label="Selected frame">
+      <button type="button" id="left" title="Move earlier">← Move</button>
+      <button type="button" id="right" title="Move later">Move →</button>
+      <button type="button" id="hold" title="Repeat this frame to hold it longer">Hold +1</button>
+      <button type="button" id="remove" title="Delete">Remove</button>
+    </div>
+    <div class="controls" role="group" aria-label="Timing">
+      <label class="label">ms per frame <input type="number" id="ms" min="30" max="2000" step="10"></label>
+      <label class="label"><input type="checkbox" id="loop"> Loop</label>
+    </div>
+    <p class="readout" id="readout"></p>
+    <fieldset id="fxBox">
+      <legend>Effect over the target</legend>
+      <p class="readout" id="fxNone"></p>
+      <div id="fxEdit">
+        <div class="controls">
+          <label class="label">Effect <select id="fxPick"></select></label>
+          <label class="label"><input type="checkbox" id="fxShow" checked> Show</label>
+        </div>
+        <div class="strip fxstrip" id="fxStrip" role="group" aria-label="Effect frames and their durations"></div>
+        <div class="controls">
+          <label class="label">Starts on step <select id="fxStart"></select></label>
+          <label class="label">Impact on frame <select id="fxImpact"></select></label>
+        </div>
+        <div class="controls">
+          <label class="label">Target dx <input type="number" id="fxX" min="-200" max="200" step="1"></label>
+          <label class="label">dy <input type="number" id="fxY" min="-200" max="200" step="1"></label>
+        </div>
+        <p class="readout" id="fxInfo"></p>
+      </div>
+    </fieldset>
+    <p class="label">Frame library · click to insert after the selected frame, or drag onto the strip</p>
+    <div class="lib" id="lib"></div>
+    <div class="controls" role="group" aria-label="Animation set">
+      <button type="button" id="undo" title="Ctrl+Z">Undo</button>
+      <button type="button" id="redo" title="Ctrl+Shift+Z">Redo</button>
+      <button type="button" id="resetAnim">Reset this</button>
+      <button type="button" id="resetAll">Reset all</button>
+    </div>
+    <div class="controls" role="group" aria-label="New animation">
+      <label class="label">Name <input type="text" id="newName" placeholder="jumpUp" spellcheck="false" autocomplete="off"></label>
+      <button type="button" id="addAnim">New</button>
+      <button type="button" id="copyAnim">Duplicate this</button>
+      <button type="button" id="delAnim">Delete this</button>
+    </div>
+    <div class="controls" role="group" aria-label="Export">
+      <button type="button" id="export">Download party-anims.json</button>
+      <button type="button" id="copy">Copy JSON</button>
+      <button type="button" id="import">Import JSON</button><input type="file" id="importFile" accept=".json,application/json" hidden>
+    </div>
+    <p class="status" id="status" role="status"></p>
+    <details>
+      <summary>Apply to the repository</summary>
+      <p>Edits are kept in this browser until you reset them. To make them the standard, download the set and run:</p>
+      <p><code>python3 .claude/skills/party-art/scripts/party_art.py anims party-anims.json</code></p>
+      <p>It checks every animation and effect, writes <code>references/anims.json</code> and <code>references/fx.json</code>, and rebuilds <code>manifest.js</code>. The standard animations can be changed but not deleted, because the game plays them by name.</p>
+      <textarea id="json" readonly aria-label="Exported animation set"></textarea>
+    </details>
+  </section>
+  <section class="wide">
     <h2>Portraits</h2>
     <div class="ports" id="ports"></div>
   </section>
 </main>
 <script src="manifest.js"></script>
 <script>
-const M = MANIFEST, S = M.sheet, Z = 3;
+const M = MANIFEST, S = M.sheet;
 const ids = Object.keys(M.cast);
 const q = new URLSearchParams(location.search);
-const st = { id: ids.includes(q.get('who')) ? q.get('who') : ids[0], anim: 'idle', t0: performance.now(), img: null };
 const $ = s => document.querySelector(s), cv = $('#cv'), cx = cv.getContext('2d');
+const DRAFT = 'party-anim-draft-v2', NAME = /^[a-z][A-Za-z0-9]{0,23}$/, MAX_FRAMES = 32, IMPACT_MS = 80;
+const clone = o => JSON.parse(JSON.stringify(o)), sum = a => a.reduce((x, y) => x + y, 0);
+const BASE = clone(M.anims), BASE_FX = clone(M.fx || {}), REQUIRED = new Set(Object.keys(BASE));
+// The stage is two cells wide, like the right half of a battle: the target on the left, the party member
+// on the right facing it. `at` offsets in fx.json are measured from the party member's feet.
+const FEET = [S.cell * 1.5, S.base];
+const st = { id: ids.includes(q.get('who')) ? q.get('who') : ids[0], anim: 'idle', t0: performance.now(), img: null,
+  playing: true, pauseT: 0, sel: 0, shown: '', fxKey: null };
+
+// ---------- the animation set being edited ----------
+// Same rules as party_art.py check_anims / check_fx, so anything the editor exports will apply.
+function problems(set, effects) {
+  const bad = [];
+  for (const k of REQUIRED) if (!set[k]) bad.push(`standard animation "${k}" is missing`);
+  for (const [k, a] of Object.entries(set)) {
+    if (!NAME.test(k)) bad.push(`"${k}": use camelCase letters and digits`);
+    if (!a || !Array.isArray(a.frames) || !a.frames.length || a.frames.length > MAX_FRAMES) { bad.push(`${k}: 1 to ${MAX_FRAMES} frames`); continue; }
+    for (const f of a.frames) if (!S.frames.includes(f)) bad.push(`${k}: unknown frame "${f}"`);
+    if (!Number.isInteger(a.ms) || a.ms < 30 || a.ms > 2000) bad.push(`${k}: ms must be 30 to 2000`);
+    if (typeof a.loop !== 'boolean') bad.push(`${k}: loop must be true or false`);
+  }
+  for (const [k, e] of Object.entries(effects || {})) {
+    if (!e || !BASE_FX[k]) { bad.push(`fx ${k}: only effects already in fx.json can be edited here`); continue; }
+    if (!Array.isArray(e.ms) || !e.ms.length || e.ms.some(m => !Number.isInteger(m) || m < 20 || m > 2000)) bad.push(`fx ${k}: durations must be 20 to 2000 ms`);
+    else if (!Number.isInteger(e.impact) || e.impact < 0 || e.impact >= e.ms.length) bad.push(`fx ${k}: impact must be one of its frames`);
+    const a = set[e.anim];
+    if (!a) bad.push(`fx ${k}: unknown animation "${e.anim}"`);
+    else if (!Number.isInteger(e.start) || e.start < 0 || e.start >= a.frames.length) bad.push(`fx ${k}: start must be a step of ${e.anim}`);
+    if (!Array.isArray(e.at) || e.at.length !== 2 || e.at.some(v => !Number.isInteger(v) || Math.abs(v) > 200)) bad.push(`fx ${k}: target offset must be two whole numbers`);
+  }
+  return bad;
+}
+function loadDraft() {
+  try {
+    const d = JSON.parse(localStorage.getItem(DRAFT));
+    if (d && d.anims && !problems(d.anims, d.fx).length) return d;
+  } catch (e) { /* no storage or a bad draft: start from the manifest */ }
+  return { anims: clone(BASE), fx: clone(BASE_FX) };
+}
+let { anims, fx } = loadDraft();
+const past = [], future = [];
+const snapshot = () => JSON.stringify({ anims, fx });
+function saveDraft() { try { localStorage.setItem(DRAFT, snapshot()); } catch (e) { /* the draft only lasts this visit */ } }
+function edit(fn, msg) {
+  const before = snapshot();
+  fn();
+  // An effect keeps its start step inside its animation when frames are removed.
+  for (const e of Object.values(fx)) if (anims[e.anim]) e.start = Math.min(e.start, anims[e.anim].frames.length - 1);
+  if (snapshot() === before) return;
+  past.push(before); if (past.length > 200) past.shift(); future.length = 0;
+  saveDraft(); refresh(msg);
+}
+function undoStep(from, to, msg) {
+  if (!from.length) return;
+  to.push(snapshot()); ({ anims, fx } = JSON.parse(from.pop()));
+  if (!anims[st.anim]) st.anim = 'idle';
+  saveDraft(); refresh(msg);
+}
+const changed = k => JSON.stringify(anims[k]) !== JSON.stringify(BASE[k]) ||
+  Object.keys(fx).some(f => fx[f].anim === k && JSON.stringify(fx[f]) !== JSON.stringify(BASE_FX[f]));
+const cur = () => anims[st.anim];
+function exportText() { return JSON.stringify({ version: 1, anims, fx }, null, 1) + '\n'; }
+
+// ---------- effects ----------
+const fxImg = {};
+function effectImage(e) {
+  if (!fxImg[e.image]) { const im = new Image(); fxImg[e.image] = { im, ok: false }; im.onload = () => { fxImg[e.image].ok = true; renderFx(); }; im.src = e.image; }
+  return fxImg[e.image].ok ? fxImg[e.image].im : null;
+}
+const effectsHere = () => Object.keys(fx).filter(k => fx[k].who === st.id && fx[k].anim === st.anim);
+function effect() {
+  const here = effectsHere();
+  if (!here.length) return null;
+  if (!here.includes(st.fxKey)) st.fxKey = here[0];
+  return fx[st.fxKey];
+}
+// Every time in ms that matters for this animation and its effect.
+function timing() {
+  const a = cur(), n = a.frames.length, len = n * a.ms, e = $('#fxShow').checked ? effect() : null;
+  const t = { a, n, len, span: len, e: null };
+  if (e) {
+    const startMs = e.start * a.ms, cum = e.ms.reduce((c, m) => (c.push(c[c.length - 1] + m), c), [0]);
+    t.e = { e, startMs, cum, end: startMs + cum[cum.length - 1], impactMs: startMs + cum[e.impact] };
+    if (!a.loop) t.span = Math.max(len, t.e.end);
+  }
+  return t;
+}
+function frameAt(T, ms) {
+  const step = T.a.loop ? Math.floor(ms / T.a.ms) % T.n : Math.min(Math.floor(ms / T.a.ms), T.n - 1);
+  let fxFrame = -1;
+  if (T.e && ms >= T.e.startMs && ms < T.e.end) fxFrame = T.e.cum.findIndex(c => c > ms - T.e.startMs) - 1;
+  return { step, fxFrame, impact: !!T.e && ms >= T.e.impactMs && ms < T.e.impactMs + IMPACT_MS };
+}
+// The times at which either layer changes, for frame-by-frame stepping.
+function marks(T) {
+  const m = new Set([0]);
+  for (let k = 0; k < T.n; k++) m.add(k * T.a.ms);
+  if (T.e) T.e.cum.forEach(c => m.add(T.e.startMs + c));
+  return [...m].filter(v => v < T.span || v === 0).sort((x, y) => x - y);
+}
+
+// ---------- drawing frames ----------
 // Status looks the engine derives from any frame instead of having them drawn (FFRK sheets bake these in;
 // generating them keeps the ChatGPT request smaller and the looks identical across the cast).
 const off = document.createElement('canvas'), ox = off.getContext('2d');
@@ -92,54 +299,303 @@ function frameCanvas(i, fx, now) {
   if (fx === 'flash' && Math.floor(now / 70) % 2) { ox.globalCompositeOperation = 'source-atop'; ox.fillStyle = '#fff'; ox.fillRect(0, 0, S.cell, S.cell); }
   return off;
 }
+function thumb(name) {
+  const c = document.createElement('canvas'); c.width = c.height = S.cell / 2;
+  const i = S.frames.indexOf(name), g = c.getContext('2d');
+  if (st.img && i >= 0) { g.imageSmoothingEnabled = false; g.drawImage(st.img, (i % S.cols) * S.cell, Math.floor(i / S.cols) * S.cell, S.cell, S.cell, 0, 0, c.width, c.height); }
+  else { g.fillStyle = '#6c6575'; g.font = '8px Silkscreen, monospace'; g.textAlign = 'center'; g.fillText(name, c.width / 2, c.height / 2 + 3, c.width - 2); }
+  c.setAttribute('aria-hidden', 'true');
+  return c;
+}
+function describe(name) {
+  const d = S.desc && S.desc[S.frames.indexOf(name)];
+  if (d) return d;
+  if (/^special\d/.test(name)) return `Class action, frame ${name.slice(-1)} of 3`;
+  if (/^limit\d/.test(name)) return `Limit Break, frame ${name.slice(-1)} of 3`;
+  return '';
+}
 
+function clockAt(now, T) {
+  if (!st.playing) return Math.min(st.pauseT, T.span);
+  let ms = (now - st.t0) * +$('#speed').value;
+  if (!T.a.loop && ms > T.span + 600) { st.t0 = now; ms = 0; }   // replay one-shots after a pause
+  return T.a.loop ? ms % T.len : Math.min(ms, T.span);
+}
+
+function draw(now) {
+  const Z = +$('#zoom').value, whole = $('#sheet').checked;
+  if (!st.img) {
+    cv.width = S.cell * 2 * Z; cv.height = S.cell * Z;
+    cx.fillStyle = '#6c6575'; cx.font = '12px Silkscreen, monospace'; cx.textAlign = 'center';
+    cx.fillText(M.cast[st.id].sheet ? 'loading…' : 'no sprite sheet yet', cv.width / 2, cv.height / 2);
+    $('#frame').textContent = M.cast[st.id].sheet ? '' : `${M.cast[st.id].name} has no sheet; pick Kiri or Natsu to see frames.`;
+    st.shown = '';
+  } else if (whole) {
+    cv.width = st.img.width * 2; cv.height = st.img.height * 2; cx.imageSmoothingEnabled = false;
+    cx.drawImage(st.img, 0, 0, cv.width, cv.height);
+    $('#frame').textContent = `${S.cols} × ${S.rows} frames of ${S.cell} px`;
+    st.shown = '';
+  } else {
+    const T = timing(), ms = clockAt(now, T), { step, fxFrame, impact } = frameAt(T, ms);
+    const a = T.a, n = T.n, name = a.frames[step], i = S.frames.indexOf(name), C = S.cell;
+    if (cv.width !== C * 2 * Z || cv.height !== C * Z) { cv.width = C * 2 * Z; cv.height = C * Z; } else cx.clearRect(0, 0, cv.width, cv.height);
+    cx.imageSmoothingEnabled = false;
+    cx.save();
+    if ($('#flip').checked) { cx.translate(cv.width, 0); cx.scale(-1, 1); }
+    // The target: a ghost on the ground under the effect's pivot, which flashes on the impact frame.
+    const e = T.e && T.e.e, tx = FEET[0] + (e ? e.at[0] : -96), ty = FEET[1] + (e ? e.at[1] : -30);
+    cx.fillStyle = 'rgba(0,0,0,.35)'; cx.beginPath(); cx.ellipse(tx * Z, S.base * Z, 16 * Z, 3 * Z, 0, 0, 7); cx.fill();
+    cx.strokeStyle = impact ? '#fff' : 'rgba(154,146,163,.35)'; cx.lineWidth = impact ? 2 : 1;
+    cx.beginPath(); cx.moveTo((tx - 5) * Z, ty * Z); cx.lineTo((tx + 5) * Z, ty * Z); cx.moveTo(tx * Z, (ty - 5) * Z); cx.lineTo(tx * Z, (ty + 5) * Z); cx.stroke();
+    // The party member.
+    cx.fillStyle = 'rgba(0,0,0,.35)'; cx.beginPath(); cx.ellipse(FEET[0] * Z, S.base * Z, 16 * Z, 3 * Z, 0, 0, 7); cx.fill();
+    cx.save();
+    const look = document.querySelector('input[name=fx]:checked').value;
+    if ($('#onion').checked && n > 1 && (step > 0 || a.loop)) {
+      cx.globalAlpha = 0.3; cx.drawImage(frameCanvas(S.frames.indexOf(a.frames[(step + n - 1) % n]), '', now), C * Z, 0, C * Z, C * Z); cx.globalAlpha = 1;
+    }
+    if (look === 'vanish') cx.globalAlpha = 0.25 + 0.15 * Math.sin(now / 160);
+    if (look === 'mini') { cx.translate(FEET[0] * Z, S.base * Z); cx.scale(0.5, 0.5); cx.translate(-FEET[0] * Z, -S.base * Z); }
+    cx.drawImage(frameCanvas(i, look, now), C * Z, 0, C * Z, C * Z);
+    cx.restore();
+    // The effect, above the target, pivot on the target point, whole pixels only.
+    const im = e && fxFrame >= 0 && effectImage(e);
+    if (im) {
+      const fc = e.cell, sx = (fxFrame % e.cols) * fc, sy = Math.floor(fxFrame / e.cols) * fc;
+      cx.drawImage(im, sx, sy, fc, fc, Math.round(tx - e.pivot[0]) * Z, Math.round(ty - e.pivot[1]) * Z, fc * Z, fc * Z);
+    }
+    cx.restore();
+    if ($('#guides').checked) {
+      cx.strokeStyle = 'rgba(208,106,124,.8)'; cx.lineWidth = 1;
+      cx.strokeRect(0.5, 0.5, cv.width - 1, cv.height - 1); cx.strokeRect(C * Z + 0.5, 0.5, C * Z - 1, cv.height - 1);
+      cx.beginPath(); cx.moveTo(0, S.base * Z + 0.5); cx.lineTo(cv.width, S.base * Z + 0.5); cx.stroke();
+      if (e) { cx.setLineDash([4, 4]); const fl = $('#flip').checked, ex = Math.round(tx - e.pivot[0]) * Z, ey = Math.round(ty - e.pivot[1]) * Z;
+        cx.strokeRect(fl ? cv.width - ex - e.cell * Z + 0.5 : ex + 0.5, ey + 0.5, e.cell * Z - 1, e.cell * Z - 1); cx.setLineDash([]); }
+    }
+    const key = `${step}|${fxFrame}|${impact}|${Math.round(ms)}`;
+    if (key !== st.shown) {
+      if (st.shown.split('|')[0] !== String(step)) document.querySelectorAll('#strip .chip').forEach((c, j) => c.setAttribute('aria-current', j === step));
+      st.shown = key; if (st.playing) st.sel = step;
+      $('#scrub').max = Math.max(1, T.span); $('#scrub').value = Math.round(ms);
+      $('#clock').textContent = `${Math.round(ms)} / ${T.span} ms`;
+      const fxText = e ? (fxFrame >= 0 ? ` · effect frame ${fxFrame + 1}/${e.ms.length}${impact ? ' · IMPACT' : ''}` : ms >= T.e.end ? ' · effect hidden' : ' · effect waiting') : '';
+      $('#frame').textContent = `${st.anim} · step ${step + 1}/${n} · ${name}${describe(name) ? ' · ' + describe(name) : ''}${fxText}`;
+    }
+  }
+  requestAnimationFrame(draw);
+}
+
+// ---------- page ----------
 function pick(id) {
-  st.id = id; st.img = null; st.t0 = performance.now();
+  st.id = id; st.img = null; st.shown = '';
   const c = M.cast[id];
   $('#who').textContent = `${c.name} · ${c.class}`;
   document.querySelectorAll('#cast button').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === id));
-  history.replaceState(null, '', '?who=' + id);
-  if (c.sheet) { const im = new Image(); im.onload = () => { if (st.id === id) st.img = im; }; im.src = `${id}.sheet.webp`; }
+  try { history.replaceState(null, '', '?who=' + id); } catch (e) { /* file:// in some browsers */ }
+  if (c.sheet) { const im = new Image(); im.onload = () => { if (st.id === id) { st.img = im; st.shown = ''; renderStrip(); renderLib(); } }; im.src = `${id}.sheet.webp`; }
+  refresh();
   $('#ports').innerHTML = c.portraits
     ? M.portraits.states.map((s, i) => `<figure><div role="img" aria-label="${c.name}, ${s.label}" style="background-image:url(${id}.portraits.webp);background-size:${M.portraits.cols * 100}% ${M.portraits.rows * 100}%;background-position:${(i % M.portraits.cols) / (M.portraits.cols - 1) * 100}% ${Math.floor(i / M.portraits.cols) / (M.portraits.rows - 1) * 100}%"></div><figcaption>${s.label}</figcaption></figure>`).join('')
     : `<p class="empty" style="grid-column:1/-1">No portrait sheet yet. Run <code>party_art.py prompt ${id} portraits</code>.</p>`;
 }
 
-function draw(now) {
-  cx.fillStyle = '#1f1b25'; cx.clearRect(0, 0, cv.width, cv.height);
-  const whole = $('#sheet').checked;
-  if (!st.img) {
-    cv.width = cv.height = S.cell * Z;
-    cx.fillStyle = '#6c6575'; cx.font = '12px Silkscreen, monospace'; cx.textAlign = 'center';
-    cx.fillText(M.cast[st.id].sheet ? 'loading…' : 'no sprite sheet yet', cv.width / 2, cv.height / 2);
-    $('#frame').textContent = '';
-  } else if (whole) {
-    cv.width = st.img.width * 2; cv.height = st.img.height * 2; cx.imageSmoothingEnabled = false;
-    cx.drawImage(st.img, 0, 0, cv.width, cv.height);
-    $('#frame').textContent = `${S.cols} × ${S.rows} frames of ${S.cell} px`;
-  } else {
-    const a = M.anims[st.anim], n = a.frames.length, k = Math.floor((now - st.t0) / a.ms);
-    const name = a.frames[a.loop ? k % n : Math.min(k, n - 1)], i = S.frames.indexOf(name);
-    if (!a.loop && k > n + 6) st.t0 = now;            // replay one-shots after a pause
-    cv.width = cv.height = S.cell * Z; cx.imageSmoothingEnabled = false;
-    cx.fillStyle = 'rgba(0,0,0,.35)'; cx.beginPath(); cx.ellipse(cv.width / 2, S.base * Z, 16 * Z, 3 * Z, 0, 0, 7); cx.fill();
-    cx.save();
-    if ($('#flip').checked) { cx.translate(cv.width, 0); cx.scale(-1, 1); }
-    const fx = document.querySelector('input[name=fx]:checked').value;
-    if (fx === 'vanish') cx.globalAlpha = 0.25 + 0.15 * Math.sin(now / 160);
-    if (fx === 'mini') { cx.translate(cv.width / 2, S.base * Z); cx.scale(0.5, 0.5); cx.translate(-cv.width / 2, -S.base * Z); }
-    cx.drawImage(frameCanvas(i, fx, now), 0, 0, cv.width, cv.height);
-    cx.restore();
-    $('#frame').textContent = `${st.anim} · ${name} (${i + 1}/${S.frames.length})`;
-  }
-  requestAnimationFrame(draw);
+function renderAnims() {
+  const withFx = new Set(Object.values(fx).filter(e => e.who === st.id).map(e => e.anim));
+  $('#anims').innerHTML = Object.keys(anims).map(a => `<button type="button" data-a="${a}" aria-pressed="${a === st.anim}" data-changed="${changed(a)}" title="${changed(a) ? (BASE[a] ? 'edited' : 'new') : ''}${withFx.has(a) ? ' has an effect' : ''}">${a}${withFx.has(a) ? ' ✦' : ''}</button>`).join('');
 }
+function renderStrip() {
+  const a = cur(), strip = $('#strip');
+  strip.replaceChildren(...a.frames.map((f, j) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.draggable = true; b.dataset.j = j;
+    b.setAttribute('role', 'option'); b.setAttribute('aria-current', j === st.sel);
+    b.setAttribute('aria-label', `Step ${j + 1}: ${f}`); b.title = describe(f);
+    b.append(thumb(f), `${j + 1} ${f}`);
+    return b;
+  }));
+  st.shown = '';
+}
+function renderLib() {
+  const used = new Set(cur().frames);
+  $('#lib').replaceChildren(...S.frames.map(f => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.dataset.f = f; b.draggable = true; b.title = `${f}: ${describe(f)}`;
+    if (used.has(f)) b.classList.add('used');
+    b.append(thumb(f), f);
+    return b;
+  }));
+}
+function renderFx() {
+  const here = effectsHere(), e = effect(), a = cur();
+  $('#fxNone').hidden = !!e; $('#fxEdit').hidden = !e;
+  if (!e) { $('#fxNone').textContent = `No effect on ${st.anim} for ${M.cast[st.id].name}. Effects are added in references/fx.json (see the party-art skill).`; return; }
+  $('#fxPick').innerHTML = here.map(k => `<option value="${k}"${k === st.fxKey ? ' selected' : ''}>${fx[k].label}</option>`).join('');
+  const im = effectImage(e);
+  $('#fxStrip').replaceChildren(...e.ms.map((m, j) => {
+    const box = document.createElement('label'); box.className = 'chip fxchip';
+    const c = document.createElement('canvas'); c.width = c.height = e.cell; c.setAttribute('aria-hidden', 'true');
+    if (im) { const g = c.getContext('2d'); g.imageSmoothingEnabled = false; g.drawImage(im, (j % e.cols) * e.cell, Math.floor(j / e.cols) * e.cell, e.cell, e.cell, 0, 0, e.cell, e.cell); }
+    const inp = document.createElement('input'); inp.type = 'number'; inp.min = 20; inp.max = 2000; inp.step = 10; inp.value = m; inp.dataset.j = j;
+    inp.setAttribute('aria-label', `Effect frame ${j + 1} ms`);
+    box.append(c, `${j + 1}${j === e.impact ? ' ✦' : ''}`, inp);
+    return box;
+  }));
+  $('#fxStart').innerHTML = a.frames.map((f, j) => `<option value="${j}"${j === e.start ? ' selected' : ''}>${j + 1} ${f}</option>`).join('');
+  $('#fxImpact').innerHTML = e.ms.map((_, j) => `<option value="${j}"${j === e.impact ? ' selected' : ''}>${j + 1}</option>`).join('');
+  $('#fxX').value = e.at[0]; $('#fxY').value = e.at[1];
+  const T = timing();
+  $('#fxInfo').textContent = T.e
+    ? `Starts ${T.e.startMs} ms · impact ${T.e.impactMs} ms · hides ${T.e.end} ms · ${st.anim} ends ${T.len} ms${a.loop && T.e.end > T.len ? ' · the loop cuts the effect short' : ''}${!a.loop && T.e.end > T.len ? ` · the pose holds ${T.e.end - T.len} ms for the effect` : ''}. Pivot (${e.pivot}) of a ${e.cell} px frame.`
+    : 'Hidden.';
+}
+function refresh(msg) {
+  const a = cur();
+  st.sel = Math.min(st.sel, a.frames.length - 1);
+  renderAnims(); renderStrip(); renderLib(); renderFx();
+  $('#animName').textContent = `${st.anim}${REQUIRED.has(st.anim) ? ' · standard' : ' · new'}${changed(st.anim) ? ' · edited' : ''}`;
+  $('#ms').value = a.ms; $('#loop').checked = a.loop;
+  $('#readout').textContent = `${a.frames.length} steps × ${a.ms} ms = ${a.frames.length * a.ms} ms${a.loop ? ' per loop' : ', then holds the last frame'} · ${(1000 / a.ms).toFixed(1)} fps`;
+  const sel = !st.playing, n = a.frames.length;
+  $('#left').disabled = !sel || st.sel === 0; $('#right').disabled = !sel || st.sel === n - 1;
+  $('#hold').disabled = !sel || n >= MAX_FRAMES; $('#remove').disabled = !sel || n <= 1;
+  $('#undo').disabled = !past.length; $('#redo').disabled = !future.length;
+  $('#resetAnim').disabled = !changed(st.anim) || !BASE[st.anim];
+  $('#delAnim').disabled = REQUIRED.has(st.anim) || Object.values(fx).some(e => e.anim === st.anim);
+  const nChanged = Object.keys(anims).filter(changed).length + Object.keys(BASE).filter(k => !anims[k]).length;
+  $('#resetAll').disabled = !nChanged;
+  $('#json').value = exportText();
+  $('#status').textContent = msg || (nChanged ? `${nChanged} animation${nChanged > 1 ? 's' : ''} differ from manifest.js. Download and apply to keep them.` : 'Matches manifest.js.');
+}
+function setPlaying(on) {
+  st.playing = on; $('#play').textContent = on ? 'Pause' : 'Play'; $('#play').setAttribute('aria-pressed', on);
+  if (on) st.t0 = performance.now() - st.pauseT / +$('#speed').value;
+  st.shown = ''; refresh();
+}
+function seek(ms) {
+  const T = timing();
+  st.pauseT = Math.max(0, Math.min(ms, T.span)); st.sel = frameAt(T, st.pauseT).step;
+  $('#scrub').value = Math.round(st.pauseT); $('#clock').textContent = `${Math.round(st.pauseT)} / ${T.span} ms`;
+  if (st.playing) setPlaying(false); else { st.shown = ''; refresh(); }
+}
+function nowMs() { const T = timing(); return clockAt(performance.now(), T); }
+function select(j) { st.sel = Math.max(0, Math.min(j, cur().frames.length - 1)); seek(st.sel * cur().ms); }
+function chooseAnim(k) { st.anim = k; st.sel = 0; st.pauseT = 0; st.t0 = performance.now(); $('#sheet').checked = false; refresh(); }
+function insert(f, at) {
+  if (cur().frames.length >= MAX_FRAMES) { $('#status').textContent = `An animation holds at most ${MAX_FRAMES} steps.`; return; }
+  edit(() => { cur().frames.splice(at, 0, f); st.sel = at; st.pauseT = at * cur().ms; }, `Inserted ${f} at step ${at + 1}.`);
+  if (st.playing) setPlaying(false);
+}
+function move(from, to) {
+  const fr = cur().frames;
+  if (to < 0 || to >= fr.length || from === to) return;
+  edit(() => { fr.splice(to, 0, fr.splice(from, 1)[0]); st.sel = to; st.pauseT = to * cur().ms; });
+}
+function editFx(fn, msg) { const k = st.fxKey; edit(() => fn(fx[k]), msg); }
 
 $('#cast').innerHTML = ids.map(id => { const c = M.cast[id]; return `<button type="button" data-id="${id}" class="${c.sheet || c.portraits ? '' : 'missing'}" title="${c.sheet ? '' : 'no sheet'}${c.portraits ? '' : ' no portraits'}">${c.name.split(' ')[0]}</button>`; }).join('');
 $('#cast').onclick = e => { const b = e.target.closest('button'); if (b) pick(b.dataset.id); };
-$('#anims').innerHTML = Object.keys(M.anims).map(a => `<button type="button" data-a="${a}" aria-pressed="${a === st.anim}">${a}</button>`).join('');
-$('#anims').onclick = e => { const b = e.target.closest('button'); if (!b) return; st.anim = b.dataset.a; st.t0 = performance.now(); $('#sheet').checked = false;
-  document.querySelectorAll('#anims button').forEach(x => x.setAttribute('aria-pressed', x === b)); };
+$('#anims').onclick = e => { const b = e.target.closest('button'); if (b) chooseAnim(b.dataset.a); };
+$('#play').onclick = () => { if (st.playing) { st.pauseT = nowMs(); setPlaying(false); } else setPlaying(true); };
+$('#prev').onclick = () => { const T = timing(), t = st.playing ? nowMs() : st.pauseT, m = marks(T), before = m.filter(v => v < t - 0.5); seek(before.length ? before[before.length - 1] : m[m.length - 1]); };
+$('#next').onclick = () => { const T = timing(), t = st.playing ? nowMs() : st.pauseT, m = marks(T), after = m.find(v => v > t + 0.5); seek(after === undefined ? 0 : after); };
+$('#replay').onclick = () => { st.pauseT = 0; setPlaying(true); };
+$('#scrub').oninput = () => seek(+$('#scrub').value);
+$('#speed').onchange = () => { if (st.playing) { st.pauseT = nowMs(); setPlaying(true); } };
+$('#strip').onclick = e => { const b = e.target.closest('.chip'); if (b) select(+b.dataset.j); };
+$('#lib').onclick = e => { const b = e.target.closest('button'); if (b) insert(b.dataset.f, Math.min(st.sel + 1, cur().frames.length)); };
+$('#left').onclick = () => move(st.sel, st.sel - 1);
+$('#right').onclick = () => move(st.sel, st.sel + 1);
+$('#hold').onclick = () => insert(cur().frames[st.sel], st.sel + 1);
+$('#remove').onclick = () => { const f = cur().frames[st.sel]; edit(() => { cur().frames.splice(st.sel, 1); st.sel = Math.max(0, st.sel - 1); st.pauseT = st.sel * cur().ms; }, `Removed ${f}.`); };
+$('#ms').onchange = () => {
+  const v = Math.round(+$('#ms').value);
+  if (!(v >= 30 && v <= 2000)) { $('#ms').value = cur().ms; $('#status').textContent = 'ms per frame runs from 30 to 2000.'; return; }
+  edit(() => { cur().ms = v; });
+};
+$('#loop').onchange = () => edit(() => { cur().loop = $('#loop').checked; });
+$('#fxPick').onchange = () => { st.fxKey = $('#fxPick').value; refresh(); };
+$('#fxShow').onchange = () => { st.shown = ''; refresh(); };
+$('#fxStrip').onchange = e => {
+  const j = +e.target.dataset.j, v = Math.round(+e.target.value);
+  if (!(v >= 20 && v <= 2000)) { renderFx(); $('#status').textContent = 'Effect frames run from 20 to 2000 ms.'; return; }
+  editFx(x => { x.ms[j] = v; }, `Effect frame ${j + 1} now ${v} ms.`);
+};
+$('#fxStart').onchange = () => editFx(x => { x.start = +$('#fxStart').value; });
+$('#fxImpact').onchange = () => editFx(x => { x.impact = +$('#fxImpact').value; });
+for (const [id, k] of [['#fxX', 0], ['#fxY', 1]]) $(id).onchange = () => {
+  const v = Math.round(+$(id).value);
+  if (!(Math.abs(v) <= 200)) { renderFx(); return; }
+  editFx(x => { x.at[k] = v; });
+};
+$('#undo').onclick = () => undoStep(past, future, 'Undone.');
+$('#redo').onclick = () => undoStep(future, past, 'Redone.');
+$('#resetAnim').onclick = () => edit(() => {
+  anims[st.anim] = clone(BASE[st.anim]);
+  for (const k of Object.keys(fx)) if (fx[k].anim === st.anim && BASE_FX[k]) fx[k] = clone(BASE_FX[k]);
+}, `${st.anim} reset to manifest.js.`);
+$('#resetAll').onclick = () => { if (confirm('Discard every animation and effect edit and return to manifest.js?')) edit(() => { anims = clone(BASE); fx = clone(BASE_FX); st.anim = 'idle'; }, 'All animations reset to manifest.js.'); };
+function newAnim(from) {
+  const k = $('#newName').value.trim();
+  if (!NAME.test(k)) { $('#status').textContent = 'Name it in camelCase: a lower-case letter, then letters and digits (up to 24).'; $('#newName').focus(); return; }
+  if (anims[k]) { $('#status').textContent = `"${k}" already exists.`; return; }
+  edit(() => { anims[k] = from ? clone(cur()) : { frames: ['idle1'], ms: 200, loop: true }; st.anim = k; st.sel = 0; st.pauseT = 0; }, `Added ${k}.`);
+  $('#newName').value = '';
+}
+$('#addAnim').onclick = () => newAnim(false);
+$('#copyAnim').onclick = () => { if (!$('#newName').value.trim()) $('#newName').value = st.anim + 'Alt'; newAnim(true); };
+$('#delAnim').onclick = () => { const k = st.anim; if (!$('#delAnim').disabled) edit(() => { delete anims[k]; st.anim = 'idle'; st.sel = 0; }, `Deleted ${k}.`); };
+$('#export').onclick = () => {
+  const url = URL.createObjectURL(new Blob([exportText()], { type: 'application/json' }));
+  const a = document.createElement('a'); a.href = url; a.download = 'party-anims.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  $('#status').textContent = 'Downloaded party-anims.json. Apply it with party_art.py anims.';
+};
+$('#copy').onclick = async () => {
+  try { await navigator.clipboard.writeText(exportText()); $('#status').textContent = 'Copied the animation set as JSON.'; }
+  catch (e) { $('#json').closest('details').open = true; $('#json').select(); $('#status').textContent = 'Clipboard blocked; the JSON is selected below.'; }
+};
+$('#import').onclick = () => $('#importFile').click();
+$('#importFile').onchange = async () => {
+  const file = $('#importFile').files[0]; $('#importFile').value = '';
+  if (!file) return;
+  try {
+    const d = JSON.parse(await file.text()), set = d && d.anims ? d.anims : d, effects = d && d.anims ? (d.fx || fx) : fx;
+    const bad = problems(set || {}, effects);
+    if (bad.length) throw new Error(bad.slice(0, 3).join('; '));
+    edit(() => { anims = set; fx = effects; if (!anims[st.anim]) st.anim = 'idle'; }, `Imported ${file.name}.`);
+  } catch (e) { $('#status').textContent = 'Not imported: ' + e.message; }
+};
+
+// Drag a strip step to reorder it, or a library frame onto the strip to insert it.
+let drag = null;
+document.addEventListener('dragstart', e => {
+  const chip = e.target.closest('#strip .chip'), lib = e.target.closest('#lib button');
+  drag = chip ? { j: +chip.dataset.j } : lib ? { f: lib.dataset.f } : null;
+  if (drag) e.dataTransfer.setData('text/plain', chip ? 'step' : drag.f);
+});
+$('#strip').addEventListener('dragover', e => {
+  if (!drag) return; e.preventDefault();
+  document.querySelectorAll('#strip .drop').forEach(c => c.classList.remove('drop'));
+  const c = e.target.closest('.chip'); if (c) c.classList.add('drop');
+});
+$('#strip').addEventListener('drop', e => {
+  if (!drag) return; e.preventDefault();
+  const c = e.target.closest('.chip'), n = cur().frames.length, at = c ? +c.dataset.j : n;
+  if (drag.f) insert(drag.f, at); else move(drag.j, Math.min(at > drag.j ? at - 1 : at, n - 1));
+  drag = null;
+});
+document.addEventListener('dragend', () => { drag = null; document.querySelectorAll('#strip .drop').forEach(c => c.classList.remove('drop')); });
+
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input, select, textarea')) return;
+  const mod = e.ctrlKey || e.metaKey;
+  if (mod && e.key.toLowerCase() === 'z') { e.preventDefault(); e.shiftKey ? $('#redo').click() : $('#undo').click(); }
+  else if (mod && e.key.toLowerCase() === 'y') { e.preventDefault(); $('#redo').click(); }
+  else if (e.key === ' ' && !e.target.matches('button')) { e.preventDefault(); $('#play').click(); }
+  else if (e.key === ',') $('#prev').click();
+  else if (e.key === '.') $('#next').click();
+  else if ((e.key === 'Delete' || e.key === 'Backspace') && e.target.closest('#strip')) { e.preventDefault(); if (!$('#remove').disabled) $('#remove').click(); }
+});
+
 pick(st.id);
 requestAnimationFrame(draw);
 </script>

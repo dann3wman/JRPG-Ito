@@ -1,0 +1,63 @@
+{
+  "status": "export_checks_passed",
+  "checks": [
+    "native dimensions",
+    "exact 4x nearest-neighbor replication",
+    "binary transparency",
+    "six opaque palette colors",
+    "per-frame safe bounds",
+    "1-pixel dark contour including fragment ends",
+    "same centerline for strike and remain",
+    "dissolve removes existing core pixels without moving them",
+    "three outer fragments plus inner hook in SC05",
+    "SC06 inner hook only",
+    "review sheet dimensions and art correspondence",
+    "six-frame 500ms sequence",
+    "single impact cue at 120ms",
+    "hide after completion in metadata",
+    "Aseprite six-frame binary decode roundtrip",
+    "Aseprite palette, frame durations, once-only tag and pivot slice"
+  ],
+  "actual_bounds_inclusive": {
+    "SC01": [
+      14,
+      17,
+      29,
+      28
+    ],
+    "SC02": [
+      12,
+      10,
+      51,
+      45
+    ],
+    "SC03": [
+      11,
+      9,
+      51,
+      53
+    ],
+    "SC04": [
+      12,
+      10,
+      50,
+      52
+    ],
+    "SC05": [
+      12,
+      10,
+      50,
+      52
+    ],
+    "SC06": [
+      27,
+      28,
+      33,
+      36
+    ]
+  },
+  "limitations": [
+    "Aseprite desktop application is not installed; its UI was not used to open the source. The file was independently parsed and all six cels matched the PNG atlas byte-for-byte.",
+    "No game project was supplied. Engine integration and character animation synchronization remain untested."
+  ]
+}
