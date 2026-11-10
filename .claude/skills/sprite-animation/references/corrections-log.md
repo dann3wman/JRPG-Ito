@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-10 · Kiri · imported idle3 weapon and registration
+- **Reported problem:** the lowered sword vanishes in idle3 and the body shifts left against idle2.
+- **Original generation:** the source omits idle3's sword although idle frames require the weapon lowered; the 96 px imported cell also has a measured 5 px left offset.
+- **Root cause:** missing sheet art; registration error visible in the imported frame. The importer uses a common idle1 anchor, so the exact upstream cause of the offset is unresolved.
+- **Solution implemented:** translate idle3 (+5, 0), copy 126 existing opaque sword/grip pixels from idle2 using the polygon in `assets/player-sheets/kiri-idle-v02/build.py`. Preserve the other 53 cells, 96 px geometry, 240 ms idle slots and all other animation metadata. Update the installed lossless WebP and supply native PNG plus previews.
+- **Verification:** all 54 poses inspected as stills; unchanged-cell, palette, alpha, padding, PNG/WebP parity and decoded APNG checks pass. Live playback blocked by browser launch/socket and local-URL policies. Not production-approved; draft PR required. Full source reconciliation and limitations are in `assets/player-sheets/kiri-idle-v02/README.md`.
+- **Rule for next time:** compare weapon continuity and planted-foot registration through every idle slot; distinguish the imported atlas from an already repaired raw source. Do not infer visible damage from RGB in fully transparent pixels or claim frame pacing from stills.
+
 ### 2026-10-25 · Platform routing and Kiri source sheet
 - **Reported problem:** ChatGPT sessions were producing image handoff prompts instead of rendering player-character sheets.
 - **Original generation:** the skill said "Sprite sheet art is generated in ChatGPT, not here" and always asked the user to copy a prompt elsewhere.
