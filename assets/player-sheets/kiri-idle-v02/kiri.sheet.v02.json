@@ -1,0 +1,1240 @@
+{
+  "character": "Kiri Haldane",
+  "review_date_utc": "2026-11-10",
+  "status": "partial; live playback and engine approval pending",
+  "source": {
+    "repository": "dann3wman/JRPG-Ito",
+    "base_commit": "095f4fc80c206c1321a5435a45434ff9c50dce14",
+    "path": "tools/party-sprite-viewer/kiri.sheet.webp",
+    "git_blob": "8014d9cb77941e7a1babd47a7ce719c4c515bcf3",
+    "sha256": "c1d763caf70a5323ffa9f6a01bb15787e1948e3b931495ba80d551f9e91793b7"
+  },
+  "sheet": {
+    "cols": 6,
+    "rows": 9,
+    "cell": 96,
+    "base": 88,
+    "frames": [
+      "idle1",
+      "idle2",
+      "idle3",
+      "ready1",
+      "ready2",
+      "defend",
+      "attack1",
+      "attack2",
+      "attack3",
+      "attackB1",
+      "attackB2",
+      "attackB3",
+      "advance1",
+      "advance2",
+      "chant1",
+      "chant2",
+      "cast1",
+      "cast2",
+      "item1",
+      "item2",
+      "hurt1",
+      "hurt2",
+      "lowhp1",
+      "lowhp2",
+      "special1",
+      "special2",
+      "special3",
+      "limit1",
+      "limit2",
+      "limit3",
+      "victory1",
+      "victory2",
+      "victory3",
+      "zombie1",
+      "zombie2",
+      "ko",
+      "sleep1",
+      "sleep2",
+      "paralyze",
+      "confuse1",
+      "confuse2",
+      "berserk",
+      "walkD1",
+      "walkD2",
+      "walkD3",
+      "walkU1",
+      "walkU2",
+      "walkU3",
+      "walkS1",
+      "walkS2",
+      "walkS3",
+      "shock",
+      "downcast",
+      "listen"
+    ],
+    "desc": [
+      "Idle: standing at rest, weapon lowered, facing left",
+      "Idle: breathing in, shoulders slightly raised",
+      "Idle: breathing out, shoulders slightly lowered",
+      "Ready: weapon raised, weight forward, about to act",
+      "Ready: same stance, small bob down",
+      "Defend: guarding, arms/weapon crossed in front, braced",
+      "Attack: wind-up, weapon drawn back",
+      "Attack: mid-swing, body lunging left",
+      "Attack: follow-through, weapon fully extended to the left",
+      "Second attack: wind-up for a different strike (other hand or reverse swing)",
+      "Second attack: mid-strike",
+      "Second attack: follow-through",
+      "Step forward: walking left, one foot forward",
+      "Step forward: walking left, other foot forward",
+      "Chant: casting stance, hands raised, eyes on the target",
+      "Chant: same, hands slightly higher, a faint glow at the hands",
+      "Cast: releasing the spell, arm thrust forward to the left",
+      "Cast: recovery, arm lowering",
+      "Item: holding a small vial up",
+      "Item: tossing the vial forward to the left",
+      "Hit: recoiling backward to the right, head snapped back",
+      "Hit: stumbling, recovering balance",
+      "Low HP: down on one knee, head bowed, weapon planted, breathing hard",
+      "Low HP: same kneel, shoulders heaving up",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Victory: turning toward the viewer, weapon lowering",
+      "Victory: the character's victory pose",
+      "Victory: same pose, small change (hair or cloth moves, a breath)",
+      "Zombie: standing slack, head lolling to one side, arms hanging, skin grey-green",
+      "Zombie: same slack stance, swaying the other way",
+      "KO: lying flat on the ground on their back, eyes closed, weapon dropped beside them",
+      "Asleep: sitting or kneeling slumped, head down, eyes closed",
+      "Asleep: same, head dipped slightly lower (a breath)",
+      "Paralyzed: frozen rigid mid-step, limbs stiff, back arched, straining",
+      "Confused: wobbling, head tilted, looking the wrong way (right, away from the enemy)",
+      "Confused: wobbling the other way, a hand at the temple",
+      "Berserk: hunched forward, weapon gripped too hard, teeth bared, ready to charge",
+      "Field, facing the viewer (down): standing, weapon sheathed or at rest",
+      "Field, facing down: walking, left foot forward",
+      "Field, facing down: walking, right foot forward",
+      "Field, back to the viewer (up): standing",
+      "Field, facing up: walking, left foot forward",
+      "Field, facing up: walking, right foot forward",
+      "Field, side view facing left: standing",
+      "Field, facing left: walking, front foot forward",
+      "Field, facing left: walking, back foot forward",
+      "Cutscene, facing the viewer: startled, leaning back, arms raised a little",
+      "Cutscene, facing the viewer: head bowed, arms hanging",
+      "Cutscene, facing the viewer: head tilted, one hand cupped to the ear, listening to something"
+    ]
+  },
+  "animations": {
+    "idle": {
+      "frames": [
+        "idle1",
+        "idle2",
+        "idle3",
+        "idle2"
+      ],
+      "ms": 240,
+      "loop": true
+    },
+    "ready": {
+      "frames": [
+        "ready1",
+        "ready2"
+      ],
+      "ms": 180,
+      "loop": true
+    },
+    "defend": {
+      "frames": [
+        "defend"
+      ],
+      "ms": 400,
+      "loop": true
+    },
+    "advance": {
+      "frames": [
+        "advance1",
+        "advance2"
+      ],
+      "ms": 150,
+      "loop": true
+    },
+    "attack": {
+      "frames": [
+        "ready1",
+        "attack1",
+        "attack2",
+        "attack3",
+        "attack3"
+      ],
+      "ms": 90,
+      "loop": false
+    },
+    "attackB": {
+      "frames": [
+        "ready1",
+        "attackB1",
+        "attackB2",
+        "attackB3",
+        "attackB3"
+      ],
+      "ms": 90,
+      "loop": false
+    },
+    "chant": {
+      "frames": [
+        "chant1",
+        "chant2"
+      ],
+      "ms": 220,
+      "loop": true
+    },
+    "cast": {
+      "frames": [
+        "chant1",
+        "chant2",
+        "cast1",
+        "cast2",
+        "cast2"
+      ],
+      "ms": 130,
+      "loop": false
+    },
+    "item": {
+      "frames": [
+        "item1",
+        "item1",
+        "item2",
+        "item2"
+      ],
+      "ms": 150,
+      "loop": false
+    },
+    "hurt": {
+      "frames": [
+        "hurt1",
+        "hurt2",
+        "hurt2"
+      ],
+      "ms": 110,
+      "loop": false
+    },
+    "lowhp": {
+      "frames": [
+        "lowhp1",
+        "lowhp2"
+      ],
+      "ms": 480,
+      "loop": true
+    },
+    "special": {
+      "frames": [
+        "special1",
+        "special2",
+        "special3",
+        "special3"
+      ],
+      "ms": 140,
+      "loop": false
+    },
+    "limit": {
+      "frames": [
+        "limit1",
+        "limit2",
+        "limit3",
+        "limit3",
+        "limit3"
+      ],
+      "ms": 160,
+      "loop": false
+    },
+    "victory": {
+      "frames": [
+        "victory1",
+        "victory2",
+        "victory3",
+        "victory2"
+      ],
+      "ms": 260,
+      "loop": true
+    },
+    "zombie": {
+      "frames": [
+        "zombie1",
+        "zombie2"
+      ],
+      "ms": 620,
+      "loop": true
+    },
+    "ko": {
+      "frames": [
+        "ko"
+      ],
+      "ms": 400,
+      "loop": true
+    },
+    "sleep": {
+      "frames": [
+        "sleep1",
+        "sleep2"
+      ],
+      "ms": 900,
+      "loop": true
+    },
+    "paralyze": {
+      "frames": [
+        "paralyze"
+      ],
+      "ms": 400,
+      "loop": true
+    },
+    "confuse": {
+      "frames": [
+        "confuse1",
+        "confuse2"
+      ],
+      "ms": 420,
+      "loop": true
+    },
+    "berserk": {
+      "frames": [
+        "berserk",
+        "ready1"
+      ],
+      "ms": 200,
+      "loop": true
+    },
+    "walkDown": {
+      "frames": [
+        "walkD1",
+        "walkD2",
+        "walkD1",
+        "walkD3"
+      ],
+      "ms": 170,
+      "loop": true
+    },
+    "walkUp": {
+      "frames": [
+        "walkU1",
+        "walkU2",
+        "walkU1",
+        "walkU3"
+      ],
+      "ms": 170,
+      "loop": true
+    },
+    "walkSide": {
+      "frames": [
+        "walkS1",
+        "walkS2",
+        "walkS1",
+        "walkS3"
+      ],
+      "ms": 170,
+      "loop": true
+    },
+    "shock": {
+      "frames": [
+        "shock"
+      ],
+      "ms": 400,
+      "loop": true
+    },
+    "downcast": {
+      "frames": [
+        "downcast"
+      ],
+      "ms": 400,
+      "loop": true
+    },
+    "listen": {
+      "frames": [
+        "listen"
+      ],
+      "ms": 400,
+      "loop": true
+    }
+  },
+  "skill_choreography": {
+    "kiriSpiralCut": {
+      "who": "kiri",
+      "skill": "spiral",
+      "label": "Spiral Cut",
+      "source": "assets/party-fx/kiri-spiral-cut-v02/",
+      "target": [
+        -196,
+        0
+      ],
+      "targetActor": null,
+      "dim": [
+        400,
+        750,
+        1950,
+        2200,
+        0.24
+      ],
+      "cues": {
+        "contact": 1100,
+        "damage": 1820,
+        "clear": 2200,
+        "return": 2700
+      },
+      "actor": [
+        {
+          "f": "ready1",
+          "beat": "Ready",
+          "ms": 400,
+          "x": 0,
+          "y": 0,
+          "arc": 0,
+          "ease": "linear",
+          "ghosts": 0
+        },
+        {
+          "f": "special1",
+          "beat": "Draw back",
+          "ms": 450,
+          "x": 4,
+          "y": 0,
+          "arc": 0,
+          "ease": "linear",
+          "ghosts": 0
+        },
+        {
+          "f": "attack2",
+          "beat": "Forward burst",
+          "ms": 180,
+          "x": -146,
+          "y": 0,
+          "arc": 4,
+          "ease": "out",
+          "ghosts": 3
+        },
+        {
+          "f": "special2",
+          "beat": "Spiral incision",
+          "ms": 220,
+          "x": -146,
+          "y": 0,
+          "arc": 0,
+          "ease": "linear",
+          "ghosts": 0
+        },
+        {
+          "f": "attack3",
+          "beat": "Suspended wound",
+          "ms": 410,
+          "x": -146,
+          "y": 0,
+          "arc": 0,
+          "ease": "linear",
+          "ghosts": 0
+        },
+        {
+          "f": "ready2",
+          "beat": "Suspended wound",
+          "ms": 540,
+          "x": -146,
+          "y": 0,
+          "arc": 0,
+          "ease": "linear",
+          "ghosts": 0
+        },
+        {
+          "f": "advance1",
+          "beat": "Recovery",
+          "ms": 500,
+          "x": 0,
+          "y": 0,
+          "arc": 9,
+          "ease": "smooth",
+          "ghosts": 0
+        },
+        {
+          "f": "ready1",
+          "beat": "Ready",
+          "ms": 600,
+          "x": 0,
+          "y": 0,
+          "arc": 0,
+          "ease": "linear",
+          "ghosts": 0
+        }
+      ],
+      "layers": [
+        {
+          "name": "incision",
+          "image": "fx/kiri-spiral-cut-v02.incision.webp",
+          "cell": [
+            96,
+            96
+          ],
+          "cols": 8,
+          "res": 1,
+          "ms": [
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            570,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20,
+            20
+          ],
+          "start": 1030,
+          "anchor": "target",
+          "pivot": [
+            48,
+            82
+          ],
+          "at": [
+            0,
+            0
+          ],
+          "hold": false
+        },
+        {
+          "name": "target light",
+          "image": "fx/kiri-spiral-cut-v02.targetLight.webp",
+          "cell": [
+            144,
+            112
+          ],
+          "cols": 8,
+          "res": 2,
+          "ms": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "start": 1030,
+          "anchor": "target",
+          "pivot": [
+            64,
+            90
+          ],
+          "at": [
+            0,
+            0
+          ],
+          "hold": false
+        },
+        {
+          "name": "Kiri's light",
+          "image": "fx/kiri-spiral-cut-v02.actorLight.webp",
+          "cell": [
+            112,
+            48
+          ],
+          "cols": 7,
+          "res": 2,
+          "ms": [
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            20
+          ],
+          "start": 500,
+          "anchor": "actor",
+          "pivot": [
+            16,
+            52
+          ],
+          "at": [
+            0,
+            0
+          ],
+          "hold": false
+        }
+      ]
+    }
+  },
+  "timing": "Exact repository metadata, no timing assumptions or changes. Slow previews use 2x durations. APNG one-shots play once; GIF idle loops.",
+  "change": {
+    "frame": "idle3",
+    "body_translation_xy": [
+      5,
+      0
+    ],
+    "donor": "idle2",
+    "donor_polygon_xy": [
+      [
+        24,
+        83
+      ],
+      [
+        36,
+        71
+      ],
+      [
+        37,
+        66
+      ],
+      [
+        42,
+        66
+      ],
+      [
+        42,
+        71
+      ],
+      [
+        29,
+        86
+      ],
+      [
+        24,
+        87
+      ]
+    ],
+    "donor_opaque_pixels": 126,
+    "rgba_pixels_changed": 2564
+  },
+  "validation": {
+    "other_53_cells_exact_rgba": true,
+    "geometry_576x864_cells96_grid6x9": true,
+    "binary_alpha": true,
+    "no_new_colors": true,
+    "opaque_palette_colors": 57054,
+    "png_webp_visible_pixels_identical": true,
+    "all_cells_have_transparent_padding": true,
+    "frame_bounds": [
+      {
+        "frame": "idle1",
+        "xyxy": [
+          23,
+          32,
+          74,
+          88
+        ]
+      },
+      {
+        "frame": "idle2",
+        "xyxy": [
+          24,
+          32,
+          75,
+          88
+        ]
+      },
+      {
+        "frame": "idle3",
+        "xyxy": [
+          24,
+          32,
+          75,
+          88
+        ]
+      },
+      {
+        "frame": "ready1",
+        "xyxy": [
+          22,
+          32,
+          81,
+          88
+        ]
+      },
+      {
+        "frame": "ready2",
+        "xyxy": [
+          20,
+          32,
+          78,
+          88
+        ]
+      },
+      {
+        "frame": "defend",
+        "xyxy": [
+          24,
+          32,
+          73,
+          88
+        ]
+      },
+      {
+        "frame": "attack1",
+        "xyxy": [
+          26,
+          27,
+          76,
+          88
+        ]
+      },
+      {
+        "frame": "attack2",
+        "xyxy": [
+          24,
+          32,
+          82,
+          88
+        ]
+      },
+      {
+        "frame": "attack3",
+        "xyxy": [
+          14,
+          32,
+          83,
+          88
+        ]
+      },
+      {
+        "frame": "attackB1",
+        "xyxy": [
+          21,
+          27,
+          71,
+          88
+        ]
+      },
+      {
+        "frame": "attackB2",
+        "xyxy": [
+          20,
+          34,
+          83,
+          88
+        ]
+      },
+      {
+        "frame": "attackB3",
+        "xyxy": [
+          16,
+          33,
+          76,
+          88
+        ]
+      },
+      {
+        "frame": "advance1",
+        "xyxy": [
+          30,
+          29,
+          73,
+          88
+        ]
+      },
+      {
+        "frame": "advance2",
+        "xyxy": [
+          28,
+          29,
+          73,
+          88
+        ]
+      },
+      {
+        "frame": "chant1",
+        "xyxy": [
+          26,
+          27,
+          74,
+          88
+        ]
+      },
+      {
+        "frame": "chant2",
+        "xyxy": [
+          20,
+          26,
+          76,
+          88
+        ]
+      },
+      {
+        "frame": "cast1",
+        "xyxy": [
+          20,
+          32,
+          86,
+          88
+        ]
+      },
+      {
+        "frame": "cast2",
+        "xyxy": [
+          24,
+          30,
+          65,
+          88
+        ]
+      },
+      {
+        "frame": "item1",
+        "xyxy": [
+          26,
+          27,
+          74,
+          88
+        ]
+      },
+      {
+        "frame": "item2",
+        "xyxy": [
+          18,
+          28,
+          94,
+          88
+        ]
+      },
+      {
+        "frame": "hurt1",
+        "xyxy": [
+          20,
+          27,
+          69,
+          88
+        ]
+      },
+      {
+        "frame": "hurt2",
+        "xyxy": [
+          23,
+          28,
+          73,
+          88
+        ]
+      },
+      {
+        "frame": "lowhp1",
+        "xyxy": [
+          24,
+          37,
+          75,
+          88
+        ]
+      },
+      {
+        "frame": "lowhp2",
+        "xyxy": [
+          23,
+          37,
+          72,
+          88
+        ]
+      },
+      {
+        "frame": "special1",
+        "xyxy": [
+          23,
+          22,
+          75,
+          88
+        ]
+      },
+      {
+        "frame": "special2",
+        "xyxy": [
+          19,
+          27,
+          86,
+          88
+        ]
+      },
+      {
+        "frame": "special3",
+        "xyxy": [
+          15,
+          36,
+          85,
+          88
+        ]
+      },
+      {
+        "frame": "limit1",
+        "xyxy": [
+          24,
+          23,
+          73,
+          88
+        ]
+      },
+      {
+        "frame": "limit2",
+        "xyxy": [
+          23,
+          22,
+          69,
+          88
+        ]
+      },
+      {
+        "frame": "limit3",
+        "xyxy": [
+          24,
+          21,
+          72,
+          88
+        ]
+      },
+      {
+        "frame": "victory1",
+        "xyxy": [
+          21,
+          25,
+          72,
+          88
+        ]
+      },
+      {
+        "frame": "victory2",
+        "xyxy": [
+          24,
+          25,
+          75,
+          88
+        ]
+      },
+      {
+        "frame": "victory3",
+        "xyxy": [
+          21,
+          25,
+          72,
+          88
+        ]
+      },
+      {
+        "frame": "zombie1",
+        "xyxy": [
+          27,
+          29,
+          77,
+          88
+        ]
+      },
+      {
+        "frame": "zombie2",
+        "xyxy": [
+          24,
+          30,
+          70,
+          88
+        ]
+      },
+      {
+        "frame": "ko",
+        "xyxy": [
+          20,
+          54,
+          89,
+          88
+        ]
+      },
+      {
+        "frame": "sleep1",
+        "xyxy": [
+          24,
+          35,
+          76,
+          88
+        ]
+      },
+      {
+        "frame": "sleep2",
+        "xyxy": [
+          23,
+          42,
+          74,
+          88
+        ]
+      },
+      {
+        "frame": "paralyze",
+        "xyxy": [
+          21,
+          27,
+          73,
+          88
+        ]
+      },
+      {
+        "frame": "confuse1",
+        "xyxy": [
+          23,
+          25,
+          82,
+          88
+        ]
+      },
+      {
+        "frame": "confuse2",
+        "xyxy": [
+          23,
+          25,
+          77,
+          88
+        ]
+      },
+      {
+        "frame": "berserk",
+        "xyxy": [
+          20,
+          32,
+          76,
+          88
+        ]
+      },
+      {
+        "frame": "walkD1",
+        "xyxy": [
+          31,
+          27,
+          72,
+          88
+        ]
+      },
+      {
+        "frame": "walkD2",
+        "xyxy": [
+          28,
+          26,
+          69,
+          88
+        ]
+      },
+      {
+        "frame": "walkD3",
+        "xyxy": [
+          28,
+          27,
+          69,
+          88
+        ]
+      },
+      {
+        "frame": "walkU1",
+        "xyxy": [
+          29,
+          27,
+          71,
+          88
+        ]
+      },
+      {
+        "frame": "walkU2",
+        "xyxy": [
+          28,
+          26,
+          69,
+          88
+        ]
+      },
+      {
+        "frame": "walkU3",
+        "xyxy": [
+          28,
+          26,
+          69,
+          88
+        ]
+      },
+      {
+        "frame": "walkS1",
+        "xyxy": [
+          30,
+          23,
+          74,
+          88
+        ]
+      },
+      {
+        "frame": "walkS2",
+        "xyxy": [
+          26,
+          23,
+          72,
+          88
+        ]
+      },
+      {
+        "frame": "walkS3",
+        "xyxy": [
+          25,
+          24,
+          72,
+          88
+        ]
+      },
+      {
+        "frame": "shock",
+        "xyxy": [
+          24,
+          22,
+          77,
+          88
+        ]
+      },
+      {
+        "frame": "downcast",
+        "xyxy": [
+          26,
+          22,
+          69,
+          88
+        ]
+      },
+      {
+        "frame": "listen",
+        "xyxy": [
+          26,
+          22,
+          75,
+          88
+        ]
+      }
+    ],
+    "all54_poses_statically_inspected": true,
+    "all26_sequences_exported_normal_and_slow": true,
+    "preview_durations_match": true,
+    "live_playback_inspected": false,
+    "engine_tested": false,
+    "production_approved": false
+  },
+  "remaining": [
+    "Live playback blocked: Chromium socket() Operation not permitted; cloud browser rejects local file URLs.",
+    "Original 57054-colour opaque palette and shaded clusters are not strict 20-colour FFVI pixel art. No new colours or filtering added.",
+    "Pose-to-pose hair/face/volume variation remains. No full professional animation pass claimed.",
+    "Spiral Cut choreography, derived status effects and engine transitions require live inspection."
+  ],
+  "outputs": {
+    "native_png": "kiri.sheet.v02.png",
+    "installed_webp": "tools/party-sprite-viewer/kiri.sheet.webp",
+    "review_sheet": "kiri.sheet.v02.review-2x.png",
+    "previews": [
+      "previews/idle.normal.png",
+      "previews/idle.slow.png",
+      "previews/ready.normal.png",
+      "previews/ready.slow.png",
+      "previews/defend.normal.png",
+      "previews/defend.slow.png",
+      "previews/advance.normal.png",
+      "previews/advance.slow.png",
+      "previews/attack.normal.png",
+      "previews/attack.slow.png",
+      "previews/attackB.normal.png",
+      "previews/attackB.slow.png",
+      "previews/chant.normal.png",
+      "previews/chant.slow.png",
+      "previews/cast.normal.png",
+      "previews/cast.slow.png",
+      "previews/item.normal.png",
+      "previews/item.slow.png",
+      "previews/hurt.normal.png",
+      "previews/hurt.slow.png",
+      "previews/lowhp.normal.png",
+      "previews/lowhp.slow.png",
+      "previews/special.normal.png",
+      "previews/special.slow.png",
+      "previews/limit.normal.png",
+      "previews/limit.slow.png",
+      "previews/victory.normal.png",
+      "previews/victory.slow.png",
+      "previews/zombie.normal.png",
+      "previews/zombie.slow.png",
+      "previews/ko.normal.png",
+      "previews/ko.slow.png",
+      "previews/sleep.normal.png",
+      "previews/sleep.slow.png",
+      "previews/paralyze.normal.png",
+      "previews/paralyze.slow.png",
+      "previews/confuse.normal.png",
+      "previews/confuse.slow.png",
+      "previews/berserk.normal.png",
+      "previews/berserk.slow.png",
+      "previews/walkDown.normal.png",
+      "previews/walkDown.slow.png",
+      "previews/walkUp.normal.png",
+      "previews/walkUp.slow.png",
+      "previews/walkSide.normal.png",
+      "previews/walkSide.slow.png",
+      "previews/shock.normal.png",
+      "previews/shock.slow.png",
+      "previews/downcast.normal.png",
+      "previews/downcast.slow.png",
+      "previews/listen.normal.png",
+      "previews/listen.slow.png"
+    ]
+  },
+  "output_sha256": "368c1829ae640e49723dc2e168c00f8d518af79fa50bd0fcf1e550c13147a270"
+}
