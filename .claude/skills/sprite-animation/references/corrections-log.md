@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-12 · Miren · Jump contact during target recoil
+- **Reported problem:** the spear tip stays at x=120 while the target/wound moves to x=115 during the 2140-2220 ms contact hold.
+- **Original generation:** v02 already attached the incision to targetX but held the attacker anchor at x=138. Tip local(14,51), pivot(32,56), gives tip x=anchorX-18.
+- **Root cause:** choreography attachment error. Target recoil and the attacker contact hold used different reference positions.
+- **Solution implemented:** during contact, anchorX=138+(targetX-120); begin recovery at x=133 rather than 138. No sheet pixels, cell geometry, timing, y motion or cues changed. Source, before/after renderers and previews are in `assets/player-sheets/miren-jump-v03/`.
+- **Verification:** all six poses and contact-boundary stills inspected; 4401 state samples confirm zero contact error and continuous release. Normal/slow videos rebuilt and decoded. Live playback blocked by Chromium socket permissions; engine and artistic review incomplete, draft required.
+- **Rule for next time:** when the recipient recoils during a held contact pose, inspect both the attached wound and attacking limb/weapon at the same timestamps. Preserve the release position when the attacker detaches. Do not confuse effect registration with complete contact registration.
+
 ### 2026-11-10 · Kiri · imported idle3 weapon and registration
 - **Reported problem:** the lowered sword vanishes in idle3 and the body shifts left against idle2.
 - **Original generation:** the source omits idle3's sword although idle frames require the weapon lowered; the 96 px imported cell also has a measured 5 px left offset.

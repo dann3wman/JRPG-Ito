@@ -1,0 +1,218 @@
+{
+  "asset": "Miren / Jump",
+  "version": "v03",
+  "status": "choreography prototype; placeholder actors",
+  "duration_ms": 4400,
+  "loop": false,
+  "on_complete": "hold hover; hide all transient effects",
+  "native_scene": {
+    "w": 384,
+    "h": 216
+  },
+  "output": {
+    "w": 1536,
+    "h": 864,
+    "fps": 60,
+    "frame_count": 264
+  },
+  "atlas": {
+    "file": "poses.png",
+    "w": 192,
+    "h": 128,
+    "columns": 3,
+    "rows": 2,
+    "cell": {
+      "w": 64,
+      "h": 64
+    },
+    "pivot": {
+      "x": 32,
+      "y": 56
+    },
+    "frames": [
+      {
+        "id": "MJ01",
+        "label": "HOVER",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ]
+      },
+      {
+        "id": "MJ02",
+        "label": "COIL",
+        "rect": [
+          64,
+          0,
+          64,
+          64
+        ]
+      },
+      {
+        "id": "MJ03",
+        "label": "ASCEND",
+        "rect": [
+          128,
+          0,
+          64,
+          64
+        ]
+      },
+      {
+        "id": "MJ04",
+        "label": "SUSPEND",
+        "rect": [
+          0,
+          64,
+          64,
+          64
+        ]
+      },
+      {
+        "id": "MJ05",
+        "label": "DIVE",
+        "rect": [
+          64,
+          64,
+          64,
+          64
+        ]
+      },
+      {
+        "id": "MJ06",
+        "label": "RECOIL",
+        "rect": [
+          128,
+          64,
+          64,
+          64
+        ]
+      }
+    ]
+  },
+  "engine_wait": {
+    "start_ms": 1200,
+    "preview_end_ms": 1900,
+    "turn_slots": 5,
+    "resume_signal": "jump_due",
+    "note": "700 ms is preview-only. Await scheduler signal in engine; do not map slots to fixed seconds."
+  },
+  "events": [
+    {
+      "name": "launch",
+      "time_ms": 800
+    },
+    {
+      "name": "airborne_wait",
+      "time_ms": 1200
+    },
+    {
+      "name": "dive",
+      "time_ms": 1900
+    },
+    {
+      "name": "impact",
+      "time_ms": 2140
+    },
+    {
+      "name": "effect_clear",
+      "time_ms": 3000
+    },
+    {
+      "name": "recovery_complete",
+      "time_ms": 3300
+    }
+  ],
+  "beats": [
+    {
+      "name": "Hover",
+      "start_ms": 0,
+      "end_ms": 400
+    },
+    {
+      "name": "Coil",
+      "start_ms": 400,
+      "end_ms": 800
+    },
+    {
+      "name": "Ascent",
+      "start_ms": 800,
+      "end_ms": 1200
+    },
+    {
+      "name": "Suspended \u2022 five slots compressed",
+      "start_ms": 1200,
+      "end_ms": 1900
+    },
+    {
+      "name": "Dive",
+      "start_ms": 1900,
+      "end_ms": 2140
+    },
+    {
+      "name": "Contact",
+      "start_ms": 2140,
+      "end_ms": 2220
+    },
+    {
+      "name": "Recoil",
+      "start_ms": 2220,
+      "end_ms": 2550
+    },
+    {
+      "name": "Return",
+      "start_ms": 2550,
+      "end_ms": 3300
+    },
+    {
+      "name": "Hover",
+      "start_ms": 3300,
+      "end_ms": 4400
+    }
+  ],
+  "layers": [
+    {
+      "name": "actors, environment, incision",
+      "resolution": "384x216",
+      "filter": "nearest",
+      "scale": 4
+    },
+    {
+      "name": "light, trails, sparks",
+      "resolution": "1536x864",
+      "alpha": "translucent",
+      "blend": "source-over"
+    }
+  ],
+  "review_changes": [
+    "No atlas pixel changes from v02. Contact anchor follows target recoil during 2140-2220 ms; recovery starts at x=133 instead of 138."
+  ],
+  "motion_source": "render.js",
+  "contact_registration": {
+    "window_ms": [
+      2140,
+      2220
+    ],
+    "spear_tip_local": [
+      14,
+      51
+    ],
+    "actor_offset_from_target_x": 18,
+    "release_anchor": [
+      133,
+      146
+    ],
+    "original_release_anchor": [
+      138,
+      146
+    ]
+  },
+  "timing_assumptions": [],
+  "inspection_playback": {
+    "normal_rate": 1,
+    "slow_rate": 0.5,
+    "live_inspected": false
+  }
+}
