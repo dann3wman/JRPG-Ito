@@ -1,0 +1,63 @@
+{
+  "review_date_local": "2026-11-13",
+  "character": "Kiri Haldane",
+  "status": "incomplete_re_review_no_new_edits_not_a_pass",
+  "source": {
+    "repository_head": "c1840737fef12061165ef6bb553e7bfa166b717b",
+    "path": "tools/party-sprite-viewer/kiri.sheet.webp",
+    "png_sha256": "368c1829ae640e49723dc2e168c00f8d518af79fa50bd0fcf1e550c13147a270",
+    "library_file_id": "libfile_77e2101aeb808191a29c506409cb509e",
+    "library_binary_redownloaded": false
+  },
+  "selection_reason": "Least recently reviewed accessible named character; Natsu PR14 and Miren PR16 remain open, Hisui PR15 is specification only.",
+  "sequences": [
+    "idle",
+    "ready",
+    "defend",
+    "advance",
+    "attack",
+    "attackB",
+    "chant",
+    "cast",
+    "item",
+    "hurt",
+    "lowhp",
+    "special",
+    "limit",
+    "victory",
+    "zombie",
+    "ko",
+    "sleep",
+    "paralyze",
+    "confuse",
+    "berserk",
+    "walkDown",
+    "walkUp",
+    "walkSide",
+    "shock",
+    "downcast",
+    "listen"
+  ],
+  "changes": [],
+  "validation": {
+    "all54_poses_statically_inspected": true,
+    "normal_slow_previews_rebuilt_decoded": 52,
+    "live_playback_inspected": false,
+    "production_pass": false,
+    "repository_checks": "tools/check.sh passes with existing documented warnings"
+  },
+  "remaining_issues": [
+    "Chromium socket() denied; normal/slow live playback unavailable",
+    "Artistic cleanup, pose-volume variation and high-colour shaded clusters unresolved",
+    "Staged Spiral Cut, reference playback and engine verification incomplete",
+    "Library binary not independently downloaded again; current repo matches previous saved-output hash"
+  ],
+  "output_links": {
+    "package": "https://chatgpt.com/library?file_id=libfile_774cfe1c7ed48191a8313bcac0da64b4&account_id=personal"
+  },
+  "github": {
+    "branch": "animation-review/2026-11-13-kiri-revalidation",
+    "publication_record": "https://chatgpt.com/library?file_id=libfile_e3bd1f9d5db0819185bc1c703e5bf682&account_id=personal"
+  },
+  "next_selection": "Prefer an unreviewed eligible sheet or another character; preserve incomplete status and prior repairs."
+}
