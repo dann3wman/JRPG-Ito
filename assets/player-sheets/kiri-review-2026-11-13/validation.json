@@ -1,0 +1,574 @@
+{
+  "sheet_sha256": "368c1829ae640e49723dc2e168c00f8d518af79fa50bd0fcf1e550c13147a270",
+  "installed_visible_and_alpha_identical": true,
+  "dimensions": [
+    576,
+    864
+  ],
+  "cells": 54,
+  "cell_size": [
+    96,
+    96
+  ],
+  "bounds": {
+    "idle1": [
+      23,
+      32,
+      74,
+      88
+    ],
+    "idle2": [
+      24,
+      32,
+      75,
+      88
+    ],
+    "idle3": [
+      24,
+      32,
+      75,
+      88
+    ],
+    "ready1": [
+      22,
+      32,
+      81,
+      88
+    ],
+    "ready2": [
+      20,
+      32,
+      78,
+      88
+    ],
+    "defend": [
+      24,
+      32,
+      73,
+      88
+    ],
+    "attack1": [
+      26,
+      27,
+      76,
+      88
+    ],
+    "attack2": [
+      24,
+      32,
+      82,
+      88
+    ],
+    "attack3": [
+      14,
+      32,
+      83,
+      88
+    ],
+    "attackB1": [
+      21,
+      27,
+      71,
+      88
+    ],
+    "attackB2": [
+      20,
+      34,
+      83,
+      88
+    ],
+    "attackB3": [
+      16,
+      33,
+      76,
+      88
+    ],
+    "advance1": [
+      30,
+      29,
+      73,
+      88
+    ],
+    "advance2": [
+      28,
+      29,
+      73,
+      88
+    ],
+    "chant1": [
+      26,
+      27,
+      74,
+      88
+    ],
+    "chant2": [
+      20,
+      26,
+      76,
+      88
+    ],
+    "cast1": [
+      20,
+      32,
+      86,
+      88
+    ],
+    "cast2": [
+      24,
+      30,
+      65,
+      88
+    ],
+    "item1": [
+      26,
+      27,
+      74,
+      88
+    ],
+    "item2": [
+      18,
+      28,
+      94,
+      88
+    ],
+    "hurt1": [
+      20,
+      27,
+      69,
+      88
+    ],
+    "hurt2": [
+      23,
+      28,
+      73,
+      88
+    ],
+    "lowhp1": [
+      24,
+      37,
+      75,
+      88
+    ],
+    "lowhp2": [
+      23,
+      37,
+      72,
+      88
+    ],
+    "special1": [
+      23,
+      22,
+      75,
+      88
+    ],
+    "special2": [
+      19,
+      27,
+      86,
+      88
+    ],
+    "special3": [
+      15,
+      36,
+      85,
+      88
+    ],
+    "limit1": [
+      24,
+      23,
+      73,
+      88
+    ],
+    "limit2": [
+      23,
+      22,
+      69,
+      88
+    ],
+    "limit3": [
+      24,
+      21,
+      72,
+      88
+    ],
+    "victory1": [
+      21,
+      25,
+      72,
+      88
+    ],
+    "victory2": [
+      24,
+      25,
+      75,
+      88
+    ],
+    "victory3": [
+      21,
+      25,
+      72,
+      88
+    ],
+    "zombie1": [
+      27,
+      29,
+      77,
+      88
+    ],
+    "zombie2": [
+      24,
+      30,
+      70,
+      88
+    ],
+    "ko": [
+      20,
+      54,
+      89,
+      88
+    ],
+    "sleep1": [
+      24,
+      35,
+      76,
+      88
+    ],
+    "sleep2": [
+      23,
+      42,
+      74,
+      88
+    ],
+    "paralyze": [
+      21,
+      27,
+      73,
+      88
+    ],
+    "confuse1": [
+      23,
+      25,
+      82,
+      88
+    ],
+    "confuse2": [
+      23,
+      25,
+      77,
+      88
+    ],
+    "berserk": [
+      20,
+      32,
+      76,
+      88
+    ],
+    "walkD1": [
+      31,
+      27,
+      72,
+      88
+    ],
+    "walkD2": [
+      28,
+      26,
+      69,
+      88
+    ],
+    "walkD3": [
+      28,
+      27,
+      69,
+      88
+    ],
+    "walkU1": [
+      29,
+      27,
+      71,
+      88
+    ],
+    "walkU2": [
+      28,
+      26,
+      69,
+      88
+    ],
+    "walkU3": [
+      28,
+      26,
+      69,
+      88
+    ],
+    "walkS1": [
+      30,
+      23,
+      74,
+      88
+    ],
+    "walkS2": [
+      26,
+      23,
+      72,
+      88
+    ],
+    "walkS3": [
+      25,
+      24,
+      72,
+      88
+    ],
+    "shock": [
+      24,
+      22,
+      77,
+      88
+    ],
+    "downcast": [
+      26,
+      22,
+      69,
+      88
+    ],
+    "listen": [
+      26,
+      22,
+      75,
+      88
+    ]
+  },
+  "sequences": {
+    "idle": {
+      "frames": [
+        "idle1",
+        "idle2",
+        "idle3",
+        "idle2"
+      ],
+      "ms": 240,
+      "loop": true
+    },
+    "ready": {
+      "frames": [
+        "ready1",
+        "ready2"
+      ],
+      "ms": 180,
+      "loop": true
+    },
+    "defend": {
+      "frames": [
+        "defend"
+      ],
+      "ms": 400,
+      "loop": true
+    },
+    "advance": {
+      "frames": [
+        "advance1",
+        "advance2"
+      ],
+      "ms": 150,
+      "loop": true
+    },
+    "attack": {
+      "frames": [
+        "ready1",
+        "attack1",
+        "attack2",
+        "attack3",
+        "attack3"
+      ],
+      "ms": 90,
+      "loop": false
+    },
+    "attackB": {
+      "frames": [
+        "ready1",
+        "attackB1",
+        "attackB2",
+        "attackB3",
+        "attackB3"
+      ],
+      "ms": 90,
+      "loop": false
+    },
+    "chant": {
+      "frames": [
+        "chant1",
+        "chant2"
+      ],
+      "ms": 220,
+      "loop": true
+    },
+    "cast": {
+      "frames": [
+        "chant1",
+        "chant2",
+        "cast1",
+        "cast2",
+        "cast2"
+      ],
+      "ms": 130,
+      "loop": false
+    },
+    "item": {
+      "frames": [
+        "item1",
+        "item1",
+        "item2",
+        "item2"
+      ],
+      "ms": 150,
+      "loop": false
+    },
+    "hurt": {
+      "frames": [
+        "hurt1",
+        "hurt2",
+        "hurt2"
+      ],
+      "ms": 110,
+      "loop": false
+    },
+    "lowhp": {
+      "frames": [
+        "lowhp1",
+        "lowhp2"
+      ],
+      "ms": 480,
+      "loop": true
+    },
+    "special": {
+      "frames": [
+        "special1",
+        "special2",
+        "special3",
+        "special3"
+      ],
+      "ms": 140,
+      "loop": false
+    },
+    "limit": {
+      "frames": [
+        "limit1",
+        "limit2",
+        "limit3",
+        "limit3",
+        "limit3"
+      ],
+      "ms": 160,
+      "loop": false
+    },
+    "victory": {
+      "frames": [
+        "victory1",
+        "victory2",
+        "victory3",
+        "victory2"
+      ],
+      "ms": 260,
+      "loop": true
+    },
+    "zombie": {
+      "frames": [
+        "zombie1",
+        "zombie2"
+      ],
+      "ms": 620,
+      "loop": true
+    },
+    "ko": {
+      "frames": [
+        "ko"
+      ],
+      "ms": 400,
+      "loop": true
+    },
+    "sleep": {
+      "frames": [
+        "sleep1",
+        "sleep2"
+      ],
+      "ms": 900,
+      "loop": true
+    },
+    "paralyze": {
+      "frames": [
+        "paralyze"
+      ],
+      "ms": 400,
+      "loop": true
+    },
+    "confuse": {
+      "frames": [
+        "confuse1",
+        "confuse2"
+      ],
+      "ms": 420,
+      "loop": true
+    },
+    "berserk": {
+      "frames": [
+        "berserk",
+        "ready1"
+      ],
+      "ms": 200,
+      "loop": true
+    },
+    "walkDown": {
+      "frames": [
+        "walkD1",
+        "walkD2",
+        "walkD1",
+        "walkD3"
+      ],
+      "ms": 170,
+      "loop": true
+    },
+    "walkUp": {
+      "frames": [
+        "walkU1",
+        "walkU2",
+        "walkU1",
+        "walkU3"
+      ],
+      "ms": 170,
+      "loop": true
+    },
+    "walkSide": {
+      "frames": [
+        "walkS1",
+        "walkS2",
+        "walkS1",
+        "walkS3"
+      ],
+      "ms": 170,
+      "loop": true
+    },
+    "shock": {
+      "frames": [
+        "shock"
+      ],
+      "ms": 400,
+      "loop": true
+    },
+    "downcast": {
+      "frames": [
+        "downcast"
+      ],
+      "ms": 400,
+      "loop": true
+    },
+    "listen": {
+      "frames": [
+        "listen"
+      ],
+      "ms": 400,
+      "loop": true
+    }
+  },
+  "previews_rebuilt_and_decoded": 52,
+  "live_playback_inspected": false,
+  "production_pass": false,
+  "sprite_edits": false
+}
