@@ -2338,7 +2338,11 @@ function giveBack(e){
 }
 const heldBy = () => actives().filter(u=>u.grabbed && u.alive);
 function grabOne(e, t){ t.grabbed = { left:3 }; t.defending = false; t.whisper = null; log(`The Tongue grabs ${t.name} and pulls them out of the turn order.`, 'foe'); }
-function releaseAll(e){ heldBy().forEach(t=>{ t.grabbed = null; t.ct = 2*tickOf(t); log(`The Tongue lets ${t.name} go.`, 'foe'); }); e.tasted = new Set(); }
+function releaseAll(e){
+  heldBy().forEach(t=>{ t.grabbed = null; t.ct = 2*tickOf(t); log(`The Tongue lets ${t.name} go.`, 'foe'); }); e.tasted = new Set();
+  // The holding rule no longer applies. Show Grab now, before the next party choice.
+  e.plan = planNext(e); log(`${e.name} reacts: ${planText(e).replace(/^Next: /,'')}.`, 'foe');
+}
 // Each Face of the Congregation stares at a different active ally.
 function restare(e){
   const ts = targetsForFoes(); if (!ts.length || ts.some(t=>t.id===e.stare)) return;

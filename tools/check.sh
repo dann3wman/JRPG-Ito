@@ -10,6 +10,9 @@ cd "$(dirname "$0")/.."
 echo "== data check"
 node tools/data-check/check.js --quiet
 
+echo "== bestiary behaviour"
+node tools/bestiary-check/tongue-rescue.js
+
 echo "== game data reference"
 node tools/data-export/export.js --check
 
