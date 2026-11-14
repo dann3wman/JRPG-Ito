@@ -33,3 +33,5 @@ The inventory is a source, metadata and automated-check audit. It does not certi
 ## First refinement
 
 [Tongue rescue report](reviews/2026-11-14-tongue-rescue.md): the three-character rescue now announces Grab immediately. Live-script tests pass and all seeded battle summaries match the original. Browser visual verification is outstanding because Chromium cannot launch in this environment. The implementation is delivered as a draft, not a merged or visually approved change.
+
+Daily refinement is scheduled for around 10 AM America/New_York, beginning 2026-11-15. [Initial draft PR](https://github.com/dann3wman/JRPG-Ito/pull/22).

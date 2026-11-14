@@ -31,3 +31,7 @@ The browser check could not run. The installed Chromium exits before opening a p
 ## Lesson
 
 When a successful player action invalidates an enemy's current decision rule, refresh the displayed plan at that state transition. Waiting for the enemy's execution-time fallback creates an unannounced attack even when the underlying combat logic is correct. Check both the plan after counterplay and the command actually executed.
+
+## Delivery
+
+[Draft PR 22](https://github.com/dann3wman/JRPG-Ito/pull/22). Implementation commit: `d2c597072aca7aba2a49548f6357e699ee0b70da`. Published tree matches the tested local tree. The complete `tools/check.sh` suite passes, including the new bestiary regression, with the two existing design drift warnings and attachment review notices. No merge or auto-merge.

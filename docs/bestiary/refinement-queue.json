@@ -7,7 +7,7 @@
   "created_at": "2026-11-14",
   "updated_at": "2026-11-14",
   "generation": 1,
-  "revision": 2,
+  "revision": 3,
   "tracker_path": "docs/bestiary/refinement-queue.json",
   "initial_branch": "bestiary/2026-11-14-tongue-rescue-telegraph",
   "selection_policy": "Confirmed correctness/readability defects first, then measured encounter problems, existing asset integration, canon alignment, and evidence-led visual review. Prefer one feasible entry per run; notices alone are not proven defects.",
@@ -64,6 +64,12 @@
         "simulations": "900 before and 900 after; all seeded summaries identical",
         "browser": "blocked: Chromium socket() Operation not permitted",
         "remaining": "Browser visual verification before ready-for-review promotion; no merge performed."
+      },
+      "delivery": {
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/22",
+        "implementation_commit": "d2c597072aca7aba2a49548f6357e699ee0b70da",
+        "state": "draft",
+        "merged": false
       }
     },
     {
