@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-14 · Natsu · eight-pose Cure halo rims
+- **Reported problem:** halo face rims change silhouette and shading between casting poses; see natsu-cure-v03 labeled sheet and before/after GIFs.
+- **Original generation:** v02 eight-pose study, 96x96 cells, contains inconsistent face outlines; its prior foot registration fix is retained.
+- **Root cause:** inconsistent sheet art, distinct from intended face turning in cast.json.
+- **Solution implemented:** reuse idle rim pixels at head-relative integer offsets in frames 1-6, protecting original inner facial features. Exactly 636 pixels changed; all other pixels, palette, geometry and timing retained. See assets/player-sheets/natsu-cure-v03/build.py and README.md.
+- **Verification:** all eight poses inspected; original and final exports played at 1x/0.5x in GIMP. Exact decoded GIF/palette/alpha/bounds/unchanged-region checks pass. Head/hair/boot variation and engine integration remain unresolved; draft, not a production pass.
+- **Rule for next time:** separate rigid equipment rims from intentionally turning or expressive internal features before propagating a canonical patch. Reimport the final rebuilt export before playback inspection.
+
 ### 2026-11-10 · Kiri · imported idle3 weapon and registration
 - **Reported problem:** the lowered sword vanishes in idle3 and the body shifts left against idle2.
 - **Original generation:** the source omits idle3's sword although idle frames require the weapon lowered; the 96 px imported cell also has a measured 5 px left offset.

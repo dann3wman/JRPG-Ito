@@ -1,0 +1,97 @@
+{
+  "source_sha256": "4f38fee584c533cdab1e4bf72546394ec6a4938c1bfccd1b1c7f1ca333d5df6e",
+  "output_sha256": "969be514f6825a6e36a927843f6fc9dc93f7ee9715acc4dd871afe4b0e26ca6b",
+  "dimensions": [
+    384,
+    192
+  ],
+  "cell_size": [
+    96,
+    96
+  ],
+  "frame_count": 8,
+  "changed_pixels_per_frame": [
+    0,
+    110,
+    110,
+    108,
+    98,
+    104,
+    106,
+    0
+  ],
+  "changed_frames": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "outside_patches_identical": true,
+  "unchanged_frames": [
+    0,
+    7
+  ],
+  "facial_feature_interiors_unchanged": true,
+  "palette_unchanged": true,
+  "opaque_palette_colors": 24,
+  "binary_alpha": true,
+  "frame_bounds": [
+    [
+      31,
+      14,
+      80,
+      87
+    ],
+    [
+      29,
+      15,
+      78,
+      87
+    ],
+    [
+      29,
+      15,
+      78,
+      87
+    ],
+    [
+      29,
+      15,
+      77,
+      87
+    ],
+    [
+      14,
+      15,
+      81,
+      87
+    ],
+    [
+      11,
+      15,
+      84,
+      87
+    ],
+    [
+      19,
+      15,
+      79,
+      87
+    ],
+    [
+      31,
+      14,
+      80,
+      87
+    ]
+  ],
+  "endpoint_identical": true,
+  "nearest_neighbor_enlargement": true,
+  "decoded_gifs_pixel_exact": true,
+  "normal_duration_ms": 1620,
+  "slow_duration_ms": 3240,
+  "engine_tested": false,
+  "production_pass": false
+}
