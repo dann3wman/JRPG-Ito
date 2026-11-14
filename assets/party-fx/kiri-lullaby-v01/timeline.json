@@ -1,0 +1,386 @@
+{
+  "action": "Kiri Lullaby",
+  "version": 1,
+  "duration_ms": 3200,
+  "frame_step_ms": 40,
+  "loop": false,
+  "hold_last": true,
+  "source_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
+  "source_path": "tools/party-sprite-viewer/kiri.sheet.webp",
+  "source_sha256": "481facfcf6465c0488762fb1bb9ad2553c225f9cb6402de1d7d982cf17ee16ec",
+  "scene": [
+    320,
+    180
+  ],
+  "preview": [
+    1280,
+    720
+  ],
+  "actor_pivot": [
+    48,
+    88
+  ],
+  "actor_world_pivot": [
+    264,
+    148
+  ],
+  "actor_frames": [
+    {
+      "id": "idle1",
+      "source_index": 0,
+      "rect": [
+        0,
+        0,
+        96,
+        96
+      ]
+    },
+    {
+      "id": "limit1",
+      "source_index": 27,
+      "rect": [
+        96,
+        0,
+        96,
+        96
+      ]
+    },
+    {
+      "id": "limit2",
+      "source_index": 28,
+      "rect": [
+        192,
+        0,
+        96,
+        96
+      ]
+    },
+    {
+      "id": "limit3",
+      "source_index": 29,
+      "rect": [
+        288,
+        0,
+        96,
+        96
+      ]
+    }
+  ],
+  "actor_track": [
+    {
+      "frame": "idle1",
+      "start_ms": 0,
+      "end_ms": 320
+    },
+    {
+      "frame": "limit1",
+      "start_ms": 320,
+      "end_ms": 720
+    },
+    {
+      "frame": "limit2",
+      "start_ms": 720,
+      "end_ms": 1520
+    },
+    {
+      "frame": "limit3",
+      "start_ms": 1520,
+      "end_ms": 2320
+    },
+    {
+      "frame": "limit2",
+      "start_ms": 2320,
+      "end_ms": 2560
+    },
+    {
+      "frame": "limit1",
+      "start_ms": 2560,
+      "end_ms": 2800
+    },
+    {
+      "frame": "idle1",
+      "start_ms": 2800,
+      "end_ms": 3200
+    }
+  ],
+  "effect": {
+    "atlas": "threads.png",
+    "size": [
+      2048,
+      384
+    ],
+    "cell": [
+      256,
+      128
+    ],
+    "columns": 8,
+    "rows": 3,
+    "start_ms": 560,
+    "end_ms": 2480,
+    "frame_ms": 80,
+    "world_origin": [
+      32,
+      24
+    ],
+    "safe_bounds": [
+      8,
+      8,
+      247,
+      119
+    ],
+    "frames": [
+      {
+        "id": "LT01",
+        "rect": [
+          0,
+          0,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT02",
+        "rect": [
+          256,
+          0,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT03",
+        "rect": [
+          512,
+          0,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT04",
+        "rect": [
+          768,
+          0,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT05",
+        "rect": [
+          1024,
+          0,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT06",
+        "rect": [
+          1280,
+          0,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT07",
+        "rect": [
+          1536,
+          0,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT08",
+        "rect": [
+          1792,
+          0,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT09",
+        "rect": [
+          0,
+          128,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT10",
+        "rect": [
+          256,
+          128,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT11",
+        "rect": [
+          512,
+          128,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT12",
+        "rect": [
+          768,
+          128,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT13",
+        "rect": [
+          1024,
+          128,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT14",
+        "rect": [
+          1280,
+          128,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT15",
+        "rect": [
+          1536,
+          128,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT16",
+        "rect": [
+          1792,
+          128,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT17",
+        "rect": [
+          0,
+          256,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT18",
+        "rect": [
+          256,
+          256,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT19",
+        "rect": [
+          512,
+          256,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT20",
+        "rect": [
+          768,
+          256,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT21",
+        "rect": [
+          1024,
+          256,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT22",
+        "rect": [
+          1280,
+          256,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT23",
+        "rect": [
+          1536,
+          256,
+          256,
+          128
+        ]
+      },
+      {
+        "id": "LT24",
+        "rect": [
+          1792,
+          256,
+          256,
+          128
+        ]
+      }
+    ],
+    "palette": [
+      "#17141c",
+      "#756d80",
+      "#b6afa2",
+      "#e4d9bd",
+      "#f5ead2",
+      "#803d49"
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "blend": "source-over",
+    "filter": "nearest",
+    "smooth_layers": []
+  },
+  "cues": [
+    {
+      "name": "hum_start",
+      "time_ms": 560
+    },
+    {
+      "name": "relief",
+      "time_ms": 1520
+    },
+    {
+      "name": "clear",
+      "time_ms": 2480
+    },
+    {
+      "name": "ready",
+      "time_ms": 2800
+    }
+  ],
+  "mechanics": "Visual study of regular Lullaby: existing -20 other-allies Stress, +10 Danger; no gameplay state is mutated. Not the healing Limit Break.",
+  "placeholders": "Two unnamed ally mannequins; their posture lowers 3px over 320ms after relief. No enemy reaction.",
+  "drawn_vs_runtime": "Four unchanged source cels; 24 new procedural pixel effect states, runtime pose selection and ally settlement. No new Kiri drawings."
+}
