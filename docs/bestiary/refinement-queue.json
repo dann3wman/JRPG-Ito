@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "project": "FINAL FANTASY: THE HUMMING CRYSTAL",
+  "repository": "dann3wman/JRPG-Ito",
+  "default_branch_at_audit": "ccr-d8829a5a-ays4x1",
+  "source_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
+  "created_at": "2026-11-14",
+  "updated_at": "2026-11-14",
+  "generation": 1,
+  "revision": 3,
+  "tracker_path": "docs/bestiary/refinement-queue.json",
+  "initial_branch": "bestiary/2026-11-14-tongue-rescue-telegraph",
+  "selection_policy": "Confirmed correctness/readability defects first, then measured encounter problems, existing asset integration, canon alignment, and evidence-led visual review. Prefer one feasible entry per run; notices alone are not proven defects.",
+  "audit": {
+    "enemy_records": 45,
+    "encounters": 37,
+    "viewer_rigs": 22,
+    "animation_clips": 88,
+    "battle_rigs": 6,
+    "open_prs_checked": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "checks": "Baseline tools/check.sh passed: 2 documented drift warnings and 16 art-review notices.",
+    "inventory": "docs/bestiary/reviews/2026-11-14-inventory.json"
+  },
+  "workflow": {
+    "choose": "Read current default branch, applicable instructions and all relevant open PRs. Reconcile the latest queue revision from default and bestiary PRs. Select the lowest-rank unblocked pending task with current evidence.",
+    "complete": "Implement exactly one entry refinement or verified visual pass; validate, create one review PR, and record results. Completed means delivered for review, not merged.",
+    "replenish": "When no actionable pending tasks remain, inspect the whole current bestiary again and increment generation. Retain completed history and blocked items, deduplicate against open PRs, and add only concrete evidence-backed tasks. Do not recreate completed work unless fresh evidence warrants it.",
+    "blocked": "Record the exact blocker and continue to the next feasible independent task. If no task can be completed, report it honestly; never count a proposal as a finished refinement.",
+    "delivery": "Use a dedicated branch from current default; never merge or enable auto-merge. Carry the newest queue state forward without copying unrelated unmerged code. Use draft PRs when required validation remains incomplete."
+  },
+  "tasks": [
+    {
+      "id": "B001",
+      "rank": 1,
+      "entry": "The Tongue (licker / tongue2)",
+      "category": "enemy_ai",
+      "title": "Reveal Grab immediately after a three-character rescue",
+      "status": "implemented_pending_visual_review",
+      "evidence": [
+        "index.html: releaseAll clears captives but leaves the holding-only plan intact. Reproduced: Next: Savour after rescue, then Grab executes.",
+        "Both phases and both holding actions affected; no open bestiary PR duplicates this."
+      ],
+      "acceptance": [
+        "Immediately show and log Grab after the third distinct taste.",
+        "Keep first/second/repeated tastes from changing the current plan.",
+        "Preserve late Stress targeting, release recovery, probabilities and battle outcomes.",
+        "Run a live-script regression, browser rendering check and repository checks."
+      ],
+      "depends_on": [],
+      "implemented_at": "2026-11-14",
+      "review": "docs/bestiary/reviews/2026-11-14-tongue-rescue.md",
+      "branch": "bestiary/2026-11-14-tongue-rescue-telegraph",
+      "validation": {
+        "regression": "passed: four phase/action combinations",
+        "simulations": "900 before and 900 after; all seeded summaries identical",
+        "browser": "blocked: Chromium socket() Operation not permitted",
+        "remaining": "Browser visual verification before ready-for-review promotion; no merge performed."
+      },
+      "delivery": {
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/22",
+        "implementation_commit": "d2c597072aca7aba2a49548f6357e699ee0b70da",
+        "state": "draft",
+        "merged": false
+      }
+    },
+    {
+      "id": "B002",
+      "rank": 2,
+      "entry": "The Tongue (licker / tongue2)",
+      "category": "enemy_ai",
+      "title": "Show the phase-two Grab target count in its live telegraph",
+      "status": "pending",
+      "evidence": [
+        "index.html: planText uses LATE_TEXT.hungry, always singular; licker.skills.grab.run takes two targets in phase p2.",
+        "docs/bosses/tongue2.md and design-doc.md Ch.20 explicitly require two captives at half HP."
+      ],
+      "acceptance": [
+        "The live plan states one highest-Stress target in p1 and two in p2.",
+        "Keep targets late-bound and ignore Provoke.",
+        "Cover phase change, equal-Stress ties and fewer than two available allies; no new attack or timing rule."
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "B003",
+      "rank": 3,
+      "entry": "Tide-Widow",
+      "category": "enemy_ai",
+      "title": "Shorten the overlong chapter-five fight while preserving its Stress lesson",
+      "status": "pending",
+      "evidence": [
+        "docs/bosses/widow.md reports 84 winning commands against the Disc 1 ceiling of 60.",
+        "FOES.widow has 3200 HP; the spec identifies HP as the first tuning lever."
+      ],
+      "acceptance": [
+        "Measure fresh 300-run advisor/attack/random and no-Natsu fallback results before changing anything.",
+        "Change one lever, prioritising HP; target 25-60 winning commands, advisor >=90%, attack <=25%, and nontrivial Stress.",
+        "Keep a viable fallback, record tradeoffs, update spec/status/reference and 200-run baseline; browser-play the result."
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "B004",
+      "rank": 4,
+      "entry": "Lamp Hollow",
+      "category": "animation",
+      "title": "Connect the existing Lamp Hollow rig to its battle entry",
+      "status": "pending",
+      "evidence": [
+        "Viewer RIGS.lamp and lamp.webp exist with idle/glare/dark/relight; battle ART_RIG has no lamp mapping.",
+        "FOES.lamp uses art lamp and currently falls back to static art."
+      ],
+      "acceptance": [
+        "Inspect installed art and fit before importing the existing rig.",
+        "Map only real Lamp skills and drive dark state from battle state; do not invent Wick rig support.",
+        "Check sheet fallback, viewer/battle parity, attack/idle transitions and reduced motion in actual playback."
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "B005",
+      "rank": 5,
+      "entry": "The Grey Hound",
+      "category": "animation",
+      "title": "Connect the existing Grey Hound rig to its battle entry",
+      "status": "pending",
+      "evidence": [
+        "Viewer RIGS.greyhound has idle/prowl/maul/callback/enrage and an installed sheet; ART_RIG has no greyhound mapping.",
+        "The story encounter uses Goku recall steps; animation must reflect that state instead of playing an arbitrary attack."
+      ],
+      "acceptance": [
+        "Inspect the head/ear overlap notices visually before integration.",
+        "Wire existing compatible clips, keeping the three-step callback and unkillable mechanics intact.",
+        "Verify actual battle playback, fallback, reduced motion and parity; defer artistic defects as explicit tasks if not solvable in scope."
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "B006",
+      "rank": 6,
+      "entry": "Lake Hen",
+      "category": "animation",
+      "title": "Connect Lake Hen surfacing and diving to the battle state",
+      "status": "pending",
+      "evidence": [
+        "Viewer RIGS.lakehen includes idle/peck/dive/surface; installed lakehen.webp exists.",
+        "FOES.hen uses art hen, with no ART_RIG mapping. The underwater targeting window is presently explained through static art/text."
+      ],
+      "acceptance": [
+        "Inspect native rig/sheet and map hen to lakehen explicitly.",
+        "Make underwater/surfaced visuals follow actual targeting state and recovery; preserve landing immunity and the strike window.",
+        "Do not depict four mechanically active chicks: the documented encounter caps living chicks at three.",
+        "Check playback, transitions, fallback, reduced motion and parity."
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "B007",
+      "rank": 7,
+      "entry": "The Well-Rested",
+      "category": "lore",
+      "title": "Align its viewer lore with the original and copy reveal",
+      "status": "pending",
+      "evidence": [
+        "RIGS.wellrested.lore describes a tired traveller and a copy that slept for him.",
+        "The design doc Ch.7 and SCRIPTS.rested describe an original that never needs rest among identical copies, revealed by Lullaby."
+      ],
+      "acceptance": [
+        "Replace the contradictory premise with restrained canon-grounded prose about repeated rests and a crowd of the same traveller.",
+        "Keep art/rig authoring details distinct from fiction; no new origin explanation.",
+        "Verify against design-doc.md and the active script; record art identity limitations separately."
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "B008",
+      "rank": 8,
+      "entry": "Archbishop Orlen",
+      "category": "skeleton_rigging",
+      "title": "Review and, if confirmed, close ancestor-chain joint gaps",
+      "status": "pending",
+      "evidence": [
+        "Animation checker flags anc2/anc3/anc4/anc5 attachments outside parent art.",
+        "These are review notices, not confirmed broken joints; current numeric continuity/parity checks pass."
+      ],
+      "acceptance": [
+        "Capture idle/sermon/crozier frames and real playback with bones/reference overlay.",
+        "Only adjust pivots/fits or art if visible gaps are confirmed; preserve intentional spacing.",
+        "Synchronise viewer and battle copies, rerun continuity/parity, and save before/after evidence.",
+        "If the rig passes visually, record a verified pass without manufacturing edits."
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "B009",
+      "rank": 9,
+      "entry": "The Tongue (licker / tongue2)",
+      "category": "enemy_ai",
+      "title": "Make the swallow-turn action change legible before execution",
+      "status": "pending",
+      "evidence": [
+        "licker.onTurn swallows a captive at countdown zero before execScripted checks whether the holding-only Lick/Savour rule is still valid.",
+        "When the last captive is swallowed, execution may replace the displayed holding action with Grab."
+      ],
+      "acceptance": [
+        "Reproduce with the last captive at one remaining turn and distinguish this from B001 rescue.",
+        "Preserve the three-turn deadline and existing balance; expose the conditional action honestly without rerolling hidden attacks.",
+        "Check one/two captives, staggered deadlines, rescue before the deadline and phase transition."
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "B010",
+      "rank": 10,
+      "entry": "The Hellstar finale",
+      "category": "enemy_ai",
+      "title": "Resolve the sequential-versus-simultaneous finale design before implementation",
+      "status": "blocked",
+      "evidence": [
+        "docs/implementation-status.md open question 7: prototype fights Ainsel, Hellstar and Tongue simultaneously; canon Ch.27 has three sequential forms."
+      ],
+      "acceptance": [
+        "Obtain an explicit design decision or discover a newer accepted decision before rewriting the finale.",
+        "After resolution, split implementation into one-entry tasks instead of a whole-finale task."
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "B011",
+      "rank": 11,
+      "entry": "The Puppeteers",
+      "category": "enemy_ai",
+      "title": "Implement its fight after required encounter capabilities are ready",
+      "status": "blocked",
+      "evidence": [
+        "The rig and sheet exist, but the encounter is not built.",
+        "The design requires Slow, 20% phase rules, string coordination and redirected Delay; the status document lists missing general engine support."
+      ],
+      "acceptance": [
+        "Verify required status and phase capabilities exist and are tested first.",
+        "Then scope one boss implementation from a written spec, preserving Ren and the string puzzle."
+      ],
+      "depends_on": []
+    }
+  ]
+}

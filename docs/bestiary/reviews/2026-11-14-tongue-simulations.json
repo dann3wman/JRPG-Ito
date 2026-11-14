@@ -1,0 +1,188 @@
+{
+  "advisor": {
+    "before": [
+      {
+        "key": "tongue2",
+        "party": [
+          "kiri",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 300,
+          "win": 0.8966666666666666,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 33.586666666666666,
+          "winTurns": 34.267657992565056,
+          "foeTurns": 10.676666666666666,
+          "kos": 0.20666666666666667,
+          "afflicted": 0,
+          "inspired": 0,
+          "fled": 0,
+          "lost": 2.183333333333333,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 25.159999999999993,
+          "danger": 35.67666666666667,
+          "hp": 0.8624901500512294
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "tongue2",
+        "party": [
+          "kiri",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 300,
+          "win": 0.8966666666666666,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 33.586666666666666,
+          "winTurns": 34.267657992565056,
+          "foeTurns": 10.676666666666666,
+          "kos": 0.20666666666666667,
+          "afflicted": 0,
+          "inspired": 0,
+          "fled": 0,
+          "lost": 2.183333333333333,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 25.159999999999993,
+          "danger": 35.67666666666667,
+          "hp": 0.8624901500512294
+        }
+      }
+    ]
+  },
+  "attack": {
+    "before": [
+      {
+        "key": "tongue2",
+        "party": [
+          "kiri",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 300,
+          "win": 0,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 17.236666666666668,
+          "winTurns": 0,
+          "foeTurns": 7,
+          "kos": 2,
+          "afflicted": 0,
+          "inspired": 0,
+          "fled": 0,
+          "lost": 0,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 31.151111111111113,
+          "danger": 32,
+          "hp": 0
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "tongue2",
+        "party": [
+          "kiri",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 300,
+          "win": 0,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 17.236666666666668,
+          "winTurns": 0,
+          "foeTurns": 7,
+          "kos": 2,
+          "afflicted": 0,
+          "inspired": 0,
+          "fled": 0,
+          "lost": 0,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 31.151111111111113,
+          "danger": 32,
+          "hp": 0
+        }
+      }
+    ]
+  },
+  "random": {
+    "before": [
+      {
+        "key": "tongue2",
+        "party": [
+          "kiri",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 300,
+          "win": 0,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 23.316666666666666,
+          "winTurns": 0,
+          "foeTurns": 9.93,
+          "kos": 3.06,
+          "afflicted": 0.07666666666666666,
+          "inspired": 0.02,
+          "fled": 0,
+          "lost": 1.8766666666666667,
+          "limits": 0,
+          "phoenix": 1.0833333333333333,
+          "stress": 42.62111111111112,
+          "danger": 41.596666666666664,
+          "hp": 0
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "tongue2",
+        "party": [
+          "kiri",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 300,
+          "win": 0,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 23.316666666666666,
+          "winTurns": 0,
+          "foeTurns": 9.93,
+          "kos": 3.06,
+          "afflicted": 0.07666666666666666,
+          "inspired": 0.02,
+          "fled": 0,
+          "lost": 1.8766666666666667,
+          "limits": 0,
+          "phoenix": 1.0833333333333333,
+          "stress": 42.62111111111112,
+          "danger": 41.596666666666664,
+          "hp": 0
+        }
+      }
+    ]
+  }
+}
