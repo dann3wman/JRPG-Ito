@@ -1,0 +1,142 @@
+{
+  "review_date_utc": "2026-11-15",
+  "character": "Miren",
+  "sequences": [
+    "Jump: MJ01 HOVER, MJ02 COIL, MJ03 ASCEND, MJ04 SUSPEND, MJ05 DIVE, MJ06 RECOIL, MJ01 HOVER"
+  ],
+  "status": "incomplete_review_no_changes_not_a_pass",
+  "source": {
+    "library_file_id": "libfile_2a0edaa28ae88191b3c317f46eb263b9",
+    "version": "v03",
+    "commit": "bbff8aa5bc72ea9a8bccb7f49009d47c6f97f945",
+    "pr": "https://github.com/dann3wman/JRPG-Ito/pull/16",
+    "path": "assets/player-sheets/miren-jump-v03",
+    "hashes": {
+      "poses.png": "9f2737479e35760455f14513c407be767e93aa5f9e95acbcc029fe78d69f168c",
+      "render.js": "7398fcc28578b87fb259a365e2b99a32337aba4c88f45c96aa8597cb6226c249",
+      "timeline.json": "859e48a5da92f1d3d60dfd0b2065da7609e6bbd91fd1fbf3598c7c7cadb45c52"
+    },
+    "repository_library_exact_match": true,
+    "authority_conflict": "Study costume differs from current cast specification; no installed Miren atlas in default branch."
+  },
+  "selection_reason": "Miren last reviewed Nov12; Kiri Nov13; Natsu Nov14. Rotate to least-recently-reviewed accessible named character.",
+  "defects": [
+    "Abrupt MJ06 to MJ01 recovery silhouette change at 3300 ms",
+    "Provisional pose volume/anatomy and costume mismatch with current specification"
+  ],
+  "changes": [],
+  "validation": {
+    "atlas_sha256": "9f2737479e35760455f14513c407be767e93aa5f9e95acbcc029fe78d69f168c",
+    "geometry": [
+      192,
+      128,
+      3,
+      2,
+      64,
+      64
+    ],
+    "bounds_exclusive": [
+      [
+        20,
+        18,
+        45,
+        51
+      ],
+      [
+        14,
+        21,
+        48,
+        48
+      ],
+      [
+        16,
+        11,
+        44,
+        51
+      ],
+      [
+        24,
+        16,
+        45,
+        51
+      ],
+      [
+        14,
+        17,
+        47,
+        52
+      ],
+      [
+        19,
+        16,
+        45,
+        48
+      ]
+    ],
+    "palette_colors": 21,
+    "alpha_values": [
+      0,
+      255
+    ],
+    "padding_at_least_8": true,
+    "atlas_changed": false,
+    "production_pass": false,
+    "engine_compatibility_tested": false,
+    "motion_validation": {
+      "sampled_states": 4401,
+      "changed_x_states": 341,
+      "max_contact_tip_error_before_px": 5,
+      "max_contact_tip_error_after_px": 0,
+      "unchanged_outside_2140_2550_ms": true,
+      "unchanged_y_pose_target_and_cues": true,
+      "release_position_continuous": true,
+      "frames_per_preview": 264
+    },
+    "video_checks": {
+      "normal": {
+        "fps": 60,
+        "frames": 264,
+        "duration_s": 4.4
+      },
+      "slow": {
+        "fps": 30,
+        "frames": 264,
+        "duration_s": 8.8
+      }
+    }
+  },
+  "playback": {
+    "live_sampled_speeds": [
+      1,
+      0.5
+    ],
+    "application": "GIMP Animation Playback",
+    "viewed_derivative": "Existing v03 preview crop, 25 fps GIF; not native-palette reference",
+    "all_unique_cells_inspected": true,
+    "complete_continuous_motion_inspection": false,
+    "fresh_rendered_frames": 264,
+    "fresh_mp4_live_inspected": false
+  },
+  "remaining_issues": [
+    "Recovery bridge and broader artistic cleanup incomplete",
+    "Authoritative Miren design reconciliation unresolved",
+    "Complete continuous playback inspection, matched reference video and engine compatibility validation incomplete"
+  ],
+  "output_links": {
+    "jump.normal.mp4": "https://chatgpt.com/library?file_id=libfile_fde3_f-4211fe1900788191917b084b3a1f1301_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "jump.slow.mp4": "https://chatgpt.com/library?file_id=libfile_fde3_f-359c9754d0a48191b0f4dc38bc79ddc4_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "poses.review-4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-ee012904ec688191af1c21cf29f09767_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "recovery-boundary.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-420b78bc50e88191b558701636a38521_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "README.md": "https://chatgpt.com/library?file_id=libfile_fde3_f-71548587e90c8191a2962249c9566fb5_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "source_native_png": "https://chatgpt.com/library?file_id=libfile_d1ff3abafd6c8191b96ed967dfd7a895&account_id=personal"
+  },
+  "github": {
+    "branch": "animation-review/2026-11-15-miren-jump-playback",
+    "base_commit": "5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf",
+    "draft_required": true,
+    "publication_record": "https://chatgpt.com/library?file_id=libfile_fde3_f-e3bd1f9d5db0819185bc1c703e5bf682_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+  },
+  "next_selection": "Prefer another eligible character; do not repeat spear-contact correction or count this as a pass.",
+  "repository_checks": "tools/check.sh passed; 0 errors, 2 existing Quick Song/Delay warnings tracked in docs/implementation-status.md; existing creature attachment notices unchanged.",
+  "rotation_reconciliation": "Retained all eight default-branch records. Added Library publication details to Nov10 without replacing existing fields, and Nov11-Nov14 records, then appended this review."
+}
