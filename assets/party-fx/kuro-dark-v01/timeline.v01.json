@@ -1,0 +1,814 @@
+{
+  "action": "Kuro: Dark",
+  "version": 1,
+  "duration_ms": 3400,
+  "fps": 60,
+  "loop": false,
+  "terminal": "effects hidden; actors settled",
+  "scene": {
+    "native": [
+      384,
+      216
+    ],
+    "output": [
+      1536,
+      864
+    ],
+    "origin": "top-left",
+    "baseline": 180,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      375,
+      207
+    ],
+    "actor_feet": [
+      302,
+      180
+    ],
+    "target_feet": [
+      104,
+      180
+    ],
+    "target_effect_pivot": [
+      104,
+      142
+    ],
+    "facing": "left"
+  },
+  "atlases": {
+    "kuro-casting": {
+      "file": "kuro-casting.v01.png",
+      "size": [
+        384,
+        192
+      ],
+      "cell": [
+        96,
+        96
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        87,
+        87
+      ],
+      "palette": [
+        "#EDCDC4",
+        "#CCA39D",
+        "#A27B83",
+        "#85647F",
+        "#7B5976",
+        "#714E6B",
+        "#624867",
+        "#573D5B",
+        "#4C3B58",
+        "#4B334E",
+        "#3F3049",
+        "#35273C",
+        "#342034",
+        "#291F31",
+        "#241C2B",
+        "#201927",
+        "#1F1622",
+        "#1A151F",
+        "#161219",
+        "#121115",
+        "#100F14",
+        "#0F0E12",
+        "#0E0D11",
+        "#0C090E"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "KD01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            88
+          ],
+          "palm": [
+            38,
+            67
+          ],
+          "bounds_exclusive": [
+            34,
+            31,
+            67,
+            87
+          ]
+        },
+        {
+          "id": "KD02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            88
+          ],
+          "palm": [
+            44,
+            65
+          ],
+          "bounds_exclusive": [
+            34,
+            32,
+            69,
+            87
+          ]
+        },
+        {
+          "id": "KD03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            88
+          ],
+          "palm": [
+            31,
+            57
+          ],
+          "bounds_exclusive": [
+            30,
+            31,
+            69,
+            87
+          ]
+        },
+        {
+          "id": "KD04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            288,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            88
+          ],
+          "palm": [
+            25,
+            53
+          ],
+          "bounds_exclusive": [
+            24,
+            30,
+            69,
+            87
+          ]
+        },
+        {
+          "id": "KD05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            88
+          ],
+          "palm": [
+            24,
+            53
+          ],
+          "bounds_exclusive": [
+            23,
+            30,
+            73,
+            87
+          ]
+        },
+        {
+          "id": "KD06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            88
+          ],
+          "palm": [
+            24,
+            55
+          ],
+          "bounds_exclusive": [
+            23,
+            31,
+            74,
+            87
+          ]
+        },
+        {
+          "id": "KD07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            88
+          ],
+          "palm": [
+            30,
+            59
+          ],
+          "bounds_exclusive": [
+            29,
+            30,
+            72,
+            87
+          ]
+        },
+        {
+          "id": "KD08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            288,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            88
+          ],
+          "palm": [
+            36,
+            66
+          ],
+          "bounds_exclusive": [
+            33,
+            30,
+            69,
+            87
+          ]
+        }
+      ]
+    },
+    "dark-folds": {
+      "file": "dark-folds.v01.png",
+      "size": [
+        512,
+        256
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        119,
+        119
+      ],
+      "palette": [
+        "#BEAEBF",
+        "#AD94AF",
+        "#987E9B",
+        "#886E8C",
+        "#7C6280",
+        "#6E5874",
+        "#664F6B",
+        "#5C4A62",
+        "#57435C",
+        "#4E3D54",
+        "#48364D",
+        "#403044",
+        "#37293B",
+        "#251C27",
+        "#111010",
+        "#100F0F"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "DF01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "palm": null,
+          "bounds_exclusive": [
+            40,
+            56,
+            89,
+            72
+          ]
+        },
+        {
+          "id": "DF02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "palm": null,
+          "bounds_exclusive": [
+            33,
+            41,
+            95,
+            87
+          ]
+        },
+        {
+          "id": "DF03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "palm": null,
+          "bounds_exclusive": [
+            31,
+            23,
+            96,
+            105
+          ]
+        },
+        {
+          "id": "DF04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "palm": null,
+          "bounds_exclusive": [
+            27,
+            15,
+            99,
+            111
+          ]
+        },
+        {
+          "id": "DF05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "palm": null,
+          "bounds_exclusive": [
+            29,
+            14,
+            99,
+            112
+          ]
+        },
+        {
+          "id": "DF06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "palm": null,
+          "bounds_exclusive": [
+            38,
+            24,
+            90,
+            99
+          ]
+        },
+        {
+          "id": "DF07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "palm": null,
+          "bounds_exclusive": [
+            40,
+            37,
+            86,
+            90
+          ]
+        },
+        {
+          "id": "DF08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "palm": null,
+          "bounds_exclusive": [
+            48,
+            49,
+            77,
+            78
+          ]
+        }
+      ]
+    },
+    "palm": {
+      "file": "palm.v01.png",
+      "size": [
+        240,
+        48
+      ],
+      "cell": [
+        48,
+        48
+      ],
+      "columns": 5,
+      "rows": 1,
+      "gutter": 0,
+      "outer_margin": 0,
+      "pivot": [
+        24,
+        36
+      ],
+      "frames": [
+        {
+          "id": "PW01",
+          "rect": [
+            0,
+            0,
+            48,
+            48
+          ]
+        },
+        {
+          "id": "PW02",
+          "rect": [
+            48,
+            0,
+            48,
+            48
+          ]
+        },
+        {
+          "id": "PW03",
+          "rect": [
+            96,
+            0,
+            48,
+            48
+          ]
+        },
+        {
+          "id": "PW04",
+          "rect": [
+            144,
+            0,
+            48,
+            48
+          ]
+        },
+        {
+          "id": "PW05",
+          "rect": [
+            192,
+            0,
+            48,
+            48
+          ]
+        }
+      ],
+      "source": "Derived scales of newly generated DF01/02/03/02/08, not five independently drawn keys",
+      "alpha": [
+        0,
+        255
+      ]
+    }
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 220
+    },
+    {
+      "frame": 1,
+      "ms": 180
+    },
+    {
+      "frame": 2,
+      "ms": 140
+    },
+    {
+      "frame": 3,
+      "ms": 140
+    },
+    {
+      "frame": 4,
+      "ms": 420
+    },
+    {
+      "frame": 5,
+      "ms": 180
+    },
+    {
+      "frame": 4,
+      "ms": 400
+    },
+    {
+      "frame": 6,
+      "ms": 180
+    },
+    {
+      "frame": 7,
+      "ms": 180
+    },
+    {
+      "frame": 0,
+      "ms": 1360
+    }
+  ],
+  "target_effect_track": [
+    {
+      "frame": 0,
+      "ms": 120
+    },
+    {
+      "frame": 1,
+      "ms": 140
+    },
+    {
+      "frame": 2,
+      "ms": 160
+    },
+    {
+      "frame": 3,
+      "ms": 360
+    },
+    {
+      "frame": 4,
+      "ms": 120
+    },
+    {
+      "frame": 5,
+      "ms": 140
+    },
+    {
+      "frame": 6,
+      "ms": 180
+    },
+    {
+      "frame": 7,
+      "ms": 160
+    }
+  ],
+  "target_effect_start_ms": 1050,
+  "target_effect_hide_ms": 2430,
+  "palm_track": {
+    "start": 540,
+    "frames": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "durations": [
+      100,
+      120,
+      340,
+      120,
+      100
+    ],
+    "hide": 1320
+  },
+  "cues": [
+    {
+      "name": "cast_release",
+      "ms": 1100
+    },
+    {
+      "name": "damage",
+      "ms": 1830
+    },
+    {
+      "name": "effect_clear",
+      "ms": 2430
+    },
+    {
+      "name": "action_complete",
+      "ms": 3400
+    }
+  ],
+  "gameplay_events": "No battle mutation. Damage is a single preview event for future engine mapping.",
+  "motion": {
+    "caster": "fixed feet; eight articulated drawings; no runtime pose interpolation",
+    "target_x_keys": [
+      [
+        0,
+        104
+      ],
+      [
+        1830,
+        104
+      ],
+      [
+        1900,
+        98
+      ],
+      [
+        2040,
+        101
+      ],
+      [
+        2320,
+        104
+      ],
+      [
+        3400,
+        104
+      ]
+    ],
+    "target_y_keys": [
+      [
+        0,
+        180
+      ],
+      [
+        1830,
+        180
+      ],
+      [
+        1900,
+        178
+      ],
+      [
+        2100,
+        180
+      ],
+      [
+        3400,
+        180
+      ]
+    ],
+    "interpolation": "smoothstep segment, round integer for pixel layer"
+  },
+  "layers": [
+    {
+      "name": "background",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": "opaque",
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "rear light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "source-over",
+      "filter": "linear",
+      "preview_scale": 2
+    },
+    {
+      "name": "target, caster, palm, target folds",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "foreground light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "screen",
+      "filter": "linear",
+      "preview_scale": 2
+    }
+  ],
+  "status": {
+    "specified": true,
+    "generated_built": true,
+    "exported": true,
+    "technically_checked": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  },
+  "target_foreground_interval_ms": [
+    1830,
+    2430
+  ]
+}
