@@ -6,8 +6,8 @@ Confirmed rule/readability defects come first, followed by measured encounter pr
 
 | Order | Entry | Task | Status |
 | --- | --- | --- | --- |
-| 1 | The Tongue (licker / tongue2) | Reveal Grab immediately after a three-character rescue | implemented pending visual review |
-| 2 | The Tongue (licker / tongue2) | Show the phase-two Grab target count in its live telegraph | pending |
+| 1 | The Tongue (licker / tongue2) | Reveal Grab immediately after a three-character rescue | merged; visual review outstanding |
+| 2 | The Tongue (licker / tongue2) | Show the phase-two Grab target count in its live telegraph | implemented; visual review outstanding |
 | 3 | Tide-Widow | Shorten the overlong chapter-five fight while preserving its Stress lesson | pending |
 | 4 | Lamp Hollow | Connect the existing Lamp Hollow rig to its battle entry | pending |
 | 5 | The Grey Hound | Connect the existing Grey Hound rig to its battle entry | pending |
@@ -32,6 +32,10 @@ The inventory is a source, metadata and automated-check audit. It does not certi
 
 ## First refinement
 
-[Tongue rescue report](reviews/2026-11-14-tongue-rescue.md): the three-character rescue now announces Grab immediately. Live-script tests pass and all seeded battle summaries match the original. Browser visual verification is outstanding because Chromium cannot launch in this environment. The implementation is delivered as a draft, not a merged or visually approved change.
+[Tongue rescue report](reviews/2026-11-14-tongue-rescue.md): the three-character rescue now announces Grab immediately. Live-script tests pass and all seeded battle summaries match the original. Browser visual verification is outstanding because Chromium cannot launch in this environment. PR22 was verified merged on 2026-11-15. This does not establish a visual pass.
 
 Daily refinement is scheduled for around 10 AM America/New_York, beginning 2026-11-15. [Initial draft PR](https://github.com/dann3wman/JRPG-Ito/pull/22).
+
+## 2026-11-15 refinement
+
+B002 updates the Grab warning to up to 1 or 2 highest-Stress allies at execution, including an impending half-HP phase transition. [Review](reviews/2026-11-15-tongue-grab-count.md). Seven actionable tasks remain; next is B003, Tide-Widow fight length. Two larger tasks remain blocked.

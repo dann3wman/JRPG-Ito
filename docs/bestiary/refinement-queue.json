@@ -5,9 +5,9 @@
   "default_branch_at_audit": "ccr-d8829a5a-ays4x1",
   "source_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
   "created_at": "2026-11-14",
-  "updated_at": "2026-11-14",
+  "updated_at": "2026-11-15",
   "generation": 1,
-  "revision": 3,
+  "revision": 4,
   "tracker_path": "docs/bestiary/refinement-queue.json",
   "initial_branch": "bestiary/2026-11-14-tongue-rescue-telegraph",
   "selection_policy": "Confirmed correctness/readability defects first, then measured encounter problems, existing asset integration, canon alignment, and evidence-led visual review. Prefer one feasible entry per run; notices alone are not proven defects.",
@@ -44,7 +44,7 @@
       "entry": "The Tongue (licker / tongue2)",
       "category": "enemy_ai",
       "title": "Reveal Grab immediately after a three-character rescue",
-      "status": "implemented_pending_visual_review",
+      "status": "merged_pending_visual_review",
       "evidence": [
         "index.html: releaseAll clears captives but leaves the holding-only plan intact. Reproduced: Next: Savour after rescue, then Grab executes.",
         "Both phases and both holding actions affected; no open bestiary PR duplicates this."
@@ -63,13 +63,14 @@
         "regression": "passed: four phase/action combinations",
         "simulations": "900 before and 900 after; all seeded summaries identical",
         "browser": "blocked: Chromium socket() Operation not permitted",
-        "remaining": "Browser visual verification before ready-for-review promotion; no merge performed."
+        "remaining": "PR22 is merged. Prior visual acceptance remains unverified; merge is not evidence of visual validation."
       },
       "delivery": {
         "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/22",
         "implementation_commit": "d2c597072aca7aba2a49548f6357e699ee0b70da",
-        "state": "draft",
-        "merged": false
+        "state": "closed",
+        "merged": true,
+        "merge_commit": "5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf"
       }
     },
     {
@@ -78,7 +79,7 @@
       "entry": "The Tongue (licker / tongue2)",
       "category": "enemy_ai",
       "title": "Show the phase-two Grab target count in its live telegraph",
-      "status": "pending",
+      "status": "implemented_pending_visual_review",
       "evidence": [
         "index.html: planText uses LATE_TEXT.hungry, always singular; licker.skills.grab.run takes two targets in phase p2.",
         "docs/bosses/tongue2.md and design-doc.md Ch.20 explicitly require two captives at half HP."
@@ -88,7 +89,15 @@
         "Keep targets late-bound and ignore Provoke.",
         "Cover phase change, equal-Stress ties and fewer than two available allies; no new attack or timing rule."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "implemented_at": "2026-11-15",
+      "branch": "bestiary/2026-11-15-tongue-grab-count",
+      "review": "docs/bestiary/reviews/2026-11-15-tongue-grab-count.md",
+      "validation": {
+        "regression": "Seven targeting cases plus unchanged other-plan fallback; prior four rescue cases pass.",
+        "browser": "Chromium launch fails: socket() Operation not permitted.",
+        "remaining": "Browser visual check of longer warning and narrow-screen layout."
+      }
     },
     {
       "id": "B003",
@@ -251,5 +260,19 @@
       ],
       "depends_on": []
     }
+  ],
+  "last_run_source_commit": "5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf",
+  "last_run_open_prs_checked": [
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    23,
+    24,
+    25
   ]
 }

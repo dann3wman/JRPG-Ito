@@ -2872,6 +2872,7 @@ const SCRIPTS = {
             {label:'Otherwise', skill:'grab'} ],
     skills:{
       grab:{name:'Grab', rank:3, tags:['Physical','Stress'], target:'hungry', late:true, noProvoke:true, power:'0.6× ATK',
+        lateText:e=>`up to ${phaseOf(e)==='p2' ? '2 allies' : '1 ally'} with the most Stress when it acts`,
         desc:'Takes the ally with the most Stress (in phase 2, the two with the most) out of the turn order. They are KO\'d after 3 of its turns unless 3 different characters hit it.',
         run:(e,t)=>{ e.tasted = new Set(); const ts = targetsForFoes().sort((a,b)=>b.stress-a.stress).slice(0, p2(e) ? 2 : 1); if (!ts.includes(t)) ts[0] = t;
           ts.forEach(x=>{ hitParty(x, e.atk*.6, {src:e}); if (x.alive) grabOne(e, x); }); }},
@@ -2978,7 +2979,7 @@ function planText(e){
   if (SCRIPTS[e.key].planText) return 'Next: ' + SCRIPTS[e.key].planText(e);
   if (!e.plan) return '';
   const sk = SCRIPTS[e.key].skills[e.plan.skill];
-  const who = sk.late ? ` → ${LATE_TEXT[sk.target]}` : (e.plan.target ? ` → ${e.plan.target.name}` : (sk.target==='all' ? ' → all' : ''));
+  const who = sk.late ? ` → ${sk.lateText ? sk.lateText(e) : LATE_TEXT[sk.target]}` : (e.plan.target ? ` → ${e.plan.target.name}` : (sk.target==='all' ? ' → all' : ''));
   return `Next: ${sk.name}${who}`;
 }
 function spawnPart(parent, key, ct){
