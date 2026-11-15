@@ -2,7 +2,7 @@
 
 B002, 2026-11-15. Source default head: `5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf`. Branch: `bestiary/2026-11-15-tongue-grab-count`.
 
-The current queue is generation 1, revision 4. PR22 is merged; its prior visual check is still unverified. Open PRs 14–21 and 23–25 cover party art/specification/animation work and do not duplicate B002. No unrelated unmerged code was imported.
+The current queue is generation 1, revision 5. PR22 is merged; its prior visual check is still unverified. Open PRs 14–21 and 23–25 cover party art/specification/animation work and do not duplicate B002. No unrelated unmerged code was imported.
 
 ## Result
 
@@ -25,3 +25,7 @@ For an action whose target count changes at an HP threshold, derive the warning 
 Seven actionable pending tasks remain. B003 is next: measure and shorten Tide-Widow's overlong fight while preserving its Stress lesson. B010 and B011 remain blocked by design/engine dependencies. B009 remains separate: swallow-turn replanning is not changed here.
 
 Repository validation: `tools/check.sh` passed, including data integrity, generated reference freshness, both Tongue regressions, 22-rig/88-clip continuity and six-rig battle parity, authoring checks and five battles per each of 37 encounters. The two existing design drift warnings and attachment-review notices remain. `git diff --check` passed. No balance retuning or baseline regeneration was needed for this display-only change.
+
+## Delivery
+
+[Draft PR26](https://github.com/dann3wman/JRPG-Ito/pull/26), implementation commit `3e481d325a512f6cea675ebe913a83a5ebec9a04`. No merge or auto-merge.
