@@ -1,0 +1,651 @@
+{
+  "action": "Tetsugi: Chakra",
+  "version": 1,
+  "duration_ms": 3600,
+  "fps": 60,
+  "loop": false,
+  "terminal": "effects hidden; actor at original guard",
+  "scene": {
+    "native": [
+      384,
+      216
+    ],
+    "output": [
+      1536,
+      864
+    ],
+    "origin": "top-left",
+    "baseline": 180,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      375,
+      207
+    ],
+    "actor_feet": [
+      236,
+      180
+    ],
+    "effect_pivot": [
+      236,
+      140
+    ],
+    "facing": "left"
+  },
+  "atlases": {
+    "tetsugi-breath": {
+      "file": "tetsugi-breath.v01.png",
+      "size": [
+        384,
+        192
+      ],
+      "cell": [
+        96,
+        96
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        87,
+        87
+      ],
+      "palette": [
+        "#CEB499",
+        "#CBAA8C",
+        "#C8A587",
+        "#BC9C81",
+        "#A3856A",
+        "#9B7F63",
+        "#967D62",
+        "#94785E",
+        "#916D56",
+        "#7B6756",
+        "#785443",
+        "#594C40",
+        "#5A4437",
+        "#4C423A",
+        "#4E382E",
+        "#3E3630",
+        "#362E29",
+        "#2C2522",
+        "#251F1D",
+        "#201D1C",
+        "#1E1B1A",
+        "#1C1818",
+        "#1A1717",
+        "#171514"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "TC01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            87
+          ],
+          "bounds_exclusive": [
+            34,
+            21,
+            63,
+            87
+          ]
+        },
+        {
+          "id": "TC02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            87
+          ],
+          "bounds_exclusive": [
+            34,
+            22,
+            64,
+            87
+          ]
+        },
+        {
+          "id": "TC03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            87
+          ],
+          "bounds_exclusive": [
+            32,
+            21,
+            64,
+            87
+          ]
+        },
+        {
+          "id": "TC04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            288,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            87
+          ],
+          "bounds_exclusive": [
+            26,
+            21,
+            62,
+            87
+          ]
+        },
+        {
+          "id": "TC05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            87
+          ],
+          "bounds_exclusive": [
+            32,
+            21,
+            63,
+            87
+          ]
+        },
+        {
+          "id": "TC06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            87
+          ],
+          "bounds_exclusive": [
+            29,
+            21,
+            64,
+            87
+          ]
+        },
+        {
+          "id": "TC07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            87
+          ],
+          "bounds_exclusive": [
+            31,
+            21,
+            63,
+            87
+          ]
+        },
+        {
+          "id": "TC08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            288,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            87
+          ],
+          "bounds_exclusive": [
+            33,
+            21,
+            63,
+            87
+          ]
+        }
+      ]
+    },
+    "chakra-feathers": {
+      "file": "chakra-feathers.v01.png",
+      "size": [
+        512,
+        256
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        119,
+        119
+      ],
+      "palette": [
+        "#F3EADC",
+        "#E9DCCB",
+        "#DECEBC",
+        "#D1C0AD",
+        "#C3B19E",
+        "#B4A291",
+        "#A59284",
+        "#948477",
+        "#877469",
+        "#786A61",
+        "#6C6059",
+        "#635650",
+        "#594B45",
+        "#503C35",
+        "#3B322F",
+        "#2B2220"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "CF01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            47,
+            89,
+            81,
+            101
+          ]
+        },
+        {
+          "id": "CF02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            31,
+            54,
+            97,
+            103
+          ]
+        },
+        {
+          "id": "CF03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            28,
+            37,
+            99,
+            106
+          ]
+        },
+        {
+          "id": "CF04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            27,
+            25,
+            98,
+            110
+          ]
+        },
+        {
+          "id": "CF05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            36,
+            27,
+            90,
+            105
+          ]
+        },
+        {
+          "id": "CF06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            29,
+            31,
+            96,
+            97
+          ]
+        },
+        {
+          "id": "CF07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            36,
+            28,
+            85,
+            96
+          ]
+        },
+        {
+          "id": "CF08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            47,
+            42,
+            75,
+            84
+          ]
+        }
+      ]
+    }
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 240
+    },
+    {
+      "frame": 1,
+      "ms": 200
+    },
+    {
+      "frame": 2,
+      "ms": 200
+    },
+    {
+      "frame": 3,
+      "ms": 600
+    },
+    {
+      "frame": 4,
+      "ms": 480
+    },
+    {
+      "frame": 5,
+      "ms": 240
+    },
+    {
+      "frame": 6,
+      "ms": 200
+    },
+    {
+      "frame": 7,
+      "ms": 200
+    },
+    {
+      "frame": 0,
+      "ms": 1240
+    }
+  ],
+  "effect_track": [
+    {
+      "frame": 0,
+      "ms": 160
+    },
+    {
+      "frame": 1,
+      "ms": 160
+    },
+    {
+      "frame": 2,
+      "ms": 200
+    },
+    {
+      "frame": 3,
+      "ms": 440
+    },
+    {
+      "frame": 4,
+      "ms": 200
+    },
+    {
+      "frame": 5,
+      "ms": 200
+    },
+    {
+      "frame": 6,
+      "ms": 240
+    },
+    {
+      "frame": 7,
+      "ms": 240
+    }
+  ],
+  "effect_start_ms": 640,
+  "effect_hide_ms": 2480,
+  "cues": [
+    {
+      "name": "gather",
+      "ms": 640
+    },
+    {
+      "name": "heal",
+      "ms": 1600
+    },
+    {
+      "name": "effect_clear",
+      "ms": 2480
+    },
+    {
+      "name": "action_complete",
+      "ms": 3600
+    }
+  ],
+  "gameplay_events": "One visual self-heal cue. No HP/Stress mutation; existing Chakra rules unchanged.",
+  "motion": {
+    "caster": "fixed feet; eight drawn keys, nine exposures; no runtime actor transform",
+    "effect_y_keys": [
+      [
+        0,
+        140
+      ],
+      [
+        1600,
+        140
+      ],
+      [
+        1840,
+        138
+      ],
+      [
+        2240,
+        126
+      ],
+      [
+        2480,
+        120
+      ],
+      [
+        3600,
+        120
+      ]
+    ],
+    "interpolation": "smoothstep, round native pixel coordinates"
+  },
+  "layers": [
+    {
+      "name": "background",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": "opaque",
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "rear light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "source-over",
+      "filter": "linear",
+      "preview_scale": 2
+    },
+    {
+      "name": "rear feathers, actor, front feathers",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "foreground healing light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "screen",
+      "filter": "linear",
+      "preview_scale": 2
+    }
+  ],
+  "status": {
+    "specified": true,
+    "generated_built": true,
+    "exported": true,
+    "technically_checked": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  }
+}
