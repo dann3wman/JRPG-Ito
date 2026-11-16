@@ -58,6 +58,10 @@ Answer as a designer: the verdict, the precedent behind it, and the trade-off. B
 
 Newest first. Each entry: the fight, what the numbers or a playtest showed, the cause, what changed (exact values), and the rule it suggests.
 
+### 2026-11-16 · Tide-Widow pacing draft
+
+- **An HP cut can erase the lesson before it fixes the slog.** Fresh 300-run Helper results: 3200 HP gave 83.63 commands and 1.64 Afflicted; HP-only 2300 gave 59.17 and 0.16. Testing stronger phase-two Lullaby separately restored some pressure. The review candidate uses 2225 HP and +28 phase-two Stress (phase 1 remains +14): 59.76 commands, 0.62 Afflicted, 100% Helper wins. Attack-only is 27%, above the 25% target; browser play is blocked. Keep it a draft. Preserve those failed trials and the faster viable no-Natsu route in the review. Check multiple policies before accepting a shorter fight, and do not call near-target simulation numbers playtest approval.
+
 ### 2026-10-25 · Building the ten Disc 2 chapter bosses
 
 - **"Same round" needs a wide round.** *Seen:* the Hundred Listeners at 25%: coffins reopened before a second ally could seal them. *Cause:* the Abbot's turn came about one party action after the knock. *Changed:* Abbot Speed 9 → 7 and Rank 4 actions, Listeners Speed 11 → 9. → 97%. The Tongue's three tastes had the same problem inside its 3-turn countdown: Speed 11 → 9, Rank 4 Lick and Savour, 65% → 89%. *Rule:* for any "in the same round" or "within N of its turns" mechanic, check that two to three party actions fit in the window at the real Speeds.

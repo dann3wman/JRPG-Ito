@@ -124,7 +124,7 @@ Sim columns come from `tools/battle-sim/baseline.json`: the in-game Helper playi
 | tongue2 | The Ear · The Tongue | 23 | 25 | Kiri, Natsu, Hisui | The Tongue | 89% | 34 | 0.0 |
 | congregation | The Ruins of Lumen · The Congregation | 24 | 25 | Hisui, Natsu, Kiri | The Congregation | 99% | 61 | 3.1 |
 | taste | The Tongue's Surface · Taste of Ostrel | 25 | 20 | Kuro, Sayo, Kiri | Taste of Ostrel, Sleeper, Sleeper, Sleeper, Sleeper | 100% | 37 | 0.0 |
-| widow | Port of Vesk · Tide-Widow | 8 | 20 | Kiri, Natsu, Tetsugi | Tide-Widow | 100% | 84 | 1.6 |
+| widow | Port of Vesk · Tide-Widow | 8 | 20 | Kiri, Natsu, Tetsugi | Tide-Widow | 100% | 60 | 0.6 |
 | ruri2 | Moogle Market · Ruri ×2 | 14 | 15 | Miren, Hisui, Kuro | Ruri, Ruri | 100% | 45 | 0.6 |
 | orlen | Lumen · Orlen and the Great Organ | 22 | 45 | Kuro, Sayo, Natsu | Archbishop Orlen, Great Organ | 100% | 64 | 4.5 |
 | final | The Hellstar · Final battle | 32 | 90 | Kiri, Natsu, Kugai | Ainsel, the Unwound, The Hellstar, Hellstar Tongue | 100% | 103 | 7.1 |
@@ -183,7 +183,7 @@ Sim columns come from `tools/battle-sim/baseline.json`: the in-game Helper playi
 
 | Foe | Key | HP | ATK | DEF | MDEF | Speed | Tick | Crit | Part of | Ito source |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Tide-Widow | widow | 3200 | 105 | 7 | 6 | 11 | 19 | 10% | — | The Thing That Drifted Ashore |
+| Tide-Widow | widow | 2225 | 105 | 7 | 6 | 11 | 19 | 10% | — | The Thing That Drifted Ashore |
 | Drowned Sailor | sailor | 390 | 45 | 4 | 4 | 9 | 21 | 10% | Tide-Widow | Gyo |
 | Archbishop Orlen | orlen | 3550 | 115 | 15 | 18 | 10 | 20 | 10% | — | Honored Ancestors |
 | Great Organ | organ | 2370 | 65 | 21 | 9 | 13 | 17 | 10% | Archbishop Orlen | The Human Chair |
@@ -235,7 +235,7 @@ Each enemy runs a priority list: on planning, the first rule that holds picks th
 
 ### Tide-Widow (`widow`)
 
-Phases: **p1** Above 50% HP; **p2** 50% HP or below (enters with Release).
+Phases: **p1** Above 50% HP; **p2** 50% HP or below: Lullaby +28 Stress (enters with Release).
 Parts: Drowned Sailor, re-forms 3 turns after defeat.
 
 1. Phase 1: roll Lullaby 25%, Undertow 25%, Attack 50%
@@ -245,7 +245,7 @@ Parts: Drowned Sailor, re-forms 3 turns after defeat.
 | --- | --- | --- | --- | --- | --- |
 | Attack | 3 | Physical | Random ally | 1.4× ATK | 15% crit chance. |
 | Undertow | 4 | Physical, Delay | Ally whose turn comes next | 0.6× ATK | Pushes the ally about to act back 3 slots (+12 Stress). |
-| Lullaby | 5 | Sound, Stress | All allies | — | +14 Stress to each ally. +6 Danger. |
+| Lullaby | 5 | Sound, Stress | All allies | — | +14 Stress to each ally (28 in phase 2). +6 Danger. |
 | Release | 4 | Summon, Phase | — | — | Phase 2 entry. 2 Drowned Sailors crawl out of her body. Each re-forms 3 of her turns after it is defeated. |
 
 - Undertow picks its target when it acts, not when it plans, so the turn order you choose decides who it hits.

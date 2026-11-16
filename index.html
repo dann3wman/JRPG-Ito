@@ -1409,7 +1409,7 @@ const INSP = {
   Reraise: 'Revives once at 25% HP if KO\'d.',
 };
 const FOES = {
-  widow:  { name:'Tide-Widow',      hp:3200, atk:105, def:7,  mdef:6,  agi:11, art:'widow',  ai:'script' },
+  widow:  { name:'Tide-Widow',      hp:2225, atk:105, def:7,  mdef:6,  agi:11, art:'widow',  ai:'script' },
   sailor: { name:'Drowned Sailor',  hp:390,  atk:45, def:4,  mdef:4,  agi:9,  art:'sailor', ai:'script', parentKey:'widow' },
   orlen:  { name:'Archbishop Orlen',hp:3550, atk:115, def:15, mdef:18, agi:10, art:'orlen',  ai:'script' },
   organ:  { name:'Great Organ',     hp:2370, atk:65, def:21, mdef:9,  agi:13, art:'organ',  ai:'script', parentKey:'orlen' },
@@ -2355,7 +2355,7 @@ const notFocus = e => e.key==='sleeper' || e.key==='mirenslot' || (e.key==='list
 const SCRIPTS = {
   widow:{
     phases:[ {id:'p1', label:'Above 50% HP'},
-             {id:'p2', label:'50% HP or below', when:e=>e.hp<=e.maxhp/2, enter:'release'} ],
+             {id:'p2', label:'50% HP or below: Lullaby +28 Stress', when:e=>e.hp<=e.maxhp/2, enter:'release'} ],
     parts:[ {key:'sailor', respawn:3, label:'Drowned Sailor ×2 (from Release)'} ],
     rules:[ {phase:'p1', label:'Phase 1', roll:[[25,'lullaby'],[25,'undertow'],[50,'attack']]},
             {phase:'p2', label:'Phase 2', roll:[[20,'lullaby'],[45,'undertow'],[35,'attack']]} ],
@@ -2363,8 +2363,8 @@ const SCRIPTS = {
       attack:{name:'Attack', rank:3, tags:['Physical'], target:'random', power:'1.4× ATK', desc:'15% crit chance.', run:(e,t)=>hitParty(t, e.atk*1.4, {crit:Math.random()<.15, src:e})},
       undertow:{name:'Undertow', rank:4, tags:['Physical','Delay'], target:'next', late:true, power:'0.6× ATK', desc:'Pushes the ally about to act back 3 slots (+12 Stress).',
         run:(e,t)=>{ const b = t.blink; hitParty(t, e.atk*.6, {src:e}); if (t.alive && !b) delayUnit(t, 3); }},
-      lullaby:{name:'Lullaby', rank:5, tags:['Sound','Stress'], sound:true, target:'all', power:'—', desc:'+14 Stress to each ally. +6 Danger.',
-        run:()=>{ targetsForFoes().forEach(t=>addStress(t, 14, 'Lullaby', {sound:true})); addHum(6); }},
+      lullaby:{name:'Lullaby', rank:5, tags:['Sound','Stress'], sound:true, target:'all', power:'—', desc:'+14 Stress to each ally (28 in phase 2). +6 Danger.',
+        run:e=>{ targetsForFoes().forEach(t=>addStress(t, e.phase==='p2' ? 28 : 14, 'Lullaby', {sound:true})); addHum(6); }},
       release:{name:'Release', rank:4, tags:['Summon','Phase'], target:'none', power:'—', desc:'Phase 2 entry. 2 Drowned Sailors crawl out of her body. Each re-forms 3 of her turns after it is defeated.',
         run:e=>{ for (let i=0;i<2;i++) spawnPart(e, 'sailor', SLOT*(2+i*2)); }} } },
   sailor:{

@@ -5,9 +5,9 @@
   "default_branch_at_audit": "ccr-d8829a5a-ays4x1",
   "source_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
   "created_at": "2026-11-14",
-  "updated_at": "2026-11-14",
+  "updated_at": "2026-11-16",
   "generation": 1,
-  "revision": 3,
+  "revision": 6,
   "tracker_path": "docs/bestiary/refinement-queue.json",
   "initial_branch": "bestiary/2026-11-14-tongue-rescue-telegraph",
   "selection_policy": "Confirmed correctness/readability defects first, then measured encounter problems, existing asset integration, canon alignment, and evidence-led visual review. Prefer one feasible entry per run; notices alone are not proven defects.",
@@ -44,7 +44,7 @@
       "entry": "The Tongue (licker / tongue2)",
       "category": "enemy_ai",
       "title": "Reveal Grab immediately after a three-character rescue",
-      "status": "implemented_pending_visual_review",
+      "status": "merged_pending_visual_review",
       "evidence": [
         "index.html: releaseAll clears captives but leaves the holding-only plan intact. Reproduced: Next: Savour after rescue, then Grab executes.",
         "Both phases and both holding actions affected; no open bestiary PR duplicates this."
@@ -63,13 +63,14 @@
         "regression": "passed: four phase/action combinations",
         "simulations": "900 before and 900 after; all seeded summaries identical",
         "browser": "blocked: Chromium socket() Operation not permitted",
-        "remaining": "Browser visual verification before ready-for-review promotion; no merge performed."
+        "remaining": "PR22 is merged. Prior visual acceptance remains unverified; merge is not evidence of visual validation."
       },
       "delivery": {
         "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/22",
         "implementation_commit": "d2c597072aca7aba2a49548f6357e699ee0b70da",
-        "state": "draft",
-        "merged": false
+        "state": "closed",
+        "merged": true,
+        "merge_commit": "5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf"
       }
     },
     {
@@ -78,7 +79,7 @@
       "entry": "The Tongue (licker / tongue2)",
       "category": "enemy_ai",
       "title": "Show the phase-two Grab target count in its live telegraph",
-      "status": "pending",
+      "status": "implemented_pending_visual_review",
       "evidence": [
         "index.html: planText uses LATE_TEXT.hungry, always singular; licker.skills.grab.run takes two targets in phase p2.",
         "docs/bosses/tongue2.md and design-doc.md Ch.20 explicitly require two captives at half HP."
@@ -88,7 +89,21 @@
         "Keep targets late-bound and ignore Provoke.",
         "Cover phase change, equal-Stress ties and fewer than two available allies; no new attack or timing rule."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "implemented_at": "2026-11-15",
+      "branch": "bestiary/2026-11-15-tongue-grab-count",
+      "review": "docs/bestiary/reviews/2026-11-15-tongue-grab-count.md",
+      "validation": {
+        "regression": "Seven targeting cases plus unchanged other-plan fallback; prior four rescue cases pass.",
+        "browser": "Chromium launch fails: socket() Operation not permitted.",
+        "remaining": "Browser visual check of longer warning and narrow-screen layout."
+      },
+      "delivery": {
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/26",
+        "implementation_commit": "3e481d325a512f6cea675ebe913a83a5ebec9a04",
+        "state": "draft",
+        "merged": false
+      }
     },
     {
       "id": "B003",
@@ -96,7 +111,7 @@
       "entry": "Tide-Widow",
       "category": "enemy_ai",
       "title": "Shorten the overlong chapter-five fight while preserving its Stress lesson",
-      "status": "pending",
+      "status": "implemented_pending_balance_and_visual_review",
       "evidence": [
         "docs/bosses/widow.md reports 84 winning commands against the Disc 1 ceiling of 60.",
         "FOES.widow has 3200 HP; the spec identifies HP as the first tuning lever."
@@ -106,7 +121,18 @@
         "Change one lever, prioritising HP; target 25-60 winning commands, advisor >=90%, attack <=25%, and nontrivial Stress.",
         "Keep a viable fallback, record tradeoffs, update spec/status/reference and 200-run baseline; browser-play the result."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "implemented_at": "2026-11-16",
+      "branch": "bestiary/2026-11-16-widow-pacing",
+      "review": "docs/bestiary/reviews/2026-11-16-widow-pacing.md",
+      "validation": {
+        "simulations": "300 before and after per advisor/attack/random/fallback. Advisor 100%, 59.76 commands, 0.623 Afflicted; attack 27%; fallback 100%.",
+        "regression": "Live phase, sound counterplay, late Undertow/Blink, Release and respawn checks pass.",
+        "browser": "blocked: Chromium socket() Operation not permitted",
+        "remaining": "Review attack 27% vs <=25% goal, lower-than-prior-spec Afflicted, and browser Helper play/phase warning.",
+        "holdout": "Attack seed 1001: 23.67%, 300 runs; combined with seed 1: 25.33%, 600 runs. Borderline, not fully balance-approved."
+      },
+      "acceptance_resolution": "HP-only 2300 reached 59.17 commands but 0.163 Afflicted. Took the existing spec proposal to strengthen phase-two Stress as a second lever. Final 2225 HP/+28 phase-two Lullaby is delivered for review, not fully accepted."
     },
     {
       "id": "B004",
@@ -251,5 +277,31 @@
       ],
       "depends_on": []
     }
-  ]
+  ],
+  "last_run_source_commit": "5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf",
+  "last_run_open_prs_checked": [
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "reconciliation": {
+    "default_generation": 1,
+    "default_revision": 3,
+    "tracker_source_pr": 26,
+    "tracker_source_commit": "5b092018156124abd7737168726ee1fa381a2ba9",
+    "tracker_generation": 1,
+    "tracker_revision": 5,
+    "resolution": "Preserve newest unmerged tracker state. B001 merged but visually unverified; B002 delivered in draft PR26. Import tracker only, no unrelated code."
+  }
 }

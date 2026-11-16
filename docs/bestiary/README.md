@@ -6,9 +6,9 @@ Confirmed rule/readability defects come first, followed by measured encounter pr
 
 | Order | Entry | Task | Status |
 | --- | --- | --- | --- |
-| 1 | The Tongue (licker / tongue2) | Reveal Grab immediately after a three-character rescue | implemented pending visual review |
-| 2 | The Tongue (licker / tongue2) | Show the phase-two Grab target count in its live telegraph | pending |
-| 3 | Tide-Widow | Shorten the overlong chapter-five fight while preserving its Stress lesson | pending |
+| 1 | The Tongue (licker / tongue2) | Reveal Grab immediately after a three-character rescue | merged; visual review pending |
+| 2 | The Tongue (licker / tongue2) | Show the phase-two Grab target count in its live telegraph | implemented; visual review pending (PR26) |
+| 3 | Tide-Widow | Shorten the overlong chapter-five fight while preserving its Stress lesson | implemented; balance and visual review pending |
 | 4 | Lamp Hollow | Connect the existing Lamp Hollow rig to its battle entry | pending |
 | 5 | The Grey Hound | Connect the existing Grey Hound rig to its battle entry | pending |
 | 6 | Lake Hen | Connect Lake Hen surfacing and diving to the battle state | pending |
@@ -32,6 +32,14 @@ The inventory is a source, metadata and automated-check audit. It does not certi
 
 ## First refinement
 
-[Tongue rescue report](reviews/2026-11-14-tongue-rescue.md): the three-character rescue now announces Grab immediately. Live-script tests pass and all seeded battle summaries match the original. Browser visual verification is outstanding because Chromium cannot launch in this environment. The implementation is delivered as a draft, not a merged or visually approved change.
+[Tongue rescue report](reviews/2026-11-14-tongue-rescue.md): the three-character rescue now announces Grab immediately. Live-script tests pass and all seeded battle summaries match the original. Browser visual verification is outstanding because Chromium cannot launch in this environment. PR22 is now merged. Merge did not supply the missing browser visual acceptance.
 
-Daily refinement is scheduled for around 10 AM America/New_York, beginning 2026-11-15. [Initial draft PR](https://github.com/dann3wman/JRPG-Ito/pull/22).
+Daily refinement is scheduled for around 10 AM America/New_York, beginning 2026-11-15. [Initial PR](https://github.com/dann3wman/JRPG-Ito/pull/22).
+
+## Latest reconciliation and delivery
+
+2026-11-16: generation 1, revision 6 (revision 7 adds delivery identifiers). Default branch remains `ccr-d8829a5a-ays4x1` at `5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf`. Its queue revision 3 is older than unmerged PR26 revision 5. The newest task history is preserved here without copying PR26's Tongue code. [B002 and its review remain in PR26](https://github.com/dann3wman/JRPG-Ito/pull/26); do not reimplement it.
+
+[B003 Tide-Widow report](reviews/2026-11-16-widow-pacing.md): HP 3200 → 2225, phase-two Lullaby +14 → +28 Stress, and clearer phase/Scan text. Helper commands drop from 83.63 to 59.76, with 0.62 Afflicted and 100% wins. Attack-only 27% is above the 25% goal; balance and browser acceptance remain open. The implementation is a review draft, not completed acceptance.
+
+Six actionable pending tasks remain, B004–B009. Next: B004 Lamp Hollow battle rig integration. The original inventory counts above are dated audit results, not a new full audit. Open PRs 14–21 and 23–28 were checked for overlap during this run. B010/B011 remain blocked with reasons in the tracker.
