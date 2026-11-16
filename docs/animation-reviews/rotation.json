@@ -1047,9 +1047,1089 @@
       "github": {
         "branch": "animation-review/2026-11-10-kiri-idle-sword",
         "base_commit": "095f4fc80c206c1321a5435a45434ff9c50dce14",
-        "publication_record": "https://chatgpt.com/library?file_id=libfile_e3bd1f9d5db0819185bc1c703e5bf682&account_id=personal"
+        "publication_record": "https://chatgpt.com/library?file_id=libfile_e3bd1f9d5db0819185bc1c703e5bf682&account_id=personal",
+        "commit_sha": "95e2380f70827f05c684c54cbab0661ac389952a",
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/12",
+        "pr_number": 12,
+        "draft": true,
+        "published": true,
+        "publication_method": "Connected GitHub API; Git CLI push lacked authentication. Remote tree equals inspected local tree.",
+        "tree_sha": "ca1b7b3ba0c9d6128f137311db0ff24c1f863400",
+        "merged_observed_2026_11_11": true
       },
       "next_selection": "Prefer another unreviewed character. Do not repeat this idle fix or count this partial review as a pass. Inspect this draft PR before future selection."
+    },
+    {
+      "review_date_local": "2026-11-11",
+      "character": "Natsu",
+      "source": {
+        "repository": "dann3wman/JRPG-Ito",
+        "base_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
+        "path": "tools/party-sprite-viewer/natsu.sheet.webp",
+        "git_blob": "8bf35a466676b886cb2bda4dfe8ff4bc49a8096b",
+        "sha256": "e197fe9e36c96f4e408b64ac2d1fc2f22b57b0399521e2c11341acb9c962a072"
+      },
+      "sequences": [
+        "idle",
+        "ready",
+        "defend",
+        "advance",
+        "attack",
+        "attackB",
+        "chant",
+        "cast",
+        "item",
+        "hurt",
+        "lowhp",
+        "special",
+        "limit",
+        "victory",
+        "zombie",
+        "ko",
+        "sleep",
+        "paralyze",
+        "confuse",
+        "berserk",
+        "walkDown",
+        "walkUp",
+        "walkSide",
+        "shock",
+        "downcast",
+        "listen"
+      ],
+      "selection_reason": "Unreviewed installed96px atlas with confirmed idle defect; previous character Kiri. Other source versions and prior partial reviews preserved.",
+      "output_version": "installed-idle-v02",
+      "status": "partial_registration_fix_live_playback_blocked",
+      "defects": [
+        "Idle2 and idle3 displaced six pixels left during stationary breathing"
+      ],
+      "changes": [
+        {
+          "frames": [
+            "idle2",
+            "idle3"
+          ],
+          "translation_xy": [
+            6,
+            0
+          ],
+          "rgba_pixels_changed": 7128,
+          "drawing": "exact translation; no redrawn pixels"
+        }
+      ],
+      "validation": {
+        "other_52_cells_exact_rgba": true,
+        "geometry_576x864_cells96_grid6x9": true,
+        "binary_alpha": true,
+        "no_new_colors": true,
+        "opaque_palette_colors": 81813,
+        "png_webp_visible_pixels_identical": true,
+        "all_cells_have_transparent_padding": true,
+        "frame_bounds": [
+          {
+            "frame": "idle1",
+            "xyxy": [
+              25,
+              20,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "idle2",
+            "xyxy": [
+              25,
+              20,
+              73,
+              88
+            ]
+          },
+          {
+            "frame": "idle3",
+            "xyxy": [
+              26,
+              21,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "ready1",
+            "xyxy": [
+              16,
+              20,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "ready2",
+            "xyxy": [
+              20,
+              22,
+              69,
+              88
+            ]
+          },
+          {
+            "frame": "defend",
+            "xyxy": [
+              17,
+              22,
+              65,
+              88
+            ]
+          },
+          {
+            "frame": "attack1",
+            "xyxy": [
+              16,
+              22,
+              70,
+              88
+            ]
+          },
+          {
+            "frame": "attack2",
+            "xyxy": [
+              13,
+              24,
+              77,
+              88
+            ]
+          },
+          {
+            "frame": "attack3",
+            "xyxy": [
+              9,
+              24,
+              85,
+              88
+            ]
+          },
+          {
+            "frame": "attackB1",
+            "xyxy": [
+              14,
+              20,
+              65,
+              88
+            ]
+          },
+          {
+            "frame": "attackB2",
+            "xyxy": [
+              9,
+              27,
+              78,
+              88
+            ]
+          },
+          {
+            "frame": "attackB3",
+            "xyxy": [
+              8,
+              28,
+              79,
+              88
+            ]
+          },
+          {
+            "frame": "advance1",
+            "xyxy": [
+              20,
+              19,
+              70,
+              88
+            ]
+          },
+          {
+            "frame": "advance2",
+            "xyxy": [
+              19,
+              21,
+              67,
+              88
+            ]
+          },
+          {
+            "frame": "chant1",
+            "xyxy": [
+              21,
+              19,
+              67,
+              88
+            ]
+          },
+          {
+            "frame": "chant2",
+            "xyxy": [
+              16,
+              17,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "cast1",
+            "xyxy": [
+              10,
+              23,
+              81,
+              88
+            ]
+          },
+          {
+            "frame": "cast2",
+            "xyxy": [
+              18,
+              22,
+              62,
+              88
+            ]
+          },
+          {
+            "frame": "item1",
+            "xyxy": [
+              15,
+              21,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "item2",
+            "xyxy": [
+              10,
+              22,
+              86,
+              88
+            ]
+          },
+          {
+            "frame": "hurt1",
+            "xyxy": [
+              10,
+              18,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "hurt2",
+            "xyxy": [
+              15,
+              21,
+              64,
+              88
+            ]
+          },
+          {
+            "frame": "lowhp1",
+            "xyxy": [
+              15,
+              30,
+              76,
+              88
+            ]
+          },
+          {
+            "frame": "lowhp2",
+            "xyxy": [
+              13,
+              29,
+              73,
+              88
+            ]
+          },
+          {
+            "frame": "special1",
+            "xyxy": [
+              22,
+              20,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "special2",
+            "xyxy": [
+              12,
+              22,
+              78,
+              88
+            ]
+          },
+          {
+            "frame": "special3",
+            "xyxy": [
+              9,
+              22,
+              77,
+              88
+            ]
+          },
+          {
+            "frame": "limit1",
+            "xyxy": [
+              12,
+              18,
+              77,
+              88
+            ]
+          },
+          {
+            "frame": "limit2",
+            "xyxy": [
+              9,
+              18,
+              75,
+              88
+            ]
+          },
+          {
+            "frame": "limit3",
+            "xyxy": [
+              7,
+              18,
+              80,
+              88
+            ]
+          },
+          {
+            "frame": "victory1",
+            "xyxy": [
+              18,
+              21,
+              70,
+              88
+            ]
+          },
+          {
+            "frame": "victory2",
+            "xyxy": [
+              16,
+              21,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "victory3",
+            "xyxy": [
+              19,
+              21,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "zombie1",
+            "xyxy": [
+              14,
+              20,
+              67,
+              88
+            ]
+          },
+          {
+            "frame": "zombie2",
+            "xyxy": [
+              14,
+              18,
+              67,
+              88
+            ]
+          },
+          {
+            "frame": "ko",
+            "xyxy": [
+              9,
+              42,
+              87,
+              81
+            ]
+          },
+          {
+            "frame": "sleep1",
+            "xyxy": [
+              16,
+              26,
+              76,
+              88
+            ]
+          },
+          {
+            "frame": "sleep2",
+            "xyxy": [
+              14,
+              27,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "paralyze",
+            "xyxy": [
+              13,
+              20,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "confuse1",
+            "xyxy": [
+              12,
+              26,
+              69,
+              88
+            ]
+          },
+          {
+            "frame": "confuse2",
+            "xyxy": [
+              15,
+              25,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "berserk",
+            "xyxy": [
+              14,
+              23,
+              73,
+              88
+            ]
+          },
+          {
+            "frame": "walkD1",
+            "xyxy": [
+              19,
+              14,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "walkD2",
+            "xyxy": [
+              18,
+              15,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "walkD3",
+            "xyxy": [
+              19,
+              15,
+              67,
+              88
+            ]
+          },
+          {
+            "frame": "walkU1",
+            "xyxy": [
+              18,
+              17,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "walkU2",
+            "xyxy": [
+              17,
+              16,
+              70,
+              88
+            ]
+          },
+          {
+            "frame": "walkU3",
+            "xyxy": [
+              16,
+              16,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "walkS1",
+            "xyxy": [
+              20,
+              15,
+              71,
+              88
+            ]
+          },
+          {
+            "frame": "walkS2",
+            "xyxy": [
+              14,
+              16,
+              70,
+              88
+            ]
+          },
+          {
+            "frame": "walkS3",
+            "xyxy": [
+              15,
+              14,
+              70,
+              88
+            ]
+          },
+          {
+            "frame": "shock",
+            "xyxy": [
+              12,
+              13,
+              77,
+              88
+            ]
+          },
+          {
+            "frame": "downcast",
+            "xyxy": [
+              12,
+              15,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "listen",
+            "xyxy": [
+              16,
+              14,
+              68,
+              88
+            ]
+          }
+        ],
+        "all54_poses_statically_inspected": true,
+        "all26_sequences_exported_normal_and_slow": true,
+        "preview_durations_match": true,
+        "live_playback_inspected": false,
+        "engine_tested": false,
+        "production_approved": false
+      },
+      "repository_checks": "tools/check.sh passed with existing documented warnings",
+      "output_links": {
+        "natsu.sheet.v02.png": "https://chatgpt.com/library?file_id=libfile_70cd0cbe6bac819191c57e218fad0596&account_id=personal",
+        "natsu.sheet.v02.json": "https://chatgpt.com/library?file_id=libfile_73e92dd45e408191b1010328d1a2a8c5&account_id=personal",
+        "natsu.sheet.v02.review-2x.png": "https://chatgpt.com/library?file_id=libfile_18e1ffeb58b08191b7009d42bc2418a6&account_id=personal",
+        "natsu.idle.before-after.normal.gif": "https://chatgpt.com/library?file_id=libfile_6979956e82148191b9ca87e5249e9a0f&account_id=personal",
+        "natsu.idle.before-after.slow.gif": "https://chatgpt.com/library?file_id=libfile_bdbe552868548191b05e1fd95a7dc58e&account_id=personal",
+        "natsu-idle-v02-package.zip": "https://chatgpt.com/library?file_id=libfile_cfd1f7a7f1588191bd8dac97f552fb05&account_id=personal"
+      },
+      "remaining_issues": [
+        "Live playback blocked: Chromium socket() Operation not permitted.",
+        "Original high-colour opaque palette and shaded clusters are not strict 20-colour FFVI pixel art. No new colours or filtering added.",
+        "Pose-to-pose hair/face/volume variation remains. No full professional animation pass claimed.",
+        "Cure choreography, derived status effects and engine transitions require live inspection."
+      ],
+      "github": {
+        "branch": "animation-review/2026-11-11-natsu-idle-registration",
+        "base_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
+        "publication_record": "https://chatgpt.com/library?file_id=libfile_e3bd1f9d5db0819185bc1c703e5bf682&account_id=personal",
+        "commit_sha": "8f3e9c45fa7fc9c8c6c8f3c56240b4b1f77b3d52",
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/14",
+        "draft": true,
+        "published": true
+      },
+      "next_selection": "Prefer a different unreviewed character; inspect this PR before future Natsu work; do not repeat these translations."
+    },
+    {
+      "review_date_utc": "2026-11-12",
+      "character": "Miren",
+      "source": {
+        "library_file_id": "libfile_8ba85fb985d48191abaf9fca5d357e9c",
+        "version": "v02",
+        "atlas_sha256": "9f2737479e35760455f14513c407be767e93aa5f9e95acbcc029fe78d69f168c",
+        "repository_base": "c1840737fef12061165ef6bb553e7bfa166b717b",
+        "authority": "Library motion-study atlas; no matching repository sheet. Costume differs from future repository specification."
+      },
+      "selection_reason": "Least recently reviewed accessible named-character study: Miren Nov 8, Kiri Nov 10, Natsu Nov 11. Open PR14 Natsu preserved; PR15 Hisui is spec only.",
+      "sequences": [
+        "Jump: HOVER,COIL,ASCEND,SUSPEND,DIVE,RECOIL,HOVER"
+      ],
+      "status": "partial_contact_motion_repair_live_playback_blocked",
+      "output_version": "v03 choreography; unchanged v02 sprite pixels",
+      "defects": [
+        "During 80 ms impact hold, fixed spear tip separates up to 5 native pixels from recoiling target/wound.",
+        "Sparse recoil-to-hover art, volume variation, and provisional costume authority remain unresolved."
+      ],
+      "changes": [
+        "Follow target recoil with Miren x anchor during 2140-2220 ms.",
+        "Start recoil at x=133 instead of x=138; retain y, pose order, times and cues.",
+        "All six source cells remain byte-identical; prior MJ02 and incision fixes preserved."
+      ],
+      "validation": {
+        "atlas_sha256": "9f2737479e35760455f14513c407be767e93aa5f9e95acbcc029fe78d69f168c",
+        "atlas_rgba_unchanged": true,
+        "geometry": [
+          192,
+          128,
+          3,
+          2,
+          64,
+          64
+        ],
+        "cell_bounds_xyxy": [
+          [
+            20,
+            18,
+            45,
+            51
+          ],
+          [
+            14,
+            21,
+            48,
+            48
+          ],
+          [
+            16,
+            11,
+            44,
+            51
+          ],
+          [
+            24,
+            16,
+            45,
+            51
+          ],
+          [
+            14,
+            17,
+            47,
+            52
+          ],
+          [
+            19,
+            16,
+            45,
+            48
+          ]
+        ],
+        "opaque_palette_count": 21,
+        "binary_alpha": true,
+        "padding_at_least_8px": true,
+        "nearest_neighbor_review": true,
+        "live_playback_inspected": false,
+        "production_pass": false,
+        "engine_tested": false,
+        "sampled_states": 4401,
+        "changed_x_states": 341,
+        "max_contact_tip_error_before_px": 5,
+        "max_contact_tip_error_after_px": 0,
+        "unchanged_outside_2140_2550_ms": true,
+        "unchanged_y_pose_target_and_cues": true,
+        "release_position_continuous": true,
+        "frames_per_preview": 264,
+        "video_checks": {
+          "normal": {
+            "r_frame_rate": "60/1",
+            "duration": "4.400000",
+            "nb_frames": "264"
+          },
+          "slow": {
+            "r_frame_rate": "30/1",
+            "duration": "8.800000",
+            "nb_frames": "264"
+          }
+        }
+      },
+      "hashes": {
+        "poses.png": "9f2737479e35760455f14513c407be767e93aa5f9e95acbcc029fe78d69f168c",
+        "render.v02.js": "63a3d220cade1db5e6c3fdf8416d0cfabc4aa3cbc82a727a7f13f3aff555d905",
+        "render.js": "7398fcc28578b87fb259a365e2b99a32337aba4c88f45c96aa8597cb6226c249",
+        "timeline.json": "859e48a5da92f1d3d60dfd0b2065da7609e6bbd91fd1fbf3598c7c7cadb45c52"
+      },
+      "output_links": {
+        "poses.png": "https://chatgpt.com/library?file_id=libfile_d1ff3abafd6c8191b96ed967dfd7a895&account_id=personal",
+        "timeline.json": "https://chatgpt.com/library?file_id=libfile_18421415d15481919aca4cd39b4e1cd8&account_id=personal",
+        "poses.review-4x.png": "https://chatgpt.com/library?file_id=libfile_08a97740175081919fe7aaa71b04a0b3&account_id=personal",
+        "jump.before-after.normal.mp4": "https://chatgpt.com/library?file_id=libfile_e8c22ee3726c8191a754107b2e3ae4f0&account_id=personal",
+        "jump.before-after.slow.mp4": "https://chatgpt.com/library?file_id=libfile_214975a7d3c08191b0b2a86ec2b9a078&account_id=personal",
+        "contact-comparison.png": "https://chatgpt.com/library?file_id=libfile_61ce7a56a0988191a020e2e7e678e536&account_id=personal",
+        "miren_jump_v03_review_package.zip": "https://chatgpt.com/library?file_id=libfile_2a0edaa28ae88191b3c317f46eb263b9&account_id=personal"
+      },
+      "remaining_issues": [
+        "Live normal/slow playback unavailable: Chromium socket() failed, Operation not permitted.",
+        "Placeholder anatomy and abrupt recovery-to-hover change still require artistic cleanup.",
+        "Repository costume reconciliation, engine integration and matched FFRK reference playback incomplete."
+      ],
+      "github": {
+        "branch": "animation-review/2026-11-12-miren-jump-contact",
+        "base_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
+        "publication_record": "https://chatgpt.com/library?file_id=libfile_e3bd1f9d5db0819185bc1c703e5bf682&account_id=personal",
+        "commit_sha": "bbff8aa5bc72ea9a8bccb7f49009d47c6f97f945",
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/16",
+        "pr_number": 16,
+        "draft": true,
+        "merged": false,
+        "published_tree_sha": "0d67e00ddd03bcad1b042f50354926125411643d",
+        "ci": {
+          "workflow": "checks",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 43157627518
+        }
+      },
+      "next_selection": "Prefer another eligible character or newly completed sheet. Inspect this draft and PR14; do not repeat the spear-contact correction or count this review as a pass.",
+      "repository_checks": "tools/check.sh passed; pre-existing Quick Song and Delay warnings tracked in implementation-status questions 3 and 2; existing creature attachment notices remain."
+    },
+    {
+      "review_date_local": "2026-11-13",
+      "character": "Kiri Haldane",
+      "status": "incomplete_re_review_no_new_edits_not_a_pass",
+      "source": {
+        "repository_head": "c1840737fef12061165ef6bb553e7bfa166b717b",
+        "path": "tools/party-sprite-viewer/kiri.sheet.webp",
+        "png_sha256": "368c1829ae640e49723dc2e168c00f8d518af79fa50bd0fcf1e550c13147a270",
+        "library_file_id": "libfile_77e2101aeb808191a29c506409cb509e",
+        "library_binary_redownloaded": false
+      },
+      "selection_reason": "Least recently reviewed accessible named character; Natsu PR14 and Miren PR16 remain open, Hisui PR15 is specification only.",
+      "sequences": [
+        "idle",
+        "ready",
+        "defend",
+        "advance",
+        "attack",
+        "attackB",
+        "chant",
+        "cast",
+        "item",
+        "hurt",
+        "lowhp",
+        "special",
+        "limit",
+        "victory",
+        "zombie",
+        "ko",
+        "sleep",
+        "paralyze",
+        "confuse",
+        "berserk",
+        "walkDown",
+        "walkUp",
+        "walkSide",
+        "shock",
+        "downcast",
+        "listen"
+      ],
+      "changes": [],
+      "validation": {
+        "all54_poses_statically_inspected": true,
+        "normal_slow_previews_rebuilt_decoded": 52,
+        "live_playback_inspected": false,
+        "production_pass": false,
+        "repository_checks": "tools/check.sh passes with existing documented warnings"
+      },
+      "remaining_issues": [
+        "Chromium socket() denied; normal/slow live playback unavailable",
+        "Artistic cleanup, pose-volume variation and high-colour shaded clusters unresolved",
+        "Staged Spiral Cut, reference playback and engine verification incomplete",
+        "Library binary not independently downloaded again; current repo matches previous saved-output hash"
+      ],
+      "output_links": {
+        "package": "https://chatgpt.com/library?file_id=libfile_774cfe1c7ed48191a8313bcac0da64b4&account_id=personal"
+      },
+      "github": {
+        "branch": "animation-review/2026-11-13-kiri-revalidation",
+        "publication_record": "https://chatgpt.com/library?file_id=libfile_e3bd1f9d5db0819185bc1c703e5bf682&account_id=personal",
+        "commit_sha": "d67b874ff04f30a4673aa0063b3acf3658a18794",
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/18",
+        "draft": true
+      },
+      "next_selection": "Prefer an unreviewed eligible sheet or another character; preserve incomplete status and prior repairs."
+    },
+    {
+      "review_date_utc": "2026-11-14",
+      "character": "Natsu",
+      "status": "partial_halo_rim_repair_not_production_pass",
+      "source": {
+        "library_file_id": "libfile_e251df64fa708191b85e07cb91a764b5",
+        "version": "8pose_v02",
+        "sha256": "4f38fee584c533cdab1e4bf72546394ec6a4938c1bfccd1b1c7f1ca333d5df6e",
+        "repository_base": "c1840737fef12061165ef6bb553e7bfa166b717b",
+        "authority": "Fresh Library eight-pose study, distinct from installed 54-frame atlas and 4.1-second Cure study"
+      },
+      "selection_reason": "Natsu Nov11, Miren Nov12, Kiri Nov13; this eight-pose study last reviewed Nov9, known halo defects.",
+      "sequences": [
+        "Cure: idle, anticipation, prayer, charge, release, follow-through, recovery, settle"
+      ],
+      "defects": [
+        "Halo face rim shape/shading flicker",
+        "Existing head/hair/boot volume variation and quantized clusters"
+      ],
+      "changes": [
+        "636 pixels in frames1-6 stabilize two halo rims; protected inner facial features retain turning cues",
+        "All other pixels, source palette, geometry, timing and v02 foot repair preserved"
+      ],
+      "output_sha256": "969be514f6825a6e36a927843f6fc9dc93f7ee9715acc4dd871afe4b0e26ca6b",
+      "validation": {
+        "all8_poses_statically_inspected": true,
+        "live_playback_inspected": true,
+        "playback_method": "Native GIMP animation player running original and final reconstructed GIFs, sampled through cycles at1x and0.5x",
+        "machine_checks": "build.py assertions pass; exact GIF pixels/durations, padded bounds,24 colors,binary alpha,unchanged regions",
+        "engine_tested": false,
+        "production_pass": false
+      },
+      "remaining_issues": [
+        "Artistic head/hair/boot volume cleanup",
+        "No matched external reference playback",
+        "Engine integration and target contact unverified"
+      ],
+      "github": {
+        "branch": "animation-review/2026-11-14-natsu-cure",
+        "base_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
+        "publication_record": "https://chatgpt.com/library?file_id=libfile_e3bd1f9d5db0819185bc1c703e5bf682&account_id=personal",
+        "draft": true,
+        "commit_sha": "82bc044a17f482507ed49f0399503dc6d19e7493",
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/20",
+        "pr_number": 20,
+        "published_tree_sha": "46d16c1c0b79bec62d1d8ddd8e98ba30b6637d64",
+        "merged": false,
+        "publication_method": "Connected GitHub API; remote tree equals inspected local tree",
+        "ci_observation": {
+          "workflow_runs": [
+            {
+              "id": 43562009126,
+              "name": "checks",
+              "status": "in_progress",
+              "conclusion": null,
+              "run_number": 20,
+              "jobs_url": "https://api.github.com/repos/dann3wman/JRPG-Ito/actions/runs/43562009126/jobs",
+              "logs_url": "https://api.github.com/repos/dann3wman/JRPG-Ito/actions/runs/43562009126/logs",
+              "workflow_id": 395612845
+            }
+          ]
+        }
+      },
+      "next_selection": "Rotate to another eligible character or newly completed sheet; do not repeat this halo repair or treat this draft as a pass.",
+      "output_links": {
+        "natsu.cure.v03.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-b1660d077ef48191a29a3a09dc9d0fcf_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "natsu.cure.v03.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-ad1d0a2b19e88191a4a07e99e0440801_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "natsu.cure.v03.review-4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-5914a7cd4b7c819194d7e614815f2721_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "natsu.cure.before-after.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-c1846129a5d48191ac626e8acea37199_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "natsu.cure.before-after.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-434cb1c8fc0481918e78a69a8c9dbcf3_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "natsu_cure_v03_review_package.zip": "https://chatgpt.com/library?file_id=libfile_fde3_f-9532302f9b7881919a5fef1fadaddba2_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+      },
+      "repository_checks": "tools/check.sh passed: 22 rigs,88 clips,5368 poses; battle smoke all encounters. Existing Quick Song/Delay warnings and creature attachment art notices remain."
+    },
+    {
+      "review_date_utc": "2026-11-15",
+      "character": "Miren",
+      "sequences": [
+        "Jump: MJ01 HOVER, MJ02 COIL, MJ03 ASCEND, MJ04 SUSPEND, MJ05 DIVE, MJ06 RECOIL, MJ01 HOVER"
+      ],
+      "status": "incomplete_review_no_changes_not_a_pass",
+      "source": {
+        "library_file_id": "libfile_2a0edaa28ae88191b3c317f46eb263b9",
+        "version": "v03",
+        "commit": "bbff8aa5bc72ea9a8bccb7f49009d47c6f97f945",
+        "pr": "https://github.com/dann3wman/JRPG-Ito/pull/16",
+        "path": "assets/player-sheets/miren-jump-v03",
+        "hashes": {
+          "poses.png": "9f2737479e35760455f14513c407be767e93aa5f9e95acbcc029fe78d69f168c",
+          "render.js": "7398fcc28578b87fb259a365e2b99a32337aba4c88f45c96aa8597cb6226c249",
+          "timeline.json": "859e48a5da92f1d3d60dfd0b2065da7609e6bbd91fd1fbf3598c7c7cadb45c52"
+        },
+        "repository_library_exact_match": true,
+        "authority_conflict": "Study costume differs from current cast specification; no installed Miren atlas in default branch."
+      },
+      "selection_reason": "Miren last reviewed Nov12; Kiri Nov13; Natsu Nov14. Rotate to least-recently-reviewed accessible named character.",
+      "defects": [
+        "Abrupt MJ06 to MJ01 recovery silhouette change at 3300 ms",
+        "Provisional pose volume/anatomy and costume mismatch with current specification"
+      ],
+      "changes": [],
+      "validation": {
+        "atlas_sha256": "9f2737479e35760455f14513c407be767e93aa5f9e95acbcc029fe78d69f168c",
+        "geometry": [
+          192,
+          128,
+          3,
+          2,
+          64,
+          64
+        ],
+        "bounds_exclusive": [
+          [
+            20,
+            18,
+            45,
+            51
+          ],
+          [
+            14,
+            21,
+            48,
+            48
+          ],
+          [
+            16,
+            11,
+            44,
+            51
+          ],
+          [
+            24,
+            16,
+            45,
+            51
+          ],
+          [
+            14,
+            17,
+            47,
+            52
+          ],
+          [
+            19,
+            16,
+            45,
+            48
+          ]
+        ],
+        "palette_colors": 21,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "padding_at_least_8": true,
+        "atlas_changed": false,
+        "production_pass": false,
+        "engine_compatibility_tested": false,
+        "motion_validation": {
+          "sampled_states": 4401,
+          "changed_x_states": 341,
+          "max_contact_tip_error_before_px": 5,
+          "max_contact_tip_error_after_px": 0,
+          "unchanged_outside_2140_2550_ms": true,
+          "unchanged_y_pose_target_and_cues": true,
+          "release_position_continuous": true,
+          "frames_per_preview": 264
+        },
+        "video_checks": {
+          "normal": {
+            "fps": 60,
+            "frames": 264,
+            "duration_s": 4.4
+          },
+          "slow": {
+            "fps": 30,
+            "frames": 264,
+            "duration_s": 8.8
+          }
+        }
+      },
+      "playback": {
+        "live_sampled_speeds": [
+          1,
+          0.5
+        ],
+        "application": "GIMP Animation Playback",
+        "viewed_derivative": "Existing v03 preview crop, 25 fps GIF; not native-palette reference",
+        "all_unique_cells_inspected": true,
+        "complete_continuous_motion_inspection": false,
+        "fresh_rendered_frames": 264,
+        "fresh_mp4_live_inspected": false
+      },
+      "remaining_issues": [
+        "Recovery bridge and broader artistic cleanup incomplete",
+        "Authoritative Miren design reconciliation unresolved",
+        "Complete continuous playback inspection, matched reference video and engine compatibility validation incomplete"
+      ],
+      "output_links": {
+        "jump.normal.mp4": "https://chatgpt.com/library?file_id=libfile_fde3_f-4211fe1900788191917b084b3a1f1301_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "jump.slow.mp4": "https://chatgpt.com/library?file_id=libfile_fde3_f-359c9754d0a48191b0f4dc38bc79ddc4_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "poses.review-4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-ee012904ec688191af1c21cf29f09767_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "recovery-boundary.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-420b78bc50e88191b558701636a38521_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "README.md": "https://chatgpt.com/library?file_id=libfile_fde3_f-71548587e90c8191a2962249c9566fb5_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "source_native_png": "https://chatgpt.com/library?file_id=libfile_d1ff3abafd6c8191b96ed967dfd7a895&account_id=personal",
+        "review_package": "https://chatgpt.com/library?file_id=libfile_fde3_f-8b28ef071f80819181051f5a5128029f_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+      },
+      "github": {
+        "branch": "animation-review/2026-11-15-miren-jump-playback",
+        "base_commit": "5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf",
+        "draft_required": true,
+        "publication_record": "https://chatgpt.com/library?file_id=libfile_fde3_f-e3bd1f9d5db0819185bc1c703e5bf682_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "commit_sha": "bbbbb480a9fd43238de62c0e64be2c46176cccfe",
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/24",
+        "pr_number": 24,
+        "draft": true,
+        "published": true,
+        "tree_sha": "40b3aae0325ff68a9081f1ae126a288d594a06e2",
+        "publication_method": "Connected GitHub API; exact tree matches inspected local commit. Git CLI push lacked authentication."
+      },
+      "next_selection": "Prefer another eligible character; do not repeat spear-contact correction or count this as a pass.",
+      "repository_checks": "tools/check.sh passed; 0 errors, 2 existing Quick Song/Delay warnings tracked in docs/implementation-status.md; existing creature attachment notices unchanged.",
+      "rotation_reconciliation": "Retained all eight default-branch records. Added Library publication details to Nov10 without replacing existing fields, and Nov11-Nov14 records, then appended this review."
+    },
+    {
+      "review_date_local": "2026-11-16",
+      "character": "Kuro",
+      "review_id": "2026-11-16-kuro-casting-fringe",
+      "status": "partial_correction_draft_artistic_and_engine_review_incomplete",
+      "source_repository": "dann3wman/JRPG-Ito",
+      "default_branch": "ccr-d8829a5a-ays4x1",
+      "base_commit": "5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf",
+      "source_commit": "0910e540074d0127b1afc0a0ef5a53c3d6bd4b23",
+      "source_path": "assets/party-fx/kuro-dark-v01/kuro-casting.v01.png",
+      "source_pr": "https://github.com/dann3wman/JRPG-Ito/pull/25",
+      "source_sha256": "a7034b278b735a88245d3625c761243d4fde85226ab74f1a592001e435157b86",
+      "output_sha256": "2940aa2b76a9c8c3836ab1b4066b773c8f6abe4c31e2fdcceed8acd941d381d0",
+      "output_version": "v02",
+      "selection_reason": "Kuro has no review entry in current Library rotation v13. New existing actor sheet in PR25; recent reviews covered Miren, Natsu and Kiri. Open PRs inspected before selection; no duplicate Kuro review found.",
+      "source_reconciliation": "Current default branch has no Kuro Dark actor. Used actual PNG/ORA/metadata bytes pinned to PR25 commit. No matching current Kuro source resolved by Library title and content searches, so no Library/repository source hash equivalence is claimed. Other review branches remain untouched.",
+      "sequences": [
+        "Dark casting actor: KD01, KD02, KD03, KD04, KD05, KD06, KD05, KD07, KD08, KD01"
+      ],
+      "defects": [
+        "One isolated dark pixel at KD03 local (64,64), disconnected below trailing hair, appears for 140 ms without a matching particle path."
+      ],
+      "changes": [
+        "Set only atlas pixel (256,64) RGBA (22,18,25,255) to transparent black. Same removal in existing ORA layers. All other sprite pixels unchanged. No timing/layout/pivot/palette changes."
+      ],
+      "validation": [
+        "All eight unique before/after poses inspected in enlarged sheets; sole sequence rebuilt from corrected PNG.",
+        "GIMP animation playback exercised at 1x and 0.5x; sampled screenshots and paused KD03 comparison inspected. This is not continuous perceptual or engine validation.",
+        "Decoded normal/slow GIF frames exactly match atlas composites, durations 3400/6800 ms.",
+        "One-pixel diff, 24-color palette parity, binary alpha, all frame bounds, safe padding, unchanged contact rows 85-86, exact nearest 4x, ORA merged and layer composite parity pass.",
+        "tools/check.sh passed exit 0. Existing Quick Song/Delay doc drift and creature attachment art notices remain; already tracked by repository."
+      ],
+      "remaining_issues": [
+        "Pose-to-pose face, hair and robe volume/shading variations remain; artistic cleanup is incomplete. No professional-quality pass claimed.",
+        "Continuous playback rhythm and full action context remain unverified; only sampled live playback at both speeds and all static poses inspected.",
+        "Standalone replacement for pending PR25, not installed in engine or the 54-frame party importer. Engine compatibility untested.",
+        "Reference clips listed in source brief were not re-viewed in this pixel-cleanup run."
+      ],
+      "github": {
+        "branch": "animation-review/2026-11-16-kuro-casting-fringe",
+        "publication": "Branch record included before publication; actual commit SHA and PR URL are maintained in the persistent Library rotation log after publication."
+      },
+      "output_links": {
+        "kuro-casting.v02.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-a61ab0a831ec8191afb21c2c58d24420_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "timing.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-aee3af0b6f9c81918413ca8a8a21f67d_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "kuro-casting.v02.4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-af55f66c450c81919c7eb831bf3966f1_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "casting.before-after.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-4cc07964b1c88191ae61529918cecc20_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "casting.before-after.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-bc5e4aeb4bc48191bb8d4f425c55ab1e_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "kuro-casting.v02.ora": "https://chatgpt.com/library?file_id=libfile_fde3_f-b66311576fc48191b0f2038b015ea840_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "kuro-casting-v02-review.zip": "https://chatgpt.com/library?file_id=libfile_fde3_f-34d6c40cbeec8191bd7ef5ca3ad7007d_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+      },
+      "next_selection": "Prefer another unreviewed character with an accessible animation sheet. Do not repeat Kuro while this draft remains open unless addressing its explicit remaining work."
     }
   ]
 }

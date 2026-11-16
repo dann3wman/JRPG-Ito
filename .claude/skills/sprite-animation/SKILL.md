@@ -93,6 +93,8 @@ After **every** correction to a generated sprite animation or sheet, whether the
 
 ## Standing rules
 
+- Inspect isolated pixels against adjacent poses and authored effects before deleting them; preserve intentional particles. See Kuro KD03, 2026-11-16, in the corrections log.
+
 Distilled from the corrections log. Check every new generation against these.
 
 - Route by runtime platform, not repository folder names: ChatGPT renders images; Claude supplies copy-paste prompts (2026-10-25 platform correction).

@@ -117,6 +117,8 @@ It validates both sets with the same rules the editor uses (`check_anims`, `chec
 
 ## Lessons
 
+- **2026-11-16 · Kuro · casting sheet.** KD03 contained one disconnected dark fringe pixel. Removed only that confirmed artifact; preserve intentional detached effect pixels and do not infer whole-animation approval from a local cleanup. Standalone eight-pose action sheets retain their own metadata and must not be silently treated as the 54-pose party standard.
+
 - **2026-10-25 · Kiri · first sprite sheet.** The art followed the prompt well. The 6 × 9 grid held, the scarf spiral showed in every frame, and the Sleep and Confuse twists and the grey-green Zombie came through. Three problems were in the slicer, and all are fixed in `party_art.py`:
   - ChatGPT's rows drifted up to 10 px from an even split, so heads crossed into the cell above. The slicer now moves each grid line to the nearest empty gap (`bands` / `detect_cells`) instead of cutting evenly.
   - The thrown vial in item2 sat on an even column line and was being thrown away as a neighbour's art. Snapping the cut to the gap keeps it in its frame. `keep_own` then clears only blobs that touch the cell edge and aren't the main figure.
