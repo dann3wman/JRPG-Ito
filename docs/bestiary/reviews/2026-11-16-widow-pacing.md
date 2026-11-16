@@ -45,8 +45,8 @@ Acceptance conflict is explicit: the queue's HP-first, one-lever approach did no
 
 Branch: `bestiary/2026-11-16-widow-pacing`, created from the current default.
 
-Implementation commit: to be recorded after publishing.
+Implementation commit: `082bb514a53786e7e5ae1939eb81094682eaf14b`. Published implementation tree: `98e9bcb8700872732c6c8d1888edfc9d322db5c9`, identical to the locally tested tree.
 
-PR: to be recorded after publishing. Keep draft until the balance tradeoff and browser checks are reviewed. Do not merge automatically.
+PR: [#29](https://github.com/dann3wman/JRPG-Ito/pull/29), open draft. Keep draft until the balance tradeoff and browser checks are reviewed. Do not merge automatically.
 
 Next independent task: B004, inspect and integrate Lamp Hollow's existing battle rig if its art and playback validate.

@@ -38,8 +38,8 @@ Daily refinement is scheduled for around 10 AM America/New_York, beginning 2026-
 
 ## Latest reconciliation and delivery
 
-2026-11-16: generation 1, revision 6 (revision 7 adds delivery identifiers). Default branch remains `ccr-d8829a5a-ays4x1` at `5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf`. Its queue revision 3 is older than unmerged PR26 revision 5. The newest task history is preserved here without copying PR26's Tongue code. [B002 and its review remain in PR26](https://github.com/dann3wman/JRPG-Ito/pull/26); do not reimplement it.
+2026-11-16: generation 1, revision 7. Default branch remains `ccr-d8829a5a-ays4x1` at `5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf`. Its queue revision 3 is older than unmerged PR26 revision 5. The newest task history is preserved here without copying PR26's Tongue code. [B002 and its review remain in PR26](https://github.com/dann3wman/JRPG-Ito/pull/26); do not reimplement it.
 
-[B003 Tide-Widow report](reviews/2026-11-16-widow-pacing.md): HP 3200 → 2225, phase-two Lullaby +14 → +28 Stress, and clearer phase/Scan text. Helper commands drop from 83.63 to 59.76, with 0.62 Afflicted and 100% wins. Attack-only 27% is above the 25% goal; balance and browser acceptance remain open. The implementation is a review draft, not completed acceptance.
+[B003 Tide-Widow report](reviews/2026-11-16-widow-pacing.md): HP 3200 → 2225, phase-two Lullaby +14 → +28 Stress, and clearer phase/Scan text. Helper commands drop from 83.63 to 59.76, with 0.62 Afflicted and 100% wins. Attack-only 27% is above the 25% goal; balance and browser acceptance remain open. The implementation is delivered in [draft PR29](https://github.com/dann3wman/JRPG-Ito/pull/29), not completed acceptance.
 
 Six actionable pending tasks remain, B004–B009. Next: B004 Lamp Hollow battle rig integration. The original inventory counts above are dated audit results, not a new full audit. Open PRs 14–21 and 23–28 were checked for overlap during this run. B010/B011 remain blocked with reasons in the tracker.

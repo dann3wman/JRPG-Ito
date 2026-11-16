@@ -7,7 +7,7 @@
   "created_at": "2026-11-14",
   "updated_at": "2026-11-16",
   "generation": 1,
-  "revision": 6,
+  "revision": 7,
   "tracker_path": "docs/bestiary/refinement-queue.json",
   "initial_branch": "bestiary/2026-11-14-tongue-rescue-telegraph",
   "selection_policy": "Confirmed correctness/readability defects first, then measured encounter problems, existing asset integration, canon alignment, and evidence-led visual review. Prefer one feasible entry per run; notices alone are not proven defects.",
@@ -130,9 +130,16 @@
         "regression": "Live phase, sound counterplay, late Undertow/Blink, Release and respawn checks pass.",
         "browser": "blocked: Chromium socket() Operation not permitted",
         "remaining": "Review attack 27% vs <=25% goal, lower-than-prior-spec Afflicted, and browser Helper play/phase warning.",
-        "holdout": "Attack seed 1001: 23.67%, 300 runs; combined with seed 1: 25.33%, 600 runs. Borderline, not fully balance-approved."
+        "holdout": "Attack seed 1001: 23.67%, 300 runs; combined with seed 1: 25.33%, 600 runs. Borderline, not fully balance-approved.",
+        "checks": "tools/check.sh passed, including all 37 encounter smoke runs; two documented drift warnings and 16 art notices remain."
       },
-      "acceptance_resolution": "HP-only 2300 reached 59.17 commands but 0.163 Afflicted. Took the existing spec proposal to strengthen phase-two Stress as a second lever. Final 2225 HP/+28 phase-two Lullaby is delivered for review, not fully accepted."
+      "acceptance_resolution": "HP-only 2300 reached 59.17 commands but 0.163 Afflicted. Took the existing spec proposal to strengthen phase-two Stress as a second lever. Final 2225 HP/+28 phase-two Lullaby is delivered for review, not fully accepted.",
+      "delivery": {
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/29",
+        "implementation_commit": "082bb514a53786e7e5ae1939eb81094682eaf14b",
+        "state": "draft",
+        "merged": false
+      }
     },
     {
       "id": "B004",

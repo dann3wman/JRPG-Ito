@@ -600,5 +600,17 @@
         "hp": 0.23722506601498863
       }
     }
+  },
+  "delivery": {
+    "branch": "bestiary/2026-11-16-widow-pacing",
+    "implementation_commit": "082bb514a53786e7e5ae1939eb81094682eaf14b",
+    "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/29",
+    "draft": true,
+    "merged": false
+  },
+  "validation": {
+    "check_script": "tools/check.sh passed",
+    "diff_check": "passed",
+    "browser": "Chromium failed to launch; not visually verified"
   }
 }
