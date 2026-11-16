@@ -144,6 +144,8 @@ The prototype has no character growth. Each encounter sets a level, and HP, MP, 
 
 ## Worked example: why the Widow takes so long
 
-At level 8, Kiri has 40 ATK. Her Attack is `1.8 × 40 = 72`, minus the Widow's 7 DEF: about 65 damage. The Widow has 3200 HP, so Kiri alone needs about 49 Attacks. Natsu spends most turns on Cure and Soothe, and Tetsugi hits for about 80. The simulator's competent player needs about 85 party commands to win, and the Widow takes about 52 turns. That makes it the longest fight in the prototype after the final battle, and the first story boss a player meets. It is a deliberate endurance fight with Lullaby and Undertow grinding Stress, but it is on the edge of tedious for a Disc 1 boss. See the balance findings in [implementation status](../implementation-status.md).
+At level 8, Kiri has 40 ATK. Her Attack is `1.8 × 40 = 72`, minus the Widow's 7 DEF: about 65 damage. The original 3200 HP needed about 49 such hits before allowing for healing, Stress relief and Sailors. The fresh 300-run Helper sample took 83.63 party commands.
+
+The pacing draft lowers HP to 2225, about 34 such hits, and raises phase-two Lullaby from +14 to +28 Stress while keeping phase 1 at +14. A pure HP cut to 2300 reduced Afflicted too far (0.16 per battle). The final draft needs 59.76 commands with 0.62 Afflicted; Attack-only still wins 27%, slightly outside the 25% goal. These are measured simulation results, not a browser playtest. The [review](../bestiary/reviews/2026-11-16-widow-pacing.md) records the trials and remaining acceptance limits.
 
 To check a change like this before making it, run `node tools/battle-sim/sim.js widow --baseline` after editing and read the bracketed deltas.

@@ -1,0 +1,616 @@
+{
+  "task": "B003",
+  "date": "2026-11-16",
+  "base_commit": "5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf",
+  "seed": 1,
+  "runs_per_policy": 300,
+  "before": {
+    "hp": 3200,
+    "lullaby_stress": [
+      14,
+      14
+    ],
+    "results": {
+      "advisor": {
+        "key": "widow",
+        "party": [
+          "kiri",
+          "natsu",
+          "tetsugi"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 300,
+          "win": 1,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 83.63333333333334,
+          "winTurns": 83.63333333333334,
+          "foeTurns": 51.63666666666666,
+          "kos": 0.08333333333333333,
+          "afflicted": 1.6433333333333333,
+          "inspired": 0.5066666666666667,
+          "fled": 0.12,
+          "lost": 13.15,
+          "limits": 3.6933333333333334,
+          "phoenix": 0.08333333333333333,
+          "stress": 62.870777777777825,
+          "danger": 99.24666666666667,
+          "hp": 0.7293884633504355
+        }
+      },
+      "attack": {
+        "key": "widow",
+        "party": [
+          "kiri",
+          "natsu",
+          "tetsugi"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 300,
+          "win": 0.06,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 48.71333333333333,
+          "winTurns": 70.33333333333333,
+          "foeTurns": 34.336666666666666,
+          "kos": 2.8866666666666667,
+          "afflicted": 1.7,
+          "inspired": 0.55,
+          "fled": 0.3233333333333333,
+          "lost": 6.7,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 105.38928571428572,
+          "danger": 73.45,
+          "hp": 0.23729267941364285
+        }
+      },
+      "random": {
+        "key": "widow",
+        "party": [
+          "kiri",
+          "natsu",
+          "tetsugi"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 300,
+          "win": 0.45,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 144.50666666666666,
+          "winTurns": 143.9777777777778,
+          "foeTurns": 99.10333333333334,
+          "kos": 3.3266666666666667,
+          "afflicted": 8.443333333333333,
+          "inspired": 2.8733333333333335,
+          "fled": 8.423333333333334,
+          "lost": 47.75,
+          "limits": 7.6066666666666665,
+          "phoenix": 1.8766666666666667,
+          "stress": 184.4142631072629,
+          "danger": 100,
+          "hp": 0.16533189484770952
+        }
+      },
+      "fallback": {
+        "key": "widow",
+        "party": [
+          "kiri",
+          "tetsugi",
+          "kugai"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 300,
+          "win": 1,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 62.37,
+          "winTurns": 62.37,
+          "foeTurns": 40.163333333333334,
+          "kos": 0.1,
+          "afflicted": 1.0366666666666666,
+          "inspired": 0.43,
+          "fled": 0.11333333333333333,
+          "lost": 8.25,
+          "limits": 2.026666666666667,
+          "phoenix": 0.1,
+          "stress": 69.30105555555558,
+          "danger": 94.57666666666667,
+          "hp": 0.5517336442411013
+        }
+      }
+    }
+  },
+  "trials": [
+    {
+      "hp": 2300,
+      "lullaby_stress": [
+        14,
+        14
+      ],
+      "runs_per_policy": 300,
+      "results": {
+        "advisor": {
+          "key": "widow",
+          "party": [
+            "kiri",
+            "natsu",
+            "tetsugi"
+          ],
+          "policy": "advisor",
+          "s": {
+            "n": 300,
+            "win": 1,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 59.166666666666664,
+            "winTurns": 59.166666666666664,
+            "foeTurns": 35.016666666666666,
+            "kos": 0.013333333333333334,
+            "afflicted": 0.16333333333333333,
+            "inspired": 0.07,
+            "fled": 0,
+            "lost": 6.32,
+            "limits": 2.1233333333333335,
+            "phoenix": 0.013333333333333334,
+            "stress": 42.9111111111111,
+            "danger": 88.67,
+            "hp": 0.8071136048280536
+          }
+        },
+        "attack": {
+          "key": "widow",
+          "party": [
+            "kiri",
+            "natsu",
+            "tetsugi"
+          ],
+          "policy": "attack",
+          "s": {
+            "n": 300,
+            "win": 0.19333333333333333,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 46.153333333333336,
+            "winTurns": 53.672413793103445,
+            "foeTurns": 34.10666666666667,
+            "kos": 2.5966666666666667,
+            "afflicted": 1.4466666666666668,
+            "inspired": 0.44666666666666666,
+            "fled": 0.19666666666666666,
+            "lost": 5.8,
+            "limits": 0,
+            "phoenix": 0,
+            "stress": 102.56945238095243,
+            "danger": 73.47666666666667,
+            "hp": 0.2383098823940297
+          }
+        },
+        "random": {
+          "key": "widow",
+          "party": [
+            "kiri",
+            "natsu",
+            "tetsugi"
+          ],
+          "policy": "random",
+          "s": {
+            "n": 300,
+            "win": 0.7966666666666666,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 122.13333333333334,
+            "winTurns": 122.66945606694561,
+            "foeTurns": 83.36666666666666,
+            "kos": 2.433333333333333,
+            "afflicted": 8.136666666666667,
+            "inspired": 2.75,
+            "fled": 6.58,
+            "lost": 37.08,
+            "limits": 6.37,
+            "phoenix": 1.6133333333333333,
+            "stress": 177.71333417508413,
+            "danger": 100,
+            "hp": 0.23578621013538661
+          }
+        },
+        "fallback": {
+          "key": "widow",
+          "party": [
+            "kiri",
+            "tetsugi",
+            "kugai"
+          ],
+          "policy": "advisor",
+          "s": {
+            "n": 300,
+            "win": 1,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 45.16,
+            "winTurns": 45.16,
+            "foeTurns": 27.873333333333335,
+            "kos": 0.03,
+            "afflicted": 0.3433333333333333,
+            "inspired": 0.11666666666666667,
+            "fled": 0.006666666666666667,
+            "lost": 3.72,
+            "limits": 0.7666666666666667,
+            "phoenix": 0.03,
+            "stress": 50.739166666666655,
+            "danger": 77.58333333333333,
+            "hp": 0.5944361392491915
+          }
+        }
+      }
+    },
+    {
+      "hp": 2300,
+      "lullaby_stress": [
+        14,
+        24
+      ],
+      "runs": 100,
+      "result": {
+        "key": "widow",
+        "party": [
+          "kiri",
+          "natsu",
+          "tetsugi"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 1,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 62.96,
+          "winTurns": 62.96,
+          "foeTurns": 38.53,
+          "kos": 0.02,
+          "afflicted": 0.59,
+          "inspired": 0.18,
+          "fled": 0.01,
+          "lost": 7.58,
+          "limits": 2.62,
+          "phoenix": 0.02,
+          "stress": 52.20249999999999,
+          "danger": 91.55,
+          "hp": 0.7967137511596867
+        }
+      }
+    },
+    {
+      "hp": 2100,
+      "lullaby_stress": [
+        14,
+        28
+      ],
+      "runs_per_policy": 300,
+      "results": {
+        "advisor": {
+          "key": "widow",
+          "party": [
+            "kiri",
+            "natsu",
+            "tetsugi"
+          ],
+          "policy": "advisor",
+          "s": {
+            "n": 300,
+            "win": 1,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 56.806666666666665,
+            "winTurns": 56.806666666666665,
+            "foeTurns": 34.82,
+            "kos": 0.016666666666666666,
+            "afflicted": 0.41,
+            "inspired": 0.16,
+            "fled": 0.013333333333333334,
+            "lost": 6.3566666666666665,
+            "limits": 2.29,
+            "phoenix": 0.016666666666666666,
+            "stress": 52.21166666666662,
+            "danger": 89.13333333333334,
+            "hp": 0.7963488003675725
+          }
+        },
+        "attack": {
+          "key": "widow",
+          "party": [
+            "kiri",
+            "natsu",
+            "tetsugi"
+          ],
+          "policy": "attack",
+          "s": {
+            "n": 300,
+            "win": 0.32666666666666666,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 45.693333333333335,
+            "winTurns": 50.69387755102041,
+            "foeTurns": 34.06,
+            "kos": 2.3066666666666666,
+            "afflicted": 1.6566666666666667,
+            "inspired": 0.61,
+            "fled": 0.37666666666666665,
+            "lost": 5.586666666666667,
+            "limits": 0,
+            "phoenix": 0,
+            "stress": 111.49591666666667,
+            "danger": 72.31333333333333,
+            "hp": 0.2661318140933487
+          }
+        },
+        "random": {
+          "key": "widow",
+          "party": [
+            "kiri",
+            "natsu",
+            "tetsugi"
+          ],
+          "policy": "random",
+          "s": {
+            "n": 300,
+            "win": 0.8733333333333333,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 111.84,
+            "winTurns": 111.17557251908397,
+            "foeTurns": 73.34,
+            "kos": 1.9133333333333333,
+            "afflicted": 8.083333333333334,
+            "inspired": 2.723333333333333,
+            "fled": 5.88,
+            "lost": 32.56333333333333,
+            "limits": 6.1066666666666665,
+            "phoenix": 1.3966666666666667,
+            "stress": 176.6323541366044,
+            "danger": 99.99666666666667,
+            "hp": 0.26721183692070416
+          }
+        },
+        "fallback": {
+          "key": "widow",
+          "party": [
+            "kiri",
+            "tetsugi",
+            "kugai"
+          ],
+          "policy": "advisor",
+          "s": {
+            "n": 300,
+            "win": 1,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 41.54,
+            "winTurns": 41.54,
+            "foeTurns": 25.996666666666666,
+            "kos": 0.023333333333333334,
+            "afflicted": 0.47333333333333333,
+            "inspired": 0.21666666666666667,
+            "fled": 0.02666666666666667,
+            "lost": 3.3,
+            "limits": 0.6366666666666667,
+            "phoenix": 0.023333333333333334,
+            "stress": 55.70127777777776,
+            "danger": 73.23,
+            "hp": 0.6144050428820118
+          }
+        }
+      }
+    }
+  ],
+  "after": {
+    "hp": 2225,
+    "lullaby_stress": [
+      14,
+      28
+    ],
+    "results": {
+      "advisor": {
+        "key": "widow",
+        "party": [
+          "kiri",
+          "natsu",
+          "tetsugi"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 300,
+          "win": 1,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 59.75666666666667,
+          "winTurns": 59.75666666666667,
+          "foeTurns": 36.843333333333334,
+          "kos": 0.02666666666666667,
+          "afflicted": 0.6233333333333333,
+          "inspired": 0.19666666666666666,
+          "fled": 0.023333333333333334,
+          "lost": 7.086666666666667,
+          "limits": 2.433333333333333,
+          "phoenix": 0.02666666666666667,
+          "stress": 54.495666666666686,
+          "danger": 90.59666666666666,
+          "hp": 0.7819253489040335
+        }
+      },
+      "attack": {
+        "key": "widow",
+        "party": [
+          "kiri",
+          "natsu",
+          "tetsugi"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 300,
+          "win": 0.27,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 46.55,
+          "winTurns": 53.96296296296296,
+          "foeTurns": 35.14666666666667,
+          "kos": 2.46,
+          "afflicted": 1.79,
+          "inspired": 0.5933333333333334,
+          "fled": 0.43,
+          "lost": 6.04,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 115.75765873015882,
+          "danger": 74.04,
+          "hp": 0.24809003556238762
+        }
+      },
+      "random": {
+        "key": "widow",
+        "party": [
+          "kiri",
+          "natsu",
+          "tetsugi"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 300,
+          "win": 0.84,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 114.94333333333333,
+          "winTurns": 114.73412698412699,
+          "foeTurns": 76.31,
+          "kos": 1.9166666666666667,
+          "afflicted": 8.29,
+          "inspired": 2.69,
+          "fled": 6.3133333333333335,
+          "lost": 33.833333333333336,
+          "limits": 6.156666666666666,
+          "phoenix": 1.2966666666666666,
+          "stress": 177.77571115921117,
+          "danger": 100,
+          "hp": 0.2442244411622077
+        }
+      },
+      "fallback": {
+        "key": "widow",
+        "party": [
+          "kiri",
+          "tetsugi",
+          "kugai"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 300,
+          "win": 1,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 44.29333333333334,
+          "winTurns": 44.29333333333334,
+          "foeTurns": 28.326666666666668,
+          "kos": 0.04,
+          "afflicted": 0.6366666666666667,
+          "inspired": 0.16333333333333333,
+          "fled": 0.056666666666666664,
+          "lost": 3.77,
+          "limits": 0.81,
+          "phoenix": 0.04,
+          "stress": 60.0661111111111,
+          "danger": 77.17333333333333,
+          "hp": 0.5834181357664255
+        }
+      }
+    }
+  },
+  "status": "implemented_pending_balance_and_visual_review",
+  "limitations": [
+    "Attack-only seed 1 wins 27%, above 25% target.",
+    "Afflicted 0.623 is within general 0.5\u20132 band but below the prior spec suggestion >1.",
+    "Fallback still faster than default party.",
+    "No browser visual check; Chromium launch socket denied."
+  ],
+  "baseline": {
+    "runs": 200,
+    "seed": 1,
+    "result": {
+      "key": "widow",
+      "party": [
+        "kiri",
+        "natsu",
+        "tetsugi"
+      ],
+      "policy": "advisor",
+      "s": {
+        "n": 200,
+        "win": 1,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 59.86,
+        "winTurns": 59.86,
+        "foeTurns": 36.93,
+        "kos": 0.03,
+        "afflicted": 0.645,
+        "inspired": 0.21,
+        "fled": 0.03,
+        "lost": 7.13,
+        "limits": 2.49,
+        "phoenix": 0.03,
+        "stress": 53.814333333333316,
+        "danger": 90.73,
+        "hp": 0.784888703168022
+      }
+    },
+    "scope": "Only widow refreshed; all 36 other baseline entries preserved."
+  },
+  "holdout": {
+    "seed": 1001,
+    "runs": 300,
+    "policy": "attack",
+    "result": {
+      "key": "widow",
+      "party": [
+        "kiri",
+        "natsu",
+        "tetsugi"
+      ],
+      "policy": "attack",
+      "s": {
+        "n": 300,
+        "win": 0.23666666666666666,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 45.71666666666667,
+        "winTurns": 53.12676056338028,
+        "foeTurns": 35.223333333333336,
+        "kos": 2.5166666666666666,
+        "afflicted": 1.7466666666666666,
+        "inspired": 0.5333333333333333,
+        "fled": 0.43333333333333335,
+        "lost": 5.83,
+        "limits": 0,
+        "phoenix": 0,
+        "stress": 112.41133333333336,
+        "danger": 72.91,
+        "hp": 0.23722506601498863
+      }
+    }
+  },
+  "delivery": {
+    "branch": "bestiary/2026-11-16-widow-pacing",
+    "implementation_commit": "082bb514a53786e7e5ae1939eb81094682eaf14b",
+    "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/29",
+    "draft": true,
+    "merged": false
+  },
+  "validation": {
+    "check_script": "tools/check.sh passed",
+    "diff_check": "passed",
+    "browser": "Chromium failed to launch; not visually verified"
+  }
+}

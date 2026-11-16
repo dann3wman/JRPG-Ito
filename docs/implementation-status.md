@@ -45,7 +45,7 @@ The prototype has 25 story fights (every Disc 1 and Disc 2 chapter boss and the 
 | Lake Hen | Ch. 3 | Partial | Underwater, the splash, chicks healing 10%, Peck: match. Adds Come Up for Air every 4th turn (the way through without Miren) and +10 Stress per surfacing. [Spec](bosses/hen.md) |
 | Last Beastcaller's Pelt | Ch. 4 | Partial | Empty, the 2-turn hold, Goku unable to act: match. Adds Put On every 4th turn (the way through without Goku). The doc's four named roles fit three active slots only with a Swap (open question in the spec). [Spec](bosses/pelt.md) |
 | Ruri ×1 | Ch. 5 | Built | The shared Ruri script with encounter stats for level 7. [Spec](bosses/ruri1.md) |
-| Tide-Widow | Ch. 5 | Partial | Undertow (3 slots) and 2 Drowned Sailors at 50% match. Adds Lullaby (sound, +14 Stress, +6 Danger) and Sailors that re-form after 3 of her turns |
+| Tide-Widow | Ch. 5 | Partial | Undertow (3 slots) and 2 Drowned Sailors at 50% match. Lullaby is now documented (sound, +14 Stress, +28 in phase 2, +6 Danger). Sailors that re-form after 3 of her turns remain a prototype addition; B003 tuning awaits balance/visual review |
 | Lamp Hollow | Ch. 6 | Partial | Three Wicks, Darkga can't put out a full Wick, the dark window: match. Relight brings back one Wick and halves the relighter. [Spec](bosses/lamp.md) |
 | The Well-Rested | Ch. 7 | Partial | Original-only damage, splitting to 6, Lullaby sleeping the copies, Yawn: match. Adds the original resting 1.5% per sleeper turn. Party Sleep is a minimal status. [Spec](bosses/rested.md) |
 | Ruri ×2 | Ch. 8 | Partial | Copies attack each other, as in the doc. Adds Charm and a Spite phase for the last Ruri standing |
@@ -98,7 +98,7 @@ The bosses in the design doc lean on a handful of mechanics the engine doesn't h
 
 ## Balance findings
 
-From `tools/battle-sim/sim.js`, 200 battles per encounter with each encounter's default party. `advisor` is the in-game Helper; `no-role` is the Helper with the tested character barred from signature skills; `attack` presses Attack every turn; `random` picks any legal command. Party commands are the Helper's average in won fights; Afflicted is the Helper's average per battle. Targets are in the [boss authoring guide](guides/boss-authoring.md#targets).
+Results from `tools/battle-sim/sim.js` with each encounter's default party. Tide-Widow was remeasured with 300 battles per policy on 2026-11-16; its 200-run baseline is separately refreshed. All other rows retain the earlier 200-battle audit. `advisor` is the in-game Helper; `no-role` is the Helper with the tested character barred from signature skills; `attack` presses Attack every turn; `random` picks any legal command. Party commands are the Helper's average in won fights; Afflicted is the Helper's average per battle. Targets are in the [boss authoring guide](guides/boss-authoring.md#targets).
 
 | Encounter | advisor | no-role | attack | random | Party commands | Afflicted |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -113,7 +113,7 @@ From `tools/battle-sim/sim.js`, 200 battles per encounter with each encounter's 
 | Forty Years | 100% | — | 0% | 73% | 53 | 0.6 |
 | Choir of Lumen | 100% | — | 43% | 80% | 30 | 2.0 |
 | The Grey Hound | 100% | — | 0% | 0% | 12 | 0.0 |
-| Tide-Widow | 100% | — | 8% | 48% | 84 | 1.6 |
+| Tide-Widow | 100% | — | 27% | 84% | 59.76 | 0.62 |
 | Ruri ×2 | 100% | — | 49% | 80% | 45 | 0.6 |
 | The Whisperer | 96% | — | 10% | 6% | 63 | 0.6 |
 | Ruri ×5 | 99% | — | 0% | 52% | 35 | 1.0 |
@@ -146,7 +146,7 @@ What the numbers say:
 2. **Kuro's test teaches by speed, not survival.** Without Darkga the fight is still won but takes 33 commands instead of 12. That is a legitimate lesson, but the fight should make slowness cost something: Stress per turn from the Singers already exists, and raising it would turn the time into a threat.
 3. **Hisui's test is won by pressing Attack 73% of the time.** The Red Turtleneck's lesson (crits feed Hisui) doesn't need to be understood to win. It needs a punishment for the obvious answer.
 4. **Most role tests never trigger the horror systems.** Eleven of twelve average under one Stress Check per fight; only Kiri's, built around Danger, reaches three. Stress is decoration there. Fine for a tutorial; not for anything after it.
-5. **The story fights run long.** The Widow (84 commands, the first story boss) and the final battle (103) are past the Disc 1 band of 25–60. The Widow's 3200 HP against level-8 damage of about 65 per Attack is the main lever (see [battle math](systems/battle-math.md#worked-example-why-the-widow-takes-so-long)).
+5. **The Widow pacing draft is shorter; balance acceptance is pending.** HP 3200 → 2225 and phase-two Lullaby +14 → +28 Stress bring it from 83.63 to 59.76 commands, with 0.62 Afflicted. The Helper wins 100%, while attack-only wins 27%, above the ≤25% goal. Its no-Natsu fallback still wins 100%. See the [review](bestiary/reviews/2026-11-16-widow-pacing.md). The final battle remains at 103 commands; this run did not retune it.
 6. **The Hellstar is the only fight that leans on Stress**: 7.1 Afflicted per fight. Good for a finale, but random play wins 2% of the time, so it relies on the Helper's knowledge more than any other fight.
 7. **Quick Song is never exercised.** In Sayo's test the Helper spends every turn on Counter-Melody against the Amigara Wall's Calling. Setting Quick Song to the doc's 2 slots or the code's 3 gives identical results, so open question 3 can't be settled by any existing fight.
 8. **The Disc 1 chapter bosses each need their answer, but most leave Stress as decoration.** All eleven are won 99–100% by the Helper. Pressing Attack wins 0–21% of nine of them; the exceptions are the Village Well (100%, the tutorial, by design), Ruri ×1 (49%, an opening act) and the Choir (43%, but only after about 5 characters flee). Every story boss stays winnable without its key character: the Lake Hen without Miren 100% (85 commands), the Pelt without Goku 100% (107), the Lamp Hollow without Kuro 45% (136), the Well-Rested without Kiri 63% (58), Forty Years without Ren 100% (70), the Grey Hound without Natsu 47%. But the Helper keeps Afflicted under 0.5 in eight of eleven, because Natsu or Kiri is in almost every default party. The Grey Hound is short (12 commands): three steps is the doc's number.
