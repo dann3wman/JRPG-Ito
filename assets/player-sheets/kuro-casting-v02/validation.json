@@ -1,0 +1,52 @@
+{
+  "source_sha256": "a7034b278b735a88245d3625c761243d4fde85226ab74f1a592001e435157b86",
+  "output_sha256": "2940aa2b76a9c8c3836ab1b4066b773c8f6abe4c31e2fdcceed8acd941d381d0",
+  "changed_pixels": 1,
+  "edit": {
+    "cell": "KD03",
+    "local_xy": [
+      64,
+      64
+    ],
+    "atlas_xy": [
+      256,
+      64
+    ],
+    "before": [
+      22,
+      18,
+      25,
+      255
+    ],
+    "after": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "unchanged_other_pixels": true,
+  "palette_unchanged": true,
+  "binary_alpha": true,
+  "geometry": [
+    384,
+    192,
+    96,
+    96,
+    4,
+    2
+  ],
+  "timing_unchanged_ms": 3400,
+  "production_pass": false,
+  "preview_durations_ms": [
+    3400,
+    6800
+  ],
+  "ora_layer_composite_matches": true,
+  "all_frame_bounds_match_metadata": true,
+  "safe_padding": true,
+  "fixed_contact_rows_85_86": true,
+  "nearest_neighbor_4x_exact": true,
+  "ora_merged_image_matches": true,
+  "decoded_gif_frames_exact": true
+}

@@ -1,0 +1,53 @@
+{
+  "review_date_local": "2026-11-16",
+  "character": "Kuro",
+  "review_id": "2026-11-16-kuro-casting-fringe",
+  "status": "partial_correction_draft_artistic_and_engine_review_incomplete",
+  "source_repository": "dann3wman/JRPG-Ito",
+  "default_branch": "ccr-d8829a5a-ays4x1",
+  "base_commit": "5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf",
+  "source_commit": "0910e540074d0127b1afc0a0ef5a53c3d6bd4b23",
+  "source_path": "assets/party-fx/kuro-dark-v01/kuro-casting.v01.png",
+  "source_pr": "https://github.com/dann3wman/JRPG-Ito/pull/25",
+  "source_sha256": "a7034b278b735a88245d3625c761243d4fde85226ab74f1a592001e435157b86",
+  "output_sha256": "2940aa2b76a9c8c3836ab1b4066b773c8f6abe4c31e2fdcceed8acd941d381d0",
+  "output_version": "v02",
+  "selection_reason": "Kuro has no review entry in current Library rotation v13. New existing actor sheet in PR25; recent reviews covered Miren, Natsu and Kiri. Open PRs inspected before selection; no duplicate Kuro review found.",
+  "source_reconciliation": "Current default branch has no Kuro Dark actor. Used actual PNG/ORA/metadata bytes pinned to PR25 commit. No matching current Kuro source resolved by Library title and content searches, so no Library/repository source hash equivalence is claimed. Other review branches remain untouched.",
+  "sequences": [
+    "Dark casting actor: KD01, KD02, KD03, KD04, KD05, KD06, KD05, KD07, KD08, KD01"
+  ],
+  "defects": [
+    "One isolated dark pixel at KD03 local (64,64), disconnected below trailing hair, appears for 140 ms without a matching particle path."
+  ],
+  "changes": [
+    "Set only atlas pixel (256,64) RGBA (22,18,25,255) to transparent black. Same removal in existing ORA layers. All other sprite pixels unchanged. No timing/layout/pivot/palette changes."
+  ],
+  "validation": [
+    "All eight unique before/after poses inspected in enlarged sheets; sole sequence rebuilt from corrected PNG.",
+    "GIMP animation playback exercised at 1x and 0.5x; sampled screenshots and paused KD03 comparison inspected. This is not continuous perceptual or engine validation.",
+    "Decoded normal/slow GIF frames exactly match atlas composites, durations 3400/6800 ms.",
+    "One-pixel diff, 24-color palette parity, binary alpha, all frame bounds, safe padding, unchanged contact rows 85-86, exact nearest 4x, ORA merged and layer composite parity pass.",
+    "tools/check.sh passed exit 0. Existing Quick Song/Delay doc drift and creature attachment art notices remain; already tracked by repository."
+  ],
+  "remaining_issues": [
+    "Pose-to-pose face, hair and robe volume/shading variations remain; artistic cleanup is incomplete. No professional-quality pass claimed.",
+    "Continuous playback rhythm and full action context remain unverified; only sampled live playback at both speeds and all static poses inspected.",
+    "Standalone replacement for pending PR25, not installed in engine or the 54-frame party importer. Engine compatibility untested.",
+    "Reference clips listed in source brief were not re-viewed in this pixel-cleanup run."
+  ],
+  "github": {
+    "branch": "animation-review/2026-11-16-kuro-casting-fringe",
+    "publication": "Branch record included before publication; actual commit SHA and PR URL are maintained in the persistent Library rotation log after publication."
+  },
+  "output_links": {
+    "kuro-casting.v02.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-a61ab0a831ec8191afb21c2c58d24420_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "timing.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-aee3af0b6f9c81918413ca8a8a21f67d_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "kuro-casting.v02.4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-af55f66c450c81919c7eb831bf3966f1_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "casting.before-after.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-4cc07964b1c88191ae61529918cecc20_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "casting.before-after.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-bc5e4aeb4bc48191bb8d4f425c55ab1e_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "kuro-casting.v02.ora": "https://chatgpt.com/library?file_id=libfile_fde3_f-b66311576fc48191b0f2038b015ea840_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "kuro-casting-v02-review.zip": "https://chatgpt.com/library?file_id=libfile_fde3_f-34d6c40cbeec8191bd7ef5ca3ad7007d_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+  },
+  "next_selection": "Prefer another unreviewed character with an accessible animation sheet. Do not repeat Kuro while this draft remains open unless addressing its explicit remaining work."
+}

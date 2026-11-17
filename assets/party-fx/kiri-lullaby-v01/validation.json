@@ -1,0 +1,18 @@
+{
+  "source_cels_unchanged": true,
+  "effect_bounds_safe": true,
+  "effect_binary_alpha": true,
+  "duration_ms": 3200,
+  "effect_duration_ms": 1920,
+  "effect_cleared": true,
+  "terminal_pose": "idle1",
+  "event_count": 4,
+  "relief_event_count": 1,
+  "exact_4x": true,
+  "engine_tested": false,
+  "artistically_approved": false,
+  "live_playback": "Not verified: local HTTP refused connection; cloud browser blocks file URLs. Controls tested separately in Node.",
+  "apng_frames": 26,
+  "apng_duration_ms": 3200.0,
+  "apng_decoded_pixel_exact": true
+}

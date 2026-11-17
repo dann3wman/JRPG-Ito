@@ -1,0 +1,12 @@
+{
+  "track_totals": true,
+  "integer_states": 3401,
+  "event_count": 4,
+  "damage_event_count": 1,
+  "seek_dispatches_events": false,
+  "backward_seek_duplicates_events": false,
+  "replay_resets": true,
+  "pause_holds": true,
+  "terminal_cleanup": true,
+  "ui_interactions_live_verified": false
+}

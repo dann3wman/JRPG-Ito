@@ -1,0 +1,68 @@
+{
+  "atlas_sha256": "9f2737479e35760455f14513c407be767e93aa5f9e95acbcc029fe78d69f168c",
+  "geometry": [
+    192,
+    128,
+    3,
+    2,
+    64,
+    64
+  ],
+  "bounds_exclusive": [
+    [
+      20,
+      18,
+      45,
+      51
+    ],
+    [
+      14,
+      21,
+      48,
+      48
+    ],
+    [
+      16,
+      11,
+      44,
+      51
+    ],
+    [
+      24,
+      16,
+      45,
+      51
+    ],
+    [
+      14,
+      17,
+      47,
+      52
+    ],
+    [
+      19,
+      16,
+      45,
+      48
+    ]
+  ],
+  "palette_colors": 21,
+  "alpha_values": [
+    0,
+    255
+  ],
+  "padding_at_least_8": true,
+  "atlas_changed": false,
+  "production_pass": false,
+  "engine_compatibility_tested": false,
+  "motion_validation": {
+    "sampled_states": 4401,
+    "changed_x_states": 341,
+    "max_contact_tip_error_before_px": 5,
+    "max_contact_tip_error_after_px": 0,
+    "unchanged_outside_2140_2550_ms": true,
+    "unchanged_y_pose_target_and_cues": true,
+    "release_position_continuous": true,
+    "frames_per_preview": 264
+  }
+}
