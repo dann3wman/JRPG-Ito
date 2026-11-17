@@ -1,0 +1,14 @@
+{
+  "track_totals": true,
+  "integer_states": 3001,
+  "event_count": 4,
+  "provoke_event_count": 1,
+  "provoke_pose_and_effect_sync": true,
+  "seek_dispatches_events": false,
+  "backward_seek_duplicates_events": false,
+  "replay_resets": true,
+  "pause_holds": true,
+  "normal_half_speed_logic": true,
+  "terminal_cleanup": true,
+  "ui_interactions_live_verified": false
+}

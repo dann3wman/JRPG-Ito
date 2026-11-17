@@ -1,0 +1,691 @@
+{
+  "action": "Kugai: Provoke",
+  "version": 1,
+  "duration_ms": 3000,
+  "fps": 60,
+  "loop": false,
+  "terminal": "effects hidden; knight ready; attention response settled",
+  "scene": {
+    "native": [
+      384,
+      216
+    ],
+    "output": [
+      1536,
+      864
+    ],
+    "origin": "top-left",
+    "baseline": 180,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      375,
+      207
+    ],
+    "actor_feet": [
+      280,
+      180
+    ],
+    "effect_pivot": [
+      288,
+      139
+    ],
+    "target_feet": [
+      104,
+      180
+    ],
+    "facing": "left"
+  },
+  "atlases": {
+    "kugai-provoke-actor": {
+      "file": "kugai-provoke-actor.v01.png",
+      "size": [
+        384,
+        192
+      ],
+      "cell": [
+        96,
+        96
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        87,
+        87
+      ],
+      "palette": [
+        "#BDACA5",
+        "#95847D",
+        "#83716B",
+        "#73645E",
+        "#675752",
+        "#604B47",
+        "#4E423E",
+        "#632829",
+        "#4C2A29",
+        "#3E312F",
+        "#352C2A",
+        "#2F2625",
+        "#2A2120",
+        "#421819",
+        "#2D1515",
+        "#221717",
+        "#1C1616",
+        "#181212",
+        "#160D0E",
+        "#100C0C",
+        "#0E0A0A",
+        "#0D0909",
+        "#0C0808",
+        "#080606"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "KP01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            23,
+            31,
+            73,
+            86
+          ]
+        },
+        {
+          "id": "KP02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            22,
+            32,
+            75,
+            86
+          ]
+        },
+        {
+          "id": "KP03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            18,
+            31,
+            76,
+            86
+          ]
+        },
+        {
+          "id": "KP04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            288,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            32,
+            33,
+            74,
+            86
+          ]
+        },
+        {
+          "id": "KP05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            32,
+            34,
+            77,
+            86
+          ]
+        },
+        {
+          "id": "KP06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            30,
+            31,
+            77,
+            86
+          ]
+        },
+        {
+          "id": "KP07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            22,
+            31,
+            76,
+            86
+          ]
+        },
+        {
+          "id": "KP08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            288,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            23,
+            31,
+            74,
+            86
+          ]
+        }
+      ]
+    },
+    "provoke-pressure": {
+      "file": "provoke-pressure.v01.png",
+      "size": [
+        512,
+        256
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        119,
+        119
+      ],
+      "palette": [
+        "#FCFBFC",
+        "#DAD8DB",
+        "#BAB7BC",
+        "#A09DA3",
+        "#8B888E",
+        "#7B787E",
+        "#6A676D",
+        "#59565A",
+        "#3C373A",
+        "#28272A",
+        "#242427",
+        "#222224",
+        "#441216",
+        "#3E0C10",
+        "#202023",
+        "#25191C"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "PP01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            43,
+            38,
+            81,
+            85
+          ]
+        },
+        {
+          "id": "PP02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            36,
+            29,
+            89,
+            93
+          ]
+        },
+        {
+          "id": "PP03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            31,
+            25,
+            87,
+            98
+          ]
+        },
+        {
+          "id": "PP04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            25,
+            20,
+            98,
+            103
+          ]
+        },
+        {
+          "id": "PP05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            31,
+            21,
+            92,
+            102
+          ]
+        },
+        {
+          "id": "PP06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            36,
+            26,
+            77,
+            94
+          ]
+        },
+        {
+          "id": "PP07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            37,
+            33,
+            84,
+            86
+          ]
+        },
+        {
+          "id": "PP08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            47,
+            43,
+            79,
+            85
+          ]
+        }
+      ]
+    }
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 240
+    },
+    {
+      "frame": 1,
+      "ms": 180
+    },
+    {
+      "frame": 2,
+      "ms": 140
+    },
+    {
+      "frame": 3,
+      "ms": 100
+    },
+    {
+      "frame": 4,
+      "ms": 100
+    },
+    {
+      "frame": 5,
+      "ms": 180
+    },
+    {
+      "frame": 6,
+      "ms": 240
+    },
+    {
+      "frame": 7,
+      "ms": 220
+    },
+    {
+      "frame": 0,
+      "ms": 1600
+    }
+  ],
+  "effect_track": [
+    {
+      "frame": 0,
+      "ms": 60
+    },
+    {
+      "frame": 1,
+      "ms": 80
+    },
+    {
+      "frame": 2,
+      "ms": 100
+    },
+    {
+      "frame": 3,
+      "ms": 140
+    },
+    {
+      "frame": 4,
+      "ms": 140
+    },
+    {
+      "frame": 5,
+      "ms": 160
+    },
+    {
+      "frame": 6,
+      "ms": 180
+    },
+    {
+      "frame": 7,
+      "ms": 200
+    }
+  ],
+  "effect_start_ms": 660,
+  "effect_hide_ms": 1720,
+  "cues": [
+    {
+      "name": "shield_contact",
+      "ms": 660
+    },
+    {
+      "name": "provoke",
+      "ms": 1040
+    },
+    {
+      "name": "effect_clear",
+      "ms": 1720
+    },
+    {
+      "name": "action_complete",
+      "ms": 3000
+    }
+  ],
+  "gameplay_events": "Visual threat capture only; no damage, HP or targeting-rule mutation.",
+  "motion": {
+    "caster": "fixed feet; eight newly drawn articulated keys and nine exposures",
+    "effect_x_keys": [
+      [
+        0,
+        288
+      ],
+      [
+        800,
+        288
+      ],
+      [
+        1040,
+        180
+      ],
+      [
+        1240,
+        130
+      ],
+      [
+        1720,
+        112
+      ],
+      [
+        3000,
+        112
+      ]
+    ],
+    "interpolation": "smoothstep, rounded native pixels",
+    "target_x_keys": [
+      [
+        0,
+        104
+      ],
+      [
+        1040,
+        104
+      ],
+      [
+        1140,
+        108
+      ],
+      [
+        1400,
+        104
+      ],
+      [
+        3000,
+        104
+      ]
+    ],
+    "target_y": 123,
+    "pressure_y": 139,
+    "contact_display_size": [
+      32,
+      32
+    ],
+    "contact_display_top_left": [
+      272,
+      123
+    ],
+    "attention_active_ms": [
+      1040,
+      1720
+    ]
+  },
+  "layers": [
+    {
+      "name": "background",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": "opaque",
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "rear light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "source-over",
+      "filter": "linear",
+      "preview_scale": 2
+    },
+    {
+      "name": "target, actor, pressure",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "contact light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "screen",
+      "filter": "linear",
+      "preview_scale": 2
+    }
+  ],
+  "status": {
+    "specified": true,
+    "generated_built": true,
+    "exported": true,
+    "technically_checked": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  }
+}
