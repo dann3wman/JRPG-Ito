@@ -42,8 +42,8 @@ B002 updates the Grab warning to up to 1 or 2 highest-Stress allies at execution
 
 ## 2026-11-17 reconciliation
 
-Generation 1, revision 8 (delivery identifiers follow in revision 9). Default `ccr-d8829a5a-ays4x1` at `b5d0e9f9ac45c21b2acf28784d75fd977d35eb91` contains queue revision 5. [PR29](https://github.com/dann3wman/JRPG-Ito/pull/29) carries revision 7 and the unmerged Tide-Widow draft. Its newer tracker history is retained without importing its implementation. PR26 is now in default; its outstanding visual check remains outstanding. Open PRs 29–31 do not overlap this lore edit.
+Generation 1, revision 9. Default `ccr-d8829a5a-ays4x1` at `b5d0e9f9ac45c21b2acf28784d75fd977d35eb91` contains queue revision 5. [PR29](https://github.com/dann3wman/JRPG-Ito/pull/29) carries revision 7 and the unmerged Tide-Widow draft. Its newer tracker history is retained without importing its implementation. PR26 is now in default; its outstanding visual check remains outstanding. Open PRs 29–31 do not overlap this lore edit.
 
-[B007 review](reviews/2026-11-17-well-rested-lore.md): corrected The Well-Rested's viewer lore to the repeated rests, crowd of copies and Lullaby reveal in chapter seven. Rig-authoring details now live in a source comment instead of the fiction.
+[B007 review](reviews/2026-11-17-well-rested-lore.md): corrected The Well-Rested's viewer lore to the repeated rests, crowd of copies and Lullaby reveal in chapter seven. Rig-authoring details now live in a source comment instead of the fiction. Delivered in [PR32](https://github.com/dann3wman/JRPG-Ito/pull/32), awaiting editorial review.
 
 B004, B005, B006 and B008 are blocked on real playback/visual validation; Chromium still aborts on a denied socket. One actionable pending task remains: **B009, The Tongue's swallow-turn telegraph**. B010/B011 retain their design/engine blockers. B001/B002/B003 retain their outstanding review limitations. Inventory counts above remain the dated initial audit.

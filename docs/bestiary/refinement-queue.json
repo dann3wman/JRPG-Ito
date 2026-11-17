@@ -7,7 +7,7 @@
   "created_at": "2026-11-14",
   "updated_at": "2026-11-17",
   "generation": 1,
-  "revision": 8,
+  "revision": 9,
   "tracker_path": "docs/bestiary/refinement-queue.json",
   "initial_branch": "bestiary/2026-11-14-tongue-rescue-telegraph",
   "selection_policy": "Confirmed correctness/readability defects first, then measured encounter problems, existing asset integration, canon alignment, and evidence-led visual review. Prefer one feasible entry per run; notices alone are not proven defects.",
@@ -232,6 +232,12 @@
         "browser": "Not observed: Chromium socket failure. Text is loaded via the existing textContent renderer.",
         "remaining": "Editorial review; existing two-body sleepy rig is not a validated representation of the four-to-six-body encounter.",
         "checks": "tools/check.sh and git diff --check passed. Headless viewer loads replacement lore. Existing two drift warnings and 16 art notices remain."
+      },
+      "delivery": {
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/32",
+        "implementation_commit": "007b01e9940ba6aef391650dc277b02b3b659684",
+        "state": "open",
+        "merged": false
       }
     },
     {

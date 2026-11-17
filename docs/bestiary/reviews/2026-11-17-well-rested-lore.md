@@ -3,7 +3,9 @@
 Date: 2026-11-17. Status: delivered for editorial review, not merged.
 Branch: `bestiary/2026-11-17-well-rested-lore`.
 Base: `ccr-d8829a5a-ays4x1`, `b5d0e9f9ac45c21b2acf28784d75fd977d35eb91`.
-Implementation commit and PR: recorded after publication.
+Implementation commit: `007b01e9940ba6aef391650dc277b02b3b659684`.
+PR: [#32](https://github.com/dann3wman/JRPG-Ito/pull/32), open for review.
+Published implementation tree `71a8a286c739abd5ee79e590e42103088d116794` matches the checked local tree. Queue generation 1 revision 9 includes delivery metadata.
 
 ## Source reconciliation and selection
 
