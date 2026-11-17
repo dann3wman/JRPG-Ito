@@ -1047,9 +1047,600 @@
       "github": {
         "branch": "animation-review/2026-11-10-kiri-idle-sword",
         "base_commit": "095f4fc80c206c1321a5435a45434ff9c50dce14",
-        "publication_record": "https://chatgpt.com/library?file_id=libfile_e3bd1f9d5db0819185bc1c703e5bf682&account_id=personal"
+        "publication_record": "https://chatgpt.com/library?file_id=libfile_e3bd1f9d5db0819185bc1c703e5bf682&account_id=personal",
+        "commit_sha": "95e2380f70827f05c684c54cbab0661ac389952a",
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/12",
+        "pr_number": 12,
+        "draft": true,
+        "published": true,
+        "publication_method": "Connected GitHub API; Git CLI push lacked authentication. Remote tree equals inspected local tree.",
+        "tree_sha": "ca1b7b3ba0c9d6128f137311db0ff24c1f863400",
+        "merged_observed_2026_11_11": true
       },
       "next_selection": "Prefer another unreviewed character. Do not repeat this idle fix or count this partial review as a pass. Inspect this draft PR before future selection."
+    },
+    {
+      "review_date_local": "2026-11-11",
+      "character": "Natsu",
+      "source": {
+        "repository": "dann3wman/JRPG-Ito",
+        "base_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
+        "path": "tools/party-sprite-viewer/natsu.sheet.webp",
+        "git_blob": "8bf35a466676b886cb2bda4dfe8ff4bc49a8096b",
+        "sha256": "e197fe9e36c96f4e408b64ac2d1fc2f22b57b0399521e2c11341acb9c962a072"
+      },
+      "sequences": [
+        "idle",
+        "ready",
+        "defend",
+        "advance",
+        "attack",
+        "attackB",
+        "chant",
+        "cast",
+        "item",
+        "hurt",
+        "lowhp",
+        "special",
+        "limit",
+        "victory",
+        "zombie",
+        "ko",
+        "sleep",
+        "paralyze",
+        "confuse",
+        "berserk",
+        "walkDown",
+        "walkUp",
+        "walkSide",
+        "shock",
+        "downcast",
+        "listen"
+      ],
+      "selection_reason": "Unreviewed installed96px atlas with confirmed idle defect; previous character Kiri. Other source versions and prior partial reviews preserved.",
+      "output_version": "installed-idle-v02",
+      "status": "partial_registration_fix_live_playback_blocked",
+      "defects": [
+        "Idle2 and idle3 displaced six pixels left during stationary breathing"
+      ],
+      "changes": [
+        {
+          "frames": [
+            "idle2",
+            "idle3"
+          ],
+          "translation_xy": [
+            6,
+            0
+          ],
+          "rgba_pixels_changed": 7128,
+          "drawing": "exact translation; no redrawn pixels"
+        }
+      ],
+      "validation": {
+        "other_52_cells_exact_rgba": true,
+        "geometry_576x864_cells96_grid6x9": true,
+        "binary_alpha": true,
+        "no_new_colors": true,
+        "opaque_palette_colors": 81813,
+        "png_webp_visible_pixels_identical": true,
+        "all_cells_have_transparent_padding": true,
+        "frame_bounds": [
+          {
+            "frame": "idle1",
+            "xyxy": [
+              25,
+              20,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "idle2",
+            "xyxy": [
+              25,
+              20,
+              73,
+              88
+            ]
+          },
+          {
+            "frame": "idle3",
+            "xyxy": [
+              26,
+              21,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "ready1",
+            "xyxy": [
+              16,
+              20,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "ready2",
+            "xyxy": [
+              20,
+              22,
+              69,
+              88
+            ]
+          },
+          {
+            "frame": "defend",
+            "xyxy": [
+              17,
+              22,
+              65,
+              88
+            ]
+          },
+          {
+            "frame": "attack1",
+            "xyxy": [
+              16,
+              22,
+              70,
+              88
+            ]
+          },
+          {
+            "frame": "attack2",
+            "xyxy": [
+              13,
+              24,
+              77,
+              88
+            ]
+          },
+          {
+            "frame": "attack3",
+            "xyxy": [
+              9,
+              24,
+              85,
+              88
+            ]
+          },
+          {
+            "frame": "attackB1",
+            "xyxy": [
+              14,
+              20,
+              65,
+              88
+            ]
+          },
+          {
+            "frame": "attackB2",
+            "xyxy": [
+              9,
+              27,
+              78,
+              88
+            ]
+          },
+          {
+            "frame": "attackB3",
+            "xyxy": [
+              8,
+              28,
+              79,
+              88
+            ]
+          },
+          {
+            "frame": "advance1",
+            "xyxy": [
+              20,
+              19,
+              70,
+              88
+            ]
+          },
+          {
+            "frame": "advance2",
+            "xyxy": [
+              19,
+              21,
+              67,
+              88
+            ]
+          },
+          {
+            "frame": "chant1",
+            "xyxy": [
+              21,
+              19,
+              67,
+              88
+            ]
+          },
+          {
+            "frame": "chant2",
+            "xyxy": [
+              16,
+              17,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "cast1",
+            "xyxy": [
+              10,
+              23,
+              81,
+              88
+            ]
+          },
+          {
+            "frame": "cast2",
+            "xyxy": [
+              18,
+              22,
+              62,
+              88
+            ]
+          },
+          {
+            "frame": "item1",
+            "xyxy": [
+              15,
+              21,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "item2",
+            "xyxy": [
+              10,
+              22,
+              86,
+              88
+            ]
+          },
+          {
+            "frame": "hurt1",
+            "xyxy": [
+              10,
+              18,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "hurt2",
+            "xyxy": [
+              15,
+              21,
+              64,
+              88
+            ]
+          },
+          {
+            "frame": "lowhp1",
+            "xyxy": [
+              15,
+              30,
+              76,
+              88
+            ]
+          },
+          {
+            "frame": "lowhp2",
+            "xyxy": [
+              13,
+              29,
+              73,
+              88
+            ]
+          },
+          {
+            "frame": "special1",
+            "xyxy": [
+              22,
+              20,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "special2",
+            "xyxy": [
+              12,
+              22,
+              78,
+              88
+            ]
+          },
+          {
+            "frame": "special3",
+            "xyxy": [
+              9,
+              22,
+              77,
+              88
+            ]
+          },
+          {
+            "frame": "limit1",
+            "xyxy": [
+              12,
+              18,
+              77,
+              88
+            ]
+          },
+          {
+            "frame": "limit2",
+            "xyxy": [
+              9,
+              18,
+              75,
+              88
+            ]
+          },
+          {
+            "frame": "limit3",
+            "xyxy": [
+              7,
+              18,
+              80,
+              88
+            ]
+          },
+          {
+            "frame": "victory1",
+            "xyxy": [
+              18,
+              21,
+              70,
+              88
+            ]
+          },
+          {
+            "frame": "victory2",
+            "xyxy": [
+              16,
+              21,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "victory3",
+            "xyxy": [
+              19,
+              21,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "zombie1",
+            "xyxy": [
+              14,
+              20,
+              67,
+              88
+            ]
+          },
+          {
+            "frame": "zombie2",
+            "xyxy": [
+              14,
+              18,
+              67,
+              88
+            ]
+          },
+          {
+            "frame": "ko",
+            "xyxy": [
+              9,
+              42,
+              87,
+              81
+            ]
+          },
+          {
+            "frame": "sleep1",
+            "xyxy": [
+              16,
+              26,
+              76,
+              88
+            ]
+          },
+          {
+            "frame": "sleep2",
+            "xyxy": [
+              14,
+              27,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "paralyze",
+            "xyxy": [
+              13,
+              20,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "confuse1",
+            "xyxy": [
+              12,
+              26,
+              69,
+              88
+            ]
+          },
+          {
+            "frame": "confuse2",
+            "xyxy": [
+              15,
+              25,
+              72,
+              88
+            ]
+          },
+          {
+            "frame": "berserk",
+            "xyxy": [
+              14,
+              23,
+              73,
+              88
+            ]
+          },
+          {
+            "frame": "walkD1",
+            "xyxy": [
+              19,
+              14,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "walkD2",
+            "xyxy": [
+              18,
+              15,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "walkD3",
+            "xyxy": [
+              19,
+              15,
+              67,
+              88
+            ]
+          },
+          {
+            "frame": "walkU1",
+            "xyxy": [
+              18,
+              17,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "walkU2",
+            "xyxy": [
+              17,
+              16,
+              70,
+              88
+            ]
+          },
+          {
+            "frame": "walkU3",
+            "xyxy": [
+              16,
+              16,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "walkS1",
+            "xyxy": [
+              20,
+              15,
+              71,
+              88
+            ]
+          },
+          {
+            "frame": "walkS2",
+            "xyxy": [
+              14,
+              16,
+              70,
+              88
+            ]
+          },
+          {
+            "frame": "walkS3",
+            "xyxy": [
+              15,
+              14,
+              70,
+              88
+            ]
+          },
+          {
+            "frame": "shock",
+            "xyxy": [
+              12,
+              13,
+              77,
+              88
+            ]
+          },
+          {
+            "frame": "downcast",
+            "xyxy": [
+              12,
+              15,
+              68,
+              88
+            ]
+          },
+          {
+            "frame": "listen",
+            "xyxy": [
+              16,
+              14,
+              68,
+              88
+            ]
+          }
+        ],
+        "all54_poses_statically_inspected": true,
+        "all26_sequences_exported_normal_and_slow": true,
+        "preview_durations_match": true,
+        "live_playback_inspected": false,
+        "engine_tested": false,
+        "production_approved": false
+      },
+      "repository_checks": "tools/check.sh passed with existing documented warnings",
+      "output_links": {
+        "natsu.sheet.v02.png": "https://chatgpt.com/library?file_id=libfile_70cd0cbe6bac819191c57e218fad0596&account_id=personal",
+        "natsu.sheet.v02.json": "https://chatgpt.com/library?file_id=libfile_73e92dd45e408191b1010328d1a2a8c5&account_id=personal",
+        "natsu.sheet.v02.review-2x.png": "https://chatgpt.com/library?file_id=libfile_18e1ffeb58b08191b7009d42bc2418a6&account_id=personal",
+        "natsu.idle.before-after.normal.gif": "https://chatgpt.com/library?file_id=libfile_6979956e82148191b9ca87e5249e9a0f&account_id=personal",
+        "natsu.idle.before-after.slow.gif": "https://chatgpt.com/library?file_id=libfile_bdbe552868548191b05e1fd95a7dc58e&account_id=personal",
+        "natsu-idle-v02-package.zip": "https://chatgpt.com/library?file_id=libfile_cfd1f7a7f1588191bd8dac97f552fb05&account_id=personal"
+      },
+      "remaining_issues": [
+        "Live playback blocked: Chromium socket() Operation not permitted.",
+        "Original high-colour opaque palette and shaded clusters are not strict 20-colour FFVI pixel art. No new colours or filtering added.",
+        "Pose-to-pose hair/face/volume variation remains. No full professional animation pass claimed.",
+        "Cure choreography, derived status effects and engine transitions require live inspection."
+      ],
+      "github": {
+        "branch": "animation-review/2026-11-11-natsu-idle-registration",
+        "base_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
+        "publication_record": "https://chatgpt.com/library?file_id=libfile_e3bd1f9d5db0819185bc1c703e5bf682&account_id=personal"
+      },
+      "next_selection": "Prefer a different unreviewed character; inspect this PR before future Natsu work; do not repeat these translations."
     }
   ]
 }

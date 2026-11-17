@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-11 · Natsu · idle registration
+- **Reported problem:** idle2/idle3 shift left during stationary breathing.
+- **Root cause:** imported pose registration; upstream cause unresolved.
+- **Original generation:** idle specification calls for breathing, not a sideways step. Lower-foot mask mismatch against idle1 drops from139/146 pixels to35/32 after registration.
+- **Solution implemented:** translate idle2 and idle3 (+6,0). No drawing changes; other52 cells and all timings unchanged. See assets/player-sheets/natsu-idle-v02/build.py.
+- **Verification:** all54 poses inspected as stills; pixel/alpha/palette/padding and lossless preview checks pass. Chromium socket permission blocks live playback. Draft, not production-approved.
+- **Rule for next time:** anchor stationary breathing to planted feet; preserve legitimate bobbing and hair motion. Inspect runtime atlas independently of raw-source repairs.
+
 ### 2026-11-10 · Kiri · imported idle3 weapon and registration
 - **Reported problem:** the lowered sword vanishes in idle3 and the body shifts left against idle2.
 - **Original generation:** the source omits idle3's sword although idle frames require the weapon lowered; the 96 px imported cell also has a measured 5 px left offset.
