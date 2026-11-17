@@ -1,0 +1,45 @@
+# Tetsugi: Chakra battle action, 2026-11-16
+
+Built exactly one new3.6-second self-healing action with generated character and feather artwork. See the [complete implementation, geometry, cell tables, exports and validation](../../assets/party-fx/tetsugi-chakra-v01/README.md) and [offline player](../../assets/party-fx/tetsugi-chakra-v01/tetsugi-chakra.v01.html). This document supports actual exports, not a specification-only delivery.
+
+## Selection and evidence
+
+Current default branch `ccr-d8829a5a-ays4x1`, base `5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf`, discovered at run time. Read applicable AGENTS.md, party-art/sprite-animation instructions and correction log, repository layout, recent commits, design/style records, cast description, extracted Tetsugi portrait and sprite. Open PRs and same-day branches checked before selection; no equivalent Chakra sequence found. Chakra already heals25%HP and reduces Stress10 in the design; this standalone visual leaves those rules unchanged.
+
+Fresh continuity: Miren recovery bridge and Natsu Halo Glance source briefs read; Halo Glance v02 PR21 supersedes its masks and remains a specification. Review rotation version14 read, including Nov16 Kuro fringe correction. Read PR27's actual build.py patch: exactly one detached KD03 pixel removed, no broader action approval. PR25's Kuro Dark and PR24's Miren recovery review remain drafts. No review-task asset, rotation record, gameplay file or other branch is modified.
+
+Tetsugi has usable stitched portrait identity and a current cast description but no found Chakra action. The old embedded pixel sprite has spiky hair inconsistent with the close-shaved cast description. New poses follow the current cast and stitched portrait: lean monk, shaved scalp, tan gi, wrapped fists, rope belt, rust stitches, one collar feather. This is a proposed battle rendition, not an approved redesign or an installed full sheet. Tetsugi Hurt portrait PR19 is a separate static brief and is not repeated here.
+
+References available: repository cast/design/embedded art; current continuity documents; five supplied MP4s locally. Inspected their sampled action windows:20150430_3VYVy_-wuQ.mp4(8-14s),20150522_vNXuejzstyQ.mp4(8-14s),20150323_9h9tSnldEE8.mp4(12-17s),20150123_OIw2mFut1No.mp4(8-11s),20150123_0qY82e8qugk.mp4(13-15.5s). Primary guidance is the fourth clip's area establishment/convergence and fifth clip's registered healing light. Timing here is newly authored, excludes menu time and is not a measured copy. No source footage is committed.
+
+Library source IDs, unchanged: `libfile_6bfe860bb62c8191afed0871b6e0e0c2`, `libfile_ba10f229c3608191af2cf0b314dc8e73`, `libfile_e3bd1f9d5db0819185bc1c703e5bf682`; clips `libfile_3d08908cd9608191bfd139d2d53d011c`, `libfile_bde1fc1da2408191baeb0cf4de9e3547`, `libfile_5ea2416c3fc08191afb807b6f13ec63b`, `libfile_585af039e0708191996443e0c5c5bfc0`, `libfile_643cd8293c4c81918fee2fa51a3decf4`.
+
+Confirmed: canonical ability and costume, existing portrait,16 generated keys, actual exports, mathematical/pixel checks. Proposed and unapproved: exact breath rhythm, feather-cage imagery and new battle rendition. No missing source blocks this self-contained build. Engine integration and artistic approval remain dependencies for production use. Read README for honest live-review limits.
+
+## Complete creation prompt
+
+The following is one complete copy-ready prompt for reproducing this action, with both raster-generation requests and assembly constraints. Original per-generation text is retained in the package.
+
+```text
+Create exactly one new playable Tetsugi Chakra battle-action animation for FINAL FANTASY: THE HUMMING CRYSTAL. Use the current stitched portrait and cast description as identity references, not the legacy spiky-haired sprite. Tetsugi is a lean muscular young adult monk with close-shaved stitched scalp, calm face, stitched neck/chest, tan sleeveless gi, rope belt, cloth-wrapped fists, dark shoes and one tiny grey collar feather. Rust-red seams are the only saturated accent. Preserve gothic restraint. Generate eight actor keys and eight effect keys; do not redraw a complete character set or borrow Kuro's action art.
+
+For each source sheet use1536x1024, four columns/two rows,384x512 cells, transparent background, no labels or backgrounds. Actor source key order: low guard; slight knee bend drawing fists inward; palms rise to sternum; open hands at chest holding breath; palms pressed and chin gently lifted; exhale with hands separating/lowering; hands descend to belt; near guard with rope settling. Face screen-left throughout. Keep feet and head scale registered, with purposeful cloth/rope follow-through. No weapon, long hair or effects on actor sheet.
+
+Effect source key order: two tiny grey/ivory feather tips; four inward-curved vanes; six vanes rising around open centre; tall open oval feather cage; narrow riblike vanes pulled into a sewing-thread seam with tiny rust stitches; feather release; smaller separated down; three last ash fragments. Use crisp16-bit stepped clusters, ivory/warmgrey/sepia/charcoal and restrained rust. No faces, runes, green healing icons or full-screen flashes. Large open negative spaces preserve the actor's gesture. Do not bake smooth light into the pixel sheets.
+
+Clean source alpha at200, map each sheet to a shared palette (actor24, effects16), scale all cells consistently with nearest-neighbour and retain generated originals. Native actor96x96, atlas384x192,8cells4x2, no gutters/margins. Actor pivot(48,87), safe x8..87/y8..87, common shoe strip y81..88, lowest opaque shoe row86. Feather128x128, atlas512x256,8cells4x2, pivot(64,64), safe x8..119/y8..119. Do not independently recenter cells. Save all measured bounds, palettes and row-major rectangles to JSON.
+
+Scene384x216 native,1536x864 output. Top-left origin, baseline180, actor feet(236,180), facing left, effect(236,140), scene safe x8..375/y8..207. Preparation, feather gathering, stitch closure/heal, exhale, residue and calm recovery form one3600ms action. Actor TC01..TC08 durations240,200,200,600,480,240,200,200ms, then TC01 for1240ms. Effect CF01..CF08 starts640ms with durations160,160,200,440,200,200,240,240ms, then hide at2480. Heal exactly once at1600, with TC05 and CF05. Other preview cues: gather640,effect_clear2480,action_complete3600. No gameplay balance/state mutation. Tetsugi is the recipient; show relaxed shoulders and exhale as the response.
+
+Keep actor fixed with no interpolated crossfade, rotation, slide or camera shake. Effect y keys(0,140),(1600,140),(1840,138),(2240,126),(2480,120),(3600,120), smoothstep segments rounded to native pixels. Two small CF07 down crops rise outward over1900..2440. Six separately rendered light motes start640+j*55ms and converge at1600 along deterministic radial paths. New raster artwork must carry the action; particles only support it.
+
+Layer order: native stage, rear light, rear upper feather half, actor, front lower feather half, restrained foreground heal light. Pixel layers binary alpha, source-over, nearest filtering, exactly4x preview. One-pixel dark outlines where appropriate, controlled clusters, no blur or resampled rotations. Light layers authored768x432 with continuous alpha, linear2x upscale, rear source-over/foreground screen. They must remain separately renderable. Hide transient layers by2480; final pixels match initial guard.
+
+Export original PNG sources/prompts, real layered OpenRaster sources with palettes in JSON, clean native atlases, exact4x previews, labeled552x552 native review and2208x2208 output. Review header(8,4); columns8,144,280,416; actor rows24,136; effect rows256,400; borders outside cells and bitmap labels at cell y+size+2. Never import review markings.
+
+Deliver reproducible build/renderer/export code, timeline.v01.json, README and actual validation. Export tetsugi-chakra.v01.html fully self-contained with replay,pause,normal/half speed,seek,light/dark backgrounds. HTML gameplay is one-shot, no auto-loop, replay resets state/cues, seeking emits no events. Export1536x86460fps216-frame MP4 and lossless one-play APNG, plus768x432 GIF viewing derivative with one repeat. Stable filenames use tetsugi-breath.v01 and chakra-feathers.v01 for native/ORA/4x assets.
+
+Validate actual dimensions,rectangles,bounds,foot registration,palettes,binary pixel alpha,4x replication,ORA recomposition,timing,heal event count,replay/seek/pause,terminal cleanup and decoded output pixels. Inspect normal/half-speed continuous playback and light/dark backgrounds, fix observed defects and report remaining limitations. Sampled stills or programmatic checks alone do not confer artistic or engine approval. Publish only actual outputs on a dedicated branch and open a draft PR if full visual review remains incomplete. Do not merge or modify other review work.
+```
+
+Repository validation: `tools/check.sh` passed exit0, including all encounter smoke runs. Existing Quick Song/Delay drift warnings and creature attachment notices remain unchanged and already tracked. No engine integration is implied.

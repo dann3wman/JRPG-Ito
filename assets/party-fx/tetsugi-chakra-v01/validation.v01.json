@@ -1,0 +1,117 @@
+{
+  "tetsugi-breath": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "chakra-feathers": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 16,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "planted_boot_strip_exact": true,
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 108,
+    "expanded_render_slots": 216,
+    "duration_ms": 3600.0,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 108,
+    "duration_ms": 3600,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 216,
+    "fps": 60,
+    "duration_ms": 3600
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "track_totals": true,
+    "integer_states": 3601,
+    "event_count": 4,
+    "heal_event_count": 1,
+    "heal_pose_and_effect_sync": true,
+    "seek_dispatches_events": false,
+    "backward_seek_duplicates_events": false,
+    "replay_resets": true,
+    "pause_holds": true,
+    "normal_half_speed_logic": true,
+    "terminal_cleanup": true,
+    "ui_interactions_live_verified": false
+  },
+  "visual_review": {
+    "complete_continuous_review": false,
+    "matched_reference_continuous_playback": false,
+    "light_dark_stills_reviewed": true,
+    "ora_reopened_programmatically": true,
+    "artistic_approval": false,
+    "engine_tested": false,
+    "live_playback": "GIMP GIF opened and sampled at 1x and 0.5x; final one-pixel foot-anchor correction only inspected in rebuilt stills",
+    "browser_controls_live_verified": false
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 361,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "0381f6b54dc02441620f71836ee2f2ca1233bcd04803963058255d11770ba937",
+    "build.py": "231383589c033d96fb19373588ffb6a70204495aed4bf2f6558103ddd9c2b206",
+    "chakra-feathers.v01.4x.png": "c536d441ee24e98ffebe20ba7ff00fc163c6bc101903b75da549cd1b71e24b06",
+    "chakra-feathers.v01.ora": "c6b3d7478076d6d9a420afe225969a25a2d64930388b401dc8c028000dc4c0a2",
+    "chakra-feathers.v01.png": "c6a6a0816adcb67f22ac0b3ec1aa5e721542ac3c7e85678185c7dd44602576ba",
+    "check-render.cjs": "ee3ceba352a90359ec5b755dffa8962b76be189637acdea00aa17d6ee87ef2e1",
+    "encode.py": "b7cd7b1f4b4a475f691387083e42f41a7b5f93e68b923de0ee24d56f791d084b",
+    "export.cjs": "22bb69bc6d4832fe554bbddc49ac7e85fd597350dd74d0c00ebeec10caa6ff1e",
+    "player.template.html": "2807c67d786d6184178561d2e7ac2e8009f77197e1387c72815852f598aaed45",
+    "render-validation.json": "8da4a3d32e9c398b381dc2d1b6b70fa2c73505b5e258723c3b0d14215d2db6a5",
+    "render.js": "6b644c16a713eaabacf19fbd150b38a558dc1ff933ad1d4b37c2c6b59c413a7f",
+    "review.v01.4x.png": "f0064d05edc69e7f1b311d445d4eccc31245f1fc6340905d429dc914766cdd0b",
+    "review.v01.png": "87cb6f59ef3b8a36518ca470439e55ab0d07703b1180063016d1cab2f472a77e",
+    "runtime-validation.json": "6134a2eb8f2d48b66db8dcdb02a6e80f24e1311c32716370657c30255a00d4c8",
+    "scene.dark.v01.png": "ccea8d429e0720d7b44ba3ee8e5563d3b8a93c54f872e15aaf0fb05af78d37e3",
+    "scene.light.v01.png": "ae1529045803968c994376a3b0e6dd098167a22041f50049b1cbdd88a83e1aae",
+    "scene.pixel-4x.v01.png": "3bf29a9244bf17b67c23189bf5084778ce212ef39e877a7eaab9a55fc1a3567f",
+    "scene.pixel-native.v01.png": "c63e9b51f1dafa1849ef9772e1be19a802305e05c92d872feecc326e05e23893",
+    "source/chakra-feathers.generated.png": "5cd2a3a7348dd2b014241256c39d17ed14c1cad2fa7038fbd1d3bbc735acce59",
+    "source/generation-prompts.txt": "af0987f32e100ecde8e13e43460aa5983f173ae03dd5659e3e6c7abae570ffa8",
+    "source/tetsugi-breath.generated.png": "387a972f069fba9573b6e9e52f0185fd635e8307f580ef5e624aefcb736312ab",
+    "test.cjs": "6eab49fa18f60f00ef7d724a84a3edd2b02fd5cca9fab6849cf35f7aebdf5e5e",
+    "tetsugi-breath.v01.4x.png": "8ca43f4372b4b11a4d9b6212285d080f13e2dfba6cfbcff8256ddbd65380edc7",
+    "tetsugi-breath.v01.ora": "e5833129004fead85775f159edb8a63d6bf53eebdae7c36e499a73df6ce4f13e",
+    "tetsugi-breath.v01.png": "69591379a43c79c9c25f104148ed65e21a53a1f9916c399b2957e0506ad2d067",
+    "tetsugi-chakra.v01.apng": "9a6bbade68f0a7e7629bd0acebd5f711ea9339cd4b8ef86bbb80fec28f7ab3b5",
+    "tetsugi-chakra.v01.gif": "ea5b4190342bb4d01ded2eb165f1f8c5f6c06e626cf9f796224433ca77a0b5e4",
+    "tetsugi-chakra.v01.html": "df84ad29c7591ef52bcc3099f613a0bccdec7d0e10c309442a9054abff482175",
+    "tetsugi-chakra.v01.mp4": "c6eec0201f58ad5396ba668a83317d2f2d0a4177c517dac9548bab67443e5201",
+    "timeline.v01.json": "7f315118efdb701977b98c875ef8791692260dce76ea5c65111a75f1ededd923",
+    "validate.py": "3e211edac052926c4b489567cad81f4102e5c825c7bae161404cd81210a7f879"
+  },
+  "repository_checks": {
+    "command": "bash tools/check.sh",
+    "exit_code": 0,
+    "warnings": "Two pre-existing Quick Song/Delay drift warnings, tracked in docs/implementation-status.md; existing creature attachment review notices",
+    "scope": "No balance or engine changes"
+  }
+}

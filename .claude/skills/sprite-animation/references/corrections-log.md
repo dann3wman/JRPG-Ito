@@ -20,6 +20,13 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
+- **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
+- **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.
+- **Solution:** `assets/party-fx/tetsugi-chakra-v01/build.py` uses alpha threshold200 and sheet-wide24/16-colour palettes; all actor keys share TC01's y81..88 shoe strip. Actor pivot changed from(48,88) to(48,87), placing last shoe row179 directly above scene baseline180. Renderer and import metadata use the same pivot. No other actor/action asset changed.
+- **Verification:** actual bounds, shoe equality,4x replication,ORA recomposition,3600ms output and cue/cleanup tests. GIMP playback sampled at1x/0.5x before the final anchor correction; rebuilt outputs checked afterwards. Full continuous review, artistic approval and engine testing remain incomplete.
+- **Rule:** derive foot pivots from the last occupied row of the new asset; never inherit a prior character's pivot without measuring. Preserve source sheets and distinguish generated keys from a finished action.
+
 ### 2026-11-16 · Kuro · Dark casting KD03 fringe
 - **Reported problem:** an isolated dark pixel appears below trailing hair in the 140 ms raised-palm exposure.
 - **Original generation:** PR25 actor atlas at commit `0910e540074d0127b1afc0a0ef5a53c3d6bd4b23`, KD03 local (64,64), RGBA (22,18,25,255).
