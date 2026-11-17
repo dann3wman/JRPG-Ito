@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-15 · Kuro · new Dark action source registration
+- **Reported problem:** generated transparent sheets contained low-alpha backdrop fringe and slight planted-boot variation; the first review canvas clipped its final labels. A seek-back test could re-arm damage.
+- **Original generation:** eight casting keys and eight fold keys at1536x1024; alpha maxima254/253 and nonzero background haze. Actor cells share the same generated foot row but not identical boot pixels.
+- **Root cause:** generated raster cleanup/registration and preview event-state ownership, not a change to the combat system.
+- **Solution implemented:** `assets/party-fx/kuro-dark-v01/build.py` thresholds alpha at200, uses one sheet scale and palette, and copies KD01 local y85..88 into all planted poses. Review canvas536 to552px high. Target glow radius70 to64 preserves scene margins. `render.js` seek disarms passed cues without re-arming history. Preview target labels stay outside imports. At1830ms the target emerges above closing folds, exposing recoil previously obscured by the opaque cavity.
+- **Verification:** actual atlas/palette/alpha/4x/ORA and rendered timing checks, 3401 state samples, 341 rendered bounds samples and replay/seek tests. GIMP reopened the casting ORA and sampled GIF playback at1x/0.5x; full continuous review and engine testing remain incomplete. See the package validation, not a production approval.
+- **Rule for next time:** validate generated alpha numerically, inspect planted feet as a shared strip, and test backward seek after a hit. Do not confuse live samples with complete continuous animation review.
+
 ### 2026-11-14 · Natsu · eight-pose Cure halo rims
 - **Reported problem:** halo face rims change silhouette and shading between casting poses; see natsu-cure-v03 labeled sheet and before/after GIFs.
 - **Original generation:** v02 eight-pose study, 96x96 cells, contains inconsistent face outlines; its prior foot registration fix is retained.

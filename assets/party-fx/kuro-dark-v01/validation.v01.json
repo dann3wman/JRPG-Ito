@@ -1,0 +1,117 @@
+{
+  "kuro-casting": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "dark-folds": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 16,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "planted_boot_strip_exact": true,
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 107,
+    "expanded_render_slots": 204,
+    "duration_ms": 3400.0000000000005,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 107,
+    "duration_ms": 3400,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 204,
+    "fps": 60,
+    "duration_ms": 3400
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "track_totals": true,
+    "integer_states": 3401,
+    "event_count": 4,
+    "damage_event_count": 1,
+    "seek_dispatches_events": false,
+    "backward_seek_duplicates_events": false,
+    "replay_resets": true,
+    "pause_holds": true,
+    "terminal_cleanup": true,
+    "ui_interactions_live_verified": false
+  },
+  "visual_review": {
+    "live_samples": "GIMP GIF playback at 1x and 0.5x, before final label/glow-margin/target-order revision",
+    "complete_continuous_review": false,
+    "matched_reference_continuous_playback": false,
+    "light_dark_stills_reviewed": true,
+    "caster_ora_reopened_in_gimp": true,
+    "effects_ora_reopened_programmatically": true,
+    "artistic_approval": false,
+    "engine_tested": false,
+    "browser_blocker": "Cloud browser localhost preview connection refused; HTML controls not live verified"
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 341,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "e82a598d873bb6d3c21f746d53a578d4ce68c199a73a6bc63f890b5c701569c6",
+    "build.py": "81b3aa6d639bac885b2518a289a898750c53a558775981209f39aade45831959",
+    "check-render.cjs": "581a90010d05124a109fa5a16d15deae0189e5ad2ef12788434536c901724fdc",
+    "dark-folds.v01.4x.png": "14d5503ae5b791b3d58f412e7fbb4439984fe98231a68e7f978249d8dbf558c3",
+    "dark-folds.v01.ora": "a626c678547aa2679c29ac488ab6d110f3fdca680cc7b1d358c27d72fd4d11fc",
+    "dark-folds.v01.png": "3c4b666819fb89fbc57ee0b189e9ce59385638c4318c95c626f5e1d0e76f5393",
+    "encode.py": "3feacfb8fc7162693702318bdb8ba7b29d0ec93ae974834100d27d1722742baa",
+    "export.cjs": "cd234997a96eefffd685a89250bf0bb8d9ad053dd80735cf677492dae9e05012",
+    "kuro-casting.v01.4x.png": "70b4b454ed33a1c153f6f1942976e2b31e462c58a3bb5c21e1cd9f4319e6ce3b",
+    "kuro-casting.v01.ora": "9ba03180a22066f829a20c08172e0ee6ffabe37f917b5a64ac456c075d611fb1",
+    "kuro-casting.v01.png": "a7034b278b735a88245d3625c761243d4fde85226ab74f1a592001e435157b86",
+    "kuro-dark.v01.apng": "621b4272645bfa99346ce9c3f43caebba4469b7f731b0788cabaf633c24af96b",
+    "kuro-dark.v01.gif": "99198ca47fd9d8f1c4bb05c92e1b6d999e8b98d58c668cf3a24abc03cb227aa8",
+    "kuro-dark.v01.html": "61f11beb2ca5995dab3e57b14d9a546a1aae4fe9e74c8661a537337dbd7a4eb5",
+    "kuro-dark.v01.mp4": "3dcd4efe740119ca40aca82ccef0301a70ed116f60a818b12a9a7050488b23cf",
+    "palm.v01.png": "a314f9f57d3251ac96d8acf7c246e31fc77e2962d0fb1acf0f2974dafce95fe5",
+    "player.template.html": "8bb6d4e31fa228c7ad85dd978df40eda1e1dbe1d1f76d2ef6ef45c6259a758c1",
+    "render-validation.json": "8d2040f70aec02fa3fd1d9161986ce9a0404b3daac35183c928c341c08dd83f5",
+    "render.js": "520e72ad90faf0f49690d549f23375cde722270b63da5d59dc96afdf27fcbf9a",
+    "review.v01.4x.png": "3708ec2a37f8fc43a2461c472ca5530540f618b27269fb94316cac8ac918c332",
+    "review.v01.png": "81e4fbd699b6093186a1f3d63ff090b869ad9fb63e2469d887d6128156d538be",
+    "runtime-validation.json": "26693ca11bdbbca8b2e770f9d39aea305491a2f8eacbee1b56eca90b8d24ccf8",
+    "scene.dark.v01.png": "0544508de8175d446f16224ad11ff0940b35b88cbf94d55f98f4975fd0e6d9be",
+    "scene.light.v01.png": "85af34ae6a0182f577b19f5392200f5fb8c0b24e68278d5cb32650b02a7360fa",
+    "scene.pixel-4x.v01.png": "6f7ab34170b796a914952460e6916907f880bd624f4fbc31808c4ac6ced46d66",
+    "scene.pixel-native.v01.png": "61bd1485f4ce1562134a295ba978f814e023c3329c1cf7c1323508dc0b9fd324",
+    "source/dark-folds.generated.png": "7f57a504c7bbdebe02c9d1bc5bc7d7d8d21db98a9052f0b6afd467d629bd4406",
+    "source/generation-prompts.json": "844501322cf1267502ae1235fbe9b4caa2dfd2df12855bb278932802bbe049ef",
+    "source/kuro-casting.generated.png": "7bdaa0aadf18d84c230cda26fae6e7596cd3b6b3c9b9ac74955e896378ff90b4",
+    "target-context.png": "383ead149a01c4f22418949bacd01961ae970a065f4ab5ed67e6f3a64b87bfe9",
+    "test.cjs": "a899d89633784bf2b3d1b187137f4f4be3c64ef384e9e2d6c12a9775fcd2fe33",
+    "timeline.v01.json": "0d6e554be5518291754783e5d3c0f02a6f396448ee64ac912199eaff834a0b8c",
+    "validate.py": "afa090a61e664bad76988d169e7443bfc8c4a442c23af88b75d838b2f026792b"
+  },
+  "repository_checks": {
+    "command": "tools/check.sh",
+    "exit_code": 0,
+    "result": "0 errors, 2 existing Quick Song/Delay warnings, documented in implementation-status questions 3 and 2. Animation parity/authoring and every encounter smoke check passed; existing creature attachment review notices remain."
+  }
+}
