@@ -6,14 +6,14 @@ Confirmed rule/readability defects come first, followed by measured encounter pr
 
 | Order | Entry | Task | Status |
 | --- | --- | --- | --- |
-| 1 | The Tongue (licker / tongue2) | Reveal Grab immediately after a three-character rescue | merged; visual review outstanding |
-| 2 | The Tongue (licker / tongue2) | Show the phase-two Grab target count in its live telegraph | implemented; visual review outstanding |
-| 3 | Tide-Widow | Shorten the overlong chapter-five fight while preserving its Stress lesson | pending |
-| 4 | Lamp Hollow | Connect the existing Lamp Hollow rig to its battle entry | pending |
-| 5 | The Grey Hound | Connect the existing Grey Hound rig to its battle entry | pending |
-| 6 | Lake Hen | Connect Lake Hen surfacing and diving to the battle state | pending |
-| 7 | The Well-Rested | Align its viewer lore with the original and copy reveal | pending |
-| 8 | Archbishop Orlen | Review and, if confirmed, close ancestor-chain joint gaps | pending |
+| 1 | The Tongue (licker / tongue2) | Reveal Grab immediately after a three-character rescue | merged pending visual review |
+| 2 | The Tongue (licker / tongue2) | Show the phase-two Grab target count in its live telegraph | merged pending visual review |
+| 3 | Tide-Widow | Shorten the overlong chapter-five fight while preserving its Stress lesson | implemented pending balance and visual review |
+| 4 | Lamp Hollow | Connect the existing Lamp Hollow rig to its battle entry | blocked |
+| 5 | The Grey Hound | Connect the existing Grey Hound rig to its battle entry | blocked |
+| 6 | Lake Hen | Connect Lake Hen surfacing and diving to the battle state | blocked |
+| 7 | The Well-Rested | Align its viewer lore with the original and copy reveal | delivered for review |
+| 8 | Archbishop Orlen | Review and, if confirmed, close ancestor-chain joint gaps | blocked |
 | 9 | The Tongue (licker / tongue2) | Make the swallow-turn action change legible before execution | pending |
 | 10 | The Hellstar finale | Resolve the sequential-versus-simultaneous finale design before implementation | blocked |
 | 11 | The Puppeteers | Implement its fight after required encounter capabilities are ready | blocked |
@@ -39,3 +39,11 @@ Daily refinement is scheduled for around 10 AM America/New_York, beginning 2026-
 ## 2026-11-15 refinement
 
 B002 updates the Grab warning to up to 1 or 2 highest-Stress allies at execution, including an impending half-HP phase transition. [Review](reviews/2026-11-15-tongue-grab-count.md). Seven actionable tasks remain; next is B003, Tide-Widow fight length. Two larger tasks remain blocked.
+
+## 2026-11-17 reconciliation
+
+Generation 1, revision 9. Default `ccr-d8829a5a-ays4x1` at `b5d0e9f9ac45c21b2acf28784d75fd977d35eb91` contains queue revision 5. [PR29](https://github.com/dann3wman/JRPG-Ito/pull/29) carries revision 7 and the unmerged Tide-Widow draft. Its newer tracker history is retained without importing its implementation. PR26 is now in default; its outstanding visual check remains outstanding. Open PRs 29–31 do not overlap this lore edit.
+
+[B007 review](reviews/2026-11-17-well-rested-lore.md): corrected The Well-Rested's viewer lore to the repeated rests, crowd of copies and Lullaby reveal in chapter seven. Rig-authoring details now live in a source comment instead of the fiction. Delivered in [PR32](https://github.com/dann3wman/JRPG-Ito/pull/32), awaiting editorial review.
+
+B004, B005, B006 and B008 are blocked on real playback/visual validation; Chromium still aborts on a denied socket. One actionable pending task remains: **B009, The Tongue's swallow-turn telegraph**. B010/B011 retain their design/engine blockers. B001/B002/B003 retain their outstanding review limitations. Inventory counts above remain the dated initial audit.

@@ -5,9 +5,9 @@
   "default_branch_at_audit": "ccr-d8829a5a-ays4x1",
   "source_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
   "created_at": "2026-11-14",
-  "updated_at": "2026-11-15",
+  "updated_at": "2026-11-17",
   "generation": 1,
-  "revision": 5,
+  "revision": 9,
   "tracker_path": "docs/bestiary/refinement-queue.json",
   "initial_branch": "bestiary/2026-11-14-tongue-rescue-telegraph",
   "selection_policy": "Confirmed correctness/readability defects first, then measured encounter problems, existing asset integration, canon alignment, and evidence-led visual review. Prefer one feasible entry per run; notices alone are not proven defects.",
@@ -79,7 +79,7 @@
       "entry": "The Tongue (licker / tongue2)",
       "category": "enemy_ai",
       "title": "Show the phase-two Grab target count in its live telegraph",
-      "status": "implemented_pending_visual_review",
+      "status": "merged_pending_visual_review",
       "evidence": [
         "index.html: planText uses LATE_TEXT.hungry, always singular; licker.skills.grab.run takes two targets in phase p2.",
         "docs/bosses/tongue2.md and design-doc.md Ch.20 explicitly require two captives at half HP."
@@ -101,8 +101,9 @@
       "delivery": {
         "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/26",
         "implementation_commit": "3e481d325a512f6cea675ebe913a83a5ebec9a04",
-        "state": "draft",
-        "merged": false
+        "state": "closed",
+        "merged": true,
+        "merge_commit": "57524b43850a40bf5318bd0af09d6d441e5902b7"
       }
     },
     {
@@ -111,7 +112,7 @@
       "entry": "Tide-Widow",
       "category": "enemy_ai",
       "title": "Shorten the overlong chapter-five fight while preserving its Stress lesson",
-      "status": "pending",
+      "status": "implemented_pending_balance_and_visual_review",
       "evidence": [
         "docs/bosses/widow.md reports 84 winning commands against the Disc 1 ceiling of 60.",
         "FOES.widow has 3200 HP; the spec identifies HP as the first tuning lever."
@@ -121,7 +122,25 @@
         "Change one lever, prioritising HP; target 25-60 winning commands, advisor >=90%, attack <=25%, and nontrivial Stress.",
         "Keep a viable fallback, record tradeoffs, update spec/status/reference and 200-run baseline; browser-play the result."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "implemented_at": "2026-11-16",
+      "branch": "bestiary/2026-11-16-widow-pacing",
+      "review": "docs/bestiary/reviews/2026-11-16-widow-pacing.md",
+      "validation": {
+        "simulations": "300 before and after per advisor/attack/random/fallback. Advisor 100%, 59.76 commands, 0.623 Afflicted; attack 27%; fallback 100%.",
+        "regression": "Live phase, sound counterplay, late Undertow/Blink, Release and respawn checks pass.",
+        "browser": "blocked: Chromium socket() Operation not permitted",
+        "remaining": "Review attack 27% vs <=25% goal, lower-than-prior-spec Afflicted, and browser Helper play/phase warning.",
+        "holdout": "Attack seed 1001: 23.67%, 300 runs; combined with seed 1: 25.33%, 600 runs. Borderline, not fully balance-approved.",
+        "checks": "tools/check.sh passed, including all 37 encounter smoke runs; two documented drift warnings and 16 art notices remain."
+      },
+      "acceptance_resolution": "HP-only 2300 reached 59.17 commands but 0.163 Afflicted. Took the existing spec proposal to strengthen phase-two Stress as a second lever. Final 2225 HP/+28 phase-two Lullaby is delivered for review, not fully accepted.",
+      "delivery": {
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/29",
+        "implementation_commit": "082bb514a53786e7e5ae1939eb81094682eaf14b",
+        "state": "draft",
+        "merged": false
+      }
     },
     {
       "id": "B004",
@@ -129,7 +148,7 @@
       "entry": "Lamp Hollow",
       "category": "animation",
       "title": "Connect the existing Lamp Hollow rig to its battle entry",
-      "status": "pending",
+      "status": "blocked",
       "evidence": [
         "Viewer RIGS.lamp and lamp.webp exist with idle/glare/dark/relight; battle ART_RIG has no lamp mapping.",
         "FOES.lamp uses art lamp and currently falls back to static art."
@@ -139,7 +158,10 @@
         "Map only real Lamp skills and drive dark state from battle state; do not invent Wick rig support.",
         "Check sheet fallback, viewer/battle parity, attack/idle transitions and reduced motion in actual playback."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "blocked_at": "2026-11-17",
+      "blocker": "Required live normal/slow playback and visual validation unavailable: Chromium aborts before opening a page with socket() Operation not permitted. Numeric checks alone do not validate art or justify integration.",
+      "unblock_when": "A working browser/playback surface can load the repository and verify the required visuals."
     },
     {
       "id": "B005",
@@ -147,7 +169,7 @@
       "entry": "The Grey Hound",
       "category": "animation",
       "title": "Connect the existing Grey Hound rig to its battle entry",
-      "status": "pending",
+      "status": "blocked",
       "evidence": [
         "Viewer RIGS.greyhound has idle/prowl/maul/callback/enrage and an installed sheet; ART_RIG has no greyhound mapping.",
         "The story encounter uses Goku recall steps; animation must reflect that state instead of playing an arbitrary attack."
@@ -157,7 +179,10 @@
         "Wire existing compatible clips, keeping the three-step callback and unkillable mechanics intact.",
         "Verify actual battle playback, fallback, reduced motion and parity; defer artistic defects as explicit tasks if not solvable in scope."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "blocked_at": "2026-11-17",
+      "blocker": "Required live normal/slow playback and visual validation unavailable: Chromium aborts before opening a page with socket() Operation not permitted. Numeric checks alone do not validate art or justify integration.",
+      "unblock_when": "A working browser/playback surface can load the repository and verify the required visuals."
     },
     {
       "id": "B006",
@@ -165,7 +190,7 @@
       "entry": "Lake Hen",
       "category": "animation",
       "title": "Connect Lake Hen surfacing and diving to the battle state",
-      "status": "pending",
+      "status": "blocked",
       "evidence": [
         "Viewer RIGS.lakehen includes idle/peck/dive/surface; installed lakehen.webp exists.",
         "FOES.hen uses art hen, with no ART_RIG mapping. The underwater targeting window is presently explained through static art/text."
@@ -176,7 +201,10 @@
         "Do not depict four mechanically active chicks: the documented encounter caps living chicks at three.",
         "Check playback, transitions, fallback, reduced motion and parity."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "blocked_at": "2026-11-17",
+      "blocker": "Required live normal/slow playback and visual validation unavailable: Chromium aborts before opening a page with socket() Operation not permitted. Numeric checks alone do not validate art or justify integration.",
+      "unblock_when": "A working browser/playback surface can load the repository and verify the required visuals."
     },
     {
       "id": "B007",
@@ -184,7 +212,7 @@
       "entry": "The Well-Rested",
       "category": "lore",
       "title": "Align its viewer lore with the original and copy reveal",
-      "status": "pending",
+      "status": "delivered_for_review",
       "evidence": [
         "RIGS.wellrested.lore describes a tired traveller and a copy that slept for him.",
         "The design doc Ch.7 and SCRIPTS.rested describe an original that never needs rest among identical copies, revealed by Lullaby."
@@ -194,7 +222,23 @@
         "Keep art/rig authoring details distinct from fiction; no new origin explanation.",
         "Verify against design-doc.md and the active script; record art identity limitations separately."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "implemented_at": "2026-11-17",
+      "branch": "bestiary/2026-11-17-well-rested-lore",
+      "review": "docs/bestiary/reviews/2026-11-17-well-rested-lore.md",
+      "validation": {
+        "canon": "Compared Chapter 7, boss mechanics, rested spec, and live SCRIPTS.rested.onPartyAct.",
+        "scope": "Only lore text and a non-rendered rig-authoring comment changed. No balance, art or animation change.",
+        "browser": "Not observed: Chromium socket failure. Text is loaded via the existing textContent renderer.",
+        "remaining": "Editorial review; existing two-body sleepy rig is not a validated representation of the four-to-six-body encounter.",
+        "checks": "tools/check.sh and git diff --check passed. Headless viewer loads replacement lore. Existing two drift warnings and 16 art notices remain."
+      },
+      "delivery": {
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/32",
+        "implementation_commit": "007b01e9940ba6aef391650dc277b02b3b659684",
+        "state": "open",
+        "merged": false
+      }
     },
     {
       "id": "B008",
@@ -202,7 +246,7 @@
       "entry": "Archbishop Orlen",
       "category": "skeleton_rigging",
       "title": "Review and, if confirmed, close ancestor-chain joint gaps",
-      "status": "pending",
+      "status": "blocked",
       "evidence": [
         "Animation checker flags anc2/anc3/anc4/anc5 attachments outside parent art.",
         "These are review notices, not confirmed broken joints; current numeric continuity/parity checks pass."
@@ -213,7 +257,10 @@
         "Synchronise viewer and battle copies, rerun continuity/parity, and save before/after evidence.",
         "If the rig passes visually, record a verified pass without manufacturing edits."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "blocked_at": "2026-11-17",
+      "blocker": "Required live normal/slow playback and visual validation unavailable: Chromium aborts before opening a page with socket() Operation not permitted. Numeric checks alone do not validate art or justify integration.",
+      "unblock_when": "A working browser/playback surface can load the repository and verify the required visuals."
     },
     {
       "id": "B009",
@@ -267,18 +314,19 @@
       "depends_on": []
     }
   ],
-  "last_run_source_commit": "5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf",
+  "last_run_source_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
   "last_run_open_prs_checked": [
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    23,
-    24,
-    25
-  ]
+    29,
+    30,
+    31
+  ],
+  "reconciliation": {
+    "default_generation": 1,
+    "default_revision": 5,
+    "tracker_source_pr": 29,
+    "tracker_source_commit": "8f7682e409ccb821117a48cf69898be06e33bfed",
+    "tracker_generation": 1,
+    "tracker_revision": 7,
+    "resolution": "Carry PR29 revision 7 history only. Default now contains PR26; update B002 merger metadata while retaining missing visual acceptance. Do not import Widow code or its unrelated docs."
+  }
 }
