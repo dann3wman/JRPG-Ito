@@ -1,0 +1,34 @@
+== data check
+
+design doc
+  ! Sayo: Quick Song (slots sooner): design doc says 2, code uses 3
+  ! Delay: "most skills" are 4 in the doc, but 11 of 18 differ (Spiral Cut 3, Soothe 3, Counter 2, Chakra 3, Quick Song 3, Provoke 3, Cover 3, Mix 3, Acid 3, Foresee 3, Blink 3)
+
+0 error(s), 2 warning(s).
+== bestiary behaviour
+Tongue rescue telegraph: 4 phase/action cases passed; distinct tastes, release timing, no reroll and execution checked.
+Tongue Grab count: 7 targeting cases passed, plus other plans and unchanged late-target fallback.
+== game data reference
+docs/reference/game-data.md is up to date.
+== animation continuity and viewer/battle parity
+22 rigs, 88 clips, 5368 sampled poses; 6 battle rigs compared.
+ART REVIEW: orlen.anc2: attachment outside parent art; inspect overlap
+ART REVIEW: orlen.anc3: attachment outside parent art; inspect overlap
+ART REVIEW: orlen.anc4: attachment outside parent art; inspect overlap
+ART REVIEW: orlen.anc5: attachment outside parent art; inspect overlap
+ART REVIEW: fourheard.wind_torso: attachment outside parent art; inspect overlap
+ART REVIEW: fourheard.water_torso: attachment outside parent art; inspect overlap
+ART REVIEW: fourheard.fire_torso: attachment outside parent art; inspect overlap
+ART REVIEW: fourheard.earth_torso: attachment outside parent art; inspect overlap
+ART REVIEW: fourheard.wind_armR: attachment outside parent art; inspect overlap
+ART REVIEW: lakehen.ringFront: attachment outside parent art; inspect overlap
+ART REVIEW: fortyyears.crewHead4: attachment outside parent art; inspect overlap
+ART REVIEW: listeners.torso: attachment outside parent art; inspect overlap
+ART REVIEW: listeners.legs: attachment outside parent art; inspect overlap
+ART REVIEW: greyhound.head: attachment outside parent art; inspect overlap
+ART REVIEW: greyhound.earL: attachment outside parent art; inspect overlap
+ART REVIEW: whisperer.torso: attachment outside parent art; inspect overlap
+Animation seams, boundaries, pivots, timing and viewer/battle parity passed.
+Authoring checks passed in viewer and battle: malformed rigs, IK, pivot preservation, held tracks, swaps and interrupted FX.
+== battle simulator smoke run (every encounter, 5 battles each)
+every encounter ran to a result

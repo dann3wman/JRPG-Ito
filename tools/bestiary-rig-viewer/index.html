@@ -981,7 +981,8 @@ pelt: {
 // ---------------------------------------------------------------- THE WELL-RESTED
 wellrested: {
   name: 'The Well-Rested', short: 'Well-Rested', accent: '#6f8fc4', bones: GEN.wellrested,
-  lore: 'A tired traveller and the copy that slept for him. Both are full rigs; the copy runs every motion half a beat behind.',
+  // Viewer study: two bodies, with the copy lagging 0.6s in idle and 0.7s in Yawn; not the full encounter crowd.
+  lore: 'For years, a traveller rested at the same glowing circle in the flooded ruins. Now a crowd of him rests there. When Kiri sings her Lullaby, the copies close their eyes. One does not.',
   anims: {
     idle: { label: 'Drowsing', dur: 4, fn(t, P) {
       for (const [p, lag] of [['o_', 0], ['c_', 0.6]]) {
