@@ -42,7 +42,7 @@ One HP phase at 50%: it grabs two at once.
 1. If it is holding someone: roll **Lick** 60% (Rank 4, 1.3× ATK) or **Savour** 40% (Rank 4, +8 Stress to each free ally).
 2. Otherwise: **Grab** (late target: whoever has the most Stress; ignores Provoke): 0.6× ATK and takes them out of the turn order. In phase 2 it takes the two with the most Stress.
 
-At the start of each of its turns, each held ally gains 5 Stress; after 3 it swallows them (KO). It lets go of everyone once 3 different characters have hit it since the grab.
+At the start of each of its turns, each held ally gains 5 Stress; after 3 it swallows them (KO). It lets go of everyone once 3 different characters have hit it since the grab. That release immediately replaces the holding-only Lick or Savour plan with Grab and announces the reaction in the log. Grab still chooses its target when it acts.
 
 ## Fairness checks
 
@@ -50,6 +50,7 @@ At the start of each of its turns, each held ally gains 5 Stress; after 3 it swa
 - [x] A held ally's card counts down to the swallow; the Tongue's card counts the tastes.
 - [x] Every roll shows its odds.
 - [x] The log names each taste.
+- [x] The third taste updates the visible plan to Grab before the next party choice.
 - [x] Any party with reserves wins.
 
 ## Disc rules
