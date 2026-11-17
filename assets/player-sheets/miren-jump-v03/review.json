@@ -1,0 +1,130 @@
+{
+  "review_date_utc": "2026-11-12",
+  "character": "Miren",
+  "source": {
+    "library_file_id": "libfile_8ba85fb985d48191abaf9fca5d357e9c",
+    "version": "v02",
+    "atlas_sha256": "9f2737479e35760455f14513c407be767e93aa5f9e95acbcc029fe78d69f168c",
+    "repository_base": "c1840737fef12061165ef6bb553e7bfa166b717b",
+    "authority": "Library motion-study atlas; no matching repository sheet. Costume differs from future repository specification."
+  },
+  "selection_reason": "Least recently reviewed accessible named-character study: Miren Nov 8, Kiri Nov 10, Natsu Nov 11. Open PR14 Natsu preserved; PR15 Hisui is spec only.",
+  "sequences": [
+    "Jump: HOVER,COIL,ASCEND,SUSPEND,DIVE,RECOIL,HOVER"
+  ],
+  "status": "partial_contact_motion_repair_live_playback_blocked",
+  "output_version": "v03 choreography; unchanged v02 sprite pixels",
+  "defects": [
+    "During 80 ms impact hold, fixed spear tip separates up to 5 native pixels from recoiling target/wound.",
+    "Sparse recoil-to-hover art, volume variation, and provisional costume authority remain unresolved."
+  ],
+  "changes": [
+    "Follow target recoil with Miren x anchor during 2140-2220 ms.",
+    "Start recoil at x=133 instead of x=138; retain y, pose order, times and cues.",
+    "All six source cells remain byte-identical; prior MJ02 and incision fixes preserved."
+  ],
+  "validation": {
+    "atlas_sha256": "9f2737479e35760455f14513c407be767e93aa5f9e95acbcc029fe78d69f168c",
+    "atlas_rgba_unchanged": true,
+    "geometry": [
+      192,
+      128,
+      3,
+      2,
+      64,
+      64
+    ],
+    "cell_bounds_xyxy": [
+      [
+        20,
+        18,
+        45,
+        51
+      ],
+      [
+        14,
+        21,
+        48,
+        48
+      ],
+      [
+        16,
+        11,
+        44,
+        51
+      ],
+      [
+        24,
+        16,
+        45,
+        51
+      ],
+      [
+        14,
+        17,
+        47,
+        52
+      ],
+      [
+        19,
+        16,
+        45,
+        48
+      ]
+    ],
+    "opaque_palette_count": 21,
+    "binary_alpha": true,
+    "padding_at_least_8px": true,
+    "nearest_neighbor_review": true,
+    "live_playback_inspected": false,
+    "production_pass": false,
+    "engine_tested": false,
+    "sampled_states": 4401,
+    "changed_x_states": 341,
+    "max_contact_tip_error_before_px": 5,
+    "max_contact_tip_error_after_px": 0,
+    "unchanged_outside_2140_2550_ms": true,
+    "unchanged_y_pose_target_and_cues": true,
+    "release_position_continuous": true,
+    "frames_per_preview": 264,
+    "video_checks": {
+      "normal": {
+        "r_frame_rate": "60/1",
+        "duration": "4.400000",
+        "nb_frames": "264"
+      },
+      "slow": {
+        "r_frame_rate": "30/1",
+        "duration": "8.800000",
+        "nb_frames": "264"
+      }
+    }
+  },
+  "hashes": {
+    "poses.png": "9f2737479e35760455f14513c407be767e93aa5f9e95acbcc029fe78d69f168c",
+    "render.v02.js": "63a3d220cade1db5e6c3fdf8416d0cfabc4aa3cbc82a727a7f13f3aff555d905",
+    "render.js": "7398fcc28578b87fb259a365e2b99a32337aba4c88f45c96aa8597cb6226c249",
+    "timeline.json": "859e48a5da92f1d3d60dfd0b2065da7609e6bbd91fd1fbf3598c7c7cadb45c52"
+  },
+  "output_links": {
+    "poses.png": "https://chatgpt.com/library?file_id=libfile_d1ff3abafd6c8191b96ed967dfd7a895&account_id=personal",
+    "timeline.json": "https://chatgpt.com/library?file_id=libfile_18421415d15481919aca4cd39b4e1cd8&account_id=personal",
+    "poses.review-4x.png": "https://chatgpt.com/library?file_id=libfile_08a97740175081919fe7aaa71b04a0b3&account_id=personal",
+    "jump.before-after.normal.mp4": "https://chatgpt.com/library?file_id=libfile_e8c22ee3726c8191a754107b2e3ae4f0&account_id=personal",
+    "jump.before-after.slow.mp4": "https://chatgpt.com/library?file_id=libfile_214975a7d3c08191b0b2a86ec2b9a078&account_id=personal",
+    "contact-comparison.png": "https://chatgpt.com/library?file_id=libfile_61ce7a56a0988191a020e2e7e678e536&account_id=personal",
+    "miren_jump_v03_review_package.zip": "https://chatgpt.com/library?file_id=libfile_2a0edaa28ae88191b3c317f46eb263b9&account_id=personal"
+  },
+  "remaining_issues": [
+    "Live normal/slow playback unavailable: Chromium socket() failed, Operation not permitted.",
+    "Placeholder anatomy and abrupt recovery-to-hover change still require artistic cleanup.",
+    "Repository costume reconciliation, engine integration and matched FFRK reference playback incomplete."
+  ],
+  "github": {
+    "branch": "animation-review/2026-11-12-miren-jump-contact",
+    "base_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
+    "publication_record": "https://chatgpt.com/library?file_id=libfile_e3bd1f9d5db0819185bc1c703e5bf682&account_id=personal"
+  },
+  "next_selection": "Prefer another eligible character or newly completed sheet. Inspect this draft and PR14; do not repeat the spear-contact correction or count this review as a pass.",
+  "repository_checks": "tools/check.sh passed; pre-existing Quick Song and Delay warnings tracked in implementation-status questions 3 and 2; existing creature attachment notices remain."
+}
