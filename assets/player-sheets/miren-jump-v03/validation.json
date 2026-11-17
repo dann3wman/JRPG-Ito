@@ -1,0 +1,77 @@
+{
+  "atlas_sha256": "9f2737479e35760455f14513c407be767e93aa5f9e95acbcc029fe78d69f168c",
+  "atlas_rgba_unchanged": true,
+  "geometry": [
+    192,
+    128,
+    3,
+    2,
+    64,
+    64
+  ],
+  "cell_bounds_xyxy": [
+    [
+      20,
+      18,
+      45,
+      51
+    ],
+    [
+      14,
+      21,
+      48,
+      48
+    ],
+    [
+      16,
+      11,
+      44,
+      51
+    ],
+    [
+      24,
+      16,
+      45,
+      51
+    ],
+    [
+      14,
+      17,
+      47,
+      52
+    ],
+    [
+      19,
+      16,
+      45,
+      48
+    ]
+  ],
+  "opaque_palette_count": 21,
+  "binary_alpha": true,
+  "padding_at_least_8px": true,
+  "nearest_neighbor_review": true,
+  "live_playback_inspected": false,
+  "production_pass": false,
+  "engine_tested": false,
+  "sampled_states": 4401,
+  "changed_x_states": 341,
+  "max_contact_tip_error_before_px": 5,
+  "max_contact_tip_error_after_px": 0,
+  "unchanged_outside_2140_2550_ms": true,
+  "unchanged_y_pose_target_and_cues": true,
+  "release_position_continuous": true,
+  "frames_per_preview": 264,
+  "video_checks": {
+    "normal": {
+      "r_frame_rate": "60/1",
+      "duration": "4.400000",
+      "nb_frames": "264"
+    },
+    "slow": {
+      "r_frame_rate": "30/1",
+      "duration": "8.800000",
+      "nb_frames": "264"
+    }
+  }
+}
