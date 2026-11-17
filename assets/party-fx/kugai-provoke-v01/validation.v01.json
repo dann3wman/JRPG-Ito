@@ -1,0 +1,110 @@
+{
+  "kugai-provoke-actor": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "provoke-pressure": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 16,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "planted_boot_strip_exact": true,
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 67,
+    "expanded_render_slots": 180,
+    "duration_ms": 3000.000000000002,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 67,
+    "duration_ms": 3000,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 180,
+    "fps": 60,
+    "duration_ms": 3000
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "track_totals": true,
+    "integer_states": 3001,
+    "event_count": 4,
+    "provoke_event_count": 1,
+    "provoke_pose_and_effect_sync": true,
+    "seek_dispatches_events": false,
+    "backward_seek_duplicates_events": false,
+    "replay_resets": true,
+    "pause_holds": true,
+    "normal_half_speed_logic": true,
+    "terminal_cleanup": true,
+    "ui_interactions_live_verified": false
+  },
+  "visual_review": {
+    "complete_continuous_review": false,
+    "live_playback": "GIMP GIF playback started at 1x and 0.5x; live screenshot samples observed; complete continuous review not established",
+    "light_dark_stills_reviewed": true,
+    "ora_reopened_programmatically": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 301,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "ba9e63844c85a2edaa173afa4cb47c2aa9f9bfef23b9a6002a292de4cdd5a1cd",
+    "build.py": "4fbe811aeddb945621618d598b2e21ca2417c007eb4dcd23f56c942b16d73ab8",
+    "check-render.cjs": "55f5844f83b04b20a092cb3fccfd2d9b974d5f70024700d010eca950346727cd",
+    "encode.py": "245e81ff39c53a2c966ef06fd81cf0cdc6a259ecc0cf990e8c5d7cd7b3e228cc",
+    "export.cjs": "29f80f155cbc56852c29f003b174bea33b77ccb5ebc3ac6e1eadb8f418d8f4b2",
+    "kugai-provoke-actor.v01.4x.png": "168e3db2e5a85e9e96d8cc73c749f745cff6bdb1caf90c41c60fd57c4ab83e96",
+    "kugai-provoke-actor.v01.ora": "0a9a8f0474b7b9e0edfb5da3932c4358666158c1b98124642162f513483b21e2",
+    "kugai-provoke-actor.v01.png": "cab0ec260f1e00124aeae6c2704c313ecf47bf5fe7f5709dbe16e94dc0194f0e",
+    "kugai-provoke.v01.apng": "9c5ebe5115387474d875311e409c83623be37d47b764c45b312161804bd6e4a4",
+    "kugai-provoke.v01.gif": "8e46016ae82d27c09d8cc7998d01e54f2b0020c3a125455dd73f10bd35a861e3",
+    "kugai-provoke.v01.html": "29caf61ac65e941709fbfa6af5d7ce03b22e9335d7b707f64dfa19ae48ec0296",
+    "kugai-provoke.v01.mp4": "716ecd72f8073a9008851cc275f4c60db795a875c1c5670173d254463f1bfd2b",
+    "player.template.html": "4eb46515f5840e1c43053f060fa027947a91dafdeef8de2cda8e25fd7fb62c06",
+    "provoke-pressure.v01.4x.png": "de76af74881dfe0570ecf338af655181ae38afb46f9b90da615733e42e0170d5",
+    "provoke-pressure.v01.ora": "6fbdd5a61c1db2a00cb20f27397cba27cb9996a45562cc62da1116eabd120ac7",
+    "provoke-pressure.v01.png": "fd67866790c4925211a2266c2c788de8915a21303f04ecfbfc7ab0bb3438706e",
+    "render-validation.json": "61b636bea8ac07753c57a7e05de81ef0dc103e8729450f8012071941670373bb",
+    "render.js": "7e47d6842105e419dec07a973b150f7628a0d88df9c572d4b32a9e51d2275f55",
+    "review.v01.4x.png": "1a55a09a567a06016ce33a071fcd553aac6d163e6f8e6deb7cfd0b793479cf38",
+    "review.v01.png": "4e71c054d01cb6a98a2bb97e767125bbbf46d49e32034452bf5449221ac9ccea",
+    "runtime-validation.json": "f4af11f9da31c9a096c689d34d612656257d3cfdaa85b4401e0a3ae64111c3fa",
+    "scene.dark.v01.png": "3f4f4f8451820cac40d4c8a160dbab9aefac65af12f50225e257eaea6e592ade",
+    "scene.light.v01.png": "a130cad4d7be5f18f76da2d0a082550959229e2ae6b7734e881be35bcdf4a701",
+    "scene.pixel-4x.v01.png": "a062b15b4ac33f0695446af334c0741dc0933a5fc00bdad0c0cbc128d4a8e9a1",
+    "scene.pixel-native.v01.png": "562f164d964ed06a806b6cb614331fd855fb4f2f9f11e1b866078e65cbae6bf8",
+    "source/generation-prompts.txt": "b53a4bb54a43ed69a812f5655702d20bd18972ab62929a87d2f56e9a3db13612",
+    "source/kugai-provoke-actor.generated.png": "d2eccde8dbdaef576b65079e945e482e285ac05a62498988e10e790448485b92",
+    "source/provoke-pressure.generated.png": "6ff975d8b2f1bc97a45fa4121645da0ac835df2a59b2afa8c34c31ca98d95533",
+    "target-context.png": "383ead149a01c4f22418949bacd01961ae970a065f4ab5ed67e6f3a64b87bfe9",
+    "test.cjs": "358b9eeca6dc194d49488753708e3bce1bdf22d4e92a1b411a464e6ada1f432a",
+    "timeline.v01.json": "a5ec7df9a177ba6b0aac2e0aeaa8a4caa6ed9301953b7489af026720520826cd",
+    "validate.py": "f47e56c6014d6238b5fbd2516f65d9195f338ed6fa3c912a6185e4f64725b477"
+  }
+}

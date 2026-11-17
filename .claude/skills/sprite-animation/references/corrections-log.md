@@ -20,6 +20,15 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-17 · Kugai · Provoke registration and attention marker
+- **Reported problem:** copying a full-width boot strip carried a sword-tip fragment into other poses; rendered attention marker failed binary-alpha validation.
+- **Original generation:** eight shield-strike keys and eight pressure keys. A wide lower-row copy included the lowered sword. Canvas triangle edges introduced partial alpha.
+- **Root cause:** tooling and registration mask scope, not intended secondary motion.
+- **Solution implemented:** restrict copied boot region to [34,81,64,89); replace the triangle path with integer scanline rectangles. Actual atlases and exports rebuilt. No edits to existing action or review-task assets.
+- **Verification:** atlas/ORA/4x/decoded output and runtime checks pass; 301 rendered samples have binary pixel alpha and safe bounds. GIMP normal/half-speed playback sampled, full continuous review incomplete. Artist and engine approval unverified.
+- **Rule for next time:** limit registration masks to the intended attachment and validate alpha on the composited pixel layer, including runtime markers.
+
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.
