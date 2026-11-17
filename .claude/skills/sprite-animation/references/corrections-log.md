@@ -28,6 +28,30 @@ Copy this block to the top of the Log section and fill in every field.
 - **Verification:** actual atlas/palette/alpha/4x/ORA and rendered timing checks, 3401 state samples, 341 rendered bounds samples and replay/seek tests. GIMP reopened the casting ORA and sampled GIF playback at1x/0.5x; full continuous review and engine testing remain incomplete. See the package validation, not a production approval.
 - **Rule for next time:** validate generated alpha numerically, inspect planted feet as a shared strip, and test backward seek after a hit. Do not confuse live samples with complete continuous animation review.
 
+### 2026-11-14 · Natsu · eight-pose Cure halo rims
+- **Reported problem:** halo face rims change silhouette and shading between casting poses; see natsu-cure-v03 labeled sheet and before/after GIFs.
+- **Original generation:** v02 eight-pose study, 96x96 cells, contains inconsistent face outlines; its prior foot registration fix is retained.
+- **Root cause:** inconsistent sheet art, distinct from intended face turning in cast.json.
+- **Solution implemented:** reuse idle rim pixels at head-relative integer offsets in frames 1-6, protecting original inner facial features. Exactly 636 pixels changed; all other pixels, palette, geometry and timing retained. See assets/player-sheets/natsu-cure-v03/build.py and README.md.
+- **Verification:** all eight poses inspected; original and final exports played at 1x/0.5x in GIMP. Exact decoded GIF/palette/alpha/bounds/unchanged-region checks pass. Head/hair/boot variation and engine integration remain unresolved; draft, not a production pass.
+- **Rule for next time:** separate rigid equipment rims from intentionally turning or expressive internal features before propagating a canonical patch. Reimport the final rebuilt export before playback inspection.
+
+### 2026-11-12 · Miren · Jump contact during target recoil
+- **Reported problem:** the spear tip stays at x=120 while the target/wound moves to x=115 during the 2140-2220 ms contact hold.
+- **Original generation:** v02 already attached the incision to targetX but held the attacker anchor at x=138. Tip local(14,51), pivot(32,56), gives tip x=anchorX-18.
+- **Root cause:** choreography attachment error. Target recoil and the attacker contact hold used different reference positions.
+- **Solution implemented:** during contact, anchorX=138+(targetX-120); begin recovery at x=133 rather than 138. No sheet pixels, cell geometry, timing, y motion or cues changed. Source, before/after renderers and previews are in `assets/player-sheets/miren-jump-v03/`.
+- **Verification:** all six poses and contact-boundary stills inspected; 4401 state samples confirm zero contact error and continuous release. Normal/slow videos rebuilt and decoded. Live playback blocked by Chromium socket permissions; engine and artistic review incomplete, draft required.
+- **Rule for next time:** when the recipient recoils during a held contact pose, inspect both the attached wound and attacking limb/weapon at the same timestamps. Preserve the release position when the attacker detaches. Do not confuse effect registration with complete contact registration.
+
+### 2026-11-11 · Natsu · idle registration
+- **Reported problem:** idle2/idle3 shift left during stationary breathing.
+- **Root cause:** imported pose registration; upstream cause unresolved.
+- **Original generation:** idle specification calls for breathing, not a sideways step. Lower-foot mask mismatch against idle1 drops from139/146 pixels to35/32 after registration.
+- **Solution implemented:** translate idle2 and idle3 (+6,0). No drawing changes; other52 cells and all timings unchanged. See assets/player-sheets/natsu-idle-v02/build.py.
+- **Verification:** all54 poses inspected as stills; pixel/alpha/palette/padding and lossless preview checks pass. Chromium socket permission blocks live playback. Draft, not production-approved.
+- **Rule for next time:** anchor stationary breathing to planted feet; preserve legitimate bobbing and hair motion. Inspect runtime atlas independently of raw-source repairs.
+
 ### 2026-11-10 · Kiri · imported idle3 weapon and registration
 - **Reported problem:** the lowered sword vanishes in idle3 and the body shifts left against idle2.
 - **Original generation:** the source omits idle3's sword although idle frames require the weapon lowered; the 96 px imported cell also has a measured 5 px left offset.

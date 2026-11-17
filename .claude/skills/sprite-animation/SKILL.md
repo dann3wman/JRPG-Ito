@@ -93,6 +93,8 @@ After **every** correction to a generated sprite animation or sheet, whether the
 
 ## Standing rules
 
+- Preserve intentional internal face/feature turns when stabilizing rigid equipment rims; protect those pixels and replay a freshly imported final export (Natsu Cure, 2026-11-14 corrections log).
+
 Distilled from the corrections log. Check every new generation against these.
 
 - Route by runtime platform, not repository folder names: ChatGPT renders images; Claude supplies copy-paste prompts (2026-10-25 platform correction).
@@ -102,3 +104,4 @@ Distilled from the corrections log. Check every new generation against these.
 - A looping clip must match pose and velocity across its seam. Prefer periods that divide `dur`; use the shared sampler's continuous idle clock for action playback. Run `node tools/animation-check/check.js` and inspect `snap.js --seams --extrema --sequence` captures plus live playback (2026-10-25 correction).
 - Keep the viewer and embedded battle sampling block identical; the animation checker enforces code and sampled pose/FX parity. Preserve the single-file battle prototype (2026-10-25 correction).
 - Inspect off-parent attachment warnings against the assembled reference and extreme poses. A bounding-box warning is not proof of a visible joint gap; never move fitted parts solely to silence it (2026-10-25 correction).
+- During held weapon contact, sample both the weapon tip and wound against target recoil; preserve the release position when detaching (2026-11-12 Miren contact correction).
