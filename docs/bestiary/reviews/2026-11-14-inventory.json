@@ -1,0 +1,694 @@
+{
+  "schema_version": 1,
+  "assessed_at": "2026-11-14",
+  "source_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
+  "scope": "Current default-branch battle data, viewer rig metadata, installed sheet files, specs and open PRs 14-21. Visual joint quality is not certified by metadata checks.",
+  "foes": [
+    {
+      "id": "widow",
+      "name": "Tide-Widow",
+      "art": "widow",
+      "rig": "widow",
+      "script": true
+    },
+    {
+      "id": "sailor",
+      "name": "Drowned Sailor",
+      "art": "sailor",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "orlen",
+      "name": "Archbishop Orlen",
+      "art": "orlen",
+      "rig": "orlen",
+      "script": true
+    },
+    {
+      "id": "organ",
+      "name": "Great Organ",
+      "art": "organ",
+      "rig": "organ",
+      "script": true
+    },
+    {
+      "id": "bell",
+      "name": "Spiral Ringer",
+      "art": "bell",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "leech",
+      "name": "Blood Drinker",
+      "art": "drinker",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "hand",
+      "name": "Funeral Doll",
+      "art": "doll",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "maw",
+      "name": "Hanging Balloon",
+      "art": "balloon",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "shell",
+      "name": "Earthbound Woman",
+      "art": "earth",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "fencer",
+      "name": "Red Turtleneck",
+      "art": "neck",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "singer",
+      "name": "Record Singer",
+      "art": "record",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "glass",
+      "name": "Long Dreamer",
+      "art": "dreamer",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "tide",
+      "name": "Amigara Wall",
+      "art": "holes",
+      "rig": "amigara",
+      "script": true
+    },
+    {
+      "id": "exec",
+      "name": "Headless Sculpture",
+      "art": "headless",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "pilgrim",
+      "name": "Grease Father",
+      "art": "grease",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "ruri",
+      "name": "Ruri",
+      "art": "ruri",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "unwound",
+      "name": "Ainsel, the Unwound",
+      "art": "unwound",
+      "rig": "ainsel",
+      "script": true
+    },
+    {
+      "id": "hellstar",
+      "name": "The Hellstar",
+      "art": "hellstar",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "tongue",
+      "name": "Hellstar Tongue",
+      "art": "tongue",
+      "rig": "tongue",
+      "script": true
+    },
+    {
+      "id": "hour",
+      "name": "Star Fragment",
+      "art": "planet",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "well",
+      "name": "Village Well",
+      "art": "well",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "wolf",
+      "name": "Rewound Wolf",
+      "art": "wolf",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "wolfdead",
+      "name": "The Dead Wolf",
+      "art": "wolfdead",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "hen",
+      "name": "Lake Hen",
+      "art": "hen",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "chick",
+      "name": "Wet Chick",
+      "art": "chick",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "pelt",
+      "name": "Last Beastcaller's Pelt",
+      "art": "pelt",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "lamp",
+      "name": "Lamp Hollow",
+      "art": "lamp",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "wick",
+      "name": "Wick",
+      "art": "wick",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "rested",
+      "name": "The Well-Rested",
+      "art": "rested",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "tracks",
+      "name": "Your Own Tracks",
+      "art": "tracks",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "helmsman",
+      "name": "The Helmsman",
+      "art": "helmsman",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "hull",
+      "name": "The Hull",
+      "art": "hull",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "chorister",
+      "name": "Chorister",
+      "art": "choir",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "whisperer",
+      "name": "The Whisperer",
+      "art": "whisperer",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "engine",
+      "name": "Resonance Engine Mk. IV",
+      "art": "engine",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "abbot",
+      "name": "The Abbot",
+      "art": "abbot",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "listener",
+      "name": "Lead Listener",
+      "art": "listener",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "mirenslot",
+      "name": "The Mirens' Turn",
+      "art": "mirenslot",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "mirencopy",
+      "name": "Miren",
+      "art": "mirencopy",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "facethief",
+      "name": "The Face Thief",
+      "art": "facethief",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "licker",
+      "name": "The Tongue",
+      "art": "tongue",
+      "rig": "tongue",
+      "script": true
+    },
+    {
+      "id": "congregation",
+      "name": "The Congregation",
+      "art": "congregation",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "taste",
+      "name": "Taste of Ostrel",
+      "art": "taste",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "sleeper",
+      "name": "Sleeper",
+      "art": "sleeper",
+      "rig": null,
+      "script": true
+    },
+    {
+      "id": "greyhound",
+      "name": "The Grey Hound",
+      "art": "greyhound",
+      "rig": null,
+      "script": true
+    }
+  ],
+  "rigs": [
+    {
+      "id": "ainsel",
+      "name": "Ainsel, the Unwound",
+      "lore": "A flayed figure held together by spiralling bandage-ribbons and red tendrils. Its torso is the root; the ribbons chain downward like vertebrae.",
+      "bones": 17,
+      "clips": [
+        "idle",
+        "offbeat",
+        "unwind"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/ainsel.webp",
+      "sheet_exists": true,
+      "atlas_parts": 19
+    },
+    {
+      "id": "amigara",
+      "name": "Amigara Wall",
+      "lore": "A rock face pierced by five body-shaped holes. The holes are separate silhouettes behind the rock, so they can stretch, lean and swallow.",
+      "bones": 12,
+      "clips": [
+        "idle",
+        "calling",
+        "footprints",
+        "scree",
+        "pull"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/amigara.webp",
+      "sheet_exists": true,
+      "atlas_parts": 28
+    },
+    {
+      "id": "organ",
+      "name": "Great Organ",
+      "lore": "A cathedral organ played by pale hands from inside its own case. One eye watches from beneath the keys.",
+      "bones": 12,
+      "clips": [
+        "idle",
+        "drone",
+        "chord"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/organ.webp",
+      "sheet_exists": true,
+      "atlas_parts": 14
+    },
+    {
+      "id": "orlen",
+      "name": "Archbishop Orlen",
+      "lore": "An archbishop trailed by the heads of the five who held the crozier before him. The ancestors chain from his back like a spine.",
+      "bones": 17,
+      "clips": [
+        "idle",
+        "sermon",
+        "benediction",
+        "crozier"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/orlen.webp",
+      "sheet_exists": true,
+      "atlas_parts": 22
+    },
+    {
+      "id": "widow",
+      "name": "Tide-Widow",
+      "lore": "A drowned bride grown into a swollen fin-bodied thing. Her body is a tank in three layers: a dark back wall, six drowned figures clipped to her silhouette, and a translucent skin of veins over them.",
+      "bones": 19,
+      "clips": [
+        "idle",
+        "lullaby",
+        "undertow",
+        "release"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/widow.webp",
+      "sheet_exists": true,
+      "atlas_parts": 22
+    },
+    {
+      "id": "tongue",
+      "name": "The Tongue",
+      "lore": "A bone-white lip that never closes and a tongue covered in mouths of its own. The tongue is a three-bone chain, so it bends as a wave from root to tip; the mouths open in turn.",
+      "bones": 13,
+      "clips": [
+        "idle",
+        "grab",
+        "lick",
+        "release"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/tongue.webp",
+      "sheet_exists": true,
+      "atlas_parts": 28
+    },
+    {
+      "id": "neighbour",
+      "name": "The Neighbour",
+      "lore": "Something wearing the house next door. It leans out of the window on a long neck, its jaw on a hinge of its own, and beckons you over.",
+      "bones": 12,
+      "clips": [
+        "idle",
+        "call",
+        "pull",
+        "shutter"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/neighbour.webp",
+      "sheet_exists": true,
+      "atlas_parts": 16
+    },
+    {
+      "id": "congregation",
+      "name": "The Congregation",
+      "lore": "A crowd that moves as one body under a banner of the girl they are waiting for. Every head is its own bone, so they bob and turn out of step.",
+      "bones": 13,
+      "clips": [
+        "idle",
+        "stare",
+        "murmur",
+        "confuse"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/congregation.webp",
+      "sheet_exists": true,
+      "atlas_parts": 27
+    },
+    {
+      "id": "facethief",
+      "name": "The Face Thief",
+      "lore": "A stitched girl with a blank head. Her eyes, nose and mouth are borrowed, and each is its own bone so she can take them off.",
+      "bones": 16,
+      "clips": [
+        "idle",
+        "stare",
+        "steal",
+        "return"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/facethief.webp",
+      "sheet_exists": true,
+      "atlas_parts": 19
+    },
+    {
+      "id": "ostrel",
+      "name": "Taste of Ostrel",
+      "lore": "A village grown on a tongue. The tongue ripples under the houses, the chimneys breathe a slow spiral, and someone in every house is asleep.",
+      "bones": 10,
+      "clips": [
+        "idle",
+        "hum",
+        "lullaby",
+        "wake"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/ostrel.webp",
+      "sheet_exists": true,
+      "atlas_parts": 13
+    },
+    {
+      "id": "pipes",
+      "name": "The Groaning Pipes",
+      "lore": "A sewer wall with four drains. One of them has a face behind the grate and a clawed hand that reaches out across the floor.",
+      "bones": 17,
+      "clips": [
+        "idle",
+        "groan",
+        "grab",
+        "plug",
+        "burst"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/pipes.webp",
+      "sheet_exists": true,
+      "atlas_parts": 26
+    },
+    {
+      "id": "puppeteers",
+      "name": "The Puppeteers",
+      "lore": "Two hooded figures working one marionette from two control bars. Each is a small rig of body, hood, arm and bar.",
+      "bones": 10,
+      "clips": [
+        "idle",
+        "string",
+        "jerk",
+        "cut"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/puppeteers.webp",
+      "sheet_exists": true,
+      "atlas_parts": 15
+    },
+    {
+      "id": "fourheard",
+      "name": "The Four Heard",
+      "lore": "Four heroes cast in bronze: wind, water, fire and earth. Each statue is a full rig on its own plinth, and each one wakes in turn.",
+      "bones": 47,
+      "clips": [
+        "idle",
+        "recall",
+        "understood"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/fourheard.webp",
+      "sheet_exists": true,
+      "atlas_parts": 68
+    },
+    {
+      "id": "lastnote",
+      "name": "The Last Note",
+      "lore": "A spiked shell with one note still living in it. The note is a soft chain: a curl in the mouth of the shell, then the singing head.",
+      "bones": 5,
+      "clips": [
+        "idle",
+        "split",
+        "strike",
+        "escape",
+        "silence"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/lastnote.webp",
+      "sheet_exists": true,
+      "atlas_parts": 11
+    },
+    {
+      "id": "pelt",
+      "name": "Last Beastcaller's Pelt",
+      "lore": "An empty wolf-skin hanging from two hooks. The arms, lower hide and tail swing as pendulums, each a beat behind the one above.",
+      "bones": 9,
+      "clips": [
+        "idle",
+        "lash",
+        "heldOpen",
+        "hollow"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/pelt.webp",
+      "sheet_exists": true,
+      "atlas_parts": 16
+    },
+    {
+      "id": "wellrested",
+      "name": "The Well-Rested",
+      "lore": "A tired traveller and the copy that slept for him. Both are full rigs; the copy runs every motion half a beat behind.",
+      "bones": 31,
+      "clips": [
+        "idle",
+        "yawn",
+        "asleep"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/wellrested.webp",
+      "sheet_exists": true,
+      "atlas_parts": 20
+    },
+    {
+      "id": "lamp",
+      "name": "Lamp Hollow",
+      "lore": "A street lamp with a sleeping face in the glass. The post is a two-bone chain and the housing swings from its hook like a pendulum.",
+      "bones": 8,
+      "clips": [
+        "idle",
+        "glare",
+        "dark",
+        "relight"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/lamp.webp",
+      "sheet_exists": true,
+      "atlas_parts": 13
+    },
+    {
+      "id": "lakehen",
+      "name": "Lake Hen",
+      "lore": "A soaked white hen brooding four chicks on black water. Her neck is a three-bone chain, and her head moves like a bird's: it holds still, then snaps to a new angle.",
+      "bones": 21,
+      "clips": [
+        "idle",
+        "peck",
+        "dive",
+        "surface"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/lakehen.webp",
+      "sheet_exists": true,
+      "atlas_parts": 24
+    },
+    {
+      "id": "fortyyears",
+      "name": "Forty Years",
+      "lore": "A wreck still under sail, steered by a helmsman who never let go. The drowned crew push their heads and arms out through the holes in the hull.",
+      "bones": 15,
+      "clips": [
+        "idle",
+        "ram",
+        "course",
+        "offCourse"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/fortyyears.webp",
+      "sheet_exists": true,
+      "atlas_parts": 23
+    },
+    {
+      "id": "listeners",
+      "name": "The Hundred Listeners",
+      "lore": "A mummified monk seated on a sealed coffin, one hand cupped to his ear, the other ringing a bell to see who answers. His jaw is hinged, so he can chant.",
+      "bones": 9,
+      "clips": [
+        "idle",
+        "chant",
+        "touch",
+        "seal"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/listeners.webp",
+      "sheet_exists": true,
+      "atlas_parts": 12
+    },
+    {
+      "id": "greyhound",
+      "name": "The Grey Hound",
+      "lore": "A starved grey dog with a woman's face and a rosary for a collar. Each leg is two bones, the ears flick, and the jaw hangs on its own hinge.",
+      "bones": 17,
+      "clips": [
+        "idle",
+        "prowl",
+        "maul",
+        "callback",
+        "enrage"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/greyhound.webp",
+      "sheet_exists": true,
+      "atlas_parts": 20
+    },
+    {
+      "id": "whisperer",
+      "name": "The Whisperer",
+      "lore": "A woman leaning in to tell you something, her hand cupped to her mouth. She is drawn in grey, and her whisper is the only bright thing about her.",
+      "bones": 9,
+      "clips": [
+        "idle",
+        "whisper",
+        "silence",
+        "exposed"
+      ],
+      "sheet": "tools/bestiary-rig-viewer/whisperer.webp",
+      "sheet_exists": true,
+      "atlas_parts": 15
+    }
+  ],
+  "encounters": [
+    "well",
+    "wolf",
+    "hen",
+    "pelt",
+    "ruri1",
+    "lamp",
+    "rested",
+    "tracks",
+    "forty",
+    "choir",
+    "hound",
+    "whisperer",
+    "ruri5",
+    "engine",
+    "listeners",
+    "mirens",
+    "ruri8",
+    "facethief",
+    "tongue2",
+    "congregation",
+    "taste",
+    "widow",
+    "ruri2",
+    "orlen",
+    "final",
+    "t_kiri",
+    "t_natsu",
+    "t_tetsugi",
+    "t_miren",
+    "t_goku",
+    "t_hisui",
+    "t_kuro",
+    "t_ren",
+    "t_sayo",
+    "t_kugai",
+    "t_fuyori",
+    "t_shio"
+  ]
+}

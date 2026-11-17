@@ -1,0 +1,54 @@
+{
+  "review_date_utc": "2026-11-14",
+  "character": "Natsu",
+  "status": "partial_halo_rim_repair_not_production_pass",
+  "source": {
+    "library_file_id": "libfile_e251df64fa708191b85e07cb91a764b5",
+    "version": "8pose_v02",
+    "sha256": "4f38fee584c533cdab1e4bf72546394ec6a4938c1bfccd1b1c7f1ca333d5df6e",
+    "repository_base": "c1840737fef12061165ef6bb553e7bfa166b717b",
+    "authority": "Fresh Library eight-pose study, distinct from installed 54-frame atlas and 4.1-second Cure study"
+  },
+  "selection_reason": "Natsu Nov11, Miren Nov12, Kiri Nov13; this eight-pose study last reviewed Nov9, known halo defects.",
+  "sequences": [
+    "Cure: idle, anticipation, prayer, charge, release, follow-through, recovery, settle"
+  ],
+  "defects": [
+    "Halo face rim shape/shading flicker",
+    "Existing head/hair/boot volume variation and quantized clusters"
+  ],
+  "changes": [
+    "636 pixels in frames1-6 stabilize two halo rims; protected inner facial features retain turning cues",
+    "All other pixels, source palette, geometry, timing and v02 foot repair preserved"
+  ],
+  "output_sha256": "969be514f6825a6e36a927843f6fc9dc93f7ee9715acc4dd871afe4b0e26ca6b",
+  "validation": {
+    "all8_poses_statically_inspected": true,
+    "live_playback_inspected": true,
+    "playback_method": "Native GIMP animation player running original and final reconstructed GIFs, sampled through cycles at1x and0.5x",
+    "machine_checks": "build.py assertions pass; exact GIF pixels/durations, padded bounds,24 colors,binary alpha,unchanged regions",
+    "engine_tested": false,
+    "production_pass": false
+  },
+  "remaining_issues": [
+    "Artistic head/hair/boot volume cleanup",
+    "No matched external reference playback",
+    "Engine integration and target contact unverified"
+  ],
+  "github": {
+    "branch": "animation-review/2026-11-14-natsu-cure",
+    "base_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
+    "publication_record": "https://chatgpt.com/library?file_id=libfile_e3bd1f9d5db0819185bc1c703e5bf682&account_id=personal",
+    "draft": true
+  },
+  "next_selection": "Rotate to another eligible character or newly completed sheet; do not repeat this halo repair or treat this draft as a pass.",
+  "output_links": {
+    "natsu.cure.v03.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-b1660d077ef48191a29a3a09dc9d0fcf_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "natsu.cure.v03.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-ad1d0a2b19e88191a4a07e99e0440801_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "natsu.cure.v03.review-4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-5914a7cd4b7c819194d7e614815f2721_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "natsu.cure.before-after.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-c1846129a5d48191ac626e8acea37199_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "natsu.cure.before-after.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-434cb1c8fc0481918e78a69a8c9dbcf3_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "natsu_cure_v03_review_package.zip": "https://chatgpt.com/library?file_id=libfile_fde3_f-9532302f9b7881919a5fef1fadaddba2_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+  },
+  "repository_checks": "tools/check.sh passed: 22 rigs,88 clips,5368 poses; battle smoke all encounters. Existing Quick Song/Delay warnings and creature attachment art notices remain."
+}

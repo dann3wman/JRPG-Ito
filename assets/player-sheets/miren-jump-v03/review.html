@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Miren Jump v03 review</title>
+<style>body{margin:24px;background:#20262d;color:#eee;font:16px system-ui}canvas{max-width:100%;height:auto;image-rendering:pixelated}button{margin:8px;padding:8px}small{display:block}</style>
+<h1>Miren / Jump v03</h1><p>Partial contact repair. Live playback and engine approval pending.</p>
+<button id="normal">Play 1x</button><button id="slow">Play 0.5x</button><button id="pause">Pause</button>
+<small>4.4 s one-shot. The 700 ms airborne wait represents five scheduler slots only in this preview.</small>
+<canvas width="1536" height="864"></canvas><script src="render.js"></script><script>
+let start=0,rate=1,t=0,playing=false;const canvas=document.querySelector('canvas');
+function play(r){rate=r;t=0;start=performance.now();playing=true;}
+document.querySelector('#normal').onclick=()=>play(1);document.querySelector('#slow').onclick=()=>play(.5);
+document.querySelector('#pause').onclick=()=>{playing=false};
+MirenJump.ready.then(()=>{function tick(now){if(playing){t=Math.min(4400,(now-start)*rate);if(t===4400)playing=false;}MirenJump.draw(canvas,t);requestAnimationFrame(tick)}requestAnimationFrame(tick)});
+</script></html>
