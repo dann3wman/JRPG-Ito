@@ -42,7 +42,7 @@ One HP phase at 50%: it grabs two at once.
 1. If it is holding someone: roll **Lick** 60% (Rank 4, 1.3× ATK) or **Savour** 40% (Rank 4, +8 Stress to each free ally).
 2. Otherwise: **Grab** (late target: whoever has the most Stress; ignores Provoke): 0.6× ATK and takes them out of the turn order. In phase 2 it takes the two with the most Stress.
 
-At the start of each of its turns, each held ally gains 5 Stress; after 3 it swallows them (KO). It lets go of everyone once 3 different characters have hit it since the grab. That release immediately replaces the holding-only Lick or Savour plan with Grab and announces the reaction in the log. Grab still chooses its target when it acts.
+At the start of each of its turns, each held ally gains 5 Stress; after 3 it swallows them (KO). It lets go of everyone once 3 different characters have hit it since the grab. That release immediately replaces the holding-only Lick or Savour plan with Grab and announces the reaction in the log. Grab still chooses its target when it acts. Its live preview says up to 1 ally above half HP and up to 2 at or below half HP, including before the phase transition executes. The cap remains visible when fewer allies are available; it does not promise two captures.
 
 ## Fairness checks
 
