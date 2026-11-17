@@ -1,0 +1,24 @@
+{
+  "source_sha256": "69591379a43c79c9c25f104148ed65e21a53a1f9916c399b2957e0506ad2d067",
+  "changed_pixels": 0,
+  "frame_count": 8,
+  "geometry": [
+    384,
+    192,
+    96,
+    96,
+    4,
+    2
+  ],
+  "sequence_duration_ms": 3600,
+  "gif_durations_ms": [
+    3600,
+    7200
+  ],
+  "decoded_gif_pixels_exact": true,
+  "binary_alpha": true,
+  "safe_bounds": true,
+  "fixed_shoe_strip": true,
+  "ora_composite_exact": true,
+  "artistic_pass": false
+}

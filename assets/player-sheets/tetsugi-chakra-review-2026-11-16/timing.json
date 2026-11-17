@@ -1,0 +1,265 @@
+{
+  "atlas": {
+    "file": "tetsugi-breath.v01.png",
+    "size": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "columns": 4,
+    "rows": 2,
+    "gutter": 0,
+    "outer_margin": 0,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      87,
+      87
+    ],
+    "palette": [
+      "#CEB499",
+      "#CBAA8C",
+      "#C8A587",
+      "#BC9C81",
+      "#A3856A",
+      "#9B7F63",
+      "#967D62",
+      "#94785E",
+      "#916D56",
+      "#7B6756",
+      "#785443",
+      "#594C40",
+      "#5A4437",
+      "#4C423A",
+      "#4E382E",
+      "#3E3630",
+      "#362E29",
+      "#2C2522",
+      "#251F1D",
+      "#201D1C",
+      "#1E1B1A",
+      "#1C1818",
+      "#1A1717",
+      "#171514"
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "id": "TC01",
+        "row": 1,
+        "column": 1,
+        "rect": [
+          0,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          87
+        ],
+        "bounds_exclusive": [
+          34,
+          21,
+          63,
+          87
+        ]
+      },
+      {
+        "id": "TC02",
+        "row": 1,
+        "column": 2,
+        "rect": [
+          96,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          87
+        ],
+        "bounds_exclusive": [
+          34,
+          22,
+          64,
+          87
+        ]
+      },
+      {
+        "id": "TC03",
+        "row": 1,
+        "column": 3,
+        "rect": [
+          192,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          87
+        ],
+        "bounds_exclusive": [
+          32,
+          21,
+          64,
+          87
+        ]
+      },
+      {
+        "id": "TC04",
+        "row": 1,
+        "column": 4,
+        "rect": [
+          288,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          87
+        ],
+        "bounds_exclusive": [
+          26,
+          21,
+          62,
+          87
+        ]
+      },
+      {
+        "id": "TC05",
+        "row": 2,
+        "column": 1,
+        "rect": [
+          0,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          87
+        ],
+        "bounds_exclusive": [
+          32,
+          21,
+          63,
+          87
+        ]
+      },
+      {
+        "id": "TC06",
+        "row": 2,
+        "column": 2,
+        "rect": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          87
+        ],
+        "bounds_exclusive": [
+          29,
+          21,
+          64,
+          87
+        ]
+      },
+      {
+        "id": "TC07",
+        "row": 2,
+        "column": 3,
+        "rect": [
+          192,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          87
+        ],
+        "bounds_exclusive": [
+          31,
+          21,
+          63,
+          87
+        ]
+      },
+      {
+        "id": "TC08",
+        "row": 2,
+        "column": 4,
+        "rect": [
+          288,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          87
+        ],
+        "bounds_exclusive": [
+          33,
+          21,
+          63,
+          87
+        ]
+      }
+    ]
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 240
+    },
+    {
+      "frame": 1,
+      "ms": 200
+    },
+    {
+      "frame": 2,
+      "ms": 200
+    },
+    {
+      "frame": 3,
+      "ms": 600
+    },
+    {
+      "frame": 4,
+      "ms": 480
+    },
+    {
+      "frame": 5,
+      "ms": 240
+    },
+    {
+      "frame": 6,
+      "ms": 200
+    },
+    {
+      "frame": 7,
+      "ms": 200
+    },
+    {
+      "frame": 0,
+      "ms": 1240
+    }
+  ],
+  "loop": false,
+  "duration_ms": 3600,
+  "assumptions": [],
+  "preview_loop_only": true
+}

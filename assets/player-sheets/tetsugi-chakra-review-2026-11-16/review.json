@@ -1,0 +1,41 @@
+{
+  "review_id": "2026-11-16-tetsugi-chakra",
+  "review_date_local": "2026-11-16",
+  "character": "Tetsugi Haldane",
+  "source_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+  "source_path": "assets/party-fx/tetsugi-chakra-v01/tetsugi-breath.v01.png",
+  "source_sha256": "69591379a43c79c9c25f104148ed65e21a53a1f9916c399b2957e0506ad2d067",
+  "status": "technical_checks_passed_artistic_review_incomplete_no_sprite_edits",
+  "selection_reason": "First independent review of Tetsugi; absent from current 14-entry rotation. Kuro reviewed previously. PR28 source merged; only open PR29 is unrelated bestiary work.",
+  "source_reconciliation": "Current default branch bytes are authoritative for this review. Library Tetsugi/Chakra searches did not resolve a matching source, so Library source hash parity is unknown. Library v14 and repo rotation both retain 14 reviews; preserve both histories independently.",
+  "sequences": [
+    "Chakra: TC01 TC02 TC03 TC04 TC05 TC06 TC07 TC08 TC01"
+  ],
+  "changes": [
+    "No source pixels or timing changed. Added actor-only normal/slow playback, reproducible validation and review record."
+  ],
+  "findings": [
+    "Eight unique poses inspected. Inhale precedes raised hands, held open breath, pressed palms, exhale and guard recovery.",
+    "Shoes remain planted; alpha, bounds, cell geometry and terminal/initial pose checks pass. No isolated small disconnected actor components found.",
+    "Head angle, face silhouette and gi shading vary across TC04-TC06; intent versus unwanted volume drift remains unresolved. No confident corrective redraw applied."
+  ],
+  "validation": [
+    "All eight frames visually inspected in 4x sheet. GIMP live playback sampled at normal/half speed; not a complete continuous perceptual review.",
+    "Exact decoded GIF-to-atlas pixels and per-exposure timing; 3600/7200 ms previews; ORA layer reconstruction; all metadata bounds; safe padding; fixed shoes.",
+    "tools/check.sh passed exit 0 with existing Quick Song/Delay warnings and creature attachment notices."
+  ],
+  "remaining_issues": [
+    "Not a professional-animation pass. Continuous motion quality, head/hand/gi volume continuity and engine compatibility remain unverified.",
+    "Reference footage was not freshly played; complete effect context was not reviewed because exactly the actor sheet was selected."
+  ],
+  "github": {
+    "branch": "animation-review/2026-11-16-tetsugi-chakra",
+    "publication_record": "Persistent Library rotation updated after publication."
+  },
+  "output_links": {
+    "chakra.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-c5c9c01eac24819188c4abc4cf7d01f9_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "chakra.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-6563619daffc81919079336a96c07986_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "tetsugi-chakra-review-2026-11-16.zip": "https://chatgpt.com/library?file_id=libfile_fde3_f-fd0f5addce1c81919833c0e74fd2a9b6_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+  },
+  "next_selection": "Prefer another unreviewed character sheet; this record must not be interpreted as artistic approval."
+}
