@@ -93,6 +93,7 @@ After **every** correction to a generated sprite animation or sheet, whether the
 
 ## Standing rules
 
+- Inspect isolated pixels against adjacent poses and authored effects before deleting them; preserve intentional particles. See Kuro KD03, 2026-11-16, in the corrections log.
 - Preserve intentional internal face/feature turns when stabilizing rigid equipment rims; protect those pixels and replay a freshly imported final export (Natsu Cure, 2026-11-14 corrections log).
 
 Distilled from the corrections log. Check every new generation against these.

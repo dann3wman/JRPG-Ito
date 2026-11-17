@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-16 · Kuro · Dark casting KD03 fringe
+- **Reported problem:** an isolated dark pixel appears below trailing hair in the 140 ms raised-palm exposure.
+- **Original generation:** PR25 actor atlas at commit `0910e540074d0127b1afc0a0ef5a53c3d6bd4b23`, KD03 local (64,64), RGBA (22,18,25,255).
+- **Root cause:** stray sheet art, visually disconnected from hair and without a matching particle path.
+- **Solution implemented:** set only atlas (256,64) to transparent in versioned PNG and existing ORA layers. Other seven cells, remaining pixels, palette and timing unchanged. See `assets/player-sheets/kuro-casting-v02/`.
+- **Verification:** all eight poses viewed; normal/half-speed live playback sampled and changed exposure paused. Exact pixel, palette, bounds, padding, contact-row, ORA and decoded GIF checks pass. Broader artistic cleanup, continuous motion judgment and engine compatibility remain incomplete; draft required.
+- **Rule for next time:** inspect isolated components against adjacent poses and intended effects before removal. Detached pixels can be deliberate particles; never delete every disconnected component automatically.
+
 ### 2026-11-15 · Kuro · new Dark action source registration
 - **Reported problem:** generated transparent sheets contained low-alpha backdrop fringe and slight planted-boot variation; the first review canvas clipped its final labels. A seek-back test could re-arm damage.
 - **Original generation:** eight casting keys and eight fold keys at1536x1024; alpha maxima254/253 and nonzero background haze. Actor cells share the same generated foot row but not identical boot pixels.
