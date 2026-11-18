@@ -1,0 +1,361 @@
+{
+  "character": "Kugai",
+  "action": "Provoke",
+  "version": 2,
+  "source_commit": "f5908e1639759fb94df71d8dafda710afc2f0c4f",
+  "source_sha256": "cab0ec260f1e00124aeae6c2704c313ecf47bf5fe7f5709dbe16e94dc0194f0e",
+  "atlas": {
+    "file": "kugai-provoke-actor.v02.png",
+    "size": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "columns": 4,
+    "rows": 2,
+    "gutter": 0,
+    "outer_margin": 0,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      87,
+      87
+    ],
+    "palette": [
+      "#BDACA5",
+      "#95847D",
+      "#83716B",
+      "#73645E",
+      "#675752",
+      "#604B47",
+      "#4E423E",
+      "#632829",
+      "#4C2A29",
+      "#3E312F",
+      "#352C2A",
+      "#2F2625",
+      "#2A2120",
+      "#421819",
+      "#2D1515",
+      "#221717",
+      "#1C1616",
+      "#181212",
+      "#160D0E",
+      "#100C0C",
+      "#0E0A0A",
+      "#0D0909",
+      "#0C0808",
+      "#080606"
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "id": "KP01",
+        "row": 1,
+        "column": 1,
+        "rect": [
+          0,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          23,
+          31,
+          73,
+          86
+        ]
+      },
+      {
+        "id": "KP02",
+        "row": 1,
+        "column": 2,
+        "rect": [
+          96,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          22,
+          32,
+          75,
+          86
+        ]
+      },
+      {
+        "id": "KP03",
+        "row": 1,
+        "column": 3,
+        "rect": [
+          192,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          18,
+          31,
+          76,
+          86
+        ]
+      },
+      {
+        "id": "KP04",
+        "row": 1,
+        "column": 4,
+        "rect": [
+          288,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          32,
+          33,
+          74,
+          86
+        ]
+      },
+      {
+        "id": "KP05",
+        "row": 2,
+        "column": 1,
+        "rect": [
+          0,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          32,
+          34,
+          77,
+          86
+        ]
+      },
+      {
+        "id": "KP06",
+        "row": 2,
+        "column": 2,
+        "rect": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          30,
+          31,
+          77,
+          86
+        ]
+      },
+      {
+        "id": "KP07",
+        "row": 2,
+        "column": 3,
+        "rect": [
+          192,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          22,
+          31,
+          76,
+          86
+        ]
+      },
+      {
+        "id": "KP08",
+        "row": 2,
+        "column": 4,
+        "rect": [
+          288,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          23,
+          31,
+          74,
+          86
+        ]
+      }
+    ]
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 240
+    },
+    {
+      "frame": 1,
+      "ms": 180
+    },
+    {
+      "frame": 2,
+      "ms": 140
+    },
+    {
+      "frame": 3,
+      "ms": 100
+    },
+    {
+      "frame": 4,
+      "ms": 100
+    },
+    {
+      "frame": 5,
+      "ms": 180
+    },
+    {
+      "frame": 6,
+      "ms": 240
+    },
+    {
+      "frame": 7,
+      "ms": 220
+    },
+    {
+      "frame": 0,
+      "ms": 1600
+    }
+  ],
+  "duration_ms": 3000,
+  "loop": false,
+  "terminal_frame": 0,
+  "cues": [
+    {
+      "name": "shield_contact",
+      "ms": 660
+    },
+    {
+      "name": "provoke",
+      "ms": 1040
+    },
+    {
+      "name": "effect_clear",
+      "ms": 1720
+    },
+    {
+      "name": "action_complete",
+      "ms": 3000
+    }
+  ],
+  "timing_assumptions": [],
+  "changes": [
+    {
+      "atlas_xy": [
+        33,
+        180
+      ],
+      "before_rgba": [
+        28,
+        22,
+        22,
+        255
+      ],
+      "after_rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "atlas_xy": [
+        33,
+        181
+      ],
+      "before_rgba": [
+        8,
+        6,
+        6,
+        255
+      ],
+      "after_rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "atlas_xy": [
+        129,
+        181
+      ],
+      "before_rgba": [
+        12,
+        8,
+        8,
+        255
+      ],
+      "after_rgba": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "import": {
+    "filter": "nearest",
+    "mipmaps": false,
+    "premultiplied_alpha": false,
+    "layout_change": false,
+    "timing_change": false,
+    "integration": "Standalone replacement for PR31 actor only. Retain its effect atlas and choreography. Not the 54-pose party sheet."
+  },
+  "preview": {
+    "background_rgb": [
+      58,
+      65,
+      72
+    ],
+    "scale": 6,
+    "loop": "Review GIFs repeat the full one-shot for inspection; runtime remains non-looping."
+  }
+}

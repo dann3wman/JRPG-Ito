@@ -1,0 +1,107 @@
+{
+  "review_id": "2026-11-18-kugai-provoke-fringe",
+  "reviewed_at": "2026-11-18",
+  "character": "Kugai",
+  "action": "Provoke",
+  "status": "partial_correction_draft_continuous_artistic_and_engine_review_incomplete",
+  "source": {
+    "repository": "dann3wman/JRPG-Ito",
+    "default_branch": "ccr-d8829a5a-ays4x1",
+    "default_head": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+    "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/31",
+    "commit_sha": "f5908e1639759fb94df71d8dafda710afc2f0c4f",
+    "path": "assets/party-fx/kugai-provoke-v01/kugai-provoke-actor.v01.png",
+    "sha256": "cab0ec260f1e00124aeae6c2704c313ecf47bf5fe7f5709dbe16e94dc0194f0e"
+  },
+  "selection": "Unreviewed character in both repository and Library rotation. Pending Tetsugi PR30 preserved; Kugai creation PR31 is pinned and not overwritten.",
+  "reconciliation": {
+    "library_rotation_version": 15,
+    "library_rotation_sha256": "8744c7d33905ac797b7e8fa002e47efe13620889890d9280686d69446d082966",
+    "repo_rotation_sha256": "0370b775bc044ebb142acea0a8ac14677dbcc9070d377783d322a08aff90e09a",
+    "library_source": "No matching current Kugai Provoke source resolved by exact-title/content searches. No parity asserted.",
+    "rotation": "Repo retains its 14 historical entries; Library retains all 15, including unmerged Tetsugi review. Append this run independently.",
+    "pending_other_review": "https://github.com/dann3wman/JRPG-Ito/pull/30"
+  },
+  "sequences": [
+    "Provoke: KP01 KP02 KP03 KP04 KP05 KP06 KP07 KP08 KP01"
+  ],
+  "geometry": {
+    "atlas": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "grid": [
+      4,
+      2
+    ],
+    "pivot": [
+      48,
+      86
+    ],
+    "frame_count": 8,
+    "gutter": 0,
+    "order": "row-major"
+  },
+  "timing": {
+    "ms": [
+      240,
+      180,
+      140,
+      100,
+      100,
+      180,
+      240,
+      220,
+      1600
+    ],
+    "duration_ms": 3000,
+    "loop": false,
+    "assumptions": [],
+    "changed": false
+  },
+  "defects": [
+    "Detached boot fringe: KP05 local (33,84),(33,85); KP06 (33,85). Original fixed boot patch starts at x34 and leaves those disconnected pixels outside its edge."
+  ],
+  "changes": [
+    "Set exactly three atlas pixels (33,180),(33,181),(129,181) to transparent in PNG and original ORA layers. All remaining pixels and timing unchanged."
+  ],
+  "validation": [
+    "All eight source and final poses visually inspected; before/after GIMP live playback sampled at 1x and 0.5x, final KP05/KP06 paused. This is not a complete continuous perceptual review.",
+    "Exact changed-pixel mask, unchanged other six cells, unchanged 24-color palette, binary alpha, bounds/padding, foot registration, ORA layer/merged parity, 4x nearest-neighbor and all nine GIF exposures/timings passed.",
+    "tools/check.sh exit0:22 rigs/88 clips,5368 sampled poses,6 battle rigs parity, simulator smoke. Existing Quick Song/Delay warnings and16 creature attachment notices retained."
+  ],
+  "reference": {
+    "library_file_id": "libfile_bde1fc1da2408191baeb0cf4de9e3547",
+    "name": "20150522_vNXuejzstyQ.mp4",
+    "inspection": "Sampled stills at2fps over8..14s, not continuous playback. No timing copied."
+  },
+  "remaining_issues": [
+    "Full continuous rhythm and artistic assessment of contact, blade projection, helmet/armor volume and recovery remain incomplete. No professional-animation pass.",
+    "Standalone PR31 actor replacement is not integrated with the default-branch engine. Engine compatibility untested.",
+    "No matching Library source was resolved; reconciliation is limited to pinned Git source and the two rotation histories."
+  ],
+  "github": {
+    "branch": "animation-review/2026-11-18-kugai-provoke-fringe",
+    "publication": "Actual commit SHA and PR URL recorded in persistent Library rotation after publication."
+  },
+  "output_links": {
+    "kugai-provoke-actor.v02.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-09ae88b789708191870a577100b6aba9_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "actor.v02.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-a73d83bead148191962fae8e9bf45c4f_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "kugai-provoke-actor.v02.4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-925f47f1f2208191b6f2eb49822bae41_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "poses.review-4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-caac49530328819183bbdfc462219e02_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "provoke.before.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-f1f5560f791c81919427fd0e0eed7da6_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "provoke.after.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-c1e33903895c81919a9e6454305dab05_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "provoke.before.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-1375f74bfa008191b8891518a61618fd_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "provoke.after.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-8109d8c8e0308191af8eb8eed80007d6_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "kugai-provoke-actor.v02.ora": "https://chatgpt.com/library?file_id=libfile_fde3_f-fc9259f0e328819192f51605c2b639d5_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "build.py": "https://chatgpt.com/library?file_id=libfile_fde3_f-5269a64eb9e48191814130951971f3c7_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "validation.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-7d0f076085e081918d0c197920521361_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "foot-detail.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-51b5f723e88c8191b5a0a5ab30c7324e_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "README.md": "https://chatgpt.com/library?file_id=libfile_fde3_f-c2a7ec2c2cc881918462960e91ad3ed6_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+  },
+  "next_selection": "Rotate to another unreviewed character. Do not repeat Kugai while this draft is open unless explicitly resolving its remaining work."
+}

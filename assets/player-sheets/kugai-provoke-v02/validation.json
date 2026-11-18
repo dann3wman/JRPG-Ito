@@ -1,0 +1,66 @@
+{
+  "status": "technical_checks_passed_not_artistic_approval",
+  "changed_pixel_count": 3,
+  "changed_atlas_pixels": [
+    [
+      33,
+      180
+    ],
+    [
+      33,
+      181
+    ],
+    [
+      129,
+      181
+    ]
+  ],
+  "unchanged_frames": [
+    "KP01",
+    "KP02",
+    "KP03",
+    "KP04",
+    "KP07",
+    "KP08"
+  ],
+  "unchanged_other_pixels": true,
+  "size": [
+    384,
+    192
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "opaque_colors": 24,
+  "palette_unchanged": true,
+  "binary_alpha": true,
+  "safe_padding": true,
+  "boot_registration_preserved": true,
+  "ora_recomposition_exact": true,
+  "nearest_neighbor_4x_exact": true,
+  "metadata_bounds_exact": true,
+  "previews": {
+    "provoke.before.normal.gif": {
+      "frames": 9,
+      "duration_ms": 3000,
+      "exact_pixels_and_timing": true
+    },
+    "provoke.before.slow.gif": {
+      "frames": 9,
+      "duration_ms": 6000,
+      "exact_pixels_and_timing": true
+    },
+    "provoke.after.normal.gif": {
+      "frames": 9,
+      "duration_ms": 3000,
+      "exact_pixels_and_timing": true
+    },
+    "provoke.after.slow.gif": {
+      "frames": 9,
+      "duration_ms": 6000,
+      "exact_pixels_and_timing": true
+    }
+  },
+  "corrected_sha256": "a5814be1d60f6ce18296b9596cfb0ebb8a8ab38ecdcfb4cb648d438f586aa527"
+}
