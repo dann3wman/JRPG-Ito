@@ -2866,6 +2866,10 @@ const SCRIPTS = {
              {id:'p2', label:'50% HP or below: it grabs two at once', when:e=>e.hp<=e.maxhp/2, free:true} ],
     init:e=>{ e.tasted = new Set(); },
     status:e=>heldBy().length ? `Holding ${namesOf(heldBy().map(t=>t.id))}: tasted by ${e.tasted.size} of 3` : '',
+    previewPlan:e=>{ const held = heldBy();
+      // Preview the deterministic fallback after the last captive's deadline, without replanning.
+      return e.plan && ['lick','savour'].includes(e.plan.skill) && held.length && held.every(t=>t.grabbed.left<=1)
+        ? {skill:'grab', target:null, prefix:'Swallow, then '} : e.plan; },
     onTurn:e=>heldBy().forEach(t=>{ t.grabbed.left--; addStress(t, 5, 'in its mouth'); if (t.grabbed.left <= 0){ t.grabbed = null; log(`The Tongue swallows ${t.name}.`, 'foe'); ko(t); } }),
     onDamage:(e,d,src)=>{ const a = src.attacker; if (a && heldBy().length && !e.tasted.has(a.id)){ e.tasted.add(a.id); log(`The Tongue tastes ${a.name} (${e.tasted.size} of 3).`, 'foe'); if (e.tasted.size >= 3) releaseAll(e); } return d; },
     rules:[ {label:'It is holding someone', when:()=>heldBy().length>0, roll:[[60,'lick'],[40,'savour']]},
@@ -2972,15 +2976,17 @@ function planName(e){
   const S = SCRIPTS[e.key];
   if (e.sleep > 0) return 'Asleep';
   if (S.planName) return S.planName(e);
-  return e.plan ? S.skills[e.plan.skill].name : '';
+  const plan = S.previewPlan ? S.previewPlan(e) : e.plan;
+  return plan ? (plan.prefix || '') + S.skills[plan.skill].name : '';
 }
 function planText(e){
   if (e.sleep > 0) return `Next: Asleep (${e.sleep} more of its turns)`;
   if (SCRIPTS[e.key].planText) return 'Next: ' + SCRIPTS[e.key].planText(e);
-  if (!e.plan) return '';
-  const sk = SCRIPTS[e.key].skills[e.plan.skill];
-  const who = sk.late ? ` → ${sk.lateText ? sk.lateText(e) : LATE_TEXT[sk.target]}` : (e.plan.target ? ` → ${e.plan.target.name}` : (sk.target==='all' ? ' → all' : ''));
-  return `Next: ${sk.name}${who}`;
+  const S = SCRIPTS[e.key], plan = S.previewPlan ? S.previewPlan(e) : e.plan;
+  if (!plan) return '';
+  const sk = S.skills[plan.skill];
+  const who = sk.late ? ` → ${sk.lateText ? sk.lateText(e) : LATE_TEXT[sk.target]}` : (plan.target ? ` → ${plan.target.name}` : (sk.target==='all' ? ' → all' : ''));
+  return `Next: ${plan.prefix || ''}${sk.name}${who}`;
 }
 function spawnPart(parent, key, ct){
   const p = makeFoe(key); p.parentId = parent.id; p.ct = ct; G.enemies.push(p); p.plan = planNext(p);
