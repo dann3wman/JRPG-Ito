@@ -3,7 +3,8 @@
 2026-11-18. Implemented pending visual review; not merged.
 Base: `ccr-d8829a5a-ays4x1`, `b5d0e9f9ac45c21b2acf28784d75fd977d35eb91`.
 Branch: `bestiary/2026-11-18-tongue-swallow-warning`.
-Commit and PR: pending publication.
+Implementation commit: `669b296f55d8dcd88cf69e7af04366c07ed492c4`. PR: [#35](https://github.com/dann3wman/JRPG-Ito/pull/35), open draft.
+Published implementation tree `ee4dab028f6bdb68459679ec5618cc05272e1648` matches the checked local tree. Queue generation 2 revision 11 records delivery.
 
 ## Source and defect
 

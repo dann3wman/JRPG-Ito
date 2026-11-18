@@ -43,9 +43,9 @@ B002 updates the Grab warning to up to 1 or 2 highest-Stress allies at execution
 
 ## 2026-11-18 refresh
 
-Generation 2, revision 10 (delivery metadata follows in revision 11). Reconciled default revision 5 with PR29 revision 7 and PR32 revision 9. Only tracker history is carried across; their unmerged implementations are not imported. Open PRs 29–34 were checked for overlap.
+Generation 2, revision 11. Reconciled default revision 5 with PR29 revision 7 and PR32 revision 9. Only tracker history is carried across; their unmerged implementations are not imported. Open PRs 29–34 were checked for overlap.
 
-[B009 review](reviews/2026-11-18-tongue-swallow.md): The Tongue now previews Swallow, then Grab when its last captives reach their deadline. The stored plan and execution remain unchanged. Browser acceptance is still outstanding.
+[B009 review](reviews/2026-11-18-tongue-swallow.md): The Tongue now previews Swallow, then Grab when its last captives reach their deadline. The stored plan and execution remain unchanged. Browser acceptance is still outstanding. Delivered in [draft PR35](https://github.com/dann3wman/JRPG-Ito/pull/35).
 
 The last actionable generation-1 task is delivered. A fresh [source/metadata audit](reviews/2026-11-18-audit.json) covers 45 enemy records, 37 encounters and 22 viewer rigs with 88 clips across the five refinement categories. No image or joint is declared broken from metadata alone. All existing history and blockers remain.
 
