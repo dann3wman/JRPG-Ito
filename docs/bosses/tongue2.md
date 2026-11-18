@@ -44,6 +44,8 @@ One HP phase at 50%: it grabs two at once.
 
 At the start of each of its turns, each held ally gains 5 Stress; after 3 it swallows them (KO). It lets go of everyone once 3 different characters have hit it since the grab. That release immediately replaces the holding-only Lick or Savour plan with Grab and announces the reaction in the log. Grab still chooses its target when it acts. Its live preview says up to 1 ally above half HP and up to 2 at or below half HP, including before the phase transition executes. The cap remains visible when fewer allies are available; it does not promise two captures.
 
+When every remaining captive has 1 turn left, the preview shows **Swallow, then Grab** with the live phase-dependent target cap. If a captive has longer left, the stored Lick/Savour remains displayed. A rescue before the deadline removes the Swallow warning. This projects the existing turn-start fallback without rerolling or changing the stored plan.
+
 ## Fairness checks
 
 - [x] Grab's plan says "whoever has the most Stress"; Stress is on every card.

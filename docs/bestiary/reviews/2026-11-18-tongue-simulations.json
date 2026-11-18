@@ -1,0 +1,188 @@
+{
+  "advisor": {
+    "before": [
+      {
+        "key": "tongue2",
+        "party": [
+          "kiri",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 0.87,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 33.48,
+          "winTurns": 34.206896551724135,
+          "foeTurns": 10.59,
+          "kos": 0.26,
+          "afflicted": 0,
+          "inspired": 0,
+          "fled": 0,
+          "lost": 2.11,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 25.270000000000003,
+          "danger": 35.59,
+          "hp": 0.8663047256065002
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "tongue2",
+        "party": [
+          "kiri",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 0.87,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 33.48,
+          "winTurns": 34.206896551724135,
+          "foeTurns": 10.59,
+          "kos": 0.26,
+          "afflicted": 0,
+          "inspired": 0,
+          "fled": 0,
+          "lost": 2.11,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 25.270000000000003,
+          "danger": 35.59,
+          "hp": 0.8663047256065002
+        }
+      }
+    ]
+  },
+  "attack": {
+    "before": [
+      {
+        "key": "tongue2",
+        "party": [
+          "kiri",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 17.28,
+          "winTurns": 0,
+          "foeTurns": 7,
+          "kos": 2,
+          "afflicted": 0,
+          "inspired": 0,
+          "fled": 0,
+          "lost": 0,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 31.40333333333334,
+          "danger": 32,
+          "hp": 0
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "tongue2",
+        "party": [
+          "kiri",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 17.28,
+          "winTurns": 0,
+          "foeTurns": 7,
+          "kos": 2,
+          "afflicted": 0,
+          "inspired": 0,
+          "fled": 0,
+          "lost": 0,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 31.40333333333334,
+          "danger": 32,
+          "hp": 0
+        }
+      }
+    ]
+  },
+  "random": {
+    "before": [
+      {
+        "key": "tongue2",
+        "party": [
+          "kiri",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 24.21,
+          "winTurns": 0,
+          "foeTurns": 10.39,
+          "kos": 3.23,
+          "afflicted": 0.1,
+          "inspired": 0.01,
+          "fled": 0,
+          "lost": 2.11,
+          "limits": 0,
+          "phoenix": 1.28,
+          "stress": 45.91333333333333,
+          "danger": 42.39,
+          "hp": 0
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "tongue2",
+        "party": [
+          "kiri",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 24.21,
+          "winTurns": 0,
+          "foeTurns": 10.39,
+          "kos": 3.23,
+          "afflicted": 0.1,
+          "inspired": 0.01,
+          "fled": 0,
+          "lost": 2.11,
+          "limits": 0,
+          "phoenix": 1.28,
+          "stress": 45.91333333333333,
+          "danger": 42.39,
+          "hp": 0
+        }
+      }
+    ]
+  }
+}
