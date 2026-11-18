@@ -117,6 +117,8 @@ It validates both sets with the same rules the editor uses (`check_anims`, `chec
 
 ## Lessons
 
+- **2026-11-18 · Kugai · Provoke.** A fixed boot patch left three detached original pixels one column beyond its boundary. Check the patch neighborhood against adjacent poses before export. Removed only the confirmed remnants in the eight-pose action atlas; no frame-count, palette or timing change. No prompt revision was needed because the defect was in post-generation registration cleanup.
+
 - **2026-11-16 · Kuro · casting sheet.** KD03 contained one disconnected dark fringe pixel. Removed only that confirmed artifact; preserve intentional detached effect pixels and do not infer whole-animation approval from a local cleanup. Standalone eight-pose action sheets retain their own metadata and must not be silently treated as the 54-pose party standard.
 
 - **2026-10-25 · Kiri · first sprite sheet.** The art followed the prompt well. The 6 × 9 grid held, the scarf spiral showed in every frame, and the Sleep and Confuse twists and the grey-green Zombie came through. Three problems were in the slicer, and all are fixed in `party_art.py`:

@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-18 · Kugai · Provoke boot fringe
+- **Reported problem:** a two-pixel fragment appears beside the left boot in KP05, shrinks to one pixel in KP06 and vanishes. See `assets/player-sheets/kugai-provoke-v02/foot-detail.png`.
+- **Original generation:** PR31 at `f5908e1639759fb94df71d8dafda710afc2f0c4f`; `build.py` copies the registered boot rectangle [34,81,64,89), leaving original pixels at local x33 just outside the patch.
+- **Root cause:** incomplete cleanup around a registration patch. The fragments are disconnected from the boot, not a specified dust or impact effect.
+- **Solution implemented:** set KP05 local (33,84)/(33,85) and KP06 (33,85) to transparent in the versioned PNG and existing ORA layers. Exactly three pixels change; all other pixels, palette, cell geometry, ordering and timing are retained.
+- **Verification:** all eight source/final poses inspected, GIMP playback sampled at 1x/0.5x, corrected contact/rebound paused. Pixel-delta, decoded-GIF timing/pixels, bounds, alpha, palette, boot strip, 4x scale and ORA checks pass. Full continuous artistic review and engine compatibility remain incomplete; draft required.
+- **Rule for next time:** inspect a one-pixel neighborhood outside registration patch boundaries. Detect disconnected candidates, then distinguish residual anatomy from intended particles before removing them. No regeneration prompt was used; this is a precise atlas cleanup.
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.
