@@ -1,0 +1,107 @@
+{
+  "hisui-strike-actor": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "blood-petals": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 16,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 77,
+    "expanded_render_slots": 180,
+    "duration_ms": 3000.000000000002,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 77,
+    "duration_ms": 3000,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 180,
+    "fps": 60,
+    "duration_ms": 3000
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "duration_ms": 3000,
+    "integer_states": 3001,
+    "event_count": 4,
+    "damage_count": 1,
+    "replay_reset": true,
+    "seek_no_events": true,
+    "pause": true,
+    "half_speed_logic": true,
+    "terminal_cleanup": true,
+    "live_browser_controls": false
+  },
+  "visual_review": {
+    "complete_continuous_review": false,
+    "live_playback": "GIMP GIF playback opened and sampled at normal and half speed; snapshots only, full continuous assessment unverified",
+    "light_dark_stills_reviewed": true,
+    "ora_reopened_programmatically": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 301,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "ee9a7e593c4f923e0d4941486b24c7801b69d351c1d8914ec4109150013032d9",
+    "blood-petals.v01.4x.png": "f0ef1fcdb3c68ad010558b95380445f4c6bc7e02befb705d4e226b07d5eebe82",
+    "blood-petals.v01.ora": "19760732e427fd65f92121f09caddfdbd2f9268ad281eea1e6839f89bf914b89",
+    "blood-petals.v01.png": "88a7234ec2e55dbff36d2b8f8a6026365081ee2ca7ccbe7e76f25e1cdcef4b42",
+    "build.py": "7b96aa67323d3faaf4b547891cac0c1c76b0e0872b8ccbe47fa110406b44a4d5",
+    "check-render.cjs": "af22e471f42c25e263b9dbc95634c6cd62c0bffdf085e0e8d363f9b20c363175",
+    "encode.py": "e5e8e7e47ef07e6168219957f6e8b12f64319341e91676189a4a374f172d628d",
+    "export.cjs": "2bbc58d00c2330571e567e569ec45f88a95dce0065bdb108fc1d4945bc588619",
+    "hisui-blood-strike.v01.apng": "7a28258945c013f353831a4536935db09b2d759ad161dc0009f48603888e7b79",
+    "hisui-blood-strike.v01.gif": "7017413e50e55d92ab1d062d289c74e9958f5962eec8f6f9b4d9455d4ba9cd40",
+    "hisui-blood-strike.v01.html": "2f53b140e850d4c0b19370db56c4e049278e16590f968edd9622efcd2defc5ff",
+    "hisui-blood-strike.v01.mp4": "05a6548c0562801fb340eb7753ed10333a1cc08945d3cc5b66e308c215c77beb",
+    "hisui-strike-actor.v01.4x.png": "27a69caca4af9fd827993277437aa9edac2b2804949490c06d82c527d89e7098",
+    "hisui-strike-actor.v01.ora": "705e417a530115775b75c00c2432c2cf958ac285308992e1626cdbfe2823d987",
+    "hisui-strike-actor.v01.png": "e633b79597a436ef9ac35d32ce291c4a5c1cf6ecfeb9556e5d39a6112cb8eb37",
+    "player.template.html": "32b6c249a45bc14a557285f27928994ec25fd03fdbd41fec50287a56808e3c52",
+    "render-validation.json": "61b636bea8ac07753c57a7e05de81ef0dc103e8729450f8012071941670373bb",
+    "render.js": "f40f195fff300a15c6c134081ba858dffe239af96af9a348d0afb8ac9e625644",
+    "review.v01.4x.png": "b75c1079524efca312e9f999dc35305b991c440e4f7aa3ddf0c53f8f9ab700a1",
+    "review.v01.png": "b8135a91919a8b4016a196a79e0e9a84f48c0c5dfbc708e5562b778652ffade4",
+    "runtime-validation.json": "278742655a8fbe2ad0b834036373ec42624f8291a7357d6f837853a31abc0a6d",
+    "scene.dark.v01.png": "1eda4fcb885d4943b6e3977c9b6a6a3ca0b861be38d10e08654d259cf22ea205",
+    "scene.light.v01.png": "81f470386071b6958bb48c6561ff7137e26c10276a3618cf5c4709fd5be442dd",
+    "scene.pixel-4x.v01.png": "d7559c8704e2266ed9a579184ee5e641f3733d6ad5c6568ef53f8cf8bf82ff54",
+    "scene.pixel-native.v01.png": "de6349cf8307f0d41caf0c0f6c7d74e0ee3a4e8d023efbdff580623de222304f",
+    "source/blood-petals.generated.png": "9b84d12ade7fa1df1b5e613217298b530f06bbd68a3a2dd808c59c77116d79b5",
+    "source/generation-prompts.txt": "33532de0f5338d1922ad37d0d55848c8ca8714e169ac768670bfe91c00e1f92e",
+    "source/hisui-strike-actor.generated.png": "8f110a3bad72cf2fce7cd453c03935a0803434c562ada9ed8df923e296b00f05",
+    "target-context.png": "383ead149a01c4f22418949bacd01961ae970a065f4ab5ed67e6f3a64b87bfe9",
+    "test.cjs": "e8fbe5289ca05ebb8432be07776848b17b23aa5e4ff2402b76d995358c08886f",
+    "timeline.v01.json": "965cab4ad3891bd77bf3a6fdc124a3dce669c97464784e934b87bde5b2cc0224",
+    "validate.py": "bb5eb43aee8da389f116611a7de1e8a5ad445c74f220d14d6930fcc266a6ce14"
+  }
+}
