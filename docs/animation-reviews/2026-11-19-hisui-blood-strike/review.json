@@ -1,0 +1,90 @@
+{
+  "review_id": "2026-11-19-hisui-blood-strike",
+  "review_date_local": "2026-11-19",
+  "character": "Hisui",
+  "status": "partial_review_no_edits_not_pass",
+  "source_repository": "dann3wman/JRPG-Ito",
+  "source_commit": "3b4de70765373e63560d9d591617ba968de46dcb",
+  "source_pr": "https://github.com/dann3wman/JRPG-Ito/pull/34",
+  "source_path": "assets/party-fx/hisui-blood-strike-v01/hisui-strike-actor.v01.png",
+  "source_sha256": "e633b79597a436ef9ac35d32ce291c4a5c1cf6ecfeb9556e5d39a6112cb8eb37",
+  "base_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+  "selection_reason": "Unreviewed character in repository and Library histories. PR34 source creation pinned; open reviews PR30 and PR33 preserved.",
+  "reconciliation": {
+    "library_rotation_version": 16,
+    "library_rotation_sha256": "d1ae6a359d71f2d7ed3ea9dae3bab3cf2852d1897c1e600b80adaabfb9c0de63",
+    "repo_rotation_sha256": "0370b775bc044ebb142acea0a8ac14677dbcc9070d377783d322a08aff90e09a",
+    "library_source": "No matching current Hisui source resolved. No hash parity asserted.",
+    "rotation": "Preserve all 16 Library and 14 repository entries independently."
+  },
+  "sequences": [
+    "Blood Strike: HS01 HS02 HS03 HS04 HS05 HS06 HS07 HS08 HS01"
+  ],
+  "geometry": {
+    "atlas": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "grid": [
+      4,
+      2
+    ],
+    "pivot": [
+      48,
+      86
+    ],
+    "frame_count": 8,
+    "gutter": 0,
+    "order": "row-major"
+  },
+  "timing": {
+    "ms": [
+      240,
+      180,
+      140,
+      100,
+      100,
+      180,
+      240,
+      220,
+      1600
+    ],
+    "duration_ms": 3000,
+    "loop": false,
+    "assumptions": [],
+    "changed": false
+  },
+  "defects": [
+    "No confirmed safe pixel correction. Blade arc/projection across HS04-HS06 and shoulder-eye readability remain concerns, not established defects."
+  ],
+  "changes": [],
+  "validation": [
+    "All eight static poses inspected. Rebuilt source actor GIF opened in GIMP, played at 1x and 0.5x and sampled visually. Continuous perceptual review incomplete.",
+    "Bounds, safe padding, 24-color palette, binary alpha, nearest 4x, all nine decoded GIF exposures and exact durations passed.",
+    "tools/check.sh exit0; existing Quick Song/Delay warnings and creature attachment art notices unchanged."
+  ],
+  "remaining_issues": [
+    "Continuous motion rhythm, blade arcs, anatomy/volume, foot contact and impact need further artistic review. No professional-animation pass.",
+    "Actor-only fixed-pivot diagnostic excludes world movement and effects; engine compatibility untested.",
+    "Reference video playback not inspected in this run.",
+    "No matching current Library source resolved."
+  ],
+  "output_links": {
+    "README.md": "https://chatgpt.com/library?file_id=libfile_fde3_f-ff6676e9179c81919d2f3d63410c5278_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "build.py": "https://chatgpt.com/library?file_id=libfile_fde3_f-fecca865a7c08191b5fa2aa273ae7111_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "hisui.frames.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-f12c945dcb148191bac261e1c67766a7_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "hisui.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-664a138fc6ac8191aa3ebf256a88358b_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "hisui.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-c02aeb7089488191882f8ce9f88c0508_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "timing.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-0660b5726658819193f8c65d04d31360_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "validation.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-c9e53a98b6ac8191b31db1a5e7bb2d91_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+  },
+  "github": {
+    "branch": "animation-review/2026-11-19-hisui-blood-strike",
+    "publication": "Actual published commit and PR recorded in persistent Library log after publication."
+  },
+  "next_selection": "Rotate to another eligible unreviewed character; resume this branch and PR when resolving Hisui remaining work, not a duplicate review."
+}
