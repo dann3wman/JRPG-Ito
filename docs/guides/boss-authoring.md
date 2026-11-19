@@ -67,7 +67,7 @@ Hooks for fights that bend the usual rules. Each is optional; the Disc 1 chapter
 | `holds(e, u)` + `holdText(e, u)` | While `holds` is true, that ally's turns are spent, with `holdText` in the log | Pelt (Goku on the leash) |
 | `afterTurn(e)` | Runs after its action, before it plans the next. Use it for "for N of its turns" counters | Pelt hold, Lamp Hollow dark |
 | `hpOf(e)` | `{hp, max, text}` to show instead of its own HP | Well-Rested (the original's HP on every body), Dead Wolf, Grey Hound |
-| `planName(e)`, `planText(e)` | Override what the turn order and the card call its next action, when the action is decided live | Your Own Tracks |
+| `planName(e)`, `planText(e)` | Override what the turn order and the card call its next action, when the action is decided live. Return `null` to retain the normal stored-plan preview; never roll RNG in a preview | Your Own Tracks, Orlen's pending phase change |
 | `guestTurn(e, u)` | Drives the encounter's guest (below) on the guest's turns | Grey Hound |
 | `hint` | The Scan hint (a string). Disc 2 and later bosses need one | Every Disc 2 boss |
 | `noTurn` | `true`: it never takes a turn of its own (another foe acts for it) | Mirens' copies, Sleepers |

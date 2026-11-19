@@ -2375,6 +2375,10 @@ const SCRIPTS = {
       stench:{name:'Stench', rank:3, tags:['Physical','Stress'], target:'brink', power:'0.4× ATK', desc:'+8 Stress to the ally closest to a Stress Check or fleeing.', run:(e,t)=>{ hitParty(t, e.atk*.4, {src:e}); if (t.alive) addStress(t, 8, 'Stench'); }} } },
   orlen:{
     overdrive:true,
+    // The free phase entry replans on his turn. Do not promise the stale action
+    // or roll a replacement early: Counter-Melody and the Organ can still change it.
+    planName:e=>e.phase && phaseOf(e)!==e.phase ? 'Phase change' : null,
+    planText:e=>e.phase && phaseOf(e)!==e.phase ? 'Phase change → action will be chosen when it acts' : null,
     phases:[ {id:'p1', label:'Above 50% HP'},
              {id:'p2', label:'50% HP or below: the ancestors wake (Sermon +30 Stress)', when:e=>e.hp<=e.maxhp/2, free:true} ],
     parts:[ {key:'organ', respawn:4, hpPct:.5, label:'Great Organ (rebuilt at 50% HP)'} ],
@@ -2971,12 +2975,14 @@ function planNext(e){
 function planName(e){
   const S = SCRIPTS[e.key];
   if (e.sleep > 0) return 'Asleep';
-  if (S.planName) return S.planName(e);
+  const custom = S.planName ? S.planName(e) : null;
+  if (custom!=null) return custom;
   return e.plan ? S.skills[e.plan.skill].name : '';
 }
 function planText(e){
   if (e.sleep > 0) return `Next: Asleep (${e.sleep} more of its turns)`;
-  if (SCRIPTS[e.key].planText) return 'Next: ' + SCRIPTS[e.key].planText(e);
+  const custom = SCRIPTS[e.key].planText ? SCRIPTS[e.key].planText(e) : null;
+  if (custom!=null) return 'Next: ' + custom;
   if (!e.plan) return '';
   const sk = SCRIPTS[e.key].skills[e.plan.skill];
   const who = sk.late ? ` → ${sk.lateText ? sk.lateText(e) : LATE_TEXT[sk.target]}` : (e.plan.target ? ` → ${e.plan.target.name}` : (sk.target==='all' ? ' → all' : ''));
