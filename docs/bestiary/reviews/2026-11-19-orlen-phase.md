@@ -8,7 +8,7 @@ Date: 2026-11-19. Entry: Archbishop Orlen. Category: enemy AI telegraph.
 - Tracker: PR35 head `75795e55a915aafce48f38ff181b5a1e05bb3cff`, generation 2 revision 11. It supersedes default generation 1 revision 5 and PR29/PR32 revisions 7/9. All task history is retained.
 - Open PRs 29 through 37 checked. Party-art work does not overlap Orlen. No existing PR implements B012.
 - Branch: `bestiary/2026-11-19-orlen-phase-warning`, created from the current default, not from an unmerged bestiary branch.
-- Delivery: prepared for a draft PR; commit and PR identifiers will be recorded after creation.
+- Delivery: [draft PR38](https://github.com/dann3wman/JRPG-Ito/pull/38), implementation commit `8bb8c2e48d6e3443199830edad683003cab52b74`. Delivered for review, not merged or visually accepted. Queue generation 3 revision 13.
 
 Read repository instructions, current design/status/style/glossary, boss-authoring instructions, the live Orlen reference and script. There is no standalone `docs/bosses/orlen.md`. Chapter 19's Protect/Shell difference is an existing documented design question and remains unchanged. Inspected the installed Orlen sheet, atlas geometry, rig/clip definitions and lore; no raster or rig changes are part of this refinement.
 

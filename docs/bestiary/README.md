@@ -1,6 +1,6 @@
 # Bestiary refinement queue
 
-Updated 2026-11-19. Generation **3**, revision **12**. The [machine-readable queue](refinement-queue.json) preserves delivery and blocked history. One actionable task remains: **B013, Ruri's invalid Jealousy warning**.
+Updated 2026-11-19. Generation **3**, revision **13**. The [machine-readable queue](refinement-queue.json) preserves delivery and blocked history. One actionable task remains: **B013, Ruri's invalid Jealousy warning**.
 
 ## Current audit
 
@@ -23,12 +23,12 @@ Default generation 1 revision 5 is older than the trackers in PR29 (revision 7),
 | B009 | The Tongue (licker / tongue2) | Make the swallow-turn action change legible before execution | implemented pending visual review ([PR35](https://github.com/dann3wman/JRPG-Ito/pull/35)) |
 | B010 | The Hellstar finale | Resolve the sequential-versus-simultaneous finale design before implementation | blocked |
 | B011 | The Puppeteers | Implement its fight after required encounter capabilities are ready | blocked |
-| B012 | Archbishop Orlen | Make the half-HP action replan visible before execution | implemented pending visual review |
+| B012 | Archbishop Orlen | Make the half-HP action replan visible before execution | implemented pending visual review ([PR38](https://github.com/dann3wman/JRPG-Ito/pull/38)) |
 | B013 | Ruri | Reveal when copy losses invalidate the displayed Jealousy | pending |
 
 ## Latest refinement
 
-[B012 review](reviews/2026-11-19-orlen-phase.md): Archbishop Orlen now shows a phase-change warning when crossing half HP, instead of promising an attack his free phase entry will replace. Fourteen live-script cases plus sleep, empty-plan and preview-purity assertions pass. All 300 seeded before/after battle summaries match. `tools/check.sh` passes. The reference generator produces no data change. Browser warning layout remains unverified because Chromium cannot launch; delivery will be a draft PR.
+[B012 review](reviews/2026-11-19-orlen-phase.md): Archbishop Orlen now shows a phase-change warning when crossing half HP, instead of promising an attack his free phase entry will replace. Fourteen live-script cases plus sleep, empty-plan and preview-purity assertions pass. All 300 seeded before/after battle summaries match. `tools/check.sh` passes. The reference generator produces no data change. Browser warning layout remains unverified because Chromium cannot launch; delivered as [draft PR38](https://github.com/dann3wman/JRPG-Ito/pull/38).
 
 ## History and blockers
 
