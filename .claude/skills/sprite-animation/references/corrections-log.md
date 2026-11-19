@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-19 · Ren Fire · facing and timing
+- **Problem:** generated captain faced right despite left-facing prompt; effect timing assertion found a100ms mismatch.
+- **Cause:** generation direction drift and manual duration arithmetic.
+- **Correction:** flip whole source cells, nearest-scale and register last opaque row85; keep each pose intact. Effect track sums1500ms from500, so cleanup/cue corrected2100 to2000. Remove generated alpha haze using documented threshold. No other actor edited.
+- **Verification:** build/test/decoded exports and exact4x checks; native review sheet inspected. Chromium local-file preview blocked by organization policy; continuous motion/weapon handedness still unapproved.
+- **Rule:** measure generated facing/foot row and compute duration totals before export. Mirroring can alter handedness, so retain that artistic review requirement.
+
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.

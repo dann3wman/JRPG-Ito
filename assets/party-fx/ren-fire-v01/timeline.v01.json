@@ -1,0 +1,679 @@
+{
+  "action": "Ren: Fire",
+  "version": 1,
+  "duration_ms": 3000,
+  "fps": 60,
+  "loop": false,
+  "terminal": "effects hidden; Ren ready; target recovered",
+  "scene": {
+    "native": [
+      384,
+      216
+    ],
+    "output": [
+      1536,
+      864
+    ],
+    "origin": "top-left",
+    "baseline": 180,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      375,
+      207
+    ],
+    "actor_feet": [
+      280,
+      180
+    ],
+    "effect_pivot": [
+      254,
+      139
+    ],
+    "target_feet": [
+      104,
+      180
+    ],
+    "facing": "left"
+  },
+  "atlases": {
+    "ren-casting": {
+      "file": "ren-casting.v01.png",
+      "size": [
+        384,
+        192
+      ],
+      "cell": [
+        96,
+        96
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        87,
+        87
+      ],
+      "palette": [
+        "#CBB3A0",
+        "#A99380",
+        "#927A68",
+        "#747774",
+        "#77655A",
+        "#6D584D",
+        "#5B5652",
+        "#594943",
+        "#4C4847",
+        "#4D423E",
+        "#4A3A36",
+        "#414040",
+        "#3F3938",
+        "#3B3432",
+        "#372D2C",
+        "#2F2C2C",
+        "#2C2424",
+        "#221F1F",
+        "#1C1818",
+        "#181313",
+        "#141111",
+        "#120E0E",
+        "#100D0D",
+        "#0A0808"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "RF01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            28,
+            21,
+            74,
+            86
+          ]
+        },
+        {
+          "id": "RF02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            27,
+            21,
+            74,
+            86
+          ]
+        },
+        {
+          "id": "RF03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            27,
+            21,
+            74,
+            86
+          ]
+        },
+        {
+          "id": "RF04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            288,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            22,
+            21,
+            74,
+            86
+          ]
+        },
+        {
+          "id": "RF05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            18,
+            21,
+            74,
+            86
+          ]
+        },
+        {
+          "id": "RF06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            18,
+            21,
+            74,
+            86
+          ]
+        },
+        {
+          "id": "RF07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            25,
+            21,
+            74,
+            86
+          ]
+        },
+        {
+          "id": "RF08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            288,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            27,
+            21,
+            74,
+            86
+          ]
+        }
+      ]
+    },
+    "fire-bloom": {
+      "file": "fire-bloom.v01.png",
+      "size": [
+        512,
+        256
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        119,
+        119
+      ],
+      "palette": [
+        "#FCE4AC",
+        "#EFAE5D",
+        "#D07935",
+        "#A15F35",
+        "#A34E25",
+        "#8F4525",
+        "#6D4A3A",
+        "#56463D",
+        "#813A21",
+        "#723623",
+        "#663525",
+        "#622C1D",
+        "#4B362E",
+        "#4D291F",
+        "#482118",
+        "#281611"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "FB01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            47,
+            50,
+            81,
+            85
+          ]
+        },
+        {
+          "id": "FB02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            29,
+            40,
+            101,
+            83
+          ]
+        },
+        {
+          "id": "FB03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            27,
+            44,
+            101,
+            87
+          ]
+        },
+        {
+          "id": "FB04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            27,
+            34,
+            100,
+            91
+          ]
+        },
+        {
+          "id": "FB05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            29,
+            17,
+            100,
+            101
+          ]
+        },
+        {
+          "id": "FB06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            31,
+            27,
+            98,
+            100
+          ]
+        },
+        {
+          "id": "FB07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            30,
+            16,
+            99,
+            101
+          ]
+        },
+        {
+          "id": "FB08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            40,
+            19,
+            87,
+            103
+          ]
+        }
+      ]
+    }
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 250
+    },
+    {
+      "frame": 1,
+      "ms": 200
+    },
+    {
+      "frame": 2,
+      "ms": 250
+    },
+    {
+      "frame": 3,
+      "ms": 200
+    },
+    {
+      "frame": 4,
+      "ms": 250
+    },
+    {
+      "frame": 5,
+      "ms": 250
+    },
+    {
+      "frame": 6,
+      "ms": 250
+    },
+    {
+      "frame": 7,
+      "ms": 350
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "effect_track": [
+    {
+      "frame": 0,
+      "ms": 200
+    },
+    {
+      "frame": 1,
+      "ms": 160
+    },
+    {
+      "frame": 2,
+      "ms": 140
+    },
+    {
+      "frame": 3,
+      "ms": 120
+    },
+    {
+      "frame": 4,
+      "ms": 180
+    },
+    {
+      "frame": 5,
+      "ms": 200
+    },
+    {
+      "frame": 6,
+      "ms": 220
+    },
+    {
+      "frame": 7,
+      "ms": 280
+    }
+  ],
+  "effect_start_ms": 500,
+  "effect_hide_ms": 2000,
+  "cues": [
+    {
+      "name": "release",
+      "ms": 700
+    },
+    {
+      "name": "damage",
+      "ms": 1000
+    },
+    {
+      "name": "effect_clear",
+      "ms": 2000
+    },
+    {
+      "name": "action_complete",
+      "ms": 3000
+    }
+  ],
+  "gameplay_events": "Visual release and damage cues only; no HP, MP or balance mutation.",
+  "motion": {
+    "actor_x_keys": [
+      [
+        0,
+        280
+      ],
+      [
+        3000,
+        280
+      ]
+    ],
+    "target_x_keys": [
+      [
+        0,
+        104
+      ],
+      [
+        1000,
+        104
+      ],
+      [
+        1120,
+        96
+      ],
+      [
+        1600,
+        104
+      ],
+      [
+        3000,
+        104
+      ]
+    ],
+    "effect_x_keys": [
+      [
+        500,
+        254
+      ],
+      [
+        700,
+        250
+      ],
+      [
+        1000,
+        116
+      ],
+      [
+        3000,
+        116
+      ]
+    ],
+    "effect_y": 139,
+    "interpolation": "smoothstep rounded native pixels; impact follows target recoil"
+  },
+  "layers": [
+    {
+      "name": "background",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": "opaque",
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "rear light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "source-over",
+      "filter": "linear",
+      "preview_scale": 2
+    },
+    {
+      "name": "target, actor, flame",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "contact light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "screen",
+      "filter": "linear",
+      "preview_scale": 2
+    }
+  ],
+  "status": {
+    "specified": true,
+    "generated_built": true,
+    "exported": true,
+    "technically_checked": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  }
+}

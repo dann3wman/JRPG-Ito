@@ -1,0 +1,5 @@
+const assert=require('assert'),fs=require('fs'),api=require('./render.js'),m=require('./timeline.v01.json');
+assert.equal(m.actor_track.reduce((a,x)=>a+x.ms,0),3000);assert.equal(m.effect_track.reduce((a,x)=>a+x.ms,0)+m.effect_start_ms,2000);
+for(let t=0;t<=3000;t++){let s=api.state(t,m);assert(Number.isInteger(s.ax)&&Number.isInteger(s.tx));assert(s.pose>=0&&s.pose<8);}
+let p=new api.Playback(m);p.replay();for(let i=0;i<3000;i++)p.tick(1);assert.deepEqual(p.history,m.cues.map(x=>x.name));assert.equal(p.history.filter(x=>x==='damage').length,1);p.replay();assert.equal(p.history.length,0);p.seek(1000);assert.equal(p.history.length,0);p.seek(0);p.tick(1000);assert.equal(p.history.length,0);p.playing=false;let t=p.time;p.tick(200);assert.equal(p.time,t);p.replay();p.tick(100*.5);assert.equal(p.time,50);assert.equal(api.state(3000,m).fx,-1);
+fs.writeFileSync(__dirname+'/runtime-validation.json',JSON.stringify({duration_ms:3000,integer_states:3001,event_count:4,damage_count:1,replay_reset:true,seek_no_events:true,pause:true,half_speed_logic:true,terminal_cleanup:true,live_browser_controls:false},null,2));console.log('Runtime checks pass');
