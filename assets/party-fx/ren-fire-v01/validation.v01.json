@@ -1,0 +1,107 @@
+{
+  "ren-casting": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "fire-bloom": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 16,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 62,
+    "expanded_render_slots": 180,
+    "duration_ms": 3000.0000000000005,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 62,
+    "duration_ms": 3000,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 180,
+    "fps": 60,
+    "duration_ms": 3000
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "duration_ms": 3000,
+    "integer_states": 3001,
+    "event_count": 4,
+    "damage_count": 1,
+    "replay_reset": true,
+    "seek_no_events": true,
+    "pause": true,
+    "half_speed_logic": true,
+    "terminal_cleanup": true,
+    "live_browser_controls": false
+  },
+  "visual_review": {
+    "complete_continuous_review": false,
+    "live_playback": "Live HTML blocked by organizational local-file restriction; normal/half-speed continuous playback unverified",
+    "light_dark_stills_reviewed": true,
+    "ora_reopened_programmatically": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 301,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "92bee5b382cde5c6e3cf16f0dfed179341b0fd4984d0a6f88b3c2aa4d866b418",
+    "build.py": "c3b2b510171c7b4e342c1df9b710632e00288458ffe7eec4b3be7bdd0ac63e4d",
+    "check-render.cjs": "07f42ba5608d2ddc736aad8e45e16c714a9e84cb43703aaefb9f8d22c7ffd653",
+    "encode.py": "8fce6a5335223d1996ba5b1ec4cadaa3ca9bf9f746600a2d00be02ff127c7118",
+    "export.cjs": "16cdf9234b3dbb22721d692bc516902f463b6421ca67d3a98a8b66eb7417cde1",
+    "fire-bloom.v01.4x.png": "91bd1182f2317c20b8964f703a3d10b155c1f7e6d0471a577b89d79f7100aa1a",
+    "fire-bloom.v01.ora": "da1db3b8c36c5aa2cb3bf61102e4ae0c83669a510e5b7b0d4586f425e3f81501",
+    "fire-bloom.v01.png": "837fa4381b4ac099772fd257db16b95d49e8778e5a48906da78660ac1daa7632",
+    "player.template.html": "2c24e39bac4c02c3f364e24aac3dd2ddc0e9afd963e9d204662f4b9a9a9f8454",
+    "ren-casting.v01.4x.png": "9c4d905cea9d00204e42d015c120e418d8e5d2c8e2ee9188c3ba96e9582300da",
+    "ren-casting.v01.ora": "2e63e2a6800a28726a541434ba8f1a68b516f986476f8ff53153a1b997adda7e",
+    "ren-casting.v01.png": "fc2c5dd2cc2582bccbc69962d05428b7c7840d4a1d803681189a42745310b9d9",
+    "ren-fire.v01.apng": "c9b7a122dfd40cbcf3f9947b17f3719bcbfc86d5b94768cf5bce16505902d364",
+    "ren-fire.v01.gif": "9aff4f1d674bfeff0e36789bbec3e9d93dd1c0bcfc45a18884efe0434a49b55a",
+    "ren-fire.v01.html": "31f115ce420728c12ec2b254d757671f9c6d4feb0a0479af24a036dc9650b3f0",
+    "ren-fire.v01.mp4": "1f70eca6bed811347acbc1bc147d5dd9598424fc74ba97a40b4019a94de67924",
+    "render-validation.json": "61b636bea8ac07753c57a7e05de81ef0dc103e8729450f8012071941670373bb",
+    "render.js": "a13495387f216c238fb15c1b821d275d3aa4e374677fae37c787ca099fc31105",
+    "review.v01.4x.png": "791fa752ae31f260a666125ec5173ca371449cc9a1dbf5d4af7cc16db63f51d3",
+    "review.v01.png": "6f1199204e0f8724673ef9290ee94cb8e93463e5e333216c56e0b8c07cbb13db",
+    "runtime-validation.json": "278742655a8fbe2ad0b834036373ec42624f8291a7357d6f837853a31abc0a6d",
+    "scene.dark.v01.png": "aeba32f57ecf5f87bde483f1fbcb9b3675ec438d175b5ca35d5ab2aa00882963",
+    "scene.light.v01.png": "47c62fb2e08e36621b54e9d6ec75a74b8fed58439c6250ebca4283238f4a0824",
+    "scene.pixel-4x.v01.png": "dd1d601bc79db1979e12a0cc1188dca6fb28c2154c6dcd65dab247e02cd0f587",
+    "scene.pixel-native.v01.png": "3eae6809656b1df6900588d7f258d967e3a63efe8d31be4c963811c6fc7872c4",
+    "source/fire-bloom.generated.png": "5c07162a62cd2b63d93da7f29211abdb3ea4ba686ee4746ed6789008a9b243b7",
+    "source/generation-prompts.txt": "41eda510f5cd6f56d71a3ef9c50195d1cff1e5f139752d661d97919b66fce54c",
+    "source/ren-casting.generated.png": "bffda41a82fb644f01141a7c70ec4ec1f2f30e38f6ec157302b293300fae664b",
+    "target-context.png": "383ead149a01c4f22418949bacd01961ae970a065f4ab5ed67e6f3a64b87bfe9",
+    "test.cjs": "2dca570616654bbdb686fce612bf4ee5b742fb1df12add8a3abf33634acc26af",
+    "timeline.v01.json": "3e075e57145cc42d02010712db78a350fad3ee9da9a526e595f118d69f5354e3",
+    "validate.py": "62453e4d248ab6497c8d4f84102aba42f39cb4cd8954c0362e56f6c0ed2ec4c5"
+  }
+}
