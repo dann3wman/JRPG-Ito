@@ -1,0 +1,197 @@
+{
+  "date": "2026-11-19",
+  "entry": "Archbishop Orlen",
+  "before_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+  "command": "node tools/battle-sim/sim.js orlen -n 100 --policy <policy> --json",
+  "policies": {
+    "advisor": {
+      "before": [
+        {
+          "key": "orlen",
+          "party": [
+            "kuro",
+            "sayo",
+            "natsu"
+          ],
+          "policy": "advisor",
+          "s": {
+            "n": 100,
+            "win": 0.99,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 65.48,
+            "winTurns": 65.27272727272727,
+            "foeTurns": 33.67,
+            "kos": 0.42,
+            "afflicted": 4.79,
+            "inspired": 1.39,
+            "fled": 2.07,
+            "lost": 19.64,
+            "limits": 3.73,
+            "phoenix": 0.36,
+            "stress": 129.60663239538238,
+            "danger": 100,
+            "hp": 0.537246026444654
+          }
+        }
+      ],
+      "after": [
+        {
+          "key": "orlen",
+          "party": [
+            "kuro",
+            "sayo",
+            "natsu"
+          ],
+          "policy": "advisor",
+          "s": {
+            "n": 100,
+            "win": 0.99,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 65.48,
+            "winTurns": 65.27272727272727,
+            "foeTurns": 33.67,
+            "kos": 0.42,
+            "afflicted": 4.79,
+            "inspired": 1.39,
+            "fled": 2.07,
+            "lost": 19.64,
+            "limits": 3.73,
+            "phoenix": 0.36,
+            "stress": 129.60663239538238,
+            "danger": 100,
+            "hp": 0.537246026444654
+          }
+        }
+      ],
+      "identical": true
+    },
+    "attack": {
+      "before": [
+        {
+          "key": "orlen",
+          "party": [
+            "kuro",
+            "sayo",
+            "natsu"
+          ],
+          "policy": "attack",
+          "s": {
+            "n": 100,
+            "win": 0.03,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 32.65,
+            "winTurns": 62,
+            "foeTurns": 27.19,
+            "kos": 2.97,
+            "afflicted": 1.84,
+            "inspired": 0.56,
+            "fled": 0.93,
+            "lost": 10.27,
+            "limits": 0,
+            "phoenix": 0,
+            "stress": 97.38244444444446,
+            "danger": 87.65,
+            "hp": 0.0949282202245552
+          }
+        }
+      ],
+      "after": [
+        {
+          "key": "orlen",
+          "party": [
+            "kuro",
+            "sayo",
+            "natsu"
+          ],
+          "policy": "attack",
+          "s": {
+            "n": 100,
+            "win": 0.03,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 32.65,
+            "winTurns": 62,
+            "foeTurns": 27.19,
+            "kos": 2.97,
+            "afflicted": 1.84,
+            "inspired": 0.56,
+            "fled": 0.93,
+            "lost": 10.27,
+            "limits": 0,
+            "phoenix": 0,
+            "stress": 97.38244444444446,
+            "danger": 87.65,
+            "hp": 0.0949282202245552
+          }
+        }
+      ],
+      "identical": true
+    },
+    "random": {
+      "before": [
+        {
+          "key": "orlen",
+          "party": [
+            "kuro",
+            "sayo",
+            "natsu"
+          ],
+          "policy": "random",
+          "s": {
+            "n": 100,
+            "win": 0.48,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 90.96,
+            "winTurns": 101.02083333333333,
+            "foeTurns": 66.97,
+            "kos": 4.47,
+            "afflicted": 7.39,
+            "inspired": 2.21,
+            "fled": 6.12,
+            "lost": 39.26,
+            "limits": 5.06,
+            "phoenix": 2.38,
+            "stress": 167.34427922077924,
+            "danger": 99.88,
+            "hp": 0.1553402289820164
+          }
+        }
+      ],
+      "after": [
+        {
+          "key": "orlen",
+          "party": [
+            "kuro",
+            "sayo",
+            "natsu"
+          ],
+          "policy": "random",
+          "s": {
+            "n": 100,
+            "win": 0.48,
+            "timeout": 0,
+            "stalled": 0,
+            "turns": 90.96,
+            "winTurns": 101.02083333333333,
+            "foeTurns": 66.97,
+            "kos": 4.47,
+            "afflicted": 7.39,
+            "inspired": 2.21,
+            "fled": 6.12,
+            "lost": 39.26,
+            "limits": 5.06,
+            "phoenix": 2.38,
+            "stress": 167.34427922077924,
+            "danger": 99.88,
+            "hp": 0.1553402289820164
+          }
+        }
+      ],
+      "identical": true
+    }
+  }
+}

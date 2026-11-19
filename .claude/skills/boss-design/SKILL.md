@@ -58,6 +58,10 @@ Answer as a designer: the verdict, the precedent behind it, and the trade-off. B
 
 Newest first. Each entry: the fight, what the numbers or a playtest showed, the cause, what changed (exact values), and the rule it suggests.
 
+### 2026-11-19 · Orlen's half-HP warning (B012)
+
+- **Seen:** at 1775/3550 HP, stored Sermon showed Kiri as its target, then the free phase entry replanned into Crozier. **Changed:** the turn-order label and card now warn of the pending phase change, without rolling a replacement early. Custom preview hooks can return `null` to retain ordinary target text. No stats, probabilities, timing or phase effects changed. Live-script boundary/counterplay tests pass; 100 advisor, 100 attack and 100 random simulations match their before summaries. Browser layout remains unverified because Chromium cannot launch. **Rule:** when retaining an existing execution-time replan, disclose that uncertainty before the party acts; a preview must not consume RNG or mutate the fight.
+
 ### 2026-10-25 · Building the ten Disc 2 chapter bosses
 
 - **"Same round" needs a wide round.** *Seen:* the Hundred Listeners at 25%: coffins reopened before a second ally could seal them. *Cause:* the Abbot's turn came about one party action after the knock. *Changed:* Abbot Speed 9 → 7 and Rank 4 actions, Listeners Speed 11 → 9. → 97%. The Tongue's three tastes had the same problem inside its 3-turn countdown: Speed 11 → 9, Rank 4 Lick and Savour, 65% → 89%. *Rule:* for any "in the same round" or "within N of its turns" mechanic, check that two to three party actions fit in the window at the real Speeds.
