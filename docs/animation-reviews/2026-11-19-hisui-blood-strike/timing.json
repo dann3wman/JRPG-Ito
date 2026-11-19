@@ -1,0 +1,284 @@
+{
+  "source_sha256": "e633b79597a436ef9ac35d32ce291c4a5c1cf6ecfeb9556e5d39a6112cb8eb37",
+  "atlas": {
+    "file": "hisui-strike-actor.v01.png",
+    "size": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "columns": 4,
+    "rows": 2,
+    "gutter": 0,
+    "outer_margin": 0,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      87,
+      87
+    ],
+    "palette": [
+      "#DAC6B8",
+      "#AA8E81",
+      "#8C6359",
+      "#655149",
+      "#753A36",
+      "#553D38",
+      "#443733",
+      "#6E2929",
+      "#582625",
+      "#3E2C2A",
+      "#422322",
+      "#312726",
+      "#2B2120",
+      "#4D1A1C",
+      "#3C191A",
+      "#311819",
+      "#281C1C",
+      "#241B1B",
+      "#271415",
+      "#1F1817",
+      "#1C1414",
+      "#180F0F",
+      "#120909",
+      "#080404"
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "id": "HS01",
+        "row": 1,
+        "column": 1,
+        "rect": [
+          0,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          20,
+          30,
+          76,
+          86
+        ]
+      },
+      {
+        "id": "HS02",
+        "row": 1,
+        "column": 2,
+        "rect": [
+          96,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          23,
+          37,
+          81,
+          86
+        ]
+      },
+      {
+        "id": "HS03",
+        "row": 1,
+        "column": 3,
+        "rect": [
+          192,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          20,
+          32,
+          78,
+          86
+        ]
+      },
+      {
+        "id": "HS04",
+        "row": 1,
+        "column": 4,
+        "rect": [
+          288,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          13,
+          36,
+          79,
+          86
+        ]
+      },
+      {
+        "id": "HS05",
+        "row": 2,
+        "column": 1,
+        "rect": [
+          0,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          14,
+          34,
+          82,
+          86
+        ]
+      },
+      {
+        "id": "HS06",
+        "row": 2,
+        "column": 2,
+        "rect": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          13,
+          36,
+          84,
+          86
+        ]
+      },
+      {
+        "id": "HS07",
+        "row": 2,
+        "column": 3,
+        "rect": [
+          192,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          18,
+          33,
+          79,
+          86
+        ]
+      },
+      {
+        "id": "HS08",
+        "row": 2,
+        "column": 4,
+        "rect": [
+          288,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          19,
+          30,
+          77,
+          86
+        ]
+      }
+    ]
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 240
+    },
+    {
+      "frame": 1,
+      "ms": 180
+    },
+    {
+      "frame": 2,
+      "ms": 140
+    },
+    {
+      "frame": 3,
+      "ms": 100
+    },
+    {
+      "frame": 4,
+      "ms": 100
+    },
+    {
+      "frame": 5,
+      "ms": 180
+    },
+    {
+      "frame": 6,
+      "ms": 240
+    },
+    {
+      "frame": 7,
+      "ms": 220
+    },
+    {
+      "frame": 0,
+      "ms": 1600
+    }
+  ],
+  "loop": false,
+  "duration_ms": 3000,
+  "cues": [
+    {
+      "name": "blood_cost",
+      "ms": 420
+    },
+    {
+      "name": "damage",
+      "ms": 800
+    },
+    {
+      "name": "effect_clear",
+      "ms": 1720
+    },
+    {
+      "name": "action_complete",
+      "ms": 3000
+    }
+  ],
+  "timing_assumptions": [],
+  "preview_note": "Actor-only fixed-pivot diagnostic; excludes world movement/effects. GIF repeats for review only."
+}
