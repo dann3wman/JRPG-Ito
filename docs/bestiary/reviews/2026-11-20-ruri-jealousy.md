@@ -4,7 +4,7 @@ Date: 2026-11-20. Entry: Ruri. Category: enemy AI telegraph.
 
 Source default: `ccr-d8829a5a-ays4x1`, `b5d0e9f9ac45c21b2acf28784d75fd977d35eb91`. Branch: `bestiary/2026-11-20-ruri-jealousy-warning`.
 
-Delivery: prepared; implementation commit and draft PR will be recorded after publication.
+Delivery: [draft PR41](https://github.com/dann3wman/JRPG-Ito/pull/41), implementation commit `cfcd316c9dfd2d5c02eb326bcf86a1472a1e9404`. Delivered for review, not merged. Queue generation 4 revision 15.
 
 ## Reconciliation and scope
 

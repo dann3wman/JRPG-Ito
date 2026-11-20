@@ -1,6 +1,6 @@
 # Bestiary refinement queue
 
-Updated 2026-11-20. Generation 4, revision 14. [Canonical tracker](refinement-queue.json). One actionable pending task: B014, Resonance Engine Mk. IV.
+Updated 2026-11-20. Generation 4, revision 15. [Canonical tracker](refinement-queue.json). One actionable pending task: B014, Resonance Engine Mk. IV.
 
 [Fresh audit](reviews/2026-11-20-audit.json): 45 enemies, 37 encounters, 22 rigs, 88 clips, six battle rigs. Source/metadata review across all five categories, not visual certification. Current default remains b5d0e9f9ac45c21b2acf28784d75fd977d35eb91. Open PR29-40 checked. PR38 generation 3 revision 13 supersedes all older trackers; only tracker history is imported.
 
@@ -18,7 +18,7 @@ Updated 2026-11-20. Generation 4, revision 14. [Canonical tracker](refinement-qu
 | B010 | The Hellstar finale | Resolve the sequential-versus-simultaneous finale design before implementation | blocked |
 | B011 | The Puppeteers | Implement its fight after required encounter capabilities are ready | blocked |
 | B012 | Archbishop Orlen | Make the half-HP action replan visible before execution | implemented pending visual review ([PR38](https://github.com/dann3wman/JRPG-Ito/pull/38)) |
-| B013 | Ruri | Reveal when copy losses invalidate the displayed Jealousy | implemented pending visual review |
+| B013 | Ruri | Reveal when copy losses invalidate the displayed Jealousy | implemented pending visual review ([PR41](https://github.com/dann3wman/JRPG-Ito/pull/41)) |
 | B014 | Resonance Engine Mk. IV | Warn when overclocking invalidates the stored Stomp preview | pending |
 
 [Current review](reviews/2026-11-20-ruri-jealousy.md). Prior implementation commits, review paths and PR links remain in the queue. Historical unmerged reports live on their PR heads. Delivery is not acceptance.
