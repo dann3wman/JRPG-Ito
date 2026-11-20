@@ -2130,6 +2130,138 @@
         "kuro-casting-v02-review.zip": "https://chatgpt.com/library?file_id=libfile_fde3_f-34d6c40cbeec8191bd7ef5ca3ad7007d_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
       },
       "next_selection": "Prefer another unreviewed character with an accessible animation sheet. Do not repeat Kuro while this draft remains open unless addressing its explicit remaining work."
+    },
+    {
+      "review_date_local": "2026-11-20",
+      "timezone": "America/New_York",
+      "character": "Ren",
+      "action": "Fire casting actor",
+      "status": "partial_review_no_edits_not_a_pass",
+      "selection_reason": "Ren has no prior character review in the 17-entry Library rotation. Source PR37 explicitly flags hand/hat/coat continuity and handedness after mirroring. Hisui PR36, Kugai PR33 and Tetsugi PR30 remain open; no duplicate Ren review branch or PR found.",
+      "source": {
+        "commit": "258b2bb256ae3fcbbdc06868c3ce33487e124396",
+        "pr": "https://github.com/dann3wman/JRPG-Ito/pull/37",
+        "path": "assets/party-fx/ren-fire-v01/ren-casting.v01.png",
+        "sha256": "fc2c5dd2cc2582bccbc69962d05428b7c7840d4a1d803681189a42745310b9d9",
+        "related_hashes": {
+          "timeline.v01.json": "3e075e57145cc42d02010712db78a350fad3ee9da9a526e595f118d69f5354e3",
+          "ren-casting.v01.ora": "2e63e2a6800a28726a541434ba8f1a68b516f986476f8ff53153a1b997adda7e"
+        },
+        "authority": "Pinned unmerged PR37 is the actual inspected draft, not approved canonical art. No corresponding Ren Fire source was resolved in Library searches, so byte reconciliation with Library is unavailable. Default branch has no equivalent installed Ren Fire sheet. Existing Library and repository history retained separately."
+      },
+      "sequences": [
+        "One Fire casting sequence: RF01 ready, RF02 draw hand, RF03 cup, RF04 extend, RF05 release, RF06 wrist recoil, RF07 lower, RF08 settle, RF01 held ready"
+      ],
+      "geometry": {
+        "sheet": [
+          384,
+          192
+        ],
+        "cell": [
+          96,
+          96
+        ],
+        "grid": [
+          4,
+          2
+        ],
+        "order": "row-major",
+        "pivot": [
+          48,
+          86
+        ],
+        "safe_margin_px": 8,
+        "opaque_palette_count": 24,
+        "alpha": [
+          0,
+          255
+        ]
+      },
+      "timing": {
+        "ms": [
+          250,
+          200,
+          250,
+          200,
+          250,
+          250,
+          250,
+          350,
+          1000
+        ],
+        "frame_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          0
+        ],
+        "total_ms": 3000,
+        "loop": false,
+        "assumptions": [],
+        "preview_only_loop": true
+      },
+      "frame_observations": [
+        "RF01-03: distinct ready, inward preparation and cupped-hand poses. Stable hat silhouette; fine face/hand clusters remain too noisy for anatomical approval.",
+        "RF04-05: elbow opens toward the target; RF05 lengthens the silhouette. Cloth fans after the arm extends, consistent with follow-through. Release cue at 700 ms precedes full extension at 900 ms; metadata is preserved rather than assuming this anticipation is an error.",
+        "RF06-08: wrist pulls in, arm lowers and coat settles. Boot silhouette and dark shading vary; no detached tiny component or confirmed alignment error identified. Do not flatten or copy the foot strip.",
+        "RF08 to RF01: return to original pixels at 2000 ms, then a 1000 ms ready hold. This is a one-shot action with an intentional terminal hold; a review GIF seam is not an authored gameplay loop."
+      ],
+      "defects_confirmed": [],
+      "changes": [],
+      "validation": {
+        "source_sha256": "fc2c5dd2cc2582bccbc69962d05428b7c7840d4a1d803681189a42745310b9d9",
+        "bounds_and_padding": true,
+        "binary_alpha": true,
+        "decoded_gif_pixels_and_timing": true,
+        "opaque_palette_count": 24,
+        "sprite_edits": false,
+        "artistic_approval": false,
+        "ora_three_layer_recomposition_equal_native_png": true,
+        "all_eight_unique_cells_inspected": true,
+        "source_unchanged": true,
+        "engine_compatibility_tested": false,
+        "repository_checks": "tools/check.sh exited 0: data, animation continuity/viewer parity and battle smoke checks passed; 2 existing Quick Song/Delay drift warnings and 16 existing attachment art notices. These do not validate Ren engine integration."
+      },
+      "playback": {
+        "application": "GIMP Animation Playback",
+        "file": "ren.normal.gif rebuilt from pinned native source",
+        "live_sampled_speeds": [
+          1,
+          0.5
+        ],
+        "complete_continuous_perceptual_inspection": false,
+        "slow_file": "ren.slow.gif decoded and verified at 2x duration",
+        "observations": "Live snapshots showed ready, extension/release and recovery states. Discrete snapshots do not establish smooth temporal spacing, absence of flicker, or professional animation quality.",
+        "scope": "Actor-only fixed-pivot view. Fire-bloom effect atlas was excluded; effect contact and impact are not approved."
+      },
+      "remaining_issues": [
+        "Full continuous perceptual playback inspection and fresh reference-video comparison incomplete.",
+        "Source hand anatomy, pistol laterality after whole-cell mirroring, coat/boot shading continuity and likeness remain unresolved. No speculative redraw performed.",
+        "Engine import and actor/FX contact synchronization untested.",
+        "Library source parity could not be established; PR37 is a pinned draft source, not a canonical replacement."
+      ],
+      "output_links": {
+        "ren.frames.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-4fee3517fd108191a29bbd814e5e811d_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-4dc1cc3bea208191af0eface6eae7a7a_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-1b5b99a5f6448191bdf6f2099ab48ee9_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "timing.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-15622160d2848191b620e29720c1dd3e_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "validation.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-8f654c1608c0819199a26131cc95e2cd_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "build.py": "https://chatgpt.com/library?file_id=libfile_fde3_f-9d6a4390d9ac8191bfbb3505fc78557f_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "source_native_png": "https://github.com/dann3wman/JRPG-Ito/blob/258b2bb256ae3fcbbdc06868c3ce33487e124396/assets/party-fx/ren-fire-v01/ren-casting.v01.png"
+      },
+      "github": {
+        "branch": "animation-review/2026-11-20-ren-fire",
+        "base_branch": "ccr-d8829a5a-ays4x1",
+        "base_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+        "draft_required": true,
+        "publication_record": "https://chatgpt.com/library?file_id=libfile_fde3_f-e3bd1f9d5db0819185bc1c703e5bf682_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+      },
+      "next_selection": "Rotate to another eligible character, or resume this exact branch/PR explicitly. Do not mark Ren approved or repeat this partial review as a new correction."
     }
   ]
 }
