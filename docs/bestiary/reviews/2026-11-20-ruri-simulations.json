@@ -1,0 +1,695 @@
+{
+  "advisor": {
+    "before": [
+      {
+        "key": "ruri1",
+        "party": [
+          "kiri",
+          "natsu",
+          "miren"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 1,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 48.55,
+          "winTurns": 48.55,
+          "foeTurns": 19.34,
+          "kos": 0.03,
+          "afflicted": 0,
+          "inspired": 0,
+          "fled": 0,
+          "lost": 1.02,
+          "limits": 0.9,
+          "phoenix": 0.03,
+          "stress": 19.130000000000006,
+          "danger": 40.14,
+          "hp": 0.8585633681810151
+        }
+      },
+      {
+        "key": "ruri2",
+        "party": [
+          "miren",
+          "hisui",
+          "kuro"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 0.99,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 45.77,
+          "winTurns": 45.72727272727273,
+          "foeTurns": 25.39,
+          "kos": 0.87,
+          "afflicted": 0.67,
+          "inspired": 0.18,
+          "fled": 0.08,
+          "lost": 2.04,
+          "limits": 1.14,
+          "phoenix": 0.78,
+          "stress": 55.43583333333333,
+          "danger": 40.74,
+          "hp": 0.4012088744944782
+        }
+      },
+      {
+        "key": "ruri5",
+        "party": [
+          "kuro",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 1,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 35.17,
+          "winTurns": 35.17,
+          "foeTurns": 51.72,
+          "kos": 0.45,
+          "afflicted": 1.08,
+          "inspired": 0.3,
+          "fled": 0.21,
+          "lost": 4.88,
+          "limits": 1.9,
+          "phoenix": 0.42,
+          "stress": 75.83833333333335,
+          "danger": 77.91,
+          "hp": 0.6275331257547707
+        }
+      },
+      {
+        "key": "ruri8",
+        "party": [
+          "kuro",
+          "natsu",
+          "sayo"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 0.95,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 34.89,
+          "winTurns": 35.71578947368421,
+          "foeTurns": 69.47,
+          "kos": 1.02,
+          "afflicted": 2.05,
+          "inspired": 0.75,
+          "fled": 0.71,
+          "lost": 7.56,
+          "limits": 2.27,
+          "phoenix": 0.78,
+          "stress": 86.75494444444445,
+          "danger": 98.51,
+          "hp": 0.6235691168083862
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "ruri1",
+        "party": [
+          "kiri",
+          "natsu",
+          "miren"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 1,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 48.55,
+          "winTurns": 48.55,
+          "foeTurns": 19.34,
+          "kos": 0.03,
+          "afflicted": 0,
+          "inspired": 0,
+          "fled": 0,
+          "lost": 1.02,
+          "limits": 0.9,
+          "phoenix": 0.03,
+          "stress": 19.130000000000006,
+          "danger": 40.14,
+          "hp": 0.8585633681810151
+        }
+      },
+      {
+        "key": "ruri2",
+        "party": [
+          "miren",
+          "hisui",
+          "kuro"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 0.99,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 45.77,
+          "winTurns": 45.72727272727273,
+          "foeTurns": 25.39,
+          "kos": 0.87,
+          "afflicted": 0.67,
+          "inspired": 0.18,
+          "fled": 0.08,
+          "lost": 2.04,
+          "limits": 1.14,
+          "phoenix": 0.78,
+          "stress": 55.43583333333333,
+          "danger": 40.74,
+          "hp": 0.4012088744944782
+        }
+      },
+      {
+        "key": "ruri5",
+        "party": [
+          "kuro",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 1,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 35.17,
+          "winTurns": 35.17,
+          "foeTurns": 51.72,
+          "kos": 0.45,
+          "afflicted": 1.08,
+          "inspired": 0.3,
+          "fled": 0.21,
+          "lost": 4.88,
+          "limits": 1.9,
+          "phoenix": 0.42,
+          "stress": 75.83833333333335,
+          "danger": 77.91,
+          "hp": 0.6275331257547707
+        }
+      },
+      {
+        "key": "ruri8",
+        "party": [
+          "kuro",
+          "natsu",
+          "sayo"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 0.95,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 34.89,
+          "winTurns": 35.71578947368421,
+          "foeTurns": 69.47,
+          "kos": 1.02,
+          "afflicted": 2.05,
+          "inspired": 0.75,
+          "fled": 0.71,
+          "lost": 7.56,
+          "limits": 2.27,
+          "phoenix": 0.78,
+          "stress": 86.75494444444445,
+          "danger": 98.51,
+          "hp": 0.6235691168083862
+        }
+      }
+    ],
+    "identical": true
+  },
+  "attack": {
+    "before": [
+      {
+        "key": "ruri1",
+        "party": [
+          "kiri",
+          "natsu",
+          "miren"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0.53,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 39.84,
+          "winTurns": 43.58490566037736,
+          "foeTurns": 17.98,
+          "kos": 1.85,
+          "afflicted": 0.42,
+          "inspired": 0.15,
+          "fled": 0,
+          "lost": 0.48,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 47.95000000000001,
+          "danger": 32.98,
+          "hp": 0.2654224020206263
+        }
+      },
+      {
+        "key": "ruri2",
+        "party": [
+          "miren",
+          "hisui",
+          "kuro"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0.47,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 39.53,
+          "winTurns": 44.319148936170215,
+          "foeTurns": 33.15,
+          "kos": 2.13,
+          "afflicted": 0.66,
+          "inspired": 0.2,
+          "fled": 0.05,
+          "lost": 2.47,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 60.034166666666636,
+          "danger": 48.15,
+          "hp": 0.22742668795411242
+        }
+      },
+      {
+        "key": "ruri5",
+        "party": [
+          "kuro",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 20.67,
+          "winTurns": 0,
+          "foeTurns": 50.07,
+          "kos": 3.02,
+          "afflicted": 1.16,
+          "inspired": 0.31,
+          "fled": 0.38,
+          "lost": 3.32,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 86.62592063492062,
+          "danger": 72.54,
+          "hp": 0
+        }
+      },
+      {
+        "key": "ruri8",
+        "party": [
+          "kuro",
+          "natsu",
+          "sayo"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 12.27,
+          "winTurns": 0,
+          "foeTurns": 53.35,
+          "kos": 3.03,
+          "afflicted": 1.02,
+          "inspired": 0.34,
+          "fled": 0.42,
+          "lost": 1.75,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 84.178,
+          "danger": 74.58,
+          "hp": 0
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "ruri1",
+        "party": [
+          "kiri",
+          "natsu",
+          "miren"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0.53,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 39.84,
+          "winTurns": 43.58490566037736,
+          "foeTurns": 17.98,
+          "kos": 1.85,
+          "afflicted": 0.42,
+          "inspired": 0.15,
+          "fled": 0,
+          "lost": 0.48,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 47.95000000000001,
+          "danger": 32.98,
+          "hp": 0.2654224020206263
+        }
+      },
+      {
+        "key": "ruri2",
+        "party": [
+          "miren",
+          "hisui",
+          "kuro"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0.47,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 39.53,
+          "winTurns": 44.319148936170215,
+          "foeTurns": 33.15,
+          "kos": 2.13,
+          "afflicted": 0.66,
+          "inspired": 0.2,
+          "fled": 0.05,
+          "lost": 2.47,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 60.034166666666636,
+          "danger": 48.15,
+          "hp": 0.22742668795411242
+        }
+      },
+      {
+        "key": "ruri5",
+        "party": [
+          "kuro",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 20.67,
+          "winTurns": 0,
+          "foeTurns": 50.07,
+          "kos": 3.02,
+          "afflicted": 1.16,
+          "inspired": 0.31,
+          "fled": 0.38,
+          "lost": 3.32,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 86.62592063492062,
+          "danger": 72.54,
+          "hp": 0
+        }
+      },
+      {
+        "key": "ruri8",
+        "party": [
+          "kuro",
+          "natsu",
+          "sayo"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 12.27,
+          "winTurns": 0,
+          "foeTurns": 53.35,
+          "kos": 3.03,
+          "afflicted": 1.02,
+          "inspired": 0.34,
+          "fled": 0.42,
+          "lost": 1.75,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 84.178,
+          "danger": 74.58,
+          "hp": 0
+        }
+      }
+    ],
+    "identical": true
+  },
+  "random": {
+    "before": [
+      {
+        "key": "ruri1",
+        "party": [
+          "kiri",
+          "natsu",
+          "miren"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0.87,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 75.23,
+          "winTurns": 78.1264367816092,
+          "foeTurns": 35.56,
+          "kos": 2.06,
+          "afflicted": 2.9,
+          "inspired": 1.03,
+          "fled": 0.51,
+          "lost": 13.5,
+          "limits": 2.87,
+          "phoenix": 1.24,
+          "stress": 91.39033333333333,
+          "danger": 94.78,
+          "hp": 0.512599449368267
+        }
+      },
+      {
+        "key": "ruri2",
+        "party": [
+          "miren",
+          "hisui",
+          "kuro"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0.78,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 44.99,
+          "winTurns": 46.217948717948715,
+          "foeTurns": 39.65,
+          "kos": 2.55,
+          "afflicted": 1,
+          "inspired": 0.46,
+          "fled": 0.19,
+          "lost": 3.97,
+          "limits": 1.13,
+          "phoenix": 1.38,
+          "stress": 83.47733333333333,
+          "danger": 58.27,
+          "hp": 0.3255909410853029
+        }
+      },
+      {
+        "key": "ruri5",
+        "party": [
+          "kuro",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0.5,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 45.65,
+          "winTurns": 61.46,
+          "foeTurns": 81.36,
+          "kos": 3.41,
+          "afflicted": 3.33,
+          "inspired": 0.86,
+          "fled": 1.22,
+          "lost": 11.45,
+          "limits": 2.24,
+          "phoenix": 1.46,
+          "stress": 115.23819696969692,
+          "danger": 91.93,
+          "hp": 0.35556137022727446
+        }
+      },
+      {
+        "key": "ruri8",
+        "party": [
+          "kuro",
+          "natsu",
+          "sayo"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0.04,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 29.42,
+          "winTurns": 55.5,
+          "foeTurns": 104.08,
+          "kos": 4.32,
+          "afflicted": 2.97,
+          "inspired": 1.07,
+          "fled": 1.89,
+          "lost": 9.61,
+          "limits": 1.64,
+          "phoenix": 1.22,
+          "stress": 116.10748124098127,
+          "danger": 93.53,
+          "hp": 0.32591397889595486
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "ruri1",
+        "party": [
+          "kiri",
+          "natsu",
+          "miren"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0.87,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 75.23,
+          "winTurns": 78.1264367816092,
+          "foeTurns": 35.56,
+          "kos": 2.06,
+          "afflicted": 2.9,
+          "inspired": 1.03,
+          "fled": 0.51,
+          "lost": 13.5,
+          "limits": 2.87,
+          "phoenix": 1.24,
+          "stress": 91.39033333333333,
+          "danger": 94.78,
+          "hp": 0.512599449368267
+        }
+      },
+      {
+        "key": "ruri2",
+        "party": [
+          "miren",
+          "hisui",
+          "kuro"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0.78,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 44.99,
+          "winTurns": 46.217948717948715,
+          "foeTurns": 39.65,
+          "kos": 2.55,
+          "afflicted": 1,
+          "inspired": 0.46,
+          "fled": 0.19,
+          "lost": 3.97,
+          "limits": 1.13,
+          "phoenix": 1.38,
+          "stress": 83.47733333333333,
+          "danger": 58.27,
+          "hp": 0.3255909410853029
+        }
+      },
+      {
+        "key": "ruri5",
+        "party": [
+          "kuro",
+          "natsu",
+          "hisui"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0.5,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 45.65,
+          "winTurns": 61.46,
+          "foeTurns": 81.36,
+          "kos": 3.41,
+          "afflicted": 3.33,
+          "inspired": 0.86,
+          "fled": 1.22,
+          "lost": 11.45,
+          "limits": 2.24,
+          "phoenix": 1.46,
+          "stress": 115.23819696969692,
+          "danger": 91.93,
+          "hp": 0.35556137022727446
+        }
+      },
+      {
+        "key": "ruri8",
+        "party": [
+          "kuro",
+          "natsu",
+          "sayo"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0.04,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 29.42,
+          "winTurns": 55.5,
+          "foeTurns": 104.08,
+          "kos": 4.32,
+          "afflicted": 2.97,
+          "inspired": 1.07,
+          "fled": 1.89,
+          "lost": 9.61,
+          "limits": 1.64,
+          "phoenix": 1.22,
+          "stress": 116.10748124098127,
+          "danger": 93.53,
+          "hp": 0.32591397889595486
+        }
+      }
+    ],
+    "identical": true
+  }
+}
