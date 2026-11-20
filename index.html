@@ -2405,6 +2405,12 @@ const SCRIPTS = {
         run:()=>{ targetsForFoes().forEach(t=>{ if (soundImmune(t)){ log(`${t.name} is immune to sound attacks.`); return; } addStress(t, 15, 'Chord', {sound:true}); delayUnit(t, 2); }); addHum(5); }},
       drone:{name:'Drone', rank:3, tags:['Physical'], target:'all', power:'0.8× ATK', desc:'Hits the whole party.', run:e=>targetsForFoes().forEach(t=>hitParty(t, e.atk*.8, {src:e}))} } },
   ruri:{
+    // Copy losses can invalidate Jealousy or trigger Spite's free replan.
+    // Preview the possible attacks without consuming their execution-time roll.
+    replanPending:e=>!!e.plan && ((e.hadPair && !otherRuri(e) && e.phase==='p1') ||
+      (e.plan.skill==='jealousy' && (!otherRuri(e) || ruriTruce()))),
+    planName:e=>SCRIPTS.ruri.replanPending(e) ? 'Charm or Slap' : null,
+    planText:e=>SCRIPTS.ruri.replanPending(e) ? 'Charm or Slap → chosen when she acts' : null,
     phases:[ {id:'p1', label:'Another Ruri is alive (or she came alone)'},
              {id:'p2', label:'Last Ruri standing: Spite, ATK +30%', when:e=>e.hadPair && !otherRuri(e), free:true, enterFn:e=>{ e.atk = Math.round(e.atk*1.3); }} ],
     rules:[ {label:'Another Ruri is alive, and fewer than half of a crowd of 5 or more are down', when:e=>otherRuri(e) && !ruriTruce(), chance:e=>15 + Math.round(60*(1 - weakestRuri(e).hp/weakestRuri(e).maxhp)),
@@ -2971,12 +2977,14 @@ function planNext(e){
 function planName(e){
   const S = SCRIPTS[e.key];
   if (e.sleep > 0) return 'Asleep';
-  if (S.planName) return S.planName(e);
+  const custom = S.planName ? S.planName(e) : null;
+  if (custom!=null) return custom;
   return e.plan ? S.skills[e.plan.skill].name : '';
 }
 function planText(e){
   if (e.sleep > 0) return `Next: Asleep (${e.sleep} more of its turns)`;
-  if (SCRIPTS[e.key].planText) return 'Next: ' + SCRIPTS[e.key].planText(e);
+  const custom = SCRIPTS[e.key].planText ? SCRIPTS[e.key].planText(e) : null;
+  if (custom!=null) return 'Next: ' + custom;
   if (!e.plan) return '';
   const sk = SCRIPTS[e.key].skills[e.plan.skill];
   const who = sk.late ? ` → ${sk.lateText ? sk.lateText(e) : LATE_TEXT[sk.target]}` : (e.plan.target ? ` → ${e.plan.target.name}` : (sk.target==='all' ? ' → all' : ''));

@@ -58,6 +58,10 @@ Answer as a designer: the verdict, the precedent behind it, and the trade-off. B
 
 Newest first. Each entry: the fight, what the numbers or a playtest showed, the cause, what changed (exact values), and the rule it suggests.
 
+### 2026-11-20 · Ruri copy-loss previews
+
+A stored Jealousy survived the crowd truce until execution replaced it with a party attack. Preview the remaining Charm/Slap alternatives without rolling early. Last-copy Spite can also replace an already party-directed plan. Threshold tests must cover both five/eight-copy truces and the two-to-one transition; preserve solo encounters. No probabilities or combat values changed.
+
 ### 2026-10-25 · Building the ten Disc 2 chapter bosses
 
 - **"Same round" needs a wide round.** *Seen:* the Hundred Listeners at 25%: coffins reopened before a second ally could seal them. *Cause:* the Abbot's turn came about one party action after the knock. *Changed:* Abbot Speed 9 → 7 and Rank 4 actions, Listeners Speed 11 → 9. → 97%. The Tongue's three tastes had the same problem inside its 3-turn countdown: Speed 11 → 9, Rank 4 Lick and Savour, 65% → 89%. *Rule:* for any "in the same round" or "within N of its turns" mechanic, check that two to three party actions fit in the window at the real Speeds.

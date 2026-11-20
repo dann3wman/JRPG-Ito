@@ -72,3 +72,7 @@ In band. The tables show Ruri ×5; Ruri ×8 is in `docs/implementation-status.md
 ## Open questions
 
 - Not a Scan hint per se: Ruri's script is shared across chapters, so it has no `hint` field. One per encounter would need the hint to move to `ENCOUNTERS`.
+
+## 2026-11-20 preview refinement
+
+When copy losses invalidate Jealousy or trigger Spite, the preview now says Charm or Slap, chosen when she acts. Selection odds, Spite and combat timing are unchanged. Browser layout remains unverified. See [review](../bestiary/reviews/2026-11-20-ruri-jealousy.md).
