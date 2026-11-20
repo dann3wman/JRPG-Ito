@@ -1,0 +1,108 @@
+{
+  "fuyori-throw": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "acid-splash": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 16,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 73,
+    "expanded_render_slots": 180,
+    "duration_ms": 3000.0000000000023,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 73,
+    "duration_ms": 3000,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 180,
+    "fps": 60,
+    "duration_ms": 3000
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "duration_ms": 3000,
+    "integer_states": 3001,
+    "event_count": 4,
+    "damage_count": 1,
+    "replay_reset": true,
+    "seek_no_events": true,
+    "pause": true,
+    "half_speed_logic": true,
+    "terminal_cleanup": true,
+    "live_browser_controls": false
+  },
+  "visual_review": {
+    "complete_continuous_review": false,
+    "live_playback": "GIMP preliminary GIF playback started and sampled at 1x and 0.5x. Only discrete snapshots observed. Final re-encoded files were decoded, not replayed; continuous review and live HTML controls remain unverified.",
+    "light_dark_stills_reviewed": true,
+    "ora_reopened_programmatically": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 301,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "557b2fec2596fcd9666b97220963952f8cf705b627953145e54a69bf62c9e01d",
+    "acid-splash.v01.4x.png": "b071df61a8a65932dad7c134c7220fe06ea62d50efb815e2c08e34930763e40c",
+    "acid-splash.v01.ora": "94e14e241689e70215eb3cc2869553e8f395b0ae76bbdef6b89ca278d12cc05d",
+    "acid-splash.v01.png": "b5bf36f0aac359fc0acd398925961c201c99835722b346076fb2fad115ca5898",
+    "build.py": "cf64a58479f512ded8e3432ac31ff5cc3026d2eee11a744149b00993995d78c3",
+    "check-render.cjs": "1497cdaaea509a53ced3f5fa7624c8f261a4b3a94f53b9e07a45e1d6dc11d344",
+    "encode.py": "b2d8ed9b878565dc1e8a737e48ebe5c31caa900e71d5b443f3ea7494d63cf1ea",
+    "export.cjs": "e4200d61bd7164ea19fdee543ffe11ebc6159f162516cc43346a0d0d8d820cd2",
+    "fuyori-acid.v01.apng": "f2fba1e8a35f3193ac0d3703c2f22d3948e629531027ca6f62a3c6344cecba4b",
+    "fuyori-acid.v01.gif": "4e3bfdf23d884d3c02d72f03fed6e64db23c517f4e03abcdb3376f860422fa35",
+    "fuyori-acid.v01.html": "effe5a3d0701db7306077c07781cd2ca5ab2110231da8bcaf2dcc5978037887c",
+    "fuyori-acid.v01.mp4": "e2fc97eb878e220d364aee88cc24210b800437a760b48232251899f937363851",
+    "fuyori-throw.v01.4x.png": "9af65fbeaefc930c22c62647146d06e80dfda1860b1f48e6ab406e1c842a3221",
+    "fuyori-throw.v01.ora": "912aeb6774f9aa82a9f374f71562320bf75432ef31d128a0f2dc271467d7a414",
+    "fuyori-throw.v01.png": "ef4f14d390dab69634ccdcf518383d15ac3c75465afe1cc0106f570899e2b463",
+    "player.template.html": "66265f294c3a6f947f0199147ff17ee3a7098812d85d958ad2b2828a2fcb8499",
+    "render-validation.json": "61b636bea8ac07753c57a7e05de81ef0dc103e8729450f8012071941670373bb",
+    "render.js": "3f9f44c30ce724a0476b81c4682c7937c58bc65e10797acd63e900cb0a528830",
+    "repository-checks.txt": "c883bdac58f4bfd73aece3ab843c07aa3d4ac1dcba4bf8cf11839543fb4af04d",
+    "review.v01.4x.png": "9c1fd8c898eeccc3e2181568ae304d13de77311a0b49bccbccfd4f0797ee8874",
+    "review.v01.png": "a3ff8de9744a47c6df05c4c66e83292467f903b70b341a70f426f77b14508fae",
+    "runtime-validation.json": "278742655a8fbe2ad0b834036373ec42624f8291a7357d6f837853a31abc0a6d",
+    "scene.dark.v01.png": "3c7f8e99e4f293c722933ea88c74d65fcad41b6679dfeb3b6a095476fe54878a",
+    "scene.light.v01.png": "57e480f5f5b0a74f69f50b3680301ff59a5f8056d58a8c1e22dd56be9f20777c",
+    "scene.pixel-4x.v01.png": "651f746cb94f108b7b0bda0450341e8e88a4d831f71ae15c42df7cbf190c0be5",
+    "scene.pixel-native.v01.png": "47ec9a18b888655181de1dcc9313d81aa806cc3b90cf56aa0f727897aba8d6e8",
+    "source/acid-splash.generated.png": "c76307989529bc05b1aed15320c70dc178fe787e43c9f5e36c826e251a27244e",
+    "source/fuyori-throw.generated.png": "9aa605197fdfecb19fb395ebd6e6b93a0ebdadcc6d1957b8b9ce87073685f933",
+    "source/generation-prompts.txt": "6daf21d59d077c86ba75a2b5fe31782226f6e9854ee45c60ab8a2668ab43d4cb",
+    "target-context.png": "383ead149a01c4f22418949bacd01961ae970a065f4ab5ed67e6f3a64b87bfe9",
+    "test.cjs": "ef4767a12c636de6956b98e306937651d18b293e9c48444bf6760f88c9c594bc",
+    "timeline.v01.json": "da293668f31d7c9957714babe915c5cef51384e03f2e99689dd461f5bdfd5c7d",
+    "validate.py": "26a273946de58487c107bd3a98ec12293630d244914f5c8670e9de21325b1c11"
+  }
+}

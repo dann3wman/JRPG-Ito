@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-20 · Fuyori Acid · projectile registration and export ordering
+- **Problem:** initial flying vial was too large and launched above the hand; generated boot edges shifted. The first encoding overlapped unfinished frame export and failed decoded APNG equality.
+- **Cause:** applying the impact-cell scale to the small projectile, inherited launch height, generated registration variance and asynchronous export/encoding sequencing.
+- **Correction:** projectile source resize84x112 to34x45 before centering actual bounds; launch(250,112) to(250,143), parabolic arc height40. Align each actor right boot edge to FA01 after row85 registration. Alpha threshold200 removes haze. Re-encode all formats only after export finishes; decoded outputs now match final rendered frames.
+- **Verification:** native review and light/dark stills, preliminary GIMP playback samples at1x/0.5x, actual frame/palette/alpha/4x/ORA/timing/cue tests. Final re-encoded outputs not replayed live; continuous visual quality and engine approval remain incomplete. No other actor changed.
+- **Rule:** compare projectile dimensions and launch anchor to the visible hand; await dependent exports before encoding. Decoder equality is a necessary check, not a motion-quality pass.
+
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.
