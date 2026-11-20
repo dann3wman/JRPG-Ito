@@ -1,0 +1,9 @@
+{
+  "source_sha256": "fc2c5dd2cc2582bccbc69962d05428b7c7840d4a1d803681189a42745310b9d9",
+  "bounds_and_padding": true,
+  "binary_alpha": true,
+  "decoded_gif_pixels_and_timing": true,
+  "opaque_palette_count": 24,
+  "sprite_edits": false,
+  "artistic_approval": false
+}
