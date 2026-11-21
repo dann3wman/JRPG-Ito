@@ -1,0 +1,191 @@
+{
+  "advisor": {
+    "before": [
+      {
+        "key": "engine",
+        "party": [
+          "ren",
+          "hisui",
+          "natsu"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 1,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 37.52,
+          "winTurns": 37.52,
+          "foeTurns": 4.45,
+          "kos": 0,
+          "afflicted": 0,
+          "inspired": 0,
+          "fled": 0,
+          "lost": 0.38,
+          "limits": 0.18,
+          "phoenix": 0,
+          "stress": 8.44,
+          "danger": 31,
+          "hp": 0.7843371403470727
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "engine",
+        "party": [
+          "ren",
+          "hisui",
+          "natsu"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 1,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 37.52,
+          "winTurns": 37.52,
+          "foeTurns": 4.45,
+          "kos": 0,
+          "afflicted": 0,
+          "inspired": 0,
+          "fled": 0,
+          "lost": 0.38,
+          "limits": 0.18,
+          "phoenix": 0,
+          "stress": 8.44,
+          "danger": 31,
+          "hp": 0.7843371403470727
+        }
+      }
+    ],
+    "identical": true
+  },
+  "attack": {
+    "before": [
+      {
+        "key": "engine",
+        "party": [
+          "ren",
+          "hisui",
+          "natsu"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0.03,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 44.75,
+          "winTurns": 55.333333333333336,
+          "foeTurns": 12.24,
+          "kos": 2.96,
+          "afflicted": 0.39,
+          "inspired": 0.13,
+          "fled": 0,
+          "lost": 3.93,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 63.81666666666668,
+          "danger": 53.64,
+          "hp": 0.0652686750531412
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "engine",
+        "party": [
+          "ren",
+          "hisui",
+          "natsu"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0.03,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 44.75,
+          "winTurns": 55.333333333333336,
+          "foeTurns": 12.24,
+          "kos": 2.96,
+          "afflicted": 0.39,
+          "inspired": 0.13,
+          "fled": 0,
+          "lost": 3.93,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 63.81666666666668,
+          "danger": 53.64,
+          "hp": 0.0652686750531412
+        }
+      }
+    ],
+    "identical": true
+  },
+  "random": {
+    "before": [
+      {
+        "key": "engine",
+        "party": [
+          "ren",
+          "hisui",
+          "natsu"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0.79,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 84.72,
+          "winTurns": 86.9367088607595,
+          "foeTurns": 18.22,
+          "kos": 2.39,
+          "afflicted": 1.47,
+          "inspired": 0.62,
+          "fled": 0.14,
+          "lost": 9.14,
+          "limits": 2.46,
+          "phoenix": 1.23,
+          "stress": 98.1296666666667,
+          "danger": 71.71,
+          "hp": 0.4344395360589823
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "engine",
+        "party": [
+          "ren",
+          "hisui",
+          "natsu"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0.79,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 84.72,
+          "winTurns": 86.9367088607595,
+          "foeTurns": 18.22,
+          "kos": 2.39,
+          "afflicted": 1.47,
+          "inspired": 0.62,
+          "fled": 0.14,
+          "lost": 9.14,
+          "limits": 2.46,
+          "phoenix": 1.23,
+          "stress": 98.1296666666667,
+          "danger": 71.71,
+          "hp": 0.4344395360589823
+        }
+      }
+    ],
+    "identical": true
+  }
+}

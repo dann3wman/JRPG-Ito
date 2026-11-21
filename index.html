@@ -2765,6 +2765,10 @@ const SCRIPTS = {
       whisper:{name:'Whisper', rank:3, tags:['Stress','Silence'], target:'none', power:'—', desc:'Whispers the next command of each ally she stands behind: +12 Stress, a 20% chance of Silence for 2 turns, and a 50% chance the command is to attack an ally.',
       run:e=>e.behind.forEach(id=>whisperTo(e, byId(id)))} } },
   engine:{
+    // The free phase entry can replace a single-target plan with a party attack.
+    // Warn without rolling early or changing the existing execution-time cadence.
+    planName:e=>e.phase && phaseOf(e)!==e.phase ? 'Phase change' : null,
+    planText:e=>e.phase && phaseOf(e)!==e.phase ? 'Phase change → action will be chosen when it acts' : null,
     hint:'It runs faster when it is hurt.',
     notes:['Below 50% HP each of its turns comes 2 slots sooner. Delay attacks and Break still work.'],
     phases:[ {id:'p1', label:'Above 50% HP: slow'},
@@ -2971,12 +2975,14 @@ function planNext(e){
 function planName(e){
   const S = SCRIPTS[e.key];
   if (e.sleep > 0) return 'Asleep';
-  if (S.planName) return S.planName(e);
+  const custom = S.planName ? S.planName(e) : null;
+  if (custom!=null) return custom;
   return e.plan ? S.skills[e.plan.skill].name : '';
 }
 function planText(e){
   if (e.sleep > 0) return `Next: Asleep (${e.sleep} more of its turns)`;
-  if (SCRIPTS[e.key].planText) return 'Next: ' + SCRIPTS[e.key].planText(e);
+  const custom = SCRIPTS[e.key].planText ? SCRIPTS[e.key].planText(e) : null;
+  if (custom!=null) return 'Next: ' + custom;
   if (!e.plan) return '';
   const sk = SCRIPTS[e.key].skills[e.plan.skill];
   const who = sk.late ? ` → ${sk.lateText ? sk.lateText(e) : LATE_TEXT[sk.target]}` : (e.plan.target ? ` → ${e.plan.target.name}` : (sk.target==='all' ? ' → all' : ''));
