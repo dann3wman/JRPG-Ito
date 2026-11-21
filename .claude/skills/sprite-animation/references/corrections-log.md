@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-20 · Fuyori · Acid follow-through ground fragments
+- **Reported problem:** disconnected horizontal ground marks appear in FA05-FA07 despite the actor-only no-shadow specification.
+- **Root cause:** unsuitable generated sheet art retained in the lowest registration row; exact generation cause is unknown.
+- **Solution implemented:** remove 19 pixels: FA05 x41..54, FA06 x43..45, FA07 x52..53, all local y85. Clear matching ORA layer pixels. Other pixels, boots, cell layout and timing unchanged. See assets/player-sheets/fuyori-acid-v02/.
+- **Verification:** exact 19-pixel delta, unchanged bounds, ORA recomposition and decoded before/after GIF pixels/timing passed. All eight before/after poses inspected; corrected playback sampled at 1x/0.5x. Full perceptual review and engine integration incomplete.
+- **Rule for next time:** inspect detached ground components against the no-shadow drawing contract and neighboring frames; never erase attached boot edges or authored particles indiscriminately.
+
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.

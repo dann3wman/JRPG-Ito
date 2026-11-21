@@ -1,0 +1,150 @@
+{
+  "review_date_local": "2026-11-20",
+  "character": "Fuyori",
+  "sequences": [
+    "Acid throw: FA01 ready, FA02 draw, FA03 anticipation, FA04 release, FA05 follow-through, FA06 recovery, FA07 straighten, FA08 settle, FA01 ready"
+  ],
+  "status": "19_pixel_correction_completed_full_review_incomplete",
+  "source": {
+    "pr": "https://github.com/dann3wman/JRPG-Ito/pull/40",
+    "commit": "e27f658ecbb5555f47c0fc89714eeb64a99fafd1",
+    "path": "assets/party-fx/fuyori-acid-v01/fuyori-throw.v01.png",
+    "sha256": "ef4f14d390dab69634ccdcf518383d15ac3c75465afe1cc0106f570899e2b463",
+    "library_parity": "No matching current source resolved by Library search; unknown. Unmerged PR40 pinned, not canonical approved art."
+  },
+  "selection_reason": "Fuyori unreviewed in current rotation18; no open Fuyori review. Ren39, Hisui36, Kugai33 and Tetsugi30 preserved.",
+  "changes": [
+    "Removed19 detached ground pixels in FA05-07, local y85: x41..54,43..45,52..53 respectively. Updated identical coordinates in editable ORA layers. All other pixels unchanged."
+  ],
+  "geometry": "384x192 atlas,4x2 row-major96x96 cells,pivot48,86,8px safety,24-color binary-alpha palette",
+  "timing": "250/200/250/200/250/250/250/350/1000 ms,frames0..7 then0,3000ms one-shot; unchanged, no assumptions; GIF loops only for inspection",
+  "validation": {
+    "changed_pixels": 19,
+    "removed_atlas_xy": [
+      [
+        41,
+        181
+      ],
+      [
+        42,
+        181
+      ],
+      [
+        43,
+        181
+      ],
+      [
+        44,
+        181
+      ],
+      [
+        45,
+        181
+      ],
+      [
+        46,
+        181
+      ],
+      [
+        47,
+        181
+      ],
+      [
+        48,
+        181
+      ],
+      [
+        49,
+        181
+      ],
+      [
+        50,
+        181
+      ],
+      [
+        51,
+        181
+      ],
+      [
+        52,
+        181
+      ],
+      [
+        53,
+        181
+      ],
+      [
+        54,
+        181
+      ],
+      [
+        139,
+        181
+      ],
+      [
+        140,
+        181
+      ],
+      [
+        141,
+        181
+      ],
+      [
+        244,
+        181
+      ],
+      [
+        245,
+        181
+      ]
+    ],
+    "all_other_pixels_unchanged": true,
+    "ora_recomposition": true,
+    "bounds_unchanged": true,
+    "decoded_previews_exact": true,
+    "timing_changed": false,
+    "playback_approval": false
+  },
+  "inspection": {
+    "all_eight_source_and_corrected_poses_viewed": true,
+    "corrected_live_playback_sampled": [
+      1,
+      0.5
+    ],
+    "before_playback_live_inspected": false,
+    "complete_continuous_motion_review": false,
+    "reference_videos_freshly_inspected": false
+  },
+  "observations": [
+    "FA01-03 maintain notebook hold while throwing arm rises. Head/body lean is intentional anticipation.",
+    "FA04-05 have distinct release and descending follow-through silhouettes. Coat swings outward. Detached ground strokes are not boots, falling droplets, or specified shadows.",
+    "FA06-08 recover to ready. Connected boot-edge strokes retained to avoid speculative shoe redraw. Vial/notebook, hands, crystal accents and head-volume consistency still need artistic assessment.",
+    "One-shot end restores FA01 exactly; terminal1000ms hold retained. Effect atlas not reviewed. Actor-only playback cannot certify projectile contact."
+  ],
+  "remaining_issues": [
+    "Full before/after continuous playback and reference-video comparison incomplete; corrected playback was only sampled.",
+    "Artistic anatomy, foot-edge and hand/prop continuity unresolved.",
+    "Not integrated into engine; source action and effect package remain in PR40."
+  ],
+  "repository_checks": "tools/check.sh exit0;2 existing Quick Song/Delay warnings and16 existing attachment notices.",
+  "github": {
+    "branch": "animation-review/2026-11-20-fuyori-acid",
+    "base_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+    "draft": true
+  },
+  "output_links": {
+    "correct.py": "https://chatgpt.com/library?file_id=libfile_fde3_f-317fb0fd654081918bc2c8650b6ea8c2_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "correction-validation.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-cf7978919cf08191932cb5dd24162a52_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "fuyori-throw.v02.4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-5eeb0479c7e88191b920c86caefb200f_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "fuyori-throw.v02.ora": "https://chatgpt.com/library?file_id=libfile_fde3_f-27ece5726db08191a958414bf189f98e_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "fuyori-throw.v02.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-9245d143f17c8191a2a5e70a86a45cef_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "fuyori.after.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-7bb1fb33032c8191899ba73b1741f595_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "fuyori.after.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-390d018583788191b3df410acc418bc0_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "fuyori.before.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-976464e621d08191b2e6a4b305d10721_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "fuyori.before.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-076bd3afbfc4819192dda69980b3e5b5_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "fuyori.frames.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-83183a5e76e4819189ade8edda06ead4_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "review-4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-219e578a96108191aca31e7089010be7_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "timeline.v02.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-bf45c82fe4548191891c00cddbfa4d56_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "timing.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-1440e46c5ae48191abb20aec01060d21_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+  }
+}

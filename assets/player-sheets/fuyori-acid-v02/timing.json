@@ -1,0 +1,292 @@
+{
+  "source_sha256": "ef4f14d390dab69634ccdcf518383d15ac3c75465afe1cc0106f570899e2b463",
+  "atlas": {
+    "file": "fuyori-throw.v01.png",
+    "size": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "columns": 4,
+    "rows": 2,
+    "gutter": 0,
+    "outer_margin": 0,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      87,
+      87
+    ],
+    "palette": [
+      "#EED8C2",
+      "#D5B9A0",
+      "#B99D80",
+      "#A09376",
+      "#96846A",
+      "#8F765E",
+      "#786D59",
+      "#6E5A4D",
+      "#5C554A",
+      "#5E4941",
+      "#534742",
+      "#49433D",
+      "#413A36",
+      "#3F3330",
+      "#34312F",
+      "#332A29",
+      "#282525",
+      "#201C1D",
+      "#1A1617",
+      "#161315",
+      "#121013",
+      "#100E10",
+      "#0F0B0E",
+      "#0B090B"
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "id": "FA01",
+        "row": 1,
+        "column": 1,
+        "rect": [
+          0,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          32,
+          29,
+          71,
+          86
+        ],
+        "state": "ready"
+      },
+      {
+        "id": "FA02",
+        "row": 1,
+        "column": 2,
+        "rect": [
+          96,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          21,
+          32,
+          70,
+          86
+        ],
+        "state": "draw vial"
+      },
+      {
+        "id": "FA03",
+        "row": 1,
+        "column": 3,
+        "rect": [
+          192,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          17,
+          29,
+          70,
+          86
+        ],
+        "state": "high anticipation"
+      },
+      {
+        "id": "FA04",
+        "row": 1,
+        "column": 4,
+        "rect": [
+          288,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          13,
+          31,
+          72,
+          86
+        ],
+        "state": "release"
+      },
+      {
+        "id": "FA05",
+        "row": 2,
+        "column": 1,
+        "rect": [
+          0,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          17,
+          32,
+          75,
+          86
+        ],
+        "state": "follow through"
+      },
+      {
+        "id": "FA06",
+        "row": 2,
+        "column": 2,
+        "rect": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          24,
+          29,
+          73,
+          86
+        ],
+        "state": "arm recovery"
+      },
+      {
+        "id": "FA07",
+        "row": 2,
+        "column": 3,
+        "rect": [
+          192,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          32,
+          28,
+          72,
+          86
+        ],
+        "state": "straighten"
+      },
+      {
+        "id": "FA08",
+        "row": 2,
+        "column": 4,
+        "rect": [
+          288,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          32,
+          29,
+          71,
+          86
+        ],
+        "state": "settle"
+      }
+    ]
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 250
+    },
+    {
+      "frame": 1,
+      "ms": 200
+    },
+    {
+      "frame": 2,
+      "ms": 250
+    },
+    {
+      "frame": 3,
+      "ms": 200
+    },
+    {
+      "frame": 4,
+      "ms": 250
+    },
+    {
+      "frame": 5,
+      "ms": 250
+    },
+    {
+      "frame": 6,
+      "ms": 250
+    },
+    {
+      "frame": 7,
+      "ms": 350
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "loop": false,
+  "duration_ms": 3000,
+  "cues": [
+    {
+      "name": "release",
+      "ms": 700
+    },
+    {
+      "name": "damage",
+      "ms": 1000
+    },
+    {
+      "name": "effect_clear",
+      "ms": 2100
+    },
+    {
+      "name": "action_complete",
+      "ms": 3000
+    }
+  ],
+  "timing_assumptions": [],
+  "preview_note": "Actor-only fixed-pivot diagnostic; excludes world movement/effects. GIF repeats for review only."
+}
