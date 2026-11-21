@@ -1,0 +1,87 @@
+{
+  "changed_pixels": 19,
+  "removed_atlas_xy": [
+    [
+      41,
+      181
+    ],
+    [
+      42,
+      181
+    ],
+    [
+      43,
+      181
+    ],
+    [
+      44,
+      181
+    ],
+    [
+      45,
+      181
+    ],
+    [
+      46,
+      181
+    ],
+    [
+      47,
+      181
+    ],
+    [
+      48,
+      181
+    ],
+    [
+      49,
+      181
+    ],
+    [
+      50,
+      181
+    ],
+    [
+      51,
+      181
+    ],
+    [
+      52,
+      181
+    ],
+    [
+      53,
+      181
+    ],
+    [
+      54,
+      181
+    ],
+    [
+      139,
+      181
+    ],
+    [
+      140,
+      181
+    ],
+    [
+      141,
+      181
+    ],
+    [
+      244,
+      181
+    ],
+    [
+      245,
+      181
+    ]
+  ],
+  "all_other_pixels_unchanged": true,
+  "ora_recomposition": true,
+  "bounds_unchanged": true,
+  "decoded_previews_exact": true,
+  "timing_changed": false,
+  "playback_approval": false
+}
