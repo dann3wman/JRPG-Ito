@@ -1,0 +1,678 @@
+{
+  "action": "Shio: Blink",
+  "version": 1,
+  "duration_ms": 3000,
+  "fps": 60,
+  "loop": false,
+  "terminal": "effects hidden; Shio ready; target recovered",
+  "scene": {
+    "native": [
+      384,
+      216
+    ],
+    "output": [
+      1536,
+      864
+    ],
+    "origin": "top-left",
+    "baseline": 180,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      375,
+      207
+    ],
+    "actor_feet": [
+      280,
+      180
+    ],
+    "effect_pivot": [
+      104,
+      145
+    ],
+    "target_feet": [
+      104,
+      180
+    ],
+    "facing": "left"
+  },
+  "atlases": {
+    "shio-casting": {
+      "file": "shio-casting.v01.png",
+      "size": [
+        384,
+        192
+      ],
+      "cell": [
+        96,
+        96
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        87,
+        87
+      ],
+      "palette": [
+        "#CBBBAD",
+        "#B5A9A0",
+        "#A1958F",
+        "#8F8E91",
+        "#858284",
+        "#827772",
+        "#71737A",
+        "#6B696B",
+        "#6A605C",
+        "#5B5D64",
+        "#575150",
+        "#4A4B51",
+        "#494445",
+        "#483D38",
+        "#3E3F43",
+        "#3B393C",
+        "#3A3636",
+        "#38302E",
+        "#302F30",
+        "#2C2828",
+        "#292423",
+        "#222020",
+        "#1C1918",
+        "#141211"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "SB01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            27,
+            23,
+            75,
+            86
+          ],
+          "state": "ready"
+        },
+        {
+          "id": "SB02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            25,
+            23,
+            76,
+            86
+          ],
+          "state": "lift forearm"
+        },
+        {
+          "id": "SB03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            25,
+            23,
+            75,
+            86
+          ],
+          "state": "palm eye"
+        },
+        {
+          "id": "SB04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            288,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            15,
+            23,
+            75,
+            86
+          ],
+          "state": "extend"
+        },
+        {
+          "id": "SB05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            14,
+            22,
+            75,
+            86
+          ],
+          "state": "open eye"
+        },
+        {
+          "id": "SB06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            16,
+            22,
+            75,
+            86
+          ],
+          "state": "close fingers"
+        },
+        {
+          "id": "SB07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            21,
+            22,
+            75,
+            86
+          ],
+          "state": "lower arm"
+        },
+        {
+          "id": "SB08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            288,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            27,
+            22,
+            75,
+            86
+          ],
+          "state": "settle"
+        }
+      ]
+    },
+    "blink-ward": {
+      "file": "blink-ward.v01.png",
+      "size": [
+        512,
+        256
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        119,
+        119
+      ],
+      "palette": [
+        "#F6EDD9",
+        "#F1E5CF",
+        "#E1D3BF",
+        "#C1B09F",
+        "#9F8C80",
+        "#947169",
+        "#845C58",
+        "#495162",
+        "#564850",
+        "#4F3439",
+        "#374051",
+        "#312C36",
+        "#2F1F29",
+        "#251B26",
+        "#221520",
+        "#1B0F19"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "BW01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            51,
+            50,
+            77,
+            77
+          ],
+          "state": "lid strokes"
+        },
+        {
+          "id": "BW02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            34,
+            45,
+            95,
+            81
+          ],
+          "state": "almond outline"
+        },
+        {
+          "id": "BW03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            27,
+            38,
+            101,
+            88
+          ],
+          "state": "open ward"
+        },
+        {
+          "id": "BW04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            25,
+            25,
+            103,
+            101
+          ],
+          "state": "full ward"
+        },
+        {
+          "id": "BW05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            31,
+            30,
+            96,
+            90
+          ],
+          "state": "half closed"
+        },
+        {
+          "id": "BW06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            34,
+            50,
+            95,
+            85
+          ],
+          "state": "closed seam"
+        },
+        {
+          "id": "BW07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            31,
+            53,
+            96,
+            74
+          ],
+          "state": "fragments"
+        },
+        {
+          "id": "BW08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            43,
+            57,
+            86,
+            67
+          ],
+          "state": "last clusters"
+        }
+      ]
+    }
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 250
+    },
+    {
+      "frame": 1,
+      "ms": 200
+    },
+    {
+      "frame": 2,
+      "ms": 250
+    },
+    {
+      "frame": 3,
+      "ms": 200
+    },
+    {
+      "frame": 4,
+      "ms": 250
+    },
+    {
+      "frame": 5,
+      "ms": 250
+    },
+    {
+      "frame": 6,
+      "ms": 250
+    },
+    {
+      "frame": 7,
+      "ms": 350
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "effect_track": [
+    {
+      "frame": 0,
+      "ms": 180
+    },
+    {
+      "frame": 1,
+      "ms": 120
+    },
+    {
+      "frame": 2,
+      "ms": 100
+    },
+    {
+      "frame": 3,
+      "ms": 160
+    },
+    {
+      "frame": 4,
+      "ms": 220
+    },
+    {
+      "frame": 5,
+      "ms": 220
+    },
+    {
+      "frame": 6,
+      "ms": 200
+    },
+    {
+      "frame": 7,
+      "ms": 200
+    }
+  ],
+  "effect_start_ms": 700,
+  "effect_hide_ms": 2100,
+  "cues": [
+    {
+      "name": "cast",
+      "ms": 700
+    },
+    {
+      "name": "activation",
+      "ms": 1000
+    },
+    {
+      "name": "effect_clear",
+      "ms": 2100
+    },
+    {
+      "name": "action_complete",
+      "ms": 3000
+    }
+  ],
+  "gameplay_events": "Visual cast and ward activation cues only; no dodge, HP or combat rule mutation.",
+  "motion": {
+    "actor_x_keys": [
+      [
+        0,
+        280
+      ],
+      [
+        3000,
+        280
+      ]
+    ],
+    "target_x_keys": [
+      [
+        0,
+        104
+      ],
+      [
+        1250,
+        104
+      ],
+      [
+        1450,
+        114
+      ],
+      [
+        1750,
+        104
+      ],
+      [
+        3000,
+        104
+      ]
+    ],
+    "ward": "fixed on ally chest at target_x,145; brief voluntary sidestep 1250..1750",
+    "interpolation": "smoothstep integer native pixels"
+  },
+  "layers": [
+    {
+      "name": "background",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": "opaque",
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "rear ward light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "source-over",
+      "filter": "linear",
+      "preview_scale": 2
+    },
+    {
+      "name": "ally, actor, ward",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "activation light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "screen",
+      "filter": "linear",
+      "preview_scale": 2
+    }
+  ],
+  "status": {
+    "reference_available": true,
+    "specified": true,
+    "generated_built": true,
+    "exported": true,
+    "technically_checked": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  }
+}

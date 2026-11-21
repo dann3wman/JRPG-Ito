@@ -1,0 +1,108 @@
+{
+  "shio-casting": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "blink-ward": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 16,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 45,
+    "expanded_render_slots": 180,
+    "duration_ms": 3000.0000000000023,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 45,
+    "duration_ms": 3000,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 180,
+    "fps": 60,
+    "duration_ms": 3000
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "duration_ms": 3000,
+    "integer_states": 3001,
+    "event_count": 4,
+    "activation_count": 1,
+    "replay_reset": true,
+    "seek_no_events": true,
+    "pause": true,
+    "half_speed_logic": true,
+    "terminal_cleanup": true,
+    "live_browser_controls": false
+  },
+  "visual_review": {
+    "complete_continuous_review": false,
+    "live_playback": "GIMP GIF playback started and sampled at 1x and 0.5x; continuous motion review not established; draft",
+    "light_dark_stills_reviewed": true,
+    "ora_reopened_programmatically": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 301,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "3a78c27a4f3c97a3ba555a93f7ce4a99460c10a07e27f68b437f1ee9d5df8dce",
+    "blink-ward.v01.4x.png": "f478e4f5e03d2a7ce75373421ffa171bc7477dd53004ccb5892948569cd99892",
+    "blink-ward.v01.ora": "6bf3dfaae7519e92b4667bfea0f2e3f1265a9a38e653789b22863b09d277ae47",
+    "blink-ward.v01.png": "7ec9f81dc89fe8c2061569b645405081597ae203028eeb6d7479a456d247da28",
+    "build.py": "e3b74a9e5d30498bfd7846637968505a7ca2169143a71f918dd549152dcb6248",
+    "check-render.cjs": "2b6896fe62085f1d61f0bfd38b34a5636eabfa4ef8ca01a24ac88471db8a953a",
+    "encode.py": "03f15886b089b6bb186feb7df3eac1da1aa199778e5b843a5b0a876bda6117c0",
+    "export.cjs": "4e00bf599e5ee3c5ae0d0ccaeb4efcf99d991b53f662bc54097dd70804feab7a",
+    "player.template.html": "55bee3ab676878a060e8cc15f963aac5f98318c29262223822f0c0a9375edfa1",
+    "render-validation.json": "61b636bea8ac07753c57a7e05de81ef0dc103e8729450f8012071941670373bb",
+    "render.js": "b231fb819a5381fafb2979ebfa8d3c0326b897c05359171571588bf68297e943",
+    "repository-checks.txt": "c883bdac58f4bfd73aece3ab843c07aa3d4ac1dcba4bf8cf11839543fb4af04d",
+    "review.v01.4x.png": "47b47a18aeff8207d14da7723ffc8dca248f978df261b2dcc3a50556924fa268",
+    "review.v01.png": "1d563131bc2a85e0b8be6e30fc87e5484f835b8c5610e4a155e7eeea3e8178be",
+    "runtime-validation.json": "8d9fc6611b3946748299baff71a647604d51a8e604fea592e0a060915489031e",
+    "scene.dark.v01.png": "15584abe9bac11931be0cc4e667906579911eb7c4421044ef8825f568bcaf810",
+    "scene.light.v01.png": "1ce0e504b556f5a044470f3c109047a76eee16f97df27914788efea904258a7a",
+    "scene.pixel-4x.v01.png": "a9515542dc4a9c75b6c0999e80368281a28ebf8abfa2094336332382f62fc29a",
+    "scene.pixel-native.v01.png": "85af8070a7211e91e23433f226f959ece630dd8ed023c97850d0576821f41069",
+    "shio-blink.v01.apng": "f44e7b9c15641129501f1af0fc9d4659bd988417bf9b79b95ac2b99dd186faeb",
+    "shio-blink.v01.gif": "f5fa3c22311b855b0edc7c2b08c19bc95782743ff4805491f90265bd8bab2ea1",
+    "shio-blink.v01.html": "237cfa79a421cbf4bf3841208d84be2a92d48ce5af3637bccfc3770aeb829fdd",
+    "shio-blink.v01.mp4": "9331550173700ea939afb5f6bebf4168c086e58f8dfd578784d04181c108cb79",
+    "shio-casting.v01.4x.png": "d5f6cf4d3d99e81f5611014a447f9c819bf73eb7d5b3d13940134f393578adcd",
+    "shio-casting.v01.ora": "d196d5b5a0d4609e58bea4acab5319b8377e95e6f00fcdd6ca155d8a5672e185",
+    "shio-casting.v01.png": "26dd6b2d54f5ebcc405845bf4a80b897f0b9941ef9c6dfd83705db0b72b44837",
+    "source/blink-ward.generated.png": "09c9b52136192c902f5e7dbb45b97bee1ff5a241fb0865aa8206e1e5844eb3f7",
+    "source/generation-prompts.txt": "73f80adafac9bceca01ad1b2119080ac3c3c7d6d15029d464ecf789d9b80c5f5",
+    "source/shio-casting.generated.png": "75c98a75603e7b7fa77ae8c1a3535c6870965a6099111a0c9249fbd6316fc013",
+    "target-context.png": "383ead149a01c4f22418949bacd01961ae970a065f4ab5ed67e6f3a64b87bfe9",
+    "test.cjs": "1b524f8e3daa42fa85f607a11f0429d5815cd6104dda5d043c0ac47e1684efe1",
+    "timeline.v01.json": "452a5a8eecd9c56e6a50a35885e0e671d389c5be55b2af431650a3dc3723aac9",
+    "validate.py": "bc29841012874a0b78ce038050dd85a6538bbbfc808b9a937177bfa930715fdf"
+  }
+}
