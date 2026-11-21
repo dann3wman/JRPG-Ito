@@ -76,3 +76,7 @@ Easy for the Helper (above the 80–95% band) but `attack` fails, so the lesson 
 ## Open questions
 
 - Should it be harder? Its threat is speed, and Ren answers speed completely. A Disc 2 twist (Delay pushes it back only 1 slot while it is overclocked) would make the Break timing matter more.
+
+## 2026-11-21 preview refinement
+
+B014 displays a phase-change warning while the HP threshold and established phase disagree. Attack selection and combat timing remain unchanged. See [review](../bestiary/reviews/2026-11-21-engine-phase.md). Browser layout is pending.
