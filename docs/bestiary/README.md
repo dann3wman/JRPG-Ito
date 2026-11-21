@@ -1,6 +1,6 @@
 # Bestiary refinement queue
 
-Updated 2026-11-21. Generation 5, revision 16. [Canonical tracker](refinement-queue.json). One actionable pending task: B015, the Congregation split warning.
+Updated 2026-11-21. Generation 5, revision 17. [Canonical tracker](refinement-queue.json). One actionable pending task: B015, the Congregation split warning.
 
 [Fresh audit](reviews/2026-11-21-audit.json): 45 enemies, 37 encounters, 22 rigs, 88 clips and six battle rigs. Source/metadata review across five categories, not visual certification. Default remains b5d0e9f9ac45c21b2acf28784d75fd977d35eb91. PR29-43 inspected. PR41 generation 4 revision 15 supersedes older trackers; no unrelated implementation code imported.
 
@@ -19,7 +19,7 @@ Updated 2026-11-21. Generation 5, revision 16. [Canonical tracker](refinement-qu
 | B011 | The Puppeteers | Implement its fight after required encounter capabilities are ready | blocked |
 | B012 | Archbishop Orlen | Make the half-HP action replan visible before execution | implemented pending visual review ([PR38](https://github.com/dann3wman/JRPG-Ito/pull/38)) |
 | B013 | Ruri | Reveal when copy losses invalidate the displayed Jealousy | implemented pending visual review ([PR41](https://github.com/dann3wman/JRPG-Ito/pull/41)) |
-| B014 | Resonance Engine Mk. IV | Warn when overclocking invalidates the stored Stomp preview | implemented pending visual review |
+| B014 | Resonance Engine Mk. IV | Warn when overclocking invalidates the stored Stomp preview | implemented pending visual review ([PR44](https://github.com/dann3wman/JRPG-Ito/pull/44)) |
 | B015 | The Congregation | Reveal the pending split action replan | pending |
 
 [Current review](reviews/2026-11-21-engine-phase.md). Historical implementation commits, review paths and PR links remain in the queue. Unmerged review files are available on their PR heads. Delivery is not acceptance.

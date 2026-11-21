@@ -4,7 +4,7 @@ Date: 2026-11-21. Category: enemy AI telegraph.
 
 Default: `ccr-d8829a5a-ays4x1`, commit `b5d0e9f9ac45c21b2acf28784d75fd977d35eb91`. Branch: `bestiary/2026-11-21-engine-phase-warning`.
 
-Delivery: prepared; implementation commit and PR will be recorded after publication.
+Delivery: [draft PR44](https://github.com/dann3wman/JRPG-Ito/pull/44), implementation commit `9de73eba8f9e3a1e4fd150bd59597c92ca7bc41b`. Delivered for review, not merged. Queue generation 5 revision 17.
 
 ## Sources and scope
 
