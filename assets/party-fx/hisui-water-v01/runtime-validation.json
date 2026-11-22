@@ -1,0 +1,12 @@
+{
+  "duration_ms": 3000,
+  "integer_states": 3001,
+  "event_count": 4,
+  "impact_count": 1,
+  "replay_reset": true,
+  "seek_no_events": true,
+  "pause": true,
+  "half_speed_logic": true,
+  "terminal_cleanup": true,
+  "live_browser_controls": false
+}

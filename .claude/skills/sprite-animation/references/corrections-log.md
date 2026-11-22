@@ -20,6 +20,13 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-22 · Hisui · Water response visibility
+- **Problem:** the opaque tide crest obscured target recoil.
+- **Cause:** target always rendered behind the effect.
+- **Solution:** redraw target above the collapsing tide at 1460..2100 ms, after the impact crest. Keep water at world (104,145), independent of target recoil.
+- **Verification:** output bounds, timing and stills checked; live browser file access blocked, so complete motion review remains unverified.
+- **Rule:** inspect target response through opaque effect layers; use an intentional layer crossover when the effect collapses.
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.

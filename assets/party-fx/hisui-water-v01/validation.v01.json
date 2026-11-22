@@ -1,0 +1,108 @@
+{
+  "hisui-casting": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "water-tide": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 16,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 39,
+    "expanded_render_slots": 180,
+    "duration_ms": 3000.000000000002,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 39,
+    "duration_ms": 3000,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 180,
+    "fps": 60,
+    "duration_ms": 3000
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "duration_ms": 3000,
+    "integer_states": 3001,
+    "event_count": 4,
+    "impact_count": 1,
+    "replay_reset": true,
+    "seek_no_events": true,
+    "pause": true,
+    "half_speed_logic": true,
+    "terminal_cleanup": true,
+    "live_browser_controls": false
+  },
+  "visual_review": {
+    "complete_continuous_review": false,
+    "live_playback": "Continuous playback review not yet verified; draft",
+    "light_dark_stills_reviewed": true,
+    "ora_reopened_programmatically": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 301,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "5c03a70eeea6b6c562b8f3eeab7d1bed3096dcede6421b5450059167a69b9b02",
+    "build.py": "b049b63e40f9844d315ae6d8c5fcde856626d686e9629f4de5624ff8bce0eeb4",
+    "check-render.cjs": "c0c10b2d3f7a08cb8f4db58811486860a43bcf676c723c90ced1baee94481440",
+    "encode.py": "6be4cdbf9b1021f1d6d78f1ab6c8feebfc95a26a2408b6f56b1b4b205080fb11",
+    "export.cjs": "21fef39bec57f6cde596358d6b9f07155d35a55493e92d08dfadcc7d9b6ab10d",
+    "hisui-casting.v01.4x.png": "c9468a21bf054bcb36ca36738b3250c0c4839875d747089fe2876d3ef197d4b6",
+    "hisui-casting.v01.ora": "e2736c32aabb96daa8d603cf723c4cdb2faa632eabf214a2aacfe6bad2f603f7",
+    "hisui-casting.v01.png": "e53876b00d577fe9186f1c96c25cf7a7f724a888321ccbccc4c436812af32613",
+    "hisui-water.v01.apng": "83c6b5241e534d36af4b76d051d17819e557c6ef35ef0f1901c236c268ee9fe0",
+    "hisui-water.v01.gif": "69099b6688a964555798887bb24a561038bee448e49a12c1b58a3a8c8b082a04",
+    "hisui-water.v01.html": "6be6d5290cd8834d29c77ee2fce3db6516d4d7cb4b14f927aa033669cb8e7b83",
+    "hisui-water.v01.mp4": "f9613c9a786c9119ca97f4cfed1d53e788d87c47248ca01ef1db88c6b73141cf",
+    "player.template.html": "0aa8178726b54593a79182030509e6e47d92bde685dfb85bfb9fbe1aa5a91d36",
+    "render-validation.json": "61b636bea8ac07753c57a7e05de81ef0dc103e8729450f8012071941670373bb",
+    "render.js": "aa01ff92ccf8017190d2ea006bd2c3eb72d21b03d935d99294ccff31c2ec1f9a",
+    "repository-checks.txt": "c883bdac58f4bfd73aece3ab843c07aa3d4ac1dcba4bf8cf11839543fb4af04d",
+    "review.v01.4x.png": "840bd5bc68803b504c8dba54e766af8e08c82555664c4d4913e71011ad31596f",
+    "review.v01.png": "560d329411110e0333675793baaa2ba0d10596f4090956daccf91bd3f51765b6",
+    "runtime-validation.json": "137092134f41dc79cf5fa046171144e1b054a192b9bc170720c679f075b649c9",
+    "scene.dark.v01.png": "0ea68e275cccc87d1b894d8c2c8fb721d7f05b46cc013c73bdaa03f6e0177516",
+    "scene.light.v01.png": "be49d1e416724220a1856f6c21970cb9af346d42ae5217debc71b0bfd2d52cfa",
+    "scene.pixel-4x.v01.png": "f19144ebf4e3e5a6fb6729268a858944e3638625d47217c229b22afb2474e199",
+    "scene.pixel-native.v01.png": "42d434cbfe15cfaa74aa08b628bb8caa8e0bf6398ee2ae6b54a37e9c8698b22a",
+    "source/generation-prompts.txt": "646edc43ba85ae5ae0164e01513e4512cc4291081b03acf1b0f173124bb8ab73",
+    "source/hisui-casting.generated.png": "e4cc44b91563fe2fa65e1eda479ecfaf3e9576740ad4728267c11c8194271286",
+    "source/water-tide.generated.png": "9237c07f853c2fd5ac14cdaa853d44308e0a159272826180925f1ccf7061d483",
+    "target-context.png": "383ead149a01c4f22418949bacd01961ae970a065f4ab5ed67e6f3a64b87bfe9",
+    "test.cjs": "d47dc4bfdbe93d4918df453b8befd79c477da7c7927b29b2ac00035cf2574242",
+    "timeline.v01.json": "a748e4e1093b61711aa79348976ef47f6709e21e222ab3709f149a13609630af",
+    "validate.py": "14914b2f1e707482070986729ca392308b27e16312a30840b05958e6cb609670",
+    "water-tide.v01.4x.png": "1ffadcfb0518fea1f8d14486e0d30e4063d9e084fa48ea47c3f4732bc524d71b",
+    "water-tide.v01.ora": "88fa1e1232d445eebfa6775140b170e1202c90b79cdbc29b7783b71c73f07857",
+    "water-tide.v01.png": "31aa0b49a343a352cce3ca221bf2a49cabeb045d4288dd1efe6414dcafdc5c70"
+  }
+}
