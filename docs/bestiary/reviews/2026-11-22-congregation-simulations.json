@@ -1,0 +1,191 @@
+{
+  "advisor": {
+    "before": [
+      {
+        "key": "congregation",
+        "party": [
+          "hisui",
+          "natsu",
+          "kiri"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 0.98,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 60.98,
+          "winTurns": 61.13265306122449,
+          "foeTurns": 38.5,
+          "kos": 0.56,
+          "afflicted": 2.89,
+          "inspired": 1.26,
+          "fled": 2.13,
+          "lost": 6.94,
+          "limits": 1.76,
+          "phoenix": 0.49,
+          "stress": 122.8439880952381,
+          "danger": 68.45,
+          "hp": 0.5420291401259513
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "congregation",
+        "party": [
+          "hisui",
+          "natsu",
+          "kiri"
+        ],
+        "policy": "advisor",
+        "s": {
+          "n": 100,
+          "win": 0.98,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 60.98,
+          "winTurns": 61.13265306122449,
+          "foeTurns": 38.5,
+          "kos": 0.56,
+          "afflicted": 2.89,
+          "inspired": 1.26,
+          "fled": 2.13,
+          "lost": 6.94,
+          "limits": 1.76,
+          "phoenix": 0.49,
+          "stress": 122.8439880952381,
+          "danger": 68.45,
+          "hp": 0.5420291401259513
+        }
+      }
+    ],
+    "identical": true
+  },
+  "attack": {
+    "before": [
+      {
+        "key": "congregation",
+        "party": [
+          "hisui",
+          "natsu",
+          "kiri"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0.04,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 47.27,
+          "winTurns": 71.25,
+          "foeTurns": 52.99,
+          "kos": 3.15,
+          "afflicted": 4.53,
+          "inspired": 1.48,
+          "fled": 3.04,
+          "lost": 7.99,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 166.55561904761905,
+          "danger": 77.12,
+          "hp": 0.23291613281688284
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "congregation",
+        "party": [
+          "hisui",
+          "natsu",
+          "kiri"
+        ],
+        "policy": "attack",
+        "s": {
+          "n": 100,
+          "win": 0.04,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 47.27,
+          "winTurns": 71.25,
+          "foeTurns": 52.99,
+          "kos": 3.15,
+          "afflicted": 4.53,
+          "inspired": 1.48,
+          "fled": 3.04,
+          "lost": 7.99,
+          "limits": 0,
+          "phoenix": 0,
+          "stress": 166.55561904761905,
+          "danger": 77.12,
+          "hp": 0.23291613281688284
+        }
+      }
+    ],
+    "identical": true
+  },
+  "random": {
+    "before": [
+      {
+        "key": "congregation",
+        "party": [
+          "hisui",
+          "natsu",
+          "kiri"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0.24,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 96.4,
+          "winTurns": 95.83333333333333,
+          "foeTurns": 83.41,
+          "kos": 2.99,
+          "afflicted": 8.63,
+          "inspired": 2.67,
+          "fled": 8.87,
+          "lost": 30.74,
+          "limits": 5.06,
+          "phoenix": 1.47,
+          "stress": 187.1316760461761,
+          "danger": 99.85,
+          "hp": 0.22398388860218146
+        }
+      }
+    ],
+    "after": [
+      {
+        "key": "congregation",
+        "party": [
+          "hisui",
+          "natsu",
+          "kiri"
+        ],
+        "policy": "random",
+        "s": {
+          "n": 100,
+          "win": 0.24,
+          "timeout": 0,
+          "stalled": 0,
+          "turns": 96.4,
+          "winTurns": 95.83333333333333,
+          "foeTurns": 83.41,
+          "kos": 2.99,
+          "afflicted": 8.63,
+          "inspired": 2.67,
+          "fled": 8.87,
+          "lost": 30.74,
+          "limits": 5.06,
+          "phoenix": 1.47,
+          "stress": 187.1316760461761,
+          "danger": 99.85,
+          "hp": 0.22398388860218146
+        }
+      }
+    ],
+    "identical": true
+  }
+}

@@ -74,3 +74,7 @@ In band, near the top of the length band. Afflicted is in band; flees run high.
 ## Open questions
 
 - None.
+
+## 2026-11-22 preview refinement
+
+B015 warns when a phase transition will reselect the action, including spawned Faces. No split, stare, probability or timing change. See [review](../bestiary/reviews/2026-11-22-congregation-split.md). Browser layout pending.
