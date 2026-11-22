@@ -4,7 +4,7 @@ Date: 2026-11-22. Entry: The Congregation. Category: enemy AI telegraph.
 
 Default branch `ccr-d8829a5a-ays4x1`, source commit `b5d0e9f9ac45c21b2acf28784d75fd977d35eb91`. Branch: `bestiary/2026-11-22-congregation-split-warning`.
 
-Delivery: prepared; implementation commit and PR will be recorded after publication.
+Delivery: [draft PR47](https://github.com/dann3wman/JRPG-Ito/pull/47), implementation commit `b21c849e248b3852cbb45d5b00f6f6b1e1e2f2a3`. Delivered for review, not merged. Queue generation 6 revision 19.
 
 ## Reconciliation and scope
 

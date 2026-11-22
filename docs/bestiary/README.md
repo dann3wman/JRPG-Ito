@@ -1,6 +1,6 @@
 # Bestiary refinement queue
 
-Updated 2026-11-22. Generation 6, revision 18. [Canonical tracker](refinement-queue.json). One actionable pending task: B016, Engine Resonance phase-entry cadence.
+Updated 2026-11-22. Generation 6, revision 19. [Canonical tracker](refinement-queue.json). One actionable pending task: B016, Engine Resonance phase-entry cadence.
 
 [Fresh audit](reviews/2026-11-22-audit.json): 45 enemies, 37 encounters, 22 rigs, 88 clips, six battle rigs. All five categories reviewed through source/metadata, not full visual certification. Default remains b5d0e9f9ac45c21b2acf28784d75fd977d35eb91. PR29-46 checked. Latest tracker PR44 generation 5 revision 17 supersedes older heads; unrelated code is not imported.
 
@@ -20,7 +20,7 @@ Updated 2026-11-22. Generation 6, revision 18. [Canonical tracker](refinement-qu
 | B012 | Archbishop Orlen | Make the half-HP action replan visible before execution | implemented pending visual review ([PR38](https://github.com/dann3wman/JRPG-Ito/pull/38)) |
 | B013 | Ruri | Reveal when copy losses invalidate the displayed Jealousy | implemented pending visual review ([PR41](https://github.com/dann3wman/JRPG-Ito/pull/41)) |
 | B014 | Resonance Engine Mk. IV | Warn when overclocking invalidates the stored Stomp preview | implemented pending visual review ([PR44](https://github.com/dann3wman/JRPG-Ito/pull/44)) |
-| B015 | The Congregation | Reveal the pending split action replan | implemented pending visual review |
+| B015 | The Congregation | Reveal the pending split action replan | implemented pending visual review ([PR47](https://github.com/dann3wman/JRPG-Ito/pull/47)) |
 | B016 | Resonance Engine Mk. IV | Keep Resonance on its documented turn during the phase-entry replan | pending |
 
 [Current review](reviews/2026-11-22-congregation-split.md). Historical review paths and implementation commits remain in the queue; unmerged reports live on their linked PR heads. Delivery is not acceptance.

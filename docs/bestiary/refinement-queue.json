@@ -7,7 +7,7 @@
   "created_at": "2026-11-14",
   "updated_at": "2026-11-22",
   "generation": 6,
-  "revision": 18,
+  "revision": 19,
   "tracker_path": "docs/bestiary/refinement-queue.json",
   "initial_branch": "bestiary/2026-11-14-tongue-rescue-telegraph",
   "selection_policy": "Confirmed correctness/readability defects first, then measured encounter problems, existing asset integration, canon alignment, and evidence-led visual review. Prefer one feasible entry per run; notices alone are not proven defects.",
@@ -467,8 +467,10 @@
         "browser": "Chromium aborts with socket() Operation not permitted; layout unverified."
       },
       "delivery": {
-        "state": "prepared",
-        "merged": false
+        "state": "draft",
+        "merged": false,
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/47",
+        "implementation_commit": "b21c849e248b3852cbb45d5b00f6f6b1e1e2f2a3"
       }
     },
     {
