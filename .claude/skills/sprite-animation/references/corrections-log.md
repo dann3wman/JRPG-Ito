@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-21 · Shio · Blink planted boot soles
+- **Reported problem:** boot-contact contours and highlights change across stationary casting keys, making planted feet crawl.
+- **Original generation:** PR43 source shio-casting.v01.png at b0fffb3e56143d9cf337c652790280662cc57af5. Registration aligns only the right boot edge and lowest row; it does not preserve both soles.
+- **Root cause:** sheet-art variation in stationary contact patches, not intentional step motion.
+- **Solution implemented:** copy SB01 local exclusive boxes(24,81,43,86) and(56,81,70,86) into SB02-SB08,including the matching existing ORA value layers.556 changed pixels;all other pixels and timing unchanged. See assets/player-sheets/shio-blink-v02/build.py.
+- **Verification:** all source/final keys and boot crops viewed;normal/half-speed playback sampled before/after. Exact delta,unchanged-region,palette,alpha,bounds,ORA,nearest4x and decoded GIF timing/pixels pass. Full continuous review,palm-eye/hood/robe cleanup and engine checks remain incomplete;draft required.
+- **Rule for next time:** when feet are authored as planted,measure both contact shapes,not only the farthest edge or baseline. Keep cloth and upper ankle motion outside a narrowly bounded sole repair. Never propagate foot patches into a stepping action.
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.
