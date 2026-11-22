@@ -1,0 +1,682 @@
+{
+  "action": "Hisui: Water",
+  "version": 1,
+  "duration_ms": 3000,
+  "fps": 60,
+  "loop": false,
+  "terminal": "effects hidden; Hisui ready; target recovered",
+  "scene": {
+    "native": [
+      384,
+      216
+    ],
+    "output": [
+      1536,
+      864
+    ],
+    "origin": "top-left",
+    "baseline": 180,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      375,
+      207
+    ],
+    "actor_feet": [
+      280,
+      180
+    ],
+    "effect_pivot": [
+      104,
+      145
+    ],
+    "target_feet": [
+      104,
+      180
+    ],
+    "facing": "left"
+  },
+  "atlases": {
+    "hisui-casting": {
+      "file": "hisui-casting.v01.png",
+      "size": [
+        384,
+        192
+      ],
+      "cell": [
+        96,
+        96
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        87,
+        87
+      ],
+      "palette": [
+        "#F0D7CA",
+        "#CDAEA4",
+        "#BD8379",
+        "#90726D",
+        "#B85454",
+        "#995250",
+        "#6E5251",
+        "#994143",
+        "#8E393C",
+        "#763336",
+        "#563A3C",
+        "#403033",
+        "#61262B",
+        "#4E2327",
+        "#3F2024",
+        "#322529",
+        "#2D1F23",
+        "#2E191D",
+        "#241B1E",
+        "#21171B",
+        "#1F1519",
+        "#1E1317",
+        "#191316",
+        "#180F13"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "HW01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            25,
+            28,
+            71,
+            86
+          ],
+          "state": "ready"
+        },
+        {
+          "id": "HW02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            27,
+            28,
+            73,
+            86
+          ],
+          "state": "gather blades"
+        },
+        {
+          "id": "HW03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            33,
+            28,
+            73,
+            86
+          ],
+          "state": "cross blades"
+        },
+        {
+          "id": "HW04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            288,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            33,
+            28,
+            75,
+            86
+          ],
+          "state": "raise blades"
+        },
+        {
+          "id": "HW05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            22,
+            28,
+            79,
+            86
+          ],
+          "state": "release"
+        },
+        {
+          "id": "HW06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            20,
+            28,
+            79,
+            86
+          ],
+          "state": "lower blades"
+        },
+        {
+          "id": "HW07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            24,
+            28,
+            76,
+            86
+          ],
+          "state": "relax elbows"
+        },
+        {
+          "id": "HW08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            288,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            27,
+            28,
+            73,
+            86
+          ],
+          "state": "settle"
+        }
+      ]
+    },
+    "water-tide": {
+      "file": "water-tide.v01.png",
+      "size": [
+        512,
+        256
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        119,
+        119
+      ],
+      "palette": [
+        "#E6E0CC",
+        "#D9D5C1",
+        "#BBBFAD",
+        "#99AD9C",
+        "#7A9C8F",
+        "#63877F",
+        "#467E78",
+        "#386E6D",
+        "#2F6466",
+        "#2A5B5E",
+        "#22565C",
+        "#1F5056",
+        "#1C4A50",
+        "#17464D",
+        "#153F47",
+        "#10353E"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "WT01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            35,
+            89,
+            93,
+            103
+          ],
+          "state": "ripple"
+        },
+        {
+          "id": "WT02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            30,
+            75,
+            97,
+            103
+          ],
+          "state": "wavelets"
+        },
+        {
+          "id": "WT03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            29,
+            41,
+            97,
+            103
+          ],
+          "state": "rising ribbons"
+        },
+        {
+          "id": "WT04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            28,
+            26,
+            99,
+            103
+          ],
+          "state": "crest"
+        },
+        {
+          "id": "WT05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            27,
+            21,
+            103,
+            102
+          ],
+          "state": "impact splash"
+        },
+        {
+          "id": "WT06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            27,
+            56,
+            100,
+            102
+          ],
+          "state": "collapse"
+        },
+        {
+          "id": "WT07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            30,
+            58,
+            97,
+            102
+          ],
+          "state": "foam fragments"
+        },
+        {
+          "id": "WT08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            32,
+            71,
+            94,
+            102
+          ],
+          "state": "remnants"
+        }
+      ]
+    }
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 250
+    },
+    {
+      "frame": 1,
+      "ms": 200
+    },
+    {
+      "frame": 2,
+      "ms": 250
+    },
+    {
+      "frame": 3,
+      "ms": 200
+    },
+    {
+      "frame": 4,
+      "ms": 250
+    },
+    {
+      "frame": 5,
+      "ms": 250
+    },
+    {
+      "frame": 6,
+      "ms": 250
+    },
+    {
+      "frame": 7,
+      "ms": 350
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "effect_track": [
+    {
+      "frame": 0,
+      "ms": 180
+    },
+    {
+      "frame": 1,
+      "ms": 160
+    },
+    {
+      "frame": 2,
+      "ms": 140
+    },
+    {
+      "frame": 3,
+      "ms": 100
+    },
+    {
+      "frame": 4,
+      "ms": 180
+    },
+    {
+      "frame": 5,
+      "ms": 200
+    },
+    {
+      "frame": 6,
+      "ms": 220
+    },
+    {
+      "frame": 7,
+      "ms": 220
+    }
+  ],
+  "effect_start_ms": 700,
+  "effect_hide_ms": 2100,
+  "cues": [
+    {
+      "name": "cast",
+      "ms": 700
+    },
+    {
+      "name": "impact",
+      "ms": 1280
+    },
+    {
+      "name": "effect_clear",
+      "ms": 2100
+    },
+    {
+      "name": "action_complete",
+      "ms": 3000
+    }
+  ],
+  "gameplay_events": "Visual cast and impact cues only; no HP or combat rule mutation.",
+  "motion": {
+    "actor_x_keys": [
+      [
+        0,
+        280
+      ],
+      [
+        3000,
+        280
+      ]
+    ],
+    "target_x_keys": [
+      [
+        0,
+        104
+      ],
+      [
+        1280,
+        104
+      ],
+      [
+        1380,
+        96
+      ],
+      [
+        1600,
+        98
+      ],
+      [
+        2050,
+        104
+      ],
+      [
+        3000,
+        104
+      ]
+    ],
+    "tide": "tide fixed at world104,145; target recoils1280..2050",
+    "interpolation": "smoothstep integer native pixels"
+  },
+  "layers": [
+    {
+      "name": "background",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": "opaque",
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "rear water light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "source-over",
+      "filter": "linear",
+      "preview_scale": 2
+    },
+    {
+      "name": "target, actor, tide",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "impact light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "screen",
+      "filter": "linear",
+      "preview_scale": 2
+    }
+  ],
+  "status": {
+    "reference_available": true,
+    "specified": true,
+    "generated_built": true,
+    "exported": true,
+    "technically_checked": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  }
+}
