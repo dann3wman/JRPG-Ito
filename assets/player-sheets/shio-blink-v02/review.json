@@ -1,0 +1,122 @@
+{
+  "review_id": "2026-11-21-shio-blink",
+  "review_date_local": "2026-11-21",
+  "timezone": "America/New_York",
+  "character": "Shio",
+  "status": "localized_sole_correction_completed_full_artistic_review_incomplete",
+  "source": {
+    "pr": "https://github.com/dann3wman/JRPG-Ito/pull/43",
+    "commit": "b0fffb3e56143d9cf337c652790280662cc57af5",
+    "path": "assets/party-fx/shio-blink-v01/shio-casting.v01.png",
+    "sha256": "26dd6b2d54f5ebcc405845bf4a80b897f0b9941ef9c6dfd83705db0b72b44837",
+    "ora_sha256": "d196d5b5a0d4609e58bea4acab5319b8377e95e6f00fcdd6ca155d8a5672e185",
+    "library_parity": "Exact title and Shio Blink searches resolved no matching current Library actor sheet. Repository source pinned; Library source hash parity unknown. Source PR is an unmerged draft, not canonical approved art."
+  },
+  "selection_reason": "Shio absent from all19 current Library rotation entries, known continuity concerns in PR43. Preserve Fuyori42/Ren39/Hisui36/Kugai33/Tetsugi30 and older reviews. Exactly one actor sheet selected; no portrait or ward atlas reviewed.",
+  "source_reconciliation": {
+    "default_branch": "ccr-d8829a5a-ays4x1",
+    "base_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+    "library_rotation_version": 19,
+    "library_rotation_sha256": "e9556a0e081de07022a3871430a1b9f4189b760a29f9b7fd364076f2abb1b508",
+    "repository_rotation_sha256": "0370b775bc044ebb142acea0a8ac14677dbcc9070d377783d322a08aff90e09a",
+    "history_policy": "Repository retains its14 entries and appends this review. Library retains all19 and appends this review. Newer unmerged histories are explicitly linked, not silently overwritten or copied over divergent earlier records."
+  },
+  "sequences": [
+    "Blink casting: SB01 ready, SB02 lift, SB03 palm eye, SB04 extend, SB05 open eye, SB06 close fingers, SB07 lower arm, SB08 settle, SB01 ready"
+  ],
+  "geometry": "384x192 RGBA atlas;4x2 row-major96x96 cells;zero gutters;fixed pivot48,86;8px safe padding;24 opaque colors;alpha0/255",
+  "timing": "Existing250/200/250/200/250/250/250/350/1000ms;3000ms one-shot,hold SB01 on completion. No timing assumptions or changes. Inspection GIFs repeat;slow GIF durations doubled.",
+  "defects": [
+    "Boot contact shapes and highlights crawl while the actor remains stationary;front toe retracts and sole lengths vary without an authored step."
+  ],
+  "changes": [
+    "Copy only SB01 boot patches x24..42 and56..69,y81..85 into SB02..08 in PNG and corresponding existing ORA value layers.556 changed pixels. Robe hem,upper boots,body,hands,head,arm gesture and all other pixels unchanged."
+  ],
+  "validation": {
+    "source_sha256": "26dd6b2d54f5ebcc405845bf4a80b897f0b9941ef9c6dfd83705db0b72b44837",
+    "output_sha256": "cb6bf54c590e68c738bfabc8e28f7d2aa354f2deae5708a5f6c674665e46600d",
+    "changed_pixels": 556,
+    "changed_pixels_per_frame": [
+      0,
+      86,
+      37,
+      43,
+      93,
+      102,
+      99,
+      96
+    ],
+    "outside_boot_masks_unchanged": true,
+    "SB01_unchanged": true,
+    "binary_alpha": true,
+    "palette_exact": true,
+    "opaque_colors": 24,
+    "bounds_safe": true,
+    "native_dimensions": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "frame_count": 8,
+    "fixed_sole_patches": true,
+    "ora_recomposition": true,
+    "nearest_4x_exact": true,
+    "decoded_gif_pixels_and_delays_exact": true,
+    "duration_ms": 3000,
+    "slow_duration_ms": 6000,
+    "timing_changed": false,
+    "engine_tested": false,
+    "artistic_approval": false
+  },
+  "inspection": {
+    "all_eight_before_and_after_frames_viewed": true,
+    "source_live_playback_sampled": [
+      1,
+      0.5
+    ],
+    "corrected_live_playback_sampled": [
+      1,
+      0.5
+    ],
+    "corrected_extension_pose_paused": true,
+    "complete_continuous_motion_review": false,
+    "reference": "20150123_0qY82e8qugk.mp4,Library libfile_643cd8293c4c81918fee2fa51a3decf4;10 extracted samples at4fps over13..15.5s viewed. Stationary party hold precedes protective light and settles afterward. This is sampled rhythm/layer context,not full live video inspection."
+  },
+  "findings": [
+    "SB01-03: clear low-hand,lift,palm keys;intended200-250ms holds remain. Upper body and head stay readable; no anticipation frame added.",
+    "SB04-05: extension reads left with sleeve follow-through; stationary anchor and boots call for planted contact. No weapon or damage impact in this defensive activation. Palm eye remains ambiguous at native scale.",
+    "SB06-08: fingers close,forearm lowers,robe settles. Sole repair removes local contour/highlight flicker. Head/hood shifts one pixel upward in later keys and robe/face shading varies; preserved pending broader artistic assessment.",
+    "Recovery returns to exact SB01 at2000ms and holds1000ms. Preview seam is exact terminal-to-initial pixels; SB08-to-SB01 drawing transition still needs continuous review.",
+    "All cells fit safe bounds. No clipping or newly introduced color/alpha/scale drift. Binary alpha and unchanged non-boot pixels confirm no added blur/antialiasing. Original fine contour texture remains.",
+    "Actor-only evidence cannot verify ward-to-ally contact,complete effect choreography or game integration. No second sheet reviewed."
+  ],
+  "remaining_issues": [
+    "Complete continuous before/after playback inspection remains incomplete;current evidence is frame inspection and live samples.",
+    "Palm-eye readability,head/hood and robe volume/shading continuity remain unresolved.",
+    "Engine integration and actor/ward/ally contact untested;source effects and choreography remain in PR43."
+  ],
+  "repository_checks": "bash tools/check.sh exit0;two existing Quick Song/Delay drift warnings and16 existing creature attachment notices. No rule changes.",
+  "github": {
+    "branch": "animation-review/2026-11-21-shio-blink",
+    "base_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+    "draft": true,
+    "publication_record": "https://chatgpt.com/library?file_id=libfile_fde3_f-e3bd1f9d5db0819185bc1c703e5bf682_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+  },
+  "library_outputs": {
+    "shio-casting.v02.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-ca0feca6eab48191afa977842f3b44d8_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "shio-casting.v02.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-4dcbf10a79888191806e5558130aa034_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "shio-casting.v02.ora": "https://chatgpt.com/library?file_id=libfile_fde3_f-15ea01dcdce88191b38bc631d47a61f6_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "shio-casting.v02.4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-dfcccb4c31808191909558449d557611_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "frames.before-after.2x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-fd7051270db0819180b064ae614413af_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "casting.before.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-5f7231b875c08191b7d30d93178df772_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "casting.before.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-aa3c64bb89288191846357e4db8fbf26_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "casting.after.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-323059471a688191b99d1e2f22ffda1c_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "casting.after.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-b593ccb447b08191844282d48f1f047c_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "build(3).py": "https://chatgpt.com/library?file_id=libfile_fde3_f-10f8d0d4c2b481918575dbe26fc890a1_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "validation(3).json": "https://chatgpt.com/library?file_id=libfile_fde3_f-d11f2d2229908191b74e9317fc4454d2_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+  },
+  "next_selection": "Choose another unreviewed eligible character next;do not repeat Shio while this draft remains open unless addressing its recorded outstanding work."
+}

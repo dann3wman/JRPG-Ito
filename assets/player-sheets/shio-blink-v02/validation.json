@@ -1,0 +1,39 @@
+{
+  "source_sha256": "26dd6b2d54f5ebcc405845bf4a80b897f0b9941ef9c6dfd83705db0b72b44837",
+  "output_sha256": "cb6bf54c590e68c738bfabc8e28f7d2aa354f2deae5708a5f6c674665e46600d",
+  "changed_pixels": 556,
+  "changed_pixels_per_frame": [
+    0,
+    86,
+    37,
+    43,
+    93,
+    102,
+    99,
+    96
+  ],
+  "outside_boot_masks_unchanged": true,
+  "SB01_unchanged": true,
+  "binary_alpha": true,
+  "palette_exact": true,
+  "opaque_colors": 24,
+  "bounds_safe": true,
+  "native_dimensions": [
+    384,
+    192
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "frame_count": 8,
+  "fixed_sole_patches": true,
+  "ora_recomposition": true,
+  "nearest_4x_exact": true,
+  "decoded_gif_pixels_and_delays_exact": true,
+  "duration_ms": 3000,
+  "slow_duration_ms": 6000,
+  "timing_changed": false,
+  "engine_tested": false,
+  "artistic_approval": false
+}

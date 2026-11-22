@@ -1,0 +1,309 @@
+{
+  "character": "Shio",
+  "action": "Blink casting",
+  "version": 2,
+  "source_commit": "b0fffb3e56143d9cf337c652790280662cc57af5",
+  "source_sha256": "26dd6b2d54f5ebcc405845bf4a80b897f0b9941ef9c6dfd83705db0b72b44837",
+  "atlas": {
+    "file": "shio-casting.v02.png",
+    "size": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "columns": 4,
+    "rows": 2,
+    "gutter": 0,
+    "outer_margin": 0,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      87,
+      87
+    ],
+    "palette": [
+      "#CBBBAD",
+      "#B5A9A0",
+      "#A1958F",
+      "#8F8E91",
+      "#858284",
+      "#827772",
+      "#71737A",
+      "#6B696B",
+      "#6A605C",
+      "#5B5D64",
+      "#575150",
+      "#4A4B51",
+      "#494445",
+      "#483D38",
+      "#3E3F43",
+      "#3B393C",
+      "#3A3636",
+      "#38302E",
+      "#302F30",
+      "#2C2828",
+      "#292423",
+      "#222020",
+      "#1C1918",
+      "#141211"
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "id": "SB01",
+        "row": 1,
+        "column": 1,
+        "rect": [
+          0,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          27,
+          23,
+          75,
+          86
+        ],
+        "state": "ready"
+      },
+      {
+        "id": "SB02",
+        "row": 1,
+        "column": 2,
+        "rect": [
+          96,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          25,
+          23,
+          76,
+          86
+        ],
+        "state": "lift forearm"
+      },
+      {
+        "id": "SB03",
+        "row": 1,
+        "column": 3,
+        "rect": [
+          192,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          25,
+          23,
+          75,
+          86
+        ],
+        "state": "palm eye"
+      },
+      {
+        "id": "SB04",
+        "row": 1,
+        "column": 4,
+        "rect": [
+          288,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          15,
+          23,
+          75,
+          86
+        ],
+        "state": "extend"
+      },
+      {
+        "id": "SB05",
+        "row": 2,
+        "column": 1,
+        "rect": [
+          0,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          14,
+          22,
+          75,
+          86
+        ],
+        "state": "open eye"
+      },
+      {
+        "id": "SB06",
+        "row": 2,
+        "column": 2,
+        "rect": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          22,
+          75,
+          86
+        ],
+        "state": "close fingers"
+      },
+      {
+        "id": "SB07",
+        "row": 2,
+        "column": 3,
+        "rect": [
+          192,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          21,
+          22,
+          75,
+          86
+        ],
+        "state": "lower arm"
+      },
+      {
+        "id": "SB08",
+        "row": 2,
+        "column": 4,
+        "rect": [
+          288,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          27,
+          22,
+          75,
+          86
+        ],
+        "state": "settle"
+      }
+    ]
+  },
+  "duration_ms": 3000,
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 250
+    },
+    {
+      "frame": 1,
+      "ms": 200
+    },
+    {
+      "frame": 2,
+      "ms": 250
+    },
+    {
+      "frame": 3,
+      "ms": 200
+    },
+    {
+      "frame": 4,
+      "ms": 250
+    },
+    {
+      "frame": 5,
+      "ms": 250
+    },
+    {
+      "frame": 6,
+      "ms": 250
+    },
+    {
+      "frame": 7,
+      "ms": 350
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "loop": false,
+  "terminal": "hold SB01 ready",
+  "timing_assumptions": [],
+  "timing_changed": false,
+  "layout_changed": false,
+  "preview_loop_only": true,
+  "preview_slow_multiplier": 2,
+  "compatibility": "Standalone PR43 actor atlas replacement; not the 54-pose party importer. Retain PR43 effects and choreography. Engine integration not verified.",
+  "repair": {
+    "copy_from": "SB01",
+    "target_frames": [
+      "SB02",
+      "SB03",
+      "SB04",
+      "SB05",
+      "SB06",
+      "SB07",
+      "SB08"
+    ],
+    "local_boxes_exclusive": [
+      [
+        24,
+        81,
+        43,
+        86
+      ],
+      [
+        56,
+        81,
+        70,
+        86
+      ]
+    ]
+  }
+}
