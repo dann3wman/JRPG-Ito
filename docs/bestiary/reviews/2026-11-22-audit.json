@@ -1,0 +1,1692 @@
+{
+  "date": "2026-11-22",
+  "base": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+  "foes": {
+    "widow": {
+      "name": "Tide-Widow",
+      "hp": 3200,
+      "atk": 105,
+      "def": 7,
+      "mdef": 6,
+      "agi": 11,
+      "art": "widow",
+      "ai": "script"
+    },
+    "sailor": {
+      "name": "Drowned Sailor",
+      "hp": 390,
+      "atk": 45,
+      "def": 4,
+      "mdef": 4,
+      "agi": 9,
+      "art": "sailor",
+      "ai": "script",
+      "parentKey": "widow"
+    },
+    "orlen": {
+      "name": "Archbishop Orlen",
+      "hp": 3550,
+      "atk": 115,
+      "def": 15,
+      "mdef": 18,
+      "agi": 10,
+      "art": "orlen",
+      "ai": "script"
+    },
+    "organ": {
+      "name": "Great Organ",
+      "hp": 2370,
+      "atk": 65,
+      "def": 21,
+      "mdef": 9,
+      "agi": 13,
+      "art": "organ",
+      "ai": "script",
+      "parentKey": "orlen"
+    },
+    "bell": {
+      "name": "Spiral Ringer",
+      "hp": 3400,
+      "atk": 80,
+      "def": 9,
+      "mdef": 7,
+      "agi": 11,
+      "art": "bell",
+      "ai": "script"
+    },
+    "leech": {
+      "name": "Blood Drinker",
+      "hp": 1930,
+      "atk": 92,
+      "def": 7,
+      "mdef": 7,
+      "agi": 11,
+      "art": "drinker",
+      "ai": "script"
+    },
+    "hand": {
+      "name": "Funeral Doll",
+      "hp": 500,
+      "atk": 44,
+      "def": 4,
+      "mdef": 4,
+      "agi": 20,
+      "art": "doll",
+      "ai": "script"
+    },
+    "maw": {
+      "name": "Hanging Balloon",
+      "hp": 3200,
+      "atk": 94,
+      "def": 11,
+      "mdef": 11,
+      "agi": 11,
+      "art": "balloon",
+      "ai": "script"
+    },
+    "shell": {
+      "name": "Earthbound Woman",
+      "hp": 1030,
+      "atk": 82,
+      "def": 54,
+      "mdef": 54,
+      "agi": 7,
+      "art": "earth",
+      "ai": "script"
+    },
+    "fencer": {
+      "name": "Red Turtleneck",
+      "hp": 1860,
+      "atk": 66,
+      "def": 12,
+      "mdef": 12,
+      "agi": 18,
+      "art": "neck",
+      "ai": "script",
+      "crit": 0.45
+    },
+    "singer": {
+      "name": "Record Singer",
+      "hp": 500,
+      "atk": 80,
+      "def": 5,
+      "mdef": 5,
+      "agi": 10,
+      "art": "record",
+      "ai": "script"
+    },
+    "glass": {
+      "name": "Long Dreamer",
+      "hp": 4000,
+      "atk": 62,
+      "def": 13,
+      "mdef": 13,
+      "agi": 12,
+      "art": "dreamer",
+      "ai": "script"
+    },
+    "tide": {
+      "name": "Amigara Wall",
+      "hp": 2200,
+      "atk": 42,
+      "def": 11,
+      "mdef": 11,
+      "agi": 11,
+      "art": "holes",
+      "ai": "script"
+    },
+    "exec": {
+      "name": "Headless Sculpture",
+      "hp": 4000,
+      "atk": 130,
+      "def": 18,
+      "mdef": 15,
+      "agi": 10,
+      "art": "headless",
+      "ai": "script"
+    },
+    "pilgrim": {
+      "name": "Grease Father",
+      "hp": 2810,
+      "atk": 185,
+      "def": 80,
+      "mdef": 70,
+      "agi": 10,
+      "art": "grease",
+      "ai": "script"
+    },
+    "ruri": {
+      "name": "Ruri",
+      "hp": 2600,
+      "atk": 100,
+      "def": 12,
+      "mdef": 12,
+      "agi": 15,
+      "art": "ruri",
+      "ai": "script",
+      "crit": 0.15
+    },
+    "unwound": {
+      "name": "Ainsel, the Unwound",
+      "hp": 2400,
+      "atk": 86,
+      "def": 23,
+      "mdef": 23,
+      "agi": 12,
+      "art": "unwound",
+      "ai": "script",
+      "parentKey": "hellstar"
+    },
+    "hellstar": {
+      "name": "The Hellstar",
+      "hp": 3800,
+      "atk": 125,
+      "def": 26,
+      "mdef": 26,
+      "agi": 9,
+      "art": "hellstar",
+      "ai": "script"
+    },
+    "tongue": {
+      "name": "Hellstar Tongue",
+      "hp": 800,
+      "atk": 79,
+      "def": 15,
+      "mdef": 15,
+      "agi": 14,
+      "art": "tongue",
+      "ai": "script",
+      "parentKey": "hellstar"
+    },
+    "hour": {
+      "name": "Star Fragment",
+      "hp": 3780,
+      "atk": 110,
+      "def": 17,
+      "mdef": 17,
+      "agi": 11,
+      "art": "planet",
+      "ai": "script"
+    },
+    "well": {
+      "name": "Village Well",
+      "hp": 1100,
+      "atk": 66,
+      "def": 4,
+      "mdef": 4,
+      "agi": 10,
+      "art": "well",
+      "ai": "script"
+    },
+    "wolf": {
+      "name": "Rewound Wolf",
+      "hp": 950,
+      "atk": 56,
+      "def": 5,
+      "mdef": 5,
+      "agi": 14,
+      "art": "wolf",
+      "ai": "script",
+      "crit": 0.12
+    },
+    "wolfdead": {
+      "name": "The Dead Wolf",
+      "hp": 1,
+      "atk": 0,
+      "def": 0,
+      "mdef": 0,
+      "agi": 11,
+      "art": "wolfdead",
+      "ai": "script"
+    },
+    "hen": {
+      "name": "Lake Hen",
+      "hp": 600,
+      "atk": 62,
+      "def": 6,
+      "mdef": 6,
+      "agi": 7,
+      "art": "hen",
+      "ai": "script"
+    },
+    "chick": {
+      "name": "Wet Chick",
+      "hp": 60,
+      "atk": 26,
+      "def": 2,
+      "mdef": 2,
+      "agi": 12,
+      "art": "chick",
+      "ai": "script",
+      "parentKey": "hen"
+    },
+    "pelt": {
+      "name": "Last Beastcaller's Pelt",
+      "hp": 1300,
+      "atk": 64,
+      "def": 6,
+      "mdef": 6,
+      "agi": 10,
+      "art": "pelt",
+      "ai": "script"
+    },
+    "lamp": {
+      "name": "Lamp Hollow",
+      "hp": 1000,
+      "atk": 62,
+      "def": 8,
+      "mdef": 8,
+      "agi": 9,
+      "art": "lamp",
+      "ai": "script"
+    },
+    "wick": {
+      "name": "Wick",
+      "hp": 220,
+      "atk": 32,
+      "def": 4,
+      "mdef": 4,
+      "agi": 12,
+      "art": "wick",
+      "ai": "script",
+      "parentKey": "lamp"
+    },
+    "rested": {
+      "name": "The Well-Rested",
+      "hp": 1800,
+      "atk": 60,
+      "def": 8,
+      "mdef": 8,
+      "agi": 10,
+      "art": "rested",
+      "ai": "script"
+    },
+    "tracks": {
+      "name": "Your Own Tracks",
+      "hp": 600,
+      "atk": 50,
+      "def": 12,
+      "mdef": 12,
+      "agi": 12,
+      "art": "tracks",
+      "ai": "script"
+    },
+    "helmsman": {
+      "name": "The Helmsman",
+      "hp": 800,
+      "atk": 78,
+      "def": 10,
+      "mdef": 10,
+      "agi": 12,
+      "art": "helmsman",
+      "ai": "script"
+    },
+    "hull": {
+      "name": "The Hull",
+      "hp": 5000,
+      "atk": 62,
+      "def": 22,
+      "mdef": 10,
+      "agi": 8,
+      "art": "hull",
+      "ai": "script",
+      "parentKey": "helmsman"
+    },
+    "chorister": {
+      "name": "Chorister",
+      "hp": 1300,
+      "atk": 74,
+      "def": 8,
+      "mdef": 6,
+      "agi": 11,
+      "art": "choir",
+      "ai": "script"
+    },
+    "whisperer": {
+      "name": "The Whisperer",
+      "hp": 1900,
+      "atk": 60,
+      "def": 12,
+      "mdef": 12,
+      "agi": 12,
+      "art": "whisperer",
+      "ai": "script"
+    },
+    "engine": {
+      "name": "Resonance Engine Mk. IV",
+      "hp": 5000,
+      "atk": 150,
+      "def": 22,
+      "mdef": 14,
+      "agi": 6,
+      "art": "engine",
+      "ai": "script"
+    },
+    "abbot": {
+      "name": "The Abbot",
+      "hp": 2000,
+      "atk": 90,
+      "def": 14,
+      "mdef": 14,
+      "agi": 7,
+      "art": "abbot",
+      "ai": "script"
+    },
+    "listener": {
+      "name": "Lead Listener",
+      "hp": 450,
+      "atk": 66,
+      "def": 8,
+      "mdef": 8,
+      "agi": 9,
+      "art": "listener",
+      "ai": "script",
+      "parentKey": "abbot"
+    },
+    "mirenslot": {
+      "name": "The Mirens' Turn",
+      "hp": 1,
+      "atk": 0,
+      "def": 0,
+      "mdef": 0,
+      "agi": 8,
+      "art": "mirenslot",
+      "ai": "script"
+    },
+    "mirencopy": {
+      "name": "Miren",
+      "hp": 1300,
+      "atk": 82,
+      "def": 16,
+      "mdef": 12,
+      "agi": 14,
+      "art": "mirencopy",
+      "ai": "script",
+      "parentKey": "mirenslot"
+    },
+    "facethief": {
+      "name": "The Face Thief",
+      "hp": 2800,
+      "atk": 80,
+      "def": 14,
+      "mdef": 14,
+      "agi": 7,
+      "art": "facethief",
+      "ai": "script"
+    },
+    "licker": {
+      "name": "The Tongue",
+      "hp": 3000,
+      "atk": 90,
+      "def": 16,
+      "mdef": 16,
+      "agi": 9,
+      "art": "tongue",
+      "ai": "script"
+    },
+    "congregation": {
+      "name": "The Congregation",
+      "hp": 3400,
+      "atk": 84,
+      "def": 14,
+      "mdef": 14,
+      "agi": 10,
+      "art": "congregation",
+      "ai": "script"
+    },
+    "taste": {
+      "name": "Taste of Ostrel",
+      "hp": 3800,
+      "atk": 100,
+      "def": 16,
+      "mdef": 16,
+      "agi": 10,
+      "art": "taste",
+      "ai": "script"
+    },
+    "sleeper": {
+      "name": "Sleeper",
+      "hp": 1,
+      "atk": 0,
+      "def": 0,
+      "mdef": 0,
+      "agi": 1,
+      "art": "sleeper",
+      "ai": "script",
+      "parentKey": "taste"
+    },
+    "greyhound": {
+      "name": "The Grey Hound",
+      "hp": 1,
+      "atk": 62,
+      "def": 10,
+      "mdef": 10,
+      "agi": 13,
+      "art": "greyhound",
+      "ai": "script"
+    }
+  },
+  "encounters": {
+    "well": {
+      "lv": 2,
+      "group": "Story bosses",
+      "title": "Ostrel · Village Well",
+      "foes": [
+        "well"
+      ],
+      "hum": 10,
+      "party": [
+        "kiri",
+        "natsu",
+        "tetsugi"
+      ],
+      "brief": "Spiral Draw pulls one ally back 2 slots, and every 3rd turn the Well hums the note at everyone. Read who it is about to take, and let Natsu keep the party standing while the others hit. (Uzumaki)"
+    },
+    "wolf": {
+      "lv": 3,
+      "group": "Story bosses",
+      "title": "The Border · Rewound Wolf",
+      "foes": [
+        "wolf",
+        "wolfdead"
+      ],
+      "hum": 10,
+      "party": [
+        "kiri",
+        "natsu",
+        "miren"
+      ],
+      "brief": "The wolf has two slots in the turn order, one alive and one dead. When the wolf falls, the dead slot acts within 1 slot and gets it up again, stronger. A hit on the dead slot pins it until its turn, so pin it first, then kill the wolf before that turn comes. (A Gentle Goodbye)"
+    },
+    "hen": {
+      "lv": 5,
+      "group": "Story bosses",
+      "title": "The Chocobo Ranch · Lake Hen",
+      "foes": [
+        "hen"
+      ],
+      "hum": 15,
+      "party": [
+        "miren",
+        "kiri",
+        "natsu"
+      ],
+      "brief": "She stays underwater and calls a Wet Chick every turn. Miren's landing splash brings her up until her next turn, but only the others can hit her then, and every chick still alive when she surfaces heals her 10%. Clear the chicks before he lands. (Gyo)"
+    },
+    "pelt": {
+      "lv": 6,
+      "group": "Story bosses",
+      "title": "The Cliffside Temple · Last Beastcaller's Pelt",
+      "foes": [
+        "pelt"
+      ],
+      "hum": 15,
+      "party": [
+        "goku",
+        "natsu",
+        "kiri"
+      ],
+      "brief": "It is empty and takes no damage. Goku's Summon Hound bites in and holds it open for 2 of its turns, when everyone's hits land, but Goku can't act and the Pelt thrashes at her. Every 4th turn it puts someone on instead. (Frankenstein)"
+    },
+    "ruri1": {
+      "lv": 7,
+      "group": "Story bosses",
+      "title": "Port of Vesk · Ruri",
+      "foes": [
+        "ruri"
+      ],
+      "hum": 15,
+      "party": [
+        "kiri",
+        "natsu",
+        "miren"
+      ],
+      "stats": {
+        "ruri": {
+          "hp": 2600,
+          "atk": 100,
+          "def": 8,
+          "mdef": 8
+        }
+      },
+      "brief": "Miren laughed at her. She Charms whoever is closest to breaking (+12 Stress) and slaps the rest. Soothe the one she is working on before they reach a Stress Check. (Tomie)"
+    },
+    "lamp": {
+      "lv": 10,
+      "group": "Story bosses",
+      "title": "Kuro's Street · Lamp Hollow",
+      "foes": [
+        "lamp",
+        "wick",
+        "wick",
+        "wick"
+      ],
+      "hum": 20,
+      "party": [
+        "kuro",
+        "hisui",
+        "kiri"
+      ],
+      "brief": "The Hollow takes no damage while any Wick is lit, and a Wick that goes out is relit on the next Wick's turn. Darkga can't put out a Wick at full HP, so weaken all three first, then put them out at once: the Hollow is dark for 2 of its turns. (Long Hair in the Attic)"
+    },
+    "rested": {
+      "lv": 12,
+      "group": "Story bosses",
+      "title": "The Flooded Ruins · The Well-Rested",
+      "foes": [
+        "rested",
+        "rested",
+        "rested",
+        "rested"
+      ],
+      "hum": 20,
+      "party": [
+        "kiri",
+        "miren",
+        "natsu"
+      ],
+      "brief": "Four identical sleepers. Only the original takes damage; hitting a copy splits off another (up to 6). Kiri's Lullaby puts every copy to sleep for 2 of its turns, but the original never sleeps: hit the one still awake. (The Long Dream)"
+    },
+    "tracks": {
+      "lv": 16,
+      "group": "Story bosses",
+      "title": "The Calm · Your Own Tracks",
+      "foes": [
+        "tracks",
+        "tracks",
+        "tracks"
+      ],
+      "hum": 25,
+      "party": [
+        "kiri",
+        "natsu",
+        "hisui"
+      ],
+      "brief": "A copy of each of your three, made at the start. Each copy does whatever its original did on their last turn, aimed back at you: hit Natsu's copy and your copy hits Natsu. Choose commands you can stand to have done to you. (The Enigma of Amigara Fault)"
+    },
+    "forty": {
+      "lv": 18,
+      "group": "Story bosses",
+      "title": "The Gull of Patience · Forty Years",
+      "foes": [
+        "helmsman",
+        "hull"
+      ],
+      "hum": 25,
+      "party": [
+        "ren",
+        "kiri",
+        "natsu"
+      ],
+      "brief": "The Helmsman can't be targeted while the ship is on course. A push on the Hull throws it off course until his next turn, but the deck tilts and everyone not Defending is pushed back 2. Defend, then Delay Shot the Hull, then strike. Every 4th turn Course Correction hits everyone. (The Long Dream)"
+    },
+    "choir": {
+      "lv": 19,
+      "group": "Story bosses",
+      "title": "Lumen · Choir of Lumen",
+      "foes": [
+        "chorister",
+        "chorister",
+        "chorister",
+        "chorister"
+      ],
+      "hum": 30,
+      "party": [
+        "sayo",
+        "kuro",
+        "natsu"
+      ],
+      "brief": "Four Choristers. Each Hymn adds more Stress for every other Chorister still singing, and every 4th turn they push the listeners back with Amen. Thin the choir with Darkga and block the big songs with Counter-Melody. (Village of the Sirens)"
+    },
+    "hound": {
+      "lv": 20,
+      "group": "Story bosses",
+      "title": "The Earth Crystal · The Grey Hound",
+      "foes": [
+        "greyhound"
+      ],
+      "hum": 20,
+      "party": [
+        "natsu",
+        "ren",
+        "sayo"
+      ],
+      "guest": "goku",
+      "guestStress": 60,
+      "brief": "Goku fights beside you on her own. The hound can't be KO'd and every hit makes it stronger. When Goku acts with under 50 Stress she calls it back one step, and three steps end the fight, but each of its attacks adds 20 Stress to her (10 if its target Defends and holds it back). Soothe her, and move her turn ahead of its. (Uzumaki)"
+    },
+    "whisperer": {
+      "lv": 20,
+      "group": "Disc 2 bosses",
+      "title": "The Lumen Archive · The Whisperer",
+      "foes": [
+        "whisperer"
+      ],
+      "hum": 25,
+      "party": [
+        "kiri",
+        "natsu",
+        "hisui"
+      ],
+      "brief": "She stands behind one of you and can't be targeted while she does. Each turn she whispers that ally's next command, and on their turn they carry it out instead of yours, sometimes an attack on an ally. Swap the whispered ally out: with no one to stand behind, she can be hit until her next turn. At 50% HP she stands behind two. (The Whispering Woman)"
+    },
+    "ruri5": {
+      "lv": 21,
+      "group": "Disc 2 bosses",
+      "title": "Varn · Ruri ×5",
+      "foes": [
+        "ruri",
+        "ruri",
+        "ruri",
+        "ruri",
+        "ruri"
+      ],
+      "hum": 25,
+      "party": [
+        "kuro",
+        "natsu",
+        "hisui"
+      ],
+      "stats": {
+        "ruri": {
+          "hp": 2000,
+          "atk": 95,
+          "def": 10,
+          "mdef": 10
+        }
+      },
+      "brief": "Five Ruris, each sure she is the Empress's favourite. They attack each other until half of them are down; then the rest stop fighting each other and turn on you. Spread the damage so they keep fighting. (Tomie)"
+    },
+    "engine": {
+      "lv": 21,
+      "group": "Disc 2 bosses",
+      "title": "Varn · Resonance Engine Mk. IV",
+      "foes": [
+        "engine"
+      ],
+      "hum": 25,
+      "party": [
+        "ren",
+        "hisui",
+        "natsu"
+      ],
+      "brief": "It starts slow. Stomp can Paralyze for 2 turns, and every 3rd turn its Resonance adds Stress to everyone. Below 50% HP its turns come 2 slots sooner: Delay Shot and Break keep it slow. (Gyo)"
+    },
+    "listeners": {
+      "lv": 21,
+      "group": "Disc 2 bosses",
+      "title": "The Sunken Monastery · The Hundred Listeners",
+      "foes": [
+        "abbot",
+        "listener",
+        "listener",
+        "listener"
+      ],
+      "hum": 25,
+      "party": [
+        "kiri",
+        "hisui",
+        "natsu"
+      ],
+      "brief": "The Abbot can't be targeted while any of his 3 Lead Listeners stand. A Listener brought to 0 HP is only knocked into its coffin: before the Abbot's next turn, a different ally must seal it by using any item on it. At 50% HP he reopens a sealed coffin every 2nd turn. (Tombs)"
+    },
+    "mirens": {
+      "lv": 22,
+      "group": "Disc 2 bosses",
+      "title": "The Save Point · The Mirens",
+      "foes": [
+        "mirenslot",
+        "mirencopy",
+        "mirencopy",
+        "mirencopy",
+        "mirencopy"
+      ],
+      "hum": 25,
+      "party": [
+        "miren",
+        "kuro",
+        "natsu"
+      ],
+      "brief": "Four copies of Miren share one turn, and answer every time the real Miren acts. Copies in the air can't be targeted, and each copy defeated pushes the real Miren back 2. When only 2 are left they Jump every turn. (Tomie)"
+    },
+    "ruri8": {
+      "lv": 22,
+      "group": "Disc 2 bosses",
+      "title": "Lumen Square · Ruri ×8",
+      "foes": [
+        "ruri",
+        "ruri",
+        "ruri",
+        "ruri",
+        "ruri",
+        "ruri",
+        "ruri",
+        "ruri"
+      ],
+      "hum": 25,
+      "party": [
+        "kuro",
+        "natsu",
+        "sayo"
+      ],
+      "stats": {
+        "ruri": {
+          "hp": 1500,
+          "atk": 90,
+          "def": 10,
+          "mdef": 10
+        }
+      },
+      "brief": "Eight Ruris, furious that the world is talking about another girl. They fight each other until half are down, then turn on you together. Darkga keeps the crowd thin and even. (Tomie)"
+    },
+    "facethief": {
+      "lv": 22,
+      "group": "Disc 2 bosses",
+      "title": "Ostrel · The Face Thief",
+      "foes": [
+        "facethief"
+      ],
+      "hum": 25,
+      "party": [
+        "kiri",
+        "tetsugi",
+        "natsu"
+      ],
+      "aim": {
+        "chakra": true
+      },
+      "brief": "Each turn she stares at one of you and steals a feature: −20% stats each, and with all three gone they are KO'd and she heals 25%. A feature comes back when, before her next turn, an ally heals its owner and someone hits her. At 50% HP she takes only Kiri's face, and only Tetsugi's Chakra can give it back. (The Face Burglar)"
+    },
+    "tongue2": {
+      "lv": 23,
+      "group": "Disc 2 bosses",
+      "title": "The Ear · The Tongue",
+      "foes": [
+        "licker"
+      ],
+      "hum": 25,
+      "party": [
+        "kiri",
+        "natsu",
+        "hisui"
+      ],
+      "brief": "Grab takes whoever has the most Stress out of the turn order: +5 Stress each of its turns, and KO'd after 3. It lets go only after hits from 3 different characters, so Swap someone in for the third taste. Soothe decides who it takes. At 50% HP it takes two. (Hellstar Remina)"
+    },
+    "congregation": {
+      "lv": 24,
+      "group": "Disc 2 bosses",
+      "title": "The Ruins of Lumen · The Congregation",
+      "foes": [
+        "congregation"
+      ],
+      "hum": 25,
+      "party": [
+        "hisui",
+        "natsu",
+        "kiri"
+      ],
+      "brief": "It stares at one of you, starting with Natsu, and takes no damage from them; the stare adds 10 Stress a turn. A critical hit or a Limit Break pulls the stare onto whoever landed it. At 50% HP it splits into 3 Faces, each staring at a different one of you. (Hellstar Remina)"
+    },
+    "taste": {
+      "lv": 25,
+      "group": "Disc 2 bosses",
+      "title": "The Tongue's Surface · Taste of Ostrel",
+      "foes": [
+        "taste",
+        "sleeper",
+        "sleeper",
+        "sleeper",
+        "sleeper"
+      ],
+      "hum": 20,
+      "party": [
+        "kuro",
+        "sayo",
+        "kiri"
+      ],
+      "brief": "It heals 5% a turn for each of its 4 Sleepers still humming. A hit wakes a Sleeper (no damage, +10 Stress to whoever wakes a villager, once per action), and it drifts back after 2 of the boss's turns, so wake them all close together. At 50% HP Kiri's sleeping body hums them back to sleep every other turn; Counter-Melody stops it. (Uzumaki)"
+    },
+    "widow": {
+      "lv": 8,
+      "group": "Story bosses",
+      "title": "Port of Vesk · Tide-Widow",
+      "foes": [
+        "widow"
+      ],
+      "hum": 20,
+      "party": [
+        "kiri",
+        "natsu",
+        "tetsugi"
+      ],
+      "brief": "At half HP she enters phase 2 and releases 2 Drowned Sailors, which re-form 3 of her turns after you defeat them. Undertow pushes whoever is about to act back 3 slots. (The Thing That Drifted Ashore)"
+    },
+    "ruri2": {
+      "lv": 14,
+      "group": "Story bosses",
+      "title": "Moogle Market · Ruri ×2",
+      "foes": [
+        "ruri",
+        "ruri"
+      ],
+      "hum": 15,
+      "party": [
+        "miren",
+        "hisui",
+        "kuro"
+      ],
+      "brief": "Two Ruris, each claiming to be the one you killed. They attack each other more as one weakens, and Charm adds 12 Stress to whoever is closest to breaking. (Tomie)"
+    },
+    "orlen": {
+      "lv": 22,
+      "group": "Story bosses",
+      "title": "Lumen · Orlen and the Great Organ",
+      "foes": [
+        "orlen",
+        "organ"
+      ],
+      "hum": 45,
+      "party": [
+        "kuro",
+        "sayo",
+        "natsu"
+      ],
+      "brief": "Orlen fills Overdrive as your party gains Stress; when full, he and the Organ attack together with Requiem. Counter-Melody makes him hold his voice, but the Organ will play into it to clear the way. Destroy the Organ and it is rebuilt 4 of his turns later. (Honored Ancestors · The Human Chair)"
+    },
+    "final": {
+      "lv": 32,
+      "group": "Story bosses",
+      "title": "The Hellstar · Final battle",
+      "foes": [
+        "unwound",
+        "hellstar",
+        "tongue"
+      ],
+      "hum": 90,
+      "party": [
+        "kiri",
+        "natsu",
+        "kugai"
+      ],
+      "brief": "The Hellstar marks a target with Gaze, then Devours it, but only while its Tongue is attached. Blink on the marked ally makes it look elsewhere. Sever the Tongue to buy time; it regrows. Its Overdrive fills as your party gains Stress. (Uzumaki · Hellstar Remina)"
+    },
+    "t_kiri": {
+      "lv": 8,
+      "group": "Role tests",
+      "role": "kiri",
+      "title": "Test · Spiral Ringer",
+      "foes": [
+        "bell"
+      ],
+      "hum": 40,
+      "party": [
+        "kiri",
+        "tetsugi",
+        "hisui"
+      ],
+      "brief": "It adds 6 Danger every turn, and each Toll adds 14 Stress. High Danger makes Spiral Cut hit harder, and Lullaby clears the Stress. (Uzumaki)"
+    },
+    "t_natsu": {
+      "lv": 8,
+      "group": "Role tests",
+      "role": "natsu",
+      "title": "Test · Blood Drinker",
+      "foes": [
+        "leech"
+      ],
+      "hum": 10,
+      "party": [
+        "natsu",
+        "miren",
+        "kuro"
+      ],
+      "brief": "Heavy hits on one target at a time, each adding 10 Stress. Once it is below 75% HP, Drain hits the ally with the lowest HP% and heals it. Cure and Soothe keep the target alive. (Blood-Slurping Darkness)"
+    },
+    "t_tetsugi": {
+      "lv": 10,
+      "group": "Role tests",
+      "role": "tetsugi",
+      "title": "Test · Funeral Dolls",
+      "foes": [
+        "hand",
+        "hand",
+        "hand",
+        "hand"
+      ],
+      "hum": 10,
+      "party": [
+        "tetsugi",
+        "kiri",
+        "natsu"
+      ],
+      "brief": "Four fast, weak dolls that target the ally with the highest max HP. Counter strikes back, but the first doll it catches goes for someone else while Counter is ready. (A Doll's Hellish Burial)"
+    },
+    "t_miren": {
+      "lv": 12,
+      "group": "Role tests",
+      "role": "miren",
+      "title": "Test · Hanging Balloon",
+      "foes": [
+        "maw"
+      ],
+      "hum": 15,
+      "party": [
+        "miren",
+        "natsu",
+        "tetsugi"
+      ],
+      "brief": "Every 4th turn, Noose Drop hits the whole party hard. Characters who are airborne from Jump avoid it. (The Hanging Balloons)"
+    },
+    "t_goku": {
+      "lv": 12,
+      "group": "Role tests",
+      "role": "goku",
+      "title": "Test · Earthbound Woman",
+      "foes": [
+        "shell"
+      ],
+      "hum": 10,
+      "party": [
+        "goku",
+        "kiri",
+        "natsu"
+      ],
+      "brief": "Her DEF makes light hits do almost nothing, and she hits 10% harder every turn she takes. Summon Hound breaks through and Howl softens Topple. (The Earthbound)"
+    },
+    "t_hisui": {
+      "lv": 14,
+      "group": "Role tests",
+      "role": "hisui",
+      "title": "Test · Red Turtleneck",
+      "foes": [
+        "fencer"
+      ],
+      "hum": 10,
+      "party": [
+        "hisui",
+        "natsu",
+        "kiri"
+      ],
+      "brief": "A fast duelist with a 45% crit rate who targets the fastest party member. Every crit on Hisui gives her +10% damage; at +30% it stops attacking her. (Tomio • Red Turtleneck)"
+    },
+    "t_kuro": {
+      "lv": 14,
+      "group": "Role tests",
+      "role": "kuro",
+      "title": "Test · Record Singers",
+      "foes": [
+        "singer",
+        "singer",
+        "singer",
+        "singer",
+        "singer"
+      ],
+      "hum": 20,
+      "party": [
+        "kuro",
+        "natsu",
+        "tetsugi"
+      ],
+      "brief": "Five weak singers, each adding 4 Stress to the party every turn. Darkga hits all of them at once. (Used Record)"
+    },
+    "t_ren": {
+      "lv": 18,
+      "group": "Role tests",
+      "role": "ren",
+      "title": "Test · Long Dreamer",
+      "foes": [
+        "glass"
+      ],
+      "hum": 15,
+      "party": [
+        "ren",
+        "kiri",
+        "natsu"
+      ],
+      "brief": "Its damage rises 25% with every turn it takes. Delay Shot keeps it from acting, so it stays weaker, but Breaking it wakes it angry. (The Long Dream)"
+    },
+    "t_sayo": {
+      "lv": 20,
+      "group": "Role tests",
+      "role": "sayo",
+      "title": "Test · Amigara Wall",
+      "foes": [
+        "tide"
+      ],
+      "hum": 20,
+      "party": [
+        "sayo",
+        "kiri",
+        "hisui"
+      ],
+      "brief": "After 9 of its turns the party walks into the wall and you lose. Its Calling pushes everyone who hears it back 2 slots. Quick Song gets you more turns first. Counter-Melody turns a Calling into a Beckon that pushes back only whoever acts next. (The Enigma of Amigara Fault)"
+    },
+    "t_kugai": {
+      "lv": 22,
+      "group": "Role tests",
+      "role": "kugai",
+      "title": "Test · Headless Sculpture",
+      "foes": [
+        "exec"
+      ],
+      "hum": 10,
+      "party": [
+        "kugai",
+        "kuro",
+        "natsu"
+      ],
+      "brief": "Always targets the ally with the lowest HP%, and after two Chisels Behead hits for massive damage. Provoke delays Behead one turn; then it ignores Provoke, so Cover the weak. (Headless Sculptures)"
+    },
+    "t_fuyori": {
+      "lv": 24,
+      "group": "Role tests",
+      "role": "fuyori",
+      "title": "Test · Grease Father",
+      "foes": [
+        "pilgrim"
+      ],
+      "hum": 20,
+      "party": [
+        "fuyori",
+        "kiri",
+        "tetsugi"
+      ],
+      "inv": {
+        "potion": 0,
+        "phoenix": 0,
+        "earplugs": 0
+      },
+      "brief": "You start with no items, it has 80 DEF, and Grease Rain adds 16 Stress to everyone without Earplugs. Mix restocks the bag and Acid lowers its DEF. (Glyceride)"
+    },
+    "t_shio": {
+      "lv": 28,
+      "group": "Role tests",
+      "role": "shio",
+      "title": "Test · Star Fragment",
+      "foes": [
+        "hour"
+      ],
+      "hum": 95,
+      "party": [
+        "shio",
+        "kiri",
+        "natsu"
+      ],
+      "brief": "At 95 Danger, Lost Turns come often. Its Gaze names a target one turn before Devour. Foresee removes Lost Turns, and Blink on the marked ally makes it Gaze at someone else. (Hellstar Remina)"
+    }
+  },
+  "scripts": {
+    "widow": "{\"phases\":[{\"id\":\"p1\",\"label\":\"Above 50% HP\"},{\"id\":\"p2\",\"label\":\"50% HP or below\",\"when\":\"e=>e.hp<=e.maxhp/2\",\"enter\":\"release\"}],\"parts\":[{\"key\":\"sailor\",\"respawn\":3,\"label\":\"Drowned Sailor ×2 (from Release)\"}],\"rules\":[{\"phase\":\"p1\",\"label\":\"Phase 1\",\"roll\":[[25,\"lullaby\"],[25,\"undertow\"],[50,\"attack\"]]},{\"phase\":\"p2\",\"label\":\"Phase 2\",\"roll\":[[20,\"lullaby\"],[45,\"undertow\"],[35,\"attack\"]]}],\"skills\":{\"attack\":{\"name\":\"Attack\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.4× ATK\",\"desc\":\"15% crit chance.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.4, {crit:Math.random()<.15, src:e})\"},\"undertow\":{\"name\":\"Undertow\",\"rank\":4,\"tags\":[\"Physical\",\"Delay\"],\"target\":\"next\",\"late\":true,\"power\":\"0.6× ATK\",\"desc\":\"Pushes the ally about to act back 3 slots (+12 Stress).\",\"run\":\"(e,t)=>{ const b = t.blink; hitParty(t, e.atk*.6, {src:e}); if (t.alive && !b) delayUnit(t, 3); }\"},\"lullaby\":{\"name\":\"Lullaby\",\"rank\":5,\"tags\":[\"Sound\",\"Stress\"],\"sound\":true,\"target\":\"all\",\"power\":\"—\",\"desc\":\"+14 Stress to each ally. +6 Danger.\",\"run\":\"()=>{ targetsForFoes().forEach(t=>addStress(t, 14, 'Lullaby', {sound:true})); addHum(6); }\"},\"release\":{\"name\":\"Release\",\"rank\":4,\"tags\":[\"Summon\",\"Phase\"],\"target\":\"none\",\"power\":\"—\",\"desc\":\"Phase 2 entry. 2 Drowned Sailors crawl out of her body. Each re-forms 3 of her turns after it is defeated.\",\"run\":\"e=>{ for (let i=0;i<2;i++) spawnPart(e, 'sailor', SLOT*(2+i*2)); }\"}}}",
+    "sailor": "{\"rules\":[{\"label\":\"Every turn\",\"roll\":[[50,\"attack\"],[\"e=>nearBrink(targetsForFoes(), 25) ? 150 : 50\",\"stench\"]],\"rollText\":{\"attack\":\"50% (25% if an ally is within 25 Stress of a Stress Check or fleeing)\",\"stench\":\"50% (75% then)\"}}],\"skills\":{\"attack\":{\"name\":\"Attack\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.2× ATK\",\"desc\":\"8% crit chance.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.2, {crit:Math.random()<.08, src:e})\"},\"stench\":{\"name\":\"Stench\",\"rank\":3,\"tags\":[\"Physical\",\"Stress\"],\"target\":\"brink\",\"power\":\"0.4× ATK\",\"desc\":\"+8 Stress to the ally closest to a Stress Check or fleeing.\",\"run\":\"(e,t)=>{ hitParty(t, e.atk*.4, {src:e}); if (t.alive) addStress(t, 8, 'Stench'); }\"}}}",
+    "orlen": "{\"overdrive\":true,\"phases\":[{\"id\":\"p1\",\"label\":\"Above 50% HP\"},{\"id\":\"p2\",\"label\":\"50% HP or below: the ancestors wake (Sermon +30 Stress)\",\"when\":\"e=>e.hp<=e.maxhp/2\",\"free\":true}],\"parts\":[{\"key\":\"organ\",\"respawn\":4,\"hpPct\":0.5,\"label\":\"Great Organ (rebuilt at 50% HP)\"}],\"rules\":[{\"label\":\"Counter-Melody is up (he holds his voice)\",\"react\":true,\"when\":\"()=>G.melody\",\"skill\":\"crozier\"},{\"label\":\"Overdrive is full and the Great Organ is standing\",\"when\":\"e=>e.od>=100 && foeOf('organ')\",\"skill\":\"requiem\"},{\"label\":\"Overdrive is full but the Great Organ is destroyed\",\"when\":\"e=>e.od>=100\",\"skill\":\"lament\"},{\"label\":\"The Great Organ is below 50% HP\",\"when\":\"()=>{ const o = foeOf('organ'); return o && o.hp < o.maxhp/2; }\",\"chance\":40,\"skill\":\"benediction\"},{\"label\":\"At least one ally can hear sound attacks\",\"when\":\"()=>hearers().length>0\",\"chance\":\"()=>nearBrink(hearers(), 25) ? 75 : 45\",\"chanceText\":\"45% (75% if a listener is within 25 Stress of a Stress Check or fleeing)\",\"skill\":\"sermon\"},{\"label\":\"Otherwise\",\"skill\":\"crozier\"}],\"skills\":{\"requiem\":{\"name\":\"Requiem\",\"rank\":6,\"tags\":[\"Combined\",\"Sound\",\"Stress\",\"Delay\"],\"sound\":true,\"odReset\":true,\"target\":\"all\",\"power\":\"1.0× ATK\",\"desc\":\"Orlen and the Great Organ attack together: damage, +20 Stress and pushed back 2 for each ally. The Organ's next turn is synced to Orlen's.\",\"run\":\"e=>{ const o = foeOf('organ'); targetsForFoes().forEach(t=>{ hitParty(t, e.atk*1.0, {src:e}); if (t.alive && !soundImmune(t)){ addStress(t, 20, 'Requiem', {sound:true}); delayUnit(t, 2); } });\\n          if (o){ o.ct = 6*tickOf(e); o.plan = planNext(o); log('The Great Organ\\\\'s next turn is synced to Orlen\\\\'s.'); } }\"},\"lament\":{\"name\":\"Lament\",\"rank\":4,\"tags\":[\"Sound\",\"Stress\"],\"sound\":true,\"odReset\":true,\"target\":\"stress\",\"noProvoke\":true,\"power\":\"—\",\"desc\":\"With no Organ to play, Orlen spends his Overdrive alone: +35 Stress to the ally with the most Stress.\",\"run\":\"(e,t)=>{ if (t) addStress(t, 35, 'Lament', {sound:true}); }\"},\"benediction\":{\"name\":\"Benediction\",\"rank\":4,\"tags\":[\"Heal\"],\"target\":\"none\",\"power\":\"—\",\"desc\":\"Restores up to 300 HP to the Great Organ.\",\"run\":\"()=>{ const o = foeOf('organ'); if (!o) return; const n = Math.min(300, o.maxhp-o.hp); o.hp += n; fx(o.id, `+${n}`, 'heal'); log(`Great Organ +${n} HP.`); }\"},\"sermon\":{\"name\":\"Sermon\",\"rank\":4,\"tags\":[\"Sound\",\"Stress\"],\"sound\":true,\"target\":\"stress\",\"noProvoke\":true,\"power\":\"—\",\"desc\":\"+20 Stress (+30 in phase 2). +4 Danger.\",\"run\":\"(e,t)=>{ if (t) addStress(t, p2(e) ? 30 : 20, 'Sermon', {sound:true}); addHum(4); }\"},\"crozier\":{\"name\":\"Crozier\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.5× ATK\",\"desc\":\"10% crit chance.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.5, {crit:Math.random()<.1, src:e})\"}}}",
+    "organ": "{\"rules\":[{\"label\":\"Counter-Melody is up (it draws the song out for Orlen)\",\"react\":true,\"when\":\"()=>G.melody\",\"skill\":\"chord\"},{\"label\":\"This is its 5th, 10th, 15th… turn\",\"when\":\"(e,n)=>n%5===0\",\"skill\":\"chord\"},{\"label\":\"Otherwise\",\"skill\":\"drone\"}],\"skills\":{\"chord\":{\"name\":\"Chord\",\"rank\":3,\"tags\":[\"Sound\",\"Stress\",\"Delay\"],\"sound\":true,\"target\":\"all\",\"power\":\"—\",\"desc\":\"+15 Stress and pushed back 2 for each ally. +5 Danger.\",\"run\":\"()=>{ targetsForFoes().forEach(t=>{ if (soundImmune(t)){ log(`${t.name} is immune to sound attacks.`); return; } addStress(t, 15, 'Chord', {sound:true}); delayUnit(t, 2); }); addHum(5); }\"},\"drone\":{\"name\":\"Drone\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"all\",\"power\":\"0.8× ATK\",\"desc\":\"Hits the whole party.\",\"run\":\"e=>targetsForFoes().forEach(t=>hitParty(t, e.atk*.8, {src:e}))\"}}}",
+    "ruri": "{\"phases\":[{\"id\":\"p1\",\"label\":\"Another Ruri is alive (or she came alone)\"},{\"id\":\"p2\",\"label\":\"Last Ruri standing: Spite, ATK +30%\",\"when\":\"e=>e.hadPair && !otherRuri(e)\",\"free\":true,\"enterFn\":\"e=>{ e.atk = Math.round(e.atk*1.3); }\"}],\"rules\":[{\"label\":\"Another Ruri is alive, and fewer than half of a crowd of 5 or more are down\",\"when\":\"e=>otherRuri(e) && !ruriTruce()\",\"chance\":\"e=>15 + Math.round(60*(1 - weakestRuri(e).hp/weakestRuri(e).maxhp))\",\"chanceText\":\"15%, rising to 75% as the weakest copy loses HP\",\"skill\":\"jealousy\"},{\"label\":\"Otherwise\",\"roll\":[[\"()=>nearBrink(targetsForFoes(), 20) ? 65 : 45\",\"charm\"],[55,\"slap\"]],\"rollText\":{\"charm\":\"45% (54% if an ally is within 20 Stress of a Stress Check or fleeing)\",\"slap\":\"55% (46% then)\"}}],\"skills\":{\"jealousy\":{\"name\":\"Jealousy\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"foe\",\"power\":\"1.4× ATK\",\"desc\":\"Attacks the most wounded copy of herself.\",\"run\":\"e=>{ const o = weakestRuri(e); if (o) hitEnemy(o, e.atk*1.4); }\"},\"charm\":{\"name\":\"Charm\",\"rank\":3,\"tags\":[\"Stress\"],\"target\":\"brink\",\"power\":\"—\",\"desc\":\"+12 Stress to the ally closest to a Stress Check or fleeing.\",\"run\":\"(e,t)=>addStress(t, 12, 'Charm')\"},\"slap\":{\"name\":\"Slap\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.3× ATK\",\"desc\":\"15% crit chance.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.3, {crit:Math.random()<e.crit, src:e})\"}}}",
+    "unwound": "{\"phases\":[{\"id\":\"p1\",\"label\":\"The Hellstar is above 50% HP\"},{\"id\":\"p2\",\"label\":\"The Hellstar is at 50% HP or below: Offbeat +20 Stress\",\"when\":\"e=>{ const h = parentOf(e); return !!h && h.hp<=h.maxhp/2; }\",\"free\":true}],\"rules\":[{\"label\":\"This is its 3rd, 6th, 9th… turn\",\"when\":\"(e,n)=>n%3===0\",\"skill\":\"unwind\"},{\"label\":\"Otherwise\",\"skill\":\"offbeat\"}],\"skills\":{\"unwind\":{\"name\":\"Unwind\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"all\",\"power\":\"1.0× ATK\",\"desc\":\"Hits the whole party.\",\"run\":\"e=>targetsForFoes().forEach(t=>hitParty(t, e.atk*1.0, {src:e}))\"},\"offbeat\":{\"name\":\"Offbeat\",\"rank\":3,\"tags\":[\"Sound\",\"Stress\",\"Physical\"],\"sound\":true,\"target\":\"last\",\"late\":true,\"power\":\"0.8× ATK\",\"desc\":\"Hits whoever acted last (decided when it acts): damage, +12 Stress (+20 in phase 2).\",\"run\":\"(e,t)=>{ hitParty(t, e.atk*.8, {src:e}); if (t.alive) addStress(t, p2(e) ? 20 : 12, 'Offbeat', {sound:true}); }\"}}}",
+    "hellstar": "{\"overdrive\":true,\"phases\":[{\"id\":\"p1\",\"label\":\"Above 50% HP\"},{\"id\":\"p2\",\"label\":\"50% HP or below: it opens wider (Danger 100, Devour 3.2×, Tongue regrows in 2)\",\"when\":\"e=>e.hp<=e.maxhp/2\",\"free\":true,\"enterFn\":\"()=>{ G.hum = 100; syncVoid(); }\"}],\"parts\":[{\"key\":\"tongue\",\"respawn\":3,\"respawnP2\":2,\"label\":\"Hellstar Tongue\"}],\"rules\":[{\"label\":\"Overdrive is full and the Tongue is attached\",\"when\":\"e=>e.od>=100 && foeOf('tongue')\",\"skill\":\"swallow\"},{\"label\":\"Overdrive is full but the Tongue is severed\",\"when\":\"e=>e.od>=100\",\"skill\":\"hunger\"},{\"label\":\"The marked ally has Blink and someone else does not (it looks away)\",\"react\":true,\"when\":\"e=>markValid(e) && e.mark.blink && targetsForFoes().some(t=>!t.blink)\",\"skill\":\"gaze\"},{\"label\":\"An ally is marked and the Tongue is attached\",\"when\":\"e=>markValid(e) && foeOf('tongue')\",\"skill\":\"devour\"},{\"label\":\"An ally is marked but the Tongue is severed\",\"when\":\"e=>markValid(e)\",\"skill\":\"stare\"},{\"label\":\"Otherwise\",\"skill\":\"gaze\"}],\"skills\":{\"gaze\":{\"name\":\"Gaze\",\"rank\":3,\"tags\":[\"Mark\"],\"target\":\"unblinked\",\"noProvoke\":true,\"power\":\"—\",\"desc\":\"Marks a target. Next turn it Devours them (if the Tongue is attached) or Stares.\",\"run\":\"(e,t)=>{ e.mark = t; log(`${t.name} is marked.`); }\"},\"devour\":{\"name\":\"Devour\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"mark\",\"power\":\"2.8× ATK (3.2× in phase 2)\",\"desc\":\"Massive damage to the marked ally. Misses if they are airborne; Blink dodges it.\",\"run\":\"(e,t)=>{ e.mark = null; if (t.airborne){ log(`Devour misses: ${t.name} is airborne.`); return; } hitParty(t, e.atk*(p2(e)?3.2:2.8), {src:e}); }\"},\"stare\":{\"name\":\"Stare\",\"rank\":3,\"tags\":[\"Stress\"],\"target\":\"mark\",\"noProvoke\":true,\"power\":\"—\",\"desc\":\"With no Tongue, it can only stare: +15 Stress to the marked ally. The mark clears.\",\"run\":\"(e,t)=>{ e.mark = null; addStress(t, 15, 'Stare'); }\"},\"swallow\":{\"name\":\"Swallow\",\"rank\":6,\"tags\":[\"Combined\",\"Physical\",\"Stress\"],\"odReset\":true,\"target\":\"all\",\"power\":\"1.6× ATK\",\"desc\":\"The star and its Tongue together: heavy damage and +20 Stress to each ally. The Tongue's next turn is synced to the star's.\",\"run\":\"e=>{ const tg = foeOf('tongue'); targetsForFoes().forEach(t=>{ hitParty(t, e.atk*1.6, {src:e}); if (t.alive) addStress(t, 20, 'Swallow'); });\\n          if (tg){ tg.ct = 6*tickOf(e); tg.plan = planNext(tg); log('The Tongue\\\\'s next turn is synced to the Hellstar\\\\'s.'); } }\"},\"hunger\":{\"name\":\"Hunger\",\"rank\":4,\"tags\":[\"Physical\"],\"odReset\":true,\"target\":\"lowest\",\"power\":\"2.0× ATK\",\"desc\":\"With no Tongue, it vents its Overdrive into the weakest ally.\",\"run\":\"(e,t)=>hitParty(t, e.atk*2.0, {src:e})\"}}}",
+    "tongue": "{\"rules\":[{\"label\":\"Every turn\",\"skill\":\"lick\"}],\"skills\":{\"lick\":{\"name\":\"Lick\",\"rank\":3,\"tags\":[\"Physical\",\"Delay\"],\"target\":\"random\",\"power\":\"1.0× ATK\",\"desc\":\"Damage and pushes the target back 1 slot.\",\"run\":\"(e,t)=>{ const b = t.blink; hitParty(t, e.atk*1.0, {src:e}); if (t.alive && !b) delayUnit(t, 1); }\"}}}",
+    "bell": "{\"notes\":[\"Every turn, before it acts: +6 Danger. Spiral Cut gets stronger as Danger rises.\"],\"onTurn\":\"()=>addHum(6)\",\"rules\":[{\"label\":\"This is its 3rd, 6th, 9th… turn\",\"when\":\"(e,n)=>n%3===0\",\"skill\":\"peal\"},{\"label\":\"Otherwise\",\"skill\":\"toll\"}],\"skills\":{\"peal\":{\"name\":\"Peal\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.9× ATK\",\"desc\":\"One heavy hit.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.9, {crit:Math.random()<e.crit, src:e})\"},\"toll\":{\"name\":\"Toll\",\"rank\":3,\"tags\":[\"Sound\",\"Stress\",\"Physical\"],\"sound\":true,\"target\":\"all\",\"power\":\"0.6× ATK\",\"desc\":\"Light damage and +14 Stress to each ally.\",\"run\":\"e=>targetsForFoes().forEach(t=>{ hitParty(t, e.atk*.6, {src:e}); if (t.alive) addStress(t, 14, 'Toll', {sound:true}); })\"}}}",
+    "leech": "{\"rules\":[{\"label\":\"It is below 75% HP and did not Drain last turn\",\"when\":\"e=>e.hp < e.maxhp*.75 && e.last!=='drain'\",\"skill\":\"drain\"},{\"label\":\"Otherwise\",\"skill\":\"bite\"}],\"skills\":{\"drain\":{\"name\":\"Drain\",\"rank\":3,\"tags\":[\"Physical\",\"Heal\"],\"target\":\"lowest\",\"power\":\"1.1× ATK\",\"desc\":\"Hits the ally with the lowest HP% and heals itself by the damage dealt.\",\"run\":\"(e,t)=>{ const d = hitParty(t, e.atk*1.1, {src:e}); if (d){ e.hp = Math.min(e.maxhp, e.hp + d); fx(e.id, `+${d}`, 'heal'); log(`${e.name} recovers ${d} HP.`); } }\"},\"bite\":{\"name\":\"Bite\",\"rank\":3,\"tags\":[\"Physical\",\"Stress\"],\"target\":\"random\",\"power\":\"1.5× ATK\",\"desc\":\"+10 Stress to the target.\",\"run\":\"(e,t)=>{ hitParty(t, e.atk*1.5, {crit:Math.random()<e.crit, src:e}); if (t.alive) addStress(t, 10, 'Bite'); }\"}}}",
+    "hand": "{\"notes\":[\"Comes in groups of 4. Each one acts often (Rank 2).\",\"The first doll to be countered remembers it: while an ally has Counter ready, that one doll goes for someone else. If it falls, the next countered doll learns.\"],\"rules\":[{\"label\":\"It is the first standing doll to have been countered, and an ally has Counter ready\",\"react\":true,\"when\":\"e=>e.stung && G.enemies.find(x=>x.key===e.key && x.alive && x.stung)===e && targetsForFoes().some(t=>t.counter)\",\"skill\":\"clutch\",\"target\":\"uncountered\"},{\"label\":\"Otherwise\",\"skill\":\"clutch\"}],\"skills\":{\"clutch\":{\"name\":\"Clutch\",\"rank\":2,\"tags\":[\"Physical\"],\"target\":\"biggest\",\"power\":\"1.1× ATK\",\"desc\":\"Fast and light.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.1, {crit:Math.random()<e.crit, src:e})\"}}}",
+    "maw": "{\"rules\":[{\"label\":\"This is its 4th, 8th, 12th… turn\",\"when\":\"(e,n)=>n%4===0\",\"skill\":\"drop\"},{\"label\":\"Otherwise\",\"skill\":\"noose\"}],\"skills\":{\"drop\":{\"name\":\"Noose Drop\",\"rank\":3,\"tags\":[\"Physical\",\"Stress\"],\"target\":\"all\",\"power\":\"3.8× ATK\",\"desc\":\"Heavy damage and +10 Stress to each ally on the ground. Airborne allies are not hit.\",\"run\":\"e=>{ targetsForFoes().forEach(t=>{ hitParty(t, e.atk*3.8, {src:e}); if (t.alive) addStress(t, 10, 'Noose Drop'); }); actives().filter(a=>a.airborne).forEach(a=>log(`${a.name} is airborne and avoids Noose Drop.`)); }\"},\"noose\":{\"name\":\"Noose\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"0.9× ATK\",\"desc\":\"A single swing.\",\"run\":\"(e,t)=>hitParty(t, e.atk*0.9, {crit:Math.random()<e.crit, src:e})\"}}}",
+    "shell": "{\"notes\":[\"Very high DEF and Magic DEF: light hits barely hurt her.\",\"Howl lowers her damage by 20%.\",\"Every turn she sinks the ground further: +10% damage per turn taken, so long fights get dangerous.\"],\"onTurn\":\"e=>{ e.power = Math.round((e.power + .1)*100)/100; }\",\"status\":\"e=>`DEF ${e.def} · Damage +${Math.round(e.power*100)}%`\",\"rules\":[{\"label\":\"Every turn\",\"skill\":\"topple\"}],\"skills\":{\"topple\":{\"name\":\"Topple\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.5× ATK\",\"desc\":\"A slow, heavy hit.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.5, {crit:Math.random()<e.crit, src:e})\"}}}",
+    "fencer": "{\"notes\":[\"Targets the ally with the highest Speed, until crits have given Hisui +30% damage; then it leaves her alone.\"],\"status\":\"()=>'Crit 45%'\",\"rules\":[{\"label\":\"An ally has +30% damage or more from crits (Hisui)\",\"when\":\"()=>targetsForFoes().some(t=>t.bloom >= 3)\",\"skill\":\"lunge\",\"target\":\"fastestCold\"},{\"label\":\"Otherwise\",\"skill\":\"lunge\"}],\"skills\":{\"lunge\":{\"name\":\"Lunge\",\"rank\":2,\"tags\":[\"Physical\"],\"target\":\"fastest\",\"power\":\"1.0× ATK\",\"desc\":\"45% crit chance.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.0, {crit:Math.random()<e.crit, src:e})\"}}}",
+    "singer": "{\"notes\":[\"Comes in groups of 5.\",\"Counter-Melody cancels the whole Last Song, hit included.\"],\"rules\":[{\"label\":\"Every turn\",\"skill\":\"song\"}],\"skills\":{\"song\":{\"name\":\"Last Song\",\"rank\":3,\"tags\":[\"Sound\",\"Stress\",\"Physical\"],\"sound\":true,\"target\":\"all\",\"power\":\"0.7× ATK\",\"desc\":\"+4 Stress to each ally, then a light hit on one random ally.\",\"run\":\"e=>{ targetsForFoes().forEach(t=>addStress(t, 4, 'Last Song', {sound:true})); const t = aiTarget('random', e); if (t) hitParty(t, e.atk*.7, {src:e}); }\"}}}",
+    "glass": "{\"notes\":[\"Its damage only grows on turns it takes, so pushing it back keeps it weak.\",\"Breaking it wakes it angry: its next turn is Rude Awakening, so Break it only when you can use the opening.\"],\"onTurn\":\"e=>{ e.power = Math.round((e.power + .25)*100)/100; log(`${e.name} dreams longer: damage +${Math.round(e.power*100)}%.`, 'foe'); }\",\"status\":\"e=>`Damage +${Math.round(e.power*100)}%${e.jolted ? ' · woken by Break' : ''}`\",\"rules\":[{\"label\":\"It was Broken since its last turn\",\"react\":true,\"when\":\"e=>e.jolted\",\"skill\":\"wake\"},{\"label\":\"Otherwise\",\"skill\":\"lash\"}],\"skills\":{\"wake\":{\"name\":\"Rude Awakening\",\"rank\":3,\"tags\":[\"Physical\",\"Stress\"],\"target\":\"all\",\"power\":\"1.0× ATK\",\"desc\":\"Woken by Break: damage and +10 Stress to each ally, and its damage rises another +25%.\",\"run\":\"e=>{ e.jolted = false; targetsForFoes().forEach(t=>{ hitParty(t, e.atk*1.0, {src:e}); if (t.alive) addStress(t, 10, 'Rude Awakening'); });\\n          e.power = Math.round((e.power + .25)*100)/100; log(`${e.name} wakes angry: damage +${Math.round(e.power*100)}%.`, 'foe'); }\"},\"lash\":{\"name\":\"Dream Lash\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.3× ATK, +25% per turn taken\",\"desc\":\"Its passive adds +25% damage at the start of each of its turns, with no limit.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.3, {crit:Math.random()<e.crit, src:e})\"}}}",
+    "tide": "{\"notes\":[\"Nothing stops the countdown.\",\"If Counter-Melody is up when it acts, it Beckons instead of Calling, and the song fades unused.\"],\"status\":\"e=>`The Pull on its turn 9 (${Math.max(0, 9 - e.count)} to go)`\",\"rules\":[{\"label\":\"This is its 9th turn\",\"when\":\"(e,n)=>n>=9\",\"skill\":\"pull\"},{\"label\":\"Counter-Melody is up\",\"react\":true,\"when\":\"()=>G.melody\",\"skill\":\"beckon\"},{\"label\":\"Otherwise\",\"skill\":\"calling\"}],\"skills\":{\"pull\":{\"name\":\"The Pull\",\"rank\":3,\"tags\":[\"Defeat\"],\"target\":\"all\",\"power\":\"—\",\"desc\":\"The party walks into the holes made for them. You lose.\",\"run\":\"()=>actives().forEach(t=>{ if (t.alive){ t.airborne = false; t.hp = 0; t.alive = false; } })\"},\"beckon\":{\"name\":\"Beckon\",\"rank\":4,\"tags\":[\"Delay\"],\"target\":\"next\",\"late\":true,\"power\":\"—\",\"desc\":\"It waits out the song while a silent hole fits the ally about to act: pushed back 1 slot. Slow (Delay 4). The Counter-Melody fades unused.\",\"run\":\"(e,t)=>{ G.melody = false; log('The Counter-Melody fades unused.'); delayUnit(t, 1); }\"},\"calling\":{\"name\":\"Calling\",\"rank\":3,\"tags\":[\"Sound\",\"Stress\",\"Delay\",\"Physical\"],\"sound\":true,\"target\":\"all\",\"power\":\"0.6× ATK\",\"desc\":\"Each ally who hears it steps toward the holes: +6 Stress and pushed back 2 slots. Then light damage to all.\",\"run\":\"e=>{ targetsForFoes().forEach(t=>{ if (soundImmune(t)){ log(`${t.name} is immune to sound attacks.`); return; } addStress(t, 6, 'Calling', {sound:true}); delayUnit(t, 2); }); targetsForFoes().forEach(t=>hitParty(t, e.atk*.6, {src:e})); }\"}}}",
+    "exec": "{\"notes\":[\"Behead comes after two Chisels. If Provoke is up then, it Chisels Kugai instead and holds Behead for one turn; a held Behead ignores Provoke, so cover the weakest.\"],\"status\":\"e=>`Chisels since Behead: ${e.charge||0}`\",\"rules\":[{\"label\":\"Behead was held last turn\",\"when\":\"e=>(e.charge||0) >= 3\",\"skill\":\"execute\"},{\"label\":\"Provoke is up (Behead waits a turn)\",\"react\":true,\"when\":\"()=>provokeUp()\",\"skill\":\"chisel\"},{\"label\":\"It has Chiseled twice since its last Behead\",\"when\":\"e=>(e.charge||0) >= 2\",\"skill\":\"behead\"},{\"label\":\"Otherwise\",\"skill\":\"chisel\"}],\"skills\":{\"behead\":{\"name\":\"Behead\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"lowest\",\"power\":\"4.6× ATK\",\"desc\":\"Massive damage to the ally with the lowest HP%.\",\"run\":\"(e,t)=>{ e.charge = 0; hitParty(t, e.atk*4.6, {src:e}); }\"},\"execute\":{\"name\":\"Held Behead\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"lowest\",\"noProvoke\":true,\"power\":\"4.6× ATK\",\"desc\":\"A Behead it waited a turn for. Provoke cannot pull it away; Cover and Blink still work.\",\"run\":\"(e,t)=>{ e.charge = 0; hitParty(t, e.atk*4.6, {src:e}); }\"},\"chisel\":{\"name\":\"Chisel\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"lowest\",\"power\":\"1.4× ATK\",\"desc\":\"Always finds the ally with the lowest HP%.\",\"run\":\"(e,t)=>{ e.charge = (e.charge||0) + 1; hitParty(t, e.atk*1.4, {crit:Math.random()<e.crit, src:e}); }\"}}}",
+    "pilgrim": "{\"notes\":[\"Your bag starts empty in this fight.\",\"80 DEF; Acid lowers it to 56.\",\"Grease Rain only falls on allies without Earplugs, and it holds the rain while fewer than 2 of them are exposed.\"],\"status\":\"e=>`DEF ${e.def}`\",\"rules\":[{\"label\":\"At least 2 allies have no Earplugs and it did not rain last turn\",\"when\":\"e=>unplugged().length >= 2 && e.last!=='rain'\",\"skill\":\"rain\"},{\"label\":\"Otherwise\",\"skill\":\"fist\"}],\"skills\":{\"rain\":{\"name\":\"Grease Rain\",\"rank\":3,\"tags\":[\"Stress\"],\"target\":\"all\",\"power\":\"—\",\"desc\":\"+16 Stress to each ally without Earplugs. +4 Danger. Not a sound attack.\",\"run\":\"()=>{ targetsForFoes().forEach(t=>{ if (t.earplugs > 0) log(`${t.name}'s Earplugs keep the grease out.`); else addStress(t, 16, 'Grease Rain'); }); addHum(4); }\"},\"fist\":{\"name\":\"Slick Fist\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.4× ATK\",\"desc\":\"A greasy punch.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.4, {crit:Math.random()<e.crit, src:e})\"}}}",
+    "hour": "{\"notes\":[\"Provoke redirects Devour to Kugai.\",\"Blink on the marked ally makes it look away and Gaze at someone without Blink. Once everyone has Blink it Devours anyway.\"],\"rules\":[{\"label\":\"The marked ally has Blink and someone else does not (it looks away)\",\"react\":true,\"when\":\"e=>markValid(e) && e.mark.blink && targetsForFoes().some(t=>!t.blink)\",\"skill\":\"gaze\"},{\"label\":\"An ally is marked\",\"when\":\"e=>markValid(e)\",\"skill\":\"devour\"},{\"label\":\"Otherwise\",\"skill\":\"gaze\"}],\"skills\":{\"gaze\":{\"name\":\"Gaze\",\"rank\":3,\"tags\":[\"Mark\"],\"target\":\"unblinked\",\"noProvoke\":true,\"power\":\"—\",\"desc\":\"Marks a target. Next turn it Devours them.\",\"run\":\"(e,t)=>{ e.mark = t; log(`${t.name} is marked.`); }\"},\"devour\":{\"name\":\"Devour\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"mark\",\"power\":\"6.0× ATK\",\"desc\":\"Massive damage to the marked ally. Misses if they are airborne; Blink dodges it.\",\"run\":\"(e,t)=>{ e.mark = null; if (t.airborne){ log(`Devour misses: ${t.name} is airborne.`); return; } hitParty(t, e.atk*6.0, {src:e}); }\"}}}",
+    "well": "{\"notes\":[\"The tutorial fight. No tricks beyond the turn order and Stress.\"],\"rules\":[{\"label\":\"This is its 3rd, 6th, 9th… turn\",\"when\":\"(e,n)=>n%3===0\",\"skill\":\"note\"},{\"label\":\"Otherwise\",\"roll\":[[40,\"draw\"],[60,\"bucket\"]]}],\"skills\":{\"draw\":{\"name\":\"Spiral Draw\",\"rank\":3,\"tags\":[\"Physical\",\"Delay\"],\"target\":\"random\",\"power\":\"0.6× ATK\",\"desc\":\"The water turns: damage, and the target is pulled back 2 slots (+8 Stress).\",\"run\":\"(e,t)=>{ const b = t.blink; hitParty(t, e.atk*.6, {src:e}); if (t.alive && !b) delayUnit(t, 2); }\"},\"bucket\":{\"name\":\"Bucket\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.4× ATK\",\"desc\":\"10% crit chance.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.4, {crit:Math.random()<e.crit, src:e})\"},\"note\":{\"name\":\"The Note\",\"rank\":4,\"tags\":[\"Sound\",\"Stress\"],\"sound\":true,\"target\":\"all\",\"power\":\"—\",\"desc\":\"+10 Stress to each ally. +4 Danger.\",\"run\":\"()=>{ targetsForFoes().forEach(t=>addStress(t, 10, 'The Note', {sound:true})); addHum(4); }\"}}}",
+    "wolf": "{\"notes\":[\"It shares the fight with The Dead Wolf, its second slot in the turn order.\",\"When it falls, The Dead Wolf's turn comes forward to within 1 slot.\",\"Each time it gets up again, its ATK rises 20%.\"],\"status\":\"e=>e.revived ? `Got up ${e.revived}× · ATK ${e.atk}` : ''\",\"onDown\":\"()=>{ const d = foeOf('wolfdead'); if (d){ d.ct = Math.min(d.ct, SLOT); d.plan = planNext(d); log('The Dead Wolf\\\\'s turn comes forward.', 'foe'); } }\",\"rules\":[{\"label\":\"Every turn\",\"roll\":[[65,\"bite\"],[35,\"hamstring\"]]}],\"skills\":{\"bite\":{\"name\":\"Bite\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.5× ATK\",\"desc\":\"12% crit chance.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.5, {crit:Math.random()<e.crit, src:e})\"},\"hamstring\":{\"name\":\"Hamstring\",\"rank\":3,\"tags\":[\"Physical\",\"Delay\"],\"target\":\"lowest\",\"power\":\"0.9× ATK\",\"desc\":\"Pushes the ally with the lowest HP% back 1 slot (+4 Stress).\",\"run\":\"(e,t)=>{ const b = t.blink; hitParty(t, e.atk*.9, {src:e}); if (t.alive && !b) delayUnit(t, 1); }\"}}}",
+    "wolfdead": "{\"notes\":[\"It takes no damage. Any hit pins it until its next turn.\",\"On its turn: with the wolf down and the slot pinned, the wolf stays dead and the fight ends. With the wolf down and no pin, the wolf gets up. With the wolf up, it counts back and the pin wears off.\"],\"status\":\"e=>e.pinned ? 'Pinned until its next turn' : 'Not pinned'\",\"hpOf\":\"()=>({ hp:0, max:1, text:'Already dead' })\",\"onDamage\":\"e=>{ if (!e.pinned) log(`${e.name} is pinned until its next turn.`, 'foe'); e.pinned = true; fx(e.id, 'Pinned'); return 0; }\",\"rules\":[{\"label\":\"The wolf is down and this slot is pinned\",\"react\":true,\"when\":\"e=>!wolfOf().alive && e.pinned\",\"skill\":\"still\"},{\"label\":\"The wolf is down\",\"react\":true,\"when\":\"()=>!wolfOf().alive\",\"skill\":\"rewind\"},{\"label\":\"Otherwise\",\"skill\":\"count\"}],\"skills\":{\"still\":{\"name\":\"Stays Dead\",\"rank\":3,\"tags\":[\"Defeat\"],\"target\":\"none\",\"power\":\"—\",\"desc\":\"Pinned while the wolf is down: the wolf stays dead, and its second slot closes. You win.\",\"run\":\"e=>{ e.pinned = false; e.alive = false; e.hp = 0; log('The wolf stays down. Its second slot closes.', 'foe'); }\"},\"rewind\":{\"name\":\"Rewind\",\"rank\":3,\"tags\":[\"Heal\",\"Stress\"],\"target\":\"all\",\"power\":\"—\",\"desc\":\"The wolf gets up at 75% HP with ATK +20% for each time it has. +8 Stress to each ally.\",\"run\":\"()=>{ const w = wolfOf(); w.revived = (w.revived||0) + 1; w.atk = Math.round(FOES.wolf.atk*(1 + .2*w.revived)); reviveFoe(w, .75);\\n          log(`The Rewound Wolf gets up at ${w.hp} HP.`, 'foe'); targetsForFoes().forEach(t=>addStress(t, 8, 'Rewind')); }\"},\"count\":{\"name\":\"Count Back\",\"rank\":3,\"tags\":[\"Stress\"],\"target\":\"all\",\"power\":\"—\",\"desc\":\"+6 Stress to each ally. A pin wears off.\",\"run\":\"e=>{ if (e.pinned) log(`The pin on ${e.name} wears off.`); e.pinned = false; targetsForFoes().forEach(t=>addStress(t, 6, 'Count Back')); }\"}}}",
+    "hen": "{\"notes\":[\"Underwater she can't be targeted. Miren landing from Jump splashes her up until her next turn; his landing hit never reaches her.\",\"Each time she surfaces, everyone who sees her gains 10 Stress.\",\"Every 4th turn she comes up for air on her own.\",\"At the start of each of her turns she calls a Wet Chick, up to 3.\"],\"parts\":[{\"key\":\"chick\",\"respawn\":0,\"label\":\"Wet Chick (one called each of her turns, up to 3)\"}],\"targetable\":\"e=>!!e.up\",\"hidden\":\"()=>'underwater'\",\"landProof\":true,\"status\":\"e=>e.up ? 'Surfaced until her next turn' : ''\",\"onTurn\":\"e=>{\\n      if (e.up){ e.up = false; log('The Lake Hen sinks back under.', 'foe'); }\\n      if (chicks().length < 3){ const c = G.enemies.find(x=>x.key==='chick' && !x.alive); if (c){ reviveFoe(c, 1); log(`${c.name} climbs out of the lake.`, 'foe'); } else spawnPart(e, 'chick', SLOT*2); } }\",\"onLand\":\"(e,u)=>surface(e, `${u.name}'s splash brings the Lake Hen up`)\",\"rules\":[{\"label\":\"This is its 4th, 8th, 12th… turn\",\"when\":\"(e,n)=>n%4===0\",\"skill\":\"air\"},{\"label\":\"Otherwise\",\"skill\":\"peck\"}],\"skills\":{\"peck\":{\"name\":\"Peck\",\"rank\":4,\"tags\":[\"Physical\"],\"target\":\"lowest\",\"power\":\"1.5× ATK\",\"desc\":\"From under the water, at the ally with the lowest HP%.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.5, {crit:Math.random()<e.crit, src:e})\"},\"air\":{\"name\":\"Come Up for Air\",\"rank\":4,\"tags\":[\"Heal\"],\"target\":\"none\",\"power\":\"—\",\"desc\":\"She surfaces until her next turn and can be hit: +10 Stress to each ally. Each Wet Chick alive heals her 10% HP.\",\"run\":\"e=>surface(e, 'The Lake Hen comes up for air')\"}}}",
+    "chick": "{\"rules\":[{\"label\":\"Every turn\",\"roll\":[[60,\"peep\"],[40,\"hum\"]]}],\"skills\":{\"peep\":{\"name\":\"Peep\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.0× ATK\",\"desc\":\"A light, wet peck.\",\"run\":\"(e,t)=>hitParty(t, e.atk, {src:e})\"},\"hum\":{\"name\":\"Hum\",\"rank\":3,\"tags\":[\"Sound\",\"Stress\"],\"sound\":true,\"target\":\"stress\",\"noProvoke\":true,\"power\":\"—\",\"desc\":\"+8 Stress to the ally closest to a Stress Check who can hear it.\",\"run\":\"(e,t)=>{ if (t) addStress(t, 8, 'Hum', {sound:true}); }\"}}}",
+    "pelt": "{\"notes\":[\"Empty, it takes no damage.\",\"Summon Hound bites in and holds it open for 2 of its turns: every hit lands, Goku can't act, and it thrashes at her. The hold ends early if Goku falls.\",\"On its 4th, 8th… turn it puts on the ally with the lowest HP%, and can be hurt until its next turn.\"],\"init\":\"e=>{ e.hold = 0; e.worn = null; }\",\"status\":\"e=>e.hold > 0 && gokuUp() ? `Held open by the hound for ${e.hold} more of its turns` : e.worn ? `Wearing ${e.worn.name}: takes damage until its next turn` : 'Empty: takes no damage'\",\"onDamage\":\"(e,d,src)=>{\\n      if (src.key==='hound' && !(e.hold > 0)){ e.hold = 2; e.plan = planNext(e); log('The hound bites in and holds the Pelt open. Goku holds the leash.', 'foe'); }\\n      if (peltOpen(e)) return d;\\n      log(`${e.name} is empty: the hit passes through.`); fx(e.id, 'Empty'); return 0; }\",\"holds\":\"(e,u)=>u.id==='goku' && e.hold > 0\",\"holdText\":\"()=>'Goku holds the hound\\\\'s leash and can\\\\'t act.'\",\"onTurn\":\"e=>{\\n      if (e.worn){ log(`The Pelt slips off ${e.worn.name}.`, 'foe'); e.worn = null; }\\n      if (e.hold > 0 && !gokuUp()){ e.hold = 0; log('With Goku down, the hound lets go.', 'foe'); } }\",\"afterTurn\":\"e=>{ if (e.hold > 0 && --e.hold === 0) log('The hound lets go. The Pelt is empty again.', 'foe'); }\",\"rules\":[{\"label\":\"The hound holds it open (it thrashes at Goku)\",\"react\":true,\"when\":\"e=>e.hold > 0 && gokuUp()\",\"skill\":\"thrash\"},{\"label\":\"This is its 4th, 8th, 12th… turn\",\"when\":\"(e,n)=>n%4===0\",\"skill\":\"wear\"},{\"label\":\"Otherwise\",\"skill\":\"sleeve\"}],\"skills\":{\"sleeve\":{\"name\":\"Empty Sleeve\",\"rank\":3,\"tags\":[\"Physical\",\"Stress\"],\"target\":\"random\",\"power\":\"1.3× ATK\",\"desc\":\"The arm is a person's: damage and +8 Stress. 10% crit chance.\",\"run\":\"(e,t)=>{ hitParty(t, e.atk*1.3, {crit:Math.random()<e.crit, src:e}); if (t.alive) addStress(t, 8, 'Empty Sleeve'); }\"},\"thrash\":{\"name\":\"Thrash\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"summoner\",\"noProvoke\":true,\"power\":\"1.3× ATK\",\"desc\":\"Held open, it fights the hound through Goku.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.3, {src:e})\"},\"wear\":{\"name\":\"Put On\",\"rank\":3,\"tags\":[\"Physical\",\"Stress\"],\"target\":\"lowest\",\"power\":\"0.8× ATK\",\"desc\":\"Damage and +15 Stress to the ally with the lowest HP%. Full, it takes damage until its next turn.\",\"run\":\"(e,t)=>{ const b = t.blink; hitParty(t, e.atk*.8, {src:e}); if (t.alive && !b){ addStress(t, 15, 'Put On'); e.worn = t; log(`The Pelt puts on ${t.name}. Full, it can be hurt until its next turn.`, 'foe'); } }\"}}}",
+    "lamp": "{\"notes\":[\"It takes no damage while any Wick is lit.\",\"When the last Wick goes out it is dark for 2 of its turns and takes damage; after the second, it relights every Wick.\"],\"parts\":[{\"key\":\"wick\",\"respawn\":0,\"label\":\"Wick ×3 (relit by the other Wicks, or by the Hollow when the dark ends)\"}],\"init\":\"e=>{ e.dark = 0; }\",\"status\":\"e=>e.dark > 0 ? `Dark for ${e.dark} more of its turns: takes damage` : `${wicksLit().length} Wick${wicksLit().length===1?'':'s'} lit: takes no damage`\",\"onDamage\":\"(e,d)=>{ if (e.dark > 0) return d; log(`A Wick is still lit: ${e.name} takes no damage.`); fx(e.id, 'Lit'); return 0; }\",\"afterTurn\":\"e=>{ if (e.dark > 0 && --e.dark === 0){ G.enemies.filter(x=>x.key==='wick').forEach(x=>reviveFoe(x, 1)); log('The Lamp Hollow relights every Wick.', 'foe'); } }\",\"rules\":[{\"label\":\"It is dark\",\"react\":true,\"when\":\"e=>e.dark > 0\",\"skill\":\"grope\"},{\"label\":\"This is its 3rd, 6th, 9th… turn\",\"when\":\"(e,n)=>n%3===0\",\"skill\":\"smoke\"},{\"label\":\"Otherwise\",\"skill\":\"flare\"}],\"skills\":{\"flare\":{\"name\":\"Flare\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.5× ATK\",\"desc\":\"10% crit chance.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.5, {crit:Math.random()<e.crit, src:e})\"},\"smoke\":{\"name\":\"Lamp Smoke\",\"rank\":3,\"tags\":[\"Stress\"],\"target\":\"all\",\"power\":\"—\",\"desc\":\"Smoke from something that isn't oil: +14 Stress to each ally. +4 Danger.\",\"run\":\"()=>{ targetsForFoes().forEach(t=>addStress(t, 14, 'Lamp Smoke')); addHum(4); }\"},\"grope\":{\"name\":\"Grope\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.0× ATK\",\"desc\":\"In the dark, it feels for someone.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.0, {src:e})\"}}}",
+    "wick": "{\"notes\":[\"An all-enemy attack (Darkga, an all-enemy Limit Break) can't put out a Wick at full HP: it stays lit at 1 HP.\",\"While another Wick is out, its turn relights one at full HP and halves its own HP.\"],\"onDamage\":\"(e,d,src)=>{ if (src.area && e.hp === e.maxhp && d >= e.hp){ log(`${e.name} was at full flame: it gutters but stays lit.`); return e.hp - 1; } return d; }\",\"onDown\":\"e=>{ const l = parentOf(e); if (l && l.alive && !wicksLit().length){ l.dark = 2; l.plan = planNext(l); log('Every Wick is out. The Lamp Hollow goes dark for 2 of its turns.', 'foe'); } }\",\"rules\":[{\"label\":\"Another Wick is out\",\"react\":true,\"when\":\"()=>G.enemies.some(x=>x.key==='wick' && !x.alive)\",\"skill\":\"relight\"},{\"label\":\"Otherwise\",\"roll\":[[55,\"gutter\"],[45,\"spit\"]]}],\"skills\":{\"relight\":{\"name\":\"Relight\",\"rank\":3,\"tags\":[\"Heal\"],\"target\":\"none\",\"power\":\"—\",\"desc\":\"Relights one Wick that is out, at full HP, from its own flame: this Wick drops to half its HP.\",\"run\":\"e=>{ const x = G.enemies.find(x=>x.key==='wick' && !x.alive); if (!x) return; reviveFoe(x, 1); e.hp = Math.max(1, Math.ceil(e.hp/2)); fx(e.id, 'Half'); log(`${x.name} is lit again from ${e.name}'s flame (${e.name} drops to ${e.hp} HP).`, 'foe'); }\"},\"gutter\":{\"name\":\"Gutter\",\"rank\":3,\"tags\":[\"Physical\",\"Stress\"],\"target\":\"random\",\"power\":\"0.7× ATK\",\"desc\":\"Damage and +6 Stress.\",\"run\":\"(e,t)=>{ hitParty(t, e.atk*.7, {src:e}); if (t.alive) addStress(t, 6, 'Gutter'); }\"},\"spit\":{\"name\":\"Spit Oil\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.2× ATK\",\"desc\":\"It isn't oil.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.2, {src:e})\"}}}",
+    "rested": "{\"notes\":[\"Four identical sleepers. One is the original, and only it takes damage. They all show its HP.\",\"A hit on a copy wakes it and shows it is a copy, but splits off a new sleeper (up to 6 bodies).\",\"At the start of each sleeper's turn, the original rests: +1.5% HP. Sleeping copies take no turns, so they don't rest it.\",\"Kiri's Lullaby puts every copy to sleep for 2 of its turns. The original never sleeps.\",\"When the original falls, the copies go with it.\"],\"init\":\"e=>{ e.seen = null; if (!G.enemies.some(x=>x.original)) pick(G.enemies.filter(x=>x.key==='rested')).original = true; }\",\"hpOf\":\"()=>{ const o = G.enemies.find(x=>x.original); return { hp:o.hp, max:o.maxhp, text:`HP ${o.hp}/${o.maxhp}` }; }\",\"status\":\"e=>e.seen==='copy' ? 'A copy' : e.seen==='original' ? 'The original' : ''\",\"onTurn\":\"()=>{ const o = G.enemies.find(x=>x.original); if (o && o.alive && o.hp < o.maxhp){ const h = Math.min(o.maxhp - o.hp, Math.round(o.maxhp*.015)); o.hp += h; log(`The sleepers rest (+${h} HP).`, 'foe'); } }\",\"onDamage\":\"(e,d)=>{\\n      if (e.original){ e.seen = 'original'; return d; }\\n      e.seen = 'copy'; if (e.sleep){ e.sleep = 0; e.plan = planNext(e); }\\n      if (G.enemies.filter(x=>x.key==='rested' && x.alive).length < 6){ const c = spawnPart(e, 'rested', SLOT*2); c.parentId = null; c.seen = null; log(`It was a copy. A new sleeper rolls out of it.`, 'foe'); }\\n      else log('It was a copy. There is no room for another.', 'foe');\\n      fx(e.id, 'A copy'); return 0; }\",\"onPartyAct\":\"(e,u,act)=>{ if (act.kind!=='skill' || act.key!=='lullaby') return;\\n      if (e.original){ e.seen = 'original'; log('One of the sleepers does not close its eyes.', 'foe'); } else { e.sleep = 2; e.seen = 'copy'; } }\",\"onDown\":\"e=>{ if (!e.original) return; G.enemies.filter(x=>x.key==='rested' && x.alive).forEach(x=>{ x.alive = false; x.hp = 0; }); log('The copies stop breathing with it.', 'foe'); }\",\"rules\":[{\"label\":\"Every turn\",\"roll\":[[65,\"yawn\"],[35,\"snore\"]]}],\"skills\":{\"yawn\":{\"name\":\"Yawn\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"0.9× ATK\",\"desc\":\"Damage, and a 10% chance of Sleep: the target loses their next turn unless a hit wakes them first.\",\"run\":\"(e,t)=>{ hitParty(t, e.atk*.9, {src:e}); if (t.alive && Math.random() < .1){ t.sleep = 1; log(`${t.name} falls asleep.`, 'dread'); } }\"},\"snore\":{\"name\":\"Snore\",\"rank\":3,\"tags\":[\"Sound\",\"Stress\"],\"sound\":true,\"target\":\"all\",\"power\":\"—\",\"desc\":\"+10 Stress to each ally who can hear it.\",\"run\":\"()=>targetsForFoes().forEach(t=>addStress(t, 10, 'Snore', {sound:true}))\"}}}",
+    "tracks": "{\"notes\":[\"A copy of each of the three you brought, with their stats and 130% of their HP.\",\"Each attack it copies also adds 10 Stress to whoever it hits.\",\"On its turn a copy does what its original did on their last turn. If you attacked Natsu's copy, your copy attacks Natsu. A heal on an ally heals that ally's copy. Defend makes it brace.\",\"Commands with nothing to copy (Soothe, Howl, Counter-Melody, Provoke, Mix, Foresee, Earplugs) do nothing when it repeats them.\"],\"init\":\"(e,i)=>{ const o = actives()[i]; Object.assign(e, { of:o.id, name:`${o.name}'s Tracks`, maxhp:Math.round(o.maxhp*1.3), hp:Math.round(o.maxhp*1.3), atk:o.atk, def:o.def, mdef:o.def, mag:o.mag, agi:o.agi }); }\",\"targetable\":\"e=>!e.air\",\"hidden\":\"()=>'in the air'\",\"status\":\"e=>{ const o = originOf(e); return `Copies ${o.name}: ${o.last ? actName(o.last) : 'nothing yet'}`; }\",\"planName\":\"e=>e.air ? 'Landing' : originOf(e).last ? actName(originOf(e).last) : 'Wait'\",\"planText\":\"e=>{ const o = originOf(e); if (e.air) return `Landing → ${e.landOn ? e.landOn.name : 'random ally'}`; if (!o.last) return 'Wait';\\n      const m = mirrorOf(o.last), t = mirrorTarget(e); return `${actName(o.last)} → ${m.all ? 'all' : t ? t.name : hostile(m) ? 'random ally' : e.name}`; }\",\"onTurn\":\"e=>{ e.defending = false; e.counter = false; }\",\"onDamage\":\"(e,d,src)=>{\\n      if (e.blink){ e.blink = false; fx(e.id, 'Dodge'); log(`${e.name} dodges.`); return 0; }\\n      if (e.defending) d = Math.round(d/2);\\n      if (e.cover){ e.cover = false; d = Math.round(d/2); log(`Cover halves the damage to ${e.name}.`); }\\n      if (e.counter && src.attacker && src.attacker.alive && d < e.hp){ log(`${e.name} counters ${src.attacker.name}.`, 'foe'); hitParty(src.attacker, e.atk*1.6); }\\n      return d; }\",\"rules\":[{\"label\":\"Every turn\",\"skill\":\"follow\"}],\"skills\":{\"follow\":{\"name\":\"Follow\",\"rank\":3,\"rankOf\":\"e=>{ const a = originOf(e).last; return e.air || !a ? 3 : a.kind==='skill' ? (a.key==='jump' ? 5 : SKILLS[a.key].delay) : a.kind==='limit' ? 4 : 3; }\",\"tags\":[\"Mirror\"],\"target\":\"mirror\",\"power\":\"As its original's command\",\"desc\":\"Repeats its original's last command at the same power, turned back on the party. Its Delay is that command's Delay.\",\"run\":\"e=>mirrorRun(e)\"}}}",
+    "helmsman": "{\"notes\":[\"While the ship is on course he can't be targeted.\",\"Any push on the Hull throws the ship off course until his next turn. If the Hull is destroyed, the ship stays off course.\"],\"parts\":[{\"key\":\"hull\",\"respawn\":0,\"label\":\"The Hull\"}],\"targetable\":\"()=>offCourse()\",\"hidden\":\"()=>'at the helm, on course'\",\"status\":\"()=>offCourse() ? 'Off course: he can be hit' : ''\",\"onTurn\":\"()=>{ const h = foeOf('hull'); if (h && h.off){ h.off = false; log('The Helmsman brings the ship back on course.', 'foe'); } }\",\"rules\":[{\"label\":\"This is its 4th, 8th, 12th… turn\",\"when\":\"(e,n)=>n%4===0\",\"skill\":\"correct\"},{\"label\":\"Otherwise\",\"roll\":[[60,\"pin\"],[40,\"route\"]]}],\"skills\":{\"correct\":{\"name\":\"Course Correction\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"all\",\"power\":\"1.1× ATK\",\"desc\":\"The ship heels over: damage to each ally.\",\"run\":\"e=>targetsForFoes().forEach(t=>hitParty(t, e.atk*1.1, {src:e}))\"},\"pin\":{\"name\":\"Belaying Pin\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.3× ATK\",\"desc\":\"10% crit chance.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.3, {crit:Math.random()<e.crit, src:e})\"},\"route\":{\"name\":\"Same Route\",\"rank\":3,\"tags\":[\"Stress\"],\"target\":\"brink\",\"power\":\"—\",\"desc\":\"+12 Stress to the ally closest to a Stress Check. It has always been this route.\",\"run\":\"(e,t)=>addStress(t, 12, 'Same Route')\"}}}",
+    "hull": "{\"notes\":[\"A push on it (Delay Shot, a Limit Break push, Disrupt) throws the ship off course: everyone not Defending is pushed back 2 slots, and the Helmsman can be hit until his next turn.\"],\"status\":\"e=>e.off ? 'Off course until the Helmsman\\\\'s next turn' : 'On course'\",\"onPush\":\"e=>{ if (e.off) return; e.off = true; log('The Hull is thrown off course. The deck tilts.', 'foe');\\n      targetsForFoes().forEach(t=>{ if (t.defending) log(`${t.name} is braced and keeps their footing.`); else delayUnit(t, 2); }); }\",\"onDown\":\"()=>log('The Hull breaks up. With nothing left to steer, the Helmsman stands exposed.', 'foe')\",\"rules\":[{\"label\":\"Every turn\",\"roll\":[[60,\"creak\"],[40,\"crew\"]]}],\"skills\":{\"creak\":{\"name\":\"Creak\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.2× ATK\",\"desc\":\"A beam swings loose.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.2, {src:e})\"},\"crew\":{\"name\":\"The Old Crew\",\"rank\":3,\"tags\":[\"Stress\"],\"target\":\"brink\",\"power\":\"—\",\"desc\":\"+10 Stress to the ally closest to a Stress Check: the crew who flew the route before climb out of the planks.\",\"run\":\"(e,t)=>addStress(t, 10, 'The Old Crew')\"}}}",
+    "chorister": "{\"notes\":[\"Comes in fours. Each Hymn adds 2 more Stress for every other Chorister still singing.\"],\"rules\":[{\"label\":\"This is its 4th, 8th, 12th… turn\",\"when\":\"(e,n)=>n%4===0\",\"skill\":\"amen\"},{\"label\":\"Otherwise\",\"roll\":[[60,\"hymn\"],[40,\"plate\"]]}],\"skills\":{\"hymn\":{\"name\":\"Hymn\",\"rank\":3,\"tags\":[\"Sound\",\"Stress\"],\"sound\":true,\"target\":\"all\",\"power\":\"—\",\"desc\":\"+4 Stress to each ally who can hear it, +2 more for each other Chorister still singing (up to +10).\",\"run\":\"e=>{ const n = 4 + 2*G.enemies.filter(x=>x!==e && x.key===e.key && x.alive).length; targetsForFoes().forEach(t=>addStress(t, n, 'Hymn', {sound:true})); }\"},\"amen\":{\"name\":\"Amen\",\"rank\":4,\"tags\":[\"Sound\",\"Stress\",\"Delay\"],\"sound\":true,\"target\":\"all\",\"power\":\"—\",\"desc\":\"+6 Stress and pushed back 1 slot (+4 Stress) for each ally who can hear it.\",\"run\":\"()=>targetsForFoes().forEach(t=>{ if (soundImmune(t)){ log(`${t.name} is immune to sound attacks.`); return; } addStress(t, 6, 'Amen', {sound:true}); delayUnit(t, 1); })\"},\"plate\":{\"name\":\"Collection\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.6× ATK\",\"desc\":\"The collection plate, edge first.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.6, {crit:Math.random()<e.crit, src:e})\"}}}",
+    "greyhound": "{\"notes\":[\"It can't be KO'd. Every hit raises its ATK 10% instead.\",\"Goku acts on her own. On her turn, if her Stress is under 50, she calls the hound back one step. Three steps end the fight.\",\"Each of its attacks adds 20 Stress to Goku as well, or 10 if its target is Defending and holds it back.\"],\"init\":\"e=>{ e.steps = 0; }\",\"hpOf\":\"e=>({ hp:3 - e.steps, max:3, text:`Steps from Goku: ${3 - e.steps}` })\",\"status\":\"e=>`ATK ${e.atk}`\",\"onDamage\":\"e=>{ e.atk = Math.round(e.atk*1.1); log(`${e.name} can't be hurt. The hit only angers it: ATK ${e.atk}.`, 'foe'); fx(e.id, 'ATK +10%'); return 0; }\",\"guestTurn\":\"(e,u)=>{\\n      if (u.stress >= 50){ log(`Goku is at ${u.stress} Stress and can't find her voice.`, 'dread'); return; }\\n      e.steps++; fx(e.id, `${e.steps}/3`); log(`Goku calls the hound back (${e.steps} of 3).`, 'dread');\\n      if (e.steps >= 3){ e.alive = false; e.hp = 0; log('The hound lies down at Goku\\\\'s feet.', 'foe'); } }\",\"rules\":[{\"label\":\"This is its 3rd, 6th, 9th… turn\",\"when\":\"(e,n)=>n%3===0\",\"skill\":\"pounce\"},{\"label\":\"Otherwise\",\"skill\":\"bite\"}],\"skills\":{\"bite\":{\"name\":\"Bite\",\"rank\":3,\"tags\":[\"Physical\",\"Stress\"],\"target\":\"random\",\"power\":\"1.4× ATK\",\"desc\":\"Damage, and +20 Stress to Goku (+10 if the target is Defending: they hold it back).\",\"run\":\"(e,t)=>{ const held = t.defending; hitParty(t, e.atk*1.4, {crit:Math.random()<e.crit, src:e}); addStress(byId('goku'), held ? 10 : 20, held ? 'the hound, held back' : 'the hound'); }\"},\"pounce\":{\"name\":\"Pounce\",\"rank\":3,\"tags\":[\"Physical\",\"Stress\"],\"target\":\"lowest\",\"power\":\"2.0× ATK\",\"desc\":\"Damage to the ally with the lowest HP%, and +20 Stress to Goku (+10 if the target is Defending).\",\"run\":\"(e,t)=>{ const held = t.defending; hitParty(t, e.atk*2.0, {src:e}); addStress(byId('goku'), held ? 10 : 20, held ? 'the hound, held back' : 'the hound'); }\"}}}",
+    "whisperer": "{\"hint\":\"Give her no one to stand behind.\",\"notes\":[\"She can't be targeted while anyone she stands behind is still fighting.\",\"A whispered ally can only carry out the whisper or Swap out. Swapping them out leaves her exposed until her next turn, when she moves behind someone else.\",\"Half of her whispers are to attack an ally (1.6× the ally's ATK); the rest are to stand still.\"],\"phases\":[{\"id\":\"p1\",\"label\":\"Above 50% HP: she stands behind one ally\"},{\"id\":\"p2\",\"label\":\"50% HP or below: she stands behind two, and is exposed only when both are gone\",\"when\":\"e=>e.hp<=e.maxhp/2\",\"free\":true}],\"init\":\"e=>standBehind(e)\",\"targetable\":\"e=>!e.behind.some(id=>G.active.includes(id) && byId(id).alive)\",\"hidden\":\"e=>`standing behind ${namesOf(e.behind)}`\",\"status\":\"e=>reachable(e) ? 'No one to stand behind: she can be hit until her next turn' : ''\",\"onTurn\":\"e=>standBehind(e)\",\"obey\":\"(e,u)=>{ const w = u.whisper; u.whisper = null; if (!w) return;\\n      if (w.ally && w.ally.alive && G.active.includes(w.ally.id)){ log(`${u.name} obeys the whisper and attacks ${w.ally.name}.`, 'dread'); hitParty(w.ally, u.atk*1.6); }\\n      else log(`${u.name} obeys the whisper and stands still.`, 'dread'); }\",\"onDown\":\"()=>actives().forEach(a=>{ a.whisper = null; })\",\"rules\":[{\"label\":\"This is its 3rd, 6th, 9th… turn\",\"when\":\"(e,n)=>n%3===0\",\"skill\":\"aloud\"},{\"label\":\"Otherwise\",\"skill\":\"whisper\"}],\"skills\":{\"aloud\":{\"name\":\"Read Aloud\",\"rank\":3,\"tags\":[\"Sound\",\"Stress\"],\"sound\":true,\"target\":\"all\",\"power\":\"—\",\"desc\":\"She reads out what each of you is about to do: +10 Stress to each ally who can hear it. She whispers to no one this turn.\",\"run\":\"()=>targetsForFoes().forEach(t=>addStress(t, 10, 'Read Aloud', {sound:true}))\"},\"whisper\":{\"name\":\"Whisper\",\"rank\":3,\"tags\":[\"Stress\",\"Silence\"],\"target\":\"none\",\"power\":\"—\",\"desc\":\"Whispers the next command of each ally she stands behind: +12 Stress, a 20% chance of Silence for 2 turns, and a 50% chance the command is to attack an ally.\",\"run\":\"e=>e.behind.forEach(id=>whisperTo(e, byId(id)))\"}}}",
+    "engine": "{\"hint\":\"It runs faster when it is hurt.\",\"notes\":[\"Below 50% HP each of its turns comes 2 slots sooner. Delay attacks and Break still work.\"],\"phases\":[{\"id\":\"p1\",\"label\":\"Above 50% HP: slow\"},{\"id\":\"p2\",\"label\":\"50% HP or below: overclocked, its turns come 2 slots sooner\",\"when\":\"e=>e.hp<=e.maxhp/2\",\"free\":true}],\"status\":\"e=>p2(e) ? 'Overclocked: each turn comes 2 slots sooner' : ''\",\"afterTurn\":\"e=>{ if (p2(e)) e.ct = Math.max(SLOT, e.ct - 2*SLOT); }\",\"rules\":[{\"label\":\"This is its 3rd, 6th, 9th… turn\",\"when\":\"(e,n)=>n%3===0\",\"skill\":\"resonate\"},{\"phase\":\"p1\",\"label\":\"Phase 1\",\"skill\":\"stomp\"},{\"phase\":\"p2\",\"label\":\"Phase 2\",\"roll\":[[55,\"stomp\"],[45,\"trample\"]]}],\"skills\":{\"stomp\":{\"name\":\"Stomp\",\"rank\":4,\"tags\":[\"Physical\",\"Paralyze\"],\"target\":\"random\",\"power\":\"1.7× ATK\",\"desc\":\"A 20% chance of Paralyze for 2 turns.\",\"run\":\"(e,t)=>{ hitParty(t, e.atk*1.7, {crit:Math.random()<e.crit, src:e}); inflict(t, 'Paralyze', 2, 20); }\"},\"resonate\":{\"name\":\"Resonance\",\"rank\":4,\"tags\":[\"Sound\",\"Stress\"],\"sound\":true,\"target\":\"all\",\"power\":\"—\",\"desc\":\"The people inside it hum: +16 Stress to each ally. +5 Danger.\",\"run\":\"()=>{ targetsForFoes().forEach(t=>addStress(t, 16, 'Resonance', {sound:true})); addHum(5); }\"},\"trample\":{\"name\":\"Trample\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"all\",\"power\":\"1.0× ATK\",\"desc\":\"Walks over everyone.\",\"run\":\"e=>targetsForFoes().forEach(t=>hitParty(t, e.atk*1.0, {src:e}))\"}}}",
+    "abbot": "{\"hint\":\"Put them back to rest.\",\"notes\":[\"He can't be targeted while any of his Lead Listeners is standing (not in its coffin).\",\"At the start of each of his turns, every coffin that wasn't sealed opens and its Listener climbs out at full HP.\",\"In phase 2, every 2nd turn he reopens a sealed coffin.\"],\"phases\":[{\"id\":\"p1\",\"label\":\"Above 50% HP\"},{\"id\":\"p2\",\"label\":\"50% HP or below: every 2nd turn he reopens a sealed coffin\",\"when\":\"e=>e.hp<=e.maxhp/2\",\"free\":true}],\"parts\":[{\"key\":\"listener\",\"respawn\":0,\"label\":\"Lead Listener ×3 (knocked into its coffin at 0 HP; sealed with an item)\"}],\"targetable\":\"()=>!G.enemies.some(x=>x.key==='listener' && x.alive && !x.coffin)\",\"hidden\":\"()=>'behind his Listeners'\",\"onTurn\":\"e=>{\\n      G.enemies.filter(x=>x.key==='listener' && x.alive && x.coffin).forEach(x=>{ x.coffin = false; x.knockedBy = null; x.hp = x.maxhp; x.plan = planNext(x); log(`${x.name} climbs back out of its coffin.`, 'foe'); });\\n      if (p2(e) && (e.reopen = (e.reopen||0) + 1) % 2 === 0){ const x = G.enemies.find(y=>y.key==='listener' && !y.alive); if (x){ x.sealed = false; reviveFoe(x, 1); log(`The Abbot opens a sealed coffin. ${x.name} gets up.`, 'foe'); } } }\",\"rules\":[{\"label\":\"Every turn\",\"roll\":[[50,\"chant\"],[50,\"staff\"]]}],\"skills\":{\"chant\":{\"name\":\"Chant\",\"rank\":4,\"tags\":[\"Sound\",\"Stress\"],\"sound\":true,\"target\":\"all\",\"power\":\"—\",\"desc\":\"+12 Stress to each ally who can hear it.\",\"run\":\"()=>targetsForFoes().forEach(t=>addStress(t, 12, 'Chant', {sound:true}))\"},\"staff\":{\"name\":\"Prayer Staff\",\"rank\":4,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.5× ATK\",\"desc\":\"10% crit chance.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.5, {crit:Math.random()<e.crit, src:e})\"}}}",
+    "listener": "{\"notes\":[\"Already dead: at 0 HP it is only knocked into its coffin.\",\"Before the Abbot's next turn, an ally who didn't knock it in must seal the coffin with any item (use the item on it). Otherwise it climbs out at full HP.\"],\"status\":\"e=>e.coffin ? `In its coffin: seal it with an item from anyone but ${byId(e.knockedBy) ? byId(e.knockedBy).name : 'whoever knocked it in'}` : ''\",\"hpOf\":\"e=>e.coffin ? { hp:0, max:e.maxhp, text:'In its coffin' } : null\",\"onDamage\":\"(e,d,src)=>{\\n      if (e.coffin){ log(`${e.name} is already in its coffin.`); return 0; }\\n      if (d < e.hp) return d;\\n      e.hp = 0; e.coffin = true; e.knockedBy = src.attacker ? src.attacker.id : null; e.plan = planNext(e); fx(e.id, 'Coffin'); shake(e.id);\\n      log(`${e.name} is knocked back into its coffin. Seal it with an item before the Abbot's next turn.`, 'foe'); return 0; }\",\"takesItem\":\"(e,u)=>e.coffin && u.id!==e.knockedBy\",\"onItem\":\"e=>{ e.coffin = false; e.sealed = true; e.alive = false; e.hp = 0; log(`The coffin is sealed. ${e.name} stays down.`, 'foe'); }\",\"rules\":[{\"label\":\"It is in its coffin\",\"react\":true,\"when\":\"e=>!!e.coffin\",\"skill\":\"lie\"},{\"label\":\"Otherwise\",\"roll\":[[70,\"touch\"],[30,\"listen\"]]}],\"skills\":{\"lie\":{\"name\":\"Lie Still\",\"rank\":3,\"tags\":[],\"target\":\"none\",\"power\":\"—\",\"desc\":\"In its coffin, it does nothing.\",\"run\":\"()=>{}\"},\"touch\":{\"name\":\"Dry Touch\",\"rank\":3,\"tags\":[\"Physical\",\"Paralyze\"],\"target\":\"random\",\"power\":\"1.2× ATK\",\"desc\":\"A 20% chance of Paralyze for 2 turns.\",\"run\":\"(e,t)=>{ hitParty(t, e.atk*1.2, {src:e}); inflict(t, 'Paralyze', 2, 20); }\"},\"listen\":{\"name\":\"Listen\",\"rank\":3,\"tags\":[\"Stress\"],\"target\":\"brink\",\"power\":\"—\",\"desc\":\"It listens to your heart: +10 Stress to the ally closest to a Stress Check.\",\"run\":\"(e,t)=>addStress(t, 10, 'Listen')\"}}}",
+    "mirenslot": "{\"hint\":\"Every time he moves, they move.\",\"notes\":[\"One turn shared by every copy: each turn, the next copy in line acts. Every time the real Miren acts, the copies take a turn right after him.\",\"A copy in the air can't be targeted; it lands on its next action.\",\"Each copy defeated pushes the real Miren back 2 slots.\"],\"phases\":[{\"id\":\"p1\",\"label\":\"More than 2 copies left\"},{\"id\":\"p2\",\"label\":\"2 copies or fewer: they Jump every turn\",\"when\":\"()=>mirenCopies().length<=2\",\"free\":true}],\"parts\":[{\"key\":\"mirencopy\",\"respawn\":0,\"label\":\"Miren ×4 (copies from the save points)\"}],\"init\":\"e=>{ e.rot = 0; e.leap = Math.random() < .4; }\",\"targetable\":\"()=>false\",\"hidden\":\"()=>'it is a turn, not a body'\",\"hpOf\":\"()=>({ hp:mirenCopies().length, max:4, text:`${mirenCopies().length} Mirens left` })\",\"planName\":\"e=>{ const c = nextCopy(e); return !c ? '' : c.air ? 'Land' : (p2(e) || e.leap) ? 'Jump' : 'Spear'; }\",\"planText\":\"e=>{ const c = nextCopy(e); if (!c) return ''; return `${c.name} ${c.id.slice(1)}: ${c.air ? `Land → ${c.landOn ? c.landOn.name : 'random ally'}` : (p2(e) || e.leap) ? 'Jump' : 'Spear → random ally'}`; }\",\"onPartyAct\":\"(e,u)=>{ if (u.id==='miren' && !u.airborne && mirenCopies().length) e.ct = Math.min(e.ct, 1); }\",\"afterTurn\":\"e=>{ e.rot++; e.leap = Math.random() < .4; }\",\"rules\":[{\"label\":\"Every turn\",\"skill\":\"turn\"}],\"skills\":{\"turn\":{\"name\":\"The Next Miren\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"none\",\"power\":\"1.4× ATK (Spear), 3.2× ATK (Land)\",\"desc\":\"The next copy in line: lands if it is in the air, Jumps (40%, always in phase 2), or thrusts with its Spear (+10 Stress).\",\"run\":\"e=>{ const c = nextCopy(e), ts = targetsForFoes(); if (!c || !ts.length) return;\\n        if (c.air){ const t = ts.includes(c.landOn) ? c.landOn : pick(ts); c.air = false; c.landOn = null; log(`A Miren lands.`, 'foe'); hitParty(t, c.atk*3.2, {src:c}); }\\n        else if (p2(e) || e.leap){ c.air = true; c.landOn = pick(ts); log(`A Miren Jumps. He'll land on ${c.landOn.name}.`, 'foe'); }\\n        else { const t = pick(ts); log(`A Miren thrusts at ${t.name}.`, 'foe'); hitParty(t, c.atk*1.4, {crit:Math.random()<c.crit, src:c}); if (t.alive) addStress(t, 10, 'a Miren\\\\'s spear'); } }\"}}}",
+    "mirencopy": "{\"noTurn\":true,\"targetable\":\"e=>!e.air\",\"hidden\":\"()=>'in the air'\",\"status\":\"e=>e.air ? `In the air: lands on ${e.landOn ? e.landOn.name : 'someone'} on the Mirens' next turn` : ''\",\"onDown\":\"()=>{ const m = actives().find(a=>a.id==='miren' && a.alive && !a.airborne); if (m){ log('The real Miren falls behind.', 'dread'); delayUnit(m, 2); }\\n      if (!mirenCopies().length){ const s = foeOf('mirenslot'); if (s){ s.alive = false; s.hp = 0; log('No Mirens left but one.', 'foe'); } } }\",\"rules\":[{\"label\":\"Every turn\",\"skill\":\"wait\"}],\"skills\":{\"wait\":{\"name\":\"Argue\",\"rank\":3,\"tags\":[],\"target\":\"none\",\"power\":\"—\",\"desc\":\"It acts only through The Mirens' Turn.\",\"run\":\"()=>{}\"}}}",
+    "facethief": "{\"hint\":\"Give them back their faces.\",\"notes\":[\"Each missing feature: −20% ATK, DEF and MAG. Missing all three: KO'd (the face comes back with them), and she heals 25%.\",\"A round is the time between two of her turns. A feature comes back when, in the same round, an ally heals its owner and anyone hits her.\",\"In this fight Tetsugi's Chakra can be aimed at an ally.\"],\"phases\":[{\"id\":\"p1\",\"label\":\"Above 50% HP\"},{\"id\":\"p2\",\"label\":\"50% HP or below: she takes only Kiri's face, and only Tetsugi's Chakra gives it back\",\"when\":\"e=>e.hp<=e.maxhp/2\",\"free\":true}],\"init\":\"e=>{ e.healed = new Set(); e.hit = false; }\",\"onTurn\":\"e=>{ e.healed = new Set(); e.hit = false; }\",\"onDamage\":\"(e,d,src)=>{ if (src.attacker){ e.hit = true; giveBack(e); } return d; }\",\"onHeal\":\"(e,t,healer)=>{ if (!(t.lost || []).length) return;\\n      if (p2(e) && t.id==='kiri' && !(healer && healer.id==='tetsugi' && G.hitKey==='chakra')){ log('Only Tetsugi\\\\'s Chakra can give Kiri her face back now.', 'dread'); return; }\\n      e.healed.add(t.id); giveBack(e); }\",\"rules\":[{\"phase\":\"p2\",\"label\":\"Phase 2: Kiri is here\",\"when\":\"()=>targetsForFoes().some(t=>t.id==='kiri')\",\"skill\":\"stare\",\"target\":\"kiri\"},{\"label\":\"Otherwise\",\"skill\":\"stare\"}],\"skills\":{\"stare\":{\"name\":\"Stare\",\"rank\":3,\"tags\":[\"Stress\",\"Confuse\"],\"target\":\"random\",\"noProvoke\":true,\"power\":\"—\",\"desc\":\"Steals a feature (eyes, nose, then mouth): −20% stats, +10 Stress, a 30% chance of Confuse for 2 turns. The third one KOs and heals her 25%.\",\"run\":\"(e,t)=>{ t.lost = t.lost || []; const f = FEATURES.find(x=>!t.lost.includes(x)); t.lost.push(f); applyFace(t);\\n        log(`The Face Thief takes ${t.name}'s ${f}.`, 'foe'); fx(t.id, `No ${f}`); addStress(t, 10, 'faceless');\\n        if (t.lost.length >= 3){ t.lost = []; applyFace(t); ko(t); const h = Math.min(e.maxhp - e.hp, Math.round(e.maxhp*.25)); e.hp += h; fx(e.id, `+${h}`, 'heal'); log(`She wears it. +${h} HP.`, 'foe'); }\\n        else inflict(t, 'Confuse', 2, 30); }\"}}}",
+    "licker": "{\"hint\":\"It wants new tastes.\",\"notes\":[\"A grabbed ally leaves the turn order and can't be targeted: +5 Stress on each of its turns, KO'd after 3.\",\"It lets go when 3 different characters have hit it since the grab. Swap someone in for the third taste.\",\"Cover and Provoke don't affect Grab.\"],\"phases\":[{\"id\":\"p1\",\"label\":\"Above 50% HP: it grabs one\"},{\"id\":\"p2\",\"label\":\"50% HP or below: it grabs two at once\",\"when\":\"e=>e.hp<=e.maxhp/2\",\"free\":true}],\"init\":\"e=>{ e.tasted = new Set(); }\",\"status\":\"e=>heldBy().length ? `Holding ${namesOf(heldBy().map(t=>t.id))}: tasted by ${e.tasted.size} of 3` : ''\",\"onTurn\":\"e=>heldBy().forEach(t=>{ t.grabbed.left--; addStress(t, 5, 'in its mouth'); if (t.grabbed.left <= 0){ t.grabbed = null; log(`The Tongue swallows ${t.name}.`, 'foe'); ko(t); } })\",\"onDamage\":\"(e,d,src)=>{ const a = src.attacker; if (a && heldBy().length && !e.tasted.has(a.id)){ e.tasted.add(a.id); log(`The Tongue tastes ${a.name} (${e.tasted.size} of 3).`, 'foe'); if (e.tasted.size >= 3) releaseAll(e); } return d; }\",\"rules\":[{\"label\":\"It is holding someone\",\"when\":\"()=>heldBy().length>0\",\"roll\":[[60,\"lick\"],[40,\"savour\"]]},{\"label\":\"Otherwise\",\"skill\":\"grab\"}],\"skills\":{\"grab\":{\"name\":\"Grab\",\"rank\":3,\"tags\":[\"Physical\",\"Stress\"],\"target\":\"hungry\",\"late\":true,\"noProvoke\":true,\"power\":\"0.6× ATK\",\"lateText\":\"e=>`up to ${phaseOf(e)==='p2' ? '2 allies' : '1 ally'} with the most Stress when it acts`\",\"desc\":\"Takes the ally with the most Stress (in phase 2, the two with the most) out of the turn order. They are KO'd after 3 of its turns unless 3 different characters hit it.\",\"run\":\"(e,t)=>{ e.tasted = new Set(); const ts = targetsForFoes().sort((a,b)=>b.stress-a.stress).slice(0, p2(e) ? 2 : 1); if (!ts.includes(t)) ts[0] = t;\\n          ts.forEach(x=>{ hitParty(x, e.atk*.6, {src:e}); if (x.alive) grabOne(e, x); }); }\"},\"lick\":{\"name\":\"Lick\",\"rank\":4,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.3× ATK\",\"desc\":\"10% crit chance.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.3, {crit:Math.random()<e.crit, src:e})\"},\"savour\":{\"name\":\"Savour\",\"rank\":4,\"tags\":[\"Stress\"],\"target\":\"all\",\"power\":\"—\",\"desc\":\"+8 Stress to each ally it isn't holding.\",\"run\":\"()=>targetsForFoes().forEach(t=>addStress(t, 8, 'Savour'))\"}}}",
+    "congregation": "{\"planName\":\"e=>e.phase && phaseOf(e)!==e.phase ? 'Phase change' : null\",\"planText\":\"e=>e.phase && phaseOf(e)!==e.phase ? 'Phase change → action will be chosen when it acts' : null\",\"hint\":\"Look where it isn't looking.\",\"notes\":[\"It takes no damage from the ally it is staring at, and the stare adds 10 Stress to them at the start of each of its turns.\",\"Above 50% HP, a critical hit or a Limit Break pulls the stare onto whoever landed it.\",\"At 50% HP it splits into 3 Faces, each staring at a different active ally. Each Face can be hurt only by the other two.\"],\"phases\":[{\"id\":\"p1\",\"label\":\"Above 50% HP\"},{\"id\":\"p2\",\"label\":\"50% HP or below: it splits into 3 Faces\",\"when\":\"e=>e.hp<=e.maxhp/2\",\"free\":true,\"enterFn\":\"e=>{ if (G.split) return; G.split = true; e.name = 'Face of the Congregation'; const ts = shuffled(targetsForFoes());\\n                 for (let i=0;i<2;i++){ const f = spawnPart(e, 'congregation', SLOT*(2+i)); f.parentId = null; f.name = 'Face of the Congregation'; f.maxhp = f.hp = Math.round(e.maxhp*.3); f.phase = 'p2'; f.stare = null; }\\n                 const faces = G.enemies.filter(x=>x.key==='congregation' && x.alive); faces.forEach(f=>{ f.stare = null; });\\n                 faces.forEach((f,i)=>{ f.stare = (ts[i] || pick(targetsForFoes())).id; });\\n                 log(`The Congregation splits into 3 Faces: they stare at ${faces.map(f=>byId(f.stare).name).join(', ')}.`, 'foe'); }\"}],\"init\":\"e=>{ const ts = targetsForFoes(); e.stare = (ts.find(t=>t.id==='natsu') || pick(ts)).id; }\",\"status\":\"e=>e.stare ? `Staring at ${byId(e.stare).name}: no damage from them` : ''\",\"onTurn\":\"e=>{ restare(e); const t = byId(e.stare); if (t && targetsForFoes().includes(t)) addStress(t, 10, 'stared at'); }\",\"onDamage\":\"(e,d,src)=>{ const a = src.attacker; if (!a) return d;\\n      if (a.id===e.stare){ log(`${e.name} is staring at ${a.name}: the hit does nothing.`); fx(e.id, 'Watching'); return 0; }\\n      if (!G.split && (src.crit || src.key==='limit')){ e.stare = a.id; log(`The Congregation's stare moves to ${a.name}.`, 'foe'); }\\n      return d; }\",\"onPartyAct\":\"(e,u,act)=>{ if (!G.split && act.kind==='limit' && e.stare!==u.id){ e.stare = u.id; log(`The Congregation's stare moves to ${u.name}.`, 'foe'); } }\",\"rules\":[{\"label\":\"Every turn\",\"roll\":[[60,\"verdict\"],[40,\"murmur\"]]}],\"skills\":{\"verdict\":{\"name\":\"Verdict\",\"rank\":3,\"tags\":[\"Physical\",\"Confuse\"],\"target\":\"random\",\"power\":\"1.4× ATK\",\"desc\":\"A 30% chance of Confuse for 2 turns.\",\"run\":\"(e,t)=>{ hitParty(t, e.atk*1.4, {crit:Math.random()<e.crit, src:e}); inflict(t, 'Confuse', 2, 30); }\"},\"murmur\":{\"name\":\"Murmur\",\"rank\":3,\"tags\":[\"Sound\",\"Stress\"],\"sound\":true,\"target\":\"all\",\"power\":\"—\",\"desc\":\"+8 Stress to each ally who can hear it.\",\"run\":\"()=>targetsForFoes().forEach(t=>addStress(t, 8, 'Murmur', {sound:true}))\"}}}",
+    "taste": "{\"hint\":\"Wake them all at once.\",\"notes\":[\"At the start of each of its turns it heals 5% for each Sleeper still humming. A Sleeper woken four times stays awake for good.\",\"In phase 2, every other turn Kiri's sleeping body hums a Lullaby that puts every Sleeper back to sleep. It is a sound attack: Counter-Melody cancels it.\"],\"phases\":[{\"id\":\"p1\",\"label\":\"Above 50% HP\"},{\"id\":\"p2\",\"label\":\"50% HP or below: Kiri's sleeping body rises with the village\",\"when\":\"e=>e.hp<=e.maxhp/2\",\"free\":true}],\"parts\":[{\"key\":\"sleeper\",\"respawn\":0,\"label\":\"Sleeper ×4 (villagers: they can't be KO'd)\"}],\"status\":\"e=>`${sleepers().filter(x=>!x.awake).length} of 4 Sleepers humming`\",\"onTurn\":\"e=>{\\n      const n = sleepers().filter(x=>!x.awake).length; if (n){ const h = Math.min(e.maxhp - e.hp, Math.round(e.maxhp*.05*n)); if (h){ e.hp += h; fx(e.id, `+${h}`, 'heal'); log(`${n} Sleeper${n>1?'s hum':' hums'}: ${e.name} +${h} HP.`, 'foe'); } }\\n      sleepers().forEach(x=>{ if (x.awake > 0 && --x.awake === 0) log(`${x.name} drifts back to sleep, humming.`, 'foe'); }); }\",\"rules\":[{\"phase\":\"p2\",\"label\":\"Phase 2: every other turn, Kiri's body hums\",\"when\":\"(e,n)=>n%2===0\",\"skill\":\"kirisong\"},{\"label\":\"Otherwise\",\"roll\":[[60,\"lap\"],[40,\"note\"]]}],\"skills\":{\"lap\":{\"name\":\"Lap\",\"rank\":3,\"tags\":[\"Physical\"],\"target\":\"random\",\"power\":\"1.4× ATK\",\"desc\":\"10% crit chance.\",\"run\":\"(e,t)=>hitParty(t, e.atk*1.4, {crit:Math.random()<e.crit, src:e})\"},\"note\":{\"name\":\"Village Note\",\"rank\":3,\"tags\":[\"Sound\",\"Stress\"],\"sound\":true,\"target\":\"all\",\"power\":\"—\",\"desc\":\"+10 Stress to each ally who can hear it.\",\"run\":\"()=>targetsForFoes().forEach(t=>addStress(t, 10, 'Village Note', {sound:true}))\"},\"kirisong\":{\"name\":\"Kiri's Lullaby\",\"rank\":3,\"tags\":[\"Sound\"],\"sound\":true,\"target\":\"none\",\"power\":\"—\",\"desc\":\"Kiri's sleeping body hums: every Sleeper falls back asleep.\",\"run\":\"()=>{ sleepers().forEach(x=>{ if (x.awake !== Infinity) x.awake = 0; }); log('Kiri\\\\'s sleeping body hums her lullaby. Every Sleeper drifts back to sleep.', 'dread'); }\"}}}",
+    "sleeper": "{\"noTurn\":true,\"hpOf\":\"e=>({ hp:e.awake ? 1 : 0, max:1, text:e.awake===Infinity ? 'Awake for good' : e.awake ? `Awake for ${e.awake} more of its turns` : `Humming (woken ${e.woken || 0} of 4)` })\",\"onDamage\":\"(e,d,src)=>{ if (!src.attacker) return 0;\\n      if (e.awake){ log(`${e.name} is already awake.`); return 0; }\\n      e.woken = (e.woken || 0) + 1; e.awake = e.woken >= 4 ? Infinity : 2; fx(e.id, 'Awake');\\n      log(e.woken >= 4 ? `${e.name} wakes up for the fourth time, and stays awake. It is someone from Ostrel.` : `${e.name} wakes up. It is someone from Ostrel.`, 'foe');\\n      // One action that wakes several at once (Darkga) costs the 10 Stress once.\\n      if (!(src.area && G.woke)) addStress(src.attacker, 10, 'woke a villager'); if (src.area) G.woke = true; return 0; }\",\"rules\":[{\"label\":\"Every turn\",\"skill\":\"hum\"}],\"skills\":{\"hum\":{\"name\":\"Hum\",\"rank\":3,\"tags\":[],\"target\":\"none\",\"power\":\"—\",\"desc\":\"It never acts. While it hums, Taste of Ostrel heals 5% a turn. A hit wakes it for 2 of the boss's turns: no damage, and +10 Stress to the ally who woke it (once per action, however many wake). Woken a fourth time, it stays awake for good.\",\"run\":\"()=>{}\"}}}"
+  },
+  "rigs": {
+    "ainsel": {
+      "lore": "A flayed figure held together by spiralling bandage-ribbons and red tendrils. Its torso is the root; the ribbons chain downward like vertebrae.",
+      "bones": 17,
+      "clips": [
+        "idle",
+        "offbeat",
+        "unwind"
+      ]
+    },
+    "amigara": {
+      "lore": "A rock face pierced by five body-shaped holes. The holes are separate silhouettes behind the rock, so they can stretch, lean and swallow.",
+      "bones": 12,
+      "clips": [
+        "idle",
+        "calling",
+        "footprints",
+        "scree",
+        "pull"
+      ]
+    },
+    "organ": {
+      "lore": "A cathedral organ played by pale hands from inside its own case. One eye watches from beneath the keys.",
+      "bones": 12,
+      "clips": [
+        "idle",
+        "drone",
+        "chord"
+      ]
+    },
+    "orlen": {
+      "lore": "An archbishop trailed by the heads of the five who held the crozier before him. The ancestors chain from his back like a spine.",
+      "bones": 17,
+      "clips": [
+        "idle",
+        "sermon",
+        "benediction",
+        "crozier"
+      ]
+    },
+    "widow": {
+      "lore": "A drowned bride grown into a swollen fin-bodied thing. Her body is a tank in three layers: a dark back wall, six drowned figures clipped to her silhouette, and a translucent skin of veins over them.",
+      "bones": 19,
+      "clips": [
+        "idle",
+        "lullaby",
+        "undertow",
+        "release"
+      ]
+    },
+    "tongue": {
+      "lore": "A bone-white lip that never closes and a tongue covered in mouths of its own. The tongue is a three-bone chain, so it bends as a wave from root to tip; the mouths open in turn.",
+      "bones": 13,
+      "clips": [
+        "idle",
+        "grab",
+        "lick",
+        "release"
+      ]
+    },
+    "neighbour": {
+      "lore": "Something wearing the house next door. It leans out of the window on a long neck, its jaw on a hinge of its own, and beckons you over.",
+      "bones": 12,
+      "clips": [
+        "idle",
+        "call",
+        "pull",
+        "shutter"
+      ]
+    },
+    "congregation": {
+      "lore": "A crowd that moves as one body under a banner of the girl they are waiting for. Every head is its own bone, so they bob and turn out of step.",
+      "bones": 13,
+      "clips": [
+        "idle",
+        "stare",
+        "murmur",
+        "confuse"
+      ]
+    },
+    "facethief": {
+      "lore": "A stitched girl with a blank head. Her eyes, nose and mouth are borrowed, and each is its own bone so she can take them off.",
+      "bones": 16,
+      "clips": [
+        "idle",
+        "stare",
+        "steal",
+        "return"
+      ]
+    },
+    "ostrel": {
+      "lore": "A village grown on a tongue. The tongue ripples under the houses, the chimneys breathe a slow spiral, and someone in every house is asleep.",
+      "bones": 10,
+      "clips": [
+        "idle",
+        "hum",
+        "lullaby",
+        "wake"
+      ]
+    },
+    "pipes": {
+      "lore": "A sewer wall with four drains. One of them has a face behind the grate and a clawed hand that reaches out across the floor.",
+      "bones": 17,
+      "clips": [
+        "idle",
+        "groan",
+        "grab",
+        "plug",
+        "burst"
+      ]
+    },
+    "puppeteers": {
+      "lore": "Two hooded figures working one marionette from two control bars. Each is a small rig of body, hood, arm and bar.",
+      "bones": 10,
+      "clips": [
+        "idle",
+        "string",
+        "jerk",
+        "cut"
+      ]
+    },
+    "fourheard": {
+      "lore": "Four heroes cast in bronze: wind, water, fire and earth. Each statue is a full rig on its own plinth, and each one wakes in turn.",
+      "bones": 47,
+      "clips": [
+        "idle",
+        "recall",
+        "understood"
+      ]
+    },
+    "lastnote": {
+      "lore": "A spiked shell with one note still living in it. The note is a soft chain: a curl in the mouth of the shell, then the singing head.",
+      "bones": 5,
+      "clips": [
+        "idle",
+        "split",
+        "strike",
+        "escape",
+        "silence"
+      ]
+    },
+    "pelt": {
+      "lore": "An empty wolf-skin hanging from two hooks. The arms, lower hide and tail swing as pendulums, each a beat behind the one above.",
+      "bones": 9,
+      "clips": [
+        "idle",
+        "lash",
+        "heldOpen",
+        "hollow"
+      ]
+    },
+    "wellrested": {
+      "lore": "A tired traveller and the copy that slept for him. Both are full rigs; the copy runs every motion half a beat behind.",
+      "bones": 31,
+      "clips": [
+        "idle",
+        "yawn",
+        "asleep"
+      ]
+    },
+    "lamp": {
+      "lore": "A street lamp with a sleeping face in the glass. The post is a two-bone chain and the housing swings from its hook like a pendulum.",
+      "bones": 8,
+      "clips": [
+        "idle",
+        "glare",
+        "dark",
+        "relight"
+      ]
+    },
+    "lakehen": {
+      "lore": "A soaked white hen brooding four chicks on black water. Her neck is a three-bone chain, and her head moves like a bird's: it holds still, then snaps to a new angle.",
+      "bones": 21,
+      "clips": [
+        "idle",
+        "peck",
+        "dive",
+        "surface"
+      ]
+    },
+    "fortyyears": {
+      "lore": "A wreck still under sail, steered by a helmsman who never let go. The drowned crew push their heads and arms out through the holes in the hull.",
+      "bones": 15,
+      "clips": [
+        "idle",
+        "ram",
+        "course",
+        "offCourse"
+      ]
+    },
+    "listeners": {
+      "lore": "A mummified monk seated on a sealed coffin, one hand cupped to his ear, the other ringing a bell to see who answers. His jaw is hinged, so he can chant.",
+      "bones": 9,
+      "clips": [
+        "idle",
+        "chant",
+        "touch",
+        "seal"
+      ]
+    },
+    "greyhound": {
+      "lore": "A starved grey dog with a woman's face and a rosary for a collar. Each leg is two bones, the ears flick, and the jaw hangs on its own hinge.",
+      "bones": 17,
+      "clips": [
+        "idle",
+        "prowl",
+        "maul",
+        "callback",
+        "enrage"
+      ]
+    },
+    "whisperer": {
+      "lore": "A woman leaning in to tell you something, her hand cupped to her mouth. She is drawn in grey, and her whisper is the only bright thing about her.",
+      "bones": 9,
+      "clips": [
+        "idle",
+        "whisper",
+        "silence",
+        "exposed"
+      ]
+    }
+  },
+  "battle_mapping": {
+    "widow": "widow",
+    "orlen": "orlen",
+    "organ": "organ",
+    "holes": "amigara",
+    "unwound": "ainsel",
+    "tongue": "tongue"
+  },
+  "open_prs": [
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "image_metadata": {
+    "ainsel": {
+      "size": [
+        1024,
+        908
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "amigara": {
+      "size": [
+        1024,
+        1221
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "organ": {
+      "size": [
+        1024,
+        731
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "orlen": {
+      "size": [
+        1024,
+        727
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "widow": {
+      "size": [
+        1024,
+        898
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "tongue": {
+      "size": [
+        1024,
+        1291
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "neighbour": {
+      "size": [
+        1024,
+        1476
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "congregation": {
+      "size": [
+        1024,
+        1357
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "facethief": {
+      "size": [
+        1024,
+        803
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "ostrel": {
+      "size": [
+        1024,
+        1073
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "pipes": {
+      "size": [
+        1024,
+        1950
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "puppeteers": {
+      "size": [
+        1024,
+        667
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "fourheard": {
+      "size": [
+        1024,
+        3342
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "lastnote": {
+      "size": [
+        1024,
+        416
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "pelt": {
+      "size": [
+        1024,
+        363
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "wellrested": {
+      "size": [
+        1024,
+        864
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "lamp": {
+      "size": [
+        1024,
+        926
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "lakehen": {
+      "size": [
+        1024,
+        1381
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "fortyyears": {
+      "size": [
+        1024,
+        1128
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "listeners": {
+      "size": [
+        1024,
+        1198
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "greyhound": {
+      "size": [
+        1024,
+        1146
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    },
+    "whisperer": {
+      "size": [
+        1024,
+        1525
+      ],
+      "mode": "RGBA",
+      "alpha": [
+        0,
+        255
+      ]
+    }
+  },
+  "counts": {
+    "enemies": 45,
+    "encounters": 37,
+    "rigs": 22,
+    "clips": 88,
+    "battle_rigs": 6
+  },
+  "assessment": {
+    "images": "All installed sheet geometry/alpha inventoried. Congregation sheet visually inspected; no raster change warranted for this AI task. Default art unchanged.",
+    "animation": "88 clips and six battle mappings inventoried; integration tasks retained blocked pending observed playback.",
+    "skeleton_rigging": "Numeric continuity/parity pass with 16 known attachment notices; no new artistic defect established.",
+    "enemy_ai": "All live scripts, foes and encounters inventoried. B015 implemented; Engine turn-2 Resonance at phase entry reproduced against above-half-HP control and queued B016.",
+    "lore": "All 22 viewer descriptions inventoried; unchanged default. Existing Well-Rested correction remains PR32. No new canon contradiction established."
+  },
+  "new_defect": {
+    "entry": "Resonance Engine Mk. IV",
+    "setup": "p1, count=1, stored Stomp rule Phase 1 targeting Ren, RNG .99",
+    "control": {
+      "hp": 2501,
+      "turn": 2,
+      "executed": "stomp"
+    },
+    "boundary": {
+      "hp": 2500,
+      "turn": 2,
+      "executed": "resonate"
+    },
+    "expected": "Resonance on every third turn per spec, not turn 2."
+  },
+  "limits": [
+    "Source/metadata review is not visual certification.",
+    "Chromium cannot start; no normal/slow playback observed."
+  ]
+}

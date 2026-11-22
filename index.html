@@ -2879,6 +2879,10 @@ const SCRIPTS = {
       lick:{name:'Lick', rank:4, tags:['Physical'], target:'random', power:'1.3× ATK', desc:'10% crit chance.', run:(e,t)=>hitParty(t, e.atk*1.3, {crit:Math.random()<e.crit, src:e})},
       savour:{name:'Savour', rank:4, tags:['Stress'], target:'all', power:'—', desc:'+8 Stress to each ally it isn\'t holding.', run:()=>targetsForFoes().forEach(t=>addStress(t, 8, 'Savour'))} } },
   congregation:{
+    // The split and spawned Faces can replan at phase entry. Do not promise
+    // the stored attack or consume RNG to preview its replacement.
+    planName:e=>e.phase && phaseOf(e)!==e.phase ? 'Phase change' : null,
+    planText:e=>e.phase && phaseOf(e)!==e.phase ? 'Phase change → action will be chosen when it acts' : null,
     hint:'Look where it isn\'t looking.',
     notes:['It takes no damage from the ally it is staring at, and the stare adds 10 Stress to them at the start of each of its turns.','Above 50% HP, a critical hit or a Limit Break pulls the stare onto whoever landed it.','At 50% HP it splits into 3 Faces, each staring at a different active ally. Each Face can be hurt only by the other two.'],
     phases:[ {id:'p1', label:'Above 50% HP'},
@@ -2971,12 +2975,14 @@ function planNext(e){
 function planName(e){
   const S = SCRIPTS[e.key];
   if (e.sleep > 0) return 'Asleep';
-  if (S.planName) return S.planName(e);
+  const custom = S.planName ? S.planName(e) : null;
+  if (custom!=null) return custom;
   return e.plan ? S.skills[e.plan.skill].name : '';
 }
 function planText(e){
   if (e.sleep > 0) return `Next: Asleep (${e.sleep} more of its turns)`;
-  if (SCRIPTS[e.key].planText) return 'Next: ' + SCRIPTS[e.key].planText(e);
+  const custom = SCRIPTS[e.key].planText ? SCRIPTS[e.key].planText(e) : null;
+  if (custom!=null) return 'Next: ' + custom;
   if (!e.plan) return '';
   const sk = SCRIPTS[e.key].skills[e.plan.skill];
   const who = sk.late ? ` → ${sk.lateText ? sk.lateText(e) : LATE_TEXT[sk.target]}` : (e.plan.target ? ` → ${e.plan.target.name}` : (sk.target==='all' ? ' → all' : ''));
