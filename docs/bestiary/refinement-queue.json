@@ -7,7 +7,7 @@
   "created_at": "2026-11-14",
   "updated_at": "2026-11-23",
   "generation": 7,
-  "revision": 20,
+  "revision": 21,
   "tracker_path": "docs/bestiary/refinement-queue.json",
   "initial_branch": "bestiary/2026-11-14-tongue-rescue-telegraph",
   "selection_policy": "Confirmed correctness/readability defects first, then measured encounter problems, existing asset integration, canon alignment, and evidence-led visual review. Prefer one feasible entry per run; notices alone are not proven defects.",
@@ -504,8 +504,10 @@
         "remaining": "Draft review of cadence and measured stress impact; no full balance or visual acceptance claimed."
       },
       "delivery": {
-        "state": "draft_pending_creation",
-        "merged": false
+        "state": "draft",
+        "merged": false,
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/50",
+        "implementation_commit": "f8325de692dea047986d4bbea6efb7e1aa130cfc"
       }
     },
     {

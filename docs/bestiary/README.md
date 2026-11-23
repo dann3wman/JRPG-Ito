@@ -1,6 +1,6 @@
 # Bestiary refinement queue
 
-Current tracker: generation 7, revision 20, 2026-11-23. [Machine-readable queue](refinement-queue.json).
+Current tracker: generation 7, revision 21, 2026-11-23. [Machine-readable queue](refinement-queue.json).
 
 The newest source was PR47, generation 6 revision 19. Default revision 5 and earlier PR queue heads were reconciled without discarding delivered work. Historical reports not on this branch remain in the linked delivery PRs. Delivery for review is distinct from merge and visual acceptance.
 
@@ -27,7 +27,7 @@ Fresh source and metadata inventory: 45 enemy records, 37 encounters, 22 viewer 
 | B013 | Ruri | Reveal when copy losses invalidate the displayed Jealousy | implemented_pending_visual_review | [PR](https://github.com/dann3wman/JRPG-Ito/pull/41) |
 | B014 | Resonance Engine Mk. IV | Warn when overclocking invalidates the stored Stomp preview | implemented_pending_visual_review | [PR](https://github.com/dann3wman/JRPG-Ito/pull/44) |
 | B015 | The Congregation | Reveal the pending split action replan | implemented_pending_visual_review | [PR](https://github.com/dann3wman/JRPG-Ito/pull/47) |
-| B016 | Resonance Engine Mk. IV | Keep Resonance on its documented turn during the phase-entry replan | implemented_pending_visual_review | See tracker |
+| B016 | Resonance Engine Mk. IV | Keep Resonance on its documented turn during the phase-entry replan | implemented_pending_visual_review | [PR50](https://github.com/dann3wman/JRPG-Ito/pull/50) |
 | B017 | The Whisperer | Keep Read Aloud on its documented turn through phase entry | pending | Pending |
 
 One actionable pending task remains: **B017, The Whisperer cadence**. Six blocked tasks retain their reasons in the tracker. Implemented tasks awaiting visual review are not reimplementation candidates.

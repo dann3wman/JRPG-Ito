@@ -30,4 +30,4 @@ The Engine's pending phase transition uses PR44's uncertainty warning, then ordi
 
 Fresh inventory covers all five categories, 45 foes, 37 encounters, 22 rigs, 88 clips and six battle mappings. [Audit and next defect reproduction](2026-11-23-audit.json). B017 queues the independently reproduced Whisperer turn-2 Read Aloud defect. No Whisperer code was changed. One actionable pending task remains, with six retained blockers.
 
-Implementation commit and PR URL: pending publication. Delivery must remain a draft until browser verification and review of the measured impact. No merge or deployment is authorized.
+Implementation commit: `f8325de692dea047986d4bbea6efb7e1aa130cfc`. [Draft PR50](https://github.com/dann3wman/JRPG-Ito/pull/50). Queue generation 7, revision 21. `git diff --check` and preservation assertions for earlier task history and unrelated baseline entries passed. Delivery must remain a draft until browser verification and review of the measured impact. No merge or deployment is authorized.
