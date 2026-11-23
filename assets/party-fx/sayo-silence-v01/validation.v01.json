@@ -1,0 +1,110 @@
+{
+  "sayo-singing": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "stationary_boot_registration": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "silence-mouth": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 16,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "stationary_boot_registration": false,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 82,
+    "expanded_render_slots": 216,
+    "duration_ms": 3600.0000000000014,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 82,
+    "duration_ms": 3600,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 216,
+    "fps": 60,
+    "duration_ms": 3600
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "duration_ms": 3600,
+    "integer_states": 3601,
+    "event_count": 4,
+    "activation_count": 1,
+    "replay_reset": true,
+    "seek_no_events": true,
+    "pause": true,
+    "half_speed_logic": true,
+    "terminal_cleanup": true,
+    "live_browser_controls": false
+  },
+  "visual_review": {
+    "complete_continuous_review": false,
+    "live_playback": "GIMP launched, but file dialog focus routing prevented loading/playback. Normal and half-speed continuous playback and live HTML controls remain unverified; draft",
+    "light_dark_stills_reviewed": true,
+    "ora_reopened_programmatically": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 361,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "319071166338708871288994cb430bec4124d10e461d24047c2e0ff47de0de4b",
+    "build.py": "63ab9184cf94f7a0f12878f5e046bda40f778d45d19ef36292c02d7093a1bf6f",
+    "check-render.cjs": "29d79057775ac4c100dd86f55453504dc3aeb9587557aa74ee69fefca298e14a",
+    "encode.py": "f498acb5e751ea6b2d9a7234b50399c7489c4744765fb2306cf6ead837d930fa",
+    "export.cjs": "f5a0977b0e6b2058d253fc01143714b0fc36111a5a6546b4853d060dbadadd39",
+    "player.template.html": "9fe3a52e870dc90c9f8e8077592420d3ff34e2c091b825c00d9e47d7894e4e3a",
+    "render-validation.json": "8da4a3d32e9c398b381dc2d1b6b70fa2c73505b5e258723c3b0d14215d2db6a5",
+    "render.js": "43a3a2bcc3714beddc1c20d137693b9e67eb66ea00c0aa789553d42ceb53f83e",
+    "repository-checks.txt": "c883bdac58f4bfd73aece3ab843c07aa3d4ac1dcba4bf8cf11839543fb4af04d",
+    "review.v01.4x.png": "db31fb47a559692d4223d9efd0bda97c279c9ed8b5689c71e981913c31b847f2",
+    "review.v01.png": "64be16e8976ec910b044b82ff8858654396234757c6d81497e2a0c1525f1fd2e",
+    "runtime-validation.json": "a6afcbf3e3a5807f67c5d6f3418434c4f36f65bc54024317b3a9f7ba76447950",
+    "sayo-silence.v01.apng": "729b1674ba3308835b8946c65d906ec3c27f192ff3cd64f3a1a069c844107e0e",
+    "sayo-silence.v01.gif": "5a0040f2c05041fc792f2368aac1c86e1568d43b021804edd699d9bc60bb7434",
+    "sayo-silence.v01.html": "85e0354b65b9ab2e53734cd47a48af81112baabdc5f31e71d3cb3b87d2396255",
+    "sayo-silence.v01.mp4": "05e49aba519395271bec43e45c9aca8330b6d565a54ae9336f433f6477fce94f",
+    "sayo-singing.v01.4x.png": "2e4fd9879033fe12a8d11d3630e30bc586f483223d0588deff263f68197b5a1f",
+    "sayo-singing.v01.ora": "201f629004b57c90fe56bb6343af6bca3f4d87ea37d703b577e30e4aa5672b29",
+    "sayo-singing.v01.png": "9555a9040de3c1dbefb16dca9b0fbf36f440c66ac244dbce161944eb8ad69209",
+    "scene.dark.v01.png": "c33cd81cc34f2a55183ae28d1e5ffb07de3b487a26a55f2722719b34fc5f4b4f",
+    "scene.light.v01.png": "9801eeeefcfe4dd9229bf4f5e780da19deda2f78078f7d8d8faa975e8f015ecc",
+    "scene.pixel-4x.v01.png": "6e6372bda195b75c70d3a925e34e6504be6621d65f235ae15d15182198d7523c",
+    "scene.pixel-native.v01.png": "a5a48c0c48f1acdc3cea7eb51c263b5bbd319ca3d94ba73956a66661a27cdef0",
+    "silence-mouth.v01.4x.png": "1caefad9439f853cc7b40fee54bfe2b4de18f34684a8272131d1c02f2ab4de07",
+    "silence-mouth.v01.ora": "c1a714b6a3ae3b279cb4a9a634fbfadd4e7c1cd386eaabff9851eb15ef5c9891",
+    "silence-mouth.v01.png": "0d03c36cd9cf36365b0a0d1c97862c1a52ed6679df29a9bc2123d3552dd61c11",
+    "source/creation-prompts.txt": "be5fccebf02ab6fdb6ce893986004d7af494d94548379477bb894f0839902509",
+    "source/sayo-singing.generated.png": "ae38e93a815a4f0c693e081064955d637125e2b9afe3549f379a5f8d5ddc5539",
+    "source/silence-mouth.generated.png": "1bac9e54feb6bf6f46d84d7f43ad72e0062b3560dca83d4a3226bedabe9fc34c",
+    "target-context.png": "383ead149a01c4f22418949bacd01961ae970a065f4ab5ed67e6f3a64b87bfe9",
+    "test.cjs": "6b92bafdb43e2c98938db6d106c38c238319bbbbed2a66845f5a2477ddb5e0b3",
+    "timeline.v01.json": "cc52dc445476543a2219c437a471c1db82252dd5b2defc0b0672205d7985583a",
+    "validate.py": "d1afccb803aaec466953261d3b14259ac8694dc2fab1fa41469bca610635834f"
+  }
+}

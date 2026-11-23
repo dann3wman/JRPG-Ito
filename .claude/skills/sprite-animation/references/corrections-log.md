@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-23 · Sayo · Silence stationary feet and alpha cleanup
+- **Reported problem:** generated source carried low-alpha haze and unintended planted-boot variation, measured as0/66/49/65/52/61/48/65 differing native pixels versus SS01 in rows80..85.
+- **Original generation:** eight1536x1024 source-sheet poses, requesting identical soles; native96x96 packing registered bottoms to row85 but did not guarantee shared shoe pixels.
+- **Root cause:** generated raster variation in a stationary action, not an intentional step.
+- **Solution implemented:** `assets/party-fx/sayo-silence-v01/build.py` thresholds alpha at200, aligns the right shoe boundary, then uses SS01's complete rows80..85 in every pose before shared24-color mapping. Pivot48,86 places final opaque row179 above scene baseline180. Original generation is retained. New effect uses its own16-color palette.
+- **Verification:** pixel/alpha/bounds/ORA/4x and decoded3600ms outputs checked. Normal/half continuous playback blocked by native file-dialog focus routing; no artistic or engine approval. No post-playback correction claimed.
+- **Rule for next time:** measure and stabilize truly stationary contact regions, preserving all intentional moving features and original source art; do not infer motion approval from the shared strip.
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.

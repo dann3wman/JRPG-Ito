@@ -1,0 +1,27 @@
+ACTOR SOURCE
+
+Use case: stylized-concept. Create action-specific raster sprite artwork for Sayo's SILENCE spell in FINAL FANTASY: THE HUMMING CRYSTAL. Reference 1 is her established battle sprite, reference 2 her identity portrait. Preserve silver-white wavy hair, pale blue and white high-collared choir dress, dark stockings/boots, small tuning fork on chain. Two faint pale choir faces haunt her shoulders in every pose. Crisp 16-bit FFVI/FFRK pixel clusters, dark single-pixel-looking outlines and controlled pale blue ivory slate palette, no blur.
+Exact sheet 1536x1024, four columns two rows, each cell384x512, transparent background, no labels or borders. Eight full-body poses of SAME small character facing LEFT with precisely identical proportions, head size and planted foot position. Each figure about240px tall centered x192, soles y438 in each cell. Keep hair/dress identity consistent. Read order:
+1 ready with fork chain low at chest;
+2 breath gathered, knees soften, hand rises to sternum;
+3 eyes narrowed, fork lifted near throat, other hand rising;
+4 singing softly mouth open, palm extended toward left, dress hem follows wrist motion;
+5 finger reaches lips, commanding hush, fork close to collar;
+6 sustained hush, chin dips subtly, shoulders relaxed, dress follows through;
+7 hand lowers to chest and chain settles;
+8 returns toward ready with relaxed wrist.
+Only purposeful gesture changes, no body translation, no jitter, no unrelated weapons or effect blobs, no floor/shadow. Equal silhouette volume. Strong readable hands, hair and dress folds. This sheet is source art for a single new battle action, not a complete character set.
+
+EFFECT SOURCE
+
+Use case: stylized-concept. Create exactly eight original raster effect keys for Sayo's SILENCE battle spell, gothic 16-bit JRPG pixel art. Exact1536x1024 sheet,4columns2rows,384x512percell, transparent background, no labels,borders,actors or scenery. Each effect centered(192,256)insideitscell, plentyofclearspace, opaque crisp pixel clusters with dark contour, pale blue-grey ivory slate, desaturated lavender shadow, black inner cavity. No glow baked in. A spectral singing mouth WITHOUT a face, eyes, nose or head emerges from curled wisps and is slowly closed by three taut pale threads. This is a restrained haunting magical mouth, no blood or gore. Coherent shapes shared between cells, not random designs.
+Read lefttoright:
+1 two tiny curled breath wisps around an empty central space, small.
+2 wisps curl into upper/lower lip arcs, small.
+3 recognizable spectral mouth opening vertically, jagged lip edges and dark hollow, medium.
+4 largest fully open singing mouth, 3 nearly horizontal threads gathering across it, no teeth or tongue.
+5 threads pull shut, mouth narrows to horizontal slit, wisps flatten to either side; strong activation silhouette.
+6 closed pale seam held unnaturally, three taut stitch-like strands, thinning curled side wisps.
+7 closed seam breaks into three fading fragments with small wisps, medium-small.
+8 only two small curled residue fragments, quiet.
+Maximumextent240wide330high,centerfixed. No repeated outlines unrelated to previousframe. Detail enough for a substantial effect silhouette when reducedto84x112 native, intentional steppedcurves and pixelclusters.
