@@ -1,0 +1,295 @@
+{
+  "character": "Hisui",
+  "action": "Water casting",
+  "version": 2,
+  "source_commit": "b6ebeee6f0bf0d2cf8eb08490c5c53b444587649",
+  "source_sha256": "e53876b00d577fe9186f1c96c25cf7a7f724a888321ccbccc4c436812af32613",
+  "atlas": {
+    "file": "hisui-casting.v02.png",
+    "size": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "columns": 4,
+    "rows": 2,
+    "gutter": 0,
+    "outer_margin": 0,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      87,
+      87
+    ],
+    "palette": [
+      "#F0D7CA",
+      "#CDAEA4",
+      "#BD8379",
+      "#90726D",
+      "#B85454",
+      "#995250",
+      "#6E5251",
+      "#994143",
+      "#8E393C",
+      "#763336",
+      "#563A3C",
+      "#403033",
+      "#61262B",
+      "#4E2327",
+      "#3F2024",
+      "#322529",
+      "#2D1F23",
+      "#2E191D",
+      "#241B1E",
+      "#21171B",
+      "#1F1519",
+      "#1E1317",
+      "#191316",
+      "#180F13"
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "id": "HW01",
+        "row": 1,
+        "column": 1,
+        "rect": [
+          0,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          25,
+          28,
+          71,
+          86
+        ],
+        "state": "ready"
+      },
+      {
+        "id": "HW02",
+        "row": 1,
+        "column": 2,
+        "rect": [
+          96,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          27,
+          28,
+          73,
+          86
+        ],
+        "state": "gather blades"
+      },
+      {
+        "id": "HW03",
+        "row": 1,
+        "column": 3,
+        "rect": [
+          192,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          33,
+          28,
+          73,
+          86
+        ],
+        "state": "cross blades"
+      },
+      {
+        "id": "HW04",
+        "row": 1,
+        "column": 4,
+        "rect": [
+          288,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          33,
+          28,
+          75,
+          86
+        ],
+        "state": "raise blades"
+      },
+      {
+        "id": "HW05",
+        "row": 2,
+        "column": 1,
+        "rect": [
+          0,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          22,
+          28,
+          79,
+          86
+        ],
+        "state": "release"
+      },
+      {
+        "id": "HW06",
+        "row": 2,
+        "column": 2,
+        "rect": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          20,
+          28,
+          79,
+          86
+        ],
+        "state": "lower blades"
+      },
+      {
+        "id": "HW07",
+        "row": 2,
+        "column": 3,
+        "rect": [
+          192,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          24,
+          28,
+          76,
+          86
+        ],
+        "state": "relax elbows"
+      },
+      {
+        "id": "HW08",
+        "row": 2,
+        "column": 4,
+        "rect": [
+          288,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          27,
+          28,
+          73,
+          86
+        ],
+        "state": "settle"
+      }
+    ]
+  },
+  "duration_ms": 3000,
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 250
+    },
+    {
+      "frame": 1,
+      "ms": 200
+    },
+    {
+      "frame": 2,
+      "ms": 250
+    },
+    {
+      "frame": 3,
+      "ms": 200
+    },
+    {
+      "frame": 4,
+      "ms": 250
+    },
+    {
+      "frame": 5,
+      "ms": 250
+    },
+    {
+      "frame": 6,
+      "ms": 250
+    },
+    {
+      "frame": 7,
+      "ms": 350
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "loop": false,
+  "terminal": "hold HW01 ready",
+  "timing_assumptions": [],
+  "timing_changed": false,
+  "layout_changed": false,
+  "preview_loop_only": true,
+  "preview_slow_multiplier": 2,
+  "compatibility": "Standalone PR46 actor atlas replacement; not the 54-pose party importer. Retain PR46 effects and choreography. Engine integration not verified.",
+  "repair": {
+    "frame": "HW08",
+    "local_xy": [
+      37,
+      49
+    ],
+    "atlas_xy": [
+      325,
+      145
+    ],
+    "operation": "clear detached dark fringe pixel"
+  }
+}
