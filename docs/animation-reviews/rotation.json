@@ -2130,6 +2130,131 @@
         "kuro-casting-v02-review.zip": "https://chatgpt.com/library?file_id=libfile_fde3_f-34d6c40cbeec8191bd7ef5ca3ad7007d_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
       },
       "next_selection": "Prefer another unreviewed character with an accessible animation sheet. Do not repeat Kuro while this draft remains open unless addressing its explicit remaining work."
+    },
+    {
+      "review_id": "2026-11-22-hisui-water",
+      "review_date_local": "2026-11-22",
+      "timezone": "America/New_York",
+      "character": "Hisui",
+      "action": "Water casting",
+      "status": "localized_fringe_correction_completed_full_artistic_review_incomplete",
+      "source": {
+        "pr": "https://github.com/dann3wman/JRPG-Ito/pull/46",
+        "commit": "b6ebeee6f0bf0d2cf8eb08490c5c53b444587649",
+        "path": "assets/party-fx/hisui-water-v01/hisui-casting.v01.png",
+        "sha256": "e53876b00d577fe9186f1c96c25cf7a7f724a888321ccbccc4c436812af32613",
+        "ora_sha256": "e2736c32aabb96daa8d603cf723c4cdb2faa632eabf214a2aacfe6bad2f603f7",
+        "timeline_sha256": "a748e4e1093b61711aa79348976ef47f6709e21e222ab3709f149a13609630af",
+        "library_parity": "No matching current native Water actor atlas resolved in Library searches. Repository bytes are pinned to PR46; Library source hash parity is unknown. The source is an unmerged draft, not approved canonical art."
+      },
+      "selection_reason": "This eight-pose Water sheet has no prior review. Latest character review was Shio (PR45), following Fuyori42/Ren39/HisuiBloodStrike36/Kugai33/Tetsugi30. Goku/Sayo searches yielded no usable accessible native animation atlas. Hisui Blood Strike is a different sheet; its unmerged correction is untouched. Source PR46 identifies generated contour continuity concerns. Exactly one actor sheet selected; no portrait or Water effect atlas reviewed.",
+      "source_reconciliation": {
+        "default_branch": "ccr-d8829a5a-ays4x1",
+        "base_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+        "library_rotation_version": 20,
+        "library_rotation_sha256": "697cc08ba25cea7a6219b7d9c9b2be820549dee2eb2f971087b0ed28103be341",
+        "repository_rotation_sha256": "0370b775bc044ebb142acea0a8ac14677dbcc9070d377783d322a08aff90e09a",
+        "history_policy": "Repository retains its14 entries and appends this review. Library retains all20 and appends this review. Divergent unmerged review history is retained and identified, not overwritten. No matching open Water review found; PR46 is the source creation PR."
+      },
+      "sequences": [
+        "Water casting actor: HW01 ready, HW02 gather blades, HW03 cross blades, HW04 raise blades, HW05 release, HW06 lower blades, HW07 relax elbows, HW08 settle, HW01 ready"
+      ],
+      "geometry": "384x192 RGBA atlas;4x2 row-major96x96 cells;zero gutters;fixed pivot48,86;8px safe padding;24 opaque colors;alpha0/255",
+      "timing": "Existing250/200/250/200/250/250/250/350/1000ms;3000ms one-shot,hold HW01 on completion. No timing assumptions or changes. Inspection GIFs repeat;slow GIF durations doubled.",
+      "defects": [
+        "A detached dark pixel appears beside the upper torso only in HW08, local37,49. It is separated from the coat and hair and has no authored particle path."
+      ],
+      "changes": [
+        "Clear atlas325,145 from RGBA36,27,30,255 to transparent black in PNG and existing ORA value layers. Exactly one pixel changed. All other pixels, frame bounds, palette, pivot, geometry, ordering and timing remain unchanged."
+      ],
+      "validation": {
+        "source_sha256": "e53876b00d577fe9186f1c96c25cf7a7f724a888321ccbccc4c436812af32613",
+        "output_sha256": "a274894be866e912c1ed4d1eec736f0239cb060b6fb0ba09c823dd2914e0f4e0",
+        "changed_pixels": 1,
+        "changed_pixels_per_frame": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "all_other_pixels_unchanged": true,
+        "HW01_unchanged": true,
+        "binary_alpha": true,
+        "palette_exact": true,
+        "opaque_colors": 24,
+        "bounds_safe": true,
+        "native_dimensions": [
+          384,
+          192
+        ],
+        "cell": [
+          96,
+          96
+        ],
+        "frame_count": 8,
+        "single_pixel_delta": true,
+        "ora_recomposition": true,
+        "nearest_4x_exact": true,
+        "decoded_gif_pixels_and_delays_exact": true,
+        "duration_ms": 3000,
+        "slow_duration_ms": 6000,
+        "timing_changed": false,
+        "engine_tested": false,
+        "artistic_approval": false
+      },
+      "inspection": {
+        "all_eight_before_and_after_frames_viewed": true,
+        "source_live_playback_sampled": [
+          1,
+          0.5
+        ],
+        "corrected_live_playback_sampled": [
+          1,
+          0.5
+        ],
+        "complete_continuous_motion_review": false,
+        "method": "Enlarged before/after frame sheet and isolated-pixel closeup inspected. GIMP playback of both exported normal GIFs started at1x and0.5x; changing poses captured in live screenshots. Screenshots are temporal samples, not a continuous perceptual review. Final GIFs rebuilt from reopened corrected PNG and decoded against all atlas exposures.",
+        "reference": "Source brief lists five supplied FFRK reference videos and prior staging notes. No fresh continuous reference-footage inspection in this localized cleanup run; no reference-based rhythm approval claimed."
+      },
+      "findings": [
+        "HW01-02: low blades gather inward; clear ready-to-cast anticipation. Feet remain at the same baseline and actor anchor. Fine boot contours differ despite stationary placement; still unresolved.",
+        "HW03-04: crossed blades lift slightly, with intentional200-250ms held keys. Similar silhouettes are an authored gathering hold, not evidence requiring indiscriminate in-betweens. Fine face, flower and sleeve shading varies.",
+        "HW05-06: blades separate broadly and lower; larger silhouette clearly marks release. Hair and coat trail right. The shoulder flower and curved blade contours need further continuity judgment. Actor-only evidence cannot certify Water/target impact at1280ms.",
+        "HW07-08: elbows relax and blades settle; dark isolated pixel in HW08 removed. Other disconnected trailing-hair pixels were retained because disconnection alone does not prove an error.",
+        "Recovery returns to exact HW01 at2000ms and holds1000ms. Terminal-to-initial preview pixels match. HW08-to-HW01 pose change still needs continuous rhythm assessment.",
+        "No cell clipping or newly introduced palette, scale, alpha or volume change. Safe padding and frame bounds pass. Binary alpha and exact equality outside one pixel confirm no added blur or antialiasing. Existing fine contour texture remains."
+      ],
+      "remaining_issues": [
+        "Full continuous before/after playback inspection incomplete; current visual evidence is all static poses plus live samples at both speeds.",
+        "Boot, head, coat and shoulder-flower contour/shading continuity remain unresolved. This one-pixel cleanup is not a professional-quality animation approval.",
+        "Engine integration and full actor/Water/target choreography untested. Source effects and rendering remain in PR46. No second sheet reviewed."
+      ],
+      "repository_checks": "bash tools/check.sh exit0. Existing Quick Song/Delay drift warnings are already recorded in docs/implementation-status.md;16 existing creature attachment art notices remain. No gameplay rules changed.",
+      "github": {
+        "branch": "animation-review/2026-11-22-hisui-water",
+        "base_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+        "draft": true,
+        "publication_record": "https://chatgpt.com/library?file_id=libfile_fde3_f-e3bd1f9d5db0819185bc1c703e5bf682_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "publication_note": "Actual published commit SHA and PR URL are recorded in the persistent rotation log after publication, avoiding a self-referential commit hash."
+      },
+      "library_outputs": {
+        "hisui-casting.v02.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-82c61723c90081918ba85acaff5081a8_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "hisui-casting.v02.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-df42e619116481918bc81bebae8b1057_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "hisui-casting.v02.ora": "https://chatgpt.com/library?file_id=libfile_fde3_f-9888ceca7bf8819183de50e8df44e69c_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "hisui-casting.v02.4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-a97290a1a7588191a0050448858a03c2_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "frames.before-after.2x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-f17014a080e481919830843b5f93bb7b_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "casting.before.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-ae63e102001c81919a4a83ddaa14696b_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "casting.before.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-c8f7bdd0e0ac81919e14b5a21fd10cd8_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "casting.after.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-5a5c1f312fa8819187d14728c4119345_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "casting.after.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-eabbd9ea9e588191866a169361664b66_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "build.py": "https://chatgpt.com/library?file_id=libfile_fde3_f-e9256b2332c08191826db4808b26b5c5_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "validation.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-29faa50e610c8191948b2ca5a5387b21_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+      },
+      "next_selection": "Prefer another unreviewed or least-recently-reviewed character with an accessible native sheet. Do not repeat this Water sheet or other open reviewed sheets unless explicitly addressing their remaining work."
     }
   ]
 }

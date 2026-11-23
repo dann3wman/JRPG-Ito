@@ -20,6 +20,14 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-22 · Hisui · Water HW08 fringe
+- **Reported problem:** a detached dark pixel appears beside the upper torso in the350ms settling pose; see the before/after frame sheet.
+- **Original generation:** PR46 commit `b6ebeee6f0bf0d2cf8eb08490c5c53b444587649`, HW08 local(37,49), RGBA(36,27,30,255).
+- **Root cause:** isolated sheet art without a matching body connection or authored particle path.
+- **Solution implemented:** clear atlas(325,145) in versioned PNG and existing ORA layers. Exactly one pixel changed; all other art, geometry, palette, timing and pivots remain exact. See `assets/player-sheets/hisui-water-v02/`.
+- **Verification:** all eight frame pairs viewed and before/after1x/0.5x live playback sampled. Pixel, bounds, alpha, palette, ORA, GIF and4x checks pass. Repository checks exit0. Continuous motion review, broader contour cleanup and engine integration remain incomplete; draft required.
+- **Rule for next time:** compare isolated pixels to adjacent poses and particle intent before removing them. Do not equate a successful local cleanup with complete animation approval.
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.
