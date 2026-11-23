@@ -1,0 +1,708 @@
+{
+  "action": "Sayo: Silence",
+  "version": 1,
+  "duration_ms": 3600,
+  "fps": 60,
+  "loop": false,
+  "terminal": "effects hidden; Sayo ready; target recovered",
+  "scene": {
+    "native": [
+      384,
+      216
+    ],
+    "output": [
+      1536,
+      864
+    ],
+    "origin": "top-left",
+    "baseline": 180,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      375,
+      207
+    ],
+    "actor_feet": [
+      280,
+      180
+    ],
+    "effect_pivot": [
+      104,
+      145
+    ],
+    "target_feet": [
+      104,
+      180
+    ],
+    "facing": "left"
+  },
+  "atlases": {
+    "sayo-singing": {
+      "file": "sayo-singing.v01.png",
+      "size": [
+        384,
+        192
+      ],
+      "cell": [
+        96,
+        96
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        87,
+        87
+      ],
+      "palette": [
+        "#EFE4DC",
+        "#EBDCD3",
+        "#E8D5C7",
+        "#D7C5B9",
+        "#BDBABF",
+        "#B5ADAF",
+        "#B3A198",
+        "#999CAA",
+        "#8E8B93",
+        "#887E7F",
+        "#70768B",
+        "#67636C",
+        "#585C6C",
+        "#4D5468",
+        "#454857",
+        "#3D3F4C",
+        "#343540",
+        "#282B37",
+        "#1D1F28",
+        "#181B23",
+        "#14181F",
+        "#12141A",
+        "#0F1219",
+        "#0B0D13"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "SS01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            30,
+            23,
+            74,
+            86
+          ],
+          "state": "ready"
+        },
+        {
+          "id": "SS02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            29,
+            23,
+            74,
+            86
+          ],
+          "state": "inhale"
+        },
+        {
+          "id": "SS03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            29,
+            23,
+            74,
+            86
+          ],
+          "state": "fork to throat"
+        },
+        {
+          "id": "SS04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            288,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            18,
+            23,
+            74,
+            86
+          ],
+          "state": "sing"
+        },
+        {
+          "id": "SS05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            29,
+            23,
+            74,
+            86
+          ],
+          "state": "hush gesture"
+        },
+        {
+          "id": "SS06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            30,
+            23,
+            74,
+            86
+          ],
+          "state": "sustain hush"
+        },
+        {
+          "id": "SS07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            30,
+            23,
+            74,
+            86
+          ],
+          "state": "lower hand"
+        },
+        {
+          "id": "SS08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            288,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            30,
+            23,
+            74,
+            86
+          ],
+          "state": "settle"
+        }
+      ]
+    },
+    "silence-mouth": {
+      "file": "silence-mouth.v01.png",
+      "size": [
+        512,
+        256
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        119,
+        119
+      ],
+      "palette": [
+        "#E2DCCF",
+        "#C9C7C1",
+        "#B3B5BA",
+        "#A7A9B2",
+        "#9997A6",
+        "#8B8499",
+        "#7F738D",
+        "#6F6B84",
+        "#675D79",
+        "#58536E",
+        "#454054",
+        "#26212D",
+        "#19161B",
+        "#171519",
+        "#161419",
+        "#100C15"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "SM01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            38,
+            54,
+            91,
+            83
+          ],
+          "state": "breath wisps"
+        },
+        {
+          "id": "SM02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            35,
+            46,
+            92,
+            89
+          ],
+          "state": "lip arcs"
+        },
+        {
+          "id": "SM03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            34,
+            40,
+            92,
+            92
+          ],
+          "state": "open mouth"
+        },
+        {
+          "id": "SM04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            29,
+            28,
+            97,
+            104
+          ],
+          "state": "threads gather"
+        },
+        {
+          "id": "SM05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            27,
+            48,
+            101,
+            85
+          ],
+          "state": "mouth closes"
+        },
+        {
+          "id": "SM06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            29,
+            52,
+            99,
+            80
+          ],
+          "state": "sealed seam"
+        },
+        {
+          "id": "SM07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            32,
+            53,
+            96,
+            78
+          ],
+          "state": "seam fractures"
+        },
+        {
+          "id": "SM08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            39,
+            58,
+            87,
+            73
+          ],
+          "state": "residue"
+        }
+      ]
+    }
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 300
+    },
+    {
+      "frame": 1,
+      "ms": 250
+    },
+    {
+      "frame": 2,
+      "ms": 300
+    },
+    {
+      "frame": 3,
+      "ms": 350
+    },
+    {
+      "frame": 4,
+      "ms": 400
+    },
+    {
+      "frame": 5,
+      "ms": 400
+    },
+    {
+      "frame": 6,
+      "ms": 300
+    },
+    {
+      "frame": 7,
+      "ms": 300
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "effect_track": [
+    {
+      "frame": 0,
+      "ms": 200
+    },
+    {
+      "frame": 1,
+      "ms": 200
+    },
+    {
+      "frame": 2,
+      "ms": 250
+    },
+    {
+      "frame": 3,
+      "ms": 300
+    },
+    {
+      "frame": 4,
+      "ms": 150
+    },
+    {
+      "frame": 5,
+      "ms": 450
+    },
+    {
+      "frame": 6,
+      "ms": 250
+    },
+    {
+      "frame": 7,
+      "ms": 250
+    }
+  ],
+  "effect_start_ms": 850,
+  "effect_hide_ms": 2900,
+  "cues": [
+    {
+      "name": "cast",
+      "ms": 850
+    },
+    {
+      "name": "silence_activation",
+      "ms": 1800
+    },
+    {
+      "name": "effect_clear",
+      "ms": 2900
+    },
+    {
+      "name": "action_complete",
+      "ms": 3600
+    }
+  ],
+  "gameplay_events": "Visual cast and silence activation cues only; no HP, status or combat rule mutation.",
+  "motion": {
+    "actor_x_keys": [
+      [
+        0,
+        280
+      ],
+      [
+        3600,
+        280
+      ]
+    ],
+    "target_x_keys": [
+      [
+        0,
+        104
+      ],
+      [
+        1800,
+        104
+      ],
+      [
+        1950,
+        102
+      ],
+      [
+        2300,
+        102
+      ],
+      [
+        2700,
+        104
+      ],
+      [
+        3600,
+        104
+      ]
+    ],
+    "target_y_keys": [
+      [
+        0,
+        0
+      ],
+      [
+        1800,
+        0
+      ],
+      [
+        1980,
+        3
+      ],
+      [
+        2300,
+        3
+      ],
+      [
+        2700,
+        0
+      ],
+      [
+        3600,
+        0
+      ]
+    ],
+    "mouth": "fixed at world104,145; SM04 compresses vertically from1 to0.55 during1500..1800ms; target dips on activation",
+    "interpolation": "smoothstep integer native pixels"
+  },
+  "layers": [
+    {
+      "name": "background",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": "opaque",
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "rear vocal light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "source-over",
+      "filter": "linear",
+      "preview_scale": 2
+    },
+    {
+      "name": "target, actor, mouth",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "activation light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "screen",
+      "filter": "linear",
+      "preview_scale": 2
+    }
+  ],
+  "status": {
+    "reference_available": true,
+    "specified": true,
+    "generated_built": true,
+    "exported": true,
+    "technically_checked": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  }
+}
