@@ -116,7 +116,7 @@ Sim columns come from `tools/battle-sim/baseline.json`: the in-game Helper playi
 | hound | The Earth Crystal · The Grey Hound | 20 | 20 | Natsu, Ren, Sayo | The Grey Hound | 100% | 12 | 0.0 |
 | whisperer | The Lumen Archive · The Whisperer | 20 | 25 | Kiri, Natsu, Hisui | The Whisperer | 96% | 63 | 0.6 |
 | ruri5 | Varn · Ruri ×5 | 21 | 25 | Kuro, Natsu, Hisui | Ruri, Ruri, Ruri, Ruri, Ruri | 99% | 35 | 1.0 |
-| engine | Varn · Resonance Engine Mk. IV | 21 | 25 | Ren, Hisui, Natsu | Resonance Engine Mk. IV | 100% | 38 | 0.0 |
+| engine | Varn · Resonance Engine Mk. IV | 21 | 25 | Ren, Hisui, Natsu | Resonance Engine Mk. IV | 100% | 37 | 0.0 |
 | listeners | The Sunken Monastery · The Hundred Listeners | 21 | 25 | Kiri, Hisui, Natsu | The Abbot, Lead Listener, Lead Listener, Lead Listener | 97% | 46 | 0.6 |
 | mirens | The Save Point · The Mirens | 22 | 25 | Miren, Kuro, Natsu | The Mirens' Turn, Miren, Miren, Miren, Miren | 100% | 36 | 0.1 |
 | ruri8 | Lumen Square · Ruri ×8 | 22 | 25 | Kuro, Natsu, Sayo | Ruri, Ruri, Ruri, Ruri, Ruri, Ruri, Ruri, Ruri | 96% | 35 | 1.9 |

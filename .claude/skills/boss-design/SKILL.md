@@ -58,6 +58,10 @@ Answer as a designer: the verdict, the precedent behind it, and the trade-off. B
 
 Newest first. Each entry: the fight, what the numbers or a playtest showed, the cause, what changed (exact values), and the rule it suggests.
 
+### 2026-11-23 · Engine phase-entry cadence
+
+A free phase transition replanned after `e.count++` using `count+1`, so turn 2 borrowed turn 3 Resonance. Engine now opts into current-turn phase planning; other scripts retain their existing behavior. Test transitions at every modulo residue, not just a fight's usual transition turn. Keep the PR44 phase-warning support so a stored Stomp does not promise a target before the new phase roll. In 200 seeded runs per policy, Helper wins remained 100%, Attack 1.5% → 2%; Helper end Stress rose 8.70 → 23.42 and Lost Turns 0.355 → 1.055. Correct cadence can change balance without changing stats. Browser play remains outstanding.
+
 ### 2026-10-25 · Building the ten Disc 2 chapter bosses
 
 - **"Same round" needs a wide round.** *Seen:* the Hundred Listeners at 25%: coffins reopened before a second ally could seal them. *Cause:* the Abbot's turn came about one party action after the knock. *Changed:* Abbot Speed 9 → 7 and Rank 4 actions, Listeners Speed 11 → 9. → 97%. The Tongue's three tastes had the same problem inside its 3-turn countdown: Speed 11 → 9, Rank 4 Lick and Savour, 65% → 89%. *Rule:* for any "in the same round" or "within N of its turns" mechanic, check that two to three party actions fit in the window at the real Speeds.

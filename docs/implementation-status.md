@@ -55,7 +55,7 @@ The prototype has 25 story fights (every Disc 1 and Disc 2 chapter boss and the 
 | The Grey Hound | Ch. 12 | Partial | Goku as an AI guest, the unkillable hound, damage raising its ATK, three steps: match. Adds the Defending target halving Goku's Stress. [Spec](bosses/hound.md) |
 | The Whisperer | Ch. 13 | Partial | Standing behind, whispered commands, Swap to expose her, Silence 20%, two at 50%: match. Adds Read Aloud every 3rd turn; whispers are attack-an-ally or stand still. [Spec](bosses/whisperer.md) |
 | Ruri ×5, Ruri ×8 | Ch. 14, 17 | Built | The shared script plus the Ch. 14 rule: in a crowd of 5 or more, once half are down the rest stop fighting each other. Encounter stats per level. [Spec](bosses/ruri5.md) |
-| Resonance Engine Mk. IV | Ch. 14 | Partial | Slow start, 2 slots sooner below 50%, Stomp Paralyze 20%: match. Adds Resonance every 3rd turn and Trample in phase 2. [Spec](bosses/engine.md) |
+| Resonance Engine Mk. IV | Ch. 14 | Partial | Slow start, 2 slots sooner below 50%, Stomp Paralyze 20%: match. Resonance stays on every 3rd turn through phase entry (2026-11-23 cadence correction); Trample in phase 2. Browser review outstanding. [Spec](bosses/engine.md) |
 | The Hundred Listeners | Ch. 15 | Built | Abbot gated by 3 Listeners, coffins sealed with an item by a different character in the same round, Paralyze 20%, reopening at 50%. [Spec](bosses/listeners.md) |
 | The Mirens | Ch. 16 | Partial | Copies in the air untargetable, each defeat delaying the real Miren, Jumping every turn at the end: match. The shared slot is one turn among the copies that also answers each of Miren's actions. [Spec](bosses/mirens.md) |
 | The Face Thief | Ch. 18 | Built | Features, −20% each, KO at three with a 25% heal, heal-plus-hit in the same round, Confuse 30%, Kiri-only with Tetsugi's aimed Chakra at 50%. [Spec](bosses/facethief.md) |
@@ -100,6 +100,8 @@ The bosses in the design doc lean on a handful of mechanics the engine doesn't h
 
 From `tools/battle-sim/sim.js`, 200 battles per encounter with each encounter's default party. `advisor` is the in-game Helper; `no-role` is the Helper with the tested character barred from signature skills; `attack` presses Attack every turn; `random` picks any legal command. Party commands are the Helper's average in won fights; Afflicted is the Helper's average per battle. Targets are in the [boss authoring guide](guides/boss-authoring.md#targets).
 
+Engine row refreshed on 2026-11-23 with 200 battles per policy, seed 1. Other rows retain their dated measurements. [Cadence review](bestiary/reviews/2026-11-23-engine-cadence.md).
+
 | Encounter | advisor | no-role | attack | random | Party commands | Afflicted |
 | --- | --- | --- | --- | --- | --- | --- |
 | Village Well | 100% | — | 100% | 100% | 27 | 0.0 |
@@ -117,7 +119,7 @@ From `tools/battle-sim/sim.js`, 200 battles per encounter with each encounter's 
 | Ruri ×2 | 100% | — | 49% | 80% | 45 | 0.6 |
 | The Whisperer | 96% | — | 10% | 6% | 63 | 0.6 |
 | Ruri ×5 | 99% | — | 0% | 52% | 35 | 1.0 |
-| Resonance Engine Mk. IV | 100% | — | 2% | 81% | 38 | 0.0 |
+| Resonance Engine Mk. IV | 100% | — | 2% | 82.5% | 37 | 0.0 |
 | The Hundred Listeners | 97% | — | 0% | 0% | 46 | 0.6 |
 | The Mirens | 100% | — | 0% | 86% | 36 | 0.1 |
 | Ruri ×8 | 96% | — | 0% | 6% | 35 | 1.9 |
