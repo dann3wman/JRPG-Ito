@@ -5,7 +5,7 @@
 | Key | `engine` |
 | Chapter and disc | Ch. 14, Disc 2 |
 | Ito source | *Gyo* |
-| Status | Scripted and tuned in the prototype (2026-10-25) |
+| Status | Cadence corrected; browser review outstanding (2026-11-23) |
 | CTB plan | — |
 
 ## The story
@@ -43,7 +43,7 @@ One HP phase at 50%: overclocked, each turn comes 2 slots sooner.
 2. Phase 1: **Stomp** (Rank 4): 1.7× ATK, 20% chance of Paralyze for 2 turns.
 3. Phase 2: roll Stomp 55%, **Trample** 45% (1.0× ATK to each ally).
 
-In phase 2, after each turn, its next turn comes 2 slots sooner.
+In phase 2, after each turn, its next turn comes 2 slots sooner. Free phase entry plans for the current action count, so Resonance stays on turns 3, 6 and 9 even when the transition occurs between them. The pending transition displays an uncertainty warning until the action is chosen.
 
 ## Fairness checks
 
@@ -63,15 +63,15 @@ The default Helper: Ren always Delay Shots the foe that acts soonest; Sayo, if p
 
 ## Simulation
 
-200 battles per policy, default party, 2026-10-25.
+200 battles per policy, seed 1, default party, 2026-11-23. Live-script cadence correction; no stat or probability changes.
 
-| Policy | Win | Party commands | Afflicted | KOs |
+| Policy | Win before → after | Winning commands before → after | Afflicted before → after | KOs before → after |
 | --- | --- | --- | --- | --- |
-| advisor | 100% | 37.6 | 0.00 | 0.00 |
-| attack | 2% | 55.3 | 0.34 | 2.98 |
-| random | 81% | 85.9 | 1.48 | 2.40 |
+| advisor | 100% → 100% | 37.63 → 37.32 | 0 → 0 | 0 → 0 |
+| attack | 1.5% → 2% | 55.33 → 54.25 | 0.335 → 0.475 | 2.980 → 2.975 |
+| random | 80.5% → 82.5% | 85.86 → 87.25 | 1.475 → 1.695 | 2.395 → 2.390 |
 
-Easy for the Helper (above the 80–95% band) but `attack` fails, so the lesson holds. Stress rarely reaches a check.
+The Helper still demonstrates the Delay/Break answer and Attack still fails. Correct periodic timing raises Helper end Stress from 8.70 to 23.42 and Lost Turns from 0.355 to 1.055 per battle. Win-rate differences are descriptive seeded results, not statistical significance claims. The fight remains above the Helper win-rate target and below its Afflicted target; this correction does not claim to finish tuning. Browser play remains unverified because Chromium cannot start. See [review](../bestiary/reviews/2026-11-23-engine-cadence.md).
 
 ## Open questions
 

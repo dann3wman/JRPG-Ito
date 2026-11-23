@@ -390,19 +390,19 @@
    "win": 1,
    "timeout": 0,
    "stalled": 0,
-   "turns": 37.63,
-   "winTurns": 37.63,
-   "foeTurns": 4.495,
+   "turns": 37.315,
+   "winTurns": 37.315,
+   "foeTurns": 4.175,
    "kos": 0,
    "afflicted": 0,
    "inspired": 0,
    "fled": 0,
-   "lost": 0.355,
-   "limits": 0.17,
+   "lost": 1.055,
+   "limits": 0.08,
    "phoenix": 0,
-   "stress": 8.702,
-   "danger": 31.12,
-   "hp": 0.775
+   "stress": 23.422,
+   "danger": 34.75,
+   "hp": 0.848
   }
  },
  "listeners": {

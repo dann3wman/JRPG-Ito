@@ -1,0 +1,176 @@
+{
+  "seed": 1,
+  "runs_per_policy": 200,
+  "before": {
+    "advisor": {
+      "key": "engine",
+      "party": [
+        "ren",
+        "hisui",
+        "natsu"
+      ],
+      "policy": "advisor",
+      "s": {
+        "n": 200,
+        "win": 1,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 37.63,
+        "winTurns": 37.63,
+        "foeTurns": 4.495,
+        "kos": 0,
+        "afflicted": 0,
+        "inspired": 0,
+        "fled": 0,
+        "lost": 0.355,
+        "limits": 0.17,
+        "phoenix": 0,
+        "stress": 8.70166666666666,
+        "danger": 31.12,
+        "hp": 0.7745843763920429
+      }
+    },
+    "attack": {
+      "key": "engine",
+      "party": [
+        "ren",
+        "hisui",
+        "natsu"
+      ],
+      "policy": "attack",
+      "s": {
+        "n": 200,
+        "win": 0.015,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 44.41,
+        "winTurns": 55.333333333333336,
+        "foeTurns": 12.31,
+        "kos": 2.98,
+        "afflicted": 0.335,
+        "inspired": 0.115,
+        "fled": 0,
+        "lost": 3.905,
+        "limits": 0,
+        "phoenix": 0,
+        "stress": 62.59833333333332,
+        "danger": 53.485,
+        "hp": 0.0652686750531412
+      }
+    },
+    "random": {
+      "key": "engine",
+      "party": [
+        "ren",
+        "hisui",
+        "natsu"
+      ],
+      "policy": "random",
+      "s": {
+        "n": 200,
+        "win": 0.805,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 84.14,
+        "winTurns": 85.85714285714286,
+        "foeTurns": 17.82,
+        "kos": 2.395,
+        "afflicted": 1.475,
+        "inspired": 0.57,
+        "fled": 0.095,
+        "lost": 8.84,
+        "limits": 2.385,
+        "phoenix": 1.29,
+        "stress": 99.55675,
+        "danger": 71.025,
+        "hp": 0.4357544779524325
+      }
+    }
+  },
+  "after": {
+    "advisor": {
+      "key": "engine",
+      "party": [
+        "ren",
+        "hisui",
+        "natsu"
+      ],
+      "policy": "advisor",
+      "s": {
+        "n": 200,
+        "win": 1,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 37.315,
+        "winTurns": 37.315,
+        "foeTurns": 4.175,
+        "kos": 0,
+        "afflicted": 0,
+        "inspired": 0,
+        "fled": 0,
+        "lost": 1.055,
+        "limits": 0.08,
+        "phoenix": 0,
+        "stress": 23.42166666666666,
+        "danger": 34.75,
+        "hp": 0.8483269941096704
+      }
+    },
+    "attack": {
+      "key": "engine",
+      "party": [
+        "ren",
+        "hisui",
+        "natsu"
+      ],
+      "policy": "attack",
+      "s": {
+        "n": 200,
+        "win": 0.02,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 46.325,
+        "winTurns": 54.25,
+        "foeTurns": 12.8,
+        "kos": 2.975,
+        "afflicted": 0.475,
+        "inspired": 0.215,
+        "fled": 0,
+        "lost": 4.16,
+        "limits": 0,
+        "phoenix": 0,
+        "stress": 71.72166666666665,
+        "danger": 56.7,
+        "hp": 0.06055570054633965
+      }
+    },
+    "random": {
+      "key": "engine",
+      "party": [
+        "ren",
+        "hisui",
+        "natsu"
+      ],
+      "policy": "random",
+      "s": {
+        "n": 200,
+        "win": 0.825,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 85.465,
+        "winTurns": 87.24848484848485,
+        "foeTurns": 18.05,
+        "kos": 2.39,
+        "afflicted": 1.695,
+        "inspired": 0.54,
+        "fled": 0.05,
+        "lost": 8.985,
+        "limits": 2.42,
+        "phoenix": 1.39,
+        "stress": 105.15291666666666,
+        "danger": 71.43,
+        "hp": 0.41956040526842525
+      }
+    }
+  }
+}
