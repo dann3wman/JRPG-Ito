@@ -7,7 +7,7 @@
   "created_at": "2026-11-14",
   "updated_at": "2026-11-24",
   "generation": 8,
-  "revision": 22,
+  "revision": 23,
   "tracker_path": "docs/bestiary/refinement-queue.json",
   "initial_branch": "bestiary/2026-11-14-tongue-rescue-telegraph",
   "selection_policy": "Confirmed correctness/readability defects first, then measured encounter problems, existing asset integration, canon alignment, and evidence-led visual review. Prefer one feasible entry per run; notices alone are not proven defects.",
@@ -541,8 +541,10 @@
         "remaining": "Timeouts at the simulator turn cap, before \u2192 after: Helper 4.5% \u2192 0.5%, Attack 88% \u2192 94.5%, random 86.5% \u2192 88.5%; zero stalls. Low win rates here mostly mean timeouts, not party defeat. This remains a balance limitation. Browser play unverified."
       },
       "delivery": {
-        "state": "draft_pending_creation",
-        "merged": false
+        "state": "draft",
+        "merged": false,
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/53",
+        "implementation_commit": "cc7839085f34e0641b55410609c672e83cfc69e0"
       }
     },
     {

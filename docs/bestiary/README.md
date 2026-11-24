@@ -1,6 +1,6 @@
 # Bestiary refinement queue
 
-2026-11-24: generation 8, revision 22. Newest tracker reconciled from PR50. Historical review files absent from this branch remain in their linked PRs.
+2026-11-24: generation 8, revision 23. Newest tracker reconciled from PR50. Historical review files absent from this branch remain in their linked PRs.
 
 Fresh audit: 45 foes, 37 encounters, 22 rigs, 88 clips, six battle mappings. [Audit](reviews/2026-11-24-audit.json). [Current review](reviews/2026-11-24-whisperer-cadence.md).
 
@@ -22,7 +22,7 @@ Fresh audit: 45 foes, 37 encounters, 22 rigs, 88 clips, six battle mappings. [Au
 | B014 | Resonance Engine Mk. IV | implemented_pending_visual_review | [PR](https://github.com/dann3wman/JRPG-Ito/pull/44) |
 | B015 | The Congregation | implemented_pending_visual_review | [PR](https://github.com/dann3wman/JRPG-Ito/pull/47) |
 | B016 | Resonance Engine Mk. IV | implemented_pending_visual_review | [PR](https://github.com/dann3wman/JRPG-Ito/pull/50) |
-| B017 | The Whisperer | implemented_pending_visual_review | See tracker |
+| B017 | The Whisperer | implemented_pending_visual_review | [PR53](https://github.com/dann3wman/JRPG-Ito/pull/53) |
 | B018 | Taste of Ostrel | pending | See tracker |
 
 One actionable pending task: B018, Taste of Ostrel phase-entry warning. Six blocked tasks retain their reasons. Delivered tasks awaiting visual approval are not ready for reimplementation.

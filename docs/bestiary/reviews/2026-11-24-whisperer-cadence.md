@@ -26,6 +26,6 @@ Complete results: [simulations](2026-11-24-whisperer-simulations.json). No claim
 
 Fresh five-category audit retains all blockers and queues B018: Taste of Ostrel phase-entry warning. Its stored Village Note is replaced by Kiri Lullaby at half HP; above-half control executes Village Note. No Taste code changed. One actionable task remains.
 
-Implementation commit and PR: pending publication. No merge or deployment.
+Implementation commit: `cc7839085f34e0641b55410609c672e83cfc69e0`. [Draft PR53](https://github.com/dann3wman/JRPG-Ito/pull/53). Queue generation8 revision23. Final diff whitespace check and assertions preserving earlier task history and unrelated baselines passed. No merge or deployment.
 
 Timeouts at the simulator turn cap, before → after: Helper 4.5% → 0.5%, Attack 88% → 94.5%, random 86.5% → 88.5%; zero stalls. Low win rates here mostly mean timeouts, not party defeat. This remains a balance limitation.
