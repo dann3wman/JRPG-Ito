@@ -64,16 +64,18 @@ A whispered ally Swaps out for the calmest reserve. Everyone else hits her when 
 
 ## Simulation
 
-200 battles per policy, default party, 2026-10-25.
+200 battles per policy, seed 1, default party, 2026-11-24.
 
-| Policy | Win | Party commands | Afflicted | KOs |
-| --- | --- | --- | --- | --- |
-| advisor | 96% | 63.0 | 0.56 | 0.00 |
-| attack | 10% | 137.6 | 8.59 | 0.21 |
-| random | 6% | 172.5 | 8.91 | 0.64 |
+| Policy | Wins before → after | Winning commands before → after | Afflicted before → after |
+| --- | --- | --- | --- |
+| advisor | 95.5% → 99.5% | 62.98 → 61.79 | 0.565 → 0.140 |
+| attack | 9.5% → 2% | 137.58 → 133.25 | 8.585 → 8.830 |
+| random | 5.5% → 6% | 172.45 → 152.83 | 8.910 → 8.775 |
 
-In band for wins and `attack`. Long, near the top of the length band, because her turns between exposures cost the party time.
+Free phase entry now plans the current action count, keeping Read Aloud on turns 3/6/9. Existing deterministic previews remain accurate without a new uncertainty label. No stats, targeting or probability changes. Helper win rate is above the 80–95% target and Afflicted below the 1–3 target; this correctness fix does not claim full balance approval. Browser play remains unverified. [Review](../bestiary/reviews/2026-11-24-whisperer-cadence.md).
 
 ## Open questions
 
 - The doc doesn't say what she whispers. The prototype uses "attack an ally" or "stand still"; whispered skills and items would make her stranger.
+
+Timeouts at the simulator turn cap, before → after: Helper 4.5% → 0.5%, Attack 88% → 94.5%, random 86.5% → 88.5%; zero stalls. Low win rates here mostly mean timeouts, not party defeat. This remains a balance limitation.

@@ -5,9 +5,9 @@
   "default_branch_at_audit": "ccr-d8829a5a-ays4x1",
   "source_commit": "c1840737fef12061165ef6bb553e7bfa166b717b",
   "created_at": "2026-11-14",
-  "updated_at": "2026-11-15",
-  "generation": 1,
-  "revision": 5,
+  "updated_at": "2026-11-24",
+  "generation": 8,
+  "revision": 22,
   "tracker_path": "docs/bestiary/refinement-queue.json",
   "initial_branch": "bestiary/2026-11-14-tongue-rescue-telegraph",
   "selection_policy": "Confirmed correctness/readability defects first, then measured encounter problems, existing asset integration, canon alignment, and evidence-led visual review. Prefer one feasible entry per run; notices alone are not proven defects.",
@@ -79,7 +79,7 @@
       "entry": "The Tongue (licker / tongue2)",
       "category": "enemy_ai",
       "title": "Show the phase-two Grab target count in its live telegraph",
-      "status": "implemented_pending_visual_review",
+      "status": "merged_pending_visual_review",
       "evidence": [
         "index.html: planText uses LATE_TEXT.hungry, always singular; licker.skills.grab.run takes two targets in phase p2.",
         "docs/bosses/tongue2.md and design-doc.md Ch.20 explicitly require two captives at half HP."
@@ -101,8 +101,9 @@
       "delivery": {
         "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/26",
         "implementation_commit": "3e481d325a512f6cea675ebe913a83a5ebec9a04",
-        "state": "draft",
-        "merged": false
+        "state": "closed",
+        "merged": true,
+        "merge_commit": "57524b43850a40bf5318bd0af09d6d441e5902b7"
       }
     },
     {
@@ -111,7 +112,7 @@
       "entry": "Tide-Widow",
       "category": "enemy_ai",
       "title": "Shorten the overlong chapter-five fight while preserving its Stress lesson",
-      "status": "pending",
+      "status": "implemented_pending_balance_and_visual_review",
       "evidence": [
         "docs/bosses/widow.md reports 84 winning commands against the Disc 1 ceiling of 60.",
         "FOES.widow has 3200 HP; the spec identifies HP as the first tuning lever."
@@ -121,7 +122,25 @@
         "Change one lever, prioritising HP; target 25-60 winning commands, advisor >=90%, attack <=25%, and nontrivial Stress.",
         "Keep a viable fallback, record tradeoffs, update spec/status/reference and 200-run baseline; browser-play the result."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "implemented_at": "2026-11-16",
+      "branch": "bestiary/2026-11-16-widow-pacing",
+      "review": "docs/bestiary/reviews/2026-11-16-widow-pacing.md",
+      "validation": {
+        "simulations": "300 before and after per advisor/attack/random/fallback. Advisor 100%, 59.76 commands, 0.623 Afflicted; attack 27%; fallback 100%.",
+        "regression": "Live phase, sound counterplay, late Undertow/Blink, Release and respawn checks pass.",
+        "browser": "blocked: Chromium socket() Operation not permitted",
+        "remaining": "Review attack 27% vs <=25% goal, lower-than-prior-spec Afflicted, and browser Helper play/phase warning.",
+        "holdout": "Attack seed 1001: 23.67%, 300 runs; combined with seed 1: 25.33%, 600 runs. Borderline, not fully balance-approved.",
+        "checks": "tools/check.sh passed, including all 37 encounter smoke runs; two documented drift warnings and 16 art notices remain."
+      },
+      "acceptance_resolution": "HP-only 2300 reached 59.17 commands but 0.163 Afflicted. Took the existing spec proposal to strengthen phase-two Stress as a second lever. Final 2225 HP/+28 phase-two Lullaby is delivered for review, not fully accepted.",
+      "delivery": {
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/29",
+        "implementation_commit": "082bb514a53786e7e5ae1939eb81094682eaf14b",
+        "state": "draft",
+        "merged": false
+      }
     },
     {
       "id": "B004",
@@ -129,7 +148,7 @@
       "entry": "Lamp Hollow",
       "category": "animation",
       "title": "Connect the existing Lamp Hollow rig to its battle entry",
-      "status": "pending",
+      "status": "blocked",
       "evidence": [
         "Viewer RIGS.lamp and lamp.webp exist with idle/glare/dark/relight; battle ART_RIG has no lamp mapping.",
         "FOES.lamp uses art lamp and currently falls back to static art."
@@ -139,7 +158,10 @@
         "Map only real Lamp skills and drive dark state from battle state; do not invent Wick rig support.",
         "Check sheet fallback, viewer/battle parity, attack/idle transitions and reduced motion in actual playback."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "blocked_at": "2026-11-17",
+      "blocker": "Required live normal/slow playback and visual validation unavailable: Chromium aborts before opening a page with socket() Operation not permitted. Numeric checks alone do not validate art or justify integration.",
+      "unblock_when": "A working browser/playback surface can load the repository and verify the required visuals."
     },
     {
       "id": "B005",
@@ -147,7 +169,7 @@
       "entry": "The Grey Hound",
       "category": "animation",
       "title": "Connect the existing Grey Hound rig to its battle entry",
-      "status": "pending",
+      "status": "blocked",
       "evidence": [
         "Viewer RIGS.greyhound has idle/prowl/maul/callback/enrage and an installed sheet; ART_RIG has no greyhound mapping.",
         "The story encounter uses Goku recall steps; animation must reflect that state instead of playing an arbitrary attack."
@@ -157,7 +179,10 @@
         "Wire existing compatible clips, keeping the three-step callback and unkillable mechanics intact.",
         "Verify actual battle playback, fallback, reduced motion and parity; defer artistic defects as explicit tasks if not solvable in scope."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "blocked_at": "2026-11-17",
+      "blocker": "Required live normal/slow playback and visual validation unavailable: Chromium aborts before opening a page with socket() Operation not permitted. Numeric checks alone do not validate art or justify integration.",
+      "unblock_when": "A working browser/playback surface can load the repository and verify the required visuals."
     },
     {
       "id": "B006",
@@ -165,7 +190,7 @@
       "entry": "Lake Hen",
       "category": "animation",
       "title": "Connect Lake Hen surfacing and diving to the battle state",
-      "status": "pending",
+      "status": "blocked",
       "evidence": [
         "Viewer RIGS.lakehen includes idle/peck/dive/surface; installed lakehen.webp exists.",
         "FOES.hen uses art hen, with no ART_RIG mapping. The underwater targeting window is presently explained through static art/text."
@@ -176,7 +201,10 @@
         "Do not depict four mechanically active chicks: the documented encounter caps living chicks at three.",
         "Check playback, transitions, fallback, reduced motion and parity."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "blocked_at": "2026-11-17",
+      "blocker": "Required live normal/slow playback and visual validation unavailable: Chromium aborts before opening a page with socket() Operation not permitted. Numeric checks alone do not validate art or justify integration.",
+      "unblock_when": "A working browser/playback surface can load the repository and verify the required visuals."
     },
     {
       "id": "B007",
@@ -184,7 +212,7 @@
       "entry": "The Well-Rested",
       "category": "lore",
       "title": "Align its viewer lore with the original and copy reveal",
-      "status": "pending",
+      "status": "delivered_for_review",
       "evidence": [
         "RIGS.wellrested.lore describes a tired traveller and a copy that slept for him.",
         "The design doc Ch.7 and SCRIPTS.rested describe an original that never needs rest among identical copies, revealed by Lullaby."
@@ -194,7 +222,23 @@
         "Keep art/rig authoring details distinct from fiction; no new origin explanation.",
         "Verify against design-doc.md and the active script; record art identity limitations separately."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "implemented_at": "2026-11-17",
+      "branch": "bestiary/2026-11-17-well-rested-lore",
+      "review": "docs/bestiary/reviews/2026-11-17-well-rested-lore.md",
+      "validation": {
+        "canon": "Compared Chapter 7, boss mechanics, rested spec, and live SCRIPTS.rested.onPartyAct.",
+        "scope": "Only lore text and a non-rendered rig-authoring comment changed. No balance, art or animation change.",
+        "browser": "Not observed: Chromium socket failure. Text is loaded via the existing textContent renderer.",
+        "remaining": "Editorial review; existing two-body sleepy rig is not a validated representation of the four-to-six-body encounter.",
+        "checks": "tools/check.sh and git diff --check passed. Headless viewer loads replacement lore. Existing two drift warnings and 16 art notices remain."
+      },
+      "delivery": {
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/32",
+        "implementation_commit": "007b01e9940ba6aef391650dc277b02b3b659684",
+        "state": "open",
+        "merged": false
+      }
     },
     {
       "id": "B008",
@@ -202,7 +246,7 @@
       "entry": "Archbishop Orlen",
       "category": "skeleton_rigging",
       "title": "Review and, if confirmed, close ancestor-chain joint gaps",
-      "status": "pending",
+      "status": "blocked",
       "evidence": [
         "Animation checker flags anc2/anc3/anc4/anc5 attachments outside parent art.",
         "These are review notices, not confirmed broken joints; current numeric continuity/parity checks pass."
@@ -213,7 +257,10 @@
         "Synchronise viewer and battle copies, rerun continuity/parity, and save before/after evidence.",
         "If the rig passes visually, record a verified pass without manufacturing edits."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "blocked_at": "2026-11-17",
+      "blocker": "Required live normal/slow playback and visual validation unavailable: Chromium aborts before opening a page with socket() Operation not permitted. Numeric checks alone do not validate art or justify integration.",
+      "unblock_when": "A working browser/playback surface can load the repository and verify the required visuals."
     },
     {
       "id": "B009",
@@ -221,7 +268,7 @@
       "entry": "The Tongue (licker / tongue2)",
       "category": "enemy_ai",
       "title": "Make the swallow-turn action change legible before execution",
-      "status": "pending",
+      "status": "implemented_pending_visual_review",
       "evidence": [
         "licker.onTurn swallows a captive at countdown zero before execScripted checks whether the holding-only Lick/Savour rule is still valid.",
         "When the last captive is swallowed, execution may replace the displayed holding action with Grab."
@@ -231,7 +278,22 @@
         "Preserve the three-turn deadline and existing balance; expose the conditional action honestly without rerolling hidden attacks.",
         "Check one/two captives, staggered deadlines, rescue before the deadline and phase transition."
       ],
-      "depends_on": []
+      "depends_on": [],
+      "implemented_at": "2026-11-18",
+      "branch": "bestiary/2026-11-18-tongue-swallow-warning",
+      "review": "docs/bestiary/reviews/2026-11-18-tongue-swallow.md",
+      "validation": {
+        "regression": "10 action/phase/deadline cases plus rescue, sleep, empty plan, no RNG or state mutation. Prior B001 and B002 tests pass.",
+        "simulations": "100 advisor + 100 attack + 100 random before and after; all JSON summaries identical.",
+        "browser": "Chromium aborts with socket() Operation not permitted; warning layout unverified.",
+        "checks": "tools/check.sh and git diff --check passed, two existing drift warnings and 16 art notices."
+      },
+      "delivery": {
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/35",
+        "implementation_commit": "669b296f55d8dcd88cf69e7af04366c07ed492c4",
+        "state": "draft",
+        "merged": false
+      }
     },
     {
       "id": "B010",
@@ -265,20 +327,521 @@
         "Then scope one boss implementation from a written spec, preserving Ren and the string puzzle."
       ],
       "depends_on": []
+    },
+    {
+      "id": "B012",
+      "rank": 12,
+      "entry": "Archbishop Orlen",
+      "category": "enemy_ai",
+      "title": "Make the half-HP action replan visible before execution",
+      "status": "implemented_pending_visual_review",
+      "scope": "One Orlen phase-transition telegraph; do not retune damage or rewrite other enemies.",
+      "evidence": [
+        "Fresh live-script reproduction: p1 Orlen at half HP with displayed Sermon, RNG fixed at .99, executes Crozier after the free p2 transition replans.",
+        "SCRIPTS.orlen phases free:true and execScripted phase gate calls planNext; not covered by Tongue rescue/Grab-count/swallow fixes."
+      ],
+      "rationale": "Confirmed player-facing plan mismatch; independent of blocked rig work and earlier deliveries.",
+      "depends_on": [],
+      "acceptance": [
+        "Reproduce the displayed Sermon/executed Crozier mismatch at half HP.",
+        "Expose the transition honestly before the next party choice without hidden preview RNG.",
+        "Preserve documented Counter-Melody, Overdrive and Organ interactions; test phase boundaries and compare seeded results or document intended balance change.",
+        "Check live warning rendering and repository checks; use draft if browser validation remains unavailable."
+      ],
+      "implemented_at": "2026-11-19",
+      "branch": "bestiary/2026-11-19-orlen-phase-warning",
+      "review": "docs/bestiary/reviews/2026-11-19-orlen-phase.md",
+      "validation": {
+        "regression": "14 boundary, rule-priority and skill-preview cases plus sleep, empty plan, no preview RNG/state mutation. Original regression failed with Next: Sermon \u2192 Kiri; original live execution selected Crozier.",
+        "simulations": "100 advisor + 100 attack + 100 random before and after; all seeded summary fields identical. No baseline update needed.",
+        "checks": "tools/check.sh passed; generator left docs/reference/game-data.md unchanged. Two existing drift warnings and 16 attachment notices remain.",
+        "browser": "Chromium aborts with socket() Operation not permitted; warning layout unverified."
+      },
+      "delivery": {
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/38",
+        "implementation_commit": "8bb8c2e48d6e3443199830edad683003cab52b74",
+        "state": "draft",
+        "merged": false
+      }
+    },
+    {
+      "id": "B013",
+      "rank": 13,
+      "entry": "Ruri",
+      "category": "enemy_ai",
+      "title": "Reveal when copy losses invalidate the displayed Jealousy",
+      "status": "implemented_pending_visual_review",
+      "scope": "One shared Ruri entry: the crowd truce and last-copy transition; retain existing attacks, Spite and probabilities.",
+      "evidence": [
+        "Fresh live-script reproduction in ruri5: stored Jealousy, five total copies with two alive, RNG .99. Preview remains Next: Jealousy; execScripted executes Slap while phase remains p1.",
+        "With one surviving copy, the same stale Jealousy executes Slap after Spite. docs/bosses/ruri5.md documents the truce and promises each Ruri plan appears in the turn order.",
+        "No open PR29-37 implements this Ruri telegraph."
+      ],
+      "rationale": "Confirmed misleading infighting promise hides a party-directed attack after the player defeats copies. The truce case does not require a phase change and is independent of B012.",
+      "depends_on": [],
+      "acceptance": [
+        "Reproduce truce thresholds for five/eight copies and the last-copy transition.",
+        "Replace invalid Jealousy previews with an honest warning before the next party choice; preserve live valid Jealousy previews.",
+        "Keep solo Ruri unchanged, retain Spite ATK +30%, random draws, target rules and counterplay.",
+        "Run live-script regressions, compare seeded simulations and repository checks; record browser limits and use draft if visual validation remains incomplete."
+      ],
+      "implemented_at": "2026-11-20",
+      "branch": "bestiary/2026-11-20-ruri-jealousy-warning",
+      "review": "docs/bestiary/reviews/2026-11-20-ruri-jealousy.md",
+      "validation": {
+        "regression": "12 threshold/selection cases plus Spite, solo, sleep, empty-plan and preview-purity checks pass.",
+        "browser": "Chromium aborts at startup with socket() Operation not permitted. Layout unverified.",
+        "simulations": "1200 before and 1200 after across four Ruri encounters and three policies; every summary field identical.",
+        "checks": "tools/check.sh and git diff --check passed; reference generator produced no diff. Two existing drift warnings and 16 attachment notices remain."
+      },
+      "delivery": {
+        "state": "draft",
+        "merged": false,
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/41",
+        "implementation_commit": "cfcd316c9dfd2d5c02eb326bcf86a1472a1e9404"
+      }
+    },
+    {
+      "id": "B014",
+      "rank": 14,
+      "entry": "Resonance Engine Mk. IV",
+      "category": "enemy_ai",
+      "title": "Warn when overclocking invalidates the stored Stomp preview",
+      "status": "implemented_pending_visual_review",
+      "scope": "One Engine phase-transition telegraph, preserving attack odds and cadence.",
+      "evidence": [
+        "Live script at half HP, p1, count 0, stored Stomp targeting Kiri, RNG .99: preview Next: Stomp \u2192 Kiri, execution Trample.",
+        "engine free phase entry calls planNext before execution; no PR29-40 addresses this entry."
+      ],
+      "rationale": "Confirmed single-target warning replaced with party-wide attack at the speed escalation.",
+      "depends_on": [],
+      "acceptance": [
+        "Reproduce phase-boundary target mismatch.",
+        "Expose uncertainty without RNG or combat mutation; preserve normal previews.",
+        "Test Resonance cadence, half-HP boundaries, sleep, Delay/Break and compare seeded outcomes.",
+        "Run tools/check.sh and verify browser display, or deliver draft with exact limitation."
+      ],
+      "implemented_at": "2026-11-21",
+      "branch": "bestiary/2026-11-21-engine-phase-warning",
+      "review": "docs/bestiary/reviews/2026-11-21-engine-phase.md",
+      "validation": {
+        "regression": "Nine boundary, cadence and Delay/Break cases plus sleep, empty-plan, normal-preview and purity assertions pass. Original mismatch reproduced: Stomp \u2192 Ren, then Trample.",
+        "simulations": "100 advisor + 100 attack + 100 random before/after; all summary fields identical.",
+        "checks": "tools/check.sh passed; reference generator no diff; two existing drift warnings and 16 attachment notices.",
+        "browser": "Chromium aborts with socket() Operation not permitted. Layout unverified."
+      },
+      "delivery": {
+        "state": "draft",
+        "merged": false,
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/44",
+        "implementation_commit": "9de73eba8f9e3a1e4fd150bd59597c92ca7bc41b"
+      }
+    },
+    {
+      "id": "B015",
+      "rank": 15,
+      "entry": "The Congregation",
+      "category": "enemy_ai",
+      "title": "Reveal the pending split action replan",
+      "status": "implemented_pending_visual_review",
+      "scope": "One Congregation split-transition telegraph; preserve faces, stare, probabilities and timing.",
+      "evidence": [
+        "Fresh live script: p1, half HP, stored Verdict targeting Kiri, RNG .99. Preview Next: Verdict \u2192 Kiri, execution Murmur and three Faces.",
+        "Free split phase replans before execution. No PR29-43 implements this entry."
+      ],
+      "rationale": "Confirmed single-target promise replaced by party-wide Stress at the major split reveal.",
+      "depends_on": [],
+      "acceptance": [
+        "Reproduce boundary mismatch and distinguish initial body from spawned Faces.",
+        "Disclose pending action uncertainty without preview RNG/state mutation.",
+        "Preserve split count, stare counterplay, attack odds and seeded outcomes.",
+        "Run regressions and tools/check.sh; verify browser warning or deliver draft with remaining limitation."
+      ],
+      "implemented_at": "2026-11-22",
+      "branch": "bestiary/2026-11-22-congregation-split-warning",
+      "review": "docs/bestiary/reviews/2026-11-22-congregation-split.md",
+      "validation": {
+        "regression": "Six boundary/split cases plus spawned Faces, stare protection/critical baiting, sleep, empty-plan, normal-preview and purity assertions pass.",
+        "simulations": "100 advisor + 100 attack + 100 random before/after; every summary field identical.",
+        "checks": "tools/check.sh passed; reference regeneration unchanged; two existing drift warnings and 16 attachment notices.",
+        "browser": "Chromium aborts with socket() Operation not permitted; layout unverified."
+      },
+      "delivery": {
+        "state": "draft",
+        "merged": false,
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/47",
+        "implementation_commit": "b21c849e248b3852cbb45d5b00f6f6b1e1e2f2a3"
+      }
+    },
+    {
+      "id": "B016",
+      "rank": 16,
+      "entry": "Resonance Engine Mk. IV",
+      "category": "enemy_ai",
+      "title": "Keep Resonance on its documented turn during the phase-entry replan",
+      "status": "implemented_pending_visual_review",
+      "scope": "One Engine cadence correction, distinct from delivered B014 preview disclosure. Do not broadly retime other scripts.",
+      "evidence": [
+        "Fresh comparison: count=1 before execution, stored Stomp; at 2501 HP turn 2 executes Stomp, at 2500 HP turn 2 executes Resonance.",
+        "execScripted increments count then calls planNext, which uses count+1. Engine spec and design doc require Resonance every third turn. B014 explicitly preserved this behavior; no open PR corrects cadence."
+      ],
+      "rationale": "Confirmed documented cadence violation changes when party-wide Stress lands. New execution correction, not reimplementation of the completed warning.",
+      "depends_on": [],
+      "acceptance": [
+        "Reproduce turn-2 Resonance at half HP and verify intended turns 3/6/9 with transitions at each modulo boundary.",
+        "Keep the preview honest, preserve 55/45 attack odds and overclock timing; isolate shared support changes with other-entry regression coverage if needed.",
+        "Measure balance under advisor/attack/random, refresh baseline for intended behavior changes and regenerate reference.",
+        "Run repository checks and record browser acceptance or draft limitation."
+      ],
+      "implemented_at": "2026-11-23",
+      "branch": "bestiary/2026-11-23-engine-resonance-cadence",
+      "review": "docs/bestiary/reviews/2026-11-23-engine-cadence.md",
+      "validation": {
+        "regression": "39 phase/odds/boundary cases plus sleep, Delay/Break, Sound counterplay, preview purity and unrelated default planning pass. Original turn-2 Resonance failure captured before editing.",
+        "simulations": "200 advisor + 200 attack + 200 random before and after. Win rates 100/1.5/80.5% to 100/2/82.5%. Helper end Stress 8.70 to 23.42, Lost Turns 0.355 to 1.055. Engine-only 200-run baseline regenerated.",
+        "checks": "tools/check.sh passed, reference regenerated; two existing drift warnings and 16 attachment notices remain.",
+        "browser": "Chromium startup aborts with socket() Operation not permitted. Browser play and warning layout unverified.",
+        "remaining": "Draft review of cadence and measured stress impact; no full balance or visual acceptance claimed."
+      },
+      "delivery": {
+        "state": "draft",
+        "merged": false,
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/50",
+        "implementation_commit": "f8325de692dea047986d4bbea6efb7e1aa130cfc"
+      }
+    },
+    {
+      "id": "B017",
+      "rank": 17,
+      "entry": "The Whisperer",
+      "category": "enemy_ai",
+      "title": "Keep Read Aloud on its documented turn through phase entry",
+      "status": "implemented_pending_visual_review",
+      "scope": "One Whisperer cadence correction and honest phase preview; preserve Swap exposure and whisper counterplay.",
+      "evidence": [
+        "2026-11-23 live script: count=1, p1, stored Whisper. At maxhp/2+1 turn 2 executes Whisper; at maxhp/2 turn 2 executes Read Aloud.",
+        "docs/bosses/whisperer.md and design-doc.md require Read Aloud on turns 3/6/9. Preview remains Next: Whisper before the unexpected party-wide action. No open PR29-49 addresses this entry."
+      ],
+      "rationale": "Confirmed documented cadence and warning mismatch affects a chapter boss. Independent of pending art and finale design work.",
+      "depends_on": [],
+      "acceptance": [
+        "Reproduce the above-half-HP control and half-HP failure; test transition turns at all modulo residues.",
+        "Keep preview honest without consuming RNG; preserve standing-behind counts, Swap exposure, Silence odds and Sound counterplay.",
+        "Measure advisor/attack/random outcomes, regenerate baseline for intended behavior changes and generated reference.",
+        "Run focused live-script regression and tools/check.sh; observe browser play or deliver draft with exact limitation."
+      ],
+      "implemented_at": "2026-11-24",
+      "branch": "bestiary/2026-11-24-whisperer-cadence",
+      "review": "docs/bestiary/reviews/2026-11-24-whisperer-cadence.md",
+      "validation": {
+        "regression": "27 cadence/HP cases, preview purity, sleep, Counter-Melody, actual Swap exposure, whisper attack/stand-still and Silence outcomes, unrelated Organ planning passed. Original regression failed at turn2 half HP.",
+        "simulations": "200 per policy before/after, seed1. See review and machine-readable summaries; baseline refreshed for Whisperer only.",
+        "checks": "tools/check.sh passed; generated reference refreshed. Two existing drift warnings and 16 attachment notices remain.",
+        "browser": "Chromium aborts with socket() Operation not permitted. Browser verification and balance acceptance outstanding.",
+        "remaining": "Timeouts at the simulator turn cap, before \u2192 after: Helper 4.5% \u2192 0.5%, Attack 88% \u2192 94.5%, random 86.5% \u2192 88.5%; zero stalls. Low win rates here mostly mean timeouts, not party defeat. This remains a balance limitation. Browser play unverified."
+      },
+      "delivery": {
+        "state": "draft_pending_creation",
+        "merged": false
+      }
+    },
+    {
+      "id": "B018",
+      "rank": 18,
+      "entry": "Taste of Ostrel",
+      "category": "enemy_ai",
+      "title": "Reveal the pending phase-entry action replacement",
+      "status": "pending",
+      "scope": "One phase-transition telegraph; preserve healing, Sleeper wake state and existing cadence until any cadence decision is explicit.",
+      "evidence": [
+        "Fresh live script: p1 count0 stored Village Note, at half HP execution becomes Kiri Lullaby; above-half control executes Village Note.",
+        "Free phase gate replans after onTurn. Current warning does not disclose replacement. No PR29-52 implements this entry."
+      ],
+      "rationale": "Confirmed action mismatch hides the Sound counterplay window in a chapter boss; feasible independently of blocked art work.",
+      "depends_on": [],
+      "acceptance": [
+        "Reproduce mismatch with four awake Sleepers and above-half control, including healing across threshold.",
+        "Reveal the pending replan without RNG or combat mutation; preserve normal previews and Sound counterplay.",
+        "Keep probabilities, healing and existing cadence unchanged; compare seeded outcomes and run tools/check.sh.",
+        "Observe browser warning or deliver draft with explicit remaining limitation."
+      ]
     }
   ],
-  "last_run_source_commit": "5fbc8b8c6e3366196eda437e0296ef1ff3ec71bf",
+  "last_run_source_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
   "last_run_open_prs_checked": [
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    23,
-    24,
-    25
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52
+  ],
+  "reconciliation": {
+    "tracker_source_pr": 50,
+    "tracker_source_commit": "17ff9a5ed29734bc2ffab5006ef0a25cf58fe23d",
+    "tracker_generation": 7,
+    "tracker_revision": 21,
+    "resolution": "PR50 revision21 supersedes PR47 19, PR44 17, PR41 15, PR38 13, PR35 11, PR32 9, PR29 7 and default5. Preserve every task. Import tracker only. Shared optional planOnPhase/explicit turn support matches PR50, but Engine hooks, baseline and preview code are not imported. Combine both entry hooks when integrating PR50."
+  },
+  "refresh": {
+    "date": "2026-11-24",
+    "generation": 8,
+    "reason": "B017 exhausted actionable generation7 work.",
+    "audit": "docs/bestiary/reviews/2026-11-24-audit.json",
+    "new_tasks": [
+      "B018"
+    ],
+    "retained_blockers": [
+      "B004",
+      "B005",
+      "B006",
+      "B008",
+      "B010",
+      "B011"
+    ]
+  },
+  "reconciliation_history": [
+    {
+      "default_generation": 1,
+      "default_revision": 5,
+      "tracker_source_pr": 32,
+      "tracker_source_commit": "23b8247bf8d38965ef0a726931707586005ed8b9",
+      "tracker_generation": 1,
+      "tracker_revision": 9,
+      "resolution": "Retain PR32 revision 9 and all earlier delivery/blocker history. PR29 and PR32 remain open. Import only tracker state, not unmerged Widow code or Well-Rested lore."
+    },
+    {
+      "default_generation": 1,
+      "default_revision": 5,
+      "tracker_source_pr": 35,
+      "tracker_source_commit": "75795e55a915aafce48f38ff181b5a1e05bb3cff",
+      "tracker_generation": 2,
+      "tracker_revision": 11,
+      "compared": [
+        {
+          "pr": 29,
+          "generation": 1,
+          "revision": 7
+        },
+        {
+          "pr": 32,
+          "generation": 1,
+          "revision": 9
+        },
+        {
+          "pr": 35,
+          "generation": 2,
+          "revision": 11
+        }
+      ],
+      "resolution": "PR35 generation 2 revision 11 supersedes default revision 5, PR29 revision 7 and PR32 revision 9. Preserve every task and delivery/blocker record. Import tracker metadata only. No Widow pacing, Well-Rested lore or Tongue swallow implementation copied. PR35 touches planName/planText; its previewPlan fallback must be preserved alongside this PR's nullable custom-hook fallback when both are integrated."
+    },
+    {
+      "tracker_source_pr": 38,
+      "tracker_source_commit": "89d7e70b2130cbddfb74ad231eebc61c7d3de22e",
+      "tracker_generation": 3,
+      "tracker_revision": 13,
+      "resolution": "Preserve PR38 revision 13 over PR35 revision 11, PR32 revision 9, PR29 revision 7 and default revision 5. Import tracker only, no unmerged entry implementations. Nullable preview fallback matches PR38 because Ruri independently needs it; retain PR35 previewPlan support when combining."
+    },
+    {
+      "tracker_source_pr": 41,
+      "tracker_source_commit": "53ff7bb7fbef678e11e27f5183603bc9f830d745",
+      "tracker_generation": 4,
+      "tracker_revision": 15,
+      "resolution": "PR41 revision 15 supersedes PR38 revision 13, PR35 revision 11, PR32 revision 9, PR29 revision 7 and default revision 5. Preserve all history; import tracker only. Nullable custom-preview support matches PR38/41 because Engine needs it independently. Retain PR35 previewPlan fallback during integration; no unmerged entry implementation imported."
+    },
+    {
+      "tracker_source_pr": 44,
+      "tracker_source_commit": "cbabb2a28f298a0f1a7a1ac5993186b180adc9fe",
+      "tracker_generation": 5,
+      "tracker_revision": 17,
+      "resolution": "PR44 revision 17 supersedes PR41 15, PR38 13, PR35 11, PR32 9, PR29 7 and default 5. Preserve all history, import tracker only. Nullable custom-preview support matches PR38/41/44 because this entry needs it independently. Preserve PR35 previewPlan fallback during integration; no unrelated entry code imported."
+    },
+    {
+      "tracker_source_pr": 47,
+      "tracker_source_commit": "64ae716096af3892a939bcaa6d6ebc4483ba6495",
+      "tracker_generation": 6,
+      "tracker_revision": 19,
+      "compared": {
+        "default": [
+          1,
+          5
+        ],
+        "PR29": [
+          1,
+          7
+        ],
+        "PR32": [
+          1,
+          9
+        ],
+        "PR35": [
+          2,
+          11
+        ],
+        "PR38": [
+          3,
+          13
+        ],
+        "PR41": [
+          4,
+          15
+        ],
+        "PR44": [
+          5,
+          17
+        ],
+        "PR47": [
+          6,
+          19
+        ]
+      },
+      "resolution": "PR47 generation 6 revision 19 is newest. Retain every delivery and blocker. Import tracker metadata only, plus the related Engine phase-warning hooks and nullable preview fallback from PR44 so B016 stays honest and self-contained. B014 remains delivered and is not counted again. No unrelated unmerged entry code imported. Preserve PR35 previewPlan fallback when integrating overlapping preview functions."
+    }
+  ],
+  "refresh_history": [
+    {
+      "date": "2026-11-18",
+      "reason": "B009 delivery exhausted actionable generation-1 pending tasks.",
+      "generation": 2,
+      "audit": "docs/bestiary/reviews/2026-11-18-audit.json",
+      "counts": {
+        "enemy_records": 45,
+        "encounters": 37,
+        "viewer_rigs": 22,
+        "animation_clips": 88,
+        "battle_rigs": 6
+      },
+      "coverage": "Source/metadata review across images, animation, rigs, AI and lore; no full visual certification.",
+      "new_tasks": [
+        "B012"
+      ],
+      "retained_blockers": [
+        "B004",
+        "B005",
+        "B006",
+        "B008",
+        "B010",
+        "B011"
+      ]
+    },
+    {
+      "date": "2026-11-19",
+      "reason": "B012 implementation exhausted actionable generation-2 pending tasks.",
+      "generation": 3,
+      "audit": "docs/bestiary/reviews/2026-11-19-audit.json",
+      "counts": {
+        "enemy_records": 45,
+        "encounters": 37,
+        "viewer_rigs": 22,
+        "animation_clips": 88,
+        "battle_rigs": 6
+      },
+      "coverage": "Fresh whole-bestiary source/metadata review across all five categories, with targeted live-script reproduction. No full visual certification.",
+      "new_tasks": [
+        "B013"
+      ],
+      "retained_blockers": [
+        "B004",
+        "B005",
+        "B006",
+        "B008",
+        "B010",
+        "B011"
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "generation": 4,
+      "reason": "B013 exhausted actionable generation 3 work.",
+      "audit": "docs/bestiary/reviews/2026-11-20-audit.json",
+      "new_tasks": [
+        "B014"
+      ],
+      "retained_blockers": [
+        "B004",
+        "B005",
+        "B006",
+        "B008",
+        "B010",
+        "B011"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "generation": 5,
+      "reason": "B014 exhausted actionable generation 4 work.",
+      "audit": "docs/bestiary/reviews/2026-11-21-audit.json",
+      "new_tasks": [
+        "B015"
+      ],
+      "retained_blockers": [
+        "B004",
+        "B005",
+        "B006",
+        "B008",
+        "B010",
+        "B011"
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "generation": 6,
+      "reason": "B015 exhausted actionable generation 5 work.",
+      "audit": "docs/bestiary/reviews/2026-11-22-audit.json",
+      "new_tasks": [
+        "B016"
+      ],
+      "retained_blockers": [
+        "B004",
+        "B005",
+        "B006",
+        "B008",
+        "B010",
+        "B011"
+      ]
+    },
+    {
+      "date": "2026-11-23",
+      "generation": 7,
+      "reason": "B016 exhausted actionable generation 6 work.",
+      "audit": "docs/bestiary/reviews/2026-11-23-audit.json",
+      "counts": {
+        "enemy_records": 45,
+        "encounters": 37,
+        "viewer_rigs": 22,
+        "animation_clips": 88,
+        "battle_rigs": 6
+      },
+      "new_tasks": [
+        "B017"
+      ],
+      "retained_blockers": [
+        "B004",
+        "B005",
+        "B006",
+        "B008",
+        "B010",
+        "B011"
+      ]
+    }
   ]
 }

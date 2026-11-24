@@ -65,6 +65,7 @@ Hooks for fights that bend the usual rules. Each is optional; the Disc 1 chapter
 | `onPartyAct(e, u, act, target)` | Runs after every party command | Well-Rested (Lullaby puts copies to sleep) |
 | `onLand(e, u)` | Runs when an airborne ally lands | Lake Hen (the splash) |
 | `holds(e, u)` + `holdText(e, u)` | While `holds` is true, that ally's turns are spent, with `holdText` in the log | Pelt (Goku on the leash) |
+| `planOnPhase(e)` | Optional free phase-entry planner after the counter increments. Use `planNext(e, e.count)` for current-turn cadence; ordinary calls still default to count+1 | Whisperer |
 | `afterTurn(e)` | Runs after its action, before it plans the next. Use it for "for N of its turns" counters | Pelt hold, Lamp Hollow dark |
 | `hpOf(e)` | `{hp, max, text}` to show instead of its own HP | Well-Rested (the original's HP on every body), Dead Wolf, Grey Hound |
 | `planName(e)`, `planText(e)` | Override what the turn order and the card call its next action, when the action is decided live | Your Own Tracks |

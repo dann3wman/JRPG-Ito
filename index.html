@@ -2747,6 +2747,7 @@ const SCRIPTS = {
         run:(e,t)=>{ const held = t.defending; hitParty(t, e.atk*2.0, {src:e}); addStress(byId('goku'), held ? 10 : 20, held ? 'the hound, held back' : 'the hound'); }} } },
   /* ---------- Disc 2 chapter bosses ---------- */
   whisperer:{
+    planOnPhase:e=>planNext(e, e.count),
     hint:'Give her no one to stand behind.',
     notes:['She can\'t be targeted while anyone she stands behind is still fighting.','A whispered ally can only carry out the whisper or Swap out. Swapping them out leaves her exposed until her next turn, when she moves behind someone else.','Half of her whispers are to attack an ally (1.6× the ally\'s ATK); the rest are to stand still.'],
     phases:[ {id:'p1', label:'Above 50% HP: she stands behind one ally'},
@@ -2952,8 +2953,8 @@ function aiTarget(type, e){
     default: return null;
   }
 }
-function planNext(e){
-  const S = SCRIPTS[e.key], n = e.count + 1;
+function planNext(e, n = e.count + 1){
+  const S = SCRIPTS[e.key];
   for (const r of S.rules){
     if (r.phase && r.phase !== e.phase) continue;
     if (r.when && !r.when(e, n)) continue;
@@ -3037,7 +3038,7 @@ function execScripted(e){
     log(`${e.name} enters ${ph==='p2'?'phase 2':'a new phase'}: ${P.label}.`, 'foe');
     if (P.enterFn) P.enterFn(e);
     if (P.enter && !P.free){ runSkill(e, P.enter, null); e.plan = planNext(e); return; }
-    e.plan = planNext(e);
+    e.plan = S.planOnPhase ? S.planOnPhase(e) : planNext(e);
   }
   // 3. interrupts (re-checked at execution)
   for (const r of (S.interrupts||[])){ if (r.when(e, e.count)){ runSkill(e, r.skill, null); e.plan = planNext(e); return; } }
