@@ -114,7 +114,7 @@ Sim columns come from `tools/battle-sim/baseline.json`: the in-game Helper playi
 | forty | The Gull of Patience · Forty Years | 18 | 25 | Ren, Kiri, Natsu | The Helmsman, The Hull | 100% | 53 | 0.6 |
 | choir | Lumen · Choir of Lumen | 19 | 30 | Sayo, Kuro, Natsu | Chorister, Chorister, Chorister, Chorister | 100% | 30 | 1.9 |
 | hound | The Earth Crystal · The Grey Hound | 20 | 20 | Natsu, Ren, Sayo | The Grey Hound | 100% | 12 | 0.0 |
-| whisperer | The Lumen Archive · The Whisperer | 20 | 25 | Kiri, Natsu, Hisui | The Whisperer | 96% | 63 | 0.6 |
+| whisperer | The Lumen Archive · The Whisperer | 20 | 25 | Kiri, Natsu, Hisui | The Whisperer | 100% | 62 | 0.1 |
 | ruri5 | Varn · Ruri ×5 | 21 | 25 | Kuro, Natsu, Hisui | Ruri, Ruri, Ruri, Ruri, Ruri | 99% | 35 | 1.0 |
 | engine | Varn · Resonance Engine Mk. IV | 21 | 25 | Ren, Hisui, Natsu | Resonance Engine Mk. IV | 100% | 38 | 0.0 |
 | listeners | The Sunken Monastery · The Hundred Listeners | 21 | 25 | Kiri, Hisui, Natsu | The Abbot, Lead Listener, Lead Listener, Lead Listener | 97% | 46 | 0.6 |
