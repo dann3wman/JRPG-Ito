@@ -20,6 +20,12 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-24 · Goku · Quake ground registration
+- **Problem/root cause:** new generated source carries alpha haze and varying planted shoes; inherited effect pivot64 would float ground art above its intended contact.
+- **Solution:** threshold alpha200, sheet-wide24/16-color palettes, common GQ01 boot strip y80..85. Set stone pivot(64,106), world(104,180); retain original source cells. Draw target above stones so its one-time rise/landing remains visible. No Sayo review work changed.
+- **Verification:** actual bounds, fixed boots, palette/alpha, ORA,4x,3600ms decoding and cue/cleanup checks. GIMP path entry failed; continuous review and engine tests unverified.
+- **Rule:** measure ground contact from the new source instead of inheriting a midair effect pivot; never use technical checks as artistic approval.
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.
