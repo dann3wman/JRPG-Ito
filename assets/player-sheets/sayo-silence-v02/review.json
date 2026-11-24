@@ -1,0 +1,62 @@
+{
+  "review_id": "2026-11-24-sayo-silence",
+  "character": "Sayo",
+  "status": "timing_revision_partial_review",
+  "source_commit": "7b53d172e72c896fd2d1a85132664a4c30500a06",
+  "source_pr": "https://github.com/dann3wman/JRPG-Ito/pull/49",
+  "source_path": "assets/party-fx/sayo-silence-v01/sayo-singing.v01.png",
+  "source_sha256": "9555a9040de3c1dbefb16dca9b0fbf36f440c66ac244dbce161944eb8ad69209",
+  "base_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+  "branch": "animation-review/2026-11-24-sayo-silence",
+  "selection": "Sayo is absent from all21 Library rotation entries. No open Silence review found; PR49 is creation. Prior48/45/42/39/36/33/30 corrections untouched.",
+  "reconciliation": "Default tree lacks this source; use pinned PR49 draft. Library search resolved no matching Sayo native source, so parity unknown. Repository14-entry history and Library21-entry history preserved independently.",
+  "library_log_source_sha256": "16577fd4e5ee937e62016cdea113f8e841c453f9dae332d5d130e92dc548fcda",
+  "sequences": [
+    "SS01 ready,SS02 inhale,SS03 fork to throat,SS04 sing,SS05 hush,SS06 sustain,SS07 lower,SS08 settle,SS01 ready"
+  ],
+  "change": "SS04 350ms reduced to250ms;SS03 reused for100ms at1100..1200ms before SS05. Direct wide-hand-to-lips jump gains an inward return beat. All later timings and cues unchanged. No pixel edit.",
+  "geometry": "384x192;4x2 row-major96px cells;8px padding;pivot48,86;24colors;binary alpha",
+  "timing": "3600ms one-shot;ready terminal hold1000ms;preview GIFs repeat;slow durations doubled. Authored new bridge duration100ms is an editorial choice.",
+  "validation": {
+    "source_sha256": "9555a9040de3c1dbefb16dca9b0fbf36f440c66ac244dbce161944eb8ad69209",
+    "output_sha256": "9555a9040de3c1dbefb16dca9b0fbf36f440c66ac244dbce161944eb8ad69209",
+    "raster_changed": false,
+    "frame_count": 8,
+    "exposures_before": 9,
+    "exposures_after": 10,
+    "duration_ms": 3600,
+    "alpha_binary": true,
+    "safe_padding": true,
+    "opaque_colors": 24,
+    "decoded_gif_pixels_and_delays_exact": true,
+    "engine_tested": false,
+    "artistically_approved": false
+  },
+  "inspection": "All8 unique frames viewed at4x;corrected live GIMP playback sampled at1x/0.5x;SS04/bridgeSS03/SS05 paused and inspected. Original normal/slow GIFs built and decoded but not visually played this run. Full continuous review incomplete.",
+  "findings": [
+    "SS01-03 clear inhale and gathering;feet planted with shared source boot strip.",
+    "SS04 wide hand silhouette jumps directly to lips in original; reused SS03 retracts hand before hush. This is an unapproved timing revision, not certified smoothness.",
+    "SS05-06 deliberately sustained hush800ms retained;head/chin variations may be intended, but fine hair and fork readability remain unresolved.",
+    "SS07-08 lower and settle with small sleeve motion; terminal SS01 exact seam. No clipping; no raster/color/outline edits.",
+    "Impact/contact of separate mouth effect and target not reviewed;actor-only sheet selected. Reference-video notes read in source brief; footage not freshly inspected."
+  ],
+  "remaining_issues": [
+    "Full original/corrected continuous playback and artistic judgment incomplete.",
+    "Fine tuning-fork/chain readability and head/hair volume continuity unresolved.",
+    "Full effect context and engine compatibility untested."
+  ],
+  "repository_checks": "tools/check.sh exit0;existing Quick Song/Delay drift and creature attachment notices retained.",
+  "next_selection": "Rotate to another unreviewed or least-recently-reviewed character;avoid duplicate open review.",
+  "library_outputs": {
+    "build.py": "https://chatgpt.com/library?file_id=libfile_fde3_f-00fb492a24588191bd5d87b83d26973b_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "casting.after.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-358f37dc8aac8191a840c90682a8b85a_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "casting.after.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-3be913f58e2481918b6d0d9a0c8091eb_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "casting.before.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-854edf1e3ccc8191845fdfd426b721db_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "casting.before.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-9daae05187fc8191ad86a8e8d2434546_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "sayo-singing.review-4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-5de88210b49c8191a4e4140d6069b6fa_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "sayo-singing.v02.ora": "https://chatgpt.com/library?file_id=libfile_fde3_f-b8591aee66bc819199e0f6a1129b103f_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "sayo-singing.v02.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-5ae66154fde88191bf9e0abc01e783ce_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "timing.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-3495ba8400108191a82f5d81cdad4b1c_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "validation.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-f85339d8bdc08191ba8743dad53cb5ac_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+  }
+}
