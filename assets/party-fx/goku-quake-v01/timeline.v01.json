@@ -1,0 +1,704 @@
+{
+  "action": "Goku: Quake",
+  "version": 1,
+  "duration_ms": 3600,
+  "fps": 60,
+  "loop": false,
+  "terminal": "effects hidden; Goku ready; target recovered",
+  "scene": {
+    "native": [
+      384,
+      216
+    ],
+    "output": [
+      1536,
+      864
+    ],
+    "origin": "top-left",
+    "baseline": 180,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      375,
+      207
+    ],
+    "actor_feet": [
+      280,
+      180
+    ],
+    "effect_pivot": [
+      104,
+      180
+    ],
+    "target_feet": [
+      104,
+      180
+    ],
+    "facing": "left"
+  },
+  "atlases": {
+    "goku-casting": {
+      "file": "goku-casting.v01.png",
+      "size": [
+        384,
+        192
+      ],
+      "cell": [
+        96,
+        96
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        87,
+        87
+      ],
+      "palette": [
+        "#D4B79A",
+        "#AC9174",
+        "#9D7D60",
+        "#8A745A",
+        "#87664A",
+        "#7B624A",
+        "#6E5C47",
+        "#6C513D",
+        "#5C4F3E",
+        "#5C4534",
+        "#4B4136",
+        "#44392F",
+        "#433127",
+        "#39302A",
+        "#342F2A",
+        "#332A24",
+        "#2D2A26",
+        "#2B2723",
+        "#282321",
+        "#251F1D",
+        "#1E1B1B",
+        "#1B1717",
+        "#171516",
+        "#141213"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "GQ01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            24,
+            20,
+            71,
+            86
+          ],
+          "state": "ready"
+        },
+        {
+          "id": "GQ02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            25,
+            21,
+            72,
+            86
+          ],
+          "state": "brace"
+        },
+        {
+          "id": "GQ03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            25,
+            21,
+            73,
+            86
+          ],
+          "state": "raise claw"
+        },
+        {
+          "id": "GQ04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            288,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            14,
+            21,
+            76,
+            86
+          ],
+          "state": "extend claw"
+        },
+        {
+          "id": "GQ05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            17,
+            21,
+            77,
+            86
+          ],
+          "state": "press ground"
+        },
+        {
+          "id": "GQ06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            19,
+            21,
+            77,
+            86
+          ],
+          "state": "hold pressure"
+        },
+        {
+          "id": "GQ07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            23,
+            21,
+            74,
+            86
+          ],
+          "state": "withdraw claw"
+        },
+        {
+          "id": "GQ08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            288,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            26,
+            21,
+            73,
+            86
+          ],
+          "state": "settle"
+        }
+      ]
+    },
+    "quake-stones": {
+      "file": "quake-stones.v01.png",
+      "size": [
+        512,
+        256
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        119,
+        119
+      ],
+      "palette": [
+        "#D8CAB4",
+        "#A18D7B",
+        "#907C6B",
+        "#827061",
+        "#766559",
+        "#695B52",
+        "#5F524B",
+        "#554B47",
+        "#4E433F",
+        "#463E3C",
+        "#423936",
+        "#3C3432",
+        "#362E2C",
+        "#2D2624",
+        "#231C1A",
+        "#150F0E"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "QS01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            106
+          ],
+          "bounds_exclusive": [
+            38,
+            97,
+            92,
+            107
+          ],
+          "state": "crack"
+        },
+        {
+          "id": "QS02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            106
+          ],
+          "bounds_exclusive": [
+            31,
+            86,
+            97,
+            107
+          ],
+          "state": "stone teeth"
+        },
+        {
+          "id": "QS03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            106
+          ],
+          "bounds_exclusive": [
+            29,
+            60,
+            101,
+            107
+          ],
+          "state": "rising slabs"
+        },
+        {
+          "id": "QS04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            106
+          ],
+          "bounds_exclusive": [
+            26,
+            33,
+            102,
+            108
+          ],
+          "state": "riblike peak"
+        },
+        {
+          "id": "QS05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            106
+          ],
+          "bounds_exclusive": [
+            25,
+            34,
+            104,
+            107
+          ],
+          "state": "fracture"
+        },
+        {
+          "id": "QS06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            106
+          ],
+          "bounds_exclusive": [
+            26,
+            65,
+            103,
+            107
+          ],
+          "state": "collapse"
+        },
+        {
+          "id": "QS07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            106
+          ],
+          "bounds_exclusive": [
+            26,
+            81,
+            101,
+            107
+          ],
+          "state": "rubble"
+        },
+        {
+          "id": "QS08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            106
+          ],
+          "bounds_exclusive": [
+            38,
+            97,
+            90,
+            106
+          ],
+          "state": "gravel"
+        }
+      ]
+    }
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 300
+    },
+    {
+      "frame": 1,
+      "ms": 250
+    },
+    {
+      "frame": 2,
+      "ms": 300
+    },
+    {
+      "frame": 3,
+      "ms": 350
+    },
+    {
+      "frame": 4,
+      "ms": 400
+    },
+    {
+      "frame": 5,
+      "ms": 400
+    },
+    {
+      "frame": 6,
+      "ms": 300
+    },
+    {
+      "frame": 7,
+      "ms": 300
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "effect_track": [
+    {
+      "frame": 0,
+      "ms": 200
+    },
+    {
+      "frame": 1,
+      "ms": 200
+    },
+    {
+      "frame": 2,
+      "ms": 250
+    },
+    {
+      "frame": 3,
+      "ms": 300
+    },
+    {
+      "frame": 4,
+      "ms": 150
+    },
+    {
+      "frame": 5,
+      "ms": 450
+    },
+    {
+      "frame": 6,
+      "ms": 250
+    },
+    {
+      "frame": 7,
+      "ms": 250
+    }
+  ],
+  "effect_start_ms": 850,
+  "effect_hide_ms": 2900,
+  "cues": [
+    {
+      "name": "cast",
+      "ms": 850
+    },
+    {
+      "name": "impact",
+      "ms": 1500
+    },
+    {
+      "name": "effect_clear",
+      "ms": 2900
+    },
+    {
+      "name": "action_complete",
+      "ms": 3600
+    }
+  ],
+  "gameplay_events": "Visual cast and impact cues only; no HP, status or combat rule mutation.",
+  "motion": {
+    "actor_x_keys": [
+      [
+        0,
+        280
+      ],
+      [
+        3600,
+        280
+      ]
+    ],
+    "target_x_keys": [
+      [
+        0,
+        104
+      ],
+      [
+        1500,
+        104
+      ],
+      [
+        1660,
+        100
+      ],
+      [
+        2000,
+        104
+      ],
+      [
+        3600,
+        104
+      ]
+    ],
+    "target_y_keys": [
+      [
+        0,
+        0
+      ],
+      [
+        1500,
+        0
+      ],
+      [
+        1640,
+        -12
+      ],
+      [
+        1840,
+        -4
+      ],
+      [
+        2000,
+        0
+      ],
+      [
+        3600,
+        0
+      ]
+    ],
+    "stones": "fixed ground pivot104,180; target rises and settles1500..2000ms",
+    "interpolation": "smoothstep integer native pixels"
+  },
+  "layers": [
+    {
+      "name": "background",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": "opaque",
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "rear earth light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "source-over",
+      "filter": "linear",
+      "preview_scale": 2
+    },
+    {
+      "name": "rear stones, target, actor",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "activation light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "screen",
+      "filter": "linear",
+      "preview_scale": 2
+    }
+  ],
+  "status": {
+    "reference_available": true,
+    "specified": true,
+    "generated_built": true,
+    "exported": true,
+    "technically_checked": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  }
+}

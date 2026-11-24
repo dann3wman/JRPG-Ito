@@ -1,0 +1,110 @@
+{
+  "goku-casting": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "stationary_boot_registration": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "quake-stones": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 16,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "stationary_boot_registration": false,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 42,
+    "expanded_render_slots": 216,
+    "duration_ms": 3600.000000000002,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 42,
+    "duration_ms": 3600,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 216,
+    "fps": 60,
+    "duration_ms": 3600
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "duration_ms": 3600,
+    "integer_states": 3601,
+    "event_count": 4,
+    "activation_count": 1,
+    "replay_reset": true,
+    "seek_no_events": true,
+    "pause": true,
+    "half_speed_logic": true,
+    "terminal_cleanup": true,
+    "live_browser_controls": false
+  },
+  "visual_review": {
+    "complete_continuous_review": false,
+    "live_playback": "Live playback not verified in this run; a fresh GIMP attempt could not identify the focused file-path field. Normal and half-speed continuous playback and live HTML controls remain unverified; draft",
+    "light_dark_stills_reviewed": true,
+    "ora_reopened_programmatically": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 361,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "78975cb0ab595d8dbcc5e79434efb0dca2e53c7ee757145db4d5d14ea3918a31",
+    "build.py": "841553c24a8e898772e95a3cce93bd24411a5f5a920291a8448756b69e4f3f2f",
+    "check-render.cjs": "49ce6a146e92b7adde74aa31dfd09c977a188bd42d8c3bac238539ae4bc2907a",
+    "encode.py": "0a6142ddff70de711cae0118b8094d93caa107c1ee1ec44fd2f4c50eaa7a78da",
+    "export.cjs": "e52ce133d0efd391f05562d87536597dc136bcaae7cd979107b4f69e106e89b5",
+    "goku-casting.v01.4x.png": "c903529f4d9a6e0c54845326742995802d5c01635167288b1c8c683c814db959",
+    "goku-casting.v01.ora": "64fd950a87d96f9f6c0f065721d4dc581c4070b30efd4d77c4b8b0b8ca7af1ca",
+    "goku-casting.v01.png": "e7f2087312d7c409fd775312967be40a69efbea1187c32d019d3c2476437949c",
+    "goku-quake.v01.apng": "a34ac96ca18a472159925dbdd27b76c1af10559ac75bf1f6575536bec819ae1f",
+    "goku-quake.v01.gif": "bd21f467dd78975a1df319f1c4a859c6c5c507e6ba85ce8934e4f5997b483981",
+    "goku-quake.v01.html": "a3ba38ff32e841a7b1827a36779c01ac22163697bfeecd0371e35de8aa89f8c2",
+    "goku-quake.v01.mp4": "63bf54c296f060faa58e8b1d7bc40100f4372683bb5d462d81bd3151e277df06",
+    "player.template.html": "92f3146030af1f787338b74cef2d30140d131db23fa82cba4624cb006a9929c1",
+    "quake-stones.v01.4x.png": "00220902d03ad7736a43c799f516abadcd93a25e8a0be00cf8ca4e598a9c7338",
+    "quake-stones.v01.ora": "16cad8f535b486aabbef7d874e44a0ee7d8b2254dee42b71a5932c094b567923",
+    "quake-stones.v01.png": "32dcfc24c99b9a6adf86e73f20114666ad012518c6c7d9a0f9968fc460a95c7f",
+    "render-validation.json": "8da4a3d32e9c398b381dc2d1b6b70fa2c73505b5e258723c3b0d14215d2db6a5",
+    "render.js": "b0969441434d4f68f6f9aa4afaae4e1c25fda6ac5c4dbd16382431952e634330",
+    "repository-checks.txt": "c883bdac58f4bfd73aece3ab843c07aa3d4ac1dcba4bf8cf11839543fb4af04d",
+    "review.v01.4x.png": "fd8f978819bf80ad2963d00df93f79df9efedb8b1a83a861f99f4a09151ce4dd",
+    "review.v01.png": "81fe90e59e82b3c37fed8bd2e62ea7948f3e0d3e54e7eb42eaa7cb5531fda187",
+    "runtime-validation.json": "a6afcbf3e3a5807f67c5d6f3418434c4f36f65bc54024317b3a9f7ba76447950",
+    "scene.dark.v01.png": "c82c5ae7994e4f49356f596f6f2e2fbcc1f099f444bf21648b7eaa55a05ae052",
+    "scene.light.v01.png": "a018f8a721861b35a7dff9d3b04df2e547e17e1680bca5b2e58d01c631bd11d6",
+    "scene.pixel-4x.v01.png": "45cf3efeaba232800f7a62f06e8ece65f8917c6ff920ad078122426ac0f769b4",
+    "scene.pixel-native.v01.png": "3e9088c4eaf6e305559a574eda38404cf003f0b5f2a173a95f7c5c3446555df0",
+    "source/creation-prompts.txt": "07373b740036e79fb219e2c42de62efccde8ea063560ef52bb3bd774bde61f49",
+    "source/goku-casting.generated.png": "dbdfd4b0b966cc6d2a3fe18d006368dac971807d52d967116170884c1f2720bc",
+    "source/quake-stones.generated.png": "c17860432f8208e6e4b6feab2c0daf321d0ed68cdace3fa1c83b02015e29c103",
+    "target-context.png": "383ead149a01c4f22418949bacd01961ae970a065f4ab5ed67e6f3a64b87bfe9",
+    "test.cjs": "5e5dd826331af59b22a00176f328656c242ba156b63bade9cf451ce3ed4cefd1",
+    "timeline.v01.json": "c64528b5be5693e9259e2a0ceba26778cd2c6c72f29ede04277226d249b8ba4a",
+    "validate.py": "6c8192aa76766bd9671595ee0bd3e1bb7f5c8b915199473c4a564da2b0800784"
+  }
+}
