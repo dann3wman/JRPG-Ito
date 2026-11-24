@@ -20,6 +20,13 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-24 · Sayo · Silence hand return
+- **Problem:** direct extended-hand SS04 to lips SS05 jump.
+- **Cause:** missing inward return exposure in actor timing.
+- **Revision:** SS04 350 to250ms;reuse SS03 for100ms before SS05. Raster and later cues unchanged.
+- **Verification:** frames inspected;revised1x/0.5x playback sampled and transition paused. Exact GIF/geometry checks pass. Full before/after motion and engine verification incomplete;draft.
+- **Rule:** test reusable poses for a specific missing gesture beat without retiming unrelated cues. Never call sampled review full approval.
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.

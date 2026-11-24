@@ -1,0 +1,319 @@
+{
+  "source_commit": "7b53d172e72c896fd2d1a85132664a4c30500a06",
+  "source_sha256": "9555a9040de3c1dbefb16dca9b0fbf36f440c66ac244dbce161944eb8ad69209",
+  "atlas": {
+    "file": "sayo-singing.v02.png",
+    "size": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "columns": 4,
+    "rows": 2,
+    "gutter": 0,
+    "outer_margin": 0,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      87,
+      87
+    ],
+    "palette": [
+      "#EFE4DC",
+      "#EBDCD3",
+      "#E8D5C7",
+      "#D7C5B9",
+      "#BDBABF",
+      "#B5ADAF",
+      "#B3A198",
+      "#999CAA",
+      "#8E8B93",
+      "#887E7F",
+      "#70768B",
+      "#67636C",
+      "#585C6C",
+      "#4D5468",
+      "#454857",
+      "#3D3F4C",
+      "#343540",
+      "#282B37",
+      "#1D1F28",
+      "#181B23",
+      "#14181F",
+      "#12141A",
+      "#0F1219",
+      "#0B0D13"
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "id": "SS01",
+        "row": 1,
+        "column": 1,
+        "rect": [
+          0,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          30,
+          23,
+          74,
+          86
+        ],
+        "state": "ready"
+      },
+      {
+        "id": "SS02",
+        "row": 1,
+        "column": 2,
+        "rect": [
+          96,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          29,
+          23,
+          74,
+          86
+        ],
+        "state": "inhale"
+      },
+      {
+        "id": "SS03",
+        "row": 1,
+        "column": 3,
+        "rect": [
+          192,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          29,
+          23,
+          74,
+          86
+        ],
+        "state": "fork to throat"
+      },
+      {
+        "id": "SS04",
+        "row": 1,
+        "column": 4,
+        "rect": [
+          288,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          18,
+          23,
+          74,
+          86
+        ],
+        "state": "sing"
+      },
+      {
+        "id": "SS05",
+        "row": 2,
+        "column": 1,
+        "rect": [
+          0,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          29,
+          23,
+          74,
+          86
+        ],
+        "state": "hush gesture"
+      },
+      {
+        "id": "SS06",
+        "row": 2,
+        "column": 2,
+        "rect": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          30,
+          23,
+          74,
+          86
+        ],
+        "state": "sustain hush"
+      },
+      {
+        "id": "SS07",
+        "row": 2,
+        "column": 3,
+        "rect": [
+          192,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          30,
+          23,
+          74,
+          86
+        ],
+        "state": "lower hand"
+      },
+      {
+        "id": "SS08",
+        "row": 2,
+        "column": 4,
+        "rect": [
+          288,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          30,
+          23,
+          74,
+          86
+        ],
+        "state": "settle"
+      }
+    ]
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 300
+    },
+    {
+      "frame": 1,
+      "ms": 250
+    },
+    {
+      "frame": 2,
+      "ms": 300
+    },
+    {
+      "frame": 3,
+      "ms": 250
+    },
+    {
+      "frame": 2,
+      "ms": 100
+    },
+    {
+      "frame": 4,
+      "ms": 400
+    },
+    {
+      "frame": 5,
+      "ms": 400
+    },
+    {
+      "frame": 6,
+      "ms": 300
+    },
+    {
+      "frame": 7,
+      "ms": 300
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "original_actor_track": [
+    {
+      "frame": 0,
+      "ms": 300
+    },
+    {
+      "frame": 1,
+      "ms": 250
+    },
+    {
+      "frame": 2,
+      "ms": 300
+    },
+    {
+      "frame": 3,
+      "ms": 350
+    },
+    {
+      "frame": 4,
+      "ms": 400
+    },
+    {
+      "frame": 5,
+      "ms": 400
+    },
+    {
+      "frame": 6,
+      "ms": 300
+    },
+    {
+      "frame": 7,
+      "ms": 300
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "loop": false,
+  "duration_ms": 3600,
+  "terminal": "SS01 ready",
+  "timing_assumptions": [],
+  "change": "SS04 exposure350 to250ms;reuse SS03 for100ms at1100..1200ms before SS05. All later cues and holds unchanged. No raster edit.",
+  "integration": "Replace PR49 actor_track only; preserve effects/cues/motion. Not54-frame party importer compatible."
+}
