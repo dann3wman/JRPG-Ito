@@ -22,4 +22,4 @@ Fresh browser attempt failed because `/usr/lib/chromium/chromium` is missing. Wa
 
 All five categories reevaluated in the [audit](2026-11-25-audit.json). New B019 records the Whisperer's separate hiding-count transition defect, not its already-delivered cadence correction. No Whisperer code edited. One actionable task and six retained blockers.
 
-Implementation commit and PR: pending publication. No merge or deployment.
+Implementation commit: `04cf44b8df45a2732371b2901628c296253833b6`. [Draft PR56](https://github.com/dann3wman/JRPG-Ito/pull/56). Queue generation9 revision25. Earlier task history preservation assertion passed. No merge or deployment.
