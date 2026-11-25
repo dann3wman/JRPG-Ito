@@ -2902,6 +2902,8 @@ const SCRIPTS = {
         run:(e,t)=>{ hitParty(t, e.atk*1.4, {crit:Math.random()<e.crit, src:e}); inflict(t, 'Confuse', 2, 30); }},
       murmur:{name:'Murmur', rank:3, tags:['Sound','Stress'], sound:true, target:'all', power:'—', desc:'+8 Stress to each ally who can hear it.', run:()=>targetsForFoes().forEach(t=>addStress(t, 8, 'Murmur', {sound:true}))} } },
   taste:{
+    planName:e=>tastePhasePending(e) ? 'Phase change' : null,
+    planText:e=>tastePhasePending(e) ? 'Phase change → action will be chosen when it acts' : null,
     hint:'Wake them all at once.',
     notes:['At the start of each of its turns it heals 5% for each Sleeper still humming. A Sleeper woken four times stays awake for good.','In phase 2, every other turn Kiri\'s sleeping body hums a Lullaby that puts every Sleeper back to sleep. It is a sound attack: Counter-Melody cancels it.'],
     phases:[ {id:'p1', label:'Above 50% HP'},
@@ -2930,6 +2932,12 @@ const SCRIPTS = {
     rules:[ {label:'Every turn', skill:'hum'} ],
     skills:{ hum:{name:'Hum', rank:3, tags:[], target:'none', power:'—', desc:'It never acts. While it hums, Taste of Ostrel heals 5% a turn. A hit wakes it for 2 of the boss\'s turns: no damage, and +10 Stress to the ally who woke it (once per action, however many wake). Woken a fourth time, it stays awake for good.', run:()=>{}} } },
 };
+// Taste heals before the phase gate; preview that boundary without changing battle state.
+function tastePhasePending(e){
+  const n = sleepers().filter(x=>!x.awake).length;
+  const hp = Math.min(e.maxhp, e.hp + Math.round(e.maxhp*.05*n));
+  return !!e.phase && phaseOf({...e, hp}) !== e.phase;
+}
 function phaseOf(e){ const S = SCRIPTS[e.key]; if (!S.phases) return null; let id = S.phases[0].id; S.phases.forEach(p=>{ if (p.when && p.when(e)) id = p.id; }); return id; }
 function aiTarget(type, e){
   const ts = targetsForFoes(); if (!ts.length) return null;
@@ -2971,12 +2979,14 @@ function planNext(e){
 function planName(e){
   const S = SCRIPTS[e.key];
   if (e.sleep > 0) return 'Asleep';
-  if (S.planName) return S.planName(e);
+  const custom = S.planName ? S.planName(e) : null;
+  if (custom != null) return custom;
   return e.plan ? S.skills[e.plan.skill].name : '';
 }
 function planText(e){
   if (e.sleep > 0) return `Next: Asleep (${e.sleep} more of its turns)`;
-  if (SCRIPTS[e.key].planText) return 'Next: ' + SCRIPTS[e.key].planText(e);
+  const custom = SCRIPTS[e.key].planText ? SCRIPTS[e.key].planText(e) : null;
+  if (custom != null) return 'Next: ' + custom;
   if (!e.plan) return '';
   const sk = SCRIPTS[e.key].skills[e.plan.skill];
   const who = sk.late ? ` → ${sk.lateText ? sk.lateText(e) : LATE_TEXT[sk.target]}` : (e.plan.target ? ` → ${e.plan.target.name}` : (sk.target==='all' ? ' → all' : ''));
