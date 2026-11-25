@@ -2130,6 +2130,166 @@
         "kuro-casting-v02-review.zip": "https://chatgpt.com/library?file_id=libfile_fde3_f-34d6c40cbeec8191bd7ef5ca3ad7007d_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
       },
       "next_selection": "Prefer another unreviewed character with an accessible animation sheet. Do not repeat Kuro while this draft remains open unless addressing its explicit remaining work."
+    },
+    {
+      "review_id": "2026-11-24-goku-quake",
+      "reviewed_at": "2026-11-25T04:42:23.785308+00:00",
+      "date_local": "2026-11-24",
+      "timezone": "America/New_York",
+      "character": "Goku",
+      "action": "Quake",
+      "status": "partial_review_no_changes_not_a_pass",
+      "source": {
+        "repository": "dann3wman/JRPG-Ito",
+        "commit": "465f560628aa3a0d32a339bb3d18bddcf144826c",
+        "pr_url": "https://github.com/dann3wman/JRPG-Ito/pull/52",
+        "path": "assets/party-fx/goku-quake-v01/goku-casting.v01.png",
+        "sha256": "e7f2087312d7c409fd775312967be40a69efbea1187c32d019d3c2476437949c",
+        "version": 1,
+        "library_parity": "No matching Goku native sheet resolved by exact and broad title searches. No source-byte hash comparison possible. Source is an unmerged creation draft, not canonical approval."
+      },
+      "selection_reason": "Goku has no entry in all22 current Library review entries. Prior Sayo51/Hisui48/Shio45/Fuyori42/Ren39/Hisui36/Kugai33/Tetsugi30 reviews were checked. PR52 is creation only; no open Goku review found. Select exactly this actor sheet, excluding portraits and stone-effect atlas.",
+      "reconciliation": {
+        "default_branch": "ccr-d8829a5a-ays4x1",
+        "base_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+        "library_version": 22,
+        "library_rotation_sha256": "0d62f27d87b7c9b616a6f38def43fb20ca1d415bc092a5127525a7bd2aa747ec",
+        "repository_rotation_sha256": "0370b775bc044ebb142acea0a8ac14677dbcc9070d377783d322a08aff90e09a",
+        "policy": "Keep repository14 entries and Library22 entries independently, append this review to both. Preserve all unmerged corrections. Source art remains pinned in PR52; no wholesale import or overwrite."
+      },
+      "sequences": [
+        "One Quake casting action: GQ01 ready, GQ02 brace, GQ03 raise claw, GQ04 extend, GQ05 press, GQ06 pressure hold, GQ07 withdraw, GQ08 settle, GQ01 terminal ready"
+      ],
+      "geometry": {
+        "atlas": [
+          384,
+          192
+        ],
+        "cell": [
+          96,
+          96
+        ],
+        "grid": [
+          4,
+          2
+        ],
+        "frame_count": 8,
+        "order": "row-major",
+        "gutter": 0,
+        "pivot": [
+          48,
+          86
+        ],
+        "padding_px": 8
+      },
+      "timing": {
+        "ms": [
+          300,
+          250,
+          300,
+          350,
+          400,
+          400,
+          300,
+          300,
+          1000
+        ],
+        "duration_ms": 3600,
+        "loop": false,
+        "terminal": "hold GQ01",
+        "assumptions": [],
+        "changed": false,
+        "preview": "GIF repeats for inspection; slow delays doubled"
+      },
+      "findings": [
+        "Key poses read as gathering, outward extension, downward pressure and withdrawal. GQ03 toGQ04 has the largest hand displacement; held keys are authored300/350ms, not evidence of missing decoded frames.",
+        "Feet are identically registered through y80..85. No detached opaque components or cell-edge clipping found. Body alpha area ranges1993..2145 pixels as the claw and cloak extend; this alone does not prove volume drift.",
+        "Hood crest, face pixels and rear cords vary between adjacent keys. Hand shape changes strongly between GQ03 curled claw andGQ04 extension. These remain artistic continuity concerns; a safe exact correction was not established.",
+        "GQ06 lowers the claw further while the cloak trails. It may be intended follow-through; freezing it by copyingGQ05 would remove that motion without sufficient evidence.",
+        "Recovery passes throughGQ07/GQ08 then returns toGQ01. Head contour changes at that transition remain unresolved. Diagnostic repeat boundary itself isGQ01 toGQ01, but the authored action is not looping.",
+        "No physical hand-to-target contact is specified. Impact occurs in the separate stone choreography at1500ms. Actor-only playback does not validate effect contact or target weight."
+      ],
+      "changes": [],
+      "pixel_changes": 0,
+      "validation": {
+        "source_sha256": "e7f2087312d7c409fd775312967be40a69efbea1187c32d019d3c2476437949c",
+        "source_ora_sha256": "64fd950a87d96f9f6c0f065721d4dc581c4070b30efd4d77c4b8b0b8ca7af1ca",
+        "source_timeline_sha256": "c64528b5be5693e9259e2a0ceba26778cd2c6c72f29ede04277226d249b8ba4a",
+        "native_dimensions": [
+          384,
+          192
+        ],
+        "cells": [
+          96,
+          96
+        ],
+        "frame_count": 8,
+        "exposures": 9,
+        "bounds_match_metadata": true,
+        "padding_safe": true,
+        "pivot": [
+          48,
+          86
+        ],
+        "shared_boot_strip_80_85": true,
+        "binary_alpha": true,
+        "opaque_colors": 24,
+        "palette_matches_metadata": true,
+        "nearest_enlargement_exact": true,
+        "ora_recomposition_exact": true,
+        "decoded_gif_pixels_and_delays_exact": true,
+        "duration_ms": 3600,
+        "slow_duration_ms": 7200,
+        "source_unchanged": true,
+        "artistic_approval": false,
+        "engine_tested": false,
+        "continuous_perceptual_review_complete": false
+      },
+      "playback": {
+        "application": "GIMP Animation Playback",
+        "normal_and_half_speed_started_and_visually_sampled": true,
+        "all_unique_frames_inspected": true,
+        "paused_frames": [
+          "GQ03",
+          "GQ04",
+          "GQ05",
+          "GQ06",
+          "GQ07",
+          "GQ08",
+          "GQ01"
+        ],
+        "delivered_normal_gif_sha256": "c16304d0d347f952c7b43a556b4b8d89f52e021d7bff90447db50294d523925a",
+        "delivered_normal_identical_to_viewed_file": true,
+        "complete_continuous_inspection": false,
+        "note": "Screenshots during live playback and paused frame stepping establish sampled inspection, not uninterrupted motion perception. Half speed inspected using0.5x control on the normal GIF; the separate slow GIF is decoded and verified."
+      },
+      "repository_checks": {
+        "command": "bash tools/check.sh",
+        "exit_code": 0,
+        "warnings": "Existing Quick Song/Delay drift and16 creature attachment notices. Drift already recorded in docs/implementation-status.md open questions2/3. No gameplay changes."
+      },
+      "remaining_issues": [
+        "Full continuous motion assessment and professional artistic approval incomplete.",
+        "Hood/face/cord and claw shape continuity need artist cleanup or a better grounded correction. No redraw attempted and no pass recorded.",
+        "Engine compatibility and combined stone/target choreography untested.",
+        "No matching current Library actor source resolved; parity unknown. Reference video playback was not inspected this run."
+      ],
+      "output_links": {
+        "goku.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-21577b743ac48191a34c80680a3801f9_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "goku.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-390342fa9ec08191a90b4d4e4c9fbf7d_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "goku.frames.4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-da1f0defac64819195c17be0cb0f218a_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "goku.labelled.4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-fff9a60ce328819194a074f1924c16ca_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "goku.timing.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-47d799ecd0d08191956b45f148d7f942_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "build.py": "https://chatgpt.com/library?file_id=libfile_fde3_f-c3194ecb2d848191a930bb8ccee9f384_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "validation.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-ec3526aac4d48191951a6a6bb13a5550_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+      },
+      "github": {
+        "branch": "animation-review/2026-11-24-goku-quake",
+        "base_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+        "commit_sha": null,
+        "pr_url": null,
+        "status": "pending publication; canonical Library record updated after publication"
+      }
     }
   ]
 }
