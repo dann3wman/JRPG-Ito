@@ -1,0 +1,176 @@
+{
+  "seed": 1,
+  "runs_per_policy": 100,
+  "before": {
+    "advisor": {
+      "key": "taste",
+      "party": [
+        "kuro",
+        "sayo",
+        "kiri"
+      ],
+      "policy": "advisor",
+      "s": {
+        "n": 100,
+        "win": 1,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 36.29,
+        "winTurns": 36.29,
+        "foeTurns": 10.89,
+        "kos": 0,
+        "afflicted": 0,
+        "inspired": 0,
+        "fled": 0,
+        "lost": 2.86,
+        "limits": 0.04,
+        "phoenix": 0,
+        "stress": 26.433333333333344,
+        "danger": 65.15,
+        "hp": 0.6812975170292245
+      }
+    },
+    "attack": {
+      "key": "taste",
+      "party": [
+        "kuro",
+        "sayo",
+        "kiri"
+      ],
+      "policy": "attack",
+      "s": {
+        "n": 100,
+        "win": 0.03,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 85.75,
+        "winTurns": 189.66666666666666,
+        "foeTurns": 37.42,
+        "kos": 2.99,
+        "afflicted": 2.99,
+        "inspired": 0.94,
+        "fled": 1.42,
+        "lost": 11.42,
+        "limits": 0,
+        "phoenix": 0,
+        "stress": 138.26308874458869,
+        "danger": 56.52,
+        "hp": 0.07826188568376069
+      }
+    },
+    "random": {
+      "key": "taste",
+      "party": [
+        "kuro",
+        "sayo",
+        "kiri"
+      ],
+      "policy": "random",
+      "s": {
+        "n": 100,
+        "win": 0.64,
+        "timeout": 0.09,
+        "stalled": 0,
+        "turns": 188.63,
+        "winTurns": 179.546875,
+        "foeTurns": 76,
+        "kos": 3.62,
+        "afflicted": 8.04,
+        "inspired": 2.7,
+        "fled": 7.42,
+        "lost": 67.51,
+        "limits": 6.57,
+        "phoenix": 2.21,
+        "stress": 173.79113275613275,
+        "danger": 100,
+        "hp": 0.15904074086928657
+      }
+    }
+  },
+  "after": {
+    "advisor": {
+      "key": "taste",
+      "party": [
+        "kuro",
+        "sayo",
+        "kiri"
+      ],
+      "policy": "advisor",
+      "s": {
+        "n": 100,
+        "win": 1,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 36.29,
+        "winTurns": 36.29,
+        "foeTurns": 10.89,
+        "kos": 0,
+        "afflicted": 0,
+        "inspired": 0,
+        "fled": 0,
+        "lost": 2.86,
+        "limits": 0.04,
+        "phoenix": 0,
+        "stress": 26.433333333333344,
+        "danger": 65.15,
+        "hp": 0.6812975170292245
+      }
+    },
+    "attack": {
+      "key": "taste",
+      "party": [
+        "kuro",
+        "sayo",
+        "kiri"
+      ],
+      "policy": "attack",
+      "s": {
+        "n": 100,
+        "win": 0.03,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 85.75,
+        "winTurns": 189.66666666666666,
+        "foeTurns": 37.42,
+        "kos": 2.99,
+        "afflicted": 2.99,
+        "inspired": 0.94,
+        "fled": 1.42,
+        "lost": 11.42,
+        "limits": 0,
+        "phoenix": 0,
+        "stress": 138.26308874458869,
+        "danger": 56.52,
+        "hp": 0.07826188568376069
+      }
+    },
+    "random": {
+      "key": "taste",
+      "party": [
+        "kuro",
+        "sayo",
+        "kiri"
+      ],
+      "policy": "random",
+      "s": {
+        "n": 100,
+        "win": 0.64,
+        "timeout": 0.09,
+        "stalled": 0,
+        "turns": 188.63,
+        "winTurns": 179.546875,
+        "foeTurns": 76,
+        "kos": 3.62,
+        "afflicted": 8.04,
+        "inspired": 2.7,
+        "fled": 7.42,
+        "lost": 67.51,
+        "limits": 6.57,
+        "phoenix": 2.21,
+        "stress": 173.79113275613275,
+        "danger": 100,
+        "hp": 0.15904074086928657
+      }
+    }
+  }
+}

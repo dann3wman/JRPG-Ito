@@ -47,6 +47,8 @@ At the start of each of its turns it heals 5% for each humming Sleeper; then eac
 
 **Sleeper** ×4 (no turns; can't be KO'd): a hit wakes it for 2 of the Taste's turns, deals no damage, and adds 10 Stress to the ally who woke it (once per action).
 
+The phase warning accounts for the heal before the phase gate. When the projected phase differs, the next action is marked as pending selection rather than promising the stored attack. Implemented 2026-11-25; browser layout review remains outstanding. [Review](../bestiary/reviews/2026-11-25-taste-phase-warning.md).
+
 ## Fairness checks
 
 - [x] Each Sleeper's card says humming or awake, and for how long.
