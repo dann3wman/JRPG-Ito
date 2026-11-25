@@ -1,0 +1,283 @@
+{
+  "character": "Goku",
+  "action": "Quake",
+  "source_commit": "465f560628aa3a0d32a339bb3d18bddcf144826c",
+  "source_path": "assets/party-fx/goku-quake-v01/goku-casting.v01.png",
+  "source_sha256": "e7f2087312d7c409fd775312967be40a69efbea1187c32d019d3c2476437949c",
+  "atlas": {
+    "file": "goku-casting.v01.png",
+    "size": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "columns": 4,
+    "rows": 2,
+    "gutter": 0,
+    "outer_margin": 0,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      87,
+      87
+    ],
+    "palette": [
+      "#D4B79A",
+      "#AC9174",
+      "#9D7D60",
+      "#8A745A",
+      "#87664A",
+      "#7B624A",
+      "#6E5C47",
+      "#6C513D",
+      "#5C4F3E",
+      "#5C4534",
+      "#4B4136",
+      "#44392F",
+      "#433127",
+      "#39302A",
+      "#342F2A",
+      "#332A24",
+      "#2D2A26",
+      "#2B2723",
+      "#282321",
+      "#251F1D",
+      "#1E1B1B",
+      "#1B1717",
+      "#171516",
+      "#141213"
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "id": "GQ01",
+        "row": 1,
+        "column": 1,
+        "rect": [
+          0,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          24,
+          20,
+          71,
+          86
+        ],
+        "state": "ready"
+      },
+      {
+        "id": "GQ02",
+        "row": 1,
+        "column": 2,
+        "rect": [
+          96,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          25,
+          21,
+          72,
+          86
+        ],
+        "state": "brace"
+      },
+      {
+        "id": "GQ03",
+        "row": 1,
+        "column": 3,
+        "rect": [
+          192,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          25,
+          21,
+          73,
+          86
+        ],
+        "state": "raise claw"
+      },
+      {
+        "id": "GQ04",
+        "row": 1,
+        "column": 4,
+        "rect": [
+          288,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          14,
+          21,
+          76,
+          86
+        ],
+        "state": "extend claw"
+      },
+      {
+        "id": "GQ05",
+        "row": 2,
+        "column": 1,
+        "rect": [
+          0,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          17,
+          21,
+          77,
+          86
+        ],
+        "state": "press ground"
+      },
+      {
+        "id": "GQ06",
+        "row": 2,
+        "column": 2,
+        "rect": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          19,
+          21,
+          77,
+          86
+        ],
+        "state": "hold pressure"
+      },
+      {
+        "id": "GQ07",
+        "row": 2,
+        "column": 3,
+        "rect": [
+          192,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          23,
+          21,
+          74,
+          86
+        ],
+        "state": "withdraw claw"
+      },
+      {
+        "id": "GQ08",
+        "row": 2,
+        "column": 4,
+        "rect": [
+          288,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          26,
+          21,
+          73,
+          86
+        ],
+        "state": "settle"
+      }
+    ]
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 300
+    },
+    {
+      "frame": 1,
+      "ms": 250
+    },
+    {
+      "frame": 2,
+      "ms": 300
+    },
+    {
+      "frame": 3,
+      "ms": 350
+    },
+    {
+      "frame": 4,
+      "ms": 400
+    },
+    {
+      "frame": 5,
+      "ms": 400
+    },
+    {
+      "frame": 6,
+      "ms": 300
+    },
+    {
+      "frame": 7,
+      "ms": 300
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "duration_ms": 3600,
+  "loop": false,
+  "terminal": "hold GQ01",
+  "timing_assumptions": [],
+  "pixel_changes": 0,
+  "timing_changes": false,
+  "preview_loop_only": true,
+  "slow_multiplier": 2,
+  "compatibility": "Standalone eight-pose actor atlas. Not the 54-frame party importer; no engine integration performed. Retain source PR52 choreography and effects."
+}
