@@ -1,0 +1,692 @@
+{
+  "action": "Ren: Delay Shot",
+  "version": 1,
+  "duration_ms": 3600,
+  "fps": 60,
+  "loop": false,
+  "terminal": "effects hidden; Ren ready; target recovered",
+  "scene": {
+    "native": [
+      384,
+      216
+    ],
+    "output": [
+      1536,
+      864
+    ],
+    "origin": "top-left",
+    "baseline": 180,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      375,
+      207
+    ],
+    "actor_feet": [
+      280,
+      180
+    ],
+    "effect_pivot": [
+      104,
+      150
+    ],
+    "target_feet": [
+      104,
+      180
+    ],
+    "facing": "left"
+  },
+  "atlases": {
+    "ren-shooting": {
+      "file": "ren-shooting.v01.png",
+      "size": [
+        384,
+        192
+      ],
+      "cell": [
+        96,
+        96
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        87,
+        87
+      ],
+      "palette": [
+        "#C9A083",
+        "#997C65",
+        "#876955",
+        "#6C645F",
+        "#715647",
+        "#60544D",
+        "#515051",
+        "#544641",
+        "#4F3D36",
+        "#444446",
+        "#433835",
+        "#3A3A3C",
+        "#353132",
+        "#352C2C",
+        "#2C2B2E",
+        "#2B2526",
+        "#242225",
+        "#201D1F",
+        "#1B181A",
+        "#151315",
+        "#121113",
+        "#101011",
+        "#0F0D0F",
+        "#0B0A0C"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "RD01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            34,
+            25,
+            75,
+            86
+          ],
+          "state": "ready"
+        },
+        {
+          "id": "RD02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            27,
+            25,
+            75,
+            86
+          ],
+          "state": "grip"
+        },
+        {
+          "id": "RD03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            21,
+            25,
+            75,
+            86
+          ],
+          "state": "raise pistol"
+        },
+        {
+          "id": "RD04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            288,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            17,
+            25,
+            75,
+            86
+          ],
+          "state": "aim"
+        },
+        {
+          "id": "RD05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            18,
+            25,
+            75,
+            86
+          ],
+          "state": "recoil"
+        },
+        {
+          "id": "RD06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            17,
+            25,
+            75,
+            86
+          ],
+          "state": "re-aim"
+        },
+        {
+          "id": "RD07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            22,
+            25,
+            75,
+            86
+          ],
+          "state": "lower"
+        },
+        {
+          "id": "RD08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            288,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            33,
+            25,
+            75,
+            86
+          ],
+          "state": "settle"
+        }
+      ]
+    },
+    "shot-impact": {
+      "file": "shot-impact.v01.png",
+      "size": [
+        512,
+        256
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        119,
+        119
+      ],
+      "palette": [
+        "#F9F0E3",
+        "#D6C2AC",
+        "#9C8066",
+        "#716257",
+        "#6D5B4C",
+        "#605A5B",
+        "#5C5758",
+        "#575253",
+        "#6C3D24",
+        "#504946",
+        "#642423",
+        "#531E1D",
+        "#494445",
+        "#3F3A3B",
+        "#342F2F",
+        "#441B1B"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "SI01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            55,
+            58,
+            77,
+            72
+          ],
+          "state": "muzzle"
+        },
+        {
+          "id": "SI02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            37,
+            55,
+            81,
+            73
+          ],
+          "state": "projectile"
+        },
+        {
+          "id": "SI03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            44,
+            49,
+            78,
+            78
+          ],
+          "state": "contact"
+        },
+        {
+          "id": "SI04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            35,
+            38,
+            90,
+            91
+          ],
+          "state": "bloom"
+        },
+        {
+          "id": "SI05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            41,
+            35,
+            94,
+            89
+          ],
+          "state": "fragments"
+        },
+        {
+          "id": "SI06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            34,
+            37,
+            96,
+            86
+          ],
+          "state": "smoke curl"
+        },
+        {
+          "id": "SI07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            39,
+            37,
+            89,
+            80
+          ],
+          "state": "smoke thinning"
+        },
+        {
+          "id": "SI08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            44,
+            46,
+            80,
+            75
+          ],
+          "state": "last wisp"
+        }
+      ]
+    }
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 400
+    },
+    {
+      "frame": 1,
+      "ms": 250
+    },
+    {
+      "frame": 2,
+      "ms": 250
+    },
+    {
+      "frame": 3,
+      "ms": 600
+    },
+    {
+      "frame": 4,
+      "ms": 100
+    },
+    {
+      "frame": 5,
+      "ms": 300
+    },
+    {
+      "frame": 6,
+      "ms": 350
+    },
+    {
+      "frame": 7,
+      "ms": 350
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "effect_track": [
+    {
+      "frame": 0,
+      "ms": 50
+    },
+    {
+      "frame": 1,
+      "ms": 50
+    },
+    {
+      "frame": 2,
+      "ms": 70
+    },
+    {
+      "frame": 3,
+      "ms": 130
+    },
+    {
+      "frame": 4,
+      "ms": 150
+    },
+    {
+      "frame": 5,
+      "ms": 200
+    },
+    {
+      "frame": 6,
+      "ms": 250
+    },
+    {
+      "frame": 7,
+      "ms": 200
+    }
+  ],
+  "effect_start_ms": 1500,
+  "effect_hide_ms": 2600,
+  "cues": [
+    {
+      "name": "cast",
+      "ms": 1500
+    },
+    {
+      "name": "impact",
+      "ms": 1600
+    },
+    {
+      "name": "effect_clear",
+      "ms": 2600
+    },
+    {
+      "name": "action_complete",
+      "ms": 3600
+    }
+  ],
+  "gameplay_events": "Visual cast and impact cues only; no HP, status or combat rule mutation.",
+  "motion": {
+    "actor_x_keys": [
+      [
+        0,
+        280
+      ],
+      [
+        3600,
+        280
+      ]
+    ],
+    "target_x_keys": [
+      [
+        0,
+        104
+      ],
+      [
+        1600,
+        104
+      ],
+      [
+        1750,
+        96
+      ],
+      [
+        2250,
+        96
+      ],
+      [
+        2800,
+        104
+      ],
+      [
+        3600,
+        104
+      ]
+    ],
+    "target_y_keys": [
+      [
+        0,
+        0
+      ],
+      [
+        3600,
+        0
+      ]
+    ],
+    "shot": "muzzle(246,139) to contact(104,150) during1500..1600ms; effect follows target thereafter",
+    "interpolation": "smoothstep integer native pixels"
+  },
+  "layers": [
+    {
+      "name": "background",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": "opaque",
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "muzzle light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "source-over",
+      "filter": "linear",
+      "preview_scale": 2
+    },
+    {
+      "name": "target, actor, shot impact",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "activation light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "screen",
+      "filter": "linear",
+      "preview_scale": 2
+    }
+  ],
+  "status": {
+    "reference_available": true,
+    "specified": true,
+    "generated_built": true,
+    "exported": true,
+    "technically_checked": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  }
+}

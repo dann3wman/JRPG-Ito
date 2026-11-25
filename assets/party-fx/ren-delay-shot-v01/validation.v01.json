@@ -1,0 +1,110 @@
+{
+  "ren-shooting": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "stationary_boot_registration": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "shot-impact": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 16,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "stationary_boot_registration": false,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 33,
+    "expanded_render_slots": 216,
+    "duration_ms": 3600.000000000001,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 33,
+    "duration_ms": 3600,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 216,
+    "fps": 60,
+    "duration_ms": 3600
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "duration_ms": 3600,
+    "integer_states": 3601,
+    "event_count": 4,
+    "activation_count": 1,
+    "replay_reset": true,
+    "seek_no_events": true,
+    "pause": true,
+    "half_speed_logic": true,
+    "terminal_cleanup": true,
+    "live_browser_controls": false
+  },
+  "visual_review": {
+    "complete_continuous_review": false,
+    "live_playback": "Live playback not verified in this run; Chromium and GIMP launch attempts yielded no usable windows; continuous review could not be completed. Normal and half-speed continuous playback and live HTML controls remain unverified; draft",
+    "light_dark_stills_reviewed": true,
+    "ora_reopened_programmatically": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 361,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "14c52c8e2d740569cf9774808800b00f03d5ee4f2ed04b3bbb0a42b83a67fe39",
+    "build.py": "9ca28de0afd52ad7c3271e9007af5c0865663837545be32e9528ab915cec9f1b",
+    "check-render.cjs": "c82c444e868020ff7c6cb2ee751309c1d23bb722f423c103c60308cac2275d1c",
+    "encode.py": "3a21231051ca2c1e795752b66ae1e77022acf0a353972e31dc2a87953d2e05a9",
+    "export.cjs": "99190f569970054c2dd28734b9d3aa80da81965e65a835cf3a4d92681752ba9a",
+    "player.template.html": "958d0d50d2b4a7c83d74dcef5e517452c2a884d4bec0d461e688eeb28f98071c",
+    "ren-delay-shot.v01.apng": "d8883b9d0e47ae7a3ef288945049af6b703babbe6abc7614bbf5ceac9c93b01a",
+    "ren-delay-shot.v01.gif": "e5c68e2f7dbca92ab4f24c8f71cdd26913b50fb9ed05b8926b5b9c9d74536f38",
+    "ren-delay-shot.v01.html": "b28b37ab773290fc2a835063ab4bea1d178871015e8592a6f3f722dc20e7fb25",
+    "ren-delay-shot.v01.mp4": "f0e2cffa8f955751c7d2d52e1e085c1016d5053cf6fced6c82f74e2fe13c4c5f",
+    "ren-shooting.v01.4x.png": "934c67d56a3d996e00548f727035f04ac1a806b0bde18f7c45dfe3a385ad57b9",
+    "ren-shooting.v01.ora": "dd90ab2509e28bf7f84112ea2de1504fd713daa94895f6247d4d8b661131831f",
+    "ren-shooting.v01.png": "dfab49ce1b1041b39570bb423d01dd7f4df0286ace1f381af9fb31aabc30d661",
+    "render-validation.json": "8da4a3d32e9c398b381dc2d1b6b70fa2c73505b5e258723c3b0d14215d2db6a5",
+    "render.js": "ba26439bd658951df0fbd51dc673a6a1cdac5e180f9ca2e8ed8ddfe68198c617",
+    "repository-checks.txt": "c8a3cf65394b77d14c170ff19e2b2ab141e9f1522da6debaea9b6a779ec42ab3",
+    "review.v01.4x.png": "8fceb8e0307fcd979f4961e767a0c538172567610c304aa108eb12f059520efa",
+    "review.v01.png": "47c0b943c19bebd1ccce64951bfb4eb54f2e51f9ace6da803fef69aeaae584e8",
+    "runtime-validation.json": "a6afcbf3e3a5807f67c5d6f3418434c4f36f65bc54024317b3a9f7ba76447950",
+    "scene.dark.v01.png": "c83edca857d5f80c663a70460a3872bb6f8a1c26e56c3dbdfd216df1e2105e9e",
+    "scene.light.v01.png": "1316ee184e440abc34905d785ec49de7fdcf8029825daae779af52fa016f0469",
+    "scene.pixel-4x.v01.png": "01b9684e130703513279cc344023fa8758c49051c81f2ffa4004552bc8da6a62",
+    "scene.pixel-native.v01.png": "a77e03e5da969c96c102a685333ff5a7e3b48ce6f1fa3f0bf025269144953296",
+    "shot-impact.v01.4x.png": "b65e6cc64e3a2a274dd7f9627ee3a7fd4d617b504f9bd5a45671d1823e192cc6",
+    "shot-impact.v01.ora": "476e550828ab65186d44e8a0cbb3f8ff7bf6b1189e944e4b89168550598ac3b1",
+    "shot-impact.v01.png": "a71773041689ae3ca9cc00d0a609d3e2e4056966a5a026f2e69c665679659400",
+    "source/creation-prompts.txt": "a132c7749131a018270e6a59bd31e88c18f6455f067bba02889f3d6f7a5d0f18",
+    "source/ren-shooting.generated.png": "51d3639763c161cf11827c9adb5bad2f96b827bed4dd770678c43ba87b145118",
+    "source/shot-impact.generated.png": "d6975d5160879f89359bc9e8ca4808a0e17d458b515e83f86d75c5393d571f0b",
+    "target-context.png": "383ead149a01c4f22418949bacd01961ae970a065f4ab5ed67e6f3a64b87bfe9",
+    "test.cjs": "062285329f7c57f15466ae41bd99ad44e7e232c8b12c6de4dedea252439e4576",
+    "timeline.v01.json": "bb4797749ebee819953c1006346a757399a3965c2ee0a6277960e33f5f957165",
+    "validate.py": "af266242c75c0f55388819b6a05678d2f0c9c687807040affa4e530cb0055e09"
+  }
+}
