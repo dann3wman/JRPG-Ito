@@ -1,6 +1,6 @@
 # Bestiary refinement queue
 
-2026-11-26: generation 10, revision 26. Newest tracker reconciled from PR56 revision25. Historical reviews absent from default remain in their delivery PRs. Existing delivery and blocker history is preserved in the [tracker](refinement-queue.json).
+2026-11-26: generation 10, revision 27. Newest tracker reconciled from PR56 revision25. Historical reviews absent from default remain in their delivery PRs. Existing delivery and blocker history is preserved in the [tracker](refinement-queue.json).
 
 Fresh audit: 45 foes, 37 encounters, 22 rigs, 88 clips, six battle mappings. [Audit](reviews/2026-11-26-audit.json). [Today's review](reviews/2026-11-26-whisperer-hiding-count.md).
 
@@ -24,7 +24,7 @@ Fresh audit: 45 foes, 37 encounters, 22 rigs, 88 clips, six battle mappings. [Au
 | B016 | Resonance Engine Mk. IV | implemented_pending_visual_review | [PR](https://github.com/dann3wman/JRPG-Ito/pull/50) |
 | B017 | The Whisperer | implemented_pending_visual_review | [PR](https://github.com/dann3wman/JRPG-Ito/pull/53) |
 | B018 | Taste of Ostrel | implemented_pending_visual_review | [PR](https://github.com/dann3wman/JRPG-Ito/pull/56) |
-| B019 | The Whisperer | implemented_pending_balance_and_visual_review | See tracker |
+| B019 | The Whisperer | implemented_pending_balance_and_visual_review | [PR59](https://github.com/dann3wman/JRPG-Ito/pull/59) |
 | B020 | The Face Thief | pending | See tracker |
 
 One actionable pending task: B020, Face Thief half-health target warning. Six blocked tasks retain their reasons. Delivered tasks awaiting review are not reimplementation candidates.

@@ -1,7 +1,7 @@
 # The Whisperer: immediate two-ally hiding
 
 Date: 2026-11-26. Task B019. Source: `b5d0e9f9ac45c21b2acf28784d75fd977d35eb91` on `ccr-d8829a5a-ays4x1`.
-Branch: `bestiary/2026-11-26-whisperer-hiding-count`. Implementation commit and PR: pending publication.
+Branch: `bestiary/2026-11-26-whisperer-hiding-count`. Implementation commit: `fb15a4edb6cc1aaddc9e76e8e8b9b1ff88d0b6a5`. [Draft PR59](https://github.com/dann3wman/JRPG-Ito/pull/59), not merged.
 
 ## Defect and change
 
