@@ -2311,7 +2311,7 @@ const shuffled = a => a.map(x=>[Math.random(), x]).sort((p,q)=>p[0]-q[0]).map(p=
 const namesOf = ids => ids.map(id=>byId(id).name).join(' and ');
 // The Whisperer stands behind one ally (two in phase 2) and can't be targeted while any of them is still fighting.
 function standBehind(e){
-  e.behind = shuffled(targetsForFoes()).slice(0, p2(e) ? 2 : 1).map(t=>t.id);
+  e.behind = shuffled(targetsForFoes()).slice(0, phaseOf(e)==='p2' ? 2 : 1).map(t=>t.id);
   if (e.behind.length) log(`The Whisperer stands behind ${namesOf(e.behind)}.`, 'foe');
 }
 function whisperTo(e, t){

@@ -53,7 +53,7 @@ The prototype has 25 story fights (every Disc 1 and Disc 2 chapter boss and the 
 | Forty Years | Ch. 10 | Partial | Helmsman, Hull, the tilt, Course Correction: match. Adds the destroyed Hull leaving the ship off course (the way through without Ren). [Spec](bosses/forty.md) |
 | Choir of Lumen | Ch. 11 | Partial | Four sound singers. Adds Hymn growing with the choir and Amen every 4th turn. [Spec](bosses/choir.md) |
 | The Grey Hound | Ch. 12 | Partial | Goku as an AI guest, the unkillable hound, damage raising its ATK, three steps: match. Adds the Defending target halving Goku's Stress. [Spec](bosses/hound.md) |
-| The Whisperer | Ch. 13 | Partial | Standing behind, whispered commands, Swap to expose her, Silence 20%, two at 50%: match. Adds Read Aloud every 3rd turn; whispers are attack-an-ally or stand still. [Spec](bosses/whisperer.md) |
+| The Whisperer | Ch. 13 | Partial | Standing behind, whispered commands, Swap to expose her, Silence 20%, two at 50% including the transition turn: match. Hiding correction delivered for review; browser and balance acceptance pending. Adds Read Aloud every 3rd turn; whispers are attack-an-ally or stand still. [Spec](bosses/whisperer.md) |
 | Ruri ×5, Ruri ×8 | Ch. 14, 17 | Built | The shared script plus the Ch. 14 rule: in a crowd of 5 or more, once half are down the rest stop fighting each other. Encounter stats per level. [Spec](bosses/ruri5.md) |
 | Resonance Engine Mk. IV | Ch. 14 | Partial | Slow start, 2 slots sooner below 50%, Stomp Paralyze 20%: match. Adds Resonance every 3rd turn and Trample in phase 2. [Spec](bosses/engine.md) |
 | The Hundred Listeners | Ch. 15 | Built | Abbot gated by 3 Listeners, coffins sealed with an item by a different character in the same round, Paralyze 20%, reopening at 50%. [Spec](bosses/listeners.md) |
@@ -115,7 +115,7 @@ From `tools/battle-sim/sim.js`, 200 battles per encounter with each encounter's 
 | The Grey Hound | 100% | — | 0% | 0% | 12 | 0.0 |
 | Tide-Widow | 100% | — | 8% | 48% | 84 | 1.6 |
 | Ruri ×2 | 100% | — | 49% | 80% | 45 | 0.6 |
-| The Whisperer | 96% | — | 10% | 6% | 63 | 0.6 |
+| The Whisperer | 99.5% | — | 4% | 4.5% | 65.5 | 0.27 |
 | Ruri ×5 | 99% | — | 0% | 52% | 35 | 1.0 |
 | Resonance Engine Mk. IV | 100% | — | 2% | 81% | 38 | 0.0 |
 | The Hundred Listeners | 97% | — | 0% | 0% | 46 | 0.6 |
@@ -166,3 +166,7 @@ Each needs a decision before it can be resolved in both the doc and the code. Re
 8. **Lost Turns at or above 30 Danger?** *Recommendation:* the code's "30 and up" is easier to read on the meter (the dashed line sits at 30). Change the doc's wording.
 9. **Do borrowed sections dissolve the role answers?** From ring 3 (Ch. 12) a neighbour can learn a role's signature skill, so Disc 2 and 3 bosses built on "only X can" can be answered by a borrower. *Recommendation:* keep it. Persona and FFV make this the late-game pleasure, and the owner still does it better: higher stats, their Stress trait and their Limit Break. Each boss spec from Ch. 12 on should name both answers and test the borrower's with the simulator once the grid exists. Role tests (question 6) are a natural Gate: winning one opens that section's Gates to everyone.
 10. **Three attunement slots, or two?** Three slots for a party of three gives nine sections in play out of twelve, which may be close to "everything" by Disc 3. *Recommendation:* build with three, measure how often a party holds both schools' cores, and drop to two plus Deep Chorus if most Disc 3 parties carry every answer.
+
+### 2026-11-26 Whisperer hiding correction
+
+The half-health turn now hides behind two allies immediately. The row above uses 200 seeded runs per policy with this fix alone, excluding PR53 cadence. Attack/random timeout rates are 93%/87%; balance acceptance and browser play remain pending. See the [review](bestiary/reviews/2026-11-26-whisperer-hiding-count.md). Existing documented design drift is unchanged.

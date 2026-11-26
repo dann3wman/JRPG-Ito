@@ -13,6 +13,7 @@ node tools/data-check/check.js --quiet
 echo "== bestiary behaviour"
 node tools/bestiary-check/tongue-rescue.js
 node tools/bestiary-check/tongue-grab-count.js
+node tools/bestiary-check/whisperer-hiding.js
 
 echo "== game data reference"
 node tools/data-export/export.js --check

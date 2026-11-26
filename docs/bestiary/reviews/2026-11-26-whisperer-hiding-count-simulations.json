@@ -1,0 +1,179 @@
+{
+  "date": "2026-11-26",
+  "source_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+  "scope": "Default plus B019 hiding fix only; PR53 cadence excluded",
+  "seed": 1,
+  "runs_per_policy": 200,
+  "before": {
+    "advisor": {
+      "key": "whisperer",
+      "party": [
+        "kiri",
+        "natsu",
+        "hisui"
+      ],
+      "policy": "advisor",
+      "s": {
+        "n": 200,
+        "win": 0.955,
+        "timeout": 0.045,
+        "stalled": 0,
+        "turns": 73.695,
+        "winTurns": 62.98429319371728,
+        "foeTurns": 17.885,
+        "kos": 0,
+        "afflicted": 0.565,
+        "inspired": 0.25,
+        "fled": 0.405,
+        "lost": 5.485,
+        "limits": 0.105,
+        "phoenix": 0,
+        "stress": 29.882722402597402,
+        "danger": 48.77,
+        "hp": 0.9772618039810369
+      }
+    },
+    "attack": {
+      "key": "whisperer",
+      "party": [
+        "kiri",
+        "natsu",
+        "hisui"
+      ],
+      "policy": "attack",
+      "s": {
+        "n": 200,
+        "win": 0.095,
+        "timeout": 0.88,
+        "stalled": 0,
+        "turns": 283.43,
+        "winTurns": 137.57894736842104,
+        "foeTurns": 167.36,
+        "kos": 0.215,
+        "afflicted": 8.585,
+        "inspired": 2.9,
+        "fled": 9.63,
+        "lost": 118.02,
+        "limits": 0,
+        "phoenix": 0,
+        "stress": 190.34549621212125,
+        "danger": 97.09,
+        "hp": 0.3752086913551383
+      }
+    },
+    "random": {
+      "key": "whisperer",
+      "party": [
+        "kiri",
+        "natsu",
+        "hisui"
+      ],
+      "policy": "random",
+      "s": {
+        "n": 200,
+        "win": 0.055,
+        "timeout": 0.865,
+        "stalled": 0,
+        "turns": 286.125,
+        "winTurns": 172.45454545454547,
+        "foeTurns": 177.655,
+        "kos": 0.64,
+        "afflicted": 8.91,
+        "inspired": 2.96,
+        "fled": 10.07,
+        "lost": 144.845,
+        "limits": 6.8,
+        "phoenix": 0.45,
+        "stress": 191.00755555555554,
+        "danger": 100,
+        "hp": 0.2838050506935543
+      }
+    }
+  },
+  "after": {
+    "advisor": {
+      "key": "whisperer",
+      "party": [
+        "kiri",
+        "natsu",
+        "hisui"
+      ],
+      "policy": "advisor",
+      "s": {
+        "n": 200,
+        "win": 0.995,
+        "timeout": 0.005,
+        "stalled": 0,
+        "turns": 66.67,
+        "winTurns": 65.49246231155779,
+        "foeTurns": 15.725,
+        "kos": 0,
+        "afflicted": 0.27,
+        "inspired": 0.1,
+        "fled": 0.16,
+        "lost": 3.855,
+        "limits": 0.035,
+        "phoenix": 0,
+        "stress": 26.974962121212112,
+        "danger": 48.165,
+        "hp": 0.9739486693192101
+      }
+    },
+    "attack": {
+      "key": "whisperer",
+      "party": [
+        "kiri",
+        "natsu",
+        "hisui"
+      ],
+      "policy": "attack",
+      "s": {
+        "n": 200,
+        "win": 0.04,
+        "timeout": 0.93,
+        "stalled": 0,
+        "turns": 290.995,
+        "winTurns": 103.625,
+        "foeTurns": 176.125,
+        "kos": 0.285,
+        "afflicted": 8.66,
+        "inspired": 2.945,
+        "fled": 9.85,
+        "lost": 125.665,
+        "limits": 0,
+        "phoenix": 0,
+        "stress": 191.65838239538243,
+        "danger": 98.22,
+        "hp": 0.552496925415723
+      }
+    },
+    "random": {
+      "key": "whisperer",
+      "party": [
+        "kiri",
+        "natsu",
+        "hisui"
+      ],
+      "policy": "random",
+      "s": {
+        "n": 200,
+        "win": 0.045,
+        "timeout": 0.87,
+        "stalled": 0,
+        "turns": 287.765,
+        "winTurns": 175.44444444444446,
+        "foeTurns": 179.56,
+        "kos": 0.855,
+        "afflicted": 8.77,
+        "inspired": 3.1,
+        "fled": 10.045,
+        "lost": 147.225,
+        "limits": 7.04,
+        "phoenix": 0.615,
+        "stress": 190.8979141414141,
+        "danger": 100,
+        "hp": 0.20544787523954192
+      }
+    }
+  }
+}

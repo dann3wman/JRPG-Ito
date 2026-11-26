@@ -24,7 +24,7 @@ For three days the hum stops, and without the note people forget the words to ev
 - **Teaches:** Swap as a tool: taking a character out of the fight changes what the enemy can do.
 - **Scan hint:** "Give her no one to stand behind."
 - **Intended answer:** When a character is whispered to, Swap them out for a reserve. With no one to stand behind she can be hit until her next turn, and the other two hit her. At 50% both whispered characters have to go.
-- **The obvious answer, and why it fails:** obeying and attacking. She can't be targeted while she stands behind someone, so the party only hurts itself (`attack`: 2%, after about 10 flees).
+- **The obvious answer, and why it fails:** obeying and attacking. She can't be targeted while she stands behind someone, so the party only hurts itself (`attack`: 4% in the 2026-11-26 isolated run, with 93% timeouts).
 - **Needs at least two characters because:** the whispered character exposes her by leaving; someone else has to hit her before her next turn.
 
 ## Stats
@@ -39,7 +39,7 @@ Encounter level 20, starting Danger 25, default party Kiri, Natsu, Hisui, defaul
 
 One HP phase at 50%, as Disc 2 bosses have.
 
-At the start of each of her turns she stands behind one active ally (two in phase 2). She can't be targeted while any of them is still fighting.
+At the start of each of her turns she stands behind one active ally (two at or below half HP, including the transition turn). She can't be targeted while any of them is still fighting.
 
 1. If this is her 3rd, 6th, 9th… turn: **Read Aloud** (Sound): +10 Stress to each listener.
 2. Otherwise: **Whisper**: each ally she stands behind gets a command (50% attack a named ally at 1.6× their ATK, 50% stand still), +12 Stress, and a 20% chance of Silence for 2 turns.
@@ -64,15 +64,15 @@ A whispered ally Swaps out for the calmest reserve. Everyone else hits her when 
 
 ## Simulation
 
-200 battles per policy, default party, 2026-10-25.
+200 battles per policy, seed 1, default party, 2026-11-26. This branch includes the hiding-count fix only. PR53's separate cadence correction is not included in these balance measurements.
 
-| Policy | Win | Party commands | Afflicted | KOs |
+| Policy | Win before → after | Commands in wins before → after | Afflicted before → after | Timeout before → after |
 | --- | --- | --- | --- | --- |
-| advisor | 96% | 63.0 | 0.56 | 0.00 |
-| attack | 10% | 137.6 | 8.59 | 0.21 |
-| random | 6% | 172.5 | 8.91 | 0.64 |
+| advisor | 95.5% → 99.5% | 63.0 → 65.5 | 0.565 → 0.270 | 4.5% → 0.5% |
+| attack | 9.5% → 4.0% | 137.6 → 103.6 | 8.585 → 8.660 | 88.0% → 93.0% |
+| random | 5.5% → 4.5% | 172.5 → 175.4 | 8.910 → 8.770 | 86.5% → 87.0% |
 
-In band for wins and `attack`. Long, near the top of the length band, because her turns between exposures cost the party time.
+Zero stalls in all six batches. Attack/random mostly reach the 300-command limit; low win rates are not equivalent to party defeat. The intended Swap route remains effective, but these results do not establish overall balance acceptance. Rebaseline after combining PR53 and this change. [Evidence](../bestiary/reviews/2026-11-26-whisperer-hiding-count.md).
 
 ## Open questions
 
