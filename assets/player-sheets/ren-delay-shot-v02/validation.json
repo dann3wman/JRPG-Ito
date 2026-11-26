@@ -1,0 +1,32 @@
+{
+  "before.normal": {
+    "decoded_matches_quantized_frames": true,
+    "apng_pixels_exact": true,
+    "duration_ms": 3600,
+    "palette_colors": 473
+  },
+  "before.slow": {
+    "decoded_matches_quantized_frames": true,
+    "apng_pixels_exact": true,
+    "duration_ms": 7200,
+    "palette_colors": 473
+  },
+  "after.normal": {
+    "decoded_matches_quantized_frames": true,
+    "apng_pixels_exact": true,
+    "duration_ms": 3600,
+    "palette_colors": 473
+  },
+  "after.slow": {
+    "decoded_matches_quantized_frames": true,
+    "apng_pixels_exact": true,
+    "duration_ms": 7200,
+    "palette_colors": 473
+  },
+  "actor_sha256": "dfab49ce1b1041b39570bb423d01dd7f4df0286ace1f381af9fb31aabc30d661",
+  "actor_pixels_unchanged": true,
+  "geometry_padding_palette_alpha_4x_ora_merged": true,
+  "runtime_3601_ms_states": true,
+  "engine_tested": false,
+  "artistic_approval": false
+}

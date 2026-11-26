@@ -1,0 +1,17 @@
+{
+  "source_pr": 55,
+  "source_commit": "cdac700d3ab33e464abe08e51ab089312cfcc61b",
+  "default_branch": "ccr-d8829a5a-ays4x1",
+  "default_head": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+  "source_sha256": {
+    "target-context.png": "383ead149a01c4f22418949bacd01961ae970a065f4ab5ed67e6f3a64b87bfe9",
+    "ren-shooting.v01.png": "dfab49ce1b1041b39570bb423d01dd7f4df0286ace1f381af9fb31aabc30d661",
+    "shot-impact.v01.png": "a71773041689ae3ca9cc00d0a609d3e2e4056966a5a026f2e69c665679659400",
+    "ren-shooting.v01.ora": "dd90ab2509e28bf7f84112ea2de1504fd713daa94895f6247d4d8b661131831f",
+    "render.js": "ba26439bd658951df0fbd51dc673a6a1cdac5e180f9ca2e8ed8ddfe68198c617",
+    "timeline.v01.json": "bb4797749ebee819953c1006346a757399a3965c2ee0a6277960e33f5f957165"
+  },
+  "library_reconciliation": "No matching Delay Shot native source resolved. Searches returned Ren Fire only; no cross-source hash parity claimed. Unmerged PR55 remains provisional, not approved canon.",
+  "artwork_changes": false,
+  "selected_character_sheet_count": 1
+}

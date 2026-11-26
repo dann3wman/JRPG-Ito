@@ -1,0 +1,8 @@
+const fs=require('fs'),{createCanvas,loadImage}=require('@napi-rs/canvas');
+const path=require('path');
+const src=path.resolve(process.argv[2]), dst=__dirname, scratch=path.resolve(process.argv[3]);
+(async()=>{let m=JSON.parse(fs.readFileSync(src+'/timeline.v01.json')),images={};for(let[k,v]of Object.entries({actor:'ren-shooting.v01.png',fx:'shot-impact.v01.png',target:'target-context.png'}))images[k]=await loadImage(src+'/'+v);
+for(let [name,file]of [['before',src+'/render.js'],['after',dst+'/render.v02.js']]){let meta=name==='after'?JSON.parse(fs.readFileSync(dst+'/timeline.v02.json')):m;
+  let art=name==='after'?{actor:await loadImage(dst+'/ren-shooting.v02.png'),fx:await loadImage(dst+'/shot-impact.context.png'),target:await loadImage(dst+'/target-context.png')}:images;
+  let api=require(file),r=api.create(createCanvas,art,meta),c=createCanvas(384,216);fs.mkdirSync(scratch+'/ren-'+name,{recursive:true});for(let i=0;i<360;i++){r.render(c,i*10,'dark',true);fs.writeFileSync(`${scratch}/ren-${name}/${i}.png`,c.toBuffer('image/png'));}r.render(c,1520,'light',true);fs.writeFileSync(`${scratch}/ren-${name}/contact.png`,c.toBuffer('image/png'));}
+let before=require(src+'/render.js'),after=require(dst+'/render.v02.js');for(let t=0;t<=3600;t++){let a=before.state(t,m),b=after.state(t,JSON.parse(fs.readFileSync(dst+'/timeline.v02.json')));for(let k of Object.keys(a))if(!['ex','ey'].includes(k))if(a[k]!==b[k])throw Error(k);if(t>=1600&&(a.ex!==b.ex||a.ey!==b.ey))throw Error('impact drift');if(t>=1500&&t<1550&&(b.ex!==250||b.ey!==135))throw Error('detached flash');}console.log('3601 states passed; source art unchanged; render complete');})();
