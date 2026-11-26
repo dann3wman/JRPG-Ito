@@ -2130,6 +2130,404 @@
         "kuro-casting-v02-review.zip": "https://chatgpt.com/library?file_id=libfile_fde3_f-34d6c40cbeec8191bd7ef5ca3ad7007d_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
       },
       "next_selection": "Prefer another unreviewed character with an accessible animation sheet. Do not repeat Kuro while this draft remains open unless addressing its explicit remaining work."
+    },
+    {
+      "review_id": "2026-11-26-ren-delay-shot",
+      "date_local": "2026-11-26",
+      "timezone": "America/New_York",
+      "reviewed_at": "2026-11-26T05:17:47.217840+00:00",
+      "character": "Ren",
+      "action": "Delay Shot",
+      "status": "partial_attachment_corrected_artistic_review_pending",
+      "source": {
+        "source_pr": 55,
+        "source_commit": "cdac700d3ab33e464abe08e51ab089312cfcc61b",
+        "default_branch": "ccr-d8829a5a-ays4x1",
+        "default_head": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+        "source_sha256": {
+          "target-context.png": "383ead149a01c4f22418949bacd01961ae970a065f4ab5ed67e6f3a64b87bfe9",
+          "ren-shooting.v01.png": "dfab49ce1b1041b39570bb423d01dd7f4df0286ace1f381af9fb31aabc30d661",
+          "shot-impact.v01.png": "a71773041689ae3ca9cc00d0a609d3e2e4056966a5a026f2e69c665679659400",
+          "ren-shooting.v01.ora": "dd90ab2509e28bf7f84112ea2de1504fd713daa94895f6247d4d8b661131831f",
+          "render.js": "ba26439bd658951df0fbd51dc673a6a1cdac5e180f9ca2e8ed8ddfe68198c617",
+          "timeline.v01.json": "bb4797749ebee819953c1006346a757399a3965c2ee0a6277960e33f5f957165"
+        },
+        "library_reconciliation": "No matching Delay Shot native source resolved. Searches returned Ren Fire only; no cross-source hash parity claimed. Unmerged PR55 remains provisional, not approved canon.",
+        "artwork_changes": false,
+        "selected_character_sheet_count": 1
+      },
+      "source_sha256": "dfab49ce1b1041b39570bb423d01dd7f4df0286ace1f381af9fb31aabc30d661",
+      "selection_reason": "Unreviewed Delay Shot actor sheet in PR55; last character reviewed was Goku (PR54). Ren Fire (PR39) is a different action. All23 Library entries and relevant open review PRs consulted. Exactly one actor sheet selected. Effect and target artwork reused only as unchanged playback context.",
+      "reconciliation": {
+        "library_version": 23,
+        "library_rotation_sha256": "8bdeda2c6678fef45a3daea64192651e07e5c197a5a16cffe8d175869a379db1",
+        "repository_rotation_sha256": "0370b775bc044ebb142acea0a8ac14677dbcc9070d377783d322a08aff90e09a",
+        "policy": "Preserve each history independently and append. Source unmerged PR55 pinned by contents and hashes; no newer Library Delay Shot source resolved."
+      },
+      "sequences": [
+        "RD01 ready, RD02 grip, RD03 raise, RD04 aim, RD05 recoil, RD06 re-aim, RD07 lower, RD08 settle, RD01 terminal ready"
+      ],
+      "geometry": {
+        "file": "ren-shooting.v02.png",
+        "size": [
+          384,
+          192
+        ],
+        "cell": [
+          96,
+          96
+        ],
+        "columns": 4,
+        "rows": 2,
+        "gutter": 0,
+        "outer_margin": 0,
+        "safe_bounds_inclusive": [
+          8,
+          8,
+          87,
+          87
+        ],
+        "palette": [
+          "#C9A083",
+          "#997C65",
+          "#876955",
+          "#6C645F",
+          "#715647",
+          "#60544D",
+          "#515051",
+          "#544641",
+          "#4F3D36",
+          "#444446",
+          "#433835",
+          "#3A3A3C",
+          "#353132",
+          "#352C2C",
+          "#2C2B2E",
+          "#2B2526",
+          "#242225",
+          "#201D1F",
+          "#1B181A",
+          "#151315",
+          "#121113",
+          "#101011",
+          "#0F0D0F",
+          "#0B0A0C"
+        ],
+        "alpha": [
+          0,
+          255
+        ],
+        "frames": [
+          {
+            "id": "RD01",
+            "row": 1,
+            "column": 1,
+            "rect": [
+              0,
+              0,
+              96,
+              96
+            ],
+            "pivot": [
+              48,
+              86
+            ],
+            "bounds_exclusive": [
+              34,
+              25,
+              75,
+              86
+            ],
+            "state": "ready"
+          },
+          {
+            "id": "RD02",
+            "row": 1,
+            "column": 2,
+            "rect": [
+              96,
+              0,
+              96,
+              96
+            ],
+            "pivot": [
+              48,
+              86
+            ],
+            "bounds_exclusive": [
+              27,
+              25,
+              75,
+              86
+            ],
+            "state": "grip"
+          },
+          {
+            "id": "RD03",
+            "row": 1,
+            "column": 3,
+            "rect": [
+              192,
+              0,
+              96,
+              96
+            ],
+            "pivot": [
+              48,
+              86
+            ],
+            "bounds_exclusive": [
+              21,
+              25,
+              75,
+              86
+            ],
+            "state": "raise pistol"
+          },
+          {
+            "id": "RD04",
+            "row": 1,
+            "column": 4,
+            "rect": [
+              288,
+              0,
+              96,
+              96
+            ],
+            "pivot": [
+              48,
+              86
+            ],
+            "bounds_exclusive": [
+              17,
+              25,
+              75,
+              86
+            ],
+            "state": "aim"
+          },
+          {
+            "id": "RD05",
+            "row": 2,
+            "column": 1,
+            "rect": [
+              0,
+              96,
+              96,
+              96
+            ],
+            "pivot": [
+              48,
+              86
+            ],
+            "bounds_exclusive": [
+              18,
+              25,
+              75,
+              86
+            ],
+            "state": "recoil"
+          },
+          {
+            "id": "RD06",
+            "row": 2,
+            "column": 2,
+            "rect": [
+              96,
+              96,
+              96,
+              96
+            ],
+            "pivot": [
+              48,
+              86
+            ],
+            "bounds_exclusive": [
+              17,
+              25,
+              75,
+              86
+            ],
+            "state": "re-aim"
+          },
+          {
+            "id": "RD07",
+            "row": 2,
+            "column": 3,
+            "rect": [
+              192,
+              96,
+              96,
+              96
+            ],
+            "pivot": [
+              48,
+              86
+            ],
+            "bounds_exclusive": [
+              22,
+              25,
+              75,
+              86
+            ],
+            "state": "lower"
+          },
+          {
+            "id": "RD08",
+            "row": 2,
+            "column": 4,
+            "rect": [
+              288,
+              96,
+              96,
+              96
+            ],
+            "pivot": [
+              48,
+              86
+            ],
+            "bounds_exclusive": [
+              33,
+              25,
+              75,
+              86
+            ],
+            "state": "settle"
+          }
+        ]
+      },
+      "timing": {
+        "actor_track": [
+          {
+            "frame": 0,
+            "ms": 400
+          },
+          {
+            "frame": 1,
+            "ms": 250
+          },
+          {
+            "frame": 2,
+            "ms": 250
+          },
+          {
+            "frame": 3,
+            "ms": 600
+          },
+          {
+            "frame": 4,
+            "ms": 100
+          },
+          {
+            "frame": 5,
+            "ms": 300
+          },
+          {
+            "frame": 6,
+            "ms": 350
+          },
+          {
+            "frame": 7,
+            "ms": 350
+          },
+          {
+            "frame": 0,
+            "ms": 1000
+          }
+        ],
+        "duration_ms": 3600,
+        "loop": false,
+        "assumptions": [],
+        "actor_holds_changed": false,
+        "projectile_travel_before_ms": [
+          1500,
+          1600
+        ],
+        "projectile_travel_after_ms": [
+          1550,
+          1600
+        ],
+        "impact_unchanged_ms": 1600
+      },
+      "defects": [
+        "Muzzle anchor four pixels left and four pixels down of RD05 barrel tip.",
+        "Muzzle flash drawing travels before projectile drawing starts."
+      ],
+      "changes": [
+        "Renderer holds flash at world(250,135) until1550ms, then travels to(104,150) by1600ms.",
+        "Glow follows aim(249,139) then recoil(250,135).",
+        "Native PNG and ORA are byte-identical to source; version2 identifies corrected animation package, not redrawn art."
+      ],
+      "pixel_changes": 0,
+      "validation": {
+        "before.normal": {
+          "decoded_matches_quantized_frames": true,
+          "apng_pixels_exact": true,
+          "duration_ms": 3600,
+          "palette_colors": 473
+        },
+        "before.slow": {
+          "decoded_matches_quantized_frames": true,
+          "apng_pixels_exact": true,
+          "duration_ms": 7200,
+          "palette_colors": 473
+        },
+        "after.normal": {
+          "decoded_matches_quantized_frames": true,
+          "apng_pixels_exact": true,
+          "duration_ms": 3600,
+          "palette_colors": 473
+        },
+        "after.slow": {
+          "decoded_matches_quantized_frames": true,
+          "apng_pixels_exact": true,
+          "duration_ms": 7200,
+          "palette_colors": 473
+        },
+        "actor_sha256": "dfab49ce1b1041b39570bb423d01dd7f4df0286ace1f381af9fb31aabc30d661",
+        "actor_pixels_unchanged": true,
+        "geometry_padding_palette_alpha_4x_ora_merged": true,
+        "runtime_3601_ms_states": true,
+        "engine_tested": false,
+        "artistic_approval": false
+      },
+      "playback": "Fresh exports rebuilt from delivered native sheet; GIMP before/after normal GIFs played and sampled at1x and0.5x. All8 actor keys and six discharge comparison times inspected. Discrete screenshots do not certify continuous motion or professional quality.",
+      "remaining_issues": [
+        "Full continuous motion and flicker assessment incomplete.",
+        "Right-hand pistol anatomy and fine hat/face/coat continuity remain unapproved.",
+        "Glow pass not inspected in playback; pixel-only evidence isolates art.",
+        "Reference action-window stills inspected; continuous video rhythm comparison incomplete.",
+        "Standalone8-pose action is not integrated into54-frame importer; engine compatibility untested."
+      ],
+      "library_outputs": {
+        "build-review.py": "https://chatgpt.com/library?file_id=libfile_fde3_f-aa5fc6a540848191af313dc1c3d3e56f_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "discharge-comparison.2x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-8dd61ca9b54c8191bf983bb8ea6dc5f5_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "export-review.cjs": "https://chatgpt.com/library?file_id=libfile_fde3_f-64eb77391bcc819193ced3d50dc324fd_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren-delay-shot.after.normal.apng": "https://chatgpt.com/library?file_id=libfile_fde3_f-f97703122f308191bb8eea33e3d4af1c_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren-delay-shot.after.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-cc5a52b0c51881919324938de737a0b9_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren-delay-shot.after.slow.apng": "https://chatgpt.com/library?file_id=libfile_fde3_f-ffde15c973708191bb7802a22a28a0c6_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren-delay-shot.after.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-da82140e222481918651c6b54fceebf6_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren-delay-shot.before.normal.apng": "https://chatgpt.com/library?file_id=libfile_fde3_f-a8c6895d0ed8819194f54fd19287bda8_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren-delay-shot.before.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-e05b8bc90014819184ee8dfa3d3bc168_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren-delay-shot.before.slow.apng": "https://chatgpt.com/library?file_id=libfile_fde3_f-2f995945d8b481918737a5f6bbc2ac12_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren-delay-shot.before.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-8a6af8a1aa408191a8951027fd6457f3_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren-shooting.v02.4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-7ac5ae5f442881918f7e5d0512918488_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren-shooting.v02.ora": "https://chatgpt.com/library?file_id=libfile_fde3_f-585075e661648191833e187dc7b4e500_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "ren-shooting.v02.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-7f03f5d9b2d4819190acead8427ab564_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "render.v02.js": "https://chatgpt.com/library?file_id=libfile_fde3_f-27bd0c483bd88191beea06ca0f8f769c_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "repository-checks.txt": "https://chatgpt.com/library?file_id=libfile_fde3_f-0431969cf734819195695557dd97362c_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "shot-impact.context.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-96b268419bc881918b4e155309f4d156_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "source-version.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-e026b0d9e0888191b26e464e0dd3afa2_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "target-context.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-0639700d7e98819192d7c45bddc510ff_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "timeline.v02(1).json": "https://chatgpt.com/library?file_id=libfile_fde3_f-7ddd0d1e6acc81919b76132c3b401b66_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "validation(7).json": "https://chatgpt.com/library?file_id=libfile_fde3_f-4b2e9eed9c048191a0c6b676ece3b311_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+      },
+      "github": {
+        "branch": "animation-review/2026-11-26-ren-delay-shot",
+        "commit_sha": null,
+        "pr_url": null,
+        "publication": "Pending at repository record creation; final publication identity recorded in Library rotation."
+      }
     }
   ]
 }

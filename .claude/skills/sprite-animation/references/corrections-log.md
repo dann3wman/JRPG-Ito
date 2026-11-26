@@ -20,6 +20,16 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-26 · Ren · Delay Shot muzzle attachment
+- **Reported problem:** the flash floated left/down of the recoil barrel and travelled before the projectile pose. See `assets/player-sheets/ren-delay-shot-v02/discharge-comparison.2x.png`.
+- **Original generation:** PR55 at cdac700d3ab33e464abe08e51ab089312cfcc61b used world (246,139) and travel1500..1600ms for both discharge frames.
+- **Root cause:** attachment and clip motion. RD05 muzzle is local (18,41), world (250,135); SI01 is a stationary muzzle drawing, not a projectile.
+- **Solution implemented:** anchor at (250,135), hold to1550ms, travel only with SI02 during1550..1600ms. Glow follows aim/recoil anchors. Impact stays1600ms. Actor drawings, holds and target motion unchanged.
+- **ChatGPT revision:** none; no raster edit or regeneration.
+- **Rule for next time:** derive emission from the active pose and distinguish muzzle and projectile exposure windows.
+- **Validation:** 3601 state comparisons; exact APNG pixels/timing, GIF quantized decode parity, source hash/padding/palette/ORA/4x checks. GIMP before/after playback sampled at1x/0.5x. Artistic approval, full continuous inspection and engine integration remain open. Draft review.
+
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.
