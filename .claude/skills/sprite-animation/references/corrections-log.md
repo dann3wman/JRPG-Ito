@@ -20,6 +20,15 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-26 · Kugai · Protect matte cleanup and planted feet
+- **Reported problem:** newly generated actor and ward sheets contained a white matte despite requested transparency; planted boot contours varied between keys.
+- **Original generation:** two1536x1024 sheets, four columns by two rows, actor shield gesture and hollow ward. Original rasters retained under `assets/party-fx/kugai-protect-v01/source/`.
+- **Root cause:** unsuitable generated alpha/matte and registration variation, not intentional motion.
+- **Solution implemented:** thresholdalpha200; remove pixels with allRGBchannels above220 for actor or240 forward; zero transparentRGB. Nearest-resample, align measured rightboot edge, share actorrows80..85 fromKP01 across allkeys, pivot48,86. Quantize common24/16color palettes. Never remove black voids by dark color keying.
+- **Verification:** atlasbounds/palettes/alpha, bootstrip equality, ORArecomposition andexact4x checks pass. GIFreopened andplayed inGIMPat1x/0.5x with live samples; fullcontinuousreview, artisticapproval andenginevalidation remain incomplete. These corrections preceded playback, not inferred from static samples afterwards.
+- **ChatGPT revision:** no regenerated revision required; reproducible cleanup and original generation prompts are saved.
+- **Rule for next time:** inspect actual corneralpha and matte before packing; derive planted pivots from occupied pixels, preserve the original raster, and distinguish programmatic checks from continuous visual review.
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.

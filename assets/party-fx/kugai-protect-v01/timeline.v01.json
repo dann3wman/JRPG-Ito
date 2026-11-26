@@ -1,0 +1,676 @@
+{
+  "action": "Kugai: Protect",
+  "version": 1,
+  "duration_ms": 3600,
+  "fps": 60,
+  "loop": false,
+  "terminal": "effects hidden; Kugai ready; ward hidden; status duration belongs to game",
+  "scene": {
+    "native": [
+      384,
+      216
+    ],
+    "output": [
+      1536,
+      864
+    ],
+    "origin": "top-left",
+    "baseline": 180,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      375,
+      207
+    ],
+    "actor_feet": [
+      224,
+      180
+    ],
+    "effect_pivot": [
+      224,
+      150
+    ],
+    "target_feet": [
+      224,
+      180
+    ],
+    "facing": "left"
+  },
+  "atlases": {
+    "kugai-warding": {
+      "file": "kugai-warding.v01.png",
+      "size": [
+        384,
+        192
+      ],
+      "cell": [
+        96,
+        96
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        87,
+        87
+      ],
+      "palette": [
+        "#D2C8BA",
+        "#B2A293",
+        "#9F8879",
+        "#877A6F",
+        "#82665D",
+        "#715D54",
+        "#61544E",
+        "#7C3536",
+        "#5B3D3C",
+        "#4C3B3A",
+        "#3D3533",
+        "#33292A",
+        "#4B1E20",
+        "#351B1D",
+        "#291B1E",
+        "#201D1F",
+        "#1C1719",
+        "#1B0F11",
+        "#121011",
+        "#0E0B0C",
+        "#0D080A",
+        "#070708",
+        "#060305",
+        "#010101"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "KP01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            16,
+            31,
+            80,
+            86
+          ],
+          "state": "ready"
+        },
+        {
+          "id": "KP02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            96,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            16,
+            33,
+            82,
+            86
+          ],
+          "state": "gather shield"
+        },
+        {
+          "id": "KP03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            192,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            16,
+            33,
+            81,
+            86
+          ],
+          "state": "raise shield"
+        },
+        {
+          "id": "KP04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            288,
+            0,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            16,
+            32,
+            84,
+            86
+          ],
+          "state": "present shield"
+        },
+        {
+          "id": "KP05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            16,
+            34,
+            80,
+            86
+          ],
+          "state": "brace"
+        },
+        {
+          "id": "KP06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            96,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            16,
+            34,
+            85,
+            86
+          ],
+          "state": "ward hold"
+        },
+        {
+          "id": "KP07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            192,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            16,
+            33,
+            84,
+            86
+          ],
+          "state": "lower shield"
+        },
+        {
+          "id": "KP08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            288,
+            96,
+            96,
+            96
+          ],
+          "pivot": [
+            48,
+            86
+          ],
+          "bounds_exclusive": [
+            16,
+            31,
+            79,
+            86
+          ],
+          "state": "settle"
+        }
+      ]
+    },
+    "protect-ward": {
+      "file": "protect-ward.v01.png",
+      "size": [
+        512,
+        256
+      ],
+      "cell": [
+        128,
+        128
+      ],
+      "columns": 4,
+      "rows": 2,
+      "gutter": 0,
+      "outer_margin": 0,
+      "safe_bounds_inclusive": [
+        8,
+        8,
+        119,
+        119
+      ],
+      "palette": [
+        "#F4F2EC",
+        "#F1EEE9",
+        "#EEE8DD",
+        "#E4DCCD",
+        "#D8CAB4",
+        "#C4BAAB",
+        "#B9A890",
+        "#A69B8C",
+        "#9A8B7A",
+        "#937D6B",
+        "#83776B",
+        "#796C60",
+        "#755F52",
+        "#60564E",
+        "#58443C",
+        "#442F29"
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "frames": [
+        {
+          "id": "PW01",
+          "row": 1,
+          "column": 1,
+          "rect": [
+            0,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            45,
+            94,
+            84,
+            109
+          ],
+          "state": "seed"
+        },
+        {
+          "id": "PW02",
+          "row": 1,
+          "column": 2,
+          "rect": [
+            128,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            36,
+            70,
+            93,
+            109
+          ],
+          "state": "lower arch"
+        },
+        {
+          "id": "PW03",
+          "row": 1,
+          "column": 3,
+          "rect": [
+            256,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            30,
+            30,
+            99,
+            110
+          ],
+          "state": "rising sides"
+        },
+        {
+          "id": "PW04",
+          "row": 1,
+          "column": 4,
+          "rect": [
+            384,
+            0,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            30,
+            13,
+            99,
+            110
+          ],
+          "state": "locked ward"
+        },
+        {
+          "id": "PW05",
+          "row": 2,
+          "column": 1,
+          "rect": [
+            0,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            29,
+            15,
+            99,
+            109
+          ],
+          "state": "held ward"
+        },
+        {
+          "id": "PW06",
+          "row": 2,
+          "column": 2,
+          "rect": [
+            128,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            30,
+            14,
+            98,
+            107
+          ],
+          "state": "opening seams"
+        },
+        {
+          "id": "PW07",
+          "row": 2,
+          "column": 3,
+          "rect": [
+            256,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            30,
+            14,
+            98,
+            108
+          ],
+          "state": "dissolving edges"
+        },
+        {
+          "id": "PW08",
+          "row": 2,
+          "column": 4,
+          "rect": [
+            384,
+            128,
+            128,
+            128
+          ],
+          "pivot": [
+            64,
+            64
+          ],
+          "bounds_exclusive": [
+            51,
+            93,
+            76,
+            102
+          ],
+          "state": "last fragments"
+        }
+      ]
+    }
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 300
+    },
+    {
+      "frame": 1,
+      "ms": 250
+    },
+    {
+      "frame": 2,
+      "ms": 300
+    },
+    {
+      "frame": 3,
+      "ms": 350
+    },
+    {
+      "frame": 4,
+      "ms": 400
+    },
+    {
+      "frame": 5,
+      "ms": 400
+    },
+    {
+      "frame": 6,
+      "ms": 300
+    },
+    {
+      "frame": 7,
+      "ms": 300
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "effect_track": [
+    {
+      "frame": 0,
+      "ms": 200
+    },
+    {
+      "frame": 1,
+      "ms": 200
+    },
+    {
+      "frame": 2,
+      "ms": 250
+    },
+    {
+      "frame": 3,
+      "ms": 300
+    },
+    {
+      "frame": 4,
+      "ms": 150
+    },
+    {
+      "frame": 5,
+      "ms": 450
+    },
+    {
+      "frame": 6,
+      "ms": 250
+    },
+    {
+      "frame": 7,
+      "ms": 250
+    }
+  ],
+  "effect_start_ms": 850,
+  "effect_hide_ms": 2900,
+  "cues": [
+    {
+      "name": "cast",
+      "ms": 850
+    },
+    {
+      "name": "protect_activate",
+      "ms": 1500
+    },
+    {
+      "name": "effect_clear",
+      "ms": 2900
+    },
+    {
+      "name": "action_complete",
+      "ms": 3600
+    }
+  ],
+  "gameplay_events": "Visual cast and protect activation cues only; no HP, status or combat rule mutation.",
+  "motion": {
+    "actor_x_keys": [
+      [
+        0,
+        224
+      ],
+      [
+        3600,
+        224
+      ]
+    ],
+    "target_x_keys": [
+      [
+        0,
+        224
+      ],
+      [
+        3600,
+        224
+      ]
+    ],
+    "target_y_keys": [
+      [
+        0,
+        0
+      ],
+      [
+        3600,
+        0
+      ]
+    ],
+    "ward": "fixed body anchor224,150; recipient is caster; no recoil",
+    "interpolation": "smoothstep integer native pixels"
+  },
+  "layers": [
+    {
+      "name": "background",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": "opaque",
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "rear ward light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "source-over",
+      "filter": "linear",
+      "preview_scale": 2
+    },
+    {
+      "name": "actor, front ward",
+      "resolution": [
+        384,
+        216
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "blend": "source-over",
+      "filter": "nearest",
+      "preview_scale": 4
+    },
+    {
+      "name": "activation light",
+      "resolution": [
+        768,
+        432
+      ],
+      "alpha": "continuous",
+      "blend": "screen",
+      "filter": "linear",
+      "preview_scale": 2
+    }
+  ],
+  "status": {
+    "reference_available": true,
+    "specified": true,
+    "generated_built": true,
+    "exported": true,
+    "technically_checked": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  }
+}

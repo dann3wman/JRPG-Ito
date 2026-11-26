@@ -1,0 +1,109 @@
+{
+  "kugai-warding": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "stationary_boot_registration": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "protect-ward": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 16,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "stationary_boot_registration": false,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 61,
+    "expanded_render_slots": 216,
+    "duration_ms": 3599.9999999999986,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 61,
+    "duration_ms": 3600,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 216,
+    "fps": 60,
+    "duration_ms": 3600
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "duration_ms": 3600,
+    "integer_states": 3601,
+    "event_count": 4,
+    "activation_count": 1,
+    "replay_reset": true,
+    "seek_no_events": true,
+    "pause": true,
+    "half_speed_logic": true,
+    "terminal_cleanup": true,
+    "live_browser_controls": false
+  },
+  "visual_review": {
+    "complete_continuous_review": false,
+    "live_playback": "GIF reopened in GIMP and played at 1x and 0.5x; live samples show ready and formed ward states. Full continuous motion review and live HTML controls remain unverified; draft",
+    "light_dark_stills_reviewed": true,
+    "ora_reopened_programmatically": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 361,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "973fd0364512cfbd03ec47cf4878ce19d6c55e49bd04ead77387acec05689e65",
+    "build.py": "0787f76ccdc94e6289763652d0248d84274d4a1bb08c76e9ff88238ca5f02112",
+    "check-render.cjs": "acf1a7ed0f69a230b020084044f41827cff3b6a80e8ee8ddffe42e9eeeb6ec3c",
+    "encode.py": "7d15d159747aa60b8f57128a9625f06b6ad670a5addfa58734a4c31ec914e1d7",
+    "export.cjs": "ca34a22b70d32910a91ec50a7134cd22a90bc37112092b42995282f172b4aa14",
+    "kugai-protect.v01.apng": "64f7abedf8feddd7275bbcfae797fbdc5cedf4492f55682b2e9fe1a83f486b57",
+    "kugai-protect.v01.gif": "18631fad1cb8b424013f61fe2da1cf7b6bccd9e6d946e3ca327b8440c790df1a",
+    "kugai-protect.v01.html": "0b6517c6b735a06903d78c01137fb570f5b73ccadb01af258cc07e7701e55b27",
+    "kugai-protect.v01.mp4": "24a572f3f237cab7a7dc0476dbbf2bc644cc114507cbbd8b79890eda39cb8dad",
+    "kugai-warding.v01.4x.png": "ea16a04b52ae4e5100cbda7af4af22857840f55dc626c971d3511dfde596a594",
+    "kugai-warding.v01.ora": "b128fec75133e98a682dcdf8d0d3a91e4257280d8a1606fd908accecfebf69bc",
+    "kugai-warding.v01.png": "841d3a27ad3388d58515ca137792fb48155ed2d59a6466d5ee8c0384cdb76bdf",
+    "player.template.html": "e3d090f5cae98ac4fe02295f6a5ddb17973524dce15d197b3c02548a982cd4fb",
+    "protect-ward.v01.4x.png": "b7d418aaadbaec67431bcfa53458eb3496808eee36f1afe3f532e91ef9256b58",
+    "protect-ward.v01.ora": "988c9334693689f54d49a12aaf822f1676532b06106af32b690a65eeb45004a7",
+    "protect-ward.v01.png": "f87eb9dce772a4c05f0e82c8b45ef8293ba67bbc2db47d11e9c6d1fbfc9b674c",
+    "render-validation.json": "8da4a3d32e9c398b381dc2d1b6b70fa2c73505b5e258723c3b0d14215d2db6a5",
+    "render.js": "959f9c610f71d13de50ad682e700dc68017b746a0c4a3cf6c03dad5f5d192ab4",
+    "repository-checks.txt": "8eeb6452c8a0bd4df1aaecccdc24681f0510322d5a05fdd8746f207bc3feeb3e",
+    "review.v01.4x.png": "d5c438e6e3bd18e67d4b2d9489e5c4dbb32ecf0dbb96e9d7ba8c41cb900743b7",
+    "review.v01.png": "506c010b6744c064dcbbeb6f46c786c4dbc9396f633f026c1538025c09a9b5a7",
+    "runtime-validation.json": "a6afcbf3e3a5807f67c5d6f3418434c4f36f65bc54024317b3a9f7ba76447950",
+    "scene.dark.v01.png": "b259a6ff6216921d748562f8f0737d3b16313b857e2ee3d6f9c847a41e841c4c",
+    "scene.light.v01.png": "680c53a2e0285423dcd0793325b61e803b1e445d31305d3f8c582dd4b771000e",
+    "scene.pixel-4x.v01.png": "f86f82985c2423b85ccb220913bb76f5442beda0dd4503bee6578eaa57372640",
+    "scene.pixel-native.v01.png": "40dcd86670ebde8c139094fa83ddf7e0bf4d27a022176ea08c6cbe1b725370f4",
+    "source/creation-prompts.txt": "165e7a79db9797a7502fc53469c0831e4db6add968bbc09b0dfa991f216cfa36",
+    "source/kugai-warding.generated.png": "85bb0bc261ad0dfdfa19323932c5e73db6b43aac48b1ca7970d25a9013a2ef35",
+    "source/protect-ward.generated.png": "5936a5f89648c4e8cc56773791eb06acbee473ab9420dae63804bf88a6630439",
+    "test.cjs": "ef3efe7c9bd554a6b7d8aaa64b9c57115d074cb75a034356bbc258dd4ccce839",
+    "timeline.v01.json": "a213ff46f18a15ad451fd1c874467dbadac67f761b26faad2af24c85db9ac129",
+    "validate.py": "e06472e312a337d898f427961f2fb377b564da40382c6be01b56dc5ced3f399b"
+  }
+}
