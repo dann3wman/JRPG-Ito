@@ -20,6 +20,13 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-27 · Fuyori · Mix alpha and effect separation
+- Problem: alpha200 cutoff made dark clothing holes on pale stage; FM07 included baked smoke.
+- Root cause: inherited cleanup assumptions and generated effect on actor.
+- Fix: alpha128, no RGB key; clear FM07 local20,18..34,38; separate vapour root moved12px up to raised vial. Central boot patch only30..65,80..85 avoids copied cape fringe caught in PR60.
+- Checks: native/4x/ORA/decoded animation and runtime tests; GIMP1x/0.5x live samples, not continuous approval.
+- Rule: test pale backdrops and scope fixed-foot masks to feet, never whole bottom strips. Original prompt/source preserved; no regeneration claimed.
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.

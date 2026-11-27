@@ -1,0 +1,108 @@
+{
+  "fuyori-mixing": {
+    "dimensions": [
+      384,
+      192
+    ],
+    "frames": 8,
+    "colours": 24,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "stationary_boot_registration": true,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "mix-vapour": {
+    "dimensions": [
+      512,
+      256
+    ],
+    "frames": 8,
+    "colours": 7,
+    "binary_alpha": true,
+    "bounds_and_anchors": true,
+    "stationary_boot_registration": false,
+    "exact_4x": true,
+    "ora_recomposes_exactly": true
+  },
+  "review_and_scene_exact_4x": true,
+  "apng": {
+    "decoded_frames": 47,
+    "expanded_render_slots": 216,
+    "duration_ms": 3599.9999999999977,
+    "all_rgba_matches_renderer": true,
+    "num_plays": 1
+  },
+  "gif": {
+    "decoded_frames": 47,
+    "duration_ms": 3600,
+    "role": "quantised 2x viewing derivative; not palette authority"
+  },
+  "mp4": {
+    "decoded_frames": 216,
+    "fps": 60,
+    "duration_ms": 3600
+  },
+  "terminal_matches_initial_pixels": true,
+  "runtime": {
+    "duration_ms": 3600,
+    "integer_states": 3601,
+    "event_count": 4,
+    "activation_count": 1,
+    "replay_reset": true,
+    "seek_no_events": true,
+    "pause": true,
+    "half_speed_logic": true,
+    "terminal_cleanup": true,
+    "live_browser_controls": false
+  },
+  "visual_review": {
+    "complete_continuous_review": false,
+    "live_playback": "GIF reopened in GIMP, played at 1x and 0.5x with live samples of pour and vapour. Full continuous motion judgment and live HTML controls remain unverified; draft",
+    "light_dark_stills_reviewed": true,
+    "ora_reopened_programmatically": true,
+    "artistically_approved": false,
+    "engine_tested": false
+  },
+  "status": "built and technically checked; incomplete visual review; draft",
+  "missing_formats": [],
+  "rendered_layers": {
+    "samples": 361,
+    "step_ms": 10,
+    "pixel_alpha_binary": true,
+    "pixel_and_light_within_scene_safe_bounds": true
+  },
+  "sha256": {
+    "README.md": "01f40acfd3c709303cc802c4260f6bee37daeab85f220f40cbf14978bd176c51",
+    "build.py": "ba9dbaa8d2c1f1b48a5acd2fdc8abce550ec1974831d3d6666ae3e953e44b286",
+    "check-render.cjs": "19695610e38c573f34679516825c83669c729e3eff193285fcb693ccd2a8d225",
+    "encode.py": "c4ea2c433693e564266113cbbd76e01a28090d2275fb3e715cfc1bc275d3a6df",
+    "export.cjs": "0b5f25a20b73428adc2198b149a3de982773028f228a899b0005191b3088520a",
+    "fuyori-mix.v01.apng": "9f352eeadd2296dc2d0b8724d8d1443a8781c1ccb690debdd25227cccbb85ead",
+    "fuyori-mix.v01.gif": "8907153b02e281322d2b41e3f613a22166e1daf5e5898516bed58f7ad521f7ef",
+    "fuyori-mix.v01.html": "d353b960f0de6ab3630e773d7a1b69796fa8d3e1271a0c23ea5b20454d8a0ff0",
+    "fuyori-mix.v01.mp4": "dc14b8fc2c4223be17c24ea9604577a5071fea982dacc194adfc64b02d3edf26",
+    "fuyori-mixing.v01.4x.png": "eaa32c39a98cde09c18d9781de6d4a0523c6b557c2e76e3656015dca933ac8cb",
+    "fuyori-mixing.v01.ora": "a0f8c1bb585d0d52bf8dcfaec775f97800906a408d2f9a1f642650b7c127a1e0",
+    "fuyori-mixing.v01.png": "a3ba223d913362a3766d6c1f03bb41bb27ae08813d91b6bc86a4dbc9450daee5",
+    "mix-vapour.v01.4x.png": "6f8daab223a5c9a9535047532201078b1ffb367db8c05380f5235402b7f87828",
+    "mix-vapour.v01.ora": "89e0f9d4152e0d7199fb74ad538f3df924fcb58853d82e95c178fd3ee6e19aba",
+    "mix-vapour.v01.png": "ecaf4b9695881bca0fc00764bab43c8af83ab1f291dcc3763690a28a10d3ed09",
+    "player.template.html": "8750dd1fd5d22ab1509c1675ec812d137815b3c217bb1bb1dd98b974c5e7e1fe",
+    "render-validation.json": "8da4a3d32e9c398b381dc2d1b6b70fa2c73505b5e258723c3b0d14215d2db6a5",
+    "render.js": "5aaf61c030696dff031efe16f37186075bbe11ae0a9bdf12f44d8ee885732dca",
+    "repository-checks.txt": "c883bdac58f4bfd73aece3ab843c07aa3d4ac1dcba4bf8cf11839543fb4af04d",
+    "review.v01.4x.png": "3e2d3aab6db1f1d353b4d56b1e00cc2f30c55be85eae46a3858c6d869fa26294",
+    "review.v01.png": "b8b2c6422be96a7968d2f465c907e6ba5d59832b170ad1f399d088ba0f213eac",
+    "runtime-validation.json": "a6afcbf3e3a5807f67c5d6f3418434c4f36f65bc54024317b3a9f7ba76447950",
+    "scene.dark.v01.png": "0a16de98c22f7de2b15b2c58b3e47e262ce44bfceb7b90d7047363d20e5672ba",
+    "scene.light.v01.png": "82553d2fc5802437053a3448af6d8bea0e91c2f2c19fdb85afd79462327e03ca",
+    "scene.pixel-4x.v01.png": "3604f571df800a19d2c004d277dd5a5763469b1b8be8047c20ca2944e877e6da",
+    "scene.pixel-native.v01.png": "46b8b05e36fca359667939598fb31166509ac186a50a35365b2097c1c4d27d2a",
+    "source/creation-prompt.txt": "e0ee0f99f7afaae6a44717f00b1b5054f5c039339afaab9bcfe374e6e2a76456",
+    "source/fuyori-mixing.generated.png": "d0a625508de3328ffb6db5f2b6d618315624c5a26bc6adc324f7a01b2b74f33c",
+    "test.cjs": "8553446bfbe090db90a8501394245ed90d778716e1f185e5abcdcece7567be75",
+    "timeline.v01.json": "73b59dc98ce9f24947e1fe89a9a01c4b2e3574e18eb447f5d2d630ea31758f3d",
+    "validate.py": "db62246eb59a7e1ad2246b6ef6e6c4df18b3707e16c35e83a0a718a5bd392725"
+  }
+}
