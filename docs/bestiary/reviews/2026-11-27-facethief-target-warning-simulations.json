@@ -1,0 +1,177 @@
+{
+  "source_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+  "seed": 1,
+  "runs_per_policy": 100,
+  "before": {
+    "advisor": {
+      "key": "facethief",
+      "party": [
+        "kiri",
+        "tetsugi",
+        "natsu"
+      ],
+      "policy": "advisor",
+      "s": {
+        "n": 100,
+        "win": 0.87,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 68.72,
+        "winTurns": 62.7816091954023,
+        "foeTurns": 22.46,
+        "kos": 1.35,
+        "afflicted": 0.8,
+        "inspired": 0.27,
+        "fled": 0.09,
+        "lost": 8.08,
+        "limits": 0.58,
+        "phoenix": 0.9,
+        "stress": 18.304166666666667,
+        "danger": 53.85,
+        "hp": 0.9621188218070456
+      }
+    },
+    "attack": {
+      "key": "facethief",
+      "party": [
+        "kiri",
+        "tetsugi",
+        "natsu"
+      ],
+      "policy": "attack",
+      "s": {
+        "n": 100,
+        "win": 0,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 22.56,
+        "winTurns": 0,
+        "foeTurns": 9,
+        "kos": 3,
+        "afflicted": 0,
+        "inspired": 0,
+        "fled": 0,
+        "lost": 1,
+        "limits": 0,
+        "phoenix": 0,
+        "stress": 39.76666666666666,
+        "danger": 34,
+        "hp": 0
+      }
+    },
+    "random": {
+      "key": "facethief",
+      "party": [
+        "kiri",
+        "tetsugi",
+        "natsu"
+      ],
+      "policy": "random",
+      "s": {
+        "n": 100,
+        "win": 0,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 39.16,
+        "winTurns": 0,
+        "foeTurns": 15.57,
+        "kos": 4.67,
+        "afflicted": 0.75,
+        "inspired": 0.23,
+        "fled": 0.1,
+        "lost": 6.44,
+        "limits": 0.2,
+        "phoenix": 1.62,
+        "stress": 57.853,
+        "danger": 67.92,
+        "hp": 0
+      }
+    }
+  },
+  "after": {
+    "advisor": {
+      "key": "facethief",
+      "party": [
+        "kiri",
+        "tetsugi",
+        "natsu"
+      ],
+      "policy": "advisor",
+      "s": {
+        "n": 100,
+        "win": 0.87,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 68.72,
+        "winTurns": 62.7816091954023,
+        "foeTurns": 22.46,
+        "kos": 1.35,
+        "afflicted": 0.8,
+        "inspired": 0.27,
+        "fled": 0.09,
+        "lost": 8.08,
+        "limits": 0.58,
+        "phoenix": 0.9,
+        "stress": 18.304166666666667,
+        "danger": 53.85,
+        "hp": 0.9621188218070456
+      }
+    },
+    "attack": {
+      "key": "facethief",
+      "party": [
+        "kiri",
+        "tetsugi",
+        "natsu"
+      ],
+      "policy": "attack",
+      "s": {
+        "n": 100,
+        "win": 0,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 22.56,
+        "winTurns": 0,
+        "foeTurns": 9,
+        "kos": 3,
+        "afflicted": 0,
+        "inspired": 0,
+        "fled": 0,
+        "lost": 1,
+        "limits": 0,
+        "phoenix": 0,
+        "stress": 39.76666666666666,
+        "danger": 34,
+        "hp": 0
+      }
+    },
+    "random": {
+      "key": "facethief",
+      "party": [
+        "kiri",
+        "tetsugi",
+        "natsu"
+      ],
+      "policy": "random",
+      "s": {
+        "n": 100,
+        "win": 0,
+        "timeout": 0,
+        "stalled": 0,
+        "turns": 39.16,
+        "winTurns": 0,
+        "foeTurns": 15.57,
+        "kos": 4.67,
+        "afflicted": 0.75,
+        "inspired": 0.23,
+        "fled": 0.1,
+        "lost": 6.44,
+        "limits": 0.2,
+        "phoenix": 1.62,
+        "stress": 57.853,
+        "danger": 67.92,
+        "hp": 0
+      }
+    }
+  }
+}
