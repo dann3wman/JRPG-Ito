@@ -1,0 +1,323 @@
+{
+  "character": "Kugai",
+  "action": "Protect",
+  "version": 2,
+  "source_commit": "b91a11056c8456316e39fe9d554c5650810db9e5",
+  "source_sha256": "841d3a27ad3388d58515ca137792fb48155ed2d59a6466d5ee8c0384cdb76bdf",
+  "atlas": {
+    "file": "kugai-warding.v02.png",
+    "size": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "columns": 4,
+    "rows": 2,
+    "gutter": 0,
+    "outer_margin": 0,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      87,
+      87
+    ],
+    "palette": [
+      "#D2C8BA",
+      "#B2A293",
+      "#9F8879",
+      "#877A6F",
+      "#82665D",
+      "#715D54",
+      "#61544E",
+      "#7C3536",
+      "#5B3D3C",
+      "#4C3B3A",
+      "#3D3533",
+      "#33292A",
+      "#4B1E20",
+      "#351B1D",
+      "#291B1E",
+      "#201D1F",
+      "#1C1719",
+      "#1B0F11",
+      "#121011",
+      "#0E0B0C",
+      "#0D080A",
+      "#070708",
+      "#060305",
+      "#010101"
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "id": "KP01",
+        "row": 1,
+        "column": 1,
+        "rect": [
+          0,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          31,
+          80,
+          86
+        ],
+        "state": "ready"
+      },
+      {
+        "id": "KP02",
+        "row": 1,
+        "column": 2,
+        "rect": [
+          96,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          33,
+          82,
+          86
+        ],
+        "state": "gather shield"
+      },
+      {
+        "id": "KP03",
+        "row": 1,
+        "column": 3,
+        "rect": [
+          192,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          33,
+          81,
+          86
+        ],
+        "state": "raise shield"
+      },
+      {
+        "id": "KP04",
+        "row": 1,
+        "column": 4,
+        "rect": [
+          288,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          32,
+          84,
+          86
+        ],
+        "state": "present shield"
+      },
+      {
+        "id": "KP05",
+        "row": 2,
+        "column": 1,
+        "rect": [
+          0,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          34,
+          80,
+          86
+        ],
+        "state": "brace"
+      },
+      {
+        "id": "KP06",
+        "row": 2,
+        "column": 2,
+        "rect": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          34,
+          85,
+          86
+        ],
+        "state": "ward hold"
+      },
+      {
+        "id": "KP07",
+        "row": 2,
+        "column": 3,
+        "rect": [
+          192,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          33,
+          84,
+          86
+        ],
+        "state": "lower shield"
+      },
+      {
+        "id": "KP08",
+        "row": 2,
+        "column": 4,
+        "rect": [
+          288,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          31,
+          79,
+          86
+        ],
+        "state": "settle"
+      }
+    ]
+  },
+  "duration_ms": 3600,
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 300
+    },
+    {
+      "frame": 1,
+      "ms": 250
+    },
+    {
+      "frame": 2,
+      "ms": 300
+    },
+    {
+      "frame": 3,
+      "ms": 350
+    },
+    {
+      "frame": 4,
+      "ms": 400
+    },
+    {
+      "frame": 5,
+      "ms": 400
+    },
+    {
+      "frame": 6,
+      "ms": 300
+    },
+    {
+      "frame": 7,
+      "ms": 300
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "loop": false,
+  "terminal": "hold KP01 ready",
+  "timing_assumptions": [],
+  "timing_changed": false,
+  "layout_changed": false,
+  "preview_loop_only": true,
+  "preview_slow_multiplier": 2,
+  "compatibility": "Standalone PR58 actor atlas replacement; not the 54-pose party importer. Retain PR58 effects and choreography. Engine integration not verified.",
+  "repair": {
+    "frame": "KP06",
+    "local_xy": [
+      [
+        76,
+        80
+      ],
+      [
+        77,
+        80
+      ],
+      [
+        76,
+        81
+      ],
+      [
+        76,
+        82
+      ]
+    ],
+    "atlas_xy": [
+      [
+        172,
+        176
+      ],
+      [
+        173,
+        176
+      ],
+      [
+        172,
+        177
+      ],
+      [
+        172,
+        178
+      ]
+    ],
+    "operation": "clear disconnected inherited cape remnant"
+  }
+}

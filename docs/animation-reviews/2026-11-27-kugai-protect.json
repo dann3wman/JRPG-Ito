@@ -1,0 +1,427 @@
+{
+  "review_id": "2026-11-27-kugai-protect",
+  "date_local": "2026-11-27",
+  "timezone": "America/New_York",
+  "reviewed_at": "2026-11-27T05:31:59.679612+00:00",
+  "character": "Kugai",
+  "action": "Protect",
+  "status": "partial_four_pixel_correction_artistic_and_engine_review_incomplete",
+  "selected_character_sheet_count": 1,
+  "selection_reason": "Protect has no entry in the 24-entry Library rotation. Latest review is Ren Delay Shot (PR57); Kugai Provoke (PR33) is a different sheet/action. Current open PRs checked, including source PR58. No duplicate Protect review found.",
+  "source": {
+    "repository": "dann3wman/JRPG-Ito",
+    "default_branch": "ccr-d8829a5a-ays4x1",
+    "default_head": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+    "source_pr": "https://github.com/dann3wman/JRPG-Ito/pull/58",
+    "source_commit": "b91a11056c8456316e39fe9d554c5650810db9e5",
+    "source_path": "assets/party-fx/kugai-protect-v01/kugai-warding.v01.png",
+    "sha256": {
+      "kugai-warding.v01.png": "841d3a27ad3388d58515ca137792fb48155ed2d59a6466d5ee8c0384cdb76bdf",
+      "build.py": "0787f76ccdc94e6289763652d0248d84274d4a1bb08c76e9ff88238ca5f02112",
+      "kugai-warding.v01.ora": "b128fec75133e98a682dcdf8d0d3a91e4257280d8a1606fd908accecfebf69bc",
+      "timeline.v01.json": "a213ff46f18a15ad451fd1c874467dbadac67f761b26faad2af24c85db9ac129"
+    },
+    "authority": "Provisional unmerged source PR58, not approved canon. No Protect native source resolved in Library title searches for kugai-warding and kugai-protect. Fuzzy results were earlier Provoke material. No cross-source byte/hash equivalence claimed."
+  },
+  "reconciliation": {
+    "library_rotation_version": 24,
+    "library_rotation_sha256": "feb1320f0aeaf367889d523da66efaed40b130172e9956737e4087fbf34b314f",
+    "repository_rotation_sha256": "0370b775bc044ebb142acea0a8ac14677dbcc9070d377783d322a08aff90e09a",
+    "policy": "Preserve each history and append independently. Default branch contains 14 entries; Library contains 24. Do not overwrite or import unrelated pending branches."
+  },
+  "sequences": [
+    "Protect actor: KP01 ready, KP02 draw, KP03 raise, KP04 present, KP05 brace, KP06 hold/cape follow-through, KP07 lower, KP08 settle, KP01 terminal"
+  ],
+  "geometry": {
+    "file": "kugai-warding.v02.png",
+    "size": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "columns": 4,
+    "rows": 2,
+    "gutter": 0,
+    "outer_margin": 0,
+    "safe_bounds_inclusive": [
+      8,
+      8,
+      87,
+      87
+    ],
+    "palette": [
+      "#D2C8BA",
+      "#B2A293",
+      "#9F8879",
+      "#877A6F",
+      "#82665D",
+      "#715D54",
+      "#61544E",
+      "#7C3536",
+      "#5B3D3C",
+      "#4C3B3A",
+      "#3D3533",
+      "#33292A",
+      "#4B1E20",
+      "#351B1D",
+      "#291B1E",
+      "#201D1F",
+      "#1C1719",
+      "#1B0F11",
+      "#121011",
+      "#0E0B0C",
+      "#0D080A",
+      "#070708",
+      "#060305",
+      "#010101"
+    ],
+    "alpha": [
+      0,
+      255
+    ],
+    "frames": [
+      {
+        "id": "KP01",
+        "row": 1,
+        "column": 1,
+        "rect": [
+          0,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          31,
+          80,
+          86
+        ],
+        "state": "ready"
+      },
+      {
+        "id": "KP02",
+        "row": 1,
+        "column": 2,
+        "rect": [
+          96,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          33,
+          82,
+          86
+        ],
+        "state": "gather shield"
+      },
+      {
+        "id": "KP03",
+        "row": 1,
+        "column": 3,
+        "rect": [
+          192,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          33,
+          81,
+          86
+        ],
+        "state": "raise shield"
+      },
+      {
+        "id": "KP04",
+        "row": 1,
+        "column": 4,
+        "rect": [
+          288,
+          0,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          32,
+          84,
+          86
+        ],
+        "state": "present shield"
+      },
+      {
+        "id": "KP05",
+        "row": 2,
+        "column": 1,
+        "rect": [
+          0,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          34,
+          80,
+          86
+        ],
+        "state": "brace"
+      },
+      {
+        "id": "KP06",
+        "row": 2,
+        "column": 2,
+        "rect": [
+          96,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          34,
+          85,
+          86
+        ],
+        "state": "ward hold"
+      },
+      {
+        "id": "KP07",
+        "row": 2,
+        "column": 3,
+        "rect": [
+          192,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          33,
+          84,
+          86
+        ],
+        "state": "lower shield"
+      },
+      {
+        "id": "KP08",
+        "row": 2,
+        "column": 4,
+        "rect": [
+          288,
+          96,
+          96,
+          96
+        ],
+        "pivot": [
+          48,
+          86
+        ],
+        "bounds_exclusive": [
+          16,
+          31,
+          79,
+          86
+        ],
+        "state": "settle"
+      }
+    ]
+  },
+  "actor_track": [
+    {
+      "frame": 0,
+      "ms": 300
+    },
+    {
+      "frame": 1,
+      "ms": 250
+    },
+    {
+      "frame": 2,
+      "ms": 300
+    },
+    {
+      "frame": 3,
+      "ms": 350
+    },
+    {
+      "frame": 4,
+      "ms": 400
+    },
+    {
+      "frame": 5,
+      "ms": 400
+    },
+    {
+      "frame": 6,
+      "ms": 300
+    },
+    {
+      "frame": 7,
+      "ms": 300
+    },
+    {
+      "frame": 0,
+      "ms": 1000
+    }
+  ],
+  "duration_ms": 3600,
+  "loop": false,
+  "timing_assumptions": [],
+  "timing_changed": false,
+  "defects": [
+    "KP06 contains a four-pixel disconnected remnant below the raised cape, inherited from the source generator copying KP01 y80..85 across every pose. This is actor artwork, not a ward particle."
+  ],
+  "changes": [
+    {
+      "frame": "KP06",
+      "local_xy": [
+        [
+          76,
+          80
+        ],
+        [
+          77,
+          80
+        ],
+        [
+          76,
+          81
+        ],
+        [
+          76,
+          82
+        ]
+      ],
+      "atlas_xy": [
+        [
+          172,
+          176
+        ],
+        [
+          173,
+          176
+        ],
+        [
+          172,
+          177
+        ],
+        [
+          172,
+          178
+        ]
+      ],
+      "operation": "clear disconnected inherited cape remnant"
+    },
+    "The same four pixels are cleared in existing ORA layers. All other pixels and seven other cells are identical. No new colours, interpolation, frame count, dimensions, pivot, timing or import-order change."
+  ],
+  "validation": {
+    "source_sha256": "841d3a27ad3388d58515ca137792fb48155ed2d59a6466d5ee8c0384cdb76bdf",
+    "output_sha256": "9cb360ca63afad181662df07a53bd3213c2cb63d6532cac8d3f7437564f5e7ed",
+    "changed_pixels": 4,
+    "changed_pixels_per_frame": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      4,
+      0,
+      0
+    ],
+    "all_other_pixels_unchanged": true,
+    "KP01_unchanged": true,
+    "binary_alpha": true,
+    "palette_exact": true,
+    "opaque_colors": 24,
+    "bounds_safe": true,
+    "native_dimensions": [
+      384,
+      192
+    ],
+    "cell": [
+      96,
+      96
+    ],
+    "frame_count": 8,
+    "four_pixel_delta": true,
+    "ora_recomposition": true,
+    "nearest_4x_exact": true,
+    "decoded_gif_pixels_and_delays_exact": true,
+    "duration_ms": 3600,
+    "slow_duration_ms": 7200,
+    "timing_changed": false,
+    "engine_tested": false,
+    "artistic_approval": false
+  },
+  "visual_inspection": [
+    "All eight unique source poses and rebuilt before/after contact sheet inspected, including adjacent KP05/KP07 cape crops.",
+    "Original and corrected actor GIFs opened in GIMP; playback started at 1x and 0.5x and screenshot samples inspected. This does not provide continuous perceptual verification of the entire action at both speeds.",
+    "KP06 disconnected fragment is absent in the reopened corrected export. The cape follow-through and deliberately held brace remain."
+  ],
+  "repository_checks": {
+    "command": "bash tools/check.sh",
+    "exit_code": 0,
+    "result": "Data check: 0 errors, 2 existing warnings; bestiary behaviour checks, game-data reference, 22 rigs/88 clips/5368 poses animation parity, authoring checks and every-encounter simulator smoke run pass.",
+    "existing_notices": "Quick Song/Delay drift already tracked in implementation-status open questions 2/3. Sixteen unrelated creature attachment art notices remain."
+  },
+  "remaining_issues": [
+    "Shield shape, arm/cape contours and helmet rim continuity vary between poses. They require further artistic review; this cleanup is not a professional-quality animation pass.",
+    "Continuous playback rhythm, full ward compositing/activation context and engine compatibility remain unverified. Source references were read, but reference animation videos were not re-viewed in this targeted cleanup.",
+    "Standalone eight-frame replacement for pending PR58. Not installed into the 54-frame party importer or game. Preserve PR58 choreography/effects; update its actor file reference explicitly when integrating.",
+    "Library/repository source parity is unresolved because a matching Library Protect source was not found."
+  ],
+  "output_sha256": "9cb360ca63afad181662df07a53bd3213c2cb63d6532cac8d3f7437564f5e7ed",
+  "output_links": {
+    "kugai-warding.v02.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-ae52611a789c8191ba4227dacc803b06_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "kugai-warding.v02.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-9435e5f5680c81918177415743399bc4_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "kugai-warding.v02.4x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-e9e84be6108c819190c40962a0f1b7b8_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "kugai-warding.v02.ora": "https://chatgpt.com/library?file_id=libfile_fde3_f-56d98961cd188191aa8ff6fc16622188_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "warding.before.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-73c3be2d2b288191b03505e2e4284cba_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "warding.before.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-8add92f86a68819194ce45ea2b4a3ba9_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "warding.after.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-5907041bbe6081918416276f5cfb5a73_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "warding.after.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-31d6ea2c5c708191895dd6770a610da8_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "frames.before-after.2x(2).png": "https://chatgpt.com/library?file_id=libfile_fde3_f-8ca69df7fe448191a3f2d26bda4f9de3_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "build(7).py": "https://chatgpt.com/library?file_id=libfile_fde3_f-8b7f03eb9ac88191a212eba811564619_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+    "validation(8).json": "https://chatgpt.com/library?file_id=libfile_fde3_f-3d8736817a5c8191bdcb46eda0d6de4e_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+  },
+  "github": {
+    "branch": "animation-review/2026-11-27-kugai-protect",
+    "publication": "Actual commit SHA and PR URL will be appended to the persistent review log after publication."
+  },
+  "next_selection": "Rotate to another unreviewed character/action. Resume this same branch/PR if completing Protect, do not create another review for the same correction."
+}

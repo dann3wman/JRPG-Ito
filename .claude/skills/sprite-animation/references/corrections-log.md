@@ -20,6 +20,15 @@ Copy this block to the top of the Log section and fill in every field.
 
 ## Log
 
+### 2026-11-27 · Kugai · Protect KP06 cape fringe
+- **Reported problem:** four opaque pixels detached below the lifted cape in KP06. See `assets/player-sheets/kugai-protect-v02/frames.before-after.2x.png`.
+- **Original generation:** PR58 `build.py` copied the full KP01 local y80..85 strip into all poses to stabilise boots. The strip also contains cape pixels.
+- **Root cause:** registration tooling copied unrelated clothing along with the feet; a lifted cape exposes the residual fragment.
+- **Solution implemented:** clear KP06 local (76,80), (77,80), (76,81), (76,82), atlas (172,176), (173,176), (172,177), (172,178), to RGBA0 in versioned PNG and existing ORA layers. Other pixels/frames and timing unchanged.
+- **Verification:** all eight before/after poses inspected; 1x/0.5x live playback screenshot samples inspected. Exact four-pixel delta, palette, binary alpha, padding, ORA, enlargement and GIF checks pass. Full continuous motion, shield/helmet artistic cleanup, ward context and engine compatibility remain incomplete.
+- **Rule for next time:** a copied foot strip can include a cape or weapon. Mask only the measured feet, then inspect adjacent poses before deleting detached fragments. No prompt change: this defect came from post-processing. Add component-aware foot registration checks in future tooling rather than blanket removal of small components.
+
+
 ### 2026-11-16 · Tetsugi · Chakra registration and grounded pivot
 - **Problem:** new generated keys carried alpha haze and slightly varying shoes. A reused actor pivot(48,88) left a one-pixel gap above the ground despite the native shoe edge ending at row86.
 - **Cause:** generated raster variation and an inherited anchor that did not match the newly measured source, not an intended levitation.
