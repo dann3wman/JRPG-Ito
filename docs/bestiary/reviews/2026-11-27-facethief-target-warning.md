@@ -1,7 +1,7 @@
 # The Face Thief: phase-entry target warning
 
 2026-11-27 · B020. Default `ccr-d8829a5a-ays4x1`, source `b5d0e9f9ac45c21b2acf28784d75fd977d35eb91`.
-Branch: `bestiary/2026-11-27-facethief-target-warning`. Commit and PR: pending publication.
+Branch: `bestiary/2026-11-27-facethief-target-warning`. Implementation commit: `c8a85559a0fe03a1c14b1e36a34c73d5b12b7a2c`. [Draft PR62](https://github.com/dann3wman/JRPG-Ito/pull/62), not merged.
 
 At1400/2800HP the old preview said Stare → Natsu while the real phase gate replanned Stare → Kiri. Above1400HP the stored Natsu target remained correct. The initial regression failed on this mismatch.
 

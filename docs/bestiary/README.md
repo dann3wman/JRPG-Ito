@@ -1,6 +1,6 @@
 # Bestiary refinement queue
 
-2026-11-27: generation11, revision28. Reconciled from PR59 revision27. Historical reviews absent from default remain in their delivery PRs. Full history and blocker reasons remain in the [tracker](refinement-queue.json).
+2026-11-27: generation11, revision29. Reconciled from PR59 revision27. Historical reviews absent from default remain in their delivery PRs. Full history and blocker reasons remain in the [tracker](refinement-queue.json).
 
 Fresh audit: 45 foes,37 encounters,22 rigs,88 clips,six battle mappings. [Audit](reviews/2026-11-27-audit.json). [Review](reviews/2026-11-27-facethief-target-warning.md).
 
@@ -25,7 +25,7 @@ Fresh audit: 45 foes,37 encounters,22 rigs,88 clips,six battle mappings. [Audit]
 | B017 | The Whisperer | implemented_pending_visual_review | [PR](https://github.com/dann3wman/JRPG-Ito/pull/53) |
 | B018 | Taste of Ostrel | implemented_pending_visual_review | [PR](https://github.com/dann3wman/JRPG-Ito/pull/56) |
 | B019 | The Whisperer | implemented_pending_balance_and_visual_review | [PR](https://github.com/dann3wman/JRPG-Ito/pull/59) |
-| B020 | The Face Thief | implemented_pending_visual_review | See tracker |
+| B020 | The Face Thief | implemented_pending_visual_review | [PR62](https://github.com/dann3wman/JRPG-Ito/pull/62) |
 | B021 | The Mirens | pending | See tracker |
 
 One actionable pending task: B021, the Mirens phase-entry Jump preview. Six blockers retained. Delivered work awaiting review is not a reimplementation candidate. Each run reconciles current default and PR heads, implements one entry, then refreshes the five categories when needed. Never merge or deploy.
