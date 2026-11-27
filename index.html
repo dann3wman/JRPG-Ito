@@ -2841,6 +2841,8 @@ const SCRIPTS = {
     rules:[ {label:'Every turn', skill:'wait'} ],
     skills:{ wait:{name:'Argue', rank:3, tags:[], target:'none', power:'—', desc:'It acts only through The Mirens\' Turn.', run:()=>{}} } },
   facethief:{
+    planName:e=>faceThiefPhasePending(e) ? 'Stare (phase change)' : null,
+    planText:e=>faceThiefPhasePending(e) ? `Stare → ${phaseOf(e)==='p2' && targetsForFoes().some(t=>t.id==='kiri') ? 'Kiri' : 'random available ally chosen when it acts'} (phase change)` : null,
     hint:'Give them back their faces.',
     notes:['Each missing feature: −20% ATK, DEF and MAG. Missing all three: KO\'d (the face comes back with them), and she heals 25%.','A round is the time between two of her turns. A feature comes back when, in the same round, an ally heals its owner and anyone hits her.','In this fight Tetsugi\'s Chakra can be aimed at an ally.'],
     phases:[ {id:'p1', label:'Above 50% HP'},
@@ -2930,6 +2932,8 @@ const SCRIPTS = {
     rules:[ {label:'Every turn', skill:'hum'} ],
     skills:{ hum:{name:'Hum', rank:3, tags:[], target:'none', power:'—', desc:'It never acts. While it hums, Taste of Ostrel heals 5% a turn. A hit wakes it for 2 of the boss\'s turns: no damage, and +10 Stress to the ally who woke it (once per action, however many wake). Woken a fourth time, it stays awake for good.', run:()=>{}} } },
 };
+// The phase gate replaces the stored target; preview the rule without rolling a new target.
+function faceThiefPhasePending(e){ return !!e.phase && phaseOf(e) !== e.phase; }
 function phaseOf(e){ const S = SCRIPTS[e.key]; if (!S.phases) return null; let id = S.phases[0].id; S.phases.forEach(p=>{ if (p.when && p.when(e)) id = p.id; }); return id; }
 function aiTarget(type, e){
   const ts = targetsForFoes(); if (!ts.length) return null;
@@ -2971,12 +2975,14 @@ function planNext(e){
 function planName(e){
   const S = SCRIPTS[e.key];
   if (e.sleep > 0) return 'Asleep';
-  if (S.planName) return S.planName(e);
+  const custom = S.planName ? S.planName(e) : null;
+  if (custom != null) return custom;
   return e.plan ? S.skills[e.plan.skill].name : '';
 }
 function planText(e){
   if (e.sleep > 0) return `Next: Asleep (${e.sleep} more of its turns)`;
-  if (SCRIPTS[e.key].planText) return 'Next: ' + SCRIPTS[e.key].planText(e);
+  const custom = SCRIPTS[e.key].planText ? SCRIPTS[e.key].planText(e) : null;
+  if (custom != null) return 'Next: ' + custom;
   if (!e.plan) return '';
   const sk = SCRIPTS[e.key].skills[e.plan.skill];
   const who = sk.late ? ` → ${sk.lateText ? sk.lateText(e) : LATE_TEXT[sk.target]}` : (e.plan.target ? ` → ${e.plan.target.name}` : (sk.target==='all' ? ' → all' : ''));

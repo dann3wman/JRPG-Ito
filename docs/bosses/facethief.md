@@ -48,7 +48,7 @@ A round is the time between two of her turns. A heal on a faceless ally plus any
 
 ## Fairness checks
 
-- [x] Stare's target shows in the turn order.
+- [x] Stare's target shows in the turn order. Pending phase changes disclose Kiri when eligible, otherwise a random available ally chosen at execution. [2026-11-27 review](../bestiary/reviews/2026-11-27-facethief-target-warning.md). Browser acceptance pending.
 - [x] Missing features show on the ally's card (via their stats) and in the log.
 - [x] The Confuse chance is stated.
 - [x] The log says when a feature comes back, and when only Chakra will do.

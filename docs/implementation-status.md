@@ -166,3 +166,7 @@ Each needs a decision before it can be resolved in both the doc and the code. Re
 8. **Lost Turns at or above 30 Danger?** *Recommendation:* the code's "30 and up" is easier to read on the meter (the dashed line sits at 30). Change the doc's wording.
 9. **Do borrowed sections dissolve the role answers?** From ring 3 (Ch. 12) a neighbour can learn a role's signature skill, so Disc 2 and 3 bosses built on "only X can" can be answered by a borrower. *Recommendation:* keep it. Persona and FFV make this the late-game pleasure, and the owner still does it better: higher stats, their Stress trait and their Limit Break. Each boss spec from Ch. 12 on should name both answers and test the borrower's with the simulator once the grid exists. Role tests (question 6) are a natural Gate: winning one opens that section's Gates to everyone.
 10. **Three attunement slots, or two?** Three slots for a party of three gives nine sections in play out of twelve, which may be close to "everything" by Disc 3. *Recommendation:* build with three, measure how often a party holds both schools' cores, and drop to two plus Deep Chorus if most Disc 3 parties carry every answer.
+
+### 2026-11-27 Face Thief preview
+
+The half-health target replacement is now disclosed before execution. Combat and seeded summaries are unchanged. Browser review remains pending because Chromium is unavailable. [Review](bestiary/reviews/2026-11-27-facethief-target-warning.md).
