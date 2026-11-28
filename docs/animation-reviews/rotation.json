@@ -2130,6 +2130,129 @@
         "kuro-casting-v02-review.zip": "https://chatgpt.com/library?file_id=libfile_fde3_f-34d6c40cbeec8191bd7ef5ca3ad7007d_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
       },
       "next_selection": "Prefer another unreviewed character with an accessible animation sheet. Do not repeat Kuro while this draft remains open unless addressing its explicit remaining work."
+    },
+    {
+      "review_id": "2026-11-28-fuyori-mix",
+      "date_local": "2026-11-28",
+      "character": "Fuyori",
+      "action": "Mix",
+      "status": "partial_review_no_edits_not_a_pass",
+      "selected_character_sheet_count": 1,
+      "source_commit": "b3b1a47c6f77e6386100dc9a79f19001d6b1e9e0",
+      "source_pr": "https://github.com/dann3wman/JRPG-Ito/pull/61",
+      "source_path": "assets/party-fx/fuyori-mix-v01/fuyori-mixing.v01.png",
+      "source_sha256": "a3ba223d913362a3766d6c1f03bb41bb27ae08813d91b6bc86a4dbc9450daee5",
+      "base_commit": "b5d0e9f9ac45c21b2acf28784d75fd977d35eb91",
+      "selection_reason": "Mix unreviewed in current 25-entry Library history; latest Kugai Protect PR60 and earlier Fuyori Acid PR42 kept separate. Current open PR inventory inspected.",
+      "reconciliation": {
+        "library_rotation_version": 25,
+        "library_rotation_sha256": "1c69ea13b211f7175f4ae8b268fe3365cc92d237345bc04c591622d9186512f8",
+        "repository_rotation_sha256": "0370b775bc044ebb142acea0a8ac14677dbcc9070d377783d322a08aff90e09a",
+        "source_authority": "Unmerged PR61 is provisional. Exact-title Library searches resolved only earlier Acid material, no Mix source bytes. Cross-source parity unknown; no overwrites."
+      },
+      "sequences": [
+        "FM01 ready, FM02 raise, FM03 uncork, FM04 tilt, FM05 pour, FM06 inspect, FM07 hold, FM08 lower, FM01 ready"
+      ],
+      "timing": "300/250/300/350/400/400/300/300/1000 ms; source-authored 3600 ms nonlooping. Preview repeats only for inspection. Half-speed doubles holds. No timing assumptions.",
+      "findings": [
+        "Distinct raise, pour and recovery silhouettes; planted feet and actor registration retained.",
+        "FM05 to FM06 receiving-vial hand identity is ambiguous; hand and vial contours change. This requires an anatomy/prop continuity correction that is not completed.",
+        "Olive coat and pale-blue crystal identity are weak in the 24-colour source palette. Face/hair/coat shading varies between keys.",
+        "Held poses are intentional; no indiscriminate in-betweens or speed change applied."
+      ],
+      "changes": [],
+      "inspection": [
+        "All eight static source frames and extracted contact sheet inspected.",
+        "Actor-only GIF opened in GIMP, playback samples observed at1x and0.5x. Full continuous perception, complete vapour contact and engine playback not verified."
+      ],
+      "validation": {
+        "source_sha256": "a3ba223d913362a3766d6c1f03bb41bb27ae08813d91b6bc86a4dbc9450daee5",
+        "size": [
+          384,
+          192
+        ],
+        "cell": [
+          96,
+          96
+        ],
+        "bounds": [
+          [
+            32,
+            20,
+            67,
+            86
+          ],
+          [
+            32,
+            20,
+            67,
+            86
+          ],
+          [
+            29,
+            20,
+            67,
+            86
+          ],
+          [
+            25,
+            20,
+            67,
+            86
+          ],
+          [
+            24,
+            20,
+            67,
+            86
+          ],
+          [
+            27,
+            20,
+            67,
+            86
+          ],
+          [
+            27,
+            20,
+            67,
+            86
+          ],
+          [
+            31,
+            20,
+            66,
+            86
+          ]
+        ],
+        "opaque_colors": 24,
+        "binary_alpha": true,
+        "decoded_previews_exact": true,
+        "duration_ms": 3600,
+        "slow_duration_ms": 7200,
+        "sprite_edits": false,
+        "artistic_approval": false,
+        "engine_tested": false
+      },
+      "repository_checks": "tools/check.sh exit0. Existing two Quick Song/Delay warnings and16 unrelated attachment advisories remain, already tracked.",
+      "remaining_issues": [
+        "Artistic correction not completed; no smoothness or professional-quality approval.",
+        "Continuous playback, vial transfer/hand anatomy, volume/flicker and full effect contact remain unresolved.",
+        "Reference videos not replayed in this run.",
+        "Engine/import compatibility untested; standalone8-cell sheet is not the54-frame party standard."
+      ],
+      "output_links": {
+        "build.py": "https://chatgpt.com/library?file_id=libfile_fde3_f-636a031035f481918e1f30e1ad7ee40d_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "frames.2x.png": "https://chatgpt.com/library?file_id=libfile_fde3_f-7ec092666f148191ab3a34dff7eb3604_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "mix.normal.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-1b01530fa8e0819194f92425f90a096f_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "mix.slow.gif": "https://chatgpt.com/library?file_id=libfile_fde3_f-a30d5da6e9b08191a866954ddb71987b_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "timing.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-0c4f4a03ea388191ab90f732dca1eab3_5857d73f1cec8191b4bdff001e4a3037&account_id=personal",
+        "validation.json": "https://chatgpt.com/library?file_id=libfile_fde3_f-dc5e37c3a8588191bb23144199ba8129_5857d73f1cec8191b4bdff001e4a3037&account_id=personal"
+      },
+      "github": {
+        "branch": "animation-review/2026-11-28-fuyori-mix",
+        "publication": "Actual commit and PR URL recorded in persistent log after publication."
+      }
     }
   ]
 }
